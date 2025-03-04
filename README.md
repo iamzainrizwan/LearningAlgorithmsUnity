@@ -21,7 +21,7 @@ A-Level Computer Science NEA project implementing and comparing **Deep Q-Network
 This project was developed as part of an **AQA A-Level Computer Science NEA**. The full project write-up, including research, design, implementation, testing, and evaluation, is available in the NEA document.  
 
 **[View the NEA Document](./NEA_Document.pdf)**
-Note that it is recommended to download the Word document version [here] (./NEA_Document.docx)
+**Note:** It is recommended to download the Word document version [here](./NEA_Document.docx).
 
 ---  
 
