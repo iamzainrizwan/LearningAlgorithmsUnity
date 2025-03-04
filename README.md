@@ -12,9 +12,9 @@ A-Level Computer Science NEA project implementing and comparing **Deep Q-Network
 ## Implemented Features  
 - **Custom DQN, PPO, and NEAT implementations** with adjustable hyperparameters.  
 - **Unity 3D simulation** where AI-controlled agents learn in a game of tag.  
-- **Custom neural network architecture** for training RL agents, including activation functions, weight updates, and gradient descent.  
+- **Custom neural network architecture** for training RL agents, including activation functions, weight updates, and gradient descent using an Adam optimiser.
 - **Genetic algorithm implementation** for NEAT, supporting mutations, crossover, and species differentiation.  
-- **User interface & configuration system** for real-time algorithm adjustments.  
+- **User interface & configuration system** for adjusting algorithms before the simulation starts.
 - **Automated data collection & visualization**, exporting performance metrics for analysis.  
 
 ## NEA Documentation  
