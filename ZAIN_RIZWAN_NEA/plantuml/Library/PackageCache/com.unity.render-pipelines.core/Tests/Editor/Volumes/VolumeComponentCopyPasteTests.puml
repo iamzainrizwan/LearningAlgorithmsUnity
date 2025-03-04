@@ -1,0 +1,18 @@
+@startuml
+class VolumeComponentCopyPasteTests {
+    + SetUp() : void
+    + CopyPasteSingle() : void
+    + CopyPasteSingleUndoRedo() : void
+    + CopyPasteMultiple() : void
+    + CopyPasteMultipleInDifferentOrder() : void
+    + CopyPasteMultipleToSingleComponent() : void
+    + CopyPasteSingleToMultipleComponent() : void
+    + CopyPasteMultipleUndoRedo() : void
+    + CannotPasteWithEmptyCopyBuffer() : void
+    + CanPasteToSelf() : void
+    + CanPasteToMatchingType() : void
+    + CannotPasteToDifferentType() : void
+    + CanPasteIfSingleMatchingType() : void
+    + CanPasteIfMultipleMatchingTypes() : void
+}
+@enduml

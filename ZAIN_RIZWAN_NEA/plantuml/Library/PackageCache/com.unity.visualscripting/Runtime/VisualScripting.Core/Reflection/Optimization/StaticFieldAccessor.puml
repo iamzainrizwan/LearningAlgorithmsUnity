@@ -1,0 +1,9 @@
+@startuml
+class "StaticFieldAccessor`1"<TField> {
+    + StaticFieldAccessor(fieldInfo:FieldInfo)
+    + Compile() : void
+    + GetValue(target:object) : object
+    + SetValue(target:object, value:object) : void
+}
+IOptimizedAccessor <|-- "StaticFieldAccessor`1"
+@enduml

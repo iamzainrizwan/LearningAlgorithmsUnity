@@ -1,0 +1,24 @@
+@startuml
+class MoveItemModeRipple {
+    + OnTrackDetach(itemsGroups:IEnumerable<ItemsPerTrack>) : void
+    + HandleTrackSwitch(itemsGroups:IEnumerable<ItemsPerTrack>) : void
+    + AllowTrackSwitch() : bool
+    + AdjustStartTime(state:WindowState, itemsGroup:ItemsPerTrack, time:double) : double
+    + OnModeClutchEnter(itemsGroups:IEnumerable<ItemsPerTrack>) : void
+    + OnModeClutchExit(itemsGroups:IEnumerable<ItemsPerTrack>) : void
+    + BeginMove(itemsGroups:IEnumerable<ItemsPerTrack>) : void
+    + UpdateMove(itemsGroups:IEnumerable<ItemsPerTrack>) : void
+    + ValidateMove(itemsGroup:ItemsPerTrack) : bool
+    + FinishMove(itemsGroups:IEnumerable<ItemsPerTrack>) : void
+    + DrawGUI(state:WindowState, movingItems:IEnumerable<MovingItems>, color:Color) : void
+}
+class PrevItemInfo {
+    + blending : bool
+    + PrevItemInfo(item:ITimelineItem, firstSelectedItem:ITimelineItem)
+}
+IMoveItemMode <|-- MoveItemModeRipple
+IMoveItemDrawer <|-- MoveItemModeRipple
+MoveItemModeRipple +-- PrevItemInfo
+PrevItemInfo --> "item" ITimelineItem
+PrevItemInfo --> "firstSelectedItem" ITimelineItem
+@enduml

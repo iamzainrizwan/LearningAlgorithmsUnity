@@ -1,0 +1,18 @@
+@startuml
+abstract class InputBindingComposite {
+    + {abstract} valueSizeInBytes : int <<get>>
+    + {abstract} <<unsafe>> ReadValue(context:InputBindingCompositeContext, buffer:void*, bufferSize:int) : void
+    + {abstract} ReadValueAsObject(context:InputBindingCompositeContext) : object
+    + <<virtual>> EvaluateMagnitude(context:InputBindingCompositeContext) : float
+    + {static} GetExpectedControlLayoutName(composite:string, part:string) : string
+}
+abstract class "InputBindingComposite`1"<TValue> {
+    + <<override>> valueSizeInBytes : int <<get>>
+    + {abstract} ReadValue(context:InputBindingCompositeContext) : TValue
+    + <<override>> <<unsafe>> ReadValue(context:InputBindingCompositeContext, buffer:void*, bufferSize:int) : void
+    + <<override>> <<unsafe>> ReadValueAsObject(context:InputBindingCompositeContext) : object
+}
+InputBindingComposite --> "valueType" Type
+InputBindingComposite <|-- "InputBindingComposite`1"
+"InputBindingComposite`1" --> "valueType" Type
+@enduml

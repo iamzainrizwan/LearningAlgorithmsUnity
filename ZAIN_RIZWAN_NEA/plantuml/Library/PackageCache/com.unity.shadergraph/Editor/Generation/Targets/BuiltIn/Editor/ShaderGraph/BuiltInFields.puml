@@ -1,0 +1,18 @@
+@startuml
+class BuiltInFields <<static>> {
+    + <<const>> kFeatures : string = "features"
+    + <<const>> kSurfaceType : string = "SurfaceType"
+    + <<const>> kBlendMode : string = "BlendMode"
+}
+BuiltInFields o-> "SurfaceOpaque" FieldDescriptor
+BuiltInFields o-> "SurfaceTransparent" FieldDescriptor
+BuiltInFields o-> "BlendAdd" FieldDescriptor
+BuiltInFields o-> "BlendPremultiply" FieldDescriptor
+BuiltInFields o-> "BlendMultiply" FieldDescriptor
+BuiltInFields o-> "VelocityPrecomputed" FieldDescriptor
+BuiltInFields o-> "SpecularSetup" FieldDescriptor
+BuiltInFields o-> "Normal" FieldDescriptor
+BuiltInFields o-> "NormalDropOffTS" FieldDescriptor
+BuiltInFields o-> "NormalDropOffOS" FieldDescriptor
+BuiltInFields o-> "NormalDropOffWS" FieldDescriptor
+@enduml

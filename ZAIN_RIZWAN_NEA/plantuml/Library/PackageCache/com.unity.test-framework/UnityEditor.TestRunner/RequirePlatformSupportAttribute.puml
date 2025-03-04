@@ -1,0 +1,7 @@
+@startuml
+class RequirePlatformSupportAttribute {
+    + RequirePlatformSupportAttribute(platforms:BuildTarget[])
+}
+NUnitAttribute <|-- RequirePlatformSupportAttribute
+IApplyToTest <|-- RequirePlatformSupportAttribute
+@enduml

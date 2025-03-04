@@ -1,0 +1,7 @@
+@startuml
+struct GUIGroupScope {
+    + GUIGroupScope(position:Rect)
+    + Dispose() : void
+}
+IDisposable <|-- GUIGroupScope
+@enduml

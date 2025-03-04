@@ -1,0 +1,8 @@
+@startuml
+abstract class "Absolute`1"<TInput> {
+    + Operation(flow:Flow) : TInput
+}
+Unit <|-- "Absolute`1"
+"Absolute`1" --> "input" ValueInput
+"Absolute`1" --> "output" ValueOutput
+@enduml

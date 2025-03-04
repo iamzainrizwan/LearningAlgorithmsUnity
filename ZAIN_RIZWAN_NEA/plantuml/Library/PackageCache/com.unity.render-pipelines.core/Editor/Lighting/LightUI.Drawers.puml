@@ -1,0 +1,22 @@
+@startuml
+enum DirectionalLightUnit {
+    Lux= LightUnit.Lux,
+}
+enum AreaLightUnit {
+    Lumen= LightUnit.Lumen,
+    Nits= LightUnit.Nits,
+    Ev100= LightUnit.Ev100,
+}
+enum PunctualLightUnit {
+    Lumen= LightUnit.Lumen,
+    Candela= LightUnit.Candela,
+    Lux= LightUnit.Lux,
+    Ev100= LightUnit.Ev100,
+}
+class LightUI <<partial>> {
+    + {static} DrawColor(serialized:ISerializedLight, owner:Editor) : void
+    + {static} DrawIntensity(serialized:ISerializedLight, owner:Editor) : void
+    + {static} DrawIntensityModifiers(serialized:ISerializedLight, hideReflector:bool) : void
+    + {static} DrawLightIntensityUnitPopup(position:Rect, selected:LightUnit, type:LightType) : LightUnit
+}
+@enduml

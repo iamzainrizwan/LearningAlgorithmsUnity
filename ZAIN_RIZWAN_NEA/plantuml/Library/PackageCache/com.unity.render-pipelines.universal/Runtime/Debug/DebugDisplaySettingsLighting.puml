@@ -1,0 +1,27 @@
+@startuml
+class DebugDisplaySettingsLighting {
+    + AreAnySettingsActive : bool <<get>>
+    + IsPostProcessingAllowed : bool <<get>>
+    + IsLightingActive : bool <<get>>
+}
+class Strings <<static>> {
+}
+class WidgetFactory <<static>> {
+}
+class SettingsPanel {
+    + SettingsPanel(data:DebugDisplaySettingsLighting)
+}
+class "DebugDisplaySettingsPanel`1"<T> {
+}
+IDebugDisplaySettingsData <|-- DebugDisplaySettingsLighting
+DebugDisplaySettingsLighting --> "lightingDebugMode" DebugLightingMode
+DebugDisplaySettingsLighting --> "lightingFeatureFlags" DebugLightingFeatureFlags
+DebugDisplaySettingsLighting --> "hdrDebugMode" HDRDebugMode
+DebugDisplaySettingsLighting +-- Strings
+Strings o-> "LightingDebugMode" NameAndTooltip
+Strings o-> "LightingFeatures" NameAndTooltip
+Strings o-> "HDRDebugMode" NameAndTooltip
+DebugDisplaySettingsLighting +-- WidgetFactory
+DebugDisplaySettingsLighting +-- SettingsPanel
+"DebugDisplaySettingsPanel`1" "<DebugDisplaySettingsLighting>" <|-- SettingsPanel
+@enduml

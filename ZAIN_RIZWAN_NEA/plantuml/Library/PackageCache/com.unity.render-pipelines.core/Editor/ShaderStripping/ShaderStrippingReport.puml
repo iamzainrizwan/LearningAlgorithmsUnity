@@ -1,0 +1,65 @@
+@startuml
+class VariantCounter {
+    + inputVariants : uint
+    + outputVariants : uint
+    + <<override>> ToString() : string
+}
+class ShaderVariantInfo {
+    + variantName : string
+    + stripTimeMs : double
+    + <<override>> ToString() : string
+}
+class ShaderStrippingInfo {
+    + name : string
+    + AddVariant(pipeline:string, variant:ShaderVariantInfo) : void
+    + <<override>> ToString() : string
+    + Log(logLevel:ShaderVariantLogLevel) : void
+    + OnBeforeSerialize() : void
+    + OnAfterDeserialize() : void
+}
+class ShaderStrippingReportScope {
+    + callbackOrder : int <<get>>
+    + OnPreprocessBuild(report:BuildReport) : void
+    + OnPostprocessBuild(report:BuildReport) : void
+}
+class ShaderStrippingReportEmpty {
+    + OnShaderProcessed(shader:TShader, shaderVariant:TShaderVariant, pipeline:string, variantsIn:uint, variantsOut:uint, stripTimeMs:double) : void
+    + DumpReport() : void
+}
+class ShaderStrippingReportLogger {
+    + ShaderStrippingReportLogger()
+    + OnShaderProcessed(shader:TShader, shaderVariant:TShaderVariant, pipeline:string, variantsIn:uint, variantsOut:uint, stripTimeMs:double) : void
+    + DumpReport() : void
+}
+class ShaderStrippingReport {
+    + ShaderStrippingReport(logLevel:ShaderVariantLogLevel, export:bool)
+    + OnShaderProcessed(shader:TShader, shaderVariant:TShaderVariant, pipeline:string, variantsIn:uint, variantsOut:uint, stripTimeMs:double) : void
+    + DumpReport() : void
+}
+interface IShaderStrippingReport {
+}
+class ShaderStripping <<static>> {
+    + {static} s_DefaultExport : bool = false
+    + {static} ReportBegin(isDevelopmentBuild:bool) : void
+    + {static} ReportEnd() : void
+}
+class PipelineVariants {
+    + pipeline : string
+}
+class Export {
+    + totalVariantsIn : uint
+    + totalVariantsOut : uint
+}
+VariantCounter <|-- ShaderVariantInfo
+VariantCounter <|-- ShaderStrippingInfo
+ISerializationCallbackReceiver <|-- ShaderStrippingInfo
+IPostprocessBuildWithReport <|-- ShaderStrippingReportScope
+IPreprocessBuildWithReport <|-- ShaderStrippingReportScope
+IShaderStrippingReport <|-- ShaderStrippingReportEmpty
+IShaderStrippingReport <|-- ShaderStrippingReportLogger
+IShaderStrippingReport <|-- ShaderStrippingReport
+ShaderStripping --> "reporter" IShaderStrippingReport
+ShaderStrippingInfo +-- PipelineVariants
+VariantCounter <|-- PipelineVariants
+ShaderStrippingReport +-- Export
+@enduml

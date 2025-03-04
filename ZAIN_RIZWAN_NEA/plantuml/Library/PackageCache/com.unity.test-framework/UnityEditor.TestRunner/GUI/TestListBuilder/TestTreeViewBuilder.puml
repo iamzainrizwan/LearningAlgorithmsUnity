@@ -1,0 +1,17 @@
+@startuml
+class TestTreeViewBuilder {
+    + TestTreeViewBuilder(tests:ITestAdaptor[], oldTestResultResults:Dictionary<string, TestRunnerResult>, uiFilter:TestRunnerUIFilter, runningOnPlatform:bool)
+    + BuildTreeView() : TreeViewItem
+}
+struct TestCount {
+    + TotalTestCount : int
+    + TotalFailedTestCount : int
+}
+class "List`1"<T> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+TestTreeViewBuilder o-> "results<TestRunnerResult>" "List`1"
+TestTreeViewBuilder o-> "m_treeFiltered<string,TestTreeViewItem>" "Dictionary`2"
+TestTreeViewBuilder +-- TestCount
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class MultipleObjectLight2DTests {
+    + Setup() : void
+    + Cleanup() : void
+    + LightsAreSortedByLightOrder() : void
+    + LightIsInVisibleListIfInCameraView() : void
+    + LightIsNotInVisibleListIfNotInCameraView() : void
+    + CachedMeshDataIsUpdatedOnChange() : void
+    + CachedMeshDataIsOverriddenByRuntimeChanges() : void
+    + EnsureShapeMeshGenerationDoesNotOverflowAllocation() : void
+}
+@enduml

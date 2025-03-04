@@ -1,0 +1,58 @@
+@startuml
+class LitGUI <<static>> {
+    + {static} Inputs(properties:LitProperties, materialEditor:MaterialEditor, material:Material) : void
+    + {static} DoClearCoat(properties:LitProperties, materialEditor:MaterialEditor, material:Material) : void
+    + {static} DoMetallicSpecularArea(properties:LitProperties, materialEditor:MaterialEditor, material:Material) : void
+    + {static} DoSmoothness(materialEditor:MaterialEditor, material:Material, smoothness:MaterialProperty, smoothnessMapChannel:MaterialProperty, smoothnessChannelNames:string[]) : void
+    + {static} GetSmoothnessMapChannel(material:Material) : SmoothnessMapChannel
+    + {static} SetMaterialKeywords(material:Material) : void
+}
+enum WorkflowMode {
+    Specular= 0,
+    Metallic,
+}
+enum SmoothnessMapChannel {
+    SpecularMetallicAlpha,
+    AlbedoAlpha,
+}
+class Styles <<static>> {
+}
+struct LitProperties {
+    + LitProperties(properties:MaterialProperty[])
+}
+LitGUI +-- WorkflowMode
+LitGUI +-- SmoothnessMapChannel
+LitGUI +-- Styles
+Styles o-> "workflowModeText" GUIContent
+Styles o-> "specularMapText" GUIContent
+Styles o-> "metallicMapText" GUIContent
+Styles o-> "smoothnessText" GUIContent
+Styles o-> "smoothnessMapChannelText" GUIContent
+Styles o-> "highlightsText" GUIContent
+Styles o-> "reflectionsText" GUIContent
+Styles o-> "heightMapText" GUIContent
+Styles o-> "occlusionText" GUIContent
+Styles o-> "clearCoatText" GUIContent
+Styles o-> "clearCoatMaskText" GUIContent
+Styles o-> "clearCoatSmoothnessText" GUIContent
+LitGUI +-- LitProperties
+LitProperties --> "workflowMode" MaterialProperty
+LitProperties --> "metallic" MaterialProperty
+LitProperties --> "specColor" MaterialProperty
+LitProperties --> "metallicGlossMap" MaterialProperty
+LitProperties --> "specGlossMap" MaterialProperty
+LitProperties --> "smoothness" MaterialProperty
+LitProperties --> "smoothnessMapChannel" MaterialProperty
+LitProperties --> "bumpMapProp" MaterialProperty
+LitProperties --> "bumpScaleProp" MaterialProperty
+LitProperties --> "parallaxMapProp" MaterialProperty
+LitProperties --> "parallaxScaleProp" MaterialProperty
+LitProperties --> "occlusionStrength" MaterialProperty
+LitProperties --> "occlusionMap" MaterialProperty
+LitProperties --> "highlights" MaterialProperty
+LitProperties --> "reflections" MaterialProperty
+LitProperties --> "clearCoat" MaterialProperty
+LitProperties --> "clearCoatMap" MaterialProperty
+LitProperties --> "clearCoatMask" MaterialProperty
+LitProperties --> "clearCoatSmoothness" MaterialProperty
+@enduml

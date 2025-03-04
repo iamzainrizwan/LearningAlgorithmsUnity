@@ -1,0 +1,165 @@
+@startuml
+class RenderGraphViewer <<partial>> {
+}
+class TriangleElement <<partial>> {
+    + width : int <<get>> <<set>>
+    + height : int <<get>> <<set>>
+    + TriangleElement()
+}
+class Names <<static>> <<partial>> {
+    + <<const>> kCaptureButton : string = "capture-button"
+    + <<const>> kCurrentGraphDropdown : string = "current-graph-dropdown"
+    + <<const>> kCurrentExecutionDropdown : string = "current-execution-dropdown"
+    + <<const>> kPassFilterField : string = "pass-filter-field"
+    + <<const>> kResourceFilterField : string = "resource-filter-field"
+    + <<const>> kContentContainer : string = "content-container"
+    + <<const>> kMainContainer : string = "main-container"
+    + <<const>> kPassList : string = "pass-list"
+    + <<const>> kPassListScrollView : string = "pass-list-scroll-view"
+    + <<const>> kResourceListScrollView : string = "resource-list-scroll-view"
+    + <<const>> kResourceGridScrollView : string = "resource-grid-scroll-view"
+    + <<const>> kResourceGrid : string = "resource-grid"
+    + <<const>> kGridlineContainer : string = "grid-line-container"
+    + <<const>> kHoverOverlay : string = "hover-overlay"
+    + <<const>> kEmptyStateMessage : string = "empty-state-message"
+}
+class Classes <<static>> <<partial>> {
+    + <<const>> kPassListItem : string = "pass-list__item"
+    + <<const>> kPassTitle : string = "pass-title"
+    + <<const>> kPassBlock : string = "pass-block"
+    + <<const>> kPassBlockScriptLink : string = "pass-block-script-link"
+    + <<const>> kPassBlockCulledPass : string = "pass-block--culled"
+    + <<const>> kPassBlockAsyncPass : string = "pass-block--async"
+    + <<const>> kPassHighlight : string = "pass--highlight"
+    + <<const>> kPassHoverHighlight : string = "pass--hover-highlight"
+    + <<const>> kPassHighlightBorder : string = "pass--highlight-border"
+    + <<const>> kPassMergeIndicator : string = "pass-merge-indicator"
+    + <<const>> kPassCompatibilityMessageIndicator : string = "pass-compatibility-message-indicator"
+    + <<const>> kPassCompatibilityMessageIndicatorAnimation : string = "pass-compatibility-message-indicator--anim"
+    + <<const>> kPassCompatibilityMessageIndicatorCompatible : string = "pass-compatibility-message-indicator--compatible"
+    + <<const>> kPassSynchronizationMessageIndicator : string = "pass-synchronization-message-indicator"
+    + <<const>> kResourceListItem : string = "resource-list__item"
+    + <<const>> kResourceListItemHighlight : string = "resource-list__item--highlight"
+    + <<const>> kResourceListPaddingItem : string = "resource-list-padding-item"
+    + <<const>> kResourceIconContainer : string = "resource-icon-container"
+    + <<const>> kResourceIcon : string = "resource-icon"
+    + <<const>> kResourceIconImported : string = "resource-icon--imported"
+    + <<const>> kResourceIconMultipleUsage : string = "resource-icon--multiple-usage"
+    + <<const>> kResourceIconGlobalDark : string = "resource-icon--global-dark"
+    + <<const>> kResourceIconGlobalLight : string = "resource-icon--global-light"
+    + <<const>> kResourceIconFbfetch : string = "resource-icon--fbfetch"
+    + <<const>> kResourceIconTexture : string = "resource-icon--texture"
+    + <<const>> kResourceIconBuffer : string = "resource-icon--buffer"
+    + <<const>> kResourceIconAccelerationStructure : string = "resource-icon--acceleration-structure"
+    + <<const>> kResourceGridRow : string = "resource-grid__row"
+    + <<const>> kResourceGridFocusOverlay : string = "resource-grid-focus-overlay"
+    + <<const>> kResourceHelperLine : string = "resource-helper-line"
+    + <<const>> kResourceHelperLineHighlight : string = "resource-helper-line--highlight"
+    + <<const>> kResourceUsageRangeBlock : string = "usage-range-block"
+    + <<const>> kResourceUsageRangeBlockHighlight : string = "usage-range-block--highlight"
+    + <<const>> kResourceDependencyBlock : string = "dependency-block"
+    + <<const>> kResourceDependencyBlockRead : string = "dependency-block-read"
+    + <<const>> kResourceDependencyBlockWrite : string = "dependency-block-write"
+    + <<const>> kResourceDependencyBlockReadWrite : string = "dependency-block-readwrite"
+    + <<const>> kGridLine : string = "grid-line"
+    + <<const>> kGridLineHighlight : string = "grid-line--highlight"
+}
+enum EmptyStateReason {
+    None= 0,
+    NoGraphRegistered,
+    NoExecutionRegistered,
+    NoDataAvailable,
+    WaitingForCameraRender,
+    EmptyPassFilterResult,
+    EmptyResourceFilterResult,
+}
+enum PassFilterLegacy {
+    CulledPasses= 1 << 0,
+}
+enum PassFilter {
+    CulledPasses= 1 << 0,
+    RasterPasses= 1 << 1,
+    UnsafePasses= 1 << 2,
+    ComputePasses= 1 << 3,
+}
+enum ResourceFilter {
+    ImportedResources= 1 << 0,
+    Textures= 1 << 1,
+    Buffers= 1 << 2,
+    AccelerationStructures= 1 << 3,
+}
+class ResourceElementInfo {
+    + index : int
+    + firstPassId : int
+    + lastPassId : int
+}
+class ResourceRWBlock {
+    + tooltip : string
+    + visibleResourceIndex : int
+    + read : bool
+    + write : bool
+    + HasMultipleUsageFlags() : bool
+}
+class PassElementInfo {
+    + passId : int
+    + isCulled : bool
+    + isAsync : bool
+    + hasPassCompatibilityTooltip : bool
+    + isPassCompatibleToMerge : bool
+    + hasAsyncDependencyTooltip : bool
+}
+enum ResourceHighlightOptions {
+    None= 1 << 0,
+    ResourceListItem= 1 << 1,
+    ResourceUsageRangeBorder= 1 << 2,
+    ResourceHelperLine= 1 << 3,
+    All= ResourceListItem | ResourceUsageRangeBorder | ResourceHelperLine,
+}
+enum PassHighlightOptions {
+    None= 1 << 0,
+    PassBlockBorder= 1 << 1,
+    PassBlockFill= 1 << 2,
+    PassTitle= 1 << 3,
+    PassGridLines= 1 << 4,
+    ResourceRWBlocks= 1 << 5,
+    PassesWithCompatibilityMessage= 1 << 6,
+    PassesWithSynchronizationMessage= 1 << 7,
+    ResourceGridFocusOverlay= 1 << 8,
+    PassTitleHover= 1 << 9,
+    All= PassBlockBorder | PassBlockFill | PassTitle | PassGridLines | ResourceRWBlocks |
+                  PassesWithCompatibilityMessage | PassesWithSynchronizationMessage | ResourceGridFocusOverlay | PassTitleHover,
+}
+enum UsageFlags {
+    None= 0,
+    UpdatesGlobalResource= 1 << 0,
+    FramebufferFetch= 1 << 1,
+}
+class "List`1"<T> {
+}
+EditorWindow <|-- RenderGraphViewer
+VisualElement <|-- TriangleElement
+TriangleElement --> "color" Color
+RenderGraphViewer +-- Names
+RenderGraphViewer +-- Classes
+RenderGraphViewer +-- EmptyStateReason
+RenderGraphViewer +-- PassFilterLegacy
+RenderGraphViewer +-- PassFilter
+RenderGraphViewer +-- ResourceFilter
+RenderGraphViewer +-- ResourceElementInfo
+ResourceElementInfo --> "type" RenderGraphResourceType
+ResourceElementInfo --> "usageRangeBlock" VisualElement
+ResourceElementInfo --> "resourceListItem" VisualElement
+ResourceElementInfo --> "resourceHelperLine" VisualElement
+RenderGraphViewer +-- ResourceRWBlock
+ResourceRWBlock --> "element" VisualElement
+ResourceRWBlock --> "usage" UsageFlags
+RenderGraphViewer +-- PassElementInfo
+PassElementInfo --> "passBlock" VisualElement
+PassElementInfo --> "passTitle" PassTitleLabel
+PassElementInfo o-> "resourceBlocks<ResourceRWBlock>" "List`1"
+PassElementInfo --> "leftGridLine" VisualElement
+PassElementInfo --> "rightGridLine" VisualElement
+RenderGraphViewer +-- ResourceHighlightOptions
+RenderGraphViewer +-- PassHighlightOptions
+ResourceRWBlock +-- UsageFlags
+@enduml

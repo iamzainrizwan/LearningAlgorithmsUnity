@@ -1,0 +1,66 @@
+@startuml
+class NativeHashSetTests {
+    + NativeHashSet_IsEmpty() : void
+    + NativeHashSet_Capacity() : void
+    + NativeHashSet_CapacityAtLeastCount() : void
+    + NativeHashSet_RemoveOnEmptyMap_DoesNotThrow() : void
+    + NativeHashSet_Collisions() : void
+    + NativeHashSet_SameElement() : void
+    + NativeHashSet_CanBeReadFromJob() : void
+    + NativeHashSet_TempHashSetInJob() : void
+    + NativeHashSet_ForEach_FixedStringInHashMap() : void
+    + NativeHashSet_ForEach(n:int) : void
+    + NativeHashSet_ForEach_From_Job(n:int) : void
+    + NativeHashSet_Write_From_Job() : void
+    + NativeHashSet_ForEach_Throws_When_Modified() : void
+    + NativeHashSet_ForEach_Throws_Job_Iterator() : void
+    + NativeHashSet_EIU_ExceptWith_Empty() : void
+    + NativeHashSet_EIU_ExceptWith_AxB() : void
+    + NativeHashSet_EIU_ExceptWith_BxA() : void
+    + NativeHashSet_EIU_IntersectWith_Empty() : void
+    + NativeHashSet_EIU_IntersectWith() : void
+    + NativeHashSet_EIU_UnionWith_Empty() : void
+    + NativeHashSet_EIU_UnionWith() : void
+    + NativeHashSet_ToArray() : void
+    + NativeHashSet_CustomAllocatorTest() : void
+    + <<unsafe>> NativeHashSet_BurstedCustomAllocatorTest() : void
+}
+struct TempHashSet {
+    + Execute() : void
+}
+struct ReadHashSetJob {
+    + Execute() : void
+}
+struct NativeHashSet_ForEach_Job {
+    + Num : int
+    + Execute() : void
+}
+struct NativeHashSet_Write_Job {
+    + Execute() : void
+}
+struct ForEachIterator {
+    + Execute() : void
+}
+struct BurstedCustomAllocatorJob {
+    + Execute() : void
+}
+class "NativeReference`1"<T> {
+}
+class "NativeHashSet`1"<T> {
+}
+CollectionsTestFixture <|-- NativeHashSetTests
+NativeHashSetTests +-- TempHashSet
+IJob <|-- TempHashSet
+NativeHashSetTests +-- ReadHashSetJob
+IJob <|-- ReadHashSetJob
+ReadHashSetJob --> "Output<int>" "NativeReference`1"
+NativeHashSetTests +-- NativeHashSet_ForEach_Job
+IJob <|-- NativeHashSet_ForEach_Job
+NativeHashSetTests +-- NativeHashSet_Write_Job
+IJob <|-- NativeHashSet_Write_Job
+NativeHashSet_Write_Job --> "Input<int>" "NativeHashSet`1"
+NativeHashSetTests +-- ForEachIterator
+IJob <|-- ForEachIterator
+NativeHashSetTests +-- BurstedCustomAllocatorJob
+IJob <|-- BurstedCustomAllocatorJob
+@enduml

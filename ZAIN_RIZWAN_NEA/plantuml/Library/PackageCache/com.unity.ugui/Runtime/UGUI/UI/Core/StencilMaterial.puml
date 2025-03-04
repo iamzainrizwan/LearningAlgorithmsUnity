@@ -1,0 +1,22 @@
+@startuml
+class StencilMaterial <<static>> {
+    + {static} Add(baseMat:Material, stencilID:int) : Material
+    + {static} Add(baseMat:Material, stencilID:int, operation:StencilOp, compareFunction:CompareFunction, colorWriteMask:ColorWriteMask) : Material
+    + {static} Add(baseMat:Material, stencilID:int, operation:StencilOp, compareFunction:CompareFunction, colorWriteMask:ColorWriteMask, readMask:int, writeMask:int) : Material
+    + {static} Remove(customMat:Material) : void
+    + {static} ClearAll() : void
+}
+class MatEntry {
+    + count : int
+    + stencilId : int
+    + readMask : int
+    + writeMask : int
+    + useAlphaClip : bool
+}
+StencilMaterial +-- MatEntry
+MatEntry --> "baseMat" Material
+MatEntry --> "customMat" Material
+MatEntry o-> "operation" StencilOp
+MatEntry o-> "compareFunction" CompareFunction
+MatEntry --> "colorMask" ColorWriteMask
+@enduml

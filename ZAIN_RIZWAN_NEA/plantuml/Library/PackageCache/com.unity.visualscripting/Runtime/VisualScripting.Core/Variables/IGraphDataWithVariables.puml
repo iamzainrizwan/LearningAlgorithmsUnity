@@ -1,0 +1,5 @@
+@startuml
+interface IGraphDataWithVariables {
+}
+IGraphData <|-- IGraphDataWithVariables
+@enduml

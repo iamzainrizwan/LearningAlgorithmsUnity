@@ -1,0 +1,14 @@
+@startuml
+class StyleConstants <<static>> {
+    + <<const>> CheckmarkClass : string = "checkmark-icon"
+    + <<const>> OnBoardingSectionFoldout : string = "section-foldout"
+    + <<const>> OnBoardingSectionClass : string = "onboarding-section"
+    + <<const>> OnboardingSectionTitle : string = "onboarding-section-title"
+    + <<const>> OnBoardingSectionMainButton : string = "onboarding-section-mainbutton"
+    + <<const>> OnBoardingShortDescription : string = "onboarding-section-short-description"
+    + <<const>> DocButtonClass : string = "doc-button"
+    + <<const>> FlexSpaceClass : string = "flex-spacer"
+    + <<const>> HorizontalContainerClass : string = "horizontal-container"
+    + <<const>> HighlightBackgroundClass : string = "highlight-background-color"
+}
+@enduml

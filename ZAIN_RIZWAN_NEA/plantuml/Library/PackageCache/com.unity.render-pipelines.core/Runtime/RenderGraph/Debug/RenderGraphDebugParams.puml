@@ -1,0 +1,26 @@
+@startuml
+class RenderGraphDebugParams {
+    + clearRenderTargetsAtCreation : bool
+    + clearRenderTargetsAtRelease : bool
+    + disablePassCulling : bool
+    + immediateMode : bool
+    + enableLogging : bool
+    + logFrameInformation : bool
+    + logResources : bool
+    + RegisterDebug(name:string, debugPanel:DebugUI.Panel) : void
+    + UnRegisterDebug(name:string) : void
+    + AreAnySettingsActive : bool <<get>>
+}
+class Strings <<static>> {
+}
+IDebugDisplaySettingsQuery <|-- RenderGraphDebugParams
+RenderGraphDebugParams +-- Strings
+Strings o-> "ClearRenderTargetsAtCreation" NameAndTooltip
+Strings o-> "ClearRenderTargetsAtFree" NameAndTooltip
+Strings o-> "DisablePassCulling" NameAndTooltip
+Strings o-> "ImmediateMode" NameAndTooltip
+Strings o-> "EnableLogging" NameAndTooltip
+Strings o-> "LogFrameInformation" NameAndTooltip
+Strings o-> "LogResources" NameAndTooltip
+Strings o-> "EnableNativeCompiler" NameAndTooltip
+@enduml

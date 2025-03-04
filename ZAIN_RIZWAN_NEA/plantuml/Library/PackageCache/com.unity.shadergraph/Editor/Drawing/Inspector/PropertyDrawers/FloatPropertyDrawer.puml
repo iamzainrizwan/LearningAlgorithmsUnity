@@ -1,0 +1,7 @@
+@startuml
+class FloatPropertyDrawer {
+    + DrawProperty(propertyInfo:PropertyInfo, actualObject:object, attribute:InspectableAttribute) : VisualElement
+}
+IPropertyDrawer <|-- FloatPropertyDrawer
+FloatPropertyDrawer --> "inspectorUpdateDelegate" Action
+@enduml

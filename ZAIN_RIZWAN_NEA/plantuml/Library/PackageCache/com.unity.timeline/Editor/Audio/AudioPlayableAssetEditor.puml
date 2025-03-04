@@ -1,0 +1,9 @@
+@startuml
+class AudioPlayableAssetEditor {
+    + <<override>> GetClipOptions(clip:TimelineClip) : ClipDrawOptions
+    + <<override>> DrawBackground(clip:TimelineClip, region:ClipBackgroundRegion) : void
+    + GetOrCreateWaveformPreview(clip:TimelineClip, audioClip:AudioClip, rect:Rect, startTime:double, endTime:double) : WaveformPreview
+    + {static} DrawWaveformPreview(preview:WaveformPreview, rect:Rect) : void
+}
+ClipEditor <|-- AudioPlayableAssetEditor
+@enduml

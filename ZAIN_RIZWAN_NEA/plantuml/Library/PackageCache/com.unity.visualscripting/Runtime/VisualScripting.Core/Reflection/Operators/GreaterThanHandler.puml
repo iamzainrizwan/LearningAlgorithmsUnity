@@ -1,0 +1,6 @@
+@startuml
+class GreaterThanHandler {
+    + GreaterThanHandler()
+}
+BinaryOperatorHandler <|-- GreaterThanHandler
+@enduml

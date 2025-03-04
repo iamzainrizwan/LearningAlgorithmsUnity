@@ -1,0 +1,11 @@
+@startuml
+class fsGuidConverter {
+    + <<override>> CanProcess(type:Type) : bool
+    + <<override>> RequestCycleSupport(storageType:Type) : bool
+    + <<override>> RequestInheritanceSupport(storageType:Type) : bool
+    + <<override>> TrySerialize(instance:object, serialized:fsData, storageType:Type) : fsResult
+    + <<override>> TryDeserialize(data:fsData, instance:object, storageType:Type) : fsResult
+    + <<override>> CreateInstance(data:fsData, storageType:Type) : object
+}
+fsConverter <|-- fsGuidConverter
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+class SerializableVersion {
+    + SerializableVersion(version:Version)
+    + Build : int
+    + Major : int
+    + Minor : int
+    + Revision : int
+}
+class VersionExtension <<static>> {
+    + {static} ToSerializableVersion(version:Version) : SerializableVersion
+    + {static} ToVersion(serializableVersion:SerializableVersion) : Version
+}
+@enduml

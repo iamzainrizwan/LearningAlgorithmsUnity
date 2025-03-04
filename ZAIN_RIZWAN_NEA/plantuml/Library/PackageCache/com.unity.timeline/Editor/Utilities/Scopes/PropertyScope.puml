@@ -1,0 +1,8 @@
+@startuml
+struct PropertyScope {
+    + PropertyScope(totalPosition:Rect, label:GUIContent, property:SerializedProperty)
+    + Dispose() : void
+}
+IDisposable <|-- PropertyScope
+PropertyScope --> "content" GUIContent
+@enduml

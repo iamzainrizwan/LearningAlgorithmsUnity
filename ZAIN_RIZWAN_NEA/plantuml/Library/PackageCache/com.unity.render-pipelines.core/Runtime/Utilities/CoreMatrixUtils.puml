@@ -1,0 +1,9 @@
+@startuml
+class CoreMatrixUtils <<static>> {
+    + {static} MatrixTimesTranslation(inOutMatrix:Matrix4x4, translation:Vector3) : void
+    + {static} TranslationTimesMatrix(inOutMatrix:Matrix4x4, translation:Vector3) : void
+    + {static} MultiplyPerspectiveMatrix(perspective:Matrix4x4, rhs:Matrix4x4) : Matrix4x4
+    + {static} MultiplyOrthoMatrix(ortho:Matrix4x4, rhs:Matrix4x4, centered:bool) : Matrix4x4
+    + {static} MultiplyProjectionMatrix(projMatrix:Matrix4x4, rhs:Matrix4x4, orthoCentered:bool) : Matrix4x4
+}
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+abstract class "GraphContext`2"<TGraph,TCanvas> {
+    + canvas : TCanvas <<get>>
+    + graph : TGraph <<get>>
+    + ElementMetadata(element:IGraphElement) : Metadata
+    + <<virtual>> windowTitle : string <<get>>
+    + isPrefabInstance : bool <<get>>
+    + <<virtual>> Dispose() : void
+    + BeginEdit(disablePrefabInstance:bool) : void
+    + EndEdit() : void
+    + DescribeAndAnalyze() : void
+}
+class "ReadOnlyCollection`1"<T> {
+}
+IGraphContext <|-- "GraphContext`2"
+"GraphContext`2" --> "reference" GraphReference
+"GraphContext`2" --> "analyserProvider" AnalyserProvider
+"GraphContext`2" --> "selection" GraphSelection
+"GraphContext`2" --> "graphMetadata" Metadata
+"GraphContext`2" --> "selectionMetadata" Metadata
+"GraphContext`2" --> "extensions<IGraphContextExtension>" "ReadOnlyCollection`1"
+"GraphContext`2" --> "sidebarPanels<ISidebarPanelContent>" "ReadOnlyCollection`1"
+@enduml

@@ -1,0 +1,85 @@
+@startuml
+class PostProcessPass <<partial>> {
+    + PostProcessPass(evt:RenderPassEvent, data:PostProcessData, postProcessParams:PostProcessParams)
+    + Cleanup() : void
+    + Dispose() : void
+    + Setup(baseDescriptor:RenderTextureDescriptor, source:RTHandle, resolveToScreen:bool, depth:RTHandle, internalLut:RTHandle, motionVectors:RTHandle, hasFinalPass:bool, enableColorEncoding:bool) : void
+    + Setup(baseDescriptor:RenderTextureDescriptor, source:RTHandle, destination:RTHandle, depth:RTHandle, internalLut:RTHandle, hasFinalPass:bool, enableColorEncoding:bool) : void
+    + SetupFinalPass(source:RTHandle, useSwapBuffer:bool, enableColorEncoding:bool) : void
+    + <<override>> OnCameraSetup(cmd:CommandBuffer, renderingData:RenderingData) : void
+    + CanRunOnTile() : bool
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+}
+class MaterialLibrary {
+    + MaterialLibrary(data:PostProcessData)
+}
+class ShaderConstants <<static>> {
+    + {static} <<readonly>> _TempTarget : int
+    + {static} <<readonly>> _TempTarget2 : int
+    + {static} <<readonly>> _StencilRef : int
+    + {static} <<readonly>> _StencilMask : int
+    + {static} <<readonly>> _FullCoCTexture : int
+    + {static} <<readonly>> _HalfCoCTexture : int
+    + {static} <<readonly>> _DofTexture : int
+    + {static} <<readonly>> _CoCParams : int
+    + {static} <<readonly>> _BokehKernel : int
+    + {static} <<readonly>> _BokehConstants : int
+    + {static} <<readonly>> _PongTexture : int
+    + {static} <<readonly>> _PingTexture : int
+    + {static} <<readonly>> _Metrics : int
+    + {static} <<readonly>> _AreaTexture : int
+    + {static} <<readonly>> _SearchTexture : int
+    + {static} <<readonly>> _EdgeTexture : int
+    + {static} <<readonly>> _BlendTexture : int
+    + {static} <<readonly>> _ColorTexture : int
+    + {static} <<readonly>> _Params : int
+    + {static} <<readonly>> _SourceTexLowMip : int
+    + {static} <<readonly>> _Bloom_Params : int
+    + {static} <<readonly>> _Bloom_Texture : int
+    + {static} <<readonly>> _LensDirt_Texture : int
+    + {static} <<readonly>> _LensDirt_Params : int
+    + {static} <<readonly>> _LensDirt_Intensity : int
+    + {static} <<readonly>> _Distortion_Params1 : int
+    + {static} <<readonly>> _Distortion_Params2 : int
+    + {static} <<readonly>> _Chroma_Params : int
+    + {static} <<readonly>> _Vignette_Params1 : int
+    + {static} <<readonly>> _Vignette_Params2 : int
+    + {static} <<readonly>> _Vignette_ParamsXR : int
+    + {static} <<readonly>> _Lut_Params : int
+    + {static} <<readonly>> _UserLut_Params : int
+    + {static} <<readonly>> _InternalLut : int
+    + {static} <<readonly>> _UserLut : int
+    + {static} <<readonly>> _DownSampleScaleFactor : int
+    + {static} <<readonly>> _FlareOcclusionRemapTex : int
+    + {static} <<readonly>> _FlareOcclusionTex : int
+    + {static} <<readonly>> _FlareOcclusionIndex : int
+    + {static} <<readonly>> _FlareTex : int
+    + {static} <<readonly>> _FlareColorValue : int
+    + {static} <<readonly>> _FlareData0 : int
+    + {static} <<readonly>> _FlareData1 : int
+    + {static} <<readonly>> _FlareData2 : int
+    + {static} <<readonly>> _FlareData3 : int
+    + {static} <<readonly>> _FlareData4 : int
+    + {static} <<readonly>> _FlareData5 : int
+    + {static} <<readonly>> _FullscreenProjMat : int
+}
+ScriptableRenderPass <|-- PostProcessPass
+PostProcessPass +-- MaterialLibrary
+MaterialLibrary --> "stopNaN" Material
+MaterialLibrary --> "subpixelMorphologicalAntialiasing" Material
+MaterialLibrary --> "gaussianDepthOfField" Material
+MaterialLibrary --> "gaussianDepthOfFieldCoC" Material
+MaterialLibrary --> "bokehDepthOfField" Material
+MaterialLibrary --> "bokehDepthOfFieldCoC" Material
+MaterialLibrary --> "cameraMotionBlur" Material
+MaterialLibrary --> "paniniProjection" Material
+MaterialLibrary --> "bloom" Material
+MaterialLibrary --> "temporalAntialiasing" Material
+MaterialLibrary --> "scalingSetup" Material
+MaterialLibrary --> "easu" Material
+MaterialLibrary --> "uber" Material
+MaterialLibrary --> "finalPass" Material
+MaterialLibrary --> "lensFlareDataDriven" Material
+MaterialLibrary --> "lensFlareScreenSpace" Material
+PostProcessPass +-- ShaderConstants
+@enduml

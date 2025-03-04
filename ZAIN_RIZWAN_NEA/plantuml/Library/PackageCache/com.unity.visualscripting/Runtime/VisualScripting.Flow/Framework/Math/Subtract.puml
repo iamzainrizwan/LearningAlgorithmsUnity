@@ -1,0 +1,10 @@
+@startuml
+abstract class "Subtract`1"<T> {
+    + {abstract} Operation(a:T, b:T) : T
+    + Operation(flow:Flow) : T
+}
+Unit <|-- "Subtract`1"
+"Subtract`1" --> "minuend" ValueInput
+"Subtract`1" --> "subtrahend" ValueInput
+"Subtract`1" --> "difference" ValueOutput
+@enduml

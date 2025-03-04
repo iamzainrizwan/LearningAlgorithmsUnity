@@ -1,0 +1,7 @@
+@startuml
+interface "IUnitPortCollection`1"<TPort> {
+}
+class "IKeyedCollection`2"<T1,T2> {
+}
+"IKeyedCollection`2" "<string,TPort>" <|-- "IUnitPortCollection`1"
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+enum Layer {
+    Clips,
+    ClipHandles,
+    Markers,
+    MarkerHeaderTrack,
+    MarkersOnHeader,
+}
+struct LayerZOrder {
+    + LayerZOrder(layer:Layer, zOrder:int)
+    + CompareTo(other:LayerZOrder) : int
+    + ChangeLayer(layer:Layer) : LayerZOrder
+}
+interface ILayerable {
+}
+interface IZOrderProvider {
+}
+interface ILayer {
+}
+abstract class "ItemsLayer`1"<T> {
+    + Next() : LayerZOrder
+    + <<virtual>> Draw(rect:Rect, state:WindowState) : void
+}
+class "IComparable`1"<T> {
+}
+class "List`1"<T> {
+}
+"IComparable`1" "<LayerZOrder>" <|-- LayerZOrder
+IZOrderProvider <|-- ILayer
+ILayer <|-- "ItemsLayer`1"
+"ItemsLayer`1" --> "items<T>" "List`1"
+@enduml

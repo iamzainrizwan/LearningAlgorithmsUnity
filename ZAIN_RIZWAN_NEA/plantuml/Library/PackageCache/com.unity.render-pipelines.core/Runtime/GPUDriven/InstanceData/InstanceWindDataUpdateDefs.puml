@@ -1,0 +1,5 @@
+@startuml
+class SpeedTreeWindShaderDef <<static>> {
+    + <<const>> kMaxWindParamsCount : int
+}
+@enduml

@@ -1,0 +1,84 @@
+@startuml
+interface "IIndexable`1"<T> {
+}
+interface "INativeList`1"<T> {
+}
+struct "NativeList`1"<T> {
+    + NativeList(allocator:AllocatorManager.AllocatorHandle)
+    + NativeList(initialCapacity:int, allocator:AllocatorManager.AllocatorHandle)
+    + ElementAt(index:int) : ref T
+    + Length : int <<readonly get>> <<set>>
+    + Capacity : int <<readonly get>> <<set>>
+    + GetUnsafeList() : UnsafeList<T>*
+    + AddNoResize(value:T) : void
+    + AddRangeNoResize(ptr:void*, count:int) : void
+    + AddRangeNoResize(list:NativeList<T>) : void
+    + Add(value:T) : void
+    + AddRange(array:NativeArray<T>) : void
+    + AddRange(ptr:void*, count:int) : void
+    + AddReplicate(value:T, count:int) : void
+    + InsertRangeWithBeginEnd(begin:int, end:int) : void
+    + InsertRange(index:int, count:int) : void
+    + RemoveAtSwapBack(index:int) : void
+    + RemoveRangeSwapBack(index:int, count:int) : void
+    + RemoveAt(index:int) : void
+    + RemoveRange(index:int, count:int) : void
+    + <<readonly>> IsEmpty : bool <<get>>
+    + <<readonly>> IsCreated : bool <<get>>
+    + Dispose() : void
+    + Dispose(inputDeps:JobHandle) : JobHandle
+    + Clear() : void
+    + AsArray() : NativeArray<T>
+    + AsDeferredJobArray() : NativeArray<T>
+    + ToArray(allocator:AllocatorManager.AllocatorHandle) : NativeArray<T>
+    + CopyFrom(other:NativeArray<T>) : void
+    + CopyFrom(other:UnsafeList<T>) : void
+    + CopyFrom(other:NativeList<T>) : void
+    + GetEnumerator() : NativeArray<T>.Enumerator
+    + Resize(length:int, options:NativeArrayOptions) : void
+    + ResizeUninitialized(length:int) : void
+    + SetCapacity(capacity:int) : void
+    + TrimExcess() : void
+    + AsReadOnly() : NativeArray<T>.ReadOnly
+    + AsParallelReader() : NativeArray<T>.ReadOnly
+    + AsParallelWriter() : ParallelWriter
+}
+struct NativeListDispose {
+    + Dispose() : void
+}
+struct NativeListDisposeJob {
+    + Execute() : void
+}
+class "NativeListDebugView`1"<T> <<sealed>> <<unsafe>> {
+    + NativeListDebugView(array:NativeList<T>)
+}
+class NativeListExtensions <<unsafe>> <<static>> {
+    + {static} Contains(list:NativeList<T>, value:U) : bool
+    + {static} IndexOf(list:NativeList<T>, value:U) : int
+    + {static} ArraysEqual(container:NativeArray<T>, other:NativeList<T>) : bool
+    + {static} ArraysEqual(container:NativeList<T>, other:NativeArray<T>) : bool
+    + {static} ArraysEqual(container:NativeList<T>, other:NativeList<T>) : bool
+    + {static} ArraysEqual(container:NativeList<T>, other:UnsafeList<T>) : bool
+}
+class NativeListUnsafeUtility <<unsafe>> <<static>> {
+    + {static} GetUnsafePtr(list:NativeList<T>) : T*
+    + {static} <<unsafe>> GetUnsafeReadOnlyPtr(list:NativeList<T>) : T*
+    + {static} GetInternalListDataPtrUnchecked(list:NativeList<T>) : void*
+}
+class "IEnumerable`1"<T> {
+}
+class "NativeArray`1"<T> {
+}
+struct ParallelWriter {
+    + AddNoResize(value:T) : void
+    + AddRangeNoResize(ptr:void*, count:int) : void
+    + AddRangeNoResize(list:UnsafeList<T>) : void
+    + AddRangeNoResize(list:NativeList<T>) : void
+}
+"IIndexable`1" "<T>" <|-- "INativeList`1"
+INativeDisposable <|-- "NativeList`1"
+"INativeList`1" "<T>" <|-- "NativeList`1"
+"IEnumerable`1" "<T>" <|-- "NativeList`1"
+IJob <|-- NativeListDisposeJob
+"NativeList`1" +-- ParallelWriter
+@enduml

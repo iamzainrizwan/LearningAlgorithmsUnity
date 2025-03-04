@@ -1,0 +1,5 @@
+@startuml
+class ProbeVolumeConstantRuntimeResources <<static>> {
+    + {static} GetSkySamplingDirections() : Vector3[]
+}
+@enduml

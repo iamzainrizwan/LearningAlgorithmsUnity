@@ -1,0 +1,5 @@
+@startuml
+class BranchListViewItem {
+}
+TreeViewItem <|-- BranchListViewItem
+@enduml

@@ -1,0 +1,33 @@
+@startuml
+class NativePassCompilerRenderGraphTests {
+    + SimpleMergePasses() : void
+    + MergeDepthPassWithNoDepthPass() : void
+    + MergeNoDepthPassWithDepthPass() : void
+    + MergeMultiplePassesDifferentDepth() : void
+    + MergeDifferentDepthFormatsBreaksPass() : void
+    + VerifyMergeStateAfterMergingPasses() : void
+    + NonFragmentUseBreaksPass() : void
+    + NonRasterBreaksPass() : void
+    + TooManyAttachmentsBreaksPass() : void
+    + NativeSubPassesLimitNotExceeded() : void
+    + AllocateFreeInMergedPassesWorks() : void
+    + MemorylessWorks() : void
+    + InputAttachmentsWork() : void
+    + ImportParametersWork() : void
+    + FencesWork() : void
+    + BuffersWork() : void
+    + ResolveMSAAImportColor() : void
+    + TransientTexturesCantBeReused() : void
+    + TransientBuffersCantBeReused() : void
+    + ChangingGlobalStateDisablesCulling() : void
+}
+class RenderGraphTestPassData {
+}
+class TestBuffers {
+}
+NativePassCompilerRenderGraphTests +-- RenderGraphTestPassData
+NativePassCompilerRenderGraphTests +-- TestBuffers
+TestBuffers --> "backBuffer" TextureHandle
+TestBuffers --> "depthBuffer" TextureHandle
+TestBuffers --> "extraDepthBuffer" TextureHandle
+@enduml

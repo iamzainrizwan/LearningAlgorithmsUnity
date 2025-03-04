@@ -1,0 +1,9 @@
+@startuml
+class GraphData <<sealed>> <<partial>> {
+}
+class GraphDataUtils <<static>> {
+    + {static} ApplyActionLeafFirst(graph:GraphData, action:Action<AbstractMaterialNode>) : void
+}
+ISerializationCallbackReceiver <|-- GraphData
+GraphData +-- GraphDataUtils
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class SimpleScene2PlanesNavigationSetup {
+}
+PrebuiltSceneSetup <|-- SimpleScene2PlanesNavigationSetup
+@enduml

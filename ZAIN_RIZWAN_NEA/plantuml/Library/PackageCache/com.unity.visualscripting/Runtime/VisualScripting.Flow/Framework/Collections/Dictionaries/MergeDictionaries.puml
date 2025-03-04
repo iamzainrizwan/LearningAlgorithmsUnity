@@ -1,0 +1,9 @@
+@startuml
+class MergeDictionaries <<sealed>> {
+    + Merge(flow:Flow) : IDictionary
+}
+class "MultiInputUnit`1"<T> {
+}
+"MultiInputUnit`1" "<IDictionary>" <|-- MergeDictionaries
+MergeDictionaries --> "dictionary" ValueOutput
+@enduml

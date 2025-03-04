@@ -1,0 +1,26 @@
+@startuml
+class TestPlane {
+    + {static} Empty() : void
+    + {static} GetNormal() : void
+    + {static} GetDistance() : void
+    + {static} SetNormal() : void
+    + {static} SetDistance() : void
+    + {static} ConstructWithNormalAndDistance() : void
+    + {static} ConstructWithCoefficients_NonUnitLengthNormal() : void
+    + {static} ConstructWithNormalAndPointInPlane_NegativeDistance() : void
+    + {static} ConstructWithNormalAndPointInPlane_PositiveDistance() : void
+    + {static} ConstructWithNormalAndPointInPlane() : void
+    + {static} ConstructWithTwoVectorsAndOrigin_Trivial() : void
+    + {static} ConstructWithTwoVectorsAndOrigin_NonZeroOrigin() : void
+    + {static} SignedDistanceToPoint() : void
+    + {static} SignedDistanceToPointTrivial() : void
+    + {static} ProjectionTrivial() : void
+    + {static} Projection() : void
+    + {static} Flipped() : void
+    + {static} ImplicitToFloat4() : void
+    + {static} NormalizeFloat4() : void
+    + {static} NormalizePlane() : void
+    + {static} CreateFromUnitNormalAndDistance() : void
+    + {static} CreateFromUnitNormalAndPointInPlane() : void
+}
+@enduml

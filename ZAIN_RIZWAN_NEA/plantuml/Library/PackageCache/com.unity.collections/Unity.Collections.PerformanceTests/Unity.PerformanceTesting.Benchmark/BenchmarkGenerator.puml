@@ -1,0 +1,6 @@
+@startuml
+class BenchmarkGenerator <<static>> {
+    + {static} GenerateMarkdown(title:string, benchmarkEnumType:Type, filePath:string, description:string, notesTitle:string, notes:string[]) : void
+    + {static} GenerateMarkdown(title:string, benchmarkTypes:Type[], filePath:string, description:string, notesTitle:string, notes:string[]) : void
+}
+@enduml

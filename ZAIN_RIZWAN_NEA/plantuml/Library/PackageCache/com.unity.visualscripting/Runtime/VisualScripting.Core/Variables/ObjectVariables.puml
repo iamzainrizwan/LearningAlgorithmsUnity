@@ -1,0 +1,5 @@
+@startuml
+class ObjectVariables <<static>> {
+    + {static} Declarations(source:GameObject, autoAddComponent:bool, throwOnMissing:bool) : VariableDeclarations
+}
+@enduml

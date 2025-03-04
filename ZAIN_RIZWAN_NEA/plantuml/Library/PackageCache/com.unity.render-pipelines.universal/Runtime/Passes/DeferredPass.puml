@@ -1,0 +1,12 @@
+@startuml
+class DeferredPass {
+    + DeferredPass(evt:RenderPassEvent, deferredLights:DeferredLights)
+    + <<override>> Configure(cmd:CommandBuffer, cameraTextureDescripor:RenderTextureDescriptor) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + <<override>> OnCameraCleanup(cmd:CommandBuffer) : void
+}
+class PassData {
+}
+ScriptableRenderPass <|-- DeferredPass
+DeferredPass +-- PassData
+@enduml

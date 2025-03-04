@@ -1,0 +1,19 @@
+@startuml
+class XmlDocumentationTags {
+    + XmlDocumentationTags()
+    + XmlDocumentationTags(summary:string)
+    + XmlDocumentationTags(xml:XElement)
+    + summary : string <<get>> <<set>>
+    + returns : string <<get>> <<set>>
+    + remarks : string <<get>> <<set>>
+    + inherit : bool <<get>>
+    + CompleteWithMethodBase(methodBase:MethodBase, returnType:Type) : void
+    + ParameterSummary(parameter:ParameterInfo) : string
+}
+class "Dictionary`2"<T1,T2> {
+}
+XmlDocumentationTags --> "parameters<string,string>" "Dictionary`2"
+XmlDocumentationTags --> "typeParameters<string,string>" "Dictionary`2"
+XmlDocumentationTags --> "parameterTypes<string,Type>" "Dictionary`2"
+XmlDocumentationTags --> "returnType" Type
+@enduml

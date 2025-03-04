@@ -1,0 +1,14 @@
+@startuml
+class BenchmarkRunner <<static>> {
+    + {static} RunBenchmarks(title:string, benchmarkTypes:Type[]) : BenchmarkReports
+}
+class BenchmarkComparisonTypeData {
+    + defaultName : string
+    + resultDecimalPlaces : int
+    + BenchmarkComparisonTypeData(variants:int)
+}
+BenchmarkRunner +-- BenchmarkComparisonTypeData
+BenchmarkComparisonTypeData --> "enumType" Type
+BenchmarkComparisonTypeData --> "resultUnit" SampleUnit
+BenchmarkComparisonTypeData --> "resultStatistic" BenchmarkRankingStatistic
+@enduml

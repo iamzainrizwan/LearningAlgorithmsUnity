@@ -1,0 +1,159 @@
+@startuml
+struct v256 {
+    + Byte0 : byte
+    + Byte1 : byte
+    + Byte2 : byte
+    + Byte3 : byte
+    + Byte4 : byte
+    + Byte5 : byte
+    + Byte6 : byte
+    + Byte7 : byte
+    + Byte8 : byte
+    + Byte9 : byte
+    + Byte10 : byte
+    + Byte11 : byte
+    + Byte12 : byte
+    + Byte13 : byte
+    + Byte14 : byte
+    + Byte15 : byte
+    + Byte16 : byte
+    + Byte17 : byte
+    + Byte18 : byte
+    + Byte19 : byte
+    + Byte20 : byte
+    + Byte21 : byte
+    + Byte22 : byte
+    + Byte23 : byte
+    + Byte24 : byte
+    + Byte25 : byte
+    + Byte26 : byte
+    + Byte27 : byte
+    + Byte28 : byte
+    + Byte29 : byte
+    + Byte30 : byte
+    + Byte31 : byte
+    + SByte0 : sbyte
+    + SByte1 : sbyte
+    + SByte2 : sbyte
+    + SByte3 : sbyte
+    + SByte4 : sbyte
+    + SByte5 : sbyte
+    + SByte6 : sbyte
+    + SByte7 : sbyte
+    + SByte8 : sbyte
+    + SByte9 : sbyte
+    + SByte10 : sbyte
+    + SByte11 : sbyte
+    + SByte12 : sbyte
+    + SByte13 : sbyte
+    + SByte14 : sbyte
+    + SByte15 : sbyte
+    + SByte16 : sbyte
+    + SByte17 : sbyte
+    + SByte18 : sbyte
+    + SByte19 : sbyte
+    + SByte20 : sbyte
+    + SByte21 : sbyte
+    + SByte22 : sbyte
+    + SByte23 : sbyte
+    + SByte24 : sbyte
+    + SByte25 : sbyte
+    + SByte26 : sbyte
+    + SByte27 : sbyte
+    + SByte28 : sbyte
+    + SByte29 : sbyte
+    + SByte30 : sbyte
+    + SByte31 : sbyte
+    + UShort0 : ushort
+    + UShort1 : ushort
+    + UShort2 : ushort
+    + UShort3 : ushort
+    + UShort4 : ushort
+    + UShort5 : ushort
+    + UShort6 : ushort
+    + UShort7 : ushort
+    + UShort8 : ushort
+    + UShort9 : ushort
+    + UShort10 : ushort
+    + UShort11 : ushort
+    + UShort12 : ushort
+    + UShort13 : ushort
+    + UShort14 : ushort
+    + UShort15 : ushort
+    + SShort0 : short
+    + SShort1 : short
+    + SShort2 : short
+    + SShort3 : short
+    + SShort4 : short
+    + SShort5 : short
+    + SShort6 : short
+    + SShort7 : short
+    + SShort8 : short
+    + SShort9 : short
+    + SShort10 : short
+    + SShort11 : short
+    + SShort12 : short
+    + SShort13 : short
+    + SShort14 : short
+    + SShort15 : short
+    + UInt0 : uint
+    + UInt1 : uint
+    + UInt2 : uint
+    + UInt3 : uint
+    + UInt4 : uint
+    + UInt5 : uint
+    + UInt6 : uint
+    + UInt7 : uint
+    + SInt0 : int
+    + SInt1 : int
+    + SInt2 : int
+    + SInt3 : int
+    + SInt4 : int
+    + SInt5 : int
+    + SInt6 : int
+    + SInt7 : int
+    + ULong0 : ulong
+    + ULong1 : ulong
+    + ULong2 : ulong
+    + ULong3 : ulong
+    + SLong0 : long
+    + SLong1 : long
+    + SLong2 : long
+    + SLong3 : long
+    + Float0 : float
+    + Float1 : float
+    + Float2 : float
+    + Float3 : float
+    + Float4 : float
+    + Float5 : float
+    + Float6 : float
+    + Float7 : float
+    + Double0 : double
+    + Double1 : double
+    + Double2 : double
+    + Double3 : double
+    + v256(b:byte)
+    + v256(a:byte, b:byte, c:byte, d:byte, e:byte, f:byte, g:byte, h:byte, i:byte, j:byte, k:byte, l:byte, m:byte, n:byte, o:byte, p:byte, q:byte, r:byte, s:byte, t:byte, u:byte, v:byte, w:byte, x:byte, y:byte, z:byte, A:byte, B:byte, C:byte, D:byte, E:byte, F:byte)
+    + v256(b:sbyte)
+    + v256(a:sbyte, b:sbyte, c:sbyte, d:sbyte, e:sbyte, f:sbyte, g:sbyte, h:sbyte, i:sbyte, j:sbyte, k:sbyte, l:sbyte, m:sbyte, n:sbyte, o:sbyte, p:sbyte, q:sbyte, r:sbyte, s:sbyte, t:sbyte, u:sbyte, v:sbyte, w:sbyte, x:sbyte, y:sbyte, z:sbyte, A:sbyte, B:sbyte, C:sbyte, D:sbyte, E:sbyte, F:sbyte)
+    + v256(v:short)
+    + v256(a:short, b:short, c:short, d:short, e:short, f:short, g:short, h:short, i:short, j:short, k:short, l:short, m:short, n:short, o:short, p:short)
+    + v256(v:ushort)
+    + v256(a:ushort, b:ushort, c:ushort, d:ushort, e:ushort, f:ushort, g:ushort, h:ushort, i:ushort, j:ushort, k:ushort, l:ushort, m:ushort, n:ushort, o:ushort, p:ushort)
+    + v256(v:int)
+    + v256(a:int, b:int, c:int, d:int, e:int, f:int, g:int, h:int)
+    + v256(v:uint)
+    + v256(a:uint, b:uint, c:uint, d:uint, e:uint, f:uint, g:uint, h:uint)
+    + v256(f:float)
+    + v256(a:float, b:float, c:float, d:float, e:float, f:float, g:float, h:float)
+    + v256(f:double)
+    + v256(a:double, b:double, c:double, d:double)
+    + v256(f:long)
+    + v256(a:long, b:long, c:long, d:long)
+    + v256(f:ulong)
+    + v256(a:ulong, b:ulong, c:ulong, d:ulong)
+    + v256(lo:v128, hi:v128)
+}
+v256 --> "Lo128" v128
+v256 --> "Hi128" v128
+@enduml

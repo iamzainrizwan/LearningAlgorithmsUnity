@@ -1,0 +1,8 @@
+@startuml
+class FeatureFlags {
+    + fileCleanUpCheck : bool
+    + requiresSplashScreen : bool
+    + strictDomainReload : bool
+    + disableNestedEnumeratorBugfix : bool
+}
+@enduml

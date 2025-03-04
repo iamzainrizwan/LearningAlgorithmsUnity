@@ -1,0 +1,13 @@
+@startuml
+class GcAllocRecorderTest {
+    + TestBeginEnd() : void
+    + TestNoAlloc() : void
+    + TestAlloc() : void
+}
+class GCAllocRecorder <<static>> {
+    + {static} CountGCAllocs(action:Action) : int
+    + {static} ValidateNoGCAllocs(action:Action) : void
+    + {static} BeginNoGCAlloc() : void
+    + {static} EndNoGCAlloc() : void
+}
+@enduml

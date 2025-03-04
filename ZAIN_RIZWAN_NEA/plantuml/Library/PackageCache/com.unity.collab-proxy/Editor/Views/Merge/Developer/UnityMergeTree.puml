@@ -1,0 +1,10 @@
+@startuml
+class UnityMergeTree {
+}
+class MetaCache {
+}
+class BuildKey <<static>> {
+}
+UnityMergeTree +-- MetaCache
+MetaCache +-- BuildKey
+@enduml

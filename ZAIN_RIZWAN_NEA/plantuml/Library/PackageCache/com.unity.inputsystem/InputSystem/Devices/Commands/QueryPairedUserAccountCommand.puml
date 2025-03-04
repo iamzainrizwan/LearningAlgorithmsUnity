@@ -1,0 +1,19 @@
+@startuml
+struct QueryPairedUserAccountCommand {
+    + handle : ulong
+    + id : string <<get>> <<set>>
+    + name : string <<get>> <<set>>
+    + {static} Create() : QueryPairedUserAccountCommand
+}
+enum Result {
+    DevicePairedToUserAccount= 1 << 1,
+    UserAccountSelectionInProgress= 1 << 2,
+    UserAccountSelectionComplete= 1 << 3,
+    UserAccountSelectionCanceled= 1 << 4,
+}
+IInputDeviceCommandInfo <|-- QueryPairedUserAccountCommand
+QueryPairedUserAccountCommand --> "Type" FourCC
+QueryPairedUserAccountCommand --> "baseCommand" InputDeviceCommand
+QueryPairedUserAccountCommand --> "typeStatic" FourCC
+QueryPairedUserAccountCommand +-- Result
+@enduml

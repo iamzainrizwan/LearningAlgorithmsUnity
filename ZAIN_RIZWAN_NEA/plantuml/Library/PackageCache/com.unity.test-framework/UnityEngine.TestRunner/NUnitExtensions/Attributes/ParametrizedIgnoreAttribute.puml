@@ -1,0 +1,9 @@
+@startuml
+class ParametrizedIgnoreAttribute {
+    + Reason : string <<get>> <<set>>
+    + ParametrizedIgnoreAttribute(Arguments:object[])
+    + Wrap(command:TestCommand) : TestCommand
+}
+NUnitAttribute <|-- ParametrizedIgnoreAttribute
+IWrapTestMethod <|-- ParametrizedIgnoreAttribute
+@enduml

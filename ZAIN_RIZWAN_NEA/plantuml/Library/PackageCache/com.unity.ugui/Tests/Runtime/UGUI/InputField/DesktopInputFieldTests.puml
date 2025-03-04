@@ -1,0 +1,12 @@
+@startuml
+class DesktopInputFieldTests {
+    + Setup() : void
+    + <<virtual>> TestSetup() : void
+    + <<virtual>> TearDown() : void
+    + OnetimeTearDown() : void
+    + FocusOnPointerClickWithLeftButton() : IEnumerator
+    + DoesNotFocusOnPointerClickWithRightOrMiddleButton() : IEnumerator
+}
+BaseInputFieldTests <|-- DesktopInputFieldTests
+IPrebuildSetup <|-- DesktopInputFieldTests
+@enduml

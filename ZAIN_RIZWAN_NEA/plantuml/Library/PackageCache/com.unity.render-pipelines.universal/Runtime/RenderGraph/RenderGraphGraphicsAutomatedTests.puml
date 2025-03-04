@@ -1,0 +1,5 @@
+@startuml
+class RenderGraphGraphicsAutomatedTests <<static>> {
+    + {static} enabled : bool <<get>>
+}
+@enduml

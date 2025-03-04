@@ -1,0 +1,30 @@
+@startuml
+class LensFlareComponentSRPEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+class Styles <<static>> {
+}
+Editor <|-- LensFlareComponentSRPEditor
+LensFlareComponentSRPEditor +-- Styles
+Styles o-> "generalData" GUIContent
+Styles o-> "lensFlareData" GUIContent
+Styles o-> "newButton" GUIContent
+Styles o-> "cloneButton" GUIContent
+Styles o-> "intensity" GUIContent
+Styles o-> "scale" GUIContent
+Styles o-> "maxAttenuationDistance" GUIContent
+Styles o-> "distanceAttenuationCurve" GUIContent
+Styles o-> "maxAttenuationScale" GUIContent
+Styles o-> "scaleByDistanceCurve" GUIContent
+Styles o-> "attenuationByLightShape" GUIContent
+Styles o-> "radialScreenAttenuationCurve" GUIContent
+Styles o-> "enableOcclusion" GUIContent
+Styles o-> "environmentOcclusion" GUIContent
+Styles o-> "occlusionRadius" GUIContent
+Styles o-> "sampleCount" GUIContent
+Styles o-> "occlusionOffset" GUIContent
+Styles o-> "occlusionRemapCurve" GUIContent
+Styles o-> "allowOffScreen" GUIContent
+Styles o-> "volumetricCloudOcclusion" GUIContent
+Styles o-> "lightOverride" GUIContent
+@enduml

@@ -1,0 +1,39 @@
+@startuml
+enum Status {
+    Pending,
+    Warning,
+    Error,
+    Success,
+}
+class ConverterItemState {
+    + isActive : bool
+    + message : string
+}
+class ConverterState {
+    + isEnabled : bool
+    + isActive : bool
+    + isLoading : bool
+    + isInitialized : bool
+    + pending : int
+    + warnings : int
+    + errors : int
+    + success : int
+    + isActiveAndEnabled : bool <<get>>
+    + requiresInitialization : bool <<get>>
+}
+struct ConverterItems {
+}
+class SystemConvertersEditor {
+    + DontSaveToLayout(wnd:EditorWindow) : void
+    + CreateGUI() : void
+}
+class "List`1"<T> {
+}
+ConverterItemState --> "status" Status
+ConverterState o-> "items<ConverterItemState>" "List`1"
+ConverterItems --> "itemDescriptors<ConverterItemDescriptor>" "List`1"
+EditorWindow <|-- SystemConvertersEditor
+SystemConvertersEditor --> "converterEditorAsset" VisualTreeAsset
+SystemConvertersEditor --> "converterListAsset" VisualTreeAsset
+SystemConvertersEditor --> "converterItem" VisualTreeAsset
+@enduml

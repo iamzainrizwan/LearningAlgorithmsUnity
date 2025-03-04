@@ -1,0 +1,16 @@
+@startuml
+class EditorProvider {
+    + <<override>> IsValid(decorated:Metadata) : bool
+    + HasPanel(type:Type) : bool
+}
+class XEditorProvider <<static>> {
+    + {static} Editor(metadata:Metadata) : Inspector
+    + {static} Editor(metadata:Metadata) : TInspector
+    + {static} HasEditor(type:Type) : bool
+    + {static} HasEditor(metadata:Metadata) : bool
+}
+class "SingleDecoratorProvider`3"<T1,T2,T3> {
+}
+"SingleDecoratorProvider`3" "<Metadata,Inspector,EditorAttribute>" <|-- EditorProvider
+EditorProvider --> "instance" EditorProvider
+@enduml

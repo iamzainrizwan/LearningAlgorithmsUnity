@@ -1,0 +1,7 @@
+@startuml
+class PlatformSpecificCleanupTask {
+    + PlatformSpecificCleanupTask()
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- PlatformSpecificCleanupTask
+@enduml

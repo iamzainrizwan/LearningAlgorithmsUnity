@@ -1,0 +1,10 @@
+@startuml
+class SignalManager {
+    + {static} CreateSignalAssetInstance(path:string) : SignalAsset
+    + Dispose() : void
+}
+class "IEnumerable`1"<T> {
+}
+IDisposable <|-- SignalManager
+SignalManager --> "assets<SignalAsset>" "IEnumerable`1"
+@enduml

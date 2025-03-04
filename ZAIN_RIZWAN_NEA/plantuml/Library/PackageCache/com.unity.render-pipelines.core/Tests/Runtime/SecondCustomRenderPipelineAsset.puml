@@ -1,0 +1,10 @@
+@startuml
+class SecondCustomRenderPipelineAsset {
+}
+class SecondCustomRenderPipeline {
+}
+class "RenderPipelineAsset`1"<T> {
+}
+"RenderPipelineAsset`1" "<SecondCustomRenderPipeline>" <|-- SecondCustomRenderPipelineAsset
+RenderPipeline <|-- SecondCustomRenderPipeline
+@enduml

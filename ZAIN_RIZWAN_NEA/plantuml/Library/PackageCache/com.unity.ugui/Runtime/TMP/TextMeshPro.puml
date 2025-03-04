@@ -1,0 +1,34 @@
+@startuml
+class TextMeshPro {
+    + sortingLayerID : int <<get>> <<set>>
+    + sortingOrder : int <<get>> <<set>>
+    + <<override>> autoSizeTextContainer : bool <<get>> <<set>>
+    + SetMask(type:MaskingTypes, maskCoords:Vector4) : void
+    + SetMask(type:MaskingTypes, maskCoords:Vector4, softnessX:float, softnessY:float) : void
+    + <<override>> SetVerticesDirty() : void
+    + <<override>> SetLayoutDirty() : void
+    + <<override>> SetMaterialDirty() : void
+    + <<override>> SetAllDirty() : void
+    + <<override>> Rebuild(update:CanvasUpdate) : void
+    + <<override>> UpdateMeshPadding() : void
+    + <<override>> ForceMeshUpdate(ignoreActiveState:bool, forceTextReparsing:bool) : void
+    + <<override>> GetTextInfo(text:string) : TMP_TextInfo
+    + <<override>> ClearMesh(updateMesh:bool) : void
+    + <<override>>  <<event>> OnPreRenderText : Action<TMP_TextInfo> 
+    + <<override>> UpdateGeometry(mesh:Mesh, index:int) : void
+    + <<override>> UpdateVertexData(flags:TMP_VertexDataUpdateFlags) : void
+    + <<override>> UpdateVertexData() : void
+    + UpdateFontAsset() : void
+    + CalculateLayoutInputHorizontal() : void
+    + CalculateLayoutInputVertical() : void
+    + <<override>> ComputeMarginSize() : void
+}
+TMP_Text <|-- TextMeshPro
+ILayoutElement <|-- TextMeshPro
+TextMeshPro --> "textContainer" TextContainer
+TextMeshPro --> "transform" Transform
+TextMeshPro --> "renderer" Renderer
+TextMeshPro --> "mesh" Mesh
+TextMeshPro --> "meshFilter" MeshFilter
+TextMeshPro --> "maskType" MaskingTypes
+@enduml

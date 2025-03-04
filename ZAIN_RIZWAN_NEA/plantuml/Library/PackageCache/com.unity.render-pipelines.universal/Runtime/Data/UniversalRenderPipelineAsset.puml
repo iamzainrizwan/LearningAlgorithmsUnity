@@ -1,0 +1,205 @@
+@startuml
+enum ShadowQuality {
+    Disabled,
+    HardShadows,
+    SoftShadows,
+}
+enum SoftShadowQuality {
+    UsePipelineSettings,
+    Low,
+    Medium,
+    High,
+}
+enum ShadowResolution {
+    _256= 256,
+    _512= 512,
+    _1024= 1024,
+    _2048= 2048,
+    _4096= 4096,
+    _8192= 8192,
+}
+enum LightCookieResolution {
+    _256= 256,
+    _512= 512,
+    _1024= 1024,
+    _2048= 2048,
+    _4096= 4096,
+}
+enum LightCookieFormat {
+    GrayscaleLow,
+    GrayscaleHigh,
+    ColorLow,
+    ColorHigh,
+    ColorHDR,
+}
+enum HDRColorBufferPrecision {
+    _32Bits,
+    _64Bits,
+}
+enum MsaaQuality {
+    Disabled= 1,
+    _2x= 2,
+    _4x= 4,
+    _8x= 8,
+}
+enum Downsampling {
+    None,
+    _2xBilinear,
+    _4xBox,
+    _4xBilinear,
+}
+enum LightRenderingMode {
+    Disabled= 0,
+    PerVertex= 2,
+    PerPixel= 1,
+}
+enum PipelineDebugLevel {
+    Disabled,
+    Profiling,
+}
+enum RendererType {
+    Custom,
+    UniversalRenderer,
+    _2DRenderer,
+}
+enum ColorGradingMode {
+    LowDynamicRange,
+    HighDynamicRange,
+}
+enum StoreActionsOptimization {
+    Auto,
+    Discard,
+    Store,
+}
+enum VolumeFrameworkUpdateMode {
+    EveryFrame= 0,
+    ViaScripting= 1,
+    UsePipelineSettings= 2,
+}
+enum UpscalingFilterSelection {
+    Auto,
+    Linear,
+    Point,
+    FSR,
+    STP,
+}
+enum LODCrossFadeDitheringType {
+    BayerMatrix,
+    BlueNoise,
+}
+enum LightProbeSystem {
+    LegacyLightProbes= 0,
+    ProbeVolumes= 1,
+}
+enum ShEvalMode {
+    Auto= 0,
+    PerVertex= 1,
+    Mixed= 2,
+    PerPixel= 3,
+}
+struct DeprecationMessage {
+}
+class UniversalRenderPipelineAsset <<partial>> {
+    + <<const>> k_MinLutSize : int = 16
+    + <<const>> k_MaxLutSize : int = 65
+    + {static} <<readonly>> AdditionalLightsDefaultShadowResolutionTierLow : int = 256
+    + {static} <<readonly>> AdditionalLightsDefaultShadowResolutionTierMedium : int = 512
+    + {static} <<readonly>> AdditionalLightsDefaultShadowResolutionTierHigh : int = 1024
+    + isImmediateModeSupported : bool <<get>>
+    + LoadBuiltinRendererData(type:RendererType) : ScriptableRendererData
+    + GetRenderer(index:int) : ScriptableRenderer
+    + supportsCameraDepthTexture : bool <<get>> <<set>>
+    + supportsCameraOpaqueTexture : bool <<get>> <<set>>
+    + supportsTerrainHoles : bool <<get>>
+    + supportsHDR : bool <<get>> <<set>>
+    + msaaSampleCount : int <<get>> <<set>>
+    + renderScale : float <<get>> <<set>>
+    + enableLODCrossFade : bool <<get>>
+    + fsrOverrideSharpness : bool <<get>> <<set>>
+    + fsrSharpness : float <<get>> <<set>>
+    + supportProbeVolumeStreaming : bool <<get>> <<internal set>>
+    + supportProbeVolumeGPUStreaming : bool <<get>> <<internal set>>
+    + supportProbeVolumeDiskStreaming : bool <<get>> <<internal set>>
+    + supportProbeVolumeScenarios : bool <<get>> <<internal set>>
+    + supportProbeVolumeScenarioBlending : bool <<get>> <<internal set>>
+    + supportsMainLightShadows : bool <<get>> <<internal set>>
+    + mainLightShadowmapResolution : int <<get>> <<set>>
+    + maxAdditionalLightsCount : int <<get>> <<set>>
+    + supportsAdditionalLightShadows : bool <<get>> <<internal set>>
+    + additionalLightsShadowmapResolution : int <<get>> <<set>>
+    + additionalLightsShadowResolutionTierLow : int <<get>> <<internal set>>
+    + additionalLightsShadowResolutionTierMedium : int <<get>> <<internal set>>
+    + additionalLightsShadowResolutionTierHigh : int <<get>> <<internal set>>
+    + reflectionProbeBlending : bool <<get>> <<internal set>>
+    + reflectionProbeBoxProjection : bool <<get>> <<internal set>>
+    + shadowDistance : float <<get>> <<set>>
+    + shadowCascadeCount : int <<get>> <<set>>
+    + cascade2Split : float <<get>> <<set>>
+    + cascadeBorder : float <<get>> <<set>>
+    + shadowDepthBias : float <<get>> <<set>>
+    + shadowNormalBias : float <<get>> <<set>>
+    + supportsSoftShadows : bool <<get>> <<internal set>>
+    + supportsDynamicBatching : bool <<get>> <<set>>
+    + supportsMixedLighting : bool <<get>>
+    + supportsLightCookies : bool <<get>>
+    + supportsLightLayers : bool <<get>>
+    + useRenderingLayers : bool <<get>>
+    + useSRPBatcher : bool <<get>> <<set>>
+    + enableRenderGraph : bool <<get>>
+    + colorGradingLutSize : int <<get>> <<set>>
+    + allowPostProcessAlphaOutput : bool <<get>>
+    + useFastSRGBLinearConversion : bool <<get>>
+    + supportScreenSpaceLensFlare : bool <<get>>
+    + supportDataDrivenLensFlare : bool <<get>>
+    + useAdaptivePerformance : bool <<get>> <<set>>
+    + conservativeEnclosingSphere : bool <<get>> <<set>>
+    + numIterationsEnclosingSphere : int <<get>> <<set>>
+    + <<override>> renderPipelineShaderTag : string <<get>>
+    + gpuResidentDrawerEnableOcclusionCullingInCameras : bool <<get>> <<set>>
+    + IsGPUResidentDrawerSupportedBySRP(message:string, severty:LogType) : bool
+    + smallMeshScreenPercentage : float <<get>> <<set>>
+    + OnBeforeSerialize() : void
+    + OnAfterDeserialize() : void
+    + supportProbeVolume : bool <<get>>
+    + isStpUsed : bool <<get>>
+}
+class "RenderPipelineAsset`1"<T> {
+}
+class "ReadOnlySpan`1"<T> {
+}
+class Strings <<static>> {
+    + {static} <<readonly>> notURPRenderer : string
+    + {static} <<readonly>> forwardPlusMissing : string
+}
+"RenderPipelineAsset`1" "<UniversalRenderPipeline>" <|-- UniversalRenderPipelineAsset
+ISerializationCallbackReceiver <|-- UniversalRenderPipelineAsset
+IProbeVolumeEnabledRenderPipeline <|-- UniversalRenderPipelineAsset
+IGPUResidentRenderPipeline <|-- UniversalRenderPipelineAsset
+IRenderGraphEnabledRenderPipeline <|-- UniversalRenderPipelineAsset
+ISTPEnabledRenderPipeline <|-- UniversalRenderPipelineAsset
+UniversalRenderPipelineAsset --> "rendererDataList<ScriptableRendererData>" "ReadOnlySpan`1"
+UniversalRenderPipelineAsset --> "renderers<ScriptableRenderer>" "ReadOnlySpan`1"
+UniversalRenderPipelineAsset --> "scriptableRenderer" ScriptableRenderer
+UniversalRenderPipelineAsset --> "opaqueDownsampling" Downsampling
+UniversalRenderPipelineAsset --> "storeActionsOptimization" StoreActionsOptimization
+UniversalRenderPipelineAsset --> "hdrColorBufferPrecision" HDRColorBufferPrecision
+UniversalRenderPipelineAsset --> "lodCrossFadeDitheringType" LODCrossFadeDitheringType
+UniversalRenderPipelineAsset --> "upscalingFilter" UpscalingFilterSelection
+UniversalRenderPipelineAsset --> "shEvalMode" ShEvalMode
+UniversalRenderPipelineAsset --> "lightProbeSystem" LightProbeSystem
+UniversalRenderPipelineAsset --> "probeVolumeMemoryBudget" ProbeVolumeTextureMemoryBudget
+UniversalRenderPipelineAsset --> "probeVolumeBlendingMemoryBudget" ProbeVolumeBlendingTextureMemoryBudget
+UniversalRenderPipelineAsset --> "probeVolumeSHBands" ProbeVolumeSHBands
+UniversalRenderPipelineAsset --> "mainLightRenderingMode" LightRenderingMode
+UniversalRenderPipelineAsset --> "additionalLightsRenderingMode" LightRenderingMode
+UniversalRenderPipelineAsset --> "cascade3Split" Vector2
+UniversalRenderPipelineAsset --> "cascade4Split" Vector3
+UniversalRenderPipelineAsset --> "volumeFrameworkUpdateMode" VolumeFrameworkUpdateMode
+UniversalRenderPipelineAsset --> "volumeProfile" VolumeProfile
+UniversalRenderPipelineAsset --> "debugLevel" PipelineDebugLevel
+UniversalRenderPipelineAsset --> "colorGradingMode" ColorGradingMode
+UniversalRenderPipelineAsset --> "gpuResidentDrawerMode" GPUResidentDrawerMode
+UniversalRenderPipelineAsset --> "maxSHBands" ProbeVolumeSHBands
+UniversalRenderPipelineAsset --> "probeVolumeSceneData" ProbeVolumeSceneData
+UniversalRenderPipelineAsset +-- Strings
+@enduml

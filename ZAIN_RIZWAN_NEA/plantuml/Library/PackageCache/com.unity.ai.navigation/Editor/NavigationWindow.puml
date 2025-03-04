@@ -1,0 +1,17 @@
+@startuml
+class NavigationWindow {
+    + {static} SetupWindow() : void
+    + OnEnable() : void
+    + OnDisable() : void
+    + OnGUI() : void
+}
+enum Mode {
+    AgentTypeSettings= 0,
+    AreaSettings= 1,
+}
+class Styles <<static>> {
+}
+EditorWindow <|-- NavigationWindow
+NavigationWindow +-- Mode
+NavigationWindow +-- Styles
+@enduml

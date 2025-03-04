@@ -1,0 +1,33 @@
+@startuml
+class BurstScheduleTests {
+    {static} + TestBurstCompiled(falseIfNot:bool) : void
+    {static} + IsBurstEnabled() : bool
+    + <<unsafe>> IJobParallelForDefer_Jobs_FromBurst(runType:JobRunType) : void
+    + <<unsafe>> IJobParallelForBatch_Jobs_FromBurst(runType:JobRunType) : void
+    + <<unsafe>> IJobFilter_Jobs_FromBurst(runType:JobRunType) : void
+}
+struct SimpleIJobParallelForDefer {
+    + Execute(index:int) : void
+    + {static} TestBurstScheduleJob(runType:JobRunType, allocator:RewindableAllocator) : int
+}
+struct SimpleIJobParallelForBatch {
+    + Execute(startIndex:int, count:int) : void
+    + {static} TestBurstScheduleJob(runType:JobRunType, allocator:RewindableAllocator) : int
+}
+struct SimpleIJobFilter {
+    + Execute(index:int) : bool
+    + {static} TestBurstScheduleJob(runType:JobRunType, allocator:RewindableAllocator) : int
+}
+class "NativeArray`1"<T> {
+}
+JobTestsFixtureBasic <|-- BurstScheduleTests
+BurstScheduleTests +-- SimpleIJobParallelForDefer
+IJobParallelForDefer <|-- SimpleIJobParallelForDefer
+SimpleIJobParallelForDefer --> "executed<int>" "NativeArray`1"
+BurstScheduleTests +-- SimpleIJobParallelForBatch
+IJobParallelForBatch <|-- SimpleIJobParallelForBatch
+SimpleIJobParallelForBatch --> "executed<int>" "NativeArray`1"
+BurstScheduleTests +-- SimpleIJobFilter
+IJobFilter <|-- SimpleIJobFilter
+SimpleIJobFilter --> "executed<int>" "NativeArray`1"
+@enduml

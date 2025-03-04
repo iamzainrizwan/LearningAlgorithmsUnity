@@ -1,0 +1,48 @@
+@startuml
+class Slider {
+    + minValue : float <<get>> <<set>>
+    + maxValue : float <<get>> <<set>>
+    + wholeNumbers : bool <<get>> <<set>>
+    + <<virtual>> value : float <<get>> <<set>>
+    + <<virtual>> SetValueWithoutNotify(input:float) : void
+    + normalizedValue : float <<get>> <<set>>
+    + <<virtual>> Rebuild(executing:CanvasUpdate) : void
+    + <<virtual>> LayoutComplete() : void
+    + <<virtual>> GraphicUpdateComplete() : void
+    + <<override>> OnPointerDown(eventData:PointerEventData) : void
+    + <<virtual>> OnDrag(eventData:PointerEventData) : void
+    + <<override>> OnMove(eventData:AxisEventData) : void
+    + <<override>> FindSelectableOnLeft() : Selectable
+    + <<override>> FindSelectableOnRight() : Selectable
+    + <<override>> FindSelectableOnUp() : Selectable
+    + <<override>> FindSelectableOnDown() : Selectable
+    + <<virtual>> OnInitializePotentialDrag(eventData:PointerEventData) : void
+    + SetDirection(direction:Direction, includeRectLayouts:bool) : void
+}
+enum Direction {
+    LeftToRight,
+    RightToLeft,
+    BottomToTop,
+    TopToBottom,
+}
+class SliderEvent {
+}
+enum Axis {
+    Horizontal= 0,
+    Vertical= 1,
+}
+class "UnityEvent`1"<T> {
+}
+Selectable <|-- Slider
+IDragHandler <|-- Slider
+IInitializePotentialDragHandler <|-- Slider
+ICanvasElement <|-- Slider
+Slider --> "fillRect" RectTransform
+Slider --> "handleRect" RectTransform
+Slider --> "direction" Direction
+Slider --> "onValueChanged" SliderEvent
+Slider +-- Direction
+Slider +-- SliderEvent
+"UnityEvent`1" "<float>" <|-- SliderEvent
+Slider +-- Axis
+@enduml

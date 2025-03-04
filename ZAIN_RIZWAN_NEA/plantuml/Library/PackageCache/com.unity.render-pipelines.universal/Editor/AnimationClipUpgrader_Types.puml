@@ -1,0 +1,45 @@
+@startuml
+class AnimationClipUpgrader <<static>> <<partial>> {
+}
+interface IAnimationClip {
+}
+struct AnimationClipProxy {
+    + GetCurveBindings() : EditorCurveBinding[]
+    + ReplaceBindings(oldBindings:EditorCurveBinding[], newBindings:EditorCurveBinding[]) : void
+    + <<override>> ToString() : string
+}
+interface IRenderer {
+}
+struct RendererProxy {
+    + GetSharedMaterials(materials:List<IMaterial>) : void
+    + <<override>> ToString() : string
+}
+interface IAssetPath {
+}
+struct ClipPath {
+    + Path : string <<get>> <<set>>
+    + <<override>> ToString() : string
+}
+struct PrefabPath {
+    + Path : string <<get>> <<set>>
+    + <<override>> ToString() : string
+}
+struct ScenePath {
+    + Path : string <<get>> <<set>>
+    + <<override>> ToString() : string
+}
+AnimationClipUpgrader +-- IAnimationClip
+AnimationClipUpgrader +-- AnimationClipProxy
+IAnimationClip <|-- AnimationClipProxy
+AnimationClipProxy --> "Clip" AnimationClip
+AnimationClipUpgrader +-- IRenderer
+AnimationClipUpgrader +-- RendererProxy
+IRenderer <|-- RendererProxy
+AnimationClipUpgrader +-- IAssetPath
+AnimationClipUpgrader +-- ClipPath
+IAssetPath <|-- ClipPath
+AnimationClipUpgrader +-- PrefabPath
+IAssetPath <|-- PrefabPath
+AnimationClipUpgrader +-- ScenePath
+IAssetPath <|-- ScenePath
+@enduml

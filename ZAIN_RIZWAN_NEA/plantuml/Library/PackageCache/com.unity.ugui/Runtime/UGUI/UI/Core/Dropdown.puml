@@ -1,0 +1,62 @@
+@startuml
+class Dropdown {
+    + alphaFadeSpeed : float <<get>> <<set>>
+    + value : int <<get>> <<set>>
+    + SetValueWithoutNotify(input:int) : void
+    + RefreshShownValue() : void
+    + AddOptions(options:List<OptionData>) : void
+    + AddOptions(options:List<string>) : void
+    + AddOptions(options:List<Sprite>) : void
+    + ClearOptions() : void
+    + <<virtual>> OnPointerClick(eventData:PointerEventData) : void
+    + <<virtual>> OnSubmit(eventData:BaseEventData) : void
+    + <<virtual>> OnCancel(eventData:BaseEventData) : void
+    + Show() : void
+    + Hide() : void
+}
+class DropdownItem {
+    + <<virtual>> OnPointerEnter(eventData:PointerEventData) : void
+    + <<virtual>> OnCancel(eventData:BaseEventData) : void
+}
+class OptionData {
+    + text : string <<get>> <<set>>
+    + OptionData()
+    + OptionData(text:string)
+    + OptionData(image:Sprite)
+    + OptionData(text:string, image:Sprite)
+}
+class OptionDataList {
+    + OptionDataList()
+}
+class DropdownEvent {
+}
+class "List`1"<T> {
+}
+class "UnityEvent`1"<T> {
+}
+Selectable <|-- Dropdown
+IPointerClickHandler <|-- Dropdown
+ISubmitHandler <|-- Dropdown
+ICancelHandler <|-- Dropdown
+Dropdown --> "template" RectTransform
+Dropdown --> "captionText" Text
+Dropdown --> "captionImage" Image
+Dropdown --> "itemText" Text
+Dropdown --> "itemImage" Image
+Dropdown --> "options<OptionData>" "List`1"
+Dropdown --> "onValueChanged" DropdownEvent
+Dropdown +-- DropdownItem
+MonoBehaviour <|-- DropdownItem
+IPointerEnterHandler <|-- DropdownItem
+ICancelHandler <|-- DropdownItem
+DropdownItem --> "text" Text
+DropdownItem --> "image" Image
+DropdownItem --> "rectTransform" RectTransform
+DropdownItem --> "toggle" Toggle
+Dropdown +-- OptionData
+OptionData --> "image" Sprite
+Dropdown +-- OptionDataList
+OptionDataList --> "options<OptionData>" "List`1"
+Dropdown +-- DropdownEvent
+"UnityEvent`1" "<int>" <|-- DropdownEvent
+@enduml

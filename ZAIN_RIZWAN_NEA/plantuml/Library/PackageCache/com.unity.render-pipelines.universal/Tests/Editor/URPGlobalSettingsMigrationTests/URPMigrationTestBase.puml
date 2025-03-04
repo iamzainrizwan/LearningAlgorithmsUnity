@@ -1,0 +1,20 @@
+@startuml
+interface IGlobalSettingsMigrationTestCaseBase {
+}
+interface IGlobalSettingsMigrationTestCase {
+}
+interface "IRenderPipelineGraphicsSettingsTestCase`1"<TRenderPipelineGraphicsSettings> {
+}
+abstract class GlobalSettingsMigrationTestBase {
+    + OneTimeSetup() : void
+    + OneTimeTearDown() : void
+}
+abstract class GlobalSettingsMigrationTest {
+}
+abstract class "RenderPipelineGraphicsSettingsMigrationTestBase`1"<TRenderPipelineGraphicsSettings> {
+}
+IGlobalSettingsMigrationTestCaseBase <|-- IGlobalSettingsMigrationTestCase
+IGlobalSettingsMigrationTestCaseBase <|-- "IRenderPipelineGraphicsSettingsTestCase`1"
+GlobalSettingsMigrationTestBase <|-- GlobalSettingsMigrationTest
+GlobalSettingsMigrationTestBase <|-- "RenderPipelineGraphicsSettingsMigrationTestBase`1"
+@enduml

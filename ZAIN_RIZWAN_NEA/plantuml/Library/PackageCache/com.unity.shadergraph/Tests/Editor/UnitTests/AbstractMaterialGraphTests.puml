@@ -1,0 +1,12 @@
+@startuml
+class AbstractMaterialGraphTests {
+    + RunBeforeAnyTests() : void
+    + TestCanCreateMaterialGraph() : void
+    + TestCanAddMaterialNodeToMaterialGraph() : void
+    + TestCanGetMaterialNodeFromMaterialGraph() : void
+}
+class TestableMNode {
+}
+AbstractMaterialGraphTests +-- TestableMNode
+AbstractMaterialNode <|-- TestableMNode
+@enduml

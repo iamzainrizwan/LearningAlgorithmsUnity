@@ -1,0 +1,8 @@
+@startuml
+class AnalyserAttribute <<sealed>> {
+    + AnalyserAttribute(type:Type)
+}
+Attribute <|-- AnalyserAttribute
+IDecoratorAttribute <|-- AnalyserAttribute
+AnalyserAttribute --> "type" Type
+@enduml

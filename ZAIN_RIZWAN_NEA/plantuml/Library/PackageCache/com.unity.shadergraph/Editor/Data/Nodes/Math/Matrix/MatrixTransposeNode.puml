@@ -1,0 +1,7 @@
+@startuml
+class MatrixTransposeNode {
+    + MatrixTransposeNode()
+    + <<override>> hasPreview : bool <<get>>
+}
+CodeFunctionNode <|-- MatrixTransposeNode
+@enduml

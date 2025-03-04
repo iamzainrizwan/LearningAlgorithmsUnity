@@ -1,0 +1,67 @@
+@startuml
+struct "HashMapHelper`1"<TKey> {
+}
+struct "UnsafeHashMap`2"<TKey,TValue> {
+    + UnsafeHashMap(initialCapacity:int, allocator:AllocatorManager.AllocatorHandle)
+    + Dispose() : void
+    + Dispose(inputDeps:JobHandle) : JobHandle
+    + <<readonly>> IsCreated : bool <<get>>
+    + <<readonly>> IsEmpty : bool <<get>>
+    + <<readonly>> Count : int <<get>>
+    + Capacity : int <<readonly get>> <<set>>
+    + Clear() : void
+    + TryAdd(key:TKey, item:TValue) : bool
+    + Add(key:TKey, item:TValue) : void
+    + Remove(key:TKey) : bool
+    + TryGetValue(key:TKey, item:TValue) : bool
+    + ContainsKey(key:TKey) : bool
+    + TrimExcess() : void
+    + GetKeyArray(allocator:AllocatorManager.AllocatorHandle) : NativeArray<TKey>
+    + GetValueArray(allocator:AllocatorManager.AllocatorHandle) : NativeArray<TValue>
+    + GetKeyValueArrays(allocator:AllocatorManager.AllocatorHandle) : NativeKeyValueArrays<TKey, TValue>
+    + GetEnumerator() : Enumerator
+    + AsReadOnly() : ReadOnly
+}
+class "UnsafeHashMapDebuggerTypeProxy`2"<TKey,TValue> <<sealed>> {
+    + UnsafeHashMapDebuggerTypeProxy(target:UnsafeHashMap<TKey, TValue>)
+    + UnsafeHashMapDebuggerTypeProxy(target:UnsafeHashMap<TKey, TValue>.ReadOnly)
+}
+class "IEquatable`1"<T> {
+}
+struct Enumerator {
+}
+class "IEnumerable`1"<T> {
+}
+struct Enumerator {
+    + Dispose() : void
+    + MoveNext() : bool
+    + Reset() : void
+}
+struct ReadOnly {
+    + <<readonly>> IsCreated : bool <<get>>
+    + <<readonly>> IsEmpty : bool <<get>>
+    + <<readonly>> Count : int <<get>>
+    + <<readonly>> Capacity : int <<get>>
+    + <<readonly>> TryGetValue(key:TKey, item:TValue) : bool
+    + <<readonly>> ContainsKey(key:TKey) : bool
+    + <<readonly>> GetKeyArray(allocator:AllocatorManager.AllocatorHandle) : NativeArray<TKey>
+    + <<readonly>> GetValueArray(allocator:AllocatorManager.AllocatorHandle) : NativeArray<TValue>
+    + <<readonly>> GetKeyValueArrays(allocator:AllocatorManager.AllocatorHandle) : NativeKeyValueArrays<TKey, TValue>
+    + <<readonly>> GetEnumerator() : Enumerator
+}
+class "List`1"<T> {
+}
+class "IEnumerator`1"<T> {
+}
+class "KVPair`2"<T1,T2> {
+}
+INativeDisposable <|-- "UnsafeHashMap`2"
+"IEnumerable`1" "<KVPair<TKey, TValue>>" <|-- "UnsafeHashMap`2"
+"UnsafeHashMapDebuggerTypeProxy`2" --> "Items<Pair<TKey, TValue>>" "List`1"
+"HashMapHelper`1" +-- Enumerator
+"UnsafeHashMap`2" +-- Enumerator
+"IEnumerator`1" "<KVPair<TKey, TValue>>" <|-- Enumerator
+Enumerator --> "Current<TKey,TValue>" "KVPair`2"
+"UnsafeHashMap`2" +-- ReadOnly
+"IEnumerable`1" "<KVPair<TKey, TValue>>" <|-- ReadOnly
+@enduml

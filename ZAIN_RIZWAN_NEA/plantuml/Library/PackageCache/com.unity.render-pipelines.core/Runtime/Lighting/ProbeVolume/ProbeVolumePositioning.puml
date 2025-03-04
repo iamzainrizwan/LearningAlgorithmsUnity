@@ -1,0 +1,7 @@
+@startuml
+class ProbeVolumePositioning <<static>> {
+    + {static} OBBIntersect(a:ProbeReferenceVolume.Volume, b:ProbeReferenceVolume.Volume) : bool
+    + {static} OBBContains(obb:ProbeReferenceVolume.Volume, point:Vector3) : bool
+    + {static} OBBAABBIntersect(a:ProbeReferenceVolume.Volume, b:Bounds, aAABB:Bounds) : bool
+}
+@enduml

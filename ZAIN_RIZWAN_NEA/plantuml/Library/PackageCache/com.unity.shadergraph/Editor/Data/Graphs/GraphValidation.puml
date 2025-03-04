@@ -1,0 +1,10 @@
+@startuml
+class GraphData <<sealed>> <<partial>> {
+}
+class GraphValidation <<static>> {
+    + {static} ValidateNode(node:AbstractMaterialNode) : void
+    + {static} ValidateGraph(graph:GraphData) : void
+}
+ISerializationCallbackReceiver <|-- GraphData
+GraphData +-- GraphValidation
+@enduml

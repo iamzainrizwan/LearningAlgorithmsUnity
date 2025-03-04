@@ -1,0 +1,7 @@
+@startuml
+class CubemapPropertyDrawer {
+    + DrawProperty(propertyInfo:PropertyInfo, actualObject:object, attribute:InspectableAttribute) : VisualElement
+}
+IPropertyDrawer <|-- CubemapPropertyDrawer
+CubemapPropertyDrawer --> "inspectorUpdateDelegate" Action
+@enduml

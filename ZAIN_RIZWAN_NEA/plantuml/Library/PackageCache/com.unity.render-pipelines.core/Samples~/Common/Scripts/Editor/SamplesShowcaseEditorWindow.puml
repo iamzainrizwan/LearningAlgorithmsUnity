@@ -1,0 +1,5 @@
+@startuml
+class SamplesWindow {
+}
+EditorWindow <|-- SamplesWindow
+@enduml

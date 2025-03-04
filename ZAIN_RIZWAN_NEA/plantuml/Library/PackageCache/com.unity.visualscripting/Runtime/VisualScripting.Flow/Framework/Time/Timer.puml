@@ -1,0 +1,36 @@
+@startuml
+class Timer <<sealed>> {
+    + CreateData() : IGraphElementData
+    + StartListening(stack:GraphStack) : void
+    + StopListening(stack:GraphStack) : void
+    + IsListening(pointer:GraphPointer) : bool
+    + Update(flow:Flow) : void
+}
+class Data <<sealed>> {
+    + elapsed : float
+    + duration : float
+    + active : bool
+    + paused : bool
+    + unscaled : bool
+    + isListening : bool
+}
+Unit <|-- Timer
+IGraphElementWithData <|-- Timer
+IGraphEventListener <|-- Timer
+Timer --> "start" ControlInput
+Timer --> "pause" ControlInput
+Timer --> "resume" ControlInput
+Timer --> "toggle" ControlInput
+Timer --> "duration" ValueInput
+Timer --> "unscaledTime" ValueInput
+Timer --> "started" ControlOutput
+Timer --> "tick" ControlOutput
+Timer --> "completed" ControlOutput
+Timer --> "elapsedSeconds" ValueOutput
+Timer --> "elapsedRatio" ValueOutput
+Timer --> "remainingSeconds" ValueOutput
+Timer --> "remainingRatio" ValueOutput
+Timer +-- Data
+IGraphElementData <|-- Data
+Data --> "update" Delegate
+@enduml

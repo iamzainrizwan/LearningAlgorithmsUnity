@@ -1,0 +1,18 @@
+@startuml
+class PluginPaths {
+    + <<virtual>> Initialize() : void
+    + <<virtual>> LateInitialize() : void
+    + {static} package : string <<get>>
+    + <<const>> FOLDER_BOLT_GENERATED : string = "Unity.VisualScripting.Generated"
+    + {static} ASSETS_FOLDER_BOLT_GENERATED : string
+    + isFirstPass : bool <<get>>
+    + {static} resourcesFolder : string <<get>>
+    + {static} resourcesBundle : string
+    + {static} generated : string <<get>>
+    + persistentGenerated : string <<get>>
+    + transientGenerated : string <<get>>
+    + {static} projectSettings : string <<get>>
+}
+IPluginModule <|-- PluginPaths
+PluginPaths --> "plugin" Plugin
+@enduml

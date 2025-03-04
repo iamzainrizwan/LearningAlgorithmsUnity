@@ -1,0 +1,29 @@
+@startuml
+interface IMultiplayerCenterAnalytics {
+}
+class MultiplayerCenterAnalytics {
+    + MultiplayerCenterAnalytics(questionnaireVersion:string, questionDisplayNames:IReadOnlyDictionary<string, string>, answerDisplayNames:IReadOnlyDictionary<string, string>)
+    + SendGettingStartedInteractionEvent(targetPackageId:string, sectionId:string, type:InteractionDataType, displayName:string) : void
+    + SendInstallationEvent(data:AnswerData, preset:Preset, packages:Package[]) : void
+    + SendRecommendationEvent(data:AnswerData, preset:Preset) : void
+}
+class InstallationEventAnalytic {
+    + InstallationEventAnalytic(data:InstallData)
+    + TryGatherData(data:IAnalytic.IData, error:Exception) : bool
+}
+class RecommendationEventAnalytic {
+    + RecommendationEventAnalytic(data:RecommendationData)
+    + TryGatherData(data:IAnalytic.IData, error:Exception) : bool
+}
+class GetStartedInteractionEventAnalytic {
+    + GetStartedInteractionEventAnalytic(sectionId:string, type:InteractionDataType, displayName:string, targetPackageId:string)
+    + TryGatherData(data:IAnalytic.IData, error:Exception) : bool
+}
+IMultiplayerCenterAnalytics <|-- MultiplayerCenterAnalytics
+MultiplayerCenterAnalytics +-- InstallationEventAnalytic
+IAnalytic <|-- InstallationEventAnalytic
+MultiplayerCenterAnalytics +-- RecommendationEventAnalytic
+IAnalytic <|-- RecommendationEventAnalytic
+MultiplayerCenterAnalytics +-- GetStartedInteractionEventAnalytic
+IAnalytic <|-- GetStartedInteractionEventAnalytic
+@enduml

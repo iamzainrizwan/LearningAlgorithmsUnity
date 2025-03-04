@@ -1,0 +1,12 @@
+@startuml
+class CubemapControlAttribute {
+    + CubemapControlAttribute(label:string)
+    + InstantiateControl(node:AbstractMaterialNode, propertyInfo:PropertyInfo) : VisualElement
+}
+class CubemapControlView {
+    + CubemapControlView(label:string, node:AbstractMaterialNode, propertyInfo:PropertyInfo)
+}
+Attribute <|-- CubemapControlAttribute
+IControlAttribute <|-- CubemapControlAttribute
+VisualElement <|-- CubemapControlView
+@enduml

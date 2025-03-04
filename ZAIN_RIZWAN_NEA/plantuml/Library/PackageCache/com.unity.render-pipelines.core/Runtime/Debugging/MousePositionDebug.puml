@@ -1,0 +1,9 @@
+@startuml
+class MousePositionDebug {
+    + Build() : void
+    + Cleanup() : void
+    + GetMousePosition(ScreenHeight:float, sceneView:bool) : Vector2
+    + GetMouseClickPosition(ScreenHeight:float) : Vector2
+}
+MousePositionDebug --> "instance" MousePositionDebug
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class VertexColorCycler {
+}
+MonoBehaviour <|-- VertexColorCycler
+@enduml

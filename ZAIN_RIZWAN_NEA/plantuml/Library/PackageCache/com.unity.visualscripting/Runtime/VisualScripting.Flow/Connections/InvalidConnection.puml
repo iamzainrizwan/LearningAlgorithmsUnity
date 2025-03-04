@@ -1,0 +1,20 @@
+@startuml
+class InvalidConnection <<sealed>> {
+    + InvalidConnection()
+    + InvalidConnection(source:IUnitOutputPort, destination:IUnitInputPort)
+    + <<override>> AfterRemove() : void
+    + <<override>> sourceExists : bool <<get>>
+    + <<override>> destinationExists : bool <<get>>
+    + validSourceExists : bool <<get>>
+    + validDestinationExists : bool <<get>>
+    + <<override>> HandleDependencies() : bool
+}
+class "UnitConnection`2"<T1,T2> {
+}
+"UnitConnection`2" "<IUnitOutputPort,IUnitInputPort>" <|-- InvalidConnection
+IUnitConnection <|-- InvalidConnection
+InvalidConnection --> "source" IUnitOutputPort
+InvalidConnection --> "destination" IUnitInputPort
+InvalidConnection --> "validSource" IUnitOutputPort
+InvalidConnection --> "validDestination" IUnitInputPort
+@enduml

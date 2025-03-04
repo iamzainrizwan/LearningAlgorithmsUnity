@@ -1,0 +1,30 @@
+@startuml
+class APVDefinitions {
+    + {static} probeIndexChunkSize : int
+    + <<const>> probeValidityThreshold : float = 0.05f
+    + {static} probeMaxRegionCount : int = 4
+}
+enum APVConstantBufferRegister {
+    GlobalRegister= 6,
+}
+enum APVLeakReductionMode {
+    None= 0,
+    Performance= 1,
+    Quality= 2,
+    ValidityBased= Performance,
+    ValidityAndNormalBased= Quality,
+}
+struct ShaderVariablesProbeVolumes {
+}
+APVDefinitions o-> "debugEmptyColor" Color
+ShaderVariablesProbeVolumes --> "_Offset_LayerCount" Vector4
+ShaderVariablesProbeVolumes --> "_MinLoadedCellInEntries_IndirectionEntryDim" Vector4
+ShaderVariablesProbeVolumes --> "_MaxLoadedCellInEntries_RcpIndirectionEntryDim" Vector4
+ShaderVariablesProbeVolumes --> "_PoolDim_MinBrickSize" Vector4
+ShaderVariablesProbeVolumes --> "_RcpPoolDim_XY" Vector4
+ShaderVariablesProbeVolumes --> "_MinEntryPos_Noise" Vector4
+ShaderVariablesProbeVolumes --> "_EntryCount_X_XY_LeakReduction" uint4
+ShaderVariablesProbeVolumes --> "_Biases_NormalizationClamp" Vector4
+ShaderVariablesProbeVolumes --> "_FrameIndex_Weights" Vector4
+ShaderVariablesProbeVolumes --> "_ProbeVolumeLayerMask" uint4
+@enduml

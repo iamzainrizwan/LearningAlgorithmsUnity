@@ -1,0 +1,56 @@
+@startuml
+class NativeListTests {
+    + NullListThrow() : void
+    + NativeList_Allocate_Deallocate_Read_Write() : void
+    + NativeArrayFromNativeList() : void
+    + NativeArrayFromNativeListInvalidatesOnAdd() : void
+    + NativeArrayFromNativeListInvalidatesOnCapacityChange() : void
+    + NativeArrayFromNativeListInvalidatesOnDispose() : void
+    + NativeArrayFromNativeListMayDeallocate() : void
+    + CopiedNativeListIsKeptInSync() : void
+    + NativeList_CopyFrom_Managed() : void
+    + NativeList_CopyFrom_OtherContainers() : void
+    + TempListInBurstJob() : void
+    + SetCapacityLessThanLength() : void
+    + DisposingNativeListDerivedArrayDoesNotThrow() : void
+    + NativeList_DisposeJob() : void
+    + ForEachWorks() : void
+    + NativeList_UseAfterFree_UsesCustomOwnerTypeName() : void
+    + AtomicSafetyHandle_AllocatorTemp_UniqueStaticSafetyIds() : void
+    + NativeList_CreateAndUseAfterFreeInBurstJob_UsesCustomOwnerTypeName() : void
+    + <<unsafe>> NativeList_IndexOf() : void
+    + NativeList_InsertRangeWithBeginEnd() : void
+    + NativeList_InsertRange() : void
+    + NativeList_CustomAllocatorTest() : void
+    + <<unsafe>> NativeList_BurstedCustomAllocatorTest() : void
+    + <<unsafe>> NativeList_SetCapacity() : void
+    + <<unsafe>> NativeList_TrimExcess() : void
+    + NativeList_Nested() : void
+    + NativeList_AddReplicate() : void
+}
+struct TempListInJob {
+    + Execute() : void
+}
+struct NativeListCreateAndUseAfterFreeBurst {
+    + Execute() : void
+}
+struct BurstedCustomAllocatorJob {
+    + Execute() : void
+}
+struct NestedContainer {
+}
+class "NativeArray`1"<T> {
+}
+class "NativeList`1"<T> {
+}
+CollectionsTestFixture <|-- NativeListTests
+NativeListTests +-- TempListInJob
+IJob <|-- TempListInJob
+TempListInJob --> "Output<int>" "NativeArray`1"
+NativeListTests +-- NativeListCreateAndUseAfterFreeBurst
+IJob <|-- NativeListCreateAndUseAfterFreeBurst
+NativeListTests +-- BurstedCustomAllocatorJob
+IJob <|-- BurstedCustomAllocatorJob
+NativeListTests +-- NestedContainer
+NestedContainer --> "data<int>" "NativeList`1"
+@enduml

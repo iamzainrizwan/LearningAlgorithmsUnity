@@ -1,0 +1,12 @@
+@startuml
+class InsertListItem <<sealed>> {
+    + Insert(flow:Flow) : ControlOutput
+}
+Unit <|-- InsertListItem
+InsertListItem --> "enter" ControlInput
+InsertListItem --> "listInput" ValueInput
+InsertListItem --> "listOutput" ValueOutput
+InsertListItem --> "index" ValueInput
+InsertListItem --> "item" ValueInput
+InsertListItem --> "exit" ControlOutput
+@enduml

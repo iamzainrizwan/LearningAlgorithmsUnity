@@ -1,0 +1,16 @@
+@startuml
+class X86 <<unsafe>> <<static>> <<partial>> {
+}
+class Bmi2 <<static>> {
+    + {static} IsBmi2Supported : bool <<get>>
+    + {static} bzhi_u32(a:uint, index:uint) : uint
+    + {static} bzhi_u64(a:ulong, index:ulong) : ulong
+    + {static} mulx_u32(a:uint, b:uint, hi:uint) : uint
+    + {static} mulx_u64(a:ulong, b:ulong, hi:ulong) : ulong
+    + {static} pdep_u32(a:uint, mask:uint) : uint
+    + {static} pdep_u64(a:ulong, mask:ulong) : ulong
+    + {static} pext_u32(a:uint, mask:uint) : uint
+    + {static} pext_u64(a:ulong, mask:ulong) : ulong
+}
+X86 +-- Bmi2
+@enduml

@@ -1,0 +1,60 @@
+@startuml
+class CanvasUniforms <<static>> {
+    + {static} <<readonly>> Lighting : string = "Off"
+    + {static} ColorMask : string = "ColorMask [_ColorMask]"
+    + {static} ZTest : string = "[unity_GUIZTestMode]"
+    + {static} Ref : string = "[_Stencil]"
+    + {static} Comp : string = "[_StencilComp]"
+    + {static} Pass : string = "[_StencilOp]"
+    + {static} ReadMask : string = "[_StencilReadMask]"
+    + {static} WriteMask : string = "[_StencilWriteMask]"
+}
+abstract class "CanvasSubTarget`1"<T> {
+    + <<virtual>> identifier : string <<get>>
+    + <<virtual>> GetMetadataObject(graph:GraphDataReadOnly) : ScriptableObject
+    + <<override>> IsActive() : bool
+    + <<override>> Setup(context:TargetSetupContext) : void
+    + <<override>> GetActiveBlocks(context:TargetActiveBlockContext) : void
+    + <<override>> CollectShaderProperties(collector:PropertyCollector, generationMode:GenerationMode) : void
+    + CollectRenderStateShaderProperties(collector:PropertyCollector, generationMode:GenerationMode) : void
+    + <<override>> GetFields(context:TargetFieldContext) : void
+    + <<override>> GetPropertiesGUI(context:TargetPropertyGUIContext, onChange:Action, registerUndo:Action<string>) : void
+    + <<virtual>> GenerateDefaultSubshader(isSRP:bool) : SubShaderDescriptor
+    + AdditionalIncludesOnly() : IncludeCollection
+    + SRPCoreIncludes() : IncludeCollection
+    + <<virtual>> SRPPreGraphIncludes() : IncludeCollection
+    + <<virtual>> SRPPostGraphIncludes() : IncludeCollection
+    + <<virtual>> GenerateUIPassDescriptor(isSRP:bool) : PassDescriptor
+    + <<override>> saveContext : object <<get>>
+    + CanvasSubTarget()
+    + <<override>> IsNodeAllowedBySubTarget(nodeType:Type) : bool
+}
+class CanvasBlockMasks {
+}
+class CanvasStructCollections <<static>> {
+}
+class CanvasRequiredFields <<static>> {
+}
+class CanvasRenderStates <<static>> {
+    + {static} GenerateRenderStateDeclaration() : RenderStateCollection
+}
+class CanvasPragmas <<static>> {
+}
+class "SubTarget`1"<T> {
+}
+class "IRequiresData`1"<T> {
+}
+class CanvasKeywords <<static>> {
+    + {static} GenerateCoreKeywords() : KeywordCollection
+}
+"SubTarget`1" "<T>" <|-- "CanvasSubTarget`1"
+"IRequiresData`1" "<CanvasData>" <|-- "CanvasSubTarget`1"
+IHasMetadata <|-- "CanvasSubTarget`1"
+"CanvasSubTarget`1" --> "canvasData" CanvasData
+CanvasStructCollections o-> "Default" StructCollection
+CanvasRequiredFields o-> "Default" FieldCollection
+CanvasPragmas o-> "Default" PragmaCollection
+CanvasPragmas o-> "DefaulDebugt" PragmaCollection
+"CanvasSubTarget`1" +-- CanvasKeywords
+CanvasKeywords o-> "DisableTint" KeywordDescriptor
+@enduml

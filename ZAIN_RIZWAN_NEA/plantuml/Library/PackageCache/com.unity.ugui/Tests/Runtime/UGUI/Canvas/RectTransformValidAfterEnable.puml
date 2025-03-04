@@ -1,0 +1,8 @@
+@startuml
+class RectTransformValidAfterEnable {
+    + Setup() : void
+    + CheckRectTransformValidAfterEnable() : IEnumerator
+    + TearDown() : void
+}
+IPrebuildSetup <|-- RectTransformValidAfterEnable
+@enduml

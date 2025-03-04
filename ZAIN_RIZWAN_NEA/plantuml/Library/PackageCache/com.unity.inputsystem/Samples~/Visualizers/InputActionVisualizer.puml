@@ -1,0 +1,12 @@
+@startuml
+class InputActionVisualizer {
+}
+enum Visualization {
+    None,
+    Value,
+    Interaction,
+}
+InputVisualizer <|-- InputActionVisualizer
+InputActionVisualizer --> "action" InputAction
+InputActionVisualizer +-- Visualization
+@enduml

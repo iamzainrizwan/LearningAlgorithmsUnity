@@ -1,0 +1,9 @@
+@startuml
+class CopyPasteTestComponent1 {
+    + WithModifiedValues() : CopyPasteTestComponent1
+    + AssertEquality(other:CopyPasteTestComponent1, assertionFunction:Action<object, object>) : void
+}
+VolumeComponent <|-- CopyPasteTestComponent1
+CopyPasteTestComponent1 o-> "p1" FloatParameter
+CopyPasteTestComponent1 o-> "p2" IntParameter
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+enum Channel {
+    Red= 0,
+    Green= 1,
+    Blue= 2,
+    Alpha= 3,
+}
+class ParallaxMappingNode {
+    + ParallaxMappingNode()
+    + <<override>> hasPreview : bool <<get>>
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> Setup() : void
+    + GenerateNodeFunction(registry:FunctionRegistry, generationMode:GenerationMode) : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + RequiresViewDirection(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresMeshUV(channel:UVChannel, stageCapability:ShaderStageCapability) : bool
+}
+AbstractMaterialNode <|-- ParallaxMappingNode
+IGeneratesBodyCode <|-- ParallaxMappingNode
+IGeneratesFunction <|-- ParallaxMappingNode
+IMayRequireViewDirection <|-- ParallaxMappingNode
+IMayRequireMeshUV <|-- ParallaxMappingNode
+ParallaxMappingNode --> "channel" Channel
+@enduml

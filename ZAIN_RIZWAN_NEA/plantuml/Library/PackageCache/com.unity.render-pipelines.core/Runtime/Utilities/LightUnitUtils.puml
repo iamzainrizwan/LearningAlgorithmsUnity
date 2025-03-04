@@ -1,0 +1,25 @@
+@startuml
+class LightUnitUtils <<static>> {
+    + <<const>> SphereSolidAngle : float
+    + {static} GetNativeLightUnit(lightType:LightType) : LightUnit
+    + {static} IsLightUnitSupported(lightType:LightType, lightUnit:LightUnit) : bool
+    + {static} GetSolidAngleFromPointLight() : float
+    + {static} GetSolidAngleFromSpotLight(spotAngle:float) : float
+    + {static} GetSolidAngleFromPyramidLight(spotAngle:float, aspectRatio:float) : float
+    + {static} GetAreaFromRectangleLight(rectSizeX:float, rectSizeY:float) : float
+    + {static} GetAreaFromRectangleLight(rectSize:Vector2) : float
+    + {static} GetAreaFromDiscLight(discRadius:float) : float
+    + {static} GetAreaFromTubeLight(tubeLength:float) : float
+    + {static} LumenToCandela(lumen:float, solidAngle:float) : float
+    + {static} CandelaToLumen(candela:float, solidAngle:float) : float
+    + {static} LumenToNits(lumen:float, area:float) : float
+    + {static} NitsToLumen(nits:float, area:float) : float
+    + {static} LuxToCandela(lux:float, distance:float) : float
+    + {static} CandelaToLux(candela:float, distance:float) : float
+    + {static} Ev100ToNits(ev100:float) : float
+    + {static} NitsToEv100(nits:float) : float
+    + {static} Ev100ToCandela(ev100:float) : float
+    + {static} CandelaToEv100(candela:float) : float
+    + {static} ConvertIntensity(light:Light, intensity:float, fromUnit:LightUnit, toUnit:LightUnit) : float
+}
+@enduml

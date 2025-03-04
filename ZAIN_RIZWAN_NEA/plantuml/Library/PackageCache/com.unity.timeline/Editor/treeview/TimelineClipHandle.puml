@@ -1,0 +1,11 @@
+@startuml
+class TimelineClipHandle {
+    + TimelineClipHandle(theClipGUI:TimelineClipGUI, trimDirection:TrimEdge)
+    + Draw(clientRect:Rect, width:float, state:WindowState) : void
+}
+ILayerable <|-- TimelineClipHandle
+TimelineClipHandle --> "boundingRect" Rect
+TimelineClipHandle --> "trimDirection" TrimEdge
+TimelineClipHandle --> "clipGUI" TimelineClipGUI
+TimelineClipHandle --> "zOrder" LayerZOrder
+@enduml

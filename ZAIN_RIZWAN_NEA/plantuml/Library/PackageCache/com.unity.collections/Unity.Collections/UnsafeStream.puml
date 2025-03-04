@@ -1,0 +1,64 @@
+@startuml
+struct UnsafeStreamBlock {
+}
+struct UnsafeStreamRange {
+}
+struct UnsafeStreamBlockData {
+}
+struct UnsafeStream {
+    + UnsafeStream(bufferCount:int, allocator:AllocatorManager.AllocatorHandle)
+    + {static} ScheduleConstruct(stream:UnsafeStream, bufferCount:NativeList<T>, dependency:JobHandle, allocator:AllocatorManager.AllocatorHandle) : JobHandle
+    + {static} ScheduleConstruct(stream:UnsafeStream, bufferCount:NativeArray<int>, dependency:JobHandle, allocator:AllocatorManager.AllocatorHandle) : JobHandle
+    + <<readonly>> IsEmpty() : bool
+    + <<readonly>> IsCreated : bool <<get>>
+    + <<readonly>> ForEachCount : int <<get>>
+    + AsReader() : Reader
+    + AsWriter() : Writer
+    + Count() : int
+    + ToNativeArray(allocator:AllocatorManager.AllocatorHandle) : NativeArray<T>
+    + Dispose() : void
+    + Dispose(inputDeps:JobHandle) : JobHandle
+}
+struct DisposeJob {
+    + Execute() : void
+}
+struct ConstructJobList {
+    + Execute() : void
+}
+struct ConstructJob {
+    + Execute() : void
+}
+struct Writer {
+    + ForEachCount : int <<get>>
+    + BeginForEachIndex(foreachIndex:int) : void
+    + EndForEachIndex() : void
+    + Write(value:T) : void
+    + Allocate() : ref T
+    + Allocate(size:int) : byte*
+}
+struct Reader {
+    + BeginForEachIndex(foreachIndex:int) : int
+    + EndForEachIndex() : void
+    + ForEachCount : int <<get>>
+    + RemainingItemCount : int <<get>>
+    + ReadUnsafePtr(size:int) : byte*
+    + Read() : ref T
+    + Peek() : ref T
+    + Count() : int
+}
+class "NativeArray`1"<T> {
+}
+INativeDisposable <|-- UnsafeStream
+UnsafeStream +-- DisposeJob
+IJob <|-- DisposeJob
+DisposeJob --> "Container" UnsafeStream
+UnsafeStream +-- ConstructJobList
+IJob <|-- ConstructJobList
+ConstructJobList --> "Container" UnsafeStream
+UnsafeStream +-- ConstructJob
+IJob <|-- ConstructJob
+ConstructJob --> "Container" UnsafeStream
+ConstructJob --> "Length<int>" "NativeArray`1"
+UnsafeStream +-- Writer
+UnsafeStream +-- Reader
+@enduml

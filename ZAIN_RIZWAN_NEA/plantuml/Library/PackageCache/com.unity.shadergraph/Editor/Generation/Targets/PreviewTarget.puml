@@ -1,0 +1,28 @@
+@startuml
+class PreviewTarget <<sealed>> {
+    + PreviewTarget()
+    + <<override>> IsActive() : bool
+    + <<override>> Setup(context:TargetSetupContext) : void
+    + <<override>> GetFields(context:TargetFieldContext) : void
+    + <<override>> GetActiveBlocks(context:TargetActiveBlockContext) : void
+    + <<override>> GetPropertiesGUI(context:TargetPropertyGUIContext, onChange:Action, registerUndo:Action<String>) : void
+    + <<override>> WorksWithSRP(scriptableRenderPipeline:RenderPipelineAsset) : bool
+}
+class SubShaders <<static>> {
+}
+class Passes <<static>> {
+}
+class StructDescriptors <<static>> {
+}
+class KeywordDescriptors <<static>> {
+}
+Target <|-- PreviewTarget
+PreviewTarget +-- SubShaders
+SubShaders o-> "Preview" SubShaderDescriptor
+PreviewTarget +-- Passes
+Passes o-> "Preview" PassDescriptor
+PreviewTarget +-- StructDescriptors
+StructDescriptors o-> "PreviewVaryings" StructDescriptor
+PreviewTarget +-- KeywordDescriptors
+KeywordDescriptors o-> "PreviewKeyword" KeywordDescriptor
+@enduml

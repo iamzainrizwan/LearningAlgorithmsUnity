@@ -1,0 +1,10 @@
+@startuml
+class playermov {
+    + forceMultiplier : float = 100
+    + jumpMultiplier : float = 0.04f
+    + rotationMultiplier : float = 10
+}
+MonoBehaviour <|-- playermov
+playermov --> "groundedCheck" Transform
+playermov --> "groundLayers" LayerMask
+@enduml

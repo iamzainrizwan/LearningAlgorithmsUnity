@@ -1,0 +1,8 @@
+@startuml
+class MarkerTrack {
+}
+class "IEnumerable`1"<T> {
+}
+TrackAsset <|-- MarkerTrack
+MarkerTrack --> "outputs<PlayableBinding>" "IEnumerable`1"
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+class SimpleController_UsingPlayerInput {
+    + moveSpeed : float
+    + rotateSpeed : float
+    + burstSpeed : float
+    + OnMove(context:InputAction.CallbackContext) : void
+    + OnLook(context:InputAction.CallbackContext) : void
+    + OnFire(context:InputAction.CallbackContext) : void
+    + OnGUI() : void
+    + Update() : void
+}
+MonoBehaviour <|-- SimpleController_UsingPlayerInput
+SimpleController_UsingPlayerInput --> "projectile" GameObject
+@enduml

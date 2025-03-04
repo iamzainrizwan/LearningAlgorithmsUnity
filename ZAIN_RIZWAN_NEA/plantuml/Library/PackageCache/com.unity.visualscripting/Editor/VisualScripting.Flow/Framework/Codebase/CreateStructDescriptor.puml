@@ -1,0 +1,8 @@
+@startuml
+class CreateStructDescriptor {
+    + CreateStructDescriptor(unit:CreateStruct)
+}
+class "UnitDescriptor`1"<T> {
+}
+"UnitDescriptor`1" "<CreateStruct>" <|-- CreateStructDescriptor
+@enduml

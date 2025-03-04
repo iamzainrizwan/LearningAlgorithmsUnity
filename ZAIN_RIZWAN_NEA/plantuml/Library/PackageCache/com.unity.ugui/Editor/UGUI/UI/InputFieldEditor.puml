@@ -1,0 +1,6 @@
+@startuml
+class InputFieldEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+SelectableEditor <|-- InputFieldEditor
+@enduml

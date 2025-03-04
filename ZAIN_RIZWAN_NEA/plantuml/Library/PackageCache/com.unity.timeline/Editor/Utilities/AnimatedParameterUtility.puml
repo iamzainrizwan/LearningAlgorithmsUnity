@@ -1,0 +1,23 @@
+@startuml
+class AnimatedParameterUtility <<static>> {
+    + {static} ToCurvesOwner(playableAsset:IPlayableAsset, timeline:TimelineAsset) : ICurvesOwner
+    + {static} TryGetSerializedPlayableAsset(asset:UnityObject, serializedObject:SerializedObject) : bool
+    + {static} GetSerializedPlayableAsset(asset:UnityObject) : SerializedObject
+    + {static} UpdateSerializedPlayableAsset(asset:UnityObject) : void
+    + {static} HasScriptPlayable(asset:UnityObject) : bool
+    + {static} GetScriptPlayableFields(asset:IPlayableAsset) : FieldInfo[]
+    + {static} HasAnyAnimatableParameters(asset:UnityObject) : bool
+    + {static} GetAllAnimatableParameters(asset:UnityObject) : IEnumerable<SerializedProperty>
+    + {static} IsParameterAnimatable(asset:UnityObject, parameterName:string) : bool
+    + {static} IsParameterAnimatable(property:SerializedProperty) : bool
+    + {static} IsTypeAnimatable(type:SerializedPropertyType) : bool
+    + {static} IsParameterAnimated(asset:UnityObject, animationData:AnimationClip, parameterName:string) : bool
+    + {static} GetAnimatedParameter(asset:UnityObject, animationData:AnimationClip, parameterName:string) : AnimationCurve
+    + {static} GetCurveBinding(asset:UnityObject, parameterName:string) : EditorCurveBinding
+    + {static} GetAnimatedParameterBindingName(asset:UnityObject, parameterName:string) : string
+    + {static} BindingMatchesParameterName(binding:EditorCurveBinding, parameterName:string) : bool
+    + {static} GetValidAnimationType(asset:UnityObject) : Type
+    + {static} GetFieldInfoForProperty(property:SerializedProperty) : FieldInfo
+    + {static} GetAttributeForProperty(property:SerializedProperty) : T
+}
+@enduml

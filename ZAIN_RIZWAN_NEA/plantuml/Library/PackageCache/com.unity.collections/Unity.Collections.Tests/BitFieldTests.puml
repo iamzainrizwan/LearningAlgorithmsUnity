@@ -1,0 +1,11 @@
+@startuml
+class BitFieldTests {
+    + BitField32_Get_Set() : void
+    + BitField32_Count_Leading_Trailing() : void
+    + BitField32_Throws() : void
+    + BitField64_Get_Set() : void
+    + BitField64_Throws() : void
+    + BitField64_Count_Leading_Trailing() : void
+}
+CollectionsTestFixture <|-- BitFieldTests
+@enduml

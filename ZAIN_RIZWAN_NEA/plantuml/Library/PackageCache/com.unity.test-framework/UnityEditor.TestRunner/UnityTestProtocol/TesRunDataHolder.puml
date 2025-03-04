@@ -1,0 +1,16 @@
+@startuml
+interface ITestRunDataHolder {
+}
+class TestRunDataHolder {
+    + OnBeforeSerialize() : void
+    + OnAfterDeserialize() : void
+}
+class "ScriptableSingleton`1"<T> {
+}
+class "IList`1"<T> {
+}
+"ScriptableSingleton`1" "<TestRunDataHolder>" <|-- TestRunDataHolder
+ISerializationCallbackReceiver <|-- TestRunDataHolder
+ITestRunDataHolder <|-- TestRunDataHolder
+TestRunDataHolder o-> "TestRunDataList<TestRunData>" "IList`1"
+@enduml

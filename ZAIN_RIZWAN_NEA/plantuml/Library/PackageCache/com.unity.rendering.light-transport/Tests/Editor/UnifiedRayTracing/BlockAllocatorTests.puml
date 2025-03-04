@@ -1,0 +1,5 @@
+@startuml
+class BlockAllocatorTests {
+    + GrowAndAllocate_NotEnoughSpace_ShouldFail() : void
+}
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class Vector4Absolute <<sealed>> {
+}
+class "Absolute`1"<T> {
+}
+"Absolute`1" "<Vector4>" <|-- Vector4Absolute
+@enduml

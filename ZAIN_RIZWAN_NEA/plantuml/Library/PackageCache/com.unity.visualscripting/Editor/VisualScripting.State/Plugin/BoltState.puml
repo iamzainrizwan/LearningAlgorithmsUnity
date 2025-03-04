@@ -1,0 +1,16 @@
+@startuml
+class BoltState <<sealed>> {
+    + <<const>> ID : string = "VisualScripting.State"
+    + BoltState()
+    + <<const>> LegacyRuntimeDllGuid : string = "dcd2196c4e9166f499793f2007fcda35"
+    + <<const>> LegacyEditorDllGuid : string = "25cf173c22a896d44ae550407b10ed98"
+}
+class "IEnumerable`1"<T> {
+}
+Plugin <|-- BoltState
+BoltState --> "instance" BoltState
+BoltState --> "Manifest" BoltStateManifest
+BoltState --> "Configuration" BoltStateConfiguration
+BoltState --> "Resources" BoltStateResources
+BoltState --> "scriptReferenceReplacements<ScriptReferenceReplacement>" "IEnumerable`1"
+@enduml

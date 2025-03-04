@@ -1,0 +1,7 @@
+@startuml
+abstract class RenderPipelineConverterContainer {
+    + {abstract} name : string <<get>>
+    + {abstract} info : string <<get>>
+    + <<virtual>> priority : int <<get>>
+}
+@enduml

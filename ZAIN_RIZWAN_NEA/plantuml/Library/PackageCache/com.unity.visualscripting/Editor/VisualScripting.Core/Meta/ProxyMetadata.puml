@@ -1,0 +1,8 @@
+@startuml
+class ProxyMetadata {
+    + ProxyMetadata(subpath:object, binding:Metadata, parent:Metadata)
+    + <<override>> GetCustomAttributes(inherit:bool) : Attribute[]
+}
+Metadata <|-- ProxyMetadata
+ProxyMetadata --> "binding" Metadata
+@enduml

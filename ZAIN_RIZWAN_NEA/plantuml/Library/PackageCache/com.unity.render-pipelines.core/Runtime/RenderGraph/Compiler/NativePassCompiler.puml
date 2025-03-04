@@ -1,0 +1,33 @@
+@startuml
+class NativePassCompiler <<partial>> {
+    + NativePassCompiler(cache:RenderGraphCompilationCache)
+    + Dispose() : void
+    + Initialize(resources:RenderGraphResourceRegistry, renderPasses:List<RenderGraphPass>, disableCulling:bool, debugName:string, useCompilationCaching:bool, graphHash:int, frameIndex:int) : bool
+    + Compile(resources:RenderGraphResourceRegistry) : void
+    + Clear(clearContextData:bool) : void
+    + ExecuteGraph(rgContext:InternalRenderGraphContext, resources:RenderGraphResourceRegistry, passes:List<RenderGraphPass>) : void
+}
+struct RenderGraphInputInfo {
+    + debugName : string
+    + disableCulling : bool
+}
+enum NativeCompilerProfileId {
+    NRPRGComp_PrepareNativePass,
+    NRPRGComp_SetupContextData,
+    NRPRGComp_BuildGraph,
+    NRPRGComp_CullNodes,
+    NRPRGComp_TryMergeNativePasses,
+    NRPRGComp_FindResourceUsageRanges,
+    NRPRGComp_DetectMemorylessResources,
+    NRPRGComp_ExecuteCreateResources,
+    NRPRGComp_ExecuteBeginRenderpassCommand,
+    NRPRGComp_ExecuteDestroyResources,
+}
+class "List`1"<T> {
+}
+IDisposable <|-- NativePassCompiler
+NativePassCompiler +-- RenderGraphInputInfo
+RenderGraphInputInfo --> "m_ResourcesForDebugOnly" RenderGraphResourceRegistry
+RenderGraphInputInfo --> "m_RenderPasses<RenderGraphPass>" "List`1"
+NativePassCompiler +-- NativeCompilerProfileId
+@enduml

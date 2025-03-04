@@ -1,0 +1,11 @@
+@startuml
+class FloatEqualityComparer {
+    + FloatEqualityComparer(allowedError:float)
+    + Equals(expected:float, actual:float) : bool
+    + GetHashCode(value:float) : int
+}
+class "IEqualityComparer`1"<T> {
+}
+"IEqualityComparer`1" "<float>" <|-- FloatEqualityComparer
+FloatEqualityComparer --> "Instance" FloatEqualityComparer
+@enduml

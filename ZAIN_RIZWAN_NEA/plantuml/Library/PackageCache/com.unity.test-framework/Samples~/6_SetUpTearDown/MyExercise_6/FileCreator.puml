@@ -1,0 +1,7 @@
+@startuml
+class FileCreator {
+    + <<const>> k_Directory : string = "OutputFiles"
+    + CreateEmptyFile(fileName:string) : void
+    + CreateFile(fileName:string, content:string) : void
+}
+@enduml

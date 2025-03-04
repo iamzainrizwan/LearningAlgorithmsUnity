@@ -1,0 +1,6 @@
+@startuml
+class Constant <<static>> {
+    + {static} IsConstantExpression(t:T) : bool
+    + {static} <<unsafe>> IsConstantExpression(t:void*) : bool
+}
+@enduml

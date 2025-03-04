@@ -1,0 +1,13 @@
+@startuml
+class "WatchedList`1"<T> {
+    +  <<event>> ItemAdded : Action<T> 
+    +  <<event>> ItemRemoved : Action<T> 
+    +  <<event>> CollectionChanged : Action 
+}
+class "Collection`1"<T> {
+}
+class "INotifyCollectionChanged`1"<T> {
+}
+"Collection`1" "<T>" <|-- "WatchedList`1"
+"INotifyCollectionChanged`1" "<T>" <|-- "WatchedList`1"
+@enduml

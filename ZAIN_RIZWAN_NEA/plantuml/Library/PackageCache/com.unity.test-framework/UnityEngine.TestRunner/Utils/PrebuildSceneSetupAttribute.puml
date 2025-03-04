@@ -1,0 +1,7 @@
+@startuml
+class PrebuildSetupAttribute {
+    + PrebuildSetupAttribute(targetClass:Type)
+    + PrebuildSetupAttribute(targetClassName:string)
+}
+Attribute <|-- PrebuildSetupAttribute
+@enduml

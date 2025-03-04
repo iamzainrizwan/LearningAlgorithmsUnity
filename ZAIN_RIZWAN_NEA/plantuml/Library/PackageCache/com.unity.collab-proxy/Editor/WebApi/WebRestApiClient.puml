@@ -1,0 +1,7 @@
+@startuml
+class WebRestApiClient <<static>> {
+}
+class PlasticScm <<static>> {
+}
+WebRestApiClient +-- PlasticScm
+@enduml

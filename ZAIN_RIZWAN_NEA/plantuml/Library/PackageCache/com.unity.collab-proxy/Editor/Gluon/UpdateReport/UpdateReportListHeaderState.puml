@@ -1,0 +1,9 @@
+@startuml
+enum UpdateReportListColumn {
+    Path,
+}
+class UpdateReportListHeaderState {
+}
+MultiColumnHeaderState <|-- UpdateReportListHeaderState
+ISerializationCallbackReceiver <|-- UpdateReportListHeaderState
+@enduml

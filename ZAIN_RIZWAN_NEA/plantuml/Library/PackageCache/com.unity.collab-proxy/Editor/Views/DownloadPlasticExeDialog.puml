@@ -1,0 +1,5 @@
+@startuml
+class DownloadPlasticExeDialog {
+}
+PlasticDialog <|-- DownloadPlasticExeDialog
+@enduml

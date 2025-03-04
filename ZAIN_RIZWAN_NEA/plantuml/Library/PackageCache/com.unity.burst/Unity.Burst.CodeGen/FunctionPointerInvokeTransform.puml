@@ -1,0 +1,20 @@
+@startuml
+class FunctionPointerInvokeTransform {
+    + <<readonly>> {static} enableInvokeAttribute : bool = true
+    + <<readonly>> {static} enableCalliOptimisation : bool = false
+    + <<readonly>> {static} enableUnmangedFunctionPointerInject : bool = true
+    + FunctionPointerInvokeTransform(loader:AssemblyResolver, error:ErrorDiagnosticDelegate, log:LogDelegate, logLevel:int)
+    + Initialize(loader:AssemblyResolver, assemblyDefinition:AssemblyDefinition, typeSystem:TypeSystem) : void
+    + Run(assemblyDefinition:AssemblyDefinition) : bool
+    + CollectDelegateInvokesFromType(type:TypeDefinition) : void
+    + Finish() : bool
+    + IsInstructionForFunctionPointerInvoke(m:MethodDefinition, i:Instruction) : bool
+}
+struct CaptureInformation {
+}
+class "List`1"<T> {
+}
+FunctionPointerInvokeTransform +-- CaptureInformation
+CaptureInformation --> "Operand" MethodReference
+CaptureInformation --> "Captured<Instruction>" "List`1"
+@enduml

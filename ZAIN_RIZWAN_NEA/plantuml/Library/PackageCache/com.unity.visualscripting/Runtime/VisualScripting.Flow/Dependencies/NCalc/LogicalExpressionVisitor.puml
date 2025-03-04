@@ -1,0 +1,10 @@
+@startuml
+abstract class LogicalExpressionVisitor {
+    + {abstract} Visit(ternary:TernaryExpression) : void
+    + {abstract} Visit(binary:BinaryExpression) : void
+    + {abstract} Visit(unary:UnaryExpression) : void
+    + {abstract} Visit(value:ValueExpression) : void
+    + {abstract} Visit(function:FunctionExpression) : void
+    + {abstract} Visit(identifier:IdentifierExpression) : void
+}
+@enduml

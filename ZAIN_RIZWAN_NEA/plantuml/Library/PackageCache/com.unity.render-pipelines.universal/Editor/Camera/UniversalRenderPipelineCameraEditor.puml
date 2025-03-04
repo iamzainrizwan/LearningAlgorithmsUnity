@@ -1,0 +1,9 @@
+@startuml
+class UniversalRenderPipelineCameraEditor {
+    + OnEnable() : void
+    + OnDisable() : void
+    + <<override>> OnInspectorGUI() : void
+}
+Editor <|-- UniversalRenderPipelineCameraEditor
+UniversalRenderPipelineCameraEditor --> "camera" Camera
+@enduml

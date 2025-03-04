@@ -1,0 +1,15 @@
+@startuml
+class TMP_DynamicFontAssetUtilities {
+    + {static} TryGetSystemFontReference(familyName:string, fontRef:FontReference) : bool
+    + {static} TryGetSystemFontReference(familyName:string, styleName:string, fontRef:FontReference) : bool
+}
+struct FontReference {
+    + familyName : string
+    + styleName : string
+    + faceIndex : int
+    + filePath : string
+    + hashCode : ulong
+    + FontReference(fontFilePath:string, faceNameAndStyle:string, index:int)
+}
+TMP_DynamicFontAssetUtilities +-- FontReference
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+class RenderGraphGlobalSettings {
+    + enableCompilationCaching : bool <<get>> <<set>>
+    + enableValidityChecks : bool <<get>> <<set>>
+}
+enum Version {
+    Initial,
+    Count,
+    Last= Count - 1,
+}
+IRenderPipelineGraphicsSettings <|-- RenderGraphGlobalSettings
+RenderGraphGlobalSettings +-- Version
+@enduml

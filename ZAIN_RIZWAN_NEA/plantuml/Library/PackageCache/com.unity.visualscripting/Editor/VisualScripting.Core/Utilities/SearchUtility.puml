@@ -1,0 +1,17 @@
+@startuml
+class SearchUtility <<static>> {
+    + {static} Relevance(query:string, haystack:string) : float
+    + {static} Matches(query:string, haystack:string) : bool
+    + {static} Matches(relevance:float) : bool
+    + {static} Matches(result:ISearchResult) : bool
+    + {static} HighlightQuery(haystack:string, query:string, openTag:string, closeTag:string) : string
+    + {static} OrderableSearchFilter(enumeration:IEnumerable<THaystack>, getResult:Func<THaystack, TResult>, query:string, getHaystack:Func<THaystack, string>) : IEnumerable<SearchResult<TResult>>
+    + {static} OrderableSearchFilter(enumeration:IEnumerable<T>, query:string, haystack:Func<T, string>) : IEnumerable<SearchResult<T>>
+    + {static} OrderableSearchFilter(enumeration:IEnumerable<THaystack>, getResult:Func<THaystack, TResult>, query:string, getHaystack:Func<THaystack, string>, getFormerHaystack:Func<THaystack, string>) : IEnumerable<SearchResult<TResult>>
+    + {static} OrderableSearchFilter(enumeration:IEnumerable<T>, query:string, haystack:Func<T, string>, formerHaystack:Func<T, string>) : IEnumerable<SearchResult<T>>
+    + {static} OrderByRelevance(results:IEnumerable<SearchResult<T>>) : IEnumerable<T>
+    + {static} OrderByRelevance(results:IEnumerable<ISearchResult>) : IEnumerable<object>
+    + {static} UnorderedSearchFilter(enumeration:IEnumerable<T>, query:string, haystack:Func<T, string>) : IEnumerable<T>
+    + {static} OrderedSearchFilter(enumeration:IEnumerable<T>, query:string, haystack:Func<T, string>) : IEnumerable<T>
+}
+@enduml

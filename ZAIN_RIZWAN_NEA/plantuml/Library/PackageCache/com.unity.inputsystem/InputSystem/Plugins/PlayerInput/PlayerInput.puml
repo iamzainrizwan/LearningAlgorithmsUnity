@@ -1,0 +1,68 @@
+@startuml
+class PlayerInput {
+    + <<const>> DeviceLostMessage : string = "OnDeviceLost"
+    + <<const>> DeviceRegainedMessage : string = "OnDeviceRegained"
+    + <<const>> ControlsChangedMessage : string = "OnControlsChanged"
+    + inputIsActive : bool <<get>>
+    + active : bool <<get>>
+    + playerIndex : int <<get>>
+    + splitScreenIndex : int <<get>>
+    + currentControlScheme : string <<get>>
+    + defaultControlScheme : string <<get>> <<set>>
+    + neverAutoSwitchControlSchemes : bool <<get>> <<set>>
+    + defaultActionMap : string <<get>> <<set>>
+    + hasMissingRequiredDevices : bool <<get>>
+    + {static} isSinglePlayer : bool <<get>>
+    + GetDevice() : TDevice
+    + ActivateInput() : void
+    + DeactivateInput() : void
+    + PassivateInput() : void
+    + SwitchCurrentControlScheme(devices:InputDevice[]) : bool
+    + SwitchCurrentControlScheme(controlScheme:string, devices:InputDevice[]) : void
+    + SwitchCurrentActionMap(mapNameOrId:string) : void
+    + {static} GetPlayerByIndex(playerIndex:int) : PlayerInput
+    + {static} FindFirstPairedToDevice(device:InputDevice) : PlayerInput
+    + {static} Instantiate(prefab:GameObject, playerIndex:int, controlScheme:string, splitScreenIndex:int, pairWithDevice:InputDevice) : PlayerInput
+    + {static} Instantiate(prefab:GameObject, playerIndex:int, controlScheme:string, splitScreenIndex:int, pairWithDevices:InputDevice[]) : PlayerInput
+    + DebugLogAction(context:InputAction.CallbackContext) : void
+}
+class "ReadOnlyArray`1"<T> {
+}
+class "Action`1"<T> {
+}
+class ActionEvent {
+    + actionId : string <<get>>
+    + actionName : string <<get>>
+    + ActionEvent()
+    + ActionEvent(action:InputAction)
+    + ActionEvent(actionGUID:Guid, name:string)
+}
+class DeviceLostEvent {
+}
+class DeviceRegainedEvent {
+}
+class ControlsChangedEvent {
+}
+class "UnityEvent`1"<T> {
+}
+MonoBehaviour <|-- PlayerInput
+PlayerInput --> "actions" InputActionAsset
+PlayerInput --> "currentActionMap" InputActionMap
+PlayerInput --> "notificationBehavior" PlayerNotifications
+PlayerInput --> "actionEvents<ActionEvent>" "ReadOnlyArray`1"
+PlayerInput --> "deviceLostEvent" DeviceLostEvent
+PlayerInput --> "deviceRegainedEvent" DeviceRegainedEvent
+PlayerInput --> "controlsChangedEvent" ControlsChangedEvent
+PlayerInput --> "camera" Camera
+PlayerInput --> "user" InputUser
+PlayerInput --> "devices<InputDevice>" "ReadOnlyArray`1"
+PlayerInput --> "all<PlayerInput>" "ReadOnlyArray`1"
+PlayerInput +-- ActionEvent
+"UnityEvent`1" "<InputAction.CallbackContext>" <|-- ActionEvent
+PlayerInput +-- DeviceLostEvent
+"UnityEvent`1" "<PlayerInput>" <|-- DeviceLostEvent
+PlayerInput +-- DeviceRegainedEvent
+"UnityEvent`1" "<PlayerInput>" <|-- DeviceRegainedEvent
+PlayerInput +-- ControlsChangedEvent
+"UnityEvent`1" "<PlayerInput>" <|-- ControlsChangedEvent
+@enduml

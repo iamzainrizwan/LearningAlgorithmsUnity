@@ -1,0 +1,11 @@
+@startuml
+class URPDefaultVolumeProfileSettings {
+    + version : int <<get>>
+}
+enum Version {
+    Initial= 0,
+}
+IDefaultVolumeProfileSettings <|-- URPDefaultVolumeProfileSettings
+URPDefaultVolumeProfileSettings --> "volumeProfile" VolumeProfile
+URPDefaultVolumeProfileSettings +-- Version
+@enduml

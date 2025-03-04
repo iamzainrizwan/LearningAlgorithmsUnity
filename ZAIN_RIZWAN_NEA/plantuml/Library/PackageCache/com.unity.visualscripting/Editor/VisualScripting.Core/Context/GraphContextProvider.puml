@@ -1,0 +1,13 @@
+@startuml
+class GraphContextProvider {
+    + <<override>> IsValid(reference:GraphReference) : bool
+}
+class XGraphContextProvider <<static>> {
+    + {static} Context(reference:GraphReference) : IGraphContext
+    + {static} Context(reference:GraphReference) : T
+}
+class "SingleDecoratorProvider`3"<T1,T2,T3> {
+}
+"SingleDecoratorProvider`3" "<GraphReference,IGraphContext,GraphContextAttribute>" <|-- GraphContextProvider
+GraphContextProvider --> "instance" GraphContextProvider
+@enduml

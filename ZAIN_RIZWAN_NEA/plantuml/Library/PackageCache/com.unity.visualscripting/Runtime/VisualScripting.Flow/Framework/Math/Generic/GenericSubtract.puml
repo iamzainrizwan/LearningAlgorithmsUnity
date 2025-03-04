@@ -1,0 +1,8 @@
+@startuml
+class GenericSubtract <<sealed>> {
+    + <<override>> Operation(a:object, b:object) : object
+}
+class "Subtract`1"<T> {
+}
+"Subtract`1" "<object>" <|-- GenericSubtract
+@enduml

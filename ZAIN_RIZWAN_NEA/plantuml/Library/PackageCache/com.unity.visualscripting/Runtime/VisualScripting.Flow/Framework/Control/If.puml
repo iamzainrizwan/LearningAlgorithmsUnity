@@ -1,0 +1,11 @@
+@startuml
+class If <<sealed>> {
+    + Enter(flow:Flow) : ControlOutput
+}
+Unit <|-- If
+IBranchUnit <|-- If
+If --> "enter" ControlInput
+If --> "condition" ValueInput
+If --> "ifTrue" ControlOutput
+If --> "ifFalse" ControlOutput
+@enduml

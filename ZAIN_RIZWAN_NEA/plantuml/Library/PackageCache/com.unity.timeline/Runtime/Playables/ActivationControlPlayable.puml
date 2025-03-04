@@ -1,0 +1,25 @@
+@startuml
+class ActivationControlPlayable {
+    + {static} Create(graph:PlayableGraph, gameObject:GameObject, postPlaybackState:ActivationControlPlayable.PostPlaybackState) : ScriptPlayable<ActivationControlPlayable>
+    + <<override>> OnBehaviourPlay(playable:Playable, info:FrameData) : void
+    + <<override>> OnBehaviourPause(playable:Playable, info:FrameData) : void
+    + <<override>> ProcessFrame(playable:Playable, info:FrameData, userData:object) : void
+    + <<override>> OnGraphStart(playable:Playable) : void
+    + <<override>> OnPlayableDestroy(playable:Playable) : void
+}
+enum PostPlaybackState {
+    Active,
+    Inactive,
+    Revert,
+}
+enum InitialState {
+    Unset,
+    Active,
+    Inactive,
+}
+PlayableBehaviour <|-- ActivationControlPlayable
+ActivationControlPlayable o-> "gameObject" GameObject
+ActivationControlPlayable o-> "postPlayback" PostPlaybackState
+ActivationControlPlayable +-- PostPlaybackState
+ActivationControlPlayable +-- InitialState
+@enduml

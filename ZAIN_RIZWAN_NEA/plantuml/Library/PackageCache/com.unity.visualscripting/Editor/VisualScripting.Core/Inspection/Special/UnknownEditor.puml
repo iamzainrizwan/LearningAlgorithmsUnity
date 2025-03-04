@@ -1,0 +1,6 @@
+@startuml
+class UnknownEditor {
+    + UnknownEditor(metadata:Metadata)
+}
+Inspector <|-- UnknownEditor
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class OrNode {
+    + OrNode()
+    + <<override>> hasPreview : bool <<get>>
+}
+CodeFunctionNode <|-- OrNode
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class MaskUtilities {
+    + {static} Notify2DMaskStateChanged(mask:Component) : void
+    + {static} NotifyStencilStateChanged(mask:Component) : void
+    + {static} FindRootSortOverrideCanvas(start:Transform) : Transform
+    + {static} GetStencilDepth(transform:Transform, stopAfter:Transform) : int
+    + {static} IsDescendantOrSelf(father:Transform, child:Transform) : bool
+    + {static} GetRectMaskForClippable(clippable:IClippable) : RectMask2D
+    + {static} GetRectMasksForClip(clipper:RectMask2D, masks:List<RectMask2D>) : void
+}
+@enduml

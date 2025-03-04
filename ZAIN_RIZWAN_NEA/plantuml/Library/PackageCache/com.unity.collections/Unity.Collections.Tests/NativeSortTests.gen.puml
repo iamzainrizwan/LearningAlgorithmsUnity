@@ -1,0 +1,82 @@
+@startuml
+class NativeSortTests {
+    + NativeArraySlice_BinarySearch() : void
+    + BinarySearch_From_Job() : void
+    + NativeArraySlice_BinarySearch_NotFound() : void
+    + NativeArraySlice_BinarySearch_NotFound_Reference_ArrayList() : void
+    + NativeList_BinarySearch() : void
+    + NativeList_BinarySearch_NotFound() : void
+    + NativeList_BinarySearch_NotFound_Reference_ArrayList() : void
+    + NativeList_GenericSortJob_NoBurst() : void
+    + {static} Bursted_NativeList_GenericSortJob() : void
+    + NativeList_GenericSortJob_Burst() : void
+    + {static} NativeList_GenericSortJob() : void
+    + NativeList_GenericSortJobCustomComparer_NoBurst() : void
+    + {static} Bursted_NativeList_GenericSortJobCustomComparer() : void
+    + NativeList_GenericSortJobCustomComparer_Burst() : void
+    + {static} NativeList_GenericSortJobCustomComparer() : void
+    + UnsafeList_BinarySearch() : void
+    + UnsafeList_BinarySearch_NotFound() : void
+    + UnsafeList_BinarySearch_NotFound_Reference_ArrayList() : void
+    + UnsafeList_GenericSortJob_NoBurst() : void
+    + {static} Bursted_UnsafeList_GenericSortJob() : void
+    + UnsafeList_GenericSortJob_Burst() : void
+    + {static} UnsafeList_GenericSortJob() : void
+    + UnsafeList_GenericSortJobCustomComparer_NoBurst() : void
+    + {static} Bursted_UnsafeList_GenericSortJobCustomComparer() : void
+    + UnsafeList_GenericSortJobCustomComparer_Burst() : void
+    + {static} UnsafeList_GenericSortJobCustomComparer() : void
+    + FixedList32Bytes_GenericSort() : void
+    + FixedList64Bytes_GenericSort() : void
+    + FixedList128Bytes_GenericSort() : void
+    + FixedList512Bytes_GenericSort() : void
+    + FixedList4096Bytes_GenericSort() : void
+    + <<unsafe>> NativeList_BrokenCustomComparerDoesNotCrash() : void
+}
+class "SortJob`2"<T1,T2> {
+}
+struct "DescendingComparer`1"<T> {
+    + Compare(x:T, y:T) : int
+}
+struct "BrokenComparer0`1"<T> {
+    + Compare(x:T, y:T) : int
+}
+struct "BrokenComparer1`1"<T> {
+    + Compare(x:T, y:T) : int
+}
+struct "BrokenComparer2`1"<T> {
+    + Compare(x:T, y:T) : int
+}
+struct "BrokenComparer3`1"<T> {
+    + Compare(x:T, y:T) : int
+}
+struct BinarySearch_Job {
+    + Execute() : void
+}
+class "IComparer`1"<T> {
+}
+class "IComparable`1"<T> {
+}
+class "NativeArray`1"<T> {
+}
+class "NativeSlice`1"<T> {
+}
+class "NativeList`1"<T> {
+}
+CollectionsTestCommonBase <|-- NativeSortTests
+NativeSortTests +-- "DescendingComparer`1"
+"IComparer`1" "<T>" <|-- "DescendingComparer`1"
+NativeSortTests +-- "BrokenComparer0`1"
+"IComparer`1" "<T>" <|-- "BrokenComparer0`1"
+NativeSortTests +-- "BrokenComparer1`1"
+"IComparer`1" "<T>" <|-- "BrokenComparer1`1"
+NativeSortTests +-- "BrokenComparer2`1"
+"IComparer`1" "<T>" <|-- "BrokenComparer2`1"
+NativeSortTests +-- "BrokenComparer3`1"
+"IComparer`1" "<T>" <|-- "BrokenComparer3`1"
+NativeSortTests +-- BinarySearch_Job
+IJob <|-- BinarySearch_Job
+BinarySearch_Job --> "array<int>" "NativeArray`1"
+BinarySearch_Job --> "slice<int>" "NativeSlice`1"
+BinarySearch_Job --> "nativeList<int>" "NativeList`1"
+@enduml

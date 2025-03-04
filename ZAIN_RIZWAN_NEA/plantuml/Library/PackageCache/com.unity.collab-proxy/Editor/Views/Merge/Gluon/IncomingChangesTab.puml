@@ -1,0 +1,7 @@
+@startuml
+class IncomingChangesTab {
+}
+IIncomingChangesTab <|-- IncomingChangesTab
+IRefreshableView <|-- IncomingChangesTab
+IIncomingChangesViewMenuOperations <|-- IncomingChangesTab
+@enduml

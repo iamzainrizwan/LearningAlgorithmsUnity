@@ -1,0 +1,30 @@
+@startuml
+class Vector1ShaderProperty <<sealed>> {
+    + <<override>> value : float <<get>> <<set>>
+    + <<override>> latestVersion : int <<get>>
+    + <<override>> OnAfterDeserialize(json:string) : void
+}
+enum FloatType {
+    Default,
+    Slider,
+    Integer,
+    Enum,
+}
+enum EnumType {
+    Enum,
+    CSharpEnum,
+    KeywordEnum,
+}
+class "AbstractShaderProperty`1"<T> {
+}
+class "List`1"<T> {
+}
+"AbstractShaderProperty`1" "<float>" <|-- Vector1ShaderProperty
+Vector1ShaderProperty --> "propertyType" PropertyType
+Vector1ShaderProperty --> "floatType" FloatType
+Vector1ShaderProperty --> "rangeValues" Vector2
+Vector1ShaderProperty --> "enumType" EnumType
+Vector1ShaderProperty --> "cSharpEnumType" Type
+Vector1ShaderProperty --> "enumNames<string>" "List`1"
+Vector1ShaderProperty --> "enumValues<int>" "List`1"
+@enduml

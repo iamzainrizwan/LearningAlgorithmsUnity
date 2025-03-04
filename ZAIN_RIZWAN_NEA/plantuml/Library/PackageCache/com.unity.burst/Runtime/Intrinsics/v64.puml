@@ -1,0 +1,54 @@
+@startuml
+struct v64 {
+    + Byte0 : byte
+    + Byte1 : byte
+    + Byte2 : byte
+    + Byte3 : byte
+    + Byte4 : byte
+    + Byte5 : byte
+    + Byte6 : byte
+    + Byte7 : byte
+    + SByte0 : sbyte
+    + SByte1 : sbyte
+    + SByte2 : sbyte
+    + SByte3 : sbyte
+    + SByte4 : sbyte
+    + SByte5 : sbyte
+    + SByte6 : sbyte
+    + SByte7 : sbyte
+    + UShort0 : ushort
+    + UShort1 : ushort
+    + UShort2 : ushort
+    + UShort3 : ushort
+    + SShort0 : short
+    + SShort1 : short
+    + SShort2 : short
+    + SShort3 : short
+    + UInt0 : uint
+    + UInt1 : uint
+    + SInt0 : int
+    + SInt1 : int
+    + ULong0 : ulong
+    + SLong0 : long
+    + Float0 : float
+    + Float1 : float
+    + Double0 : double
+    + v64(b:byte)
+    + v64(a:byte, b:byte, c:byte, d:byte, e:byte, f:byte, g:byte, h:byte)
+    + v64(b:sbyte)
+    + v64(a:sbyte, b:sbyte, c:sbyte, d:sbyte, e:sbyte, f:sbyte, g:sbyte, h:sbyte)
+    + v64(v:short)
+    + v64(a:short, b:short, c:short, d:short)
+    + v64(v:ushort)
+    + v64(a:ushort, b:ushort, c:ushort, d:ushort)
+    + v64(v:int)
+    + v64(a:int, b:int)
+    + v64(v:uint)
+    + v64(a:uint, b:uint)
+    + v64(f:float)
+    + v64(a:float, b:float)
+    + v64(a:double)
+    + v64(a:long)
+    + v64(a:ulong)
+}
+@enduml

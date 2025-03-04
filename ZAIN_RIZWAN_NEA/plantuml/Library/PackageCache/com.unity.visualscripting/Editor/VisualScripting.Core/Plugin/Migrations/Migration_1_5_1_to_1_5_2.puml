@@ -1,0 +1,21 @@
+@startuml
+class MigrationUtility_1_5_1_to_1_5_2 {
+}
+class Migration_1_5_1_to_1_5_2 {
+    + <<override>> Run() : void
+}
+class Migration_1_5_1_to_1_5_2_Post {
+    + <<override>> Run() : void
+}
+class DeprecatedSavedVersionLoader_1_5_1 {
+    + <<override>> Run(savedVersion:SemanticVersion) : bool
+}
+PluginMigration <|-- Migration_1_5_1_to_1_5_2
+Migration_1_5_1_to_1_5_2 --> "@from" SemanticVersion
+Migration_1_5_1_to_1_5_2 --> "to" SemanticVersion
+PluginMigration <|-- Migration_1_5_1_to_1_5_2_Post
+Migration_1_5_1_to_1_5_2_Post --> "@from" SemanticVersion
+Migration_1_5_1_to_1_5_2_Post --> "to" SemanticVersion
+PluginDeprecatedSavedVersionLoader <|-- DeprecatedSavedVersionLoader_1_5_1
+DeprecatedSavedVersionLoader_1_5_1 --> "@from" SemanticVersion
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+class XRLayoutTests {
+    + Setup() : void
+    + TearDown() : void
+    + EmptyPassAreAdded() : void
+    + CreateDefaultLayoutMockMultipass(renderPassCount:int, renderParameterCount:int, expectedActivePassesCount:int) : void
+    + CreateDefaultLayoutMockSinglepass(renderPassCount:int, renderParameterCount:int, expectedActivePassesCount:int) : void
+}
+class "IEnumerable`1"<T> {
+}
+XRLayoutTests --> "s_TestCasesMultiPass<TestCaseData>" "IEnumerable`1"
+XRLayoutTests --> "s_TestCasesSinglePass<TestCaseData>" "IEnumerable`1"
+@enduml

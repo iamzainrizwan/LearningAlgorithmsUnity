@@ -1,0 +1,7 @@
+@startuml
+class CreateEventsTask {
+    + CreateEventsTask()
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- CreateEventsTask
+@enduml

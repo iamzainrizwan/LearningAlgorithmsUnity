@@ -1,0 +1,6 @@
+@startuml
+class BoundsInspector {
+    + BoundsInspector(metadata:Metadata)
+}
+Inspector <|-- BoundsInspector
+@enduml

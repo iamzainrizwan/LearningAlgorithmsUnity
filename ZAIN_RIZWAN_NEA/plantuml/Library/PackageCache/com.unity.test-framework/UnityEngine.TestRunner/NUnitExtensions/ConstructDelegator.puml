@@ -1,0 +1,9 @@
+@startuml
+class ConstructDelegator {
+    + ConstructDelegator(stateSerializer:IStateSerializer)
+    + Delegate(type:Type, arguments:object[]) : object
+    + HasAction() : bool
+    + Execute(logScope:LogScope) : void
+    + DestroyCurrentTestObjectIfExists() : void
+}
+@enduml

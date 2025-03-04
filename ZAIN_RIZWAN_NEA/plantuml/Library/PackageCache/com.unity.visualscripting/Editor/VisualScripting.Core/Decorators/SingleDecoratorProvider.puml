@@ -1,0 +1,15 @@
+@startuml
+abstract class "SingleDecoratorProvider`3"<TDecorated,TDecorator,TAttribute> {
+    + HasDecorator(decoratedType:Type) : bool
+    + TryGetDecoratorType(decoratedType:Type, decoratorType:Type) : bool
+    + GetDecoratorType(decoratedType:Type) : Type
+    + {abstract} IsValid(decorated:TDecorated) : bool
+    + GetDecorator(decorated:TDecorated) : TDecorator
+    + GetDecorator(decorated:TDecorated) : T
+    + Free(decorator:TDecorator) : void
+    + Free(decorators:IEnumerable<TDecorator>) : void
+    + FreeInvalid() : void
+    + FreeAll() : void
+    + Renew(decorator:TSpecificDecorator, decorated:TDecorated, constructor:Func<TDecorated, TSpecificDecorator>) : void
+}
+@enduml

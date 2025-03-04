@@ -1,0 +1,5 @@
+@startuml
+class ConstraintExtensions <<static>> {
+    + {static} AllocatingGCMemory(chain:ConstraintExpression) : AllocatingGCMemoryConstraint
+}
+@enduml

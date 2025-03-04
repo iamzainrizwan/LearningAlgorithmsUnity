@@ -1,0 +1,13 @@
+@startuml
+class Formula <<sealed>> {
+    + formula : string <<get>> <<set>>
+    + cacheArguments : bool <<get>> <<set>>
+    + GetParameterValue(flow:Flow, name:string) : object
+    + {static} GetArgumentName(index:int) : string
+    + {static} GetArgumentIndex(name:char) : int
+}
+class "MultiInputUnit`1"<T> {
+}
+"MultiInputUnit`1" "<object>" <|-- Formula
+Formula --> "result" ValueOutput
+@enduml

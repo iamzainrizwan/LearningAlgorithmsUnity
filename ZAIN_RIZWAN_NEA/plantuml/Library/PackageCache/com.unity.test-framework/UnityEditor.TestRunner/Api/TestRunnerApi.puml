@@ -1,0 +1,20 @@
+@startuml
+class TestRunnerApi {
+    + Execute(executionSettings:ExecutionSettings) : string
+    + RegisterCallbacks(testCallbacks:T, priority:int) : void
+    + {static} RegisterTestCallback(testCallbacks:T, priority:int) : void
+    + UnregisterCallbacks(testCallbacks:T) : void
+    + {static} UnregisterTestCallback(testCallbacks:T) : void
+    + RetrieveTestList(testMode:TestMode, callback:Action<ITestAdaptor>) : void
+    + {static} SaveResultToFile(results:ITestResultAdaptor, xmlFilePath:string) : void
+    + {static} CancelTestRun(guid:string) : bool
+}
+class RunProgressChangedEvent {
+}
+class "UnityEvent`1"<T> {
+}
+ScriptableObject <|-- TestRunnerApi
+ITestRunnerApi <|-- TestRunnerApi
+TestRunnerApi +-- RunProgressChangedEvent
+"UnityEvent`1" "<TestRunProgress>" <|-- RunProgressChangedEvent
+@enduml

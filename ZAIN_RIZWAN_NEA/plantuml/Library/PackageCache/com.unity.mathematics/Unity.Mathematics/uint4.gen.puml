@@ -1,0 +1,403 @@
+@startuml
+struct uint4 {
+    + x : uint
+    + y : uint
+    + z : uint
+    + w : uint
+    + uint4(x:uint, y:uint, z:uint, w:uint)
+    + uint4(x:uint, y:uint, zw:uint2)
+    + uint4(x:uint, yz:uint2, w:uint)
+    + uint4(x:uint, yzw:uint3)
+    + uint4(xy:uint2, z:uint, w:uint)
+    + uint4(xy:uint2, zw:uint2)
+    + uint4(xyz:uint3, w:uint)
+    + uint4(xyzw:uint4)
+    + uint4(v:uint)
+    + uint4(v:bool)
+    + uint4(v:bool4)
+    + uint4(v:int)
+    + uint4(v:int4)
+    + uint4(v:float)
+    + uint4(v:float4)
+    + uint4(v:double)
+    + uint4(v:double4)
+    + Equals(rhs:uint4) : bool
+    + <<override>> Equals(o:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+    + ToString(format:string, formatProvider:IFormatProvider) : string
+}
+class math <<static>> <<partial>> {
+    + {static} uint4(x:uint, y:uint, z:uint, w:uint) : uint4
+    + {static} uint4(x:uint, y:uint, zw:uint2) : uint4
+    + {static} uint4(x:uint, yz:uint2, w:uint) : uint4
+    + {static} uint4(x:uint, yzw:uint3) : uint4
+    + {static} uint4(xy:uint2, z:uint, w:uint) : uint4
+    + {static} uint4(xy:uint2, zw:uint2) : uint4
+    + {static} uint4(xyz:uint3, w:uint) : uint4
+    + {static} uint4(xyzw:uint4) : uint4
+    + {static} uint4(v:uint) : uint4
+    + {static} uint4(v:bool) : uint4
+    + {static} uint4(v:bool4) : uint4
+    + {static} uint4(v:int) : uint4
+    + {static} uint4(v:int4) : uint4
+    + {static} uint4(v:float) : uint4
+    + {static} uint4(v:float4) : uint4
+    + {static} uint4(v:double) : uint4
+    + {static} uint4(v:double4) : uint4
+    + {static} hash(v:uint4) : uint
+    + {static} hashwide(v:uint4) : uint4
+    + {static} shuffle(left:uint4, right:uint4, x:ShuffleComponent) : uint
+    + {static} shuffle(left:uint4, right:uint4, x:ShuffleComponent, y:ShuffleComponent) : uint2
+    + {static} shuffle(left:uint4, right:uint4, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent) : uint3
+    + {static} shuffle(left:uint4, right:uint4, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent, w:ShuffleComponent) : uint4
+}
+class "IEquatable`1"<T> {
+}
+class DebuggerProxy <<sealed>> {
+    + x : uint
+    + y : uint
+    + z : uint
+    + w : uint
+    + DebuggerProxy(v:uint4)
+}
+IFormattable <|-- uint4
+uint4 --> "zero" uint4
+uint4 --> "xxxx" uint4
+uint4 --> "xxxy" uint4
+uint4 --> "xxxz" uint4
+uint4 --> "xxxw" uint4
+uint4 --> "xxyx" uint4
+uint4 --> "xxyy" uint4
+uint4 --> "xxyz" uint4
+uint4 --> "xxyw" uint4
+uint4 --> "xxzx" uint4
+uint4 --> "xxzy" uint4
+uint4 --> "xxzz" uint4
+uint4 --> "xxzw" uint4
+uint4 --> "xxwx" uint4
+uint4 --> "xxwy" uint4
+uint4 --> "xxwz" uint4
+uint4 --> "xxww" uint4
+uint4 --> "xyxx" uint4
+uint4 --> "xyxy" uint4
+uint4 --> "xyxz" uint4
+uint4 --> "xyxw" uint4
+uint4 --> "xyyx" uint4
+uint4 --> "xyyy" uint4
+uint4 --> "xyyz" uint4
+uint4 --> "xyyw" uint4
+uint4 --> "xyzx" uint4
+uint4 --> "xyzy" uint4
+uint4 --> "xyzz" uint4
+uint4 --> "xyzw" uint4
+uint4 --> "xywx" uint4
+uint4 --> "xywy" uint4
+uint4 --> "xywz" uint4
+uint4 --> "xyww" uint4
+uint4 --> "xzxx" uint4
+uint4 --> "xzxy" uint4
+uint4 --> "xzxz" uint4
+uint4 --> "xzxw" uint4
+uint4 --> "xzyx" uint4
+uint4 --> "xzyy" uint4
+uint4 --> "xzyz" uint4
+uint4 --> "xzyw" uint4
+uint4 --> "xzzx" uint4
+uint4 --> "xzzy" uint4
+uint4 --> "xzzz" uint4
+uint4 --> "xzzw" uint4
+uint4 --> "xzwx" uint4
+uint4 --> "xzwy" uint4
+uint4 --> "xzwz" uint4
+uint4 --> "xzww" uint4
+uint4 --> "xwxx" uint4
+uint4 --> "xwxy" uint4
+uint4 --> "xwxz" uint4
+uint4 --> "xwxw" uint4
+uint4 --> "xwyx" uint4
+uint4 --> "xwyy" uint4
+uint4 --> "xwyz" uint4
+uint4 --> "xwyw" uint4
+uint4 --> "xwzx" uint4
+uint4 --> "xwzy" uint4
+uint4 --> "xwzz" uint4
+uint4 --> "xwzw" uint4
+uint4 --> "xwwx" uint4
+uint4 --> "xwwy" uint4
+uint4 --> "xwwz" uint4
+uint4 --> "xwww" uint4
+uint4 --> "yxxx" uint4
+uint4 --> "yxxy" uint4
+uint4 --> "yxxz" uint4
+uint4 --> "yxxw" uint4
+uint4 --> "yxyx" uint4
+uint4 --> "yxyy" uint4
+uint4 --> "yxyz" uint4
+uint4 --> "yxyw" uint4
+uint4 --> "yxzx" uint4
+uint4 --> "yxzy" uint4
+uint4 --> "yxzz" uint4
+uint4 --> "yxzw" uint4
+uint4 --> "yxwx" uint4
+uint4 --> "yxwy" uint4
+uint4 --> "yxwz" uint4
+uint4 --> "yxww" uint4
+uint4 --> "yyxx" uint4
+uint4 --> "yyxy" uint4
+uint4 --> "yyxz" uint4
+uint4 --> "yyxw" uint4
+uint4 --> "yyyx" uint4
+uint4 --> "yyyy" uint4
+uint4 --> "yyyz" uint4
+uint4 --> "yyyw" uint4
+uint4 --> "yyzx" uint4
+uint4 --> "yyzy" uint4
+uint4 --> "yyzz" uint4
+uint4 --> "yyzw" uint4
+uint4 --> "yywx" uint4
+uint4 --> "yywy" uint4
+uint4 --> "yywz" uint4
+uint4 --> "yyww" uint4
+uint4 --> "yzxx" uint4
+uint4 --> "yzxy" uint4
+uint4 --> "yzxz" uint4
+uint4 --> "yzxw" uint4
+uint4 --> "yzyx" uint4
+uint4 --> "yzyy" uint4
+uint4 --> "yzyz" uint4
+uint4 --> "yzyw" uint4
+uint4 --> "yzzx" uint4
+uint4 --> "yzzy" uint4
+uint4 --> "yzzz" uint4
+uint4 --> "yzzw" uint4
+uint4 --> "yzwx" uint4
+uint4 --> "yzwy" uint4
+uint4 --> "yzwz" uint4
+uint4 --> "yzww" uint4
+uint4 --> "ywxx" uint4
+uint4 --> "ywxy" uint4
+uint4 --> "ywxz" uint4
+uint4 --> "ywxw" uint4
+uint4 --> "ywyx" uint4
+uint4 --> "ywyy" uint4
+uint4 --> "ywyz" uint4
+uint4 --> "ywyw" uint4
+uint4 --> "ywzx" uint4
+uint4 --> "ywzy" uint4
+uint4 --> "ywzz" uint4
+uint4 --> "ywzw" uint4
+uint4 --> "ywwx" uint4
+uint4 --> "ywwy" uint4
+uint4 --> "ywwz" uint4
+uint4 --> "ywww" uint4
+uint4 --> "zxxx" uint4
+uint4 --> "zxxy" uint4
+uint4 --> "zxxz" uint4
+uint4 --> "zxxw" uint4
+uint4 --> "zxyx" uint4
+uint4 --> "zxyy" uint4
+uint4 --> "zxyz" uint4
+uint4 --> "zxyw" uint4
+uint4 --> "zxzx" uint4
+uint4 --> "zxzy" uint4
+uint4 --> "zxzz" uint4
+uint4 --> "zxzw" uint4
+uint4 --> "zxwx" uint4
+uint4 --> "zxwy" uint4
+uint4 --> "zxwz" uint4
+uint4 --> "zxww" uint4
+uint4 --> "zyxx" uint4
+uint4 --> "zyxy" uint4
+uint4 --> "zyxz" uint4
+uint4 --> "zyxw" uint4
+uint4 --> "zyyx" uint4
+uint4 --> "zyyy" uint4
+uint4 --> "zyyz" uint4
+uint4 --> "zyyw" uint4
+uint4 --> "zyzx" uint4
+uint4 --> "zyzy" uint4
+uint4 --> "zyzz" uint4
+uint4 --> "zyzw" uint4
+uint4 --> "zywx" uint4
+uint4 --> "zywy" uint4
+uint4 --> "zywz" uint4
+uint4 --> "zyww" uint4
+uint4 --> "zzxx" uint4
+uint4 --> "zzxy" uint4
+uint4 --> "zzxz" uint4
+uint4 --> "zzxw" uint4
+uint4 --> "zzyx" uint4
+uint4 --> "zzyy" uint4
+uint4 --> "zzyz" uint4
+uint4 --> "zzyw" uint4
+uint4 --> "zzzx" uint4
+uint4 --> "zzzy" uint4
+uint4 --> "zzzz" uint4
+uint4 --> "zzzw" uint4
+uint4 --> "zzwx" uint4
+uint4 --> "zzwy" uint4
+uint4 --> "zzwz" uint4
+uint4 --> "zzww" uint4
+uint4 --> "zwxx" uint4
+uint4 --> "zwxy" uint4
+uint4 --> "zwxz" uint4
+uint4 --> "zwxw" uint4
+uint4 --> "zwyx" uint4
+uint4 --> "zwyy" uint4
+uint4 --> "zwyz" uint4
+uint4 --> "zwyw" uint4
+uint4 --> "zwzx" uint4
+uint4 --> "zwzy" uint4
+uint4 --> "zwzz" uint4
+uint4 --> "zwzw" uint4
+uint4 --> "zwwx" uint4
+uint4 --> "zwwy" uint4
+uint4 --> "zwwz" uint4
+uint4 --> "zwww" uint4
+uint4 --> "wxxx" uint4
+uint4 --> "wxxy" uint4
+uint4 --> "wxxz" uint4
+uint4 --> "wxxw" uint4
+uint4 --> "wxyx" uint4
+uint4 --> "wxyy" uint4
+uint4 --> "wxyz" uint4
+uint4 --> "wxyw" uint4
+uint4 --> "wxzx" uint4
+uint4 --> "wxzy" uint4
+uint4 --> "wxzz" uint4
+uint4 --> "wxzw" uint4
+uint4 --> "wxwx" uint4
+uint4 --> "wxwy" uint4
+uint4 --> "wxwz" uint4
+uint4 --> "wxww" uint4
+uint4 --> "wyxx" uint4
+uint4 --> "wyxy" uint4
+uint4 --> "wyxz" uint4
+uint4 --> "wyxw" uint4
+uint4 --> "wyyx" uint4
+uint4 --> "wyyy" uint4
+uint4 --> "wyyz" uint4
+uint4 --> "wyyw" uint4
+uint4 --> "wyzx" uint4
+uint4 --> "wyzy" uint4
+uint4 --> "wyzz" uint4
+uint4 --> "wyzw" uint4
+uint4 --> "wywx" uint4
+uint4 --> "wywy" uint4
+uint4 --> "wywz" uint4
+uint4 --> "wyww" uint4
+uint4 --> "wzxx" uint4
+uint4 --> "wzxy" uint4
+uint4 --> "wzxz" uint4
+uint4 --> "wzxw" uint4
+uint4 --> "wzyx" uint4
+uint4 --> "wzyy" uint4
+uint4 --> "wzyz" uint4
+uint4 --> "wzyw" uint4
+uint4 --> "wzzx" uint4
+uint4 --> "wzzy" uint4
+uint4 --> "wzzz" uint4
+uint4 --> "wzzw" uint4
+uint4 --> "wzwx" uint4
+uint4 --> "wzwy" uint4
+uint4 --> "wzwz" uint4
+uint4 --> "wzww" uint4
+uint4 --> "wwxx" uint4
+uint4 --> "wwxy" uint4
+uint4 --> "wwxz" uint4
+uint4 --> "wwxw" uint4
+uint4 --> "wwyx" uint4
+uint4 --> "wwyy" uint4
+uint4 --> "wwyz" uint4
+uint4 --> "wwyw" uint4
+uint4 --> "wwzx" uint4
+uint4 --> "wwzy" uint4
+uint4 --> "wwzz" uint4
+uint4 --> "wwzw" uint4
+uint4 --> "wwwx" uint4
+uint4 --> "wwwy" uint4
+uint4 --> "wwwz" uint4
+uint4 --> "wwww" uint4
+uint4 --> "xxx" uint3
+uint4 --> "xxy" uint3
+uint4 --> "xxz" uint3
+uint4 --> "xxw" uint3
+uint4 --> "xyx" uint3
+uint4 --> "xyy" uint3
+uint4 --> "xyz" uint3
+uint4 --> "xyw" uint3
+uint4 --> "xzx" uint3
+uint4 --> "xzy" uint3
+uint4 --> "xzz" uint3
+uint4 --> "xzw" uint3
+uint4 --> "xwx" uint3
+uint4 --> "xwy" uint3
+uint4 --> "xwz" uint3
+uint4 --> "xww" uint3
+uint4 --> "yxx" uint3
+uint4 --> "yxy" uint3
+uint4 --> "yxz" uint3
+uint4 --> "yxw" uint3
+uint4 --> "yyx" uint3
+uint4 --> "yyy" uint3
+uint4 --> "yyz" uint3
+uint4 --> "yyw" uint3
+uint4 --> "yzx" uint3
+uint4 --> "yzy" uint3
+uint4 --> "yzz" uint3
+uint4 --> "yzw" uint3
+uint4 --> "ywx" uint3
+uint4 --> "ywy" uint3
+uint4 --> "ywz" uint3
+uint4 --> "yww" uint3
+uint4 --> "zxx" uint3
+uint4 --> "zxy" uint3
+uint4 --> "zxz" uint3
+uint4 --> "zxw" uint3
+uint4 --> "zyx" uint3
+uint4 --> "zyy" uint3
+uint4 --> "zyz" uint3
+uint4 --> "zyw" uint3
+uint4 --> "zzx" uint3
+uint4 --> "zzy" uint3
+uint4 --> "zzz" uint3
+uint4 --> "zzw" uint3
+uint4 --> "zwx" uint3
+uint4 --> "zwy" uint3
+uint4 --> "zwz" uint3
+uint4 --> "zww" uint3
+uint4 --> "wxx" uint3
+uint4 --> "wxy" uint3
+uint4 --> "wxz" uint3
+uint4 --> "wxw" uint3
+uint4 --> "wyx" uint3
+uint4 --> "wyy" uint3
+uint4 --> "wyz" uint3
+uint4 --> "wyw" uint3
+uint4 --> "wzx" uint3
+uint4 --> "wzy" uint3
+uint4 --> "wzz" uint3
+uint4 --> "wzw" uint3
+uint4 --> "wwx" uint3
+uint4 --> "wwy" uint3
+uint4 --> "wwz" uint3
+uint4 --> "www" uint3
+uint4 --> "xx" uint2
+uint4 --> "xy" uint2
+uint4 --> "xz" uint2
+uint4 --> "xw" uint2
+uint4 --> "yx" uint2
+uint4 --> "yy" uint2
+uint4 --> "yz" uint2
+uint4 --> "yw" uint2
+uint4 --> "zx" uint2
+uint4 --> "zy" uint2
+uint4 --> "zz" uint2
+uint4 --> "zw" uint2
+uint4 --> "wx" uint2
+uint4 --> "wy" uint2
+uint4 --> "wz" uint2
+uint4 --> "ww" uint2
+uint4 +-- DebuggerProxy
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class ListCloner <<sealed>> {
+    + <<override>> Handles(type:Type) : bool
+    + <<override>> FillClone(type:Type, clone:IList, original:IList, context:CloningContext) : void
+}
+class "Cloner`1"<T> {
+}
+"Cloner`1" "<IList>" <|-- ListCloner
+@enduml

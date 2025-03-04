@@ -1,0 +1,45 @@
+@startuml
+class UniversalUnlitSubTarget <<sealed>> {
+    + <<override>> latestVersion : int <<get>>
+    + UniversalUnlitSubTarget()
+    + <<override>> IsActive() : bool
+    + <<override>> Setup(context:TargetSetupContext) : void
+    + <<override>> ProcessPreviewMaterial(material:Material) : void
+    + <<override>> GetFields(context:TargetFieldContext) : void
+    + <<override>> GetActiveBlocks(context:TargetActiveBlockContext) : void
+    + <<override>> CollectShaderProperties(collector:PropertyCollector, generationMode:GenerationMode) : void
+    + <<override>> GetPropertiesGUI(context:TargetPropertyGUIContext, onChange:Action, registerUndo:Action<String>) : void
+    + TryUpgradeFromMasterNode(masterNode:IMasterNode1, blockMap:Dictionary<BlockFieldDescriptor, int>) : bool
+}
+class SubShaders <<static>> {
+    + {static} Unlit(target:UniversalTarget, renderType:string, renderQueue:string, disableBatchingTag:string) : SubShaderDescriptor
+}
+class UnlitPasses <<static>> {
+    + {static} Forward(target:UniversalTarget, keywords:KeywordCollection) : PassDescriptor
+    + {static} DepthNormalOnly(target:UniversalTarget) : PassDescriptor
+    + {static} GBuffer(target:UniversalTarget) : PassDescriptor
+}
+class UnlitKeywords <<static>> {
+}
+class UnlitIncludes <<static>> {
+}
+class UnlitBlockMasks <<static>> {
+}
+class UnlitRequiredFields <<static>> {
+}
+UniversalSubTarget <|-- UniversalUnlitSubTarget
+ILegacyTarget <|-- UniversalUnlitSubTarget
+UniversalUnlitSubTarget +-- SubShaders
+UniversalUnlitSubTarget +-- UnlitPasses
+UniversalUnlitSubTarget +-- UnlitKeywords
+UnlitKeywords o-> "Forward" KeywordCollection
+UnlitKeywords o-> "GBuffer" KeywordCollection
+UniversalUnlitSubTarget +-- UnlitIncludes
+UnlitIncludes o-> "Unlit" IncludeCollection
+UnlitIncludes o-> "GBuffer" IncludeCollection
+UnlitPasses +-- UnlitBlockMasks
+UnlitPasses +-- UnlitRequiredFields
+UnlitRequiredFields o-> "Unlit" FieldCollection
+UnlitRequiredFields o-> "DepthNormalsOnly" FieldCollection
+UnlitRequiredFields o-> "GBuffer" FieldCollection
+@enduml

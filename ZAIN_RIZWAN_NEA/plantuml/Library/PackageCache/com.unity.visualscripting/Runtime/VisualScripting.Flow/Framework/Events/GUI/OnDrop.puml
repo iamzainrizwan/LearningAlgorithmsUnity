@@ -1,0 +1,6 @@
+@startuml
+class OnDrop <<sealed>> {
+}
+PointerEventUnit <|-- OnDrop
+OnDrop --> "MessageListenerType" Type
+@enduml

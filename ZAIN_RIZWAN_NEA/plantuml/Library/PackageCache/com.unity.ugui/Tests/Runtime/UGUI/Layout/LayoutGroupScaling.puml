@@ -1,0 +1,10 @@
+@startuml
+class LayoutGroupScaling {
+    + Setup() : void
+    + TestSetup() : void
+    + LayoutGroup_CorrectChildScaling() : IEnumerator
+    + TearDown() : void
+    + OneTimeTearDown() : void
+}
+IPrebuildSetup <|-- LayoutGroupScaling
+@enduml

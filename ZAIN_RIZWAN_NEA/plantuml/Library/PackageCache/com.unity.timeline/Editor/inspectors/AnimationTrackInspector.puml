@@ -1,0 +1,32 @@
+@startuml
+class AnimationTrackInspector {
+    + <<override>> OnInspectorGUI() : void
+    + {static} ShowMotionOffsetEditModeToolbar(motionOffset:TimelineAnimationUtilities.OffsetEditMode) : void
+    + <<override>> OnEnable() : void
+    + OnDestroy() : void
+    + DrawRecordedProperties() : void
+    + {static} MatchTargetsFieldGUI(property:SerializedProperty) : void
+}
+class Styles <<static>> {
+    + {static} <<readonly>> TransformOffsetInfo : string
+    + {static} <<readonly>> SceneOffsetInfo : string
+    + {static} <<readonly>> AutoOffsetInfo : string
+    + {static} <<readonly>> AutoOffsetWarning : string
+    + {static} <<readonly>> InheritedFromParent : string
+    + {static} <<readonly>> InheritedToolTip : string
+    + {static} <<readonly>> AvatarMaskWarning : string
+}
+TrackAssetInspector <|-- AnimationTrackInspector
+AnimationTrackInspector +-- Styles
+Styles o-> "MatchTargetFieldsTitle" GUIContent
+Styles o-> "PositionIcon" GUIContent
+Styles o-> "RotationIcon" GUIContent
+Styles o-> "XTitle" GUIContent
+Styles o-> "YTitle" GUIContent
+Styles o-> "ZTitle" GUIContent
+Styles o-> "PositionTitle" GUIContent
+Styles o-> "RotationTitle" GUIContent
+Styles o-> "OffsetModeTitle" GUIContent
+Styles o-> "RecordingOffsets" GUIContent
+Styles o-> "RecordingIkApplied" GUIContent
+@enduml

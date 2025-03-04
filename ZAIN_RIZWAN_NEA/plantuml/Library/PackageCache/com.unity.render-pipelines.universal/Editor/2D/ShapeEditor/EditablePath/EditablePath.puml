@@ -1,0 +1,25 @@
+@startuml
+class EditablePath {
+    + isOpenEnded : bool <<get>> <<set>>
+    + pointCount : int <<get>>
+    + GetPoint(index:int) : ControlPoint
+    + SetPoint(index:int, controlPoint:ControlPoint) : void
+    + AddPoint(controlPoint:ControlPoint) : void
+    + InsertPoint(index:int, controlPoint:ControlPoint) : void
+    + RemovePoint(index:int) : void
+    + Clear() : void
+    + Select(selector:ISelector<Vector3>) : bool
+    + <<virtual>> SetDefaultShape() : void
+}
+class "ISelection`1"<T> {
+}
+IEditablePath <|-- EditablePath
+EditablePath --> "shapeType" ShapeType
+EditablePath --> "undoObject" IUndoObject
+EditablePath --> "localToWorldMatrix" Matrix4x4
+EditablePath --> "forward" Vector3
+EditablePath --> "up" Vector3
+EditablePath --> "right" Vector3
+EditablePath --> "worldToLocalMatrix" Matrix4x4
+EditablePath --> "selection<int>" "ISelection`1"
+@enduml

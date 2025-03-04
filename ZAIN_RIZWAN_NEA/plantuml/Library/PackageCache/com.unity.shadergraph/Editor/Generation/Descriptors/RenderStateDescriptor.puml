@@ -1,0 +1,38 @@
+@startuml
+enum RenderStateType {
+    Cull,
+    Blend,
+    BlendOp,
+    ZTest,
+    ZWrite,
+    ColorMask,
+    ZClip,
+    Stencil,
+    AlphaToMask,
+}
+struct RenderStateDescriptor {
+    + value : string
+}
+class RenderState <<static>> {
+    + {static} Cull(value:Cull) : RenderStateDescriptor
+    + {static} Cull(value:string) : RenderStateDescriptor
+    + {static} Blend(src:Blend, dst:Blend) : RenderStateDescriptor
+    + {static} Blend(src:string, dst:string) : RenderStateDescriptor
+    + {static} Blend(src:Blend, dst:Blend, alphaSrc:Blend, alphaDst:Blend) : RenderStateDescriptor
+    + {static} Blend(src:string, dst:string, alphaSrc:string, alphaDst:string) : RenderStateDescriptor
+    + {static} Blend(value:string) : RenderStateDescriptor
+    + {static} BlendOp(op:BlendOp) : RenderStateDescriptor
+    + {static} BlendOp(op:string) : RenderStateDescriptor
+    + {static} BlendOp(op:BlendOp, opAlpha:BlendOp) : RenderStateDescriptor
+    + {static} BlendOp(op:string, opAlpha:string) : RenderStateDescriptor
+    + {static} ZTest(value:ZTest) : RenderStateDescriptor
+    + {static} ZTest(value:string) : RenderStateDescriptor
+    + {static} ZWrite(value:ZWrite) : RenderStateDescriptor
+    + {static} ZWrite(value:string) : RenderStateDescriptor
+    + {static} ZClip(value:string) : RenderStateDescriptor
+    + {static} ColorMask(value:string) : RenderStateDescriptor
+    + {static} AlphaToMask(value:string) : RenderStateDescriptor
+    + {static} Stencil(value:StencilDescriptor) : RenderStateDescriptor
+}
+RenderStateDescriptor --> "type" RenderStateType
+@enduml

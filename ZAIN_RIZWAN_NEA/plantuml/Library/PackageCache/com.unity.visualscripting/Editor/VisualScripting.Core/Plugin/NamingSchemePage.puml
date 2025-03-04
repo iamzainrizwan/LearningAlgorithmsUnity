@@ -1,0 +1,13 @@
+@startuml
+class NamingSchemePage {
+    + NamingSchemePage()
+}
+class Styles <<static>> {
+}
+Page <|-- NamingSchemePage
+NamingSchemePage +-- Styles
+Styles --> "background" GUIStyle
+Styles --> "modeButton" GUIStyle
+Styles --> "modeBox" GUIStyle
+Styles --> "example" GUIStyle
+@enduml

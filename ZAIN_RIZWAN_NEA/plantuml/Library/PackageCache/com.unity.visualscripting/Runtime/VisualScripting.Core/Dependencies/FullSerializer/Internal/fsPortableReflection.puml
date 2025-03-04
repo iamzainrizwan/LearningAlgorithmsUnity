@@ -1,0 +1,41 @@
+@startuml
+class fsPortableReflection <<static>> {
+    + {static} HasAttribute(element:MemberInfo) : bool
+    + {static} HasAttribute(element:MemberInfo, shouldCache:bool) : bool
+    + {static} HasAttribute(element:MemberInfo, attributeType:Type) : bool
+    + {static} HasAttribute(element:MemberInfo, attributeType:Type, shouldCache:bool) : bool
+    + {static} GetAttribute(element:MemberInfo, attributeType:Type, shouldCache:bool) : Attribute
+    + {static} GetAttribute(element:MemberInfo, shouldCache:bool) : TAttribute
+    + {static} GetAttribute(element:MemberInfo) : TAttribute
+    + {static} GetDeclaredProperty(type:Type, propertyName:string) : PropertyInfo
+    + {static} GetDeclaredMethod(type:Type, methodName:string) : MethodInfo
+    + {static} GetDeclaredConstructor(type:Type, parameters:Type[]) : ConstructorInfo
+    + {static} GetDeclaredConstructors(type:Type) : ConstructorInfo[]
+    + {static} GetFlattenedMember(type:Type, memberName:string) : MemberInfo[]
+    + {static} GetFlattenedMethod(type:Type, methodName:string) : MethodInfo
+    + {static} GetFlattenedMethods(type:Type, methodName:string) : IEnumerable<MethodInfo>
+    + {static} GetFlattenedProperty(type:Type, propertyName:string) : PropertyInfo
+    + {static} GetDeclaredMember(type:Type, memberName:string) : MemberInfo
+    + {static} GetDeclaredMethods(type:Type) : MethodInfo[]
+    + {static} GetDeclaredProperties(type:Type) : PropertyInfo[]
+    + {static} GetDeclaredFields(type:Type) : FieldInfo[]
+    + {static} GetDeclaredMembers(type:Type) : MemberInfo[]
+    + {static} AsMemberInfo(type:Type) : MemberInfo
+    + {static} IsType(member:MemberInfo) : bool
+    + {static} AsType(member:MemberInfo) : Type
+    + {static} Resolve(type:Type) : Type
+}
+struct AttributeQuery {
+}
+class AttributeQueryComparator {
+    + Equals(x:AttributeQuery, y:AttributeQuery) : bool
+    + GetHashCode(obj:AttributeQuery) : int
+}
+class "IEqualityComparer`1"<T> {
+}
+fsPortableReflection +-- AttributeQuery
+AttributeQuery --> "MemberInfo" MemberInfo
+AttributeQuery --> "AttributeType" Type
+fsPortableReflection +-- AttributeQueryComparator
+"IEqualityComparer`1" "<AttributeQuery>" <|-- AttributeQueryComparator
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class AndFilterExtended {
+    + AndFilterExtended(filters:ITestFilter[])
+    + <<override>> IsExplicitMatch(test:ITest) : bool
+}
+AndFilter <|-- AndFilterExtended
+@enduml

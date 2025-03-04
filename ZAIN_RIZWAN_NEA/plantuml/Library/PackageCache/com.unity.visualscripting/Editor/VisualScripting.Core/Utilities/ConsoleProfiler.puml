@@ -1,0 +1,6 @@
+@startuml
+class ConsoleProfiler <<static>> {
+    + {static} Dump(threshold:TimeSpan) : void
+    + {static} Dump() : void
+}
+@enduml

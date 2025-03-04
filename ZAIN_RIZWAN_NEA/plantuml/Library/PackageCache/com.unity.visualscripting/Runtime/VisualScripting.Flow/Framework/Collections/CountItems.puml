@@ -1,0 +1,8 @@
+@startuml
+class CountItems <<sealed>> {
+    + Count(flow:Flow) : int
+}
+Unit <|-- CountItems
+CountItems --> "collection" ValueInput
+CountItems --> "count" ValueOutput
+@enduml

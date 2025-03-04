@@ -1,0 +1,23 @@
+@startuml
+class SpeedTree8MaterialUpgrader {
+    + {static} DoesMaterialHaveSpeedTreeWindKeyword(material:Material) : bool
+    + {static} IsWindEnabled(material:Material) : bool
+    + SpeedTree8MaterialUpgrader(sourceShaderName:string, destShaderName:string, finalizer:MaterialFinalizer)
+    + {static} PostprocessSpeedTree8Materials(speedtree:GameObject, stImporter:SpeedTreeImporter, finalizer:MaterialFinalizer) : void
+    + {static} SpeedTree8MaterialFinalizer(material:Material) : void
+}
+enum WindQuality {
+    None= 0,
+    Fastest,
+    Fast,
+    Better,
+    Best,
+    Palm,
+    Count,
+}
+class Uniforms <<static>> {
+}
+MaterialUpgrader <|-- SpeedTree8MaterialUpgrader
+SpeedTree8MaterialUpgrader +-- WindQuality
+SpeedTree8MaterialUpgrader +-- Uniforms
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+class TestRunBuilder {
+    + callbackOrder : int <<get>>
+    + OnPreprocessBuild(report:BuildReport) : void
+    + OnPostprocessBuild(report:BuildReport) : void
+    + Setup() : void
+    + Cleanup() : void
+    + CreateRunInfo() : Run
+    + CreateBuildInfo() : Run
+    + GetPerformanceTestRun() : Run
+}
+IPrebuildSetup <|-- TestRunBuilder
+IPostBuildCleanup <|-- TestRunBuilder
+IPreprocessBuildWithReport <|-- TestRunBuilder
+IPostprocessBuildWithReport <|-- TestRunBuilder
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class BuildSettingsMessage {
+    + BuildSettingsMessage()
+}
+Message <|-- BuildSettingsMessage
+BuildSettingsMessage --> "BuildSettings" BuildSettings
+@enduml

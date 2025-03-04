@@ -1,0 +1,8 @@
+@startuml
+class RectangleContainsScreenPointTest {
+    + Setup() : void
+    + TearDown() : void
+    + RectangleContainsScreenPoint_ReturnsTrue_ForAllPointsInTheRectangle() : void
+}
+MonoBehaviour <|-- RectangleContainsScreenPointTest
+@enduml

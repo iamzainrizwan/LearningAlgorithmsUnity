@@ -1,0 +1,7 @@
+@startuml
+class SceneTests {
+    + SetupBeforeTest() : IEnumerator
+    + VerifyScene() : void
+    + TeardownAfterTest() : void
+}
+@enduml

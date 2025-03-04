@@ -1,0 +1,9 @@
+@startuml
+class ListContainsItem <<sealed>> {
+    + Contains(flow:Flow) : bool
+}
+Unit <|-- ListContainsItem
+ListContainsItem --> "list" ValueInput
+ListContainsItem --> "item" ValueInput
+ListContainsItem --> "contains" ValueOutput
+@enduml

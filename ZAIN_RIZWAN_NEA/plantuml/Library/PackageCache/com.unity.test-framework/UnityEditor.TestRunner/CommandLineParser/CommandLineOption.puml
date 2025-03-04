@@ -1,0 +1,10 @@
+@startuml
+class CommandLineOption {
+    + CommandLineOption(argName:string, action:Action)
+    + CommandLineOption(argName:string, action:Action<string>)
+    + CommandLineOption(argName:string, action:Action<string[]>)
+    + ArgName : string <<get>>
+    + ApplyValue(value:string) : void
+}
+ICommandLineOption <|-- CommandLineOption
+@enduml

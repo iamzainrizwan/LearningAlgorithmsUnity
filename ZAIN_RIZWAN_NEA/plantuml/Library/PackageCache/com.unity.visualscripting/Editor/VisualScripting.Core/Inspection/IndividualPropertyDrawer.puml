@@ -1,0 +1,10 @@
+@startuml
+abstract class IndividualPropertyDrawer {
+    + Initialize(property:SerializedProperty) : void
+    + {abstract} GetHeight(label:GUIContent) : float
+    + {abstract} OnGUI(drawerPosition:Rect, label:GUIContent) : void
+    + <<virtual>> Dispose() : void
+}
+IDisposable <|-- IndividualPropertyDrawer
+IndividualPropertyDrawer --> "property" SerializedProperty
+@enduml

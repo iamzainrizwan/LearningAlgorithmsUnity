@@ -1,0 +1,7 @@
+@startuml
+class TypeIconAttribute <<sealed>> {
+    + TypeIconAttribute(type:Type)
+}
+Attribute <|-- TypeIconAttribute
+TypeIconAttribute --> "type" Type
+@enduml

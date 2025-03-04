@@ -1,0 +1,7 @@
+@startuml
+struct "PreviewedBindings`1"<T> {
+    + GetUniqueBindings() : IEnumerable<T>
+    + GetBindingsForObject(track:Object) : IEnumerable<T>
+    + {static} GetPreviewedBindings(directors:IEnumerable<PlayableDirector>) : PreviewedBindings<T>
+}
+@enduml

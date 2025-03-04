@@ -1,0 +1,67 @@
+@startuml
+class StripperTests {
+    + Setup() : void
+    + DoStripping(settings:List<IRenderPipelineGraphicsSettings>, activeStrippers:List<Type>) : List<IRenderPipelineGraphicsSettings>
+    + JSONOutput(settings:List<IRenderPipelineGraphicsSettings>, activeStrippers:List<Type>) : List<IRenderPipelineGraphicsSettings>
+    + NullArgumentsThrowsException() : void
+}
+struct ActiveStrippersScope {
+    + ActiveStrippersScope(activeStrippers:List<Type>)
+    + Dispose() : void
+}
+class RemoveAStripper {
+    + {static} k_Invoked : bool = false
+    + active : bool <<get>>
+    + CanRemoveSettings(setting:A) : bool
+}
+class KeepAStripper {
+    + {static} k_Invoked : bool = false
+    + active : bool <<get>>
+    + CanRemoveSettings(setting:A) : bool
+}
+class PrivateCtorAStripper {
+    + active : bool <<get>>
+    + CanRemoveSettings(setting:A) : bool
+}
+class WrongStripper {
+    + active : bool <<get>>
+}
+class StripperTestsAsset {
+}
+abstract class Base {
+    + name : string
+    + Base()
+    + <<override>> ToString() : string
+    + <<virtual>> isAvailableInPlayerBuild : bool <<get>>
+}
+class A {
+    + <<override>> isAvailableInPlayerBuild : bool <<get>>
+}
+class B {
+    + <<override>> isAvailableInPlayerBuild : bool <<get>>
+}
+class C {
+}
+class "IRenderPipelineGraphicsSettingsStripper`1"<T> {
+}
+StripperTests +-- ActiveStrippersScope
+IDisposable <|-- ActiveStrippersScope
+StripperTests +-- RemoveAStripper
+"IRenderPipelineGraphicsSettingsStripper`1" "<A>" <|-- RemoveAStripper
+StripperTests +-- KeepAStripper
+"IRenderPipelineGraphicsSettingsStripper`1" "<A>" <|-- KeepAStripper
+StripperTests +-- PrivateCtorAStripper
+"IRenderPipelineGraphicsSettingsStripper`1" "<A>" <|-- PrivateCtorAStripper
+StripperTests +-- WrongStripper
+IStripper <|-- WrongStripper
+StripperTests +-- StripperTestsAsset
+RenderPipelineAsset <|-- StripperTestsAsset
+StripperTests +-- Base
+IRenderPipelineGraphicsSettings <|-- Base
+StripperTests +-- A
+Base <|-- A
+StripperTests +-- B
+Base <|-- B
+StripperTests +-- C
+Base <|-- C
+@enduml

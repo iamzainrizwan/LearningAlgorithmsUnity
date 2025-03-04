@@ -1,0 +1,8 @@
+@startuml
+class ActivationPlayableAsset {
+    + <<override>> CreatePlayable(graph:PlayableGraph, go:GameObject) : Playable
+}
+PlayableAsset <|-- ActivationPlayableAsset
+ITimelineClipAsset <|-- ActivationPlayableAsset
+ActivationPlayableAsset --> "clipCaps" ClipCaps
+@enduml

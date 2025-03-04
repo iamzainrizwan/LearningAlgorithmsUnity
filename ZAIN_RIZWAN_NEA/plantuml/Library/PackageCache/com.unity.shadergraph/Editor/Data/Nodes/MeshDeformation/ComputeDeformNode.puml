@@ -1,0 +1,26 @@
+@startuml
+class ComputeDeformNode {
+    + <<const>> kPositionOutputSlotId : int = 0
+    + <<const>> kNormalOutputSlotId : int = 1
+    + <<const>> kTangentOutputSlotId : int = 2
+    + <<const>> kOutputSlotPositionName : string = "Deformed Position"
+    + <<const>> kOutputSlotNormalName : string = "Deformed Normal"
+    + <<const>> kOutputSlotTangentName : string = "Deformed Tangent"
+    + ComputeDeformNode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + RequiresVertexID(stageCapability:ShaderStageCapability) : bool
+    + RequiresPosition(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresNormal(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresTangent(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + <<override>> CollectShaderProperties(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + GenerateNodeFunction(registry:FunctionRegistry, generationMode:GenerationMode) : void
+}
+AbstractMaterialNode <|-- ComputeDeformNode
+IGeneratesBodyCode <|-- ComputeDeformNode
+IGeneratesFunction <|-- ComputeDeformNode
+IMayRequirePosition <|-- ComputeDeformNode
+IMayRequireNormal <|-- ComputeDeformNode
+IMayRequireTangent <|-- ComputeDeformNode
+IMayRequireVertexID <|-- ComputeDeformNode
+@enduml

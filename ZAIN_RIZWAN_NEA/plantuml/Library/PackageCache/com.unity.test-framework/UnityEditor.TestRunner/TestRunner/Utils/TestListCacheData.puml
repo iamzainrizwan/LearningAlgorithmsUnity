@@ -1,0 +1,12 @@
+@startuml
+class TestListCacheData {
+}
+class "ScriptableSingleton`1"<T> {
+}
+class "List`1"<T> {
+}
+"ScriptableSingleton`1" "<TestListCacheData>" <|-- TestListCacheData
+ITestListCacheData <|-- TestListCacheData
+TestListCacheData --> "platforms<TestPlatform>" "List`1"
+TestListCacheData --> "cachedData<ITest>" "List`1"
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class GetScriptGraph {
+}
+class "GetGraph`3"<T1,T2,T3> {
+}
+"GetGraph`3" "<FlowGraph,ScriptGraphAsset,ScriptMachine>" <|-- GetScriptGraph
+@enduml

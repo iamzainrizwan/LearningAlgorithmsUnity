@@ -1,0 +1,7 @@
+@startuml
+class ActiveInModeAttribute {
+    + ActiveInModeAttribute(timelineModes:TimelineModes)
+}
+Attribute <|-- ActiveInModeAttribute
+ActiveInModeAttribute --> "modes" TimelineModes
+@enduml

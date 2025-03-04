@@ -1,0 +1,5 @@
+@startuml
+interface IRenderGraphRecorder {
+    + RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+@enduml

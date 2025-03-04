@@ -1,0 +1,8 @@
+@startuml
+class LinkerCreator {
+    + callbackOrder : int <<get>>
+    + OnPreprocessBuild(report:BuildReport) : void
+    + {static} GenerateLinker() : void
+}
+IPreprocessBuildWithReport <|-- LinkerCreator
+@enduml

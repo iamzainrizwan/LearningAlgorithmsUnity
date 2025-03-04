@@ -1,0 +1,25 @@
+@startuml
+class ProbeVolumeRuntimeResourceStripper {
+    + active : bool <<get>>
+    + CanRemoveSettings(settings:ProbeVolumeRuntimeResources) : bool
+}
+class ProbeVolumeDebugResourceStripper {
+    + active : bool <<get>>
+    + CanRemoveSettings(settings:ProbeVolumeDebugResources) : bool
+}
+class ProbeVolumeBakingResourceStripper {
+    + active : bool <<get>>
+    + CanRemoveSettings(_:ProbeVolumeBakingResources) : bool
+}
+class ProbeVolumeGlobalSettingsStripper {
+    + active : bool <<get>>
+    + CanRemoveSettings(settings:ProbeVolumeGlobalSettings) : bool
+    + {static} ProbeVolumeSupportedForBuild() : bool
+}
+class "IRenderPipelineGraphicsSettingsStripper`1"<T> {
+}
+"IRenderPipelineGraphicsSettingsStripper`1" "<ProbeVolumeRuntimeResources>" <|-- ProbeVolumeRuntimeResourceStripper
+"IRenderPipelineGraphicsSettingsStripper`1" "<ProbeVolumeDebugResources>" <|-- ProbeVolumeDebugResourceStripper
+"IRenderPipelineGraphicsSettingsStripper`1" "<ProbeVolumeBakingResources>" <|-- ProbeVolumeBakingResourceStripper
+"IRenderPipelineGraphicsSettingsStripper`1" "<ProbeVolumeGlobalSettings>" <|-- ProbeVolumeGlobalSettingsStripper
+@enduml

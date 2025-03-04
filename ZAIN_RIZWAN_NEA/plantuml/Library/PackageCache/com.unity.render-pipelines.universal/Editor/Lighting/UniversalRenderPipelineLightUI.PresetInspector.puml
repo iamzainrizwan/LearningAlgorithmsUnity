@@ -1,0 +1,6 @@
+@startuml
+class UniversalRenderPipelineLightUI <<partial>> {
+}
+class "CoreEditorDrawer`1"<T> {
+}
+@enduml

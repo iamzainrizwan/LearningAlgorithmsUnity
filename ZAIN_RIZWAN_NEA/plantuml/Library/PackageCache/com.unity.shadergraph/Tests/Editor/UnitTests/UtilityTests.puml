@@ -1,0 +1,7 @@
+@startuml
+class UtilityTests {
+    + ConvertToValidHLSLIdentifier() : void
+    + DeduplicateName() : void
+    + IsHLSLKeyword() : void
+}
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+struct NodeColorMix {
+    + gray : float <<get>> <<set>>
+    + blue : float <<get>> <<set>>
+    + teal : float <<get>> <<set>>
+    + green : float <<get>> <<set>>
+    + yellow : float <<get>> <<set>>
+    + orange : float <<get>> <<set>>
+    + red : float <<get>> <<set>>
+    + NodeColorMix(color:NodeColor)
+    + IsPure(color:NodeColor) : bool
+    + Normalize() : void
+    + GetEnumerator() : IEnumerator<KeyValuePair<NodeColor, float>>
+    + PopulateColorsList(list:List<KeyValuePair<NodeColor, float>>) : void
+}
+class "IEnumerable`1"<T> {
+}
+class "UnexpectedEnumValueException`1"<T> {
+}
+"IEnumerable`1" "<KeyValuePair<NodeColor, float>>" <|-- NodeColorMix
+NodeColorMix --> "TealReadable" NodeColorMix
+NodeColorMix --> "colors<KeyValuePair<NodeColor, float>>" "IEnumerable`1"
+NodeColorMix --> "normalized" NodeColorMix
+@enduml

@@ -1,0 +1,33 @@
+@startuml
+class VolumeComponentMenu {
+    + <<readonly>> menu : string
+    + VolumeComponentMenu(menu:string)
+}
+class VolumeComponentMenuForRenderPipeline {
+    + VolumeComponentMenuForRenderPipeline(menu:string, pipelineTypes:Type[])
+}
+class VolumeComponentDeprecated <<sealed>> {
+}
+class VolumeComponent <<partial>> {
+    + active : bool = true
+    + displayName : string <<get>> <<protected set>> = ""
+    + <<virtual>> Override(state:VolumeComponent, interpFactor:float) : void
+    + SetAllOverridesTo(state:bool) : void
+    + <<override>> GetHashCode() : int
+    + AnyPropertiesIsOverridden() : bool
+    + Release() : void
+}
+class Indent <<sealed>> {
+    + <<readonly>> relativeAmount : int
+    + Indent(relativeAmount:int)
+}
+class "ReadOnlyCollection`1"<T> {
+}
+Attribute <|-- VolumeComponentMenu
+VolumeComponentMenu <|-- VolumeComponentMenuForRenderPipeline
+Attribute <|-- VolumeComponentDeprecated
+ScriptableObject <|-- VolumeComponent
+VolumeComponent --> "parameters<VolumeParameter>" "ReadOnlyCollection`1"
+VolumeComponent +-- Indent
+PropertyAttribute <|-- Indent
+@enduml

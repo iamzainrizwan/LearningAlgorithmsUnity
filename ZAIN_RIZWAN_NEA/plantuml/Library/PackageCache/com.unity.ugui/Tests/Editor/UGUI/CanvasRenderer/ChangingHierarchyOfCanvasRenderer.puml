@@ -1,0 +1,5 @@
+@startuml
+class ChangingHierarchyOfCanvasRenderer {
+    + ChangingHierarchyOfCanvasRenderer_DoesntCrash() : void
+}
+@enduml

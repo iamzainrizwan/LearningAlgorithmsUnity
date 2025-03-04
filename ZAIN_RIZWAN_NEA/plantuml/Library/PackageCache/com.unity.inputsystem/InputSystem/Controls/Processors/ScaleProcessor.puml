@@ -1,0 +1,10 @@
+@startuml
+class ScaleProcessor {
+    + factor : float = 1
+    + <<override>> Process(value:float, control:InputControl) : float
+    + <<override>> ToString() : string
+}
+class "InputProcessor`1"<T> {
+}
+"InputProcessor`1" "<float>" <|-- ScaleProcessor
+@enduml

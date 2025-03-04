@@ -1,0 +1,7 @@
+@startuml
+class ReflectionProbeNode {
+    + ReflectionProbeNode()
+    + <<override>> hasPreview : bool <<get>>
+}
+CodeFunctionNode <|-- ReflectionProbeNode
+@enduml

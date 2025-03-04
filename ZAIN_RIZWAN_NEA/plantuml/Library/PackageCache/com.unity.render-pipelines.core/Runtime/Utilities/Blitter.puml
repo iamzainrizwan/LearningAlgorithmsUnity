@@ -1,0 +1,80 @@
+@startuml
+class Blitter <<static>> {
+    + {static} Initialize(blitPS:Shader, blitColorAndDepthPS:Shader) : void
+    + {static} Cleanup() : void
+    {static} + GetBlitMaterial(dimension:TextureDimension, singleSlice:bool) : Material
+    + {static} BlitTexture(cmd:RasterCommandBuffer, source:RTHandle, scaleBias:Vector4, mipLevel:float, bilinear:bool) : void
+    + {static} BlitTexture(cmd:CommandBuffer, source:RTHandle, scaleBias:Vector4, mipLevel:float, bilinear:bool) : void
+    + {static} BlitTexture2D(cmd:RasterCommandBuffer, source:RTHandle, scaleBias:Vector4, mipLevel:float, bilinear:bool) : void
+    + {static} BlitTexture2D(cmd:CommandBuffer, source:RTHandle, scaleBias:Vector4, mipLevel:float, bilinear:bool) : void
+    + {static} BlitColorAndDepth(cmd:RasterCommandBuffer, sourceColor:Texture, sourceDepth:RenderTexture, scaleBias:Vector4, mipLevel:float, blitDepth:bool) : void
+    + {static} BlitColorAndDepth(cmd:CommandBuffer, sourceColor:Texture, sourceDepth:RenderTexture, scaleBias:Vector4, mipLevel:float, blitDepth:bool) : void
+    + {static} BlitTexture(cmd:RasterCommandBuffer, source:RTHandle, scaleBias:Vector4, material:Material, pass:int) : void
+    + {static} BlitTexture(cmd:CommandBuffer, source:RTHandle, scaleBias:Vector4, material:Material, pass:int) : void
+    + {static} BlitTexture(cmd:RasterCommandBuffer, source:RenderTargetIdentifier, scaleBias:Vector4, material:Material, pass:int) : void
+    + {static} BlitTexture(cmd:CommandBuffer, source:RenderTargetIdentifier, scaleBias:Vector4, material:Material, pass:int) : void
+    + {static} BlitTexture(cmd:CommandBuffer, source:RenderTargetIdentifier, destination:RenderTargetIdentifier, material:Material, pass:int) : void
+    + {static} BlitTexture(cmd:CommandBuffer, source:RenderTargetIdentifier, destination:RenderTargetIdentifier, loadAction:RenderBufferLoadAction, storeAction:RenderBufferStoreAction, material:Material, pass:int) : void
+    + {static} BlitTexture(cmd:CommandBuffer, scaleBias:Vector4, material:Material, pass:int) : void
+    + {static} BlitTexture(cmd:RasterCommandBuffer, scaleBias:Vector4, material:Material, pass:int) : void
+    + {static} BlitCameraTexture(cmd:CommandBuffer, source:RTHandle, destination:RTHandle, mipLevel:float, bilinear:bool) : void
+    + {static} BlitCameraTexture2D(cmd:CommandBuffer, source:RTHandle, destination:RTHandle, mipLevel:float, bilinear:bool) : void
+    + {static} BlitCameraTexture(cmd:CommandBuffer, source:RTHandle, destination:RTHandle, material:Material, pass:int) : void
+    + {static} BlitCameraTexture(cmd:CommandBuffer, source:RTHandle, destination:RTHandle, loadAction:RenderBufferLoadAction, storeAction:RenderBufferStoreAction, material:Material, pass:int) : void
+    + {static} BlitCameraTexture(cmd:CommandBuffer, source:RTHandle, destination:RTHandle, scaleBias:Vector4, mipLevel:float, bilinear:bool) : void
+    + {static} BlitCameraTexture(cmd:CommandBuffer, source:RTHandle, destination:RTHandle, destViewport:Rect, mipLevel:float, bilinear:bool) : void
+    + {static} BlitQuad(cmd:CommandBuffer, source:Texture, scaleBiasTex:Vector4, scaleBiasRT:Vector4, mipLevelTex:int, bilinear:bool) : void
+    + {static} BlitQuadWithPadding(cmd:CommandBuffer, source:Texture, textureSize:Vector2, scaleBiasTex:Vector4, scaleBiasRT:Vector4, mipLevelTex:int, bilinear:bool, paddingInPixels:int) : void
+    + {static} BlitQuadWithPaddingMultiply(cmd:CommandBuffer, source:Texture, textureSize:Vector2, scaleBiasTex:Vector4, scaleBiasRT:Vector4, mipLevelTex:int, bilinear:bool, paddingInPixels:int) : void
+    + {static} BlitOctahedralWithPadding(cmd:CommandBuffer, source:Texture, textureSize:Vector2, scaleBiasTex:Vector4, scaleBiasRT:Vector4, mipLevelTex:int, bilinear:bool, paddingInPixels:int) : void
+    + {static} BlitOctahedralWithPaddingMultiply(cmd:CommandBuffer, source:Texture, textureSize:Vector2, scaleBiasTex:Vector4, scaleBiasRT:Vector4, mipLevelTex:int, bilinear:bool, paddingInPixels:int) : void
+    + {static} BlitCubeToOctahedral2DQuad(cmd:CommandBuffer, source:Texture, scaleBiasRT:Vector4, mipLevelTex:int) : void
+    + {static} BlitCubeToOctahedral2DQuadWithPadding(cmd:CommandBuffer, source:Texture, textureSize:Vector2, scaleBiasRT:Vector4, mipLevelTex:int, bilinear:bool, paddingInPixels:int, decodeInstructions:Vector4?) : void
+    + {static} BlitCubeToOctahedral2DQuadSingleChannel(cmd:CommandBuffer, source:Texture, scaleBiasRT:Vector4, mipLevelTex:int) : void
+    + {static} BlitQuadSingleChannel(cmd:CommandBuffer, source:Texture, scaleBiasTex:Vector4, scaleBiasRT:Vector4, mipLevelTex:int) : void
+}
+class BlitShaderIDs <<static>> {
+    + {static} <<readonly>> _BlitTexture : int
+    + {static} <<readonly>> _BlitCubeTexture : int
+    + {static} <<readonly>> _BlitScaleBias : int
+    + {static} <<readonly>> _BlitScaleBiasRt : int
+    + {static} <<readonly>> _BlitMipLevel : int
+    + {static} <<readonly>> _BlitTexArraySlice : int
+    + {static} <<readonly>> _BlitTextureSize : int
+    + {static} <<readonly>> _BlitPaddingSize : int
+    + {static} <<readonly>> _BlitDecodeInstructions : int
+    + {static} <<readonly>> _InputDepth : int
+}
+enum BlitShaderPassNames {
+    Nearest= 0,
+    Bilinear= 1,
+    NearestQuad= 2,
+    BilinearQuad= 3,
+    NearestQuadPadding= 4,
+    BilinearQuadPadding= 5,
+    NearestQuadPaddingRepeat= 6,
+    BilinearQuadPaddingRepeat= 7,
+    BilinearQuadPaddingOctahedral= 8,
+    NearestQuadPaddingAlphaBlend= 9,
+    BilinearQuadPaddingAlphaBlend= 10,
+    NearestQuadPaddingAlphaBlendRepeat= 11,
+    BilinearQuadPaddingAlphaBlendRepeat= 12,
+    BilinearQuadPaddingAlphaBlendOctahedral= 13,
+    CubeToOctahedral= 14,
+    CubeToOctahedralLuminance= 15,
+    CubeToOctahedralAlpha= 16,
+    CubeToOctahedralRed= 17,
+    BilinearQuadLuminance= 18,
+    BilinearQuadAlpha= 19,
+    BilinearQuadRed= 20,
+    NearestCubeToOctahedralPadding= 21,
+    BilinearCubeToOctahedralPadding= 22,
+}
+enum BlitColorAndDepthPassNames {
+    ColorOnly= 0,
+    ColorAndDepth= 1,
+}
+Blitter +-- BlitShaderIDs
+Blitter +-- BlitShaderPassNames
+Blitter +-- BlitColorAndDepthPassNames
+@enduml

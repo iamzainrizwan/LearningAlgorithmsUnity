@@ -1,0 +1,5 @@
+@startuml
+class noise <<static>> <<partial>> {
+    + {static} snoise(v:float3) : float
+}
+@enduml

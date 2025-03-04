@@ -1,0 +1,15 @@
+@startuml
+class HardwareRayTracingAccelStruct <<sealed>> {
+    + Dispose() : void
+    + AddInstance(meshInstance:MeshInstanceDesc) : int
+    + RemoveInstance(instanceHandle:int) : void
+    + ClearInstances() : void
+    + UpdateInstanceTransform(instanceHandle:int, localToWorldMatrix:Matrix4x4) : void
+    + UpdateInstanceID(instanceHandle:int, instanceID:uint) : void
+    + UpdateInstanceMask(instanceHandle:int, mask:uint) : void
+    + Build(cmd:CommandBuffer, scratchBuffer:GraphicsBuffer) : void
+    + GetBuildScratchBufferRequiredSizeInBytes() : ulong
+}
+IRayTracingAccelStruct <|-- HardwareRayTracingAccelStruct
+HardwareRayTracingAccelStruct --> "accelStruct" RayTracingAccelerationStructure
+@enduml

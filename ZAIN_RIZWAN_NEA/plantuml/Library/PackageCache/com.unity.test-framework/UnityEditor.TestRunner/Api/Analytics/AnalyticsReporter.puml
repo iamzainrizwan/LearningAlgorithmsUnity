@@ -1,0 +1,4 @@
+@startuml
+class AnalyticsReporter <<static>> {
+}
+@enduml

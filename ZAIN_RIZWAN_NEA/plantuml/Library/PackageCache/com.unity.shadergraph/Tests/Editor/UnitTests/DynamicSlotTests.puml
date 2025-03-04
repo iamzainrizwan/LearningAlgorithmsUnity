@@ -1,0 +1,53 @@
+@startuml
+class DynamicSlotTests {
+    + RunBeforeAnyTests() : void
+    + TestSetUp() : void
+    + DynamicInputsV1NoneWorks() : void
+    + DynamicInputsV1V1Works() : void
+    + DynamicInputsV1V2Works() : void
+    + DynamicInputsV1V3Works() : void
+    + DynamicInputsV1V4Works() : void
+    + DynamicInputsV2NoneWorks() : void
+    + DynamicInputsV2V1Works() : void
+    + DynamicInputsV2V2Works() : void
+    + DynamicInputsV2V3Works() : void
+    + DynamicInputsV2V4Works() : void
+    + DynamicInputsV3NoneWorks() : void
+    + DynamicInputsV3V1Works() : void
+    + DynamicInputsV3V2Works() : void
+    + DynamicInputsV3V3Works() : void
+    + DynamicInputsV3V4Works() : void
+    + DynamicInputsV4NoneWorks() : void
+    + DynamicInputsV4V1Works() : void
+    + DynamicInputsV4V2Works() : void
+    + DynamicInputsV4V3Works() : void
+    + DynamicInputsV4V4Works() : void
+    + DynamicInputsBoolNoneWorks() : void
+    + DynamicInputsBoolV1Works() : void
+    + DynamicInputsBoolV2Works() : void
+    + DynamicInputsBoolV3Works() : void
+    + DynamicInputsBoolV4Works() : void
+    + DynamicInputsV2BoolWorks() : void
+    + DynamicInputsV3BoolWorks() : void
+    + DynamicInputsV4BoolWorks() : void
+    + DynamicInputsBoolBoolWorks() : void
+}
+class DynamicNode {
+    + <<const>> DynIn1 : int = 0
+    + <<const>> DynIn2 : int = 1
+    + <<const>> DynOut : int = 2
+    + DynamicNode()
+}
+class TestNode {
+    + <<const>> V1Out : int = 0
+    + <<const>> V2Out : int = 1
+    + <<const>> V3Out : int = 2
+    + <<const>> V4Out : int = 3
+    + <<const>> BoolOut : int = 4
+    + TestNode()
+}
+DynamicSlotTests +-- DynamicNode
+AbstractMaterialNode <|-- DynamicNode
+DynamicSlotTests +-- TestNode
+AbstractMaterialNode <|-- TestNode
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+class ItemsUtils <<static>> {
+    + {static} ToItemsPerTrack(items:IEnumerable<ITimelineItem>) : IEnumerable<ItemsPerTrack>
+    + {static} ToItem(clip:TimelineClip) : ITimelineItem
+    + {static} ToItem(marker:IMarker) : ITimelineItem
+    + {static} ToItems(clips:IEnumerable<TimelineClip>) : IEnumerable<ITimelineItem>
+    + {static} ToItems(markers:IEnumerable<IMarker>) : IEnumerable<ITimelineItem>
+    + {static} GetItems(track:TrackAsset) : IEnumerable<ITimelineItem>
+    + {static} GetItemRange(track:TrackAsset, start:double, end:double) : void
+    + {static} GetItemsExcept(track:TrackAsset, items:IEnumerable<ITimelineItem>) : IEnumerable<ITimelineItem>
+    + {static} GetItemTypes(items:IEnumerable<ITimelineItem>) : IEnumerable<Type>
+    + {static} GetItemTypes(itemsGroups:IEnumerable<ItemsPerTrack>) : IEnumerable<Type>
+    + {static} SetItemsStartTime(newItems:IEnumerable<ItemsPerTrack>, time:double) : void
+    + {static} TimeGapBetweenItems(leftItem:ITimelineItem, rightItem:ITimelineItem) : double
+}
+@enduml

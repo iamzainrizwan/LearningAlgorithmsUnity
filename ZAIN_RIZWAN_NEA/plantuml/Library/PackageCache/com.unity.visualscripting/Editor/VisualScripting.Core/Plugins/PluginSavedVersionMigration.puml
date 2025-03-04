@@ -1,0 +1,12 @@
+@startuml
+abstract class PluginDeprecatedSavedVersionLoader {
+    + {abstract} Run(savedVersion:SemanticVersion) : bool
+    + CompareTo(other:PluginDeprecatedSavedVersionLoader) : int
+}
+class "IComparable`1"<T> {
+}
+IPluginLinked <|-- PluginDeprecatedSavedVersionLoader
+"IComparable`1" "<PluginDeprecatedSavedVersionLoader>" <|-- PluginDeprecatedSavedVersionLoader
+PluginDeprecatedSavedVersionLoader --> "plugin" Plugin
+PluginDeprecatedSavedVersionLoader --> "from" SemanticVersion
+@enduml

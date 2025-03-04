@@ -1,0 +1,19 @@
+@startuml
+class "TakeNObservable`1"<TValue> {
+    + TakeNObservable(source:IObservable<TValue>, count:int)
+    + Subscribe(observer:IObserver<TValue>) : IDisposable
+}
+class "IObservable`1"<T> {
+}
+class Take {
+    + Take(observable:TakeNObservable<TValue>, observer:IObserver<TValue>)
+    + OnCompleted() : void
+    + OnError(error:Exception) : void
+    + OnNext(evt:TValue) : void
+}
+class "IObserver`1"<T> {
+}
+"IObservable`1" "<TValue>" <|-- "TakeNObservable`1"
+"TakeNObservable`1" +-- Take
+"IObserver`1" "<TValue>" <|-- Take
+@enduml

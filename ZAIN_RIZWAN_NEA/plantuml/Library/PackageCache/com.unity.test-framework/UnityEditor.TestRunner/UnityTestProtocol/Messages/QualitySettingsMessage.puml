@@ -1,0 +1,7 @@
+@startuml
+class QualitySettingsMessage {
+    + QualitySettingsMessage()
+}
+Message <|-- QualitySettingsMessage
+QualitySettingsMessage --> "QualitySettings" QualitySettings
+@enduml

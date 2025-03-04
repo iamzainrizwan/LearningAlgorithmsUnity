@@ -1,0 +1,24 @@
+@startuml
+class TimelineMarkerHeaderGUI {
+    + TimelineMarkerHeaderGUI(asset:TimelineAsset, state:WindowState)
+    + showMarkers : bool <<get>>
+    + muted : bool <<get>>
+    + locked : bool <<get>>
+    + Draw(markerHeaderRect:Rect, markerContentRect:Rect, state:WindowState) : void
+    + Rebuild() : void
+}
+struct DrawData {
+    + isMuted : bool
+    + isSelected : bool
+}
+IRowGUI <|-- TimelineMarkerHeaderGUI
+ILayerable <|-- TimelineMarkerHeaderGUI
+TimelineMarkerHeaderGUI --> "asset" TrackAsset
+TimelineMarkerHeaderGUI --> "boundingRect" Rect
+TimelineMarkerHeaderGUI --> "zOrder" LayerZOrder
+TimelineMarkerHeaderGUI +-- DrawData
+DrawData --> "headerRect" Rect
+DrawData --> "contentRect" Rect
+DrawData --> "trackHeaderFont" GUIStyle
+DrawData --> "colorTrackFont" Color
+@enduml

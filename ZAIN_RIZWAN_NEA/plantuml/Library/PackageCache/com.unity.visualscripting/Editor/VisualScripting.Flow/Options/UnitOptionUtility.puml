@@ -1,0 +1,5 @@
+@startuml
+class UnitOptionUtility <<static>> {
+    + <<const>> GenerateUnitDatabasePath : string = "Edit > Project Settings > Visual Scripting > Node Library > Regenerate Nodes"
+}
+@enduml

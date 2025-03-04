@@ -1,0 +1,7 @@
+@startuml
+class DBufferCopyDepthPass {
+    + DBufferCopyDepthPass(evt:RenderPassEvent, copyDepthShader:Shader, shouldClear:bool, copyToDepth:bool, copyResolvedDepth:bool)
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+CopyDepthPass <|-- DBufferCopyDepthPass
+@enduml

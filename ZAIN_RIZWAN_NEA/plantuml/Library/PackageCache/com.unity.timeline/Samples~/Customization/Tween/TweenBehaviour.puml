@@ -1,0 +1,10 @@
+@startuml
+class TweenBehaviour {
+    + shouldTweenPosition : bool
+    + shouldTweenRotation : bool
+}
+PlayableBehaviour <|-- TweenBehaviour
+TweenBehaviour --> "startLocation" Transform
+TweenBehaviour --> "endLocation" Transform
+TweenBehaviour --> "curve" AnimationCurve
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+class MigrationAnalytics <<static>> {
+}
+class Data {
+}
+class MigrationStepAnalyticsData {
+}
+MigrationAnalytics +-- Data
+MigrationAnalytics +-- MigrationStepAnalyticsData
+@enduml

@@ -1,0 +1,39 @@
+@startuml
+class OperatorUtility <<static>> {
+    + {static} GetHandler(@operator:UnaryOperator) : UnaryOperatorHandler
+    + {static} GetHandler(@operator:BinaryOperator) : BinaryOperatorHandler
+    + {static} Symbol(@operator:UnaryOperator) : string
+    + {static} Symbol(@operator:BinaryOperator) : string
+    + {static} Name(@operator:UnaryOperator) : string
+    + {static} Name(@operator:BinaryOperator) : string
+    + {static} Verb(@operator:UnaryOperator) : string
+    + {static} Verb(@operator:BinaryOperator) : string
+    + {static} Operate(@operator:UnaryOperator, x:object) : object
+    + {static} Operate(@operator:BinaryOperator, a:object, b:object) : object
+    + {static} Negate(x:object) : object
+    + {static} Not(x:object) : object
+    + {static} UnaryPlus(x:object) : object
+    + {static} Increment(x:object) : object
+    + {static} Decrement(x:object) : object
+    + {static} And(a:object, b:object) : object
+    + {static} Or(a:object, b:object) : object
+    + {static} ExclusiveOr(a:object, b:object) : object
+    + {static} Add(a:object, b:object) : object
+    + {static} Subtract(a:object, b:object) : object
+    + {static} Multiply(a:object, b:object) : object
+    + {static} Divide(a:object, b:object) : object
+    + {static} Modulo(a:object, b:object) : object
+    + {static} Equal(a:object, b:object) : bool
+    + {static} NotEqual(a:object, b:object) : bool
+    + {static} GreaterThan(a:object, b:object) : bool
+    + {static} LessThan(a:object, b:object) : bool
+    + {static} GreaterThanOrEqual(a:object, b:object) : bool
+    + {static} LessThanOrEqual(a:object, b:object) : bool
+    + {static} LeftShift(a:object, b:object) : object
+    + {static} RightShift(a:object, b:object) : object
+}
+class "Dictionary`2"<T1,T2> {
+}
+OperatorUtility o-> "operatorNames<string,string>" "Dictionary`2"
+OperatorUtility o-> "operatorRanks<string,int>" "Dictionary`2"
+@enduml

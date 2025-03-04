@@ -1,0 +1,28 @@
+@startuml
+class UnsafeBitArrayTests {
+    + UnsafeBitArray_Init() : void
+    + UnsafeBitArray_Get_Set_Long() : void
+    + UnsafeBitArray_Get_Set_Short() : void
+    + UnsafeBitArray_Get_Set_Tiny() : void
+    + <<unsafe>> UnsafeBitArray_Throws() : void
+    + UnsafeBitArray_GetBits() : void
+    + UnsafeBitArray_SetBits() : void
+    + UnsafeBitArray_Copy() : void
+    + UnsafeBitArray_Resize() : void
+    + UnsafeBitArray_CopyBetweenBitArrays() : void
+    + <<unsafe>> UnsafeBitArray_Copy_Throws() : void
+    + <<unsafe>> UnsafeBitArray_Find() : void
+    + <<unsafe>> UnsafeBitArray_Find_With_Begin_End() : void
+    + <<unsafe>> UnsafeBitArray_Find_Throws() : void
+    + UnsafeBitArray_FindWithPattern() : void
+    + UnsafeBitArray_FindInTinyBitArray() : void
+    + UnsafeBitArray_FindLastUnsetBit(numBits:int) : void
+    + UnsafeBitArray_CustomAllocatorTest() : void
+    + <<unsafe>> UnsafeBitArray_BurstedCustomAllocatorTest() : void
+}
+struct BurstedCustomAllocatorJob {
+    + Execute() : void
+}
+UnsafeBitArrayTests +-- BurstedCustomAllocatorJob
+IJob <|-- BurstedCustomAllocatorJob
+@enduml

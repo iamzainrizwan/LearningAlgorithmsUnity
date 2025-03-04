@@ -1,0 +1,39 @@
+@startuml
+struct AnalyticsDataTypes {
+    + <<const>> k_LightDataString : string = "u2drendererlights"
+    + <<const>> k_Renderer2DDataString : string = "u2drendererdata"
+    + <<const>> k_MaxEventsPerHour : int = 1000
+    + <<const>> k_MaxNumberOfElements : int = 1000
+    + <<const>> k_VendorKey : string = "unity.renderpipelines.universal.editor"
+    + <<const>> k_Version : int = 1
+}
+class LightDataAnalytic {
+    + LightDataAnalytic(instance_id:int, was_create_event:bool, light_type:Light2D.LightType)
+    + TryGatherData(data:IAnalytic.IData, error:Exception) : bool
+}
+class RenderAssetAnalytic {
+    + RenderAssetAnalytic(instance_id:int, was_create_event:bool, blending_layers_count:int, blending_modes_used:int)
+    + TryGatherData(data:IAnalytic.IData, error:Exception) : bool
+}
+interface IAnalytics {
+}
+class Renderer2DAnalytics {
+    + SendData(analytic:IAnalytic) : AnalyticsResult
+}
+struct Light2DData {
+    + was_create_event : bool
+    + instance_id : int
+}
+struct RendererAssetData {
+    + was_create_event : bool
+    + instance_id : int
+    + blending_layers_count : int
+    + blending_modes_used : int
+}
+IAnalytic <|-- LightDataAnalytic
+IAnalytic <|-- RenderAssetAnalytic
+IAnalytics <|-- Renderer2DAnalytics
+Renderer2DAnalytics --> "instance" Renderer2DAnalytics
+LightDataAnalytic +-- Light2DData
+RenderAssetAnalytic +-- RendererAssetData
+@enduml

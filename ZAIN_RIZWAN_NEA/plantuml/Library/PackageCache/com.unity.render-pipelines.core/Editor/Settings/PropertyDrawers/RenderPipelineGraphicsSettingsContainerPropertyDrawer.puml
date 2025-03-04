@@ -1,0 +1,6 @@
+@startuml
+class RenderPipelineGraphicsSettingsContainerPropertyDrawer {
+    + <<override>> CreatePropertyGUI(property:SerializedProperty) : VisualElement
+}
+PropertyDrawer <|-- RenderPipelineGraphicsSettingsContainerPropertyDrawer
+@enduml

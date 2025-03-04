@@ -1,0 +1,70 @@
+@startuml
+interface IBenchmarkContainerParallel {
+    + SetParams(capacity:int, args:int[]) : void
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(worker:int, threadIndex:int) : void
+    + MeasureUnsafeContainer(worker:int, threadIndex:int) : void
+    + MeasureBclContainer(container:object, worker:int) : void
+}
+class "BenchmarkContainerRunnerParallel`1"<T> <<static>> {
+    + {static} <<unsafe>> Run(capacity:int, type:BenchmarkContainerType, args:int[]) : void
+    + {static} <<unsafe>> Run(workers:int, capacity:int, type:BenchmarkContainerType, args:int[]) : void
+}
+struct NativeJobBurstST {
+    + Execute() : void
+}
+struct NativeJobSafetyBurstST {
+    + Execute() : void
+}
+struct UnsafeJobBurstST {
+    + Execute() : void
+}
+struct UnsafeJobSafetyBurstST {
+    + Execute() : void
+}
+struct NativeJobMT {
+    + Execute(index:int) : void
+}
+struct NativeJobBurstMT {
+    + Execute(index:int) : void
+}
+struct NativeJobSafetyBurstMT {
+    + Execute(index:int) : void
+}
+struct UnsafeJobMT {
+    + Execute(index:int) : void
+}
+struct UnsafeJobBurstMT {
+    + Execute(index:int) : void
+}
+struct UnsafeJobSafetyBurstMT {
+    + Execute(index:int) : void
+}
+struct BclJobMT {
+    + Execute(index:int) : void
+}
+"BenchmarkContainerRunnerParallel`1" +-- NativeJobBurstST
+IJob <|-- NativeJobBurstST
+"BenchmarkContainerRunnerParallel`1" +-- NativeJobSafetyBurstST
+IJob <|-- NativeJobSafetyBurstST
+"BenchmarkContainerRunnerParallel`1" +-- UnsafeJobBurstST
+IJob <|-- UnsafeJobBurstST
+"BenchmarkContainerRunnerParallel`1" +-- UnsafeJobSafetyBurstST
+IJob <|-- UnsafeJobSafetyBurstST
+"BenchmarkContainerRunnerParallel`1" +-- NativeJobMT
+IJobParallelFor <|-- NativeJobMT
+"BenchmarkContainerRunnerParallel`1" +-- NativeJobBurstMT
+IJobParallelFor <|-- NativeJobBurstMT
+"BenchmarkContainerRunnerParallel`1" +-- NativeJobSafetyBurstMT
+IJobParallelFor <|-- NativeJobSafetyBurstMT
+"BenchmarkContainerRunnerParallel`1" +-- UnsafeJobMT
+IJobParallelFor <|-- UnsafeJobMT
+"BenchmarkContainerRunnerParallel`1" +-- UnsafeJobBurstMT
+IJobParallelFor <|-- UnsafeJobBurstMT
+"BenchmarkContainerRunnerParallel`1" +-- UnsafeJobSafetyBurstMT
+IJobParallelFor <|-- UnsafeJobSafetyBurstMT
+"BenchmarkContainerRunnerParallel`1" +-- BclJobMT
+IJobParallelFor <|-- BclJobMT
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class ScalarMultiply <<sealed>> {
+    + <<override>> Operation(a:float, b:float) : float
+}
+class "Multiply`1"<T> {
+}
+"Multiply`1" "<float>" <|-- ScalarMultiply
+@enduml

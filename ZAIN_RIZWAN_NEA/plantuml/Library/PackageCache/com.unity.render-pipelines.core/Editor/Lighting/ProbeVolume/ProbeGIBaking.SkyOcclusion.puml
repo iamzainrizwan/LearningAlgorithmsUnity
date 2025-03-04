@@ -1,0 +1,28 @@
+@startuml
+class AdaptiveProbeVolumes <<partial>> {
+}
+abstract class SkyOcclusionBaker {
+    + {abstract} currentStep : ulong <<get>>
+    + {abstract} stepCount : ulong <<get>>
+    + {abstract} Initialize(bakingSet:ProbeVolumeBakingSet, probePositions:NativeArray<Vector3>) : void
+    + {abstract} Step() : bool
+    + {abstract} Dispose() : void
+}
+class DefaultSkyOcclusion {
+    + <<override>> currentStep : ulong <<get>>
+    + <<override>> stepCount : ulong <<get>>
+    + <<override>> Initialize(bakingSet:ProbeVolumeBakingSet, positions:NativeArray<Vector3>) : void
+    + <<override>> Step() : bool
+    + <<override>> Dispose() : void
+}
+class "NativeArray`1"<T> {
+}
+AdaptiveProbeVolumes +-- SkyOcclusionBaker
+IDisposable <|-- SkyOcclusionBaker
+SkyOcclusionBaker --> "occlusion<Vector4>" "NativeArray`1"
+SkyOcclusionBaker --> "shadingDirections<Vector3>" "NativeArray`1"
+AdaptiveProbeVolumes +-- DefaultSkyOcclusion
+SkyOcclusionBaker <|-- DefaultSkyOcclusion
+DefaultSkyOcclusion --> "occlusion<Vector4>" "NativeArray`1"
+DefaultSkyOcclusion --> "shadingDirections<Vector3>" "NativeArray`1"
+@enduml

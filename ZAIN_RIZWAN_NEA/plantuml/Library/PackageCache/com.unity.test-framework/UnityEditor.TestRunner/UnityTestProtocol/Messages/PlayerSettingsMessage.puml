@@ -1,0 +1,7 @@
+@startuml
+class PlayerSettingsMessage {
+    + PlayerSettingsMessage()
+}
+Message <|-- PlayerSettingsMessage
+PlayerSettingsMessage --> "PlayerSettings" PlayerSettings
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+abstract class LudiqScriptableObject {
+    + <<override>> ToString() : string
+}
+ScriptableObject <|-- LudiqScriptableObject
+ISerializationCallbackReceiver <|-- LudiqScriptableObject
+@enduml

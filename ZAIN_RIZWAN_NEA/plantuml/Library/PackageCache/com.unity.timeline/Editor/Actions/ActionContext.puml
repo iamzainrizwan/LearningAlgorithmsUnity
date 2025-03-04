@@ -1,0 +1,12 @@
+@startuml
+struct ActionContext {
+    + invocationTime : double?
+}
+class "IEnumerable`1"<T> {
+}
+ActionContext --> "timeline" TimelineAsset
+ActionContext --> "director" PlayableDirector
+ActionContext --> "tracks<TrackAsset>" "IEnumerable`1"
+ActionContext --> "clips<TimelineClip>" "IEnumerable`1"
+ActionContext --> "markers<IMarker>" "IEnumerable`1"
+@enduml

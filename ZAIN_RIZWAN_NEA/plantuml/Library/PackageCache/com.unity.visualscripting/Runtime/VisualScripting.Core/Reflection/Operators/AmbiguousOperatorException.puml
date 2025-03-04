@@ -1,0 +1,6 @@
+@startuml
+class AmbiguousOperatorException <<sealed>> {
+    + AmbiguousOperatorException(symbol:string, leftType:Type, rightType:Type)
+}
+OperatorException <|-- AmbiguousOperatorException
+@enduml

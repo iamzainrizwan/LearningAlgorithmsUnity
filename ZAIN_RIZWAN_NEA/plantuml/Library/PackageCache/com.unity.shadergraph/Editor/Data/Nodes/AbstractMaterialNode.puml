@@ -1,0 +1,82 @@
+@startuml
+abstract class AbstractMaterialNode {
+    + RegisterCallback(callback:OnNodeModified) : void
+    + UnregisterCallback(callback:OnNodeModified) : void
+    + Dirty(scope:ModificationScope) : void
+    + name : string <<get>> <<set>>
+    + <<virtual>> displayName : string <<get>>
+    + <<virtual>> documentationURL : string <<get>>
+    + <<virtual>> canDeleteNode : bool <<get>>
+    + <<virtual>> canSetPrecision : bool <<get>>
+    + previewExpanded : bool <<get>> <<set>>
+    + dismissedUpdateVersion : int <<get>> <<set>>
+    + <<virtual>> hasPreview : bool <<get>>
+    + <<virtual>> allowedInSubGraph : bool <<get>>
+    + <<virtual>> allowedInMainGraph : bool <<get>>
+    + <<virtual>> allowedInLayerGraph : bool <<get>>
+    + <<virtual>> hasError : bool <<get>> <<protected set>>
+    + <<virtual>> isActive : bool <<get>>
+    + SetOverrideActiveState(overrideState:ActiveState, updateConnections:bool) : void
+    + SetActive(value:bool, updateConnections:bool) : void
+    + <<virtual>> isValid : bool <<get>> <<set>>
+    + TryGetColor(provider:string, color:Color) : bool
+    + ResetColor(provider:string) : void
+    + SetColor(provider:string, color:Color) : void
+    + GetInputSlots(foundSlots:List<T>) : void
+    + <<virtual>> GetInputSlots(startingSlot:MaterialSlot, foundSlots:List<T>) : void
+    + GetOutputSlots(foundSlots:List<T>) : void
+    + <<virtual>> GetOutputSlots(startingSlot:MaterialSlot, foundSlots:List<T>) : void
+    + GetSlots(foundSlots:List<T>) : void
+    + <<virtual>> CollectShaderProperties(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + GetSlotValue(inputSlotId:int, generationMode:GenerationMode, concretePrecision:ConcretePrecision) : string
+    + GetSlotValue(inputSlotId:int, generationMode:GenerationMode) : string
+    + GetSlotProperty(inputSlotId:int) : AbstractShaderProperty
+    + GetInputNodeFromSlot(inputSlotId:int) : AbstractMaterialNode
+    + {static} ConvertDynamicVectorInputTypeToConcrete(inputTypes:IEnumerable<ConcreteSlotValueType>) : ConcreteSlotValueType
+    + {static} ConvertDynamicMatrixInputTypeToConcrete(inputTypes:IEnumerable<ConcreteSlotValueType>) : ConcreteSlotValueType
+    + <<virtual>> UpdatePrecision(inputSlots:List<MaterialSlot>) : void
+    + <<virtual>> EvaluateDynamicMaterialSlots(inputSlots:List<MaterialSlot>, outputSlots:List<MaterialSlot>) : void
+    + <<virtual>> Concretize() : void
+    + <<virtual>> ValidateNode() : void
+    + <<virtual>> canCutNode : bool <<get>>
+    + <<virtual>> canCopyNode : bool <<get>>
+    + <<virtual>> CollectPreviewMaterialProperties(properties:List<PreviewProperty>) : void
+    + <<virtual>> GetVariableNameForSlot(slotId:int) : string
+    + GetConnnectionStateVariableNameForSlot(slotId:int) : string
+    + <<virtual>> GetVariableNameForNode() : string
+    + AddSlot(slot:MaterialSlot, attemptToModifyExistingInstance:bool) : MaterialSlot
+    + RemoveSlot(slotId:int) : void
+    + RemoveSlotsNameNotMatching(slotIds:IEnumerable<int>, supressWarnings:bool) : void
+    + SetSlotOrder(desiredOrderSlotIds:List<int>) : bool
+    + GetSlotReference(slotId:int) : SlotReference
+    + FindSlot(slotId:int) : T
+    + FindInputSlot(slotId:int) : T
+    + FindOutputSlot(slotId:int) : T
+    + <<virtual>> GetInputsWithNoConnection() : IEnumerable<MaterialSlot>
+    + SetupSlots() : void
+    + <<virtual>> UpdateNodeAfterDeserialization() : void
+    + IsSlotConnected(slotId:int) : bool
+    + <<virtual>> Setup() : void
+    + <<virtual>> Dispose() : void
+}
+class "IEnumerable`1"<T> {
+}
+enum ActiveState {
+    Implicit= 0,
+    ExplicitInactive= 1,
+    ExplicitActive= 2,
+}
+JsonObject <|-- AbstractMaterialNode
+IGroupItem <|-- AbstractMaterialNode
+IRectInterface <|-- AbstractMaterialNode
+AbstractMaterialNode --> "owner" GraphData
+AbstractMaterialNode --> "group" GroupData
+AbstractMaterialNode --> "drawState" DrawState
+AbstractMaterialNode o-> "graphPrecision" GraphPrecision
+AbstractMaterialNode --> "concretePrecision" ConcretePrecision
+AbstractMaterialNode --> "precision" Precision
+AbstractMaterialNode --> "allowedNodeVersions<int>" "IEnumerable`1"
+AbstractMaterialNode --> "previewMode" PreviewMode
+AbstractMaterialNode --> "activeState" ActiveState
+AbstractMaterialNode +-- ActiveState
+@enduml

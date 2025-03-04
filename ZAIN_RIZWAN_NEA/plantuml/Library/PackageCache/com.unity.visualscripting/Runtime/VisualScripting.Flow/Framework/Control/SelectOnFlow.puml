@@ -1,0 +1,13 @@
+@startuml
+class SelectOnFlow <<sealed>> {
+    + branchCount : int <<get>> <<set>>
+    + Select(flow:Flow, branchValue:ValueInput) : ControlOutput
+}
+class "Dictionary`2"<T1,T2> {
+}
+Unit <|-- SelectOnFlow
+ISelectUnit <|-- SelectOnFlow
+SelectOnFlow --> "branches<ControlInput,ValueInput>" "Dictionary`2"
+SelectOnFlow --> "exit" ControlOutput
+SelectOnFlow --> "selection" ValueOutput
+@enduml

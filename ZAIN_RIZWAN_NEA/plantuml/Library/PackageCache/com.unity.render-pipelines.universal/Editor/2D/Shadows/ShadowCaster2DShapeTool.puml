@@ -1,0 +1,7 @@
+@startuml
+class ShadowCaster2DShapeTool {
+}
+class "PathEditorTool`1"<T> {
+}
+"PathEditorTool`1" "<ShadowCasterPath>" <|-- ShadowCaster2DShapeTool
+@enduml

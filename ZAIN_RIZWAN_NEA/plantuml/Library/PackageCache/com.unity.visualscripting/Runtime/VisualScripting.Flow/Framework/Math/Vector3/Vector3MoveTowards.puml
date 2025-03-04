@@ -1,0 +1,8 @@
+@startuml
+class Vector3MoveTowards <<sealed>> {
+    + <<override>> Operation(current:Vector3, target:Vector3, maxDelta:float) : Vector3
+}
+class "MoveTowards`1"<T> {
+}
+"MoveTowards`1" "<Vector3>" <|-- Vector3MoveTowards
+@enduml

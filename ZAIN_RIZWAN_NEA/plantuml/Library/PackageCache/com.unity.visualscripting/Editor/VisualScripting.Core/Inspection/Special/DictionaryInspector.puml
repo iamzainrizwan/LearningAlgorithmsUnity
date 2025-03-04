@@ -1,0 +1,12 @@
+@startuml
+class DictionaryInspector {
+    + DictionaryInspector(metadata:Metadata)
+    + <<override>> GetAdaptiveWidth() : float
+}
+class Styles <<static>> {
+    + {static} <<readonly>> invocationSpacing : float = 7
+    + {static} <<readonly>> addButtonWidth : float = 29
+}
+Inspector <|-- DictionaryInspector
+DictionaryInspector +-- Styles
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+enum LocksListColumn {
+    ItemPath,
+    LockType,
+    ModificationDate,
+    Owner,
+    Branch,
+    DestinationBranch,
+}
+class LocksListHeaderState <<sealed>> {
+}
+MultiColumnHeaderState <|-- LocksListHeaderState
+ISerializationCallbackReceiver <|-- LocksListHeaderState
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+interface IHasCustomDeprecationMessage {
+    + GetCustomDeprecationMessage(deprecationString:string, buttonText:string, labelText:string, messageType:MessageType) : void
+    + GetCustomDeprecationLabel() : string
+}
+@enduml

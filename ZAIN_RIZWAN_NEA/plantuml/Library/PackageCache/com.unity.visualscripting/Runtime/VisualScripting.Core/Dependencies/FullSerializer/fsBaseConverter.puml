@@ -1,0 +1,10 @@
+@startuml
+abstract class fsBaseConverter {
+    + <<virtual>> CreateInstance(data:fsData, storageType:Type) : object
+    + <<virtual>> RequestCycleSupport(storageType:Type) : bool
+    + <<virtual>> RequestInheritanceSupport(storageType:Type) : bool
+    + {abstract} TrySerialize(instance:object, serialized:fsData, storageType:Type) : fsResult
+    + {abstract} TryDeserialize(data:fsData, instance:object, storageType:Type) : fsResult
+}
+fsBaseConverter --> "Serializer" fsSerializer
+@enduml

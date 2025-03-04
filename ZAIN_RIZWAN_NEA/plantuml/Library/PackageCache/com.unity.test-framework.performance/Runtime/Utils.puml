@@ -1,0 +1,27 @@
+@startuml
+class Utils <<static>> {
+    + {static} ResourcesPath : string <<get>>
+    + <<const>> TestRunPath : string
+    + <<const>> TestRunInfo : string = "PerformanceTestRunInfo.json"
+    + <<const>> PlayerPrefKeyRunJSON : string = "PT_Run"
+    + <<const>> RunSettingsPath : string
+    + <<const>> RunSettings : string = "PerformanceTestRunSettings.json"
+    + <<const>> PlayerPrefKeySettingsJSON : string = "PT_Settings"
+    + {static} ConvertFromUnixTimestamp(timestamp:long) : DateTime
+    + {static} ConvertToUnixTimestamp(date:DateTime) : long
+    + {static} ConvertSample(from:SampleUnit, to:SampleUnit, value:double) : double
+    + {static} GetRatio(from:SampleUnit, to:SampleUnit) : double
+    + {static} RelativeSampleUnit(unit:SampleUnit) : double
+    + {static} UpdateStatistics(sampleGroup:SampleGroup) : void
+    + {static} GetZeroValueCount(samples:List<double>) : int
+    + {static} GetMedianValue(samples:List<double>) : double
+    + {static} GetPercentile(samples:List<double>, percentile:double) : double
+    + {static} GetStandardDeviation(samples:List<double>, average:double) : double
+    + {static} Min(samples:List<double>) : double
+    + {static} Max(samples:List<double>) : double
+    + {static} Average(samples:List<double>) : double
+    + {static} Sum(samples:List<double>) : double
+    + {static} RemoveIllegalCharacters(path:string) : string
+    + {static} GetArg(args:string[], name:string) : string
+}
+@enduml

@@ -1,0 +1,82 @@
+@startuml
+class EditClipInAnimationWindow {
+    + <<override>> Validate(clips:IEnumerable<TimelineClip>) : ActionValidity
+    + <<override>> Execute(clips:IEnumerable<TimelineClip>) : bool
+}
+class EditSubTimeline {
+    + <<override>> Validate(clips:IEnumerable<TimelineClip>) : ActionValidity
+    + <<override>> Execute(clips:IEnumerable<TimelineClip>) : bool
+}
+class TrimStart {
+    + <<override>> Validate(clips:IEnumerable<TimelineClip>) : ActionValidity
+    + <<override>> Execute(clips:IEnumerable<TimelineClip>) : bool
+}
+class TrimEnd {
+    + <<override>> Validate(clips:IEnumerable<TimelineClip>) : ActionValidity
+    + <<override>> Execute(clips:IEnumerable<TimelineClip>) : bool
+}
+class Split {
+    + <<override>> Validate(clips:IEnumerable<TimelineClip>) : ActionValidity
+    + <<override>> Execute(clips:IEnumerable<TimelineClip>) : bool
+}
+class CompleteLastLoop {
+    + <<override>> Validate(clips:IEnumerable<TimelineClip>) : ActionValidity
+    + <<override>> Execute(clips:IEnumerable<TimelineClip>) : bool
+}
+class TrimLastLoop {
+    + <<override>> Validate(clips:IEnumerable<TimelineClip>) : ActionValidity
+    + <<override>> Execute(clips:IEnumerable<TimelineClip>) : bool
+}
+class MatchDuration {
+    + <<override>> Validate(clips:IEnumerable<TimelineClip>) : ActionValidity
+    + <<override>> Execute(clips:IEnumerable<TimelineClip>) : bool
+}
+class DoubleSpeed {
+    + <<override>> Validate(clips:IEnumerable<TimelineClip>) : ActionValidity
+    + <<override>> Execute(clips:IEnumerable<TimelineClip>) : bool
+}
+class HalfSpeed {
+    + <<override>> Validate(clips:IEnumerable<TimelineClip>) : ActionValidity
+    + <<override>> Execute(clips:IEnumerable<TimelineClip>) : bool
+}
+class ResetDuration {
+    + <<override>> Validate(clips:IEnumerable<TimelineClip>) : ActionValidity
+    + <<override>> Execute(clips:IEnumerable<TimelineClip>) : bool
+}
+class ResetSpeed {
+    + <<override>> Validate(clips:IEnumerable<TimelineClip>) : ActionValidity
+    + <<override>> Execute(clips:IEnumerable<TimelineClip>) : bool
+}
+class ResetAll {
+    + <<override>> Validate(clips:IEnumerable<TimelineClip>) : ActionValidity
+    + <<override>> Execute(clips:IEnumerable<TimelineClip>) : bool
+}
+class Tile {
+    + <<override>> Validate(clips:IEnumerable<TimelineClip>) : ActionValidity
+    + <<override>> Execute(clips:IEnumerable<TimelineClip>) : bool
+}
+class FindSourceAsset {
+    + <<override>> Validate(clips:IEnumerable<TimelineClip>) : ActionValidity
+    + <<override>> Execute(clips:IEnumerable<TimelineClip>) : bool
+}
+class CopyClipsToClipboard {
+    + <<override>> Validate(clips:IEnumerable<TimelineClip>) : ActionValidity
+    + <<override>> Execute(clips:IEnumerable<TimelineClip>) : bool
+}
+ClipAction <|-- EditClipInAnimationWindow
+ClipAction <|-- EditSubTimeline
+ClipAction <|-- TrimStart
+ClipAction <|-- TrimEnd
+ClipAction <|-- Split
+ClipAction <|-- CompleteLastLoop
+ClipAction <|-- TrimLastLoop
+ClipAction <|-- MatchDuration
+ClipAction <|-- DoubleSpeed
+ClipAction <|-- HalfSpeed
+ClipAction <|-- ResetDuration
+ClipAction <|-- ResetSpeed
+ClipAction <|-- ResetAll
+ClipAction <|-- Tile
+ClipAction <|-- FindSourceAsset
+ClipAction <|-- CopyClipsToClipboard
+@enduml

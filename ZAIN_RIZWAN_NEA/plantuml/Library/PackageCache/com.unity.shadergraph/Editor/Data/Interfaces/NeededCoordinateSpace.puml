@@ -1,0 +1,32 @@
+@startuml
+enum NeededCoordinateSpace {
+    None= 0,
+    Object= 1 << 0,
+    View= 1 << 1,
+    World= 1 << 2,
+    Tangent= 1 << 3,
+    AbsoluteWorld= 1 << 4,
+    Screen= 1 << 5,
+}
+enum CoordinateSpace {
+    Object,
+    View,
+    World,
+    Tangent,
+    AbsoluteWorld,
+    Screen,
+}
+enum InterpolatorType {
+    Normal,
+    BiTangent,
+    Tangent,
+    ViewDirection,
+    Position,
+    PositionPredisplacement,
+}
+class CoordinateSpaceExtensions <<static>> {
+    + {static} ToVariableName(space:CoordinateSpace, type:InterpolatorType) : string
+    + {static} ToNeededCoordinateSpace(space:CoordinateSpace) : NeededCoordinateSpace
+    + {static} ToCoordinateSpace(space:NeededCoordinateSpace) : CoordinateSpace
+}
+@enduml

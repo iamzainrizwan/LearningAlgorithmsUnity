@@ -1,0 +1,16 @@
+@startuml
+class PathUtility <<static>> {
+    + {static} TryPathsForFile(fileName:string, directories:IEnumerable<string>) : string
+    + {static} TryPathsForFile(fileName:string, directories:string[]) : string
+    + {static} GetRelativePath(path:string, directory:string) : string
+    + {static} FromEditorResources(path:string) : string
+    + {static} FromAssets(path:string) : string
+    + {static} FromProject(path:string) : string
+    + {static} CreateParentDirectoryIfNeeded(path:string) : void
+    + {static} CreateDirectoryIfNeeded(path:string) : void
+    + {static} DeleteDirectoryIfExists(path:string) : void
+    + {static} DeleteProjectFileIfExists(filePath:string, checkoutInVersionControl:bool) : void
+    + {static} MakeSafeFilename(filename:string, replace:char) : string
+    + {static} GetPackageRootPath() : string
+}
+@enduml

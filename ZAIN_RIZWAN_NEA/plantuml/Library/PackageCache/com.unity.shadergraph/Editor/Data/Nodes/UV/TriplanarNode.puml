@@ -1,0 +1,29 @@
+@startuml
+class TriplanarNode {
+    + <<const>> OutputSlotId : int = 0
+    + <<const>> TextureInputId : int = 1
+    + <<const>> SamplerInputId : int = 2
+    + <<const>> PositionInputId : int = 3
+    + <<const>> NormalInputId : int = 4
+    + <<const>> TileInputId : int = 5
+    + <<const>> BlendInputId : int = 6
+    + <<override>> hasPreview : bool <<get>>
+    + TriplanarNode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> Setup() : void
+    + <<virtual>> GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + RequiresPosition(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresNormal(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresTangent(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresBitangent(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+}
+AbstractMaterialNode <|-- TriplanarNode
+IGeneratesBodyCode <|-- TriplanarNode
+IMayRequirePosition <|-- TriplanarNode
+IMayRequireNormal <|-- TriplanarNode
+IMayRequireTangent <|-- TriplanarNode
+IMayRequireBitangent <|-- TriplanarNode
+TriplanarNode --> "textureType" TextureType
+TriplanarNode --> "inputSpace" CoordinateSpace
+TriplanarNode --> "normalOutputSpace" CoordinateSpace
+@enduml

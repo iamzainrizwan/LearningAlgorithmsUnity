@@ -1,0 +1,10 @@
+@startuml
+class UIFoldout {
+    + SetState(state:bool) : void
+    + SetState(state:bool, rebuildLayout:bool) : void
+}
+Toggle <|-- UIFoldout
+UIFoldout --> "content" GameObject
+UIFoldout --> "arrowOpened" GameObject
+UIFoldout --> "arrowClosed" GameObject
+@enduml

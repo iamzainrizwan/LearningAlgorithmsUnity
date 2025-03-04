@@ -1,0 +1,19 @@
+@startuml
+abstract class ShadowShape2D {
+    + {abstract} SetFlip(flipX:bool, flipY:bool) : void
+    + {abstract} GetFlip(flipX:bool, flipY:bool) : void
+    + {abstract} SetDefaultTrim(trim:float) : void
+    + {abstract} SetShape(vertices:NativeArray<Vector3>, indices:NativeArray<int>, radii:NativeArray<float>, transform:Matrix4x4, windingOrder:WindingOrder, allowContraction:bool, createInteriorGeometry:bool) : void
+    + {abstract} SetShape(vertices:NativeArray<Vector3>, indices:NativeArray<int>, outlineTopology:OutlineTopology, windingOrder:WindingOrder, allowContraction:bool, createInteriorGeometry:bool) : void
+}
+enum OutlineTopology {
+    Lines,
+    Triangles,
+}
+enum WindingOrder {
+    Clockwise,
+    CounterClockwise,
+}
+ShadowShape2D +-- OutlineTopology
+ShadowShape2D +-- WindingOrder
+@enduml

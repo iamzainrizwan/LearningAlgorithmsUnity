@@ -1,0 +1,9 @@
+@startuml
+class UnityPlatformAttribute {
+    + UnityPlatformAttribute()
+    + UnityPlatformAttribute(include:RuntimePlatform[])
+    + ApplyToTest(test:Test) : void
+}
+NUnitAttribute <|-- UnityPlatformAttribute
+IApplyToTest <|-- UnityPlatformAttribute
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class MultiIntegerSlotControlView {
+    + MultiIntegerSlotControlView(node:AbstractMaterialNode, labels:string[], get:Func<Vector4>, set:Action<Vector4>)
+}
+VisualElement <|-- MultiIntegerSlotControlView
+@enduml

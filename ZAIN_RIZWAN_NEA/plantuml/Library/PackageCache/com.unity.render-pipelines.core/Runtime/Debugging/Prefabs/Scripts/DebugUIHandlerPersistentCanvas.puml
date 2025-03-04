@@ -1,0 +1,7 @@
+@startuml
+class DebugUIHandlerPersistentCanvas {
+}
+MonoBehaviour <|-- DebugUIHandlerPersistentCanvas
+DebugUIHandlerPersistentCanvas --> "panel" RectTransform
+DebugUIHandlerPersistentCanvas --> "valuePrefab" RectTransform
+@enduml

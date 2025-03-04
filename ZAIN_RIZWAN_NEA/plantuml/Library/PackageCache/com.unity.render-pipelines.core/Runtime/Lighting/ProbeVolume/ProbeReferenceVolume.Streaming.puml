@@ -1,0 +1,97 @@
+@startuml
+class ProbeReferenceVolume <<partial>> {
+    + EnableMaxCellStreaming(value:bool) : void
+    + SetNumberOfCellsLoadedPerFrame(numberOfCells:int) : void
+    + loadMaxCellsPerFrame : bool <<get>> <<set>>
+    + numberOfCellsBlendedPerFrame : int <<get>> <<set>>
+    + turnoverRate : float <<get>> <<set>>
+    + UpdateCellStreaming(cmd:CommandBuffer, camera:Camera) : void
+    + UpdateCellStreaming(cmd:CommandBuffer, camera:Camera, options:ProbeVolumesOptions) : void
+}
+class DiskStreamingRequest {
+    + DiskStreamingRequest(maxRequestCount:int)
+    <<unsafe>> + AddReadCommand(offset:int, size:int, dest:byte*) : void
+    <<unsafe>> + RunCommands(file:FileHandle) : int
+    + Clear() : void
+    + Cancel() : void
+    + Wait() : void
+    + Dispose() : void
+    + GetStatus() : ReadStatus
+}
+struct CellStreamingScratchBufferLayout {
+    + _SharedDestChunksOffset : int
+    + _L0L1rxOffset : int
+    + _L1GryOffset : int
+    + _L1BrzOffset : int
+    + _ValidityOffset : int
+    + _ProbeOcclusionOffset : int
+    + _SkyOcclusionOffset : int
+    + _SkyShadingDirectionOffset : int
+    + _L2_0Offset : int
+    + _L2_1Offset : int
+    + _L2_2Offset : int
+    + _L2_3Offset : int
+    + _L0Size : int
+    + _L0ProbeSize : int
+    + _L1Size : int
+    + _L1ProbeSize : int
+    + _ValiditySize : int
+    + _ValidityProbeSize : int
+    + _ProbeOcclusionSize : int
+    + _ProbeOcclusionProbeSize : int
+    + _SkyOcclusionSize : int
+    + _SkyOcclusionProbeSize : int
+    + _SkyShadingDirectionSize : int
+    + _SkyShadingDirectionProbeSize : int
+    + _L2Size : int
+    + _L2ProbeSize : int
+    + _ProbeCountInChunkLine : int
+    + _ProbeCountInChunkSlice : int
+}
+class CellStreamingScratchBuffer {
+    + CellStreamingScratchBuffer(chunkCount:int, chunkSize:int, allocateGraphicsBuffers:bool)
+    + Swap() : void
+    + Dispose() : void
+    + chunkCount : int <<get>>
+}
+class CellStreamingRequest {
+    + poolIndex : int <<get>> <<set>>
+    + streamSharedData : bool <<get>> <<set>>
+    + bytesWritten : int
+    + IsStreaming() : bool
+    + Cancel() : void
+    + WaitAll() : void
+    + UpdateRequestState(request:DiskStreamingRequest, isComplete:bool) : bool
+    + UpdateState() : void
+    + Clear() : void
+    + Reset() : void
+    + Dispose() : void
+}
+class "NativeArray`1"<T> {
+}
+enum State {
+    Pending,
+    Active,
+    Canceled,
+    Invalid,
+    Complete,
+}
+ProbeReferenceVolume +-- DiskStreamingRequest
+ProbeReferenceVolume +-- CellStreamingScratchBufferLayout
+ProbeReferenceVolume +-- CellStreamingScratchBuffer
+CellStreamingScratchBuffer --> "buffer" GraphicsBuffer
+CellStreamingScratchBuffer --> "stagingBuffer<byte>" "NativeArray`1"
+ProbeReferenceVolume +-- CellStreamingRequest
+CellStreamingRequest --> "cell" Cell
+CellStreamingRequest --> "state" State
+CellStreamingRequest --> "scratchBuffer" CellStreamingScratchBuffer
+CellStreamingRequest --> "scratchBufferLayout" CellStreamingScratchBufferLayout
+CellStreamingRequest o-> "onStreamingComplete" OnStreamingCompleteDelegate
+CellStreamingRequest o-> "cellDataStreamingRequest" DiskStreamingRequest
+CellStreamingRequest o-> "cellOptionalDataStreamingRequest" DiskStreamingRequest
+CellStreamingRequest o-> "cellSharedDataStreamingRequest" DiskStreamingRequest
+CellStreamingRequest o-> "cellProbeOcclusionDataStreamingRequest" DiskStreamingRequest
+CellStreamingRequest o-> "brickStreamingRequest" DiskStreamingRequest
+CellStreamingRequest o-> "supportStreamingRequest" DiskStreamingRequest
+CellStreamingRequest +-- State
+@enduml

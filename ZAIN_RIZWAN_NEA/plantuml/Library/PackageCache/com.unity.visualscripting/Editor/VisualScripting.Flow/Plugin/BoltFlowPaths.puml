@@ -1,0 +1,7 @@
+@startuml
+class BoltFlowPaths {
+    + BoltFlowPaths(plugin:Plugin)
+    + unitOptions : string <<get>>
+}
+PluginPaths <|-- BoltFlowPaths
+@enduml

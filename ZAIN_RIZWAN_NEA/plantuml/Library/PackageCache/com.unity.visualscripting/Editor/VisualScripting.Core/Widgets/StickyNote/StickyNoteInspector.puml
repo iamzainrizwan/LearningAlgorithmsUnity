@@ -1,0 +1,6 @@
+@startuml
+class StickyNoteInspector {
+    + StickyNoteInspector(metadata:Metadata)
+}
+ReflectedInspector <|-- StickyNoteInspector
+@enduml

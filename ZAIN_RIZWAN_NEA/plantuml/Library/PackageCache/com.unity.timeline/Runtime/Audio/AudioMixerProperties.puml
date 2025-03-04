@@ -1,0 +1,9 @@
+@startuml
+class AudioMixerProperties {
+    + volume : float = 1.0f
+    + stereoPan : float = 0.0f
+    + spatialBlend : float = 0.0f
+    + <<override>> PrepareFrame(playable:Playable, info:FrameData) : void
+}
+PlayableBehaviour <|-- AudioMixerProperties
+@enduml

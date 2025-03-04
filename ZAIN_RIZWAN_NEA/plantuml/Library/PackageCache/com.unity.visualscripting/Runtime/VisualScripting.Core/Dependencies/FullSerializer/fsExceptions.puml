@@ -1,0 +1,10 @@
+@startuml
+class fsMissingVersionConstructorException <<sealed>> {
+    + fsMissingVersionConstructorException(versionedType:Type, constructorType:Type)
+}
+class fsDuplicateVersionNameException <<sealed>> {
+    + fsDuplicateVersionNameException(typeA:Type, typeB:Type, version:string)
+}
+Exception <|-- fsMissingVersionConstructorException
+Exception <|-- fsDuplicateVersionNameException
+@enduml

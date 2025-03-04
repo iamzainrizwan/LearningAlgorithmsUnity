@@ -1,0 +1,21 @@
+@startuml
+class BlockFieldDescriptor {
+    + displayName : string <<get>>
+    + isHidden : bool <<get>>
+    + isUnknown : bool <<get>>
+    + isCustom : bool <<get>>
+    + BlockFieldDescriptor(tag:string, referenceName:string, define:string, control:IControl, shaderStage:ShaderStage, isHidden:bool, isUnknown:bool, isCustom:bool)
+    + BlockFieldDescriptor(tag:string, referenceName:string, displayName:string, define:string, control:IControl, shaderStage:ShaderStage, isHidden:bool, isUnknown:bool, isCustom:bool)
+}
+class CustomSlotBlockFieldDescriptor {
+    + CustomSlotBlockFieldDescriptor(tag:string, referenceName:string, define:string, createSlot:Func<MaterialSlot>)
+    + CustomSlotBlockFieldDescriptor(tag:string, referenceName:string, displayName:string, define:string, createSlot:Func<MaterialSlot>)
+}
+class "Func`1"<T> {
+}
+FieldDescriptor <|-- BlockFieldDescriptor
+BlockFieldDescriptor --> "control" IControl
+BlockFieldDescriptor --> "shaderStage" ShaderStage
+BlockFieldDescriptor <|-- CustomSlotBlockFieldDescriptor
+CustomSlotBlockFieldDescriptor --> "createSlot<MaterialSlot>" "Func`1"
+@enduml

@@ -1,0 +1,53 @@
+@startuml
+class InputTestFixture {
+    + <<virtual>> Setup() : void
+    + <<virtual>> TearDown() : void
+    + {static} AssertButtonPress(device:InputDevice, state:TState, buttons:ButtonControl[]) : void
+    + {static} AssertStickValues(stick:StickControl, stickValue:Vector2, up:float, down:float, left:float, right:float) : void
+    + <<unsafe>> SetKeyboardLayout(name:string, keyboard:Keyboard) : void
+    + <<unsafe>> SetKeyInfo(key:Key, displayName:string, scanCode:int) : void
+    + Started(action:InputAction, control:InputControl, time:double?, value:object) : ActionConstraint
+    + Started(action:InputAction, control:InputControl<TValue>, value:TValue, time:double?) : ActionConstraint
+    + Performed(action:InputAction, control:InputControl, time:double?, duration:double?, value:object) : ActionConstraint
+    + Performed(action:InputAction, control:InputControl<TValue>, value:TValue, time:double?, duration:double?) : ActionConstraint
+    + Canceled(action:InputAction, control:InputControl, time:double?, duration:double?, value:object) : ActionConstraint
+    + Canceled(action:InputAction, control:InputControl<TValue>, value:TValue, time:double?, duration:double?) : ActionConstraint
+    + Started(action:InputAction, control:InputControl, value:object, time:double?) : ActionConstraint
+    + Performed(action:InputAction, control:InputControl, value:object, time:double?, duration:double?) : ActionConstraint
+    + Canceled(action:InputAction, control:InputControl, value:object, time:double?, duration:double?) : ActionConstraint
+    + Press(button:ButtonControl, time:double, timeOffset:double, queueEventOnly:bool) : void
+    + Release(button:ButtonControl, time:double, timeOffset:double, queueEventOnly:bool) : void
+    + PressAndRelease(button:ButtonControl, time:double, timeOffset:double, queueEventOnly:bool) : void
+    + Click(button:ButtonControl, time:double, timeOffset:double, queueEventOnly:bool) : void
+    + Set(device:InputDevice, path:string, state:TValue, time:double, timeOffset:double, queueEventOnly:bool) : void
+    + Set(control:InputControl<TValue>, state:TValue, time:double, timeOffset:double, queueEventOnly:bool) : void
+    + Move(positionControl:InputControl<Vector2>, position:Vector2, delta:Vector2?, time:double, timeOffset:double, queueEventOnly:bool) : void
+    + BeginTouch(touchId:int, position:Vector2, queueEventOnly:bool, screen:Touchscreen, time:double, timeOffset:double, displayIndex:byte) : void
+    + BeginTouch(touchId:int, position:Vector2, pressure:float, queueEventOnly:bool, screen:Touchscreen, time:double, timeOffset:double) : void
+    + MoveTouch(touchId:int, position:Vector2, delta:Vector2, queueEventOnly:bool, screen:Touchscreen, time:double, timeOffset:double) : void
+    + MoveTouch(touchId:int, position:Vector2, pressure:float, delta:Vector2, queueEventOnly:bool, screen:Touchscreen, time:double, timeOffset:double) : void
+    + EndTouch(touchId:int, position:Vector2, delta:Vector2, queueEventOnly:bool, screen:Touchscreen, time:double, timeOffset:double, displayIndex:byte) : void
+    + EndTouch(touchId:int, position:Vector2, pressure:float, delta:Vector2, queueEventOnly:bool, screen:Touchscreen, time:double, timeOffset:double) : void
+    + CancelTouch(touchId:int, position:Vector2, delta:Vector2, queueEventOnly:bool, screen:Touchscreen, time:double, timeOffset:double) : void
+    + CancelTouch(touchId:int, position:Vector2, pressure:float, delta:Vector2, queueEventOnly:bool, screen:Touchscreen, time:double, timeOffset:double) : void
+    + SetTouch(touchId:int, phase:TouchPhase, position:Vector2, delta:Vector2, queueEventOnly:bool, screen:Touchscreen, time:double, timeOffset:double) : void
+    + SetTouch(touchId:int, phase:TouchPhase, position:Vector2, pressure:float, delta:Vector2, queueEventOnly:bool, screen:Touchscreen, time:double, timeOffset:double, displayIndex:byte) : void
+    + Trigger(action:InputAction, control:InputControl<TValue>, value:TValue) : void
+    + Trigger(action:InputAction) : void
+    + currentTime : double <<get>> <<set>>
+}
+class ActionConstraint {
+    + time : double? <<get>> <<set>>
+    + duration : double? <<get>> <<set>>
+    + value : object <<get>> <<set>>
+    + ActionConstraint(phase:InputActionPhase, action:InputAction, control:InputControl, value:object, interaction:Type, time:double?, duration:double?)
+    + <<override>> ApplyTo(actual:object) : ConstraintResult
+    + AndThen(constraint:ActionConstraint) : ActionConstraint
+}
+InputTestFixture +-- ActionConstraint
+Constraint <|-- ActionConstraint
+ActionConstraint --> "phase" InputActionPhase
+ActionConstraint --> "action" InputAction
+ActionConstraint --> "control" InputControl
+ActionConstraint --> "interaction" Type
+@enduml

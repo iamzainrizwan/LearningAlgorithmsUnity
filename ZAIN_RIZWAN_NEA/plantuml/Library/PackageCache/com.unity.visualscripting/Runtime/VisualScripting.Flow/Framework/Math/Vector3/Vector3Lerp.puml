@@ -1,0 +1,8 @@
+@startuml
+class Vector3Lerp <<sealed>> {
+    + <<override>> Operation(a:Vector3, b:Vector3, t:float) : Vector3
+}
+class "Lerp`1"<T> {
+}
+"Lerp`1" "<Vector3>" <|-- Vector3Lerp
+@enduml

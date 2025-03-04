@@ -1,0 +1,23 @@
+@startuml
+class VariableDeclarationsInspector {
+    + VariableDeclarationsInspector(metadata:Metadata)
+    + <<override>> Initialize() : void
+}
+class Styles <<static>> {
+    + {static} <<readonly>> invocationSpacing : float = 7
+    + {static} <<readonly>> addButtonWidth : float = 29
+}
+class ListAdaptor {
+    + ListAdaptor(metadata:Metadata, parentInspector:VariableDeclarationsInspector)
+}
+Inspector <|-- VariableDeclarationsInspector
+VariableDeclarationsInspector --> "kind" VariableKind
+VariableDeclarationsInspector +-- Styles
+Styles --> "newNameField" GUIStyle
+Styles --> "newNameFieldHighlighted" GUIStyle
+Styles --> "placeholder" GUIStyle
+Styles --> "placeholderHighlighted" GUIStyle
+VariableDeclarationsInspector +-- ListAdaptor
+MetadataListAdaptor <|-- ListAdaptor
+ListAdaptor --> "parentInspector" VariableDeclarationsInspector
+@enduml

@@ -1,0 +1,60 @@
+@startuml
+struct PrimitiveValue {
+    + isEmpty : bool <<get>>
+    + PrimitiveValue(value:bool)
+    + PrimitiveValue(value:char)
+    + PrimitiveValue(value:byte)
+    + PrimitiveValue(value:sbyte)
+    + PrimitiveValue(value:short)
+    + PrimitiveValue(value:ushort)
+    + PrimitiveValue(value:int)
+    + PrimitiveValue(value:uint)
+    + PrimitiveValue(value:long)
+    + PrimitiveValue(value:ulong)
+    + PrimitiveValue(value:float)
+    + PrimitiveValue(value:double)
+    + ConvertTo(type:TypeCode) : PrimitiveValue
+    + <<unsafe>> Equals(other:PrimitiveValue) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> <<unsafe>> GetHashCode() : int
+    + <<override>> ToString() : string
+    + {static} FromString(value:string) : PrimitiveValue
+    + GetTypeCode() : TypeCode
+    + ToBoolean(provider:IFormatProvider) : bool
+    + ToByte(provider:IFormatProvider) : byte
+    + ToChar(provider:IFormatProvider) : char
+    + ToDateTime(provider:IFormatProvider) : DateTime
+    + ToDecimal(provider:IFormatProvider) : decimal
+    + ToDouble(provider:IFormatProvider) : double
+    + ToInt16(provider:IFormatProvider) : short
+    + ToInt32(provider:IFormatProvider) : int
+    + ToInt64(provider:IFormatProvider) : long
+    + ToSByte(provider:IFormatProvider) : sbyte
+    + ToSingle(provider:IFormatProvider) : float
+    + ToString(provider:IFormatProvider) : string
+    + ToType(conversionType:Type, provider:IFormatProvider) : object
+    + ToUInt16(provider:IFormatProvider) : ushort
+    + ToUInt32(provider:IFormatProvider) : uint
+    + ToUInt64(provider:IFormatProvider) : ulong
+    + ToObject() : object
+    + {static} From(value:TValue) : PrimitiveValue
+    + {static} FromObject(value:object) : PrimitiveValue
+    + {static} FromBoolean(value:bool) : PrimitiveValue
+    + {static} FromChar(value:char) : PrimitiveValue
+    + {static} FromByte(value:byte) : PrimitiveValue
+    + {static} FromSByte(value:sbyte) : PrimitiveValue
+    + {static} FromInt16(value:short) : PrimitiveValue
+    + {static} FromUInt16(value:ushort) : PrimitiveValue
+    + {static} FromInt32(value:int) : PrimitiveValue
+    + {static} FromUInt32(value:uint) : PrimitiveValue
+    + {static} FromInt64(value:long) : PrimitiveValue
+    + {static} FromUInt64(value:ulong) : PrimitiveValue
+    + {static} FromSingle(value:float) : PrimitiveValue
+    + {static} FromDouble(value:double) : PrimitiveValue
+}
+class "IEquatable`1"<T> {
+}
+"IEquatable`1" "<PrimitiveValue>" <|-- PrimitiveValue
+IConvertible <|-- PrimitiveValue
+PrimitiveValue --> "type" TypeCode
+@enduml

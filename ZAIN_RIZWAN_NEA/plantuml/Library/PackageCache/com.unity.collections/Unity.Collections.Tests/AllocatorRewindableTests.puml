@@ -1,0 +1,11 @@
+@startuml
+struct ExampleStruct {
+    + ExampleStruct(initialBlockSize:int)
+    + Dispose() : void
+    + <<unsafe>> UseRewindableAllocator(nativeArray:NativeArray<int>, nativeList:NativeList<int>, bytePtr:byte*) : void
+    + FreeRewindableAllocator() : void
+}
+class ExampleStructSampleUsage {
+    + <<unsafe>> UseRewindableAllocator_Works() : void
+}
+@enduml

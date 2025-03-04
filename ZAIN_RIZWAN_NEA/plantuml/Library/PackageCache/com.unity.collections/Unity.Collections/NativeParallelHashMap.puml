@@ -1,0 +1,79 @@
+@startuml
+struct "NativeKeyValueArrays`2"<TKey,TValue> {
+    + Length : int <<get>>
+    + NativeKeyValueArrays(length:int, allocator:AllocatorManager.AllocatorHandle, options:NativeArrayOptions)
+    + Dispose() : void
+    + Dispose(inputDeps:JobHandle) : JobHandle
+}
+struct "NativeParallelHashMap`2"<TKey,TValue> {
+    + NativeParallelHashMap(capacity:int, allocator:AllocatorManager.AllocatorHandle)
+    + <<readonly>> IsEmpty : bool <<get>>
+    + Count() : int
+    + Capacity : int <<readonly get>> <<set>>
+    + Clear() : void
+    + TryAdd(key:TKey, item:TValue) : bool
+    + Add(key:TKey, item:TValue) : void
+    + Remove(key:TKey) : bool
+    + TryGetValue(key:TKey, item:TValue) : bool
+    + ContainsKey(key:TKey) : bool
+    + <<readonly>> IsCreated : bool <<get>>
+    + Dispose() : void
+    + Dispose(inputDeps:JobHandle) : JobHandle
+    + GetKeyArray(allocator:AllocatorManager.AllocatorHandle) : NativeArray<TKey>
+    + GetValueArray(allocator:AllocatorManager.AllocatorHandle) : NativeArray<TValue>
+    + GetKeyValueArrays(allocator:AllocatorManager.AllocatorHandle) : NativeKeyValueArrays<TKey, TValue>
+    + AsParallelWriter() : ParallelWriter
+    + AsReadOnly() : ReadOnly
+    + GetEnumerator() : Enumerator
+}
+class "NativeParallelHashMapDebuggerTypeProxy`2"<TKey,TValue> <<sealed>> {
+    + NativeParallelHashMapDebuggerTypeProxy(target:NativeParallelHashMap<TKey, TValue>)
+}
+class "NativeArray`1"<T> {
+}
+class "IEnumerable`1"<T> {
+}
+class "IEquatable`1"<T> {
+}
+struct ReadOnly {
+    + <<readonly>> IsCreated : bool <<get>>
+    + <<readonly>> IsEmpty : bool <<get>>
+    + <<readonly>> Count() : int
+    + <<readonly>> Capacity : int <<get>>
+    + <<readonly>> TryGetValue(key:TKey, item:TValue) : bool
+    + <<readonly>> ContainsKey(key:TKey) : bool
+    + <<readonly>> GetKeyArray(allocator:AllocatorManager.AllocatorHandle) : NativeArray<TKey>
+    + <<readonly>> GetValueArray(allocator:AllocatorManager.AllocatorHandle) : NativeArray<TValue>
+    + <<readonly>> GetKeyValueArrays(allocator:AllocatorManager.AllocatorHandle) : NativeKeyValueArrays<TKey, TValue>
+    + <<readonly>> GetEnumerator() : Enumerator
+}
+struct ParallelWriter {
+    + ThreadIndex : int <<get>>
+    + m_ThreadIndex : int <<get>>
+    + <<readonly>> Capacity : int <<get>>
+    + TryAdd(key:TKey, item:TValue) : bool
+}
+struct Enumerator {
+    + Dispose() : void
+    + MoveNext() : bool
+    + Reset() : void
+}
+class "List`1"<T> {
+}
+class "IEnumerator`1"<T> {
+}
+class "KeyValue`2"<T1,T2> {
+}
+INativeDisposable <|-- "NativeKeyValueArrays`2"
+"NativeKeyValueArrays`2" --> "Keys<TKey>" "NativeArray`1"
+"NativeKeyValueArrays`2" --> "Values<TValue>" "NativeArray`1"
+INativeDisposable <|-- "NativeParallelHashMap`2"
+"IEnumerable`1" "<KeyValue<TKey, TValue>>" <|-- "NativeParallelHashMap`2"
+"NativeParallelHashMapDebuggerTypeProxy`2" --> "Items<Pair<TKey, TValue>>" "List`1"
+"NativeParallelHashMap`2" +-- ReadOnly
+"IEnumerable`1" "<KeyValue<TKey, TValue>>" <|-- ReadOnly
+"NativeParallelHashMap`2" +-- ParallelWriter
+"NativeParallelHashMap`2" +-- Enumerator
+"IEnumerator`1" "<KeyValue<TKey, TValue>>" <|-- Enumerator
+Enumerator --> "Current<TKey,TValue>" "KeyValue`2"
+@enduml

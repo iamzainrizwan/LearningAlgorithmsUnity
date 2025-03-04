@@ -1,0 +1,11 @@
+@startuml
+class CameraUI <<static>> <<partial>> {
+}
+class Output <<static>> <<partial>> {
+    + {static} Drawer_Output_AllowDynamicResolution(p:ISerializedCamera, owner:Editor, customLabel:GUIContent) : void
+    + {static} Drawer_Output_NormalizedViewPort(p:ISerializedCamera, owner:Editor) : void
+    + {static} Drawer_Output_Depth(p:ISerializedCamera, owner:Editor) : void
+    + {static} Drawer_Output_RenderTarget(p:ISerializedCamera, owner:Editor) : void
+}
+CameraUI +-- Output
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class DecalDrawErrorSystem {
+    + DecalDrawErrorSystem(entityManager:DecalEntityManager, technique:DecalTechnique)
+}
+DecalDrawSystem <|-- DecalDrawErrorSystem
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+class ShaderStrippingSettingsMigrationTest {
+    + PerformMigration(testCase:IRenderPipelineGraphicsSettingsTestCase<ShaderStrippingSetting>) : void
+}
+class URPShaderStrippingSettingMigrationTest {
+    + PerformMigration(testCase:IRenderPipelineGraphicsSettingsTestCase<URPShaderStrippingSetting>) : void
+}
+class "RenderPipelineGraphicsSettingsMigrationTestBase`1"<T> {
+}
+class TestCase1 {
+    + SetUp(globalSettingsAsset:UniversalRenderPipelineGlobalSettings, renderPipelineAsset:UniversalRenderPipelineAsset) : void
+    + IsMigrationCorrect(settings:ShaderStrippingSetting, message:string) : bool
+}
+class TestCase2 {
+    + SetUp(globalSettingsAsset:UniversalRenderPipelineGlobalSettings, renderPipelineAsset:UniversalRenderPipelineAsset) : void
+    + IsMigrationCorrect(settings:ShaderStrippingSetting, message:string) : bool
+}
+class TestCase {
+    + SetUp(globalSettingsAsset:UniversalRenderPipelineGlobalSettings, renderPipelineAsset:UniversalRenderPipelineAsset) : void
+    + IsMigrationCorrect(settings:URPShaderStrippingSetting, message:string) : bool
+}
+class "IRenderPipelineGraphicsSettingsTestCase`1"<T> {
+}
+"RenderPipelineGraphicsSettingsMigrationTestBase`1" "<ShaderStrippingSetting>" <|-- ShaderStrippingSettingsMigrationTest
+"RenderPipelineGraphicsSettingsMigrationTestBase`1" "<URPShaderStrippingSetting>" <|-- URPShaderStrippingSettingMigrationTest
+ShaderStrippingSettingsMigrationTest +-- TestCase1
+"IRenderPipelineGraphicsSettingsTestCase`1" "<ShaderStrippingSetting>" <|-- TestCase1
+ShaderStrippingSettingsMigrationTest +-- TestCase2
+"IRenderPipelineGraphicsSettingsTestCase`1" "<ShaderStrippingSetting>" <|-- TestCase2
+URPShaderStrippingSettingMigrationTest +-- TestCase
+"IRenderPipelineGraphicsSettingsTestCase`1" "<URPShaderStrippingSetting>" <|-- TestCase
+@enduml

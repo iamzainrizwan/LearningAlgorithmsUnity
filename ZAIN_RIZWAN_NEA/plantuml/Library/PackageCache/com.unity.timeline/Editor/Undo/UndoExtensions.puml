@@ -1,0 +1,20 @@
+@startuml
+class UndoExtensions <<static>> {
+    + {static} RegisterContext(context:ActionContext, undoTitle:string) : void
+    + {static} RegisterTimeline(asset:TimelineAsset, undoTitle:string) : void
+    + {static} RegisterCompleteTimeline(asset:TimelineAsset, undoTitle:string) : void
+    + {static} RegisterTrack(asset:TrackAsset, undoTitle:string) : void
+    + {static} RegisterTracks(tracks:IEnumerable<TrackAsset>, undoTitle:string) : void
+    + {static} RegisterClip(clip:TimelineClip, undoTitle:string, includePlayableAsset:bool) : void
+    + {static} RegisterPlayableAsset(asset:PlayableAsset, undoTitle:string) : void
+    + {static} RegisterClips(clips:IEnumerable<TimelineClip>, name:string, includePlayableAssets:bool) : void
+    + {static} RegisterMarker(marker:IMarker, undoTitle:string) : void
+    + {static} RegisterMarkers(markers:IEnumerable<IMarker>, undoTitle:string) : void
+}
+class DisableTimelineUndoScope <<sealed>> {
+    + DisableTimelineUndoScope()
+    + Dispose() : void
+}
+UndoExtensions +-- DisableTimelineUndoScope
+IDisposable <|-- DisableTimelineUndoScope
+@enduml

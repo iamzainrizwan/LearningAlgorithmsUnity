@@ -1,0 +1,7 @@
+@startuml
+class BurstDisassembler <<partial>> {
+}
+class X86AsmInstructionInfo {
+}
+BurstDisassembler +-- X86AsmInstructionInfo
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+class StickyNoteWidget {
+    + StickyNoteWidget(canvas:ICanvas, stickyNote:StickyNote)
+    + <<override>> CacheItem() : void
+    + <<override>> foregroundRequiresInput : bool <<get>>
+    + <<override>> zIndex : float <<get>> <<set>>
+    + <<override>> CachePosition() : void
+    + <<override>> OnViewportChange() : void
+    + <<override>> DrawForeground() : void
+    + <<override>> canDelete : bool <<get>>
+    + <<override>> canAlignAndDistribute : bool <<get>>
+    + <<override>> canResizeHorizontal : bool <<get>>
+    + <<override>> canResizeVertical : bool <<get>>
+    + <<override>> canSelect : bool <<get>>
+    + <<override>> canDrag : bool <<get>>
+}
+class "GraphElementWidget`2"<T1,T2> {
+}
+class Styles <<static>> {
+    + {static} <<readonly>> headerFontSize : float = 14
+    + {static} headerHeight : float <<get>>
+}
+"GraphElementWidget`2" "<ICanvas,StickyNote>" <|-- StickyNoteWidget
+StickyNoteWidget --> "position" Rect
+StickyNoteWidget --> "titlePosition" Rect
+StickyNoteWidget --> "bodyPosition" Rect
+StickyNoteWidget --> "hotArea" Rect
+StickyNoteWidget +-- Styles
+Styles --> "sticky" GUIStyle
+Styles --> "title" GUIStyle
+Styles --> "body" GUIStyle
+@enduml

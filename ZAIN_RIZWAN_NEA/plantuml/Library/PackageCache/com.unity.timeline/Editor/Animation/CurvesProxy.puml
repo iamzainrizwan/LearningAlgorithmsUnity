@@ -1,0 +1,26 @@
+@startuml
+class CurvesProxy {
+    + hasCurves : bool <<get>>
+    + duration : double <<get>>
+    + defaultCurvesName : string <<get>>
+    + CurvesProxy(originalOwner:ICurvesOwner)
+    + CreateCurves(curvesClipName:string) : void
+    + ConfigureCurveWrapper(wrapper:CurveWrapper) : void
+    + RebuildCurves() : void
+    + RemoveCurves(bindings:IEnumerable<EditorCurveBinding>) : void
+    + UpdateCurves(updatedCurves:IEnumerable<CurveWrapper>) : void
+    + ApplyExternalChangesToProxy() : void
+    + UpdateProxyCurves() : void
+}
+struct RebuildGuard {
+    + RebuildGuard(owner:CurvesProxy)
+    + Dispose() : void
+}
+ICurvesOwner <|-- CurvesProxy
+CurvesProxy --> "curves" AnimationClip
+CurvesProxy --> "asset" UnityObject
+CurvesProxy --> "assetOwner" UnityObject
+CurvesProxy --> "targetTrack" TrackAsset
+CurvesProxy +-- RebuildGuard
+IDisposable <|-- RebuildGuard
+@enduml

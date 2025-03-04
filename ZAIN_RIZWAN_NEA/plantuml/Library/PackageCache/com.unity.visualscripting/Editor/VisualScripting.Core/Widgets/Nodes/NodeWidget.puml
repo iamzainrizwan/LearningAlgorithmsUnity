@@ -1,0 +1,14 @@
+@startuml
+abstract class "NodeWidget`2"<TCanvas,TNode> {
+    + <<override>> DrawForeground() : void
+    + <<override>> DrawOverlay() : void
+}
+class "GraphElementWidget`2"<T1,T2> {
+}
+"GraphElementWidget`2" "<TCanvas,TNode>" <|-- "NodeWidget`2"
+INodeWidget <|-- "NodeWidget`2"
+"NodeWidget`2" --> "outerPosition" Rect
+"NodeWidget`2" --> "edgePosition" Rect
+"NodeWidget`2" --> "innerPosition" Rect
+"NodeWidget`2" --> "clippingPosition" Rect
+@enduml

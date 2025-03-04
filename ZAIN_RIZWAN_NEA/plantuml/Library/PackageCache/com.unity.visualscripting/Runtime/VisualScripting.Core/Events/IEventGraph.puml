@@ -1,0 +1,6 @@
+@startuml
+class XEventGraph <<static>> {
+    + {static} TriggerEventHandler(reference:GraphReference, predicate:Func<EventHook, bool>, args:TArgs, recurse:Func<IGraphParentElement, bool>, force:bool) : void
+    + {static} TriggerEventHandler(stack:GraphStack, predicate:Func<EventHook, bool>, args:TArgs, recurse:Func<IGraphParentElement, bool>, force:bool) : void
+}
+@enduml

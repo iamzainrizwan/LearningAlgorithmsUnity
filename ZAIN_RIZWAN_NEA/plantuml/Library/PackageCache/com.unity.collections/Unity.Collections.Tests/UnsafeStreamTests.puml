@@ -1,0 +1,14 @@
+@startuml
+class UnsafeStreamTests {
+    + UnsafeStream_CustomAllocatorTest() : void
+    + <<unsafe>> UnsafeStream_BurstedCustomAllocatorTest() : void
+    + UnsafeStream_ScheduleCreate_NativeList() : void
+    + UnsafeStream_ScheduleCreate_NativeArray() : void
+}
+struct BurstedCustomAllocatorJob {
+    + Execute() : void
+}
+CollectionsTestCommonBase <|-- UnsafeStreamTests
+UnsafeStreamTests +-- BurstedCustomAllocatorJob
+IJob <|-- BurstedCustomAllocatorJob
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class BenchmarkMeasure <<static>> {
+    + {static} MeasureParallel(perfMeasureType:Type, warmup:int, measurements:int, action:Action, setup:Action, teardown:Action) : void
+    + {static} Measure(perfMeasureType:Type, warmup:int, measurements:int, action:Action, setup:Action, teardown:Action) : void
+}
+@enduml

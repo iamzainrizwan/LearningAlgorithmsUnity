@@ -1,0 +1,8 @@
+@startuml
+class CustomFunctionNodePropertyDrawer {
+    + DrawProperty(propertyInfo:PropertyInfo, actualObject:object, attribute:InspectableAttribute) : VisualElement
+}
+IPropertyDrawer <|-- CustomFunctionNodePropertyDrawer
+IGetNodePropertyDrawerPropertyData <|-- CustomFunctionNodePropertyDrawer
+CustomFunctionNodePropertyDrawer --> "inspectorUpdateDelegate" Action
+@enduml

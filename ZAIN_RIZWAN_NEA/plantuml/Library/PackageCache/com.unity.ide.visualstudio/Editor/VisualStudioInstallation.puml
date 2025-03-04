@@ -1,0 +1,18 @@
+@startuml
+interface IVisualStudioInstallation {
+}
+abstract class VisualStudioInstallation {
+    + Name : string <<get>> <<set>>
+    + Path : string <<get>> <<set>>
+    + IsPrerelease : bool <<get>> <<set>>
+    + {abstract} SupportsAnalyzers : bool <<get>>
+    + {abstract} GetAnalyzers() : string[]
+    + {abstract} CreateExtraFiles(projectDirectory:string) : void
+    + {abstract} Open(path:string, line:int, column:int, solutionPath:string) : bool
+    + ToCodeEditorInstallation() : CodeEditor.Installation
+}
+IVisualStudioInstallation <|-- VisualStudioInstallation
+VisualStudioInstallation --> "Version" Version
+VisualStudioInstallation --> "LatestLanguageVersionSupported" Version
+VisualStudioInstallation --> "ProjectGenerator" IGenerator
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class LightBuffer {
+}
+class LightBatch {
+    + {static} isBatchingSupported : bool <<get>>
+}
+@enduml

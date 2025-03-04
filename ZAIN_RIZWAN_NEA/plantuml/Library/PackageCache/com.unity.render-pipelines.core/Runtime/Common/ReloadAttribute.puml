@@ -1,0 +1,14 @@
+@startuml
+class ReloadAttribute <<sealed>> {
+    + ReloadAttribute(paths:string[], package:Package)
+    + ReloadAttribute(path:string, package:Package)
+    + ReloadAttribute(pathFormat:string, rangeMin:int, rangeMax:int, package:Package)
+}
+enum Package {
+    Builtin,
+    Root,
+    BuiltinExtra,
+}
+Attribute <|-- ReloadAttribute
+ReloadAttribute +-- Package
+@enduml

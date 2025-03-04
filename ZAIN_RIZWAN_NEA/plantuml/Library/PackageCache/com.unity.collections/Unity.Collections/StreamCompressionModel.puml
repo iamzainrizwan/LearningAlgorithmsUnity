@@ -1,0 +1,10 @@
+@startuml
+struct StreamCompressionModel {
+    <<readonly>> + CalculateBucket(value:uint) : int
+    + <<readonly>> GetCompressedSizeInBits(value:uint) : int
+}
+class SharedStaticCompressionModel <<static>> {
+}
+StreamCompressionModel --> "Default" StreamCompressionModel
+StreamCompressionModel +-- SharedStaticCompressionModel
+@enduml

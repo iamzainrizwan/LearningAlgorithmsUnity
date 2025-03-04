@@ -1,0 +1,18 @@
+@startuml
+class ShadowCascadeGUI <<static>> {
+    + {static} DrawCascades(cascades:Cascade[], useMetric:bool, baseMetric:float) : void
+}
+enum HandleState {
+    Hidden,
+    Disabled,
+    Enabled,
+}
+struct Cascade {
+    + size : float
+    + borderSize : float
+}
+ShadowCascadeGUI +-- HandleState
+ShadowCascadeGUI +-- Cascade
+Cascade --> "cascadeHandleState" HandleState
+Cascade --> "borderHandleState" HandleState
+@enduml

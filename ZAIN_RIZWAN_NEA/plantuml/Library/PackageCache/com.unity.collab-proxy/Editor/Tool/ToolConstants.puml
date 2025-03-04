@@ -1,0 +1,13 @@
+@startuml
+class ToolConstants <<static>> {
+}
+class Plastic <<static>> {
+}
+class Gluon <<static>> {
+}
+class Installer <<static>> {
+}
+ToolConstants +-- Plastic
+ToolConstants +-- Gluon
+ToolConstants +-- Installer
+@enduml

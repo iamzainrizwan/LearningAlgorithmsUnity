@@ -1,0 +1,8 @@
+@startuml
+class TakeFieldsInput {
+    + inputPurpose : string = ""
+    + isAllValid : bool = true
+    + TakeInputs() : void
+}
+MonoBehaviour <|-- TakeFieldsInput
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class ColorSpaceUtils <<static>> {
+}
+ColorSpaceUtils o-> "Rec709ToRec2020Mat" float3x3
+ColorSpaceUtils o-> "Rec709ToP3D65Mat" float3x3
+ColorSpaceUtils o-> "Rec2020ToRec709Mat" float3x3
+ColorSpaceUtils o-> "Rec2020ToP3D65Mat" float3x3
+ColorSpaceUtils o-> "P3D65ToRec2020Mat" float3x3
+@enduml

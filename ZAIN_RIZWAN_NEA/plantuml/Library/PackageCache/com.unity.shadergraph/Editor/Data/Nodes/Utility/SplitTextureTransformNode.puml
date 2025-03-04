@@ -1,0 +1,7 @@
+@startuml
+class SplitTextureTransformNode {
+    + <<override>> hasPreview : bool <<get>>
+    + SplitTextureTransformNode()
+}
+CodeFunctionNode <|-- SplitTextureTransformNode
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+class HIDSupport <<static>> {
+}
+class "Func`2"<T1,T2> {
+}
+struct HIDPageUsage {
+    + usage : int
+    + HIDPageUsage(page:HID.UsagePage, usage:int)
+    + HIDPageUsage(usage:HID.GenericDesktop)
+}
+class "ReadOnlyArray`1"<T> {
+}
+HIDSupport --> "supportedHIDUsages<HIDPageUsage>" "ReadOnlyArray`1"
+HIDSupport +-- HIDPageUsage
+@enduml

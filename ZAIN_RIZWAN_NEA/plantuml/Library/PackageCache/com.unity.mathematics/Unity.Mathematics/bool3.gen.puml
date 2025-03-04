@@ -1,0 +1,155 @@
+@startuml
+struct bool3 {
+    + x : bool
+    + y : bool
+    + z : bool
+    + bool3(x:bool, y:bool, z:bool)
+    + bool3(x:bool, yz:bool2)
+    + bool3(xy:bool2, z:bool)
+    + bool3(xyz:bool3)
+    + bool3(v:bool)
+    + Equals(rhs:bool3) : bool
+    + <<override>> Equals(o:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+}
+class math <<static>> <<partial>> {
+    + {static} bool3(x:bool, y:bool, z:bool) : bool3
+    + {static} bool3(x:bool, yz:bool2) : bool3
+    + {static} bool3(xy:bool2, z:bool) : bool3
+    + {static} bool3(xyz:bool3) : bool3
+    + {static} bool3(v:bool) : bool3
+    + {static} hash(v:bool3) : uint
+    + {static} hashwide(v:bool3) : uint3
+    + {static} shuffle(left:bool3, right:bool3, x:ShuffleComponent) : bool
+    + {static} shuffle(left:bool3, right:bool3, x:ShuffleComponent, y:ShuffleComponent) : bool2
+    + {static} shuffle(left:bool3, right:bool3, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent) : bool3
+    + {static} shuffle(left:bool3, right:bool3, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent, w:ShuffleComponent) : bool4
+}
+class "IEquatable`1"<T> {
+}
+class DebuggerProxy <<sealed>> {
+    + x : bool
+    + y : bool
+    + z : bool
+    + DebuggerProxy(v:bool3)
+}
+bool3 --> "xxxx" bool4
+bool3 --> "xxxy" bool4
+bool3 --> "xxxz" bool4
+bool3 --> "xxyx" bool4
+bool3 --> "xxyy" bool4
+bool3 --> "xxyz" bool4
+bool3 --> "xxzx" bool4
+bool3 --> "xxzy" bool4
+bool3 --> "xxzz" bool4
+bool3 --> "xyxx" bool4
+bool3 --> "xyxy" bool4
+bool3 --> "xyxz" bool4
+bool3 --> "xyyx" bool4
+bool3 --> "xyyy" bool4
+bool3 --> "xyyz" bool4
+bool3 --> "xyzx" bool4
+bool3 --> "xyzy" bool4
+bool3 --> "xyzz" bool4
+bool3 --> "xzxx" bool4
+bool3 --> "xzxy" bool4
+bool3 --> "xzxz" bool4
+bool3 --> "xzyx" bool4
+bool3 --> "xzyy" bool4
+bool3 --> "xzyz" bool4
+bool3 --> "xzzx" bool4
+bool3 --> "xzzy" bool4
+bool3 --> "xzzz" bool4
+bool3 --> "yxxx" bool4
+bool3 --> "yxxy" bool4
+bool3 --> "yxxz" bool4
+bool3 --> "yxyx" bool4
+bool3 --> "yxyy" bool4
+bool3 --> "yxyz" bool4
+bool3 --> "yxzx" bool4
+bool3 --> "yxzy" bool4
+bool3 --> "yxzz" bool4
+bool3 --> "yyxx" bool4
+bool3 --> "yyxy" bool4
+bool3 --> "yyxz" bool4
+bool3 --> "yyyx" bool4
+bool3 --> "yyyy" bool4
+bool3 --> "yyyz" bool4
+bool3 --> "yyzx" bool4
+bool3 --> "yyzy" bool4
+bool3 --> "yyzz" bool4
+bool3 --> "yzxx" bool4
+bool3 --> "yzxy" bool4
+bool3 --> "yzxz" bool4
+bool3 --> "yzyx" bool4
+bool3 --> "yzyy" bool4
+bool3 --> "yzyz" bool4
+bool3 --> "yzzx" bool4
+bool3 --> "yzzy" bool4
+bool3 --> "yzzz" bool4
+bool3 --> "zxxx" bool4
+bool3 --> "zxxy" bool4
+bool3 --> "zxxz" bool4
+bool3 --> "zxyx" bool4
+bool3 --> "zxyy" bool4
+bool3 --> "zxyz" bool4
+bool3 --> "zxzx" bool4
+bool3 --> "zxzy" bool4
+bool3 --> "zxzz" bool4
+bool3 --> "zyxx" bool4
+bool3 --> "zyxy" bool4
+bool3 --> "zyxz" bool4
+bool3 --> "zyyx" bool4
+bool3 --> "zyyy" bool4
+bool3 --> "zyyz" bool4
+bool3 --> "zyzx" bool4
+bool3 --> "zyzy" bool4
+bool3 --> "zyzz" bool4
+bool3 --> "zzxx" bool4
+bool3 --> "zzxy" bool4
+bool3 --> "zzxz" bool4
+bool3 --> "zzyx" bool4
+bool3 --> "zzyy" bool4
+bool3 --> "zzyz" bool4
+bool3 --> "zzzx" bool4
+bool3 --> "zzzy" bool4
+bool3 --> "zzzz" bool4
+bool3 --> "xxx" bool3
+bool3 --> "xxy" bool3
+bool3 --> "xxz" bool3
+bool3 --> "xyx" bool3
+bool3 --> "xyy" bool3
+bool3 --> "xyz" bool3
+bool3 --> "xzx" bool3
+bool3 --> "xzy" bool3
+bool3 --> "xzz" bool3
+bool3 --> "yxx" bool3
+bool3 --> "yxy" bool3
+bool3 --> "yxz" bool3
+bool3 --> "yyx" bool3
+bool3 --> "yyy" bool3
+bool3 --> "yyz" bool3
+bool3 --> "yzx" bool3
+bool3 --> "yzy" bool3
+bool3 --> "yzz" bool3
+bool3 --> "zxx" bool3
+bool3 --> "zxy" bool3
+bool3 --> "zxz" bool3
+bool3 --> "zyx" bool3
+bool3 --> "zyy" bool3
+bool3 --> "zyz" bool3
+bool3 --> "zzx" bool3
+bool3 --> "zzy" bool3
+bool3 --> "zzz" bool3
+bool3 --> "xx" bool2
+bool3 --> "xy" bool2
+bool3 --> "xz" bool2
+bool3 --> "yx" bool2
+bool3 --> "yy" bool2
+bool3 --> "yz" bool2
+bool3 --> "zx" bool2
+bool3 --> "zy" bool2
+bool3 --> "zz" bool2
+bool3 +-- DebuggerProxy
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+class TMP_EditorTests {
+    + Setup() : void
+    + InternalResourceCheck(filePath:string, guid:string) : void
+    + TextParsing_TextInfoTest_WordWrappingDisabled(sourceTextIndex:int, characterCount:int, spaceCount:int, wordCount:int, lineCount:int) : void
+    + TextParsing_TextInfoTest_WordWrappingEnabled(sourceTextIndex:int, characterCount:int, spaceCount:int, wordCount:int, lineCount:int) : void
+    + TextParsing_TextInfoTest_TopJustifiedAlignment(sourceTextIndex:int, characterCount:int, spaceCount:int, wordCount:int, lineCount:int) : void
+    + TextParsing_TextInfoTest_RichText(sourceTextIndex:int, characterCount:int, spaceCount:int, wordCount:int, lineCount:int) : void
+    + MarkupTag_Scale(sourceText:string, origin1:float, advance1:float, origin2:float, advance2:float, origin3:float, advance3:float) : void
+    + MarkupTag_Size(sourceText:string, origin1:float, advance1:float, origin2:float, advance2:float, origin3:float, advance3:float) : void
+    + MarkupTag_Cspace(sourceText:string, origin1:float, advance1:float, origin2:float, advance2:float, origin3:float, advance3:float) : void
+    + MarkupTag_Mspace(sourceText:string, origin1:float, advance1:float, origin2:float, advance2:float, origin3:float, advance3:float) : void
+    + MarkupTag_Space(sourceText:string, origin1:float, advance1:float, origin2:float, advance2:float, origin3:float, advance3:float) : void
+    + MarkupTag_Pos(sourceText:string, origin1:float, advance1:float, origin2:float, advance2:float, origin3:float, advance3:float) : void
+    + MarkupTag_Indent(sourceText:string, origin1:float, advance1:float, origin2:float, advance2:float, origin3:float, advance3:float) : void
+}
+@enduml

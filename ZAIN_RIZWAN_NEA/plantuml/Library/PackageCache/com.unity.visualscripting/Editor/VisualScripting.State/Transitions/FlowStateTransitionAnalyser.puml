@@ -1,0 +1,8 @@
+@startuml
+class FlowStateTransitionAnalyser {
+    + FlowStateTransitionAnalyser(reference:GraphReference, transition:FlowStateTransition)
+}
+class "NesterStateTransitionAnalyser`1"<T> {
+}
+"NesterStateTransitionAnalyser`1" "<FlowStateTransition>" <|-- FlowStateTransitionAnalyser
+@enduml

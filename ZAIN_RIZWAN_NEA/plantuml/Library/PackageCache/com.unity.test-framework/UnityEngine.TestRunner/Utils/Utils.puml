@@ -1,0 +1,7 @@
+@startuml
+class Utils <<static>> {
+    + {static} AreFloatsEqual(expected:float, actual:float, epsilon:float) : bool
+    + {static} AreFloatsEqualAbsoluteError(expected:float, actual:float, allowedAbsoluteError:float) : bool
+    + {static} CreatePrimitive(type:PrimitiveType) : GameObject
+}
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class CheckAssignedRenderPipelineAsset {
+}
+MonoBehaviour <|-- CheckAssignedRenderPipelineAsset
+@enduml

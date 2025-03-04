@@ -1,0 +1,4 @@
+@startuml
+interface "IGraphEventHandler`1"<TArgs> {
+}
+@enduml

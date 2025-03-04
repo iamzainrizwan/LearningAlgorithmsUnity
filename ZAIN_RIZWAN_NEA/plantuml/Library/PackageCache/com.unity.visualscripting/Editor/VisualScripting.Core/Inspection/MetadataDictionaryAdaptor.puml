@@ -1,0 +1,19 @@
+@startuml
+class MetadataDictionaryAdaptor {
+    + MetadataDictionaryAdaptor(metadata:Metadata, parentDrawer:Inspector)
+    +  <<event>> itemAdded : Action<object, object> 
+    + <<override>> Count : int <<get>>
+    + <<override>> Add() : void
+    + <<override>> Clear() : void
+    + <<override>> Insert(index:int) : void
+    + <<override>> Remove(index:int) : void
+    + <<override>> Move(sourceIndex:int, destinationIndex:int) : void
+    + <<override>> Duplicate(index:int) : void
+    + <<override>> CanDrag(index:int) : bool
+    + <<override>> CanRemove(index:int) : bool
+    + <<override>> GetItemAdaptiveWidth(index:int) : float
+    + <<override>> GetItemHeight(width:float, index:int) : float
+    + <<override>> DrawItem(position:Rect, index:int) : void
+}
+MetadataCollectionAdaptor <|-- MetadataDictionaryAdaptor
+@enduml

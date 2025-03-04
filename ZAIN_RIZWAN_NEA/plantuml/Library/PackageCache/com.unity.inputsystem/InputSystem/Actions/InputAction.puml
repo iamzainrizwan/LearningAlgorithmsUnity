@@ -1,0 +1,69 @@
+@startuml
+class InputAction <<sealed>> {
+    + name : string <<get>>
+    + expectedControlType : string <<get>> <<set>>
+    + processors : string <<get>>
+    + interactions : string <<get>>
+    + inProgress : bool <<get>>
+    + enabled : bool <<get>>
+    + triggered : bool <<get>>
+    + wantsInitialStateCheck : bool <<get>> <<set>>
+    + InputAction()
+    + InputAction(name:string, type:InputActionType, binding:string, interactions:string, processors:string, expectedControlType:string)
+    + Dispose() : void
+    + <<override>> ToString() : string
+    + Enable() : void
+    + Disable() : void
+    + Clone() : InputAction
+    + <<unsafe>> ReadValue() : TValue
+    + <<unsafe>> ReadValueAsObject() : object
+    + <<unsafe>> GetControlMagnitude() : float
+    + Reset() : void
+    + <<unsafe>> IsPressed() : bool
+    + <<unsafe>> IsInProgress() : bool
+    + <<unsafe>> WasPressedThisFrame() : bool
+    + <<unsafe>> WasReleasedThisFrame() : bool
+    + <<unsafe>> WasPerformedThisFrame() : bool
+    + <<unsafe>> WasCompletedThisFrame() : bool
+    + <<unsafe>> GetTimeoutCompletionPercentage() : float
+}
+class "ReadOnlyArray`1"<T> {
+}
+class "Action`1"<T> {
+}
+enum ActionFlags {
+    WantsInitialStateCheck= 1 << 0,
+}
+struct CallbackContext {
+    + started : bool <<get>>
+    + performed : bool <<get>>
+    + canceled : bool <<get>>
+    + <<unsafe>> time : double <<get>>
+    + <<unsafe>> startTime : double <<get>>
+    + duration : double <<get>>
+    + valueSizeInBytes : int <<get>>
+    + <<unsafe>> ReadValue(buffer:void*, bufferSize:int) : void
+    + ReadValue() : TValue
+    + ReadValueAsButton() : bool
+    + ReadValueAsObject() : object
+    + <<override>> ToString() : string
+}
+ICloneable <|-- InputAction
+IDisposable <|-- InputAction
+InputAction --> "type" InputActionType
+InputAction --> "id" Guid
+InputAction --> "actionMap" InputActionMap
+InputAction --> "bindingMask" InputBinding
+InputAction --> "bindings<InputBinding>" "ReadOnlyArray`1"
+InputAction --> "controls<InputControl>" "ReadOnlyArray`1"
+InputAction --> "phase" InputActionPhase
+InputAction --> "activeControl" InputControl
+InputAction --> "activeValueType" Type
+InputAction +-- ActionFlags
+InputAction +-- CallbackContext
+CallbackContext --> "phase" InputActionPhase
+CallbackContext --> "action" InputAction
+CallbackContext --> "control" InputControl
+CallbackContext --> "interaction" IInputInteraction
+CallbackContext --> "valueType" Type
+@enduml

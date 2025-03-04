@@ -1,0 +1,10 @@
+@startuml
+class TimelineAssetViewModel <<partial>> {
+}
+enum Versions {
+    Default= 0,
+    PlayRangeAsStruct= 1,
+    Current= PlayRangeAsStruct,
+}
+TimelineAssetViewModel +-- Versions
+@enduml

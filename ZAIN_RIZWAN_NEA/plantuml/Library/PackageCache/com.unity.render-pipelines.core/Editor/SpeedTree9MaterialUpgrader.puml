@@ -1,0 +1,5 @@
+@startuml
+class SpeedTree9MaterialUpgrader {
+}
+MaterialUpgrader <|-- SpeedTree9MaterialUpgrader
+@enduml

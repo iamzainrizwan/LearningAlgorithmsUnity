@@ -1,0 +1,201 @@
+@startuml
+class X86 <<unsafe>> <<static>> <<partial>> {
+}
+class Sse2 <<static>> {
+    + {static} IsSse2Supported : bool <<get>>
+    + {static} SHUFFLE2(x:int, y:int) : int
+    + {static} stream_si32(mem_addr:int*, a:int) : void
+    + {static} stream_si64(mem_addr:long*, a:long) : void
+    + {static} stream_pd(mem_addr:void*, a:v128) : void
+    + {static} stream_si128(mem_addr:void*, a:v128) : void
+    + {static} add_epi8(a:v128, b:v128) : v128
+    + {static} add_epi16(a:v128, b:v128) : v128
+    + {static} add_epi32(a:v128, b:v128) : v128
+    + {static} add_epi64(a:v128, b:v128) : v128
+    + {static} adds_epi8(a:v128, b:v128) : v128
+    + {static} adds_epi16(a:v128, b:v128) : v128
+    + {static} adds_epu8(a:v128, b:v128) : v128
+    + {static} adds_epu16(a:v128, b:v128) : v128
+    + {static} avg_epu8(a:v128, b:v128) : v128
+    + {static} avg_epu16(a:v128, b:v128) : v128
+    + {static} madd_epi16(a:v128, b:v128) : v128
+    + {static} max_epi16(a:v128, b:v128) : v128
+    + {static} max_epu8(a:v128, b:v128) : v128
+    + {static} min_epi16(a:v128, b:v128) : v128
+    + {static} min_epu8(a:v128, b:v128) : v128
+    + {static} mulhi_epi16(a:v128, b:v128) : v128
+    + {static} mulhi_epu16(a:v128, b:v128) : v128
+    + {static} mullo_epi16(a:v128, b:v128) : v128
+    + {static} mul_epu32(a:v128, b:v128) : v128
+    + {static} sad_epu8(a:v128, b:v128) : v128
+    + {static} sub_epi8(a:v128, b:v128) : v128
+    + {static} sub_epi16(a:v128, b:v128) : v128
+    + {static} sub_epi32(a:v128, b:v128) : v128
+    + {static} sub_epi64(a:v128, b:v128) : v128
+    + {static} subs_epi8(a:v128, b:v128) : v128
+    + {static} subs_epi16(a:v128, b:v128) : v128
+    + {static} subs_epu8(a:v128, b:v128) : v128
+    + {static} subs_epu16(a:v128, b:v128) : v128
+    + {static} slli_si128(a:v128, imm8:int) : v128
+    + {static} bslli_si128(a:v128, imm8:int) : v128
+    + {static} bsrli_si128(a:v128, imm8:int) : v128
+    + {static} slli_epi16(a:v128, imm8:int) : v128
+    + {static} sll_epi16(a:v128, count:v128) : v128
+    + {static} slli_epi32(a:v128, imm8:int) : v128
+    + {static} sll_epi32(a:v128, count:v128) : v128
+    + {static} slli_epi64(a:v128, imm8:int) : v128
+    + {static} sll_epi64(a:v128, count:v128) : v128
+    + {static} srai_epi16(a:v128, imm8:int) : v128
+    + {static} sra_epi16(a:v128, count:v128) : v128
+    + {static} srai_epi32(a:v128, imm8:int) : v128
+    + {static} sra_epi32(a:v128, count:v128) : v128
+    + {static} srli_si128(a:v128, imm8:int) : v128
+    + {static} srli_epi16(a:v128, imm8:int) : v128
+    + {static} srl_epi16(a:v128, count:v128) : v128
+    + {static} srli_epi32(a:v128, imm8:int) : v128
+    + {static} srl_epi32(a:v128, count:v128) : v128
+    + {static} srli_epi64(a:v128, imm8:int) : v128
+    + {static} srl_epi64(a:v128, count:v128) : v128
+    + {static} and_si128(a:v128, b:v128) : v128
+    + {static} andnot_si128(a:v128, b:v128) : v128
+    + {static} or_si128(a:v128, b:v128) : v128
+    + {static} xor_si128(a:v128, b:v128) : v128
+    + {static} cmpeq_epi8(a:v128, b:v128) : v128
+    + {static} cmpeq_epi16(a:v128, b:v128) : v128
+    + {static} cmpeq_epi32(a:v128, b:v128) : v128
+    + {static} cmpgt_epi8(a:v128, b:v128) : v128
+    + {static} cmpgt_epi16(a:v128, b:v128) : v128
+    + {static} cmpgt_epi32(a:v128, b:v128) : v128
+    + {static} cmplt_epi8(a:v128, b:v128) : v128
+    + {static} cmplt_epi16(a:v128, b:v128) : v128
+    + {static} cmplt_epi32(a:v128, b:v128) : v128
+    + {static} cvtepi32_pd(a:v128) : v128
+    + {static} cvtsi32_sd(a:v128, b:int) : v128
+    + {static} cvtsi64_sd(a:v128, b:long) : v128
+    + {static} cvtsi64x_sd(a:v128, b:long) : v128
+    + {static} cvtepi32_ps(a:v128) : v128
+    + {static} cvtsi32_si128(a:int) : v128
+    + {static} cvtsi64_si128(a:long) : v128
+    + {static} cvtsi64x_si128(a:long) : v128
+    + {static} cvtsi128_si32(a:v128) : int
+    + {static} cvtsi128_si64(a:v128) : long
+    + {static} cvtsi128_si64x(a:v128) : long
+    + {static} set_epi64x(e1:long, e0:long) : v128
+    + {static} set_epi32(e3:int, e2:int, e1:int, e0:int) : v128
+    + {static} set_epi16(e7:short, e6:short, e5:short, e4:short, e3:short, e2:short, e1:short, e0:short) : v128
+    + {static} set_epi8(e15_:sbyte, e14_:sbyte, e13_:sbyte, e12_:sbyte, e11_:sbyte, e10_:sbyte, e9_:sbyte, e8_:sbyte, e7_:sbyte, e6_:sbyte, e5_:sbyte, e4_:sbyte, e3_:sbyte, e2_:sbyte, e1_:sbyte, e0_:sbyte) : v128
+    + {static} set1_epi64x(a:long) : v128
+    + {static} set1_epi32(a:int) : v128
+    + {static} set1_epi16(a:short) : v128
+    + {static} set1_epi8(a:sbyte) : v128
+    + {static} setr_epi32(e3:int, e2:int, e1:int, e0:int) : v128
+    + {static} setr_epi16(e7:short, e6:short, e5:short, e4:short, e3:short, e2:short, e1:short, e0:short) : v128
+    + {static} setr_epi8(e15_:sbyte, e14_:sbyte, e13_:sbyte, e12_:sbyte, e11_:sbyte, e10_:sbyte, e9_:sbyte, e8_:sbyte, e7_:sbyte, e6_:sbyte, e5_:sbyte, e4_:sbyte, e3_:sbyte, e2_:sbyte, e1_:sbyte, e0_:sbyte) : v128
+    + {static} setzero_si128() : v128
+    + {static} move_epi64(a:v128) : v128
+    + {static} packs_epi16(a:v128, b:v128) : v128
+    + {static} packs_epi32(a:v128, b:v128) : v128
+    + {static} packus_epi16(a:v128, b:v128) : v128
+    + {static} extract_epi16(a:v128, imm8:int) : ushort
+    + {static} insert_epi16(a:v128, i:int, imm8:int) : v128
+    + {static} movemask_epi8(a:v128) : int
+    + {static} shuffle_epi32(a:v128, imm8:int) : v128
+    + {static} shufflehi_epi16(a:v128, imm8:int) : v128
+    + {static} shufflelo_epi16(a:v128, imm8:int) : v128
+    + {static} unpackhi_epi8(a:v128, b:v128) : v128
+    + {static} unpackhi_epi16(a:v128, b:v128) : v128
+    + {static} unpackhi_epi32(a:v128, b:v128) : v128
+    + {static} unpackhi_epi64(a:v128, b:v128) : v128
+    + {static} unpacklo_epi8(a:v128, b:v128) : v128
+    + {static} unpacklo_epi16(a:v128, b:v128) : v128
+    + {static} unpacklo_epi32(a:v128, b:v128) : v128
+    + {static} unpacklo_epi64(a:v128, b:v128) : v128
+    + {static} add_sd(a:v128, b:v128) : v128
+    + {static} add_pd(a:v128, b:v128) : v128
+    + {static} div_sd(a:v128, b:v128) : v128
+    + {static} div_pd(a:v128, b:v128) : v128
+    + {static} max_sd(a:v128, b:v128) : v128
+    + {static} max_pd(a:v128, b:v128) : v128
+    + {static} min_sd(a:v128, b:v128) : v128
+    + {static} min_pd(a:v128, b:v128) : v128
+    + {static} mul_sd(a:v128, b:v128) : v128
+    + {static} mul_pd(a:v128, b:v128) : v128
+    + {static} sqrt_sd(a:v128, b:v128) : v128
+    + {static} sqrt_pd(a:v128) : v128
+    + {static} sub_sd(a:v128, b:v128) : v128
+    + {static} sub_pd(a:v128, b:v128) : v128
+    + {static} and_pd(a:v128, b:v128) : v128
+    + {static} andnot_pd(a:v128, b:v128) : v128
+    + {static} or_pd(a:v128, b:v128) : v128
+    + {static} xor_pd(a:v128, b:v128) : v128
+    + {static} cmpeq_sd(a:v128, b:v128) : v128
+    + {static} cmplt_sd(a:v128, b:v128) : v128
+    + {static} cmple_sd(a:v128, b:v128) : v128
+    + {static} cmpgt_sd(a:v128, b:v128) : v128
+    + {static} cmpge_sd(a:v128, b:v128) : v128
+    + {static} cmpord_sd(a:v128, b:v128) : v128
+    + {static} cmpunord_sd(a:v128, b:v128) : v128
+    + {static} cmpneq_sd(a:v128, b:v128) : v128
+    + {static} cmpnlt_sd(a:v128, b:v128) : v128
+    + {static} cmpnle_sd(a:v128, b:v128) : v128
+    + {static} cmpngt_sd(a:v128, b:v128) : v128
+    + {static} cmpnge_sd(a:v128, b:v128) : v128
+    + {static} cmpeq_pd(a:v128, b:v128) : v128
+    + {static} cmplt_pd(a:v128, b:v128) : v128
+    + {static} cmple_pd(a:v128, b:v128) : v128
+    + {static} cmpgt_pd(a:v128, b:v128) : v128
+    + {static} cmpge_pd(a:v128, b:v128) : v128
+    + {static} cmpord_pd(a:v128, b:v128) : v128
+    + {static} cmpunord_pd(a:v128, b:v128) : v128
+    + {static} cmpneq_pd(a:v128, b:v128) : v128
+    + {static} cmpnlt_pd(a:v128, b:v128) : v128
+    + {static} cmpnle_pd(a:v128, b:v128) : v128
+    + {static} cmpngt_pd(a:v128, b:v128) : v128
+    + {static} cmpnge_pd(a:v128, b:v128) : v128
+    + {static} comieq_sd(a:v128, b:v128) : int
+    + {static} comilt_sd(a:v128, b:v128) : int
+    + {static} comile_sd(a:v128, b:v128) : int
+    + {static} comigt_sd(a:v128, b:v128) : int
+    + {static} comige_sd(a:v128, b:v128) : int
+    + {static} comineq_sd(a:v128, b:v128) : int
+    + {static} ucomieq_sd(a:v128, b:v128) : int
+    + {static} ucomilt_sd(a:v128, b:v128) : int
+    + {static} ucomile_sd(a:v128, b:v128) : int
+    + {static} ucomigt_sd(a:v128, b:v128) : int
+    + {static} ucomige_sd(a:v128, b:v128) : int
+    + {static} ucomineq_sd(a:v128, b:v128) : int
+    + {static} cvtpd_ps(a:v128) : v128
+    + {static} cvtps_pd(a:v128) : v128
+    + {static} cvtpd_epi32(a:v128) : v128
+    + {static} cvtsd_si32(a:v128) : int
+    + {static} cvtsd_si64(a:v128) : long
+    + {static} cvtsd_si64x(a:v128) : long
+    + {static} cvtsd_ss(a:v128, b:v128) : v128
+    + {static} cvtsd_f64(a:v128) : double
+    + {static} cvtss_sd(a:v128, b:v128) : v128
+    + {static} cvttpd_epi32(a:v128) : v128
+    + {static} cvttsd_si32(a:v128) : int
+    + {static} cvttsd_si64(a:v128) : long
+    + {static} cvttsd_si64x(a:v128) : long
+    + {static} cvtps_epi32(a:v128) : v128
+    + {static} cvttps_epi32(a:v128) : v128
+    + {static} set_sd(a:double) : v128
+    + {static} set1_pd(a:double) : v128
+    + {static} set_pd1(a:double) : v128
+    + {static} set_pd(e1:double, e0:double) : v128
+    + {static} setr_pd(e1:double, e0:double) : v128
+    + {static} unpackhi_pd(a:v128, b:v128) : v128
+    + {static} unpacklo_pd(a:v128, b:v128) : v128
+    + {static} movemask_pd(a:v128) : int
+    + {static} shuffle_pd(a:v128, b:v128, imm8:int) : v128
+    + {static} move_sd(a:v128, b:v128) : v128
+    + {static} loadu_si32(mem_addr:void*) : v128
+    + {static} storeu_si32(mem_addr:void*, a:v128) : void
+    + {static} load_si128(ptr:void*) : v128
+    + {static} loadu_si128(ptr:void*) : v128
+    + {static} store_si128(ptr:void*, val:v128) : void
+    + {static} storeu_si128(ptr:void*, val:v128) : void
+    + {static} clflush(ptr:void*) : void
+}
+X86 +-- Sse2
+@enduml

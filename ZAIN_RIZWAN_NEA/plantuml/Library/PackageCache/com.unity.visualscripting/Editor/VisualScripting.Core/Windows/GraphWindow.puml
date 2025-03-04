@@ -1,0 +1,35 @@
+@startuml
+class GraphWindow <<sealed>> {
+    + {static} OpenTab() : void
+    + {static} OpenTab(reference:GraphReference) : void
+    + {static} OpenActive(reference:GraphReference) : void
+    + locked : bool <<get>> <<set>>
+    + graphInspectorEnabled : bool <<get>> <<set>> = true
+    + variablesInspectorEnabled : bool <<get>> <<set>> = true
+    + Validate() : void
+    + Clear() : void
+    + MatchSelection(IsOnHierarchyChange:bool) : void
+    + isActive : bool <<get>>
+    + {static}  <<event>> activeContextChanged : Action<IGraphContext> 
+    + AddCursorRect(rect:Rect, cursor:MouseCursor) : void
+    + showSidebars : bool <<get>>
+}
+class "IEnumerable`1"<T> {
+}
+class "HashSet`1"<T> {
+}
+struct CursorRect {
+}
+LudiqEditorWindow <|-- GraphWindow
+ICanvasWindow <|-- GraphWindow
+GraphWindow --> "context" IGraphContext
+GraphWindow --> "reference" GraphReference
+GraphWindow --> "tabs<GraphWindow>" "IEnumerable`1"
+GraphWindow --> "tabsNoAlloc<GraphWindow>" "HashSet`1"
+GraphWindow --> "active" GraphWindow
+GraphWindow --> "activeReference" GraphReference
+GraphWindow --> "activeContext" IGraphContext
+GraphWindow +-- CursorRect
+CursorRect --> "rect" Rect
+CursorRect --> "cursor" MouseCursor
+@enduml

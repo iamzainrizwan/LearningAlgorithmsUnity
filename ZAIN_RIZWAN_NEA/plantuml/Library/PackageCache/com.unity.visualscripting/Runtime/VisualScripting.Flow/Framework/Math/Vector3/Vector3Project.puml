@@ -1,0 +1,8 @@
+@startuml
+class Vector3Project <<sealed>> {
+    + <<override>> Operation(a:UnityEngine.Vector3, b:UnityEngine.Vector3) : UnityEngine.Vector3
+}
+class "Project`1"<T> {
+}
+"Project`1" "<UnityEngine.Vector3>" <|-- Vector3Project
+@enduml

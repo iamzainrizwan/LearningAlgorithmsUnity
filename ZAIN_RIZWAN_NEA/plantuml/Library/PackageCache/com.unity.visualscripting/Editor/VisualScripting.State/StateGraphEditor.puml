@@ -1,0 +1,6 @@
+@startuml
+class StateGraphEditor {
+    + StateGraphEditor(metadata:Metadata)
+}
+GraphEditor <|-- StateGraphEditor
+@enduml

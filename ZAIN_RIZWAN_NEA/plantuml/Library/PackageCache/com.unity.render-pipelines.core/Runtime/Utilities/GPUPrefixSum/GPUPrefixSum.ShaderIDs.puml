@@ -1,0 +1,16 @@
+@startuml
+struct GPUPrefixSum {
+}
+class ShaderIDs <<static>> {
+    + {static} <<readonly>> _InputBuffer : int
+    + {static} <<readonly>> _OutputBuffer : int
+    + {static} <<readonly>> _InputCountBuffer : int
+    + {static} <<readonly>> _TotalLevelsBuffer : int
+    + {static} <<readonly>> _OutputTotalLevelsBuffer : int
+    + {static} <<readonly>> _OutputDispatchLevelArgsBuffer : int
+    + {static} <<readonly>> _LevelsOffsetsBuffer : int
+    + {static} <<readonly>> _OutputLevelsOffsetsBuffer : int
+    + {static} <<readonly>> _PrefixSumIntArgs : int
+}
+GPUPrefixSum +-- ShaderIDs
+@enduml

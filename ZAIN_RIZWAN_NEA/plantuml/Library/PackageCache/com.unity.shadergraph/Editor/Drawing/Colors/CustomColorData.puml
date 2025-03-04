@@ -1,0 +1,16 @@
+@startuml
+class SerializableUserColor {
+    + Key : string
+    + SerializableUserColor(pair:KeyValuePair<string, Color>)
+    + SerializableUserColor()
+}
+class CustomColorData {
+    + TryGetColor(provider:string, color:Color) : bool
+    + Set(provider:string, color:Color) : void
+    + Remove(provider:string) : void
+    + OnBeforeSerialize() : void
+    + OnAfterDeserialize() : void
+}
+SerializableUserColor o-> "Value" Color
+ISerializationCallbackReceiver <|-- CustomColorData
+@enduml

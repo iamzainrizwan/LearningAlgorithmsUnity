@@ -1,0 +1,10 @@
+@startuml
+class PaniniProjection <<sealed>> {
+    + IsActive() : bool
+    + IsTileCompatible() : bool
+}
+VolumeComponent <|-- PaniniProjection
+IPostProcessComponent <|-- PaniniProjection
+PaniniProjection o-> "distance" ClampedFloatParameter
+PaniniProjection o-> "cropToFit" ClampedFloatParameter
+@enduml

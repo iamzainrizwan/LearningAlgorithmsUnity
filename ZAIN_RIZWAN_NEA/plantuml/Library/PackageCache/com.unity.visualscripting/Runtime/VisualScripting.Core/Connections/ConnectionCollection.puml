@@ -1,0 +1,10 @@
+@startuml
+class "ConnectionCollection`3"<TConnection,TSource,TDestination> {
+    + ConnectionCollection()
+}
+class "ConnectionCollectionBase`4"<T1,T2,T3,T4> {
+}
+class "IConnection`2"<T1,T2> {
+}
+"ConnectionCollectionBase`4" "<TConnection,TSource,TDestination,List<TConnection>>" <|-- "ConnectionCollection`3"
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class RectangleSelect {
+}
+RectangleTool <|-- RectangleSelect
+@enduml

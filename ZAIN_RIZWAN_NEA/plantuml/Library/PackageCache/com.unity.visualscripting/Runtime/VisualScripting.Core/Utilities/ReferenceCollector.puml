@@ -1,0 +1,5 @@
+@startuml
+class ReferenceCollector <<static>> {
+    + {static}  <<event>> onSceneUnloaded : Action 
+}
+@enduml

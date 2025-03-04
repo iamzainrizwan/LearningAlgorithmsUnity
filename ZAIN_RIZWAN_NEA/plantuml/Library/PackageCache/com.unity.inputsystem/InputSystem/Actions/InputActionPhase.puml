@@ -1,0 +1,9 @@
+@startuml
+enum InputActionPhase {
+    Disabled,
+    Waiting,
+    Started,
+    Performed,
+    Canceled,
+}
+@enduml

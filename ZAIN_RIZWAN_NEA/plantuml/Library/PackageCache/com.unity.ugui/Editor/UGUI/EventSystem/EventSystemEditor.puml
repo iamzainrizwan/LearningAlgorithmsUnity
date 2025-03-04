@@ -1,0 +1,9 @@
+@startuml
+class EventSystemEditor {
+    + <<override>> OnInspectorGUI() : void
+    + <<override>> HasPreviewGUI() : bool
+    + <<override>> RequiresConstantRepaint() : bool
+    + <<override>> OnPreviewGUI(rect:Rect, background:GUIStyle) : void
+}
+Editor <|-- EventSystemEditor
+@enduml

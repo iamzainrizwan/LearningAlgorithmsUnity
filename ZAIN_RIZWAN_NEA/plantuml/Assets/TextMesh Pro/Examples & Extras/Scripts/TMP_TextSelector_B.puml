@@ -1,0 +1,14 @@
+@startuml
+class TMP_TextSelector_B {
+    + OnPointerEnter(eventData:PointerEventData) : void
+    + OnPointerExit(eventData:PointerEventData) : void
+    + OnPointerClick(eventData:PointerEventData) : void
+    + OnPointerUp(eventData:PointerEventData) : void
+}
+MonoBehaviour <|-- TMP_TextSelector_B
+IPointerEnterHandler <|-- TMP_TextSelector_B
+IPointerExitHandler <|-- TMP_TextSelector_B
+IPointerClickHandler <|-- TMP_TextSelector_B
+IPointerUpHandler <|-- TMP_TextSelector_B
+TMP_TextSelector_B --> "TextPopup_Prefab_01" RectTransform
+@enduml

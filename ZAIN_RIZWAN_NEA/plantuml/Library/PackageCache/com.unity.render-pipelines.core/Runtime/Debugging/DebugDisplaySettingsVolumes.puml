@@ -1,0 +1,44 @@
+@startuml
+class DebugDisplaySettingsVolume {
+    + DebugDisplaySettingsVolume(volumeDebugSettings:IVolumeDebugSettings)
+    + AreAnySettingsActive : bool <<get>>
+    + CreatePanel() : IDebugDisplaySettingsPanelDisposable
+}
+class Styles <<static>> {
+}
+class Strings <<static>> {
+    + {static} <<readonly>> none : string = "None"
+    + {static} <<readonly>> camera : string = "Camera"
+    + {static} <<readonly>> parameter : string = "Parameter"
+    + {static} <<readonly>> component : string = "Component"
+    + {static} <<readonly>> debugViewNotSupported : string = "Debug view not supported"
+    + {static} <<readonly>> volumeInfo : string = "Volume Info"
+    + {static} <<readonly>> resultValue : string = "Result"
+    + {static} <<readonly>> resultValueTooltip : string = "The interpolated result value of the parameter. This value is used to render the camera."
+    + {static} <<readonly>> globalDefaultValue : string = "Default"
+    + {static} <<readonly>> globalDefaultValueTooltip : string = "Default value for this parameter, defined by the Default Volume Profile in Global Settings."
+    + {static} <<readonly>> qualityLevelValue : string = "SRP Asset"
+    + {static} <<readonly>> qualityLevelValueTooltip : string = "Override value for this parameter, defined by the Volume Profile in the current SRP Asset."
+    + {static} <<readonly>> global : string = "Global"
+    + {static} <<readonly>> local : string = "Local"
+}
+class WidgetFactory <<static>> {
+    + {static} CreateComponentSelector(panel:SettingsPanel, refresh:Action<DebugUI.Field<int>, int>) : DebugUI.EnumField
+    + {static} CreateCameraSelector(panel:SettingsPanel, refresh:Action<DebugUI.Field<Object>, Object>) : DebugUI.ObjectPopupField
+    + {static} CreateVolumeTable(data:DebugDisplaySettingsVolume) : DebugUI.Table
+}
+class SettingsPanel {
+    + SettingsPanel(data:DebugDisplaySettingsVolume)
+}
+class "DebugDisplaySettingsPanel`1"<T> {
+}
+IDebugDisplaySettingsData <|-- DebugDisplaySettingsVolume
+DebugDisplaySettingsVolume --> "volumeDebugSettings" IVolumeDebugSettings
+DebugDisplaySettingsVolume +-- Styles
+Styles o-> "none" GUIContent
+Styles o-> "editorCamera" GUIContent
+DebugDisplaySettingsVolume +-- Strings
+DebugDisplaySettingsVolume +-- WidgetFactory
+DebugDisplaySettingsVolume +-- SettingsPanel
+"DebugDisplaySettingsPanel`1" "<DebugDisplaySettingsVolume>" <|-- SettingsPanel
+@enduml

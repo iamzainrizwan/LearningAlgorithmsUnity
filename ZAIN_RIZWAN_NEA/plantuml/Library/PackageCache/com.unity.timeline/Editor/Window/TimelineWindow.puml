@@ -1,0 +1,35 @@
+@startuml
+interface IWindowStateProvider {
+}
+class TimelineWindow <<partial>> {
+    + isDragging : bool <<get>> <<set>>
+    + <<override>> locked : bool <<get>> <<set>>
+    + hierarchyChangedThisFrame : bool <<get>>
+    + TimelineWindow()
+    + RebuildGraphIfNecessary(evaluate:bool) : void
+    + <<new>> RepaintImmediately() : void
+    + {static} CreateNewTimeline() : void
+    + {static} ShowWindow() : void
+    + {static} OnDoubleClick(instanceID:int, line:int) : bool
+    + <<virtual>> AddItemsToMenu(menu:GenericMenu) : void
+}
+class TimelineWindowPreferences {
+}
+class "List`1"<T> {
+}
+class DoCreateTimeline {
+    + <<override>> Action(instanceId:int, pathName:string, resourceFile:string) : void
+}
+TimelineEditorWindow <|-- TimelineWindow
+IHasCustomMenu <|-- TimelineWindow
+IWindowStateProvider <|-- TimelineWindow
+TimelineWindow --> "preferences" TimelineWindowPreferences
+TimelineWindow --> "instance" TimelineWindow
+TimelineWindow --> "clientArea" Rect
+TimelineWindow --> "styles" DirectorStyles
+TimelineWindow --> "allTracks<TimelineTrackBaseGUI>" "List`1"
+TimelineWindow --> "state" WindowState
+TimelineWindow +-- TimelineWindowPreferences
+TimelineWindowPreferences o-> "timeReferenceMode" TimeReferenceMode
+TimelineWindow +-- DoCreateTimeline
+@enduml

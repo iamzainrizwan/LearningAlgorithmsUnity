@@ -1,0 +1,8 @@
+@startuml
+class RebindSaveLoad {
+    + OnEnable() : void
+    + OnDisable() : void
+}
+MonoBehaviour <|-- RebindSaveLoad
+RebindSaveLoad --> "actions" InputActionAsset
+@enduml

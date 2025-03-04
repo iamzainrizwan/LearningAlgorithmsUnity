@@ -1,0 +1,22 @@
+@startuml
+class PropertyCollector {
+    + propertyCount : int <<get>>
+    + GetProperty(index:int) : AbstractShaderProperty
+    + Sort() : void
+    + SetReadOnly() : void
+    + AddShaderProperty(prop:AbstractShaderProperty) : void
+    + GetPropertiesDeclaration(builder:ShaderStringBuilder, mode:GenerationMode, defaultPrecision:ConcretePrecision) : void
+    + HasDotsProperties() : bool
+    + GetConfiguredTextures() : List<TextureInfo>
+}
+struct TextureInfo {
+    + name : string
+    + textureId : int
+    + modifiable : bool
+}
+class "IEnumerable`1"<T> {
+}
+PropertyCollector --> "properties<AbstractShaderProperty>" "IEnumerable`1"
+PropertyCollector +-- TextureInfo
+TextureInfo --> "dimension" TextureDimension
+@enduml

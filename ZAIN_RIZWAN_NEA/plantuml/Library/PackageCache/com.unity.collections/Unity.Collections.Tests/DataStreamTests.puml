@@ -1,0 +1,79 @@
+@startuml
+class DataStreamTests {
+    + IsCreated_ReturnsTrueAfterConstructor() : void
+    + LengthInBits_MatchesWrittenCount() : void
+    + CreateStreamWithPartOfSourceByteArray() : void
+    + CreateStreamWithSourceByteArray() : void
+    + ReadIntoExistingNativeByteArray() : void
+    + ReadIntoExistingByteArray() : void
+    + ReadingDataFromStreamWithSliceOffset() : void
+    + GetStreamReaderUnsafePtr() : void
+    + WriteOutOfBounds() : void
+    + ReadWritePackedUIntWithDeferred() : void
+    + PassDataStreamReaderToJob() : void
+    + MiNiCheck() : void
+}
+class ReadAndWrite {
+    + UShort(expected:ushort) : void
+    + RawBits(expected:uint) : void
+    + RawBits_OutOfCapacity() : void
+    + UInt(expected:uint) : void
+    + Float(expected:float) : void
+    + Short(expected:short) : void
+    + FixedString32() : void
+    + FixedString64() : void
+    + FixedString128() : void
+    + FixedString512() : void
+    + FixedString4096() : void
+    + LongLooped() : void
+}
+class ReadAndWriteNetworkOrder {
+    + Int(expected:int) : void
+    + UInt(expected:uint) : void
+    + Short(expected:short) : void
+    + UShort(expected:ushort) : void
+    + ReadIncorrect() : void
+}
+class ReadWritePacked {
+    + UInt() : void
+    + IntExistingData() : void
+    + Int() : void
+    + Long() : void
+    + ULong() : void
+    + Float() : void
+    + Double() : void
+    + WriteOutSideOfCapacity_Fails() : void
+    + ReadOutSideOfCapacity_Fails() : void
+}
+class ReadWritePackedDelta {
+    + Int() : void
+    + Long() : void
+    + ULong() : void
+    + FixedString32() : void
+    + FixedString32_LargerBaseline() : void
+    + FixedString64() : void
+    + FixedString128() : void
+    + FixedString512() : void
+    + FixedString4096() : void
+    + Float_OutOfBoundsFails() : void
+    + Float_UnchangedData() : void
+    + Float_ChangedData() : void
+    + UInt_OutOfCapacity() : void
+    + Flush_Works(numWrites:int) : void
+    + NotMirroringFlushCall_Fails() : void
+    + CanMixPackedAndNonPacked() : void
+}
+struct ReaderTestJob {
+    + Execute() : void
+}
+class "NativeArray`1"<T> {
+}
+DataStreamTests +-- ReadAndWrite
+DataStreamTests +-- ReadAndWriteNetworkOrder
+DataStreamTests +-- ReadWritePacked
+DataStreamTests +-- ReadWritePackedDelta
+DataStreamTests +-- ReaderTestJob
+IJob <|-- ReaderTestJob
+ReaderTestJob --> "Reader" DataStreamReader
+ReaderTestJob --> "ReturnValue<int>" "NativeArray`1"
+@enduml

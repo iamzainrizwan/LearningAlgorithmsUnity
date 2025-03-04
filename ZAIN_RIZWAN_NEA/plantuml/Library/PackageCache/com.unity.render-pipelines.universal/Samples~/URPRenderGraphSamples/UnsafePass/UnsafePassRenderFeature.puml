@@ -1,0 +1,15 @@
+@startuml
+class UnsafePassRenderFeature {
+    + <<override>> Create() : void
+    + <<override>> AddRenderPasses(renderer:ScriptableRenderer, renderingData:RenderingData) : void
+}
+class UnsafePass {
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+class PassData {
+}
+ScriptableRendererFeature <|-- UnsafePassRenderFeature
+UnsafePassRenderFeature +-- UnsafePass
+ScriptableRenderPass <|-- UnsafePass
+UnsafePass +-- PassData
+@enduml

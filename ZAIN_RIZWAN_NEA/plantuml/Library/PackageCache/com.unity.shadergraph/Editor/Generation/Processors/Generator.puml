@@ -1,0 +1,22 @@
+@startuml
+struct GeneratedShader {
+    + codeString : string
+    + shaderName : string
+    + errorMessage : string
+}
+class Generator {
+    + generatedShader : string <<get>>
+    + Generator(graphData:GraphData, outputNode:AbstractMaterialNode, mode:GenerationMode, primaryShaderName:string, targets:Target[], assetCollection:AssetCollection, humanReadable:bool)
+    + GatherActiveFieldsFromNode(outputNode:AbstractMaterialNode, pass:PassDescriptor, activeBlocks:List<(BlockFieldDescriptor descriptor, bool isDefaultValue)>, connectedBlocks:List<BlockFieldDescriptor>, target:Target) : ActiveFields
+}
+class "List`1"<T> {
+}
+class "IEnumerable`1"<T> {
+}
+GeneratedShader --> "assignedTextures<PropertyCollector.TextureInfo>" "List`1"
+GeneratedShader --> "Null" GeneratedShader
+Generator --> "configuredTextures<PropertyCollector.TextureInfo>" "List`1"
+Generator --> "temporaryBlocks<BlockNode>" "List`1"
+Generator --> "allGeneratedShaders<GeneratedShader>" "IEnumerable`1"
+Generator --> "allGeneratedComputeShaders<GeneratedShader>" "IEnumerable`1"
+@enduml

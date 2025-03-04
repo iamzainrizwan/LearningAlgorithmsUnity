@@ -1,0 +1,39 @@
+@startuml
+class TypeFilter <<sealed>> {
+    + TypeFilter(matching:TypesMatching, types:IEnumerable<Type>)
+    + TypeFilter(matching:TypesMatching, types:Type[])
+    + TypeFilter(types:IEnumerable<Type>)
+    + TypeFilter(types:Type[])
+    + Value : bool <<get>> <<set>>
+    + Reference : bool <<get>> <<set>>
+    + Classes : bool <<get>> <<set>>
+    + Interfaces : bool <<get>> <<set>>
+    + Structs : bool <<get>> <<set>>
+    + Enums : bool <<get>> <<set>>
+    + Public : bool <<get>> <<set>>
+    + NonPublic : bool <<get>> <<set>>
+    + Abstract : bool <<get>> <<set>>
+    + Generic : bool <<get>> <<set>>
+    + OpenConstructedGeneric : bool <<get>> <<set>>
+    + Static : bool <<get>> <<set>>
+    + Sealed : bool <<get>> <<set>>
+    + Nested : bool <<get>> <<set>>
+    + Primitives : bool <<get>> <<set>>
+    + Object : bool <<get>> <<set>>
+    + NonSerializable : bool <<get>> <<set>>
+    + Obsolete : bool <<get>> <<set>>
+    + ExpectsBoolean : bool <<get>>
+    + Clone() : TypeFilter
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + ValidateType(type:Type) : bool
+    + <<override>> ToString() : string
+}
+class "HashSet`1"<T> {
+}
+Attribute <|-- TypeFilter
+ICloneable <|-- TypeFilter
+TypeFilter --> "Matching" TypesMatching
+TypeFilter --> "Types<Type>" "HashSet`1"
+TypeFilter --> "Any" TypeFilter
+@enduml

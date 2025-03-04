@@ -1,0 +1,13 @@
+@startuml
+class GenericDefaultControl {
+    + GenericDefaultControl(name:string)
+}
+class "Func`2"<T1,T2> {
+}
+DefaultControl <|-- GenericDefaultControl
+GenericDefaultControl --> "position<IGUIState,Vector3>" "Func`2"
+GenericDefaultControl --> "forward<IGUIState,Vector3>" "Func`2"
+GenericDefaultControl --> "up<IGUIState,Vector3>" "Func`2"
+GenericDefaultControl --> "right<IGUIState,Vector3>" "Func`2"
+GenericDefaultControl o-> "userData<IGUIState,object>" "Func`2"
+@enduml

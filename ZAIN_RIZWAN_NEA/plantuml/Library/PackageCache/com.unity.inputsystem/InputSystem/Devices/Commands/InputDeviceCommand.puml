@@ -1,0 +1,14 @@
+@startuml
+struct InputDeviceCommand {
+    + <<const>> BaseCommandSize : int = 8
+    + <<const>> GenericFailure : long
+    + <<const>> GenericSuccess : long = 1
+    + sizeInBytes : int
+    + payloadSizeInBytes : int <<get>>
+    + InputDeviceCommand(type:FourCC, sizeInBytes:int)
+    + {static} <<unsafe>> AllocateNative(type:FourCC, payloadSize:int) : NativeArray<byte>
+}
+IInputDeviceCommandInfo <|-- InputDeviceCommand
+InputDeviceCommand --> "type" FourCC
+InputDeviceCommand --> "typeStatic" FourCC
+@enduml

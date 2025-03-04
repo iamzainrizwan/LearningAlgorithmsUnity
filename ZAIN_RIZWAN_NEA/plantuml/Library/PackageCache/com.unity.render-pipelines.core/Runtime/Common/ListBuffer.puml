@@ -1,0 +1,15 @@
+@startuml
+struct "ListBuffer`1"<T> {
+    + Count : int <<get>>
+    + Capacity : int <<get>>
+    + ListBuffer(bufferPtr:T*, countPtr:int*, capacity:int)
+    + <<unsafe>> GetUnchecked(index:int) : ref T
+    + TryAdd(value:T) : bool
+    + <<unsafe>> CopyTo(dstBuffer:T*, startDstIndex:int, copyCount:int) : void
+    + TryCopyTo(other:ListBuffer<T>) : bool
+    + TryCopyFrom(srcPtr:T*, count:int) : bool
+}
+class ListBufferExtensions <<static>> {
+    + {static} QuickSort(self:ListBuffer<T>) : void
+}
+@enduml

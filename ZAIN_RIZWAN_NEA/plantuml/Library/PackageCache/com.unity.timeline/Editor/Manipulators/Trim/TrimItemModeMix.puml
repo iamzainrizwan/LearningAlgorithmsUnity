@@ -1,0 +1,10 @@
+@startuml
+class TrimItemModeMix {
+    + OnBeforeTrim(item:ITrimmable, trimDirection:TrimEdge) : void
+    + TrimStart(item:ITrimmable, time:double, affectTimeScale:bool) : void
+    + TrimEnd(item:ITrimmable, time:double, affectTimeScale:bool) : void
+    + DrawGUI(state:WindowState, bounds:Rect, color:Color, edge:TrimEdge) : void
+}
+ITrimItemMode <|-- TrimItemModeMix
+ITrimItemDrawer <|-- TrimItemModeMix
+@enduml

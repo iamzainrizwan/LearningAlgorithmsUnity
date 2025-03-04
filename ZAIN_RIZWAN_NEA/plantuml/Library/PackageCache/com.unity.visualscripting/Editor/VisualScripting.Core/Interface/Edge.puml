@@ -1,0 +1,8 @@
+@startuml
+enum Edge {
+    Top,
+    Bottom,
+    Left,
+    Right,
+}
+@enduml

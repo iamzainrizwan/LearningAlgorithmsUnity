@@ -1,0 +1,19 @@
+@startuml
+class DragCallbackCheck {
+    + onBeginDragCalled : bool = false
+    + onDragCalled : bool = false
+    + onEndDragCalled : bool = false
+    + onDropCalled : bool = false
+    + OnBeginDrag(eventData:PointerEventData) : void
+    + OnDrag(eventData:PointerEventData) : void
+    + OnEndDrag(eventData:PointerEventData) : void
+    + OnDrop(eventData:PointerEventData) : void
+    + OnPointerDown(eventData:PointerEventData) : void
+}
+MonoBehaviour <|-- DragCallbackCheck
+IBeginDragHandler <|-- DragCallbackCheck
+IDragHandler <|-- DragCallbackCheck
+IEndDragHandler <|-- DragCallbackCheck
+IDropHandler <|-- DragCallbackCheck
+IPointerDownHandler <|-- DragCallbackCheck
+@enduml

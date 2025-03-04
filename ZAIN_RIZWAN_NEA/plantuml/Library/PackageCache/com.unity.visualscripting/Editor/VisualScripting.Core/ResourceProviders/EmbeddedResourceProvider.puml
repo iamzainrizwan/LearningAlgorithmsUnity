@@ -1,0 +1,15 @@
+@startuml
+class EmbeddedResourceProvider <<sealed>> {
+    + EmbeddedResourceProvider()
+    + GetAllFiles() : IEnumerable<string>
+    + GetFiles(path:string) : IEnumerable<string>
+    + GetDirectories(path:string) : IEnumerable<string>
+    + GetProfessionalPath(path:string, width:float) : string
+    + FileExists(path:string) : bool
+    + DirectoryExists(path:string) : bool
+    + DebugPath(path:string) : string
+    + LoadAsset(path:string) : T
+    + LoadTexture(path:string, options:CreateTextureOptions) : Texture2D
+}
+IResourceProvider <|-- EmbeddedResourceProvider
+@enduml

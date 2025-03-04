@@ -1,0 +1,9 @@
+@startuml
+class TrackResizeHandle {
+    + TrackResizeHandle(trackGUI:TimelineTrackGUI)
+    + Draw(headerRect:Rect, state:WindowState) : void
+}
+IBounds <|-- TrackResizeHandle
+TrackResizeHandle --> "boundingRect" Rect
+TrackResizeHandle --> "trackGUI" TimelineTrackGUI
+@enduml

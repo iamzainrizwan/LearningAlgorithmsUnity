@@ -1,0 +1,10 @@
+@startuml
+enum PlaybackScrollMode {
+    None,
+    Pan,
+    Smooth,
+}
+class PlaybackScroller <<static>> {
+    + {static} AutoScroll(state:WindowState) : void
+}
+@enduml

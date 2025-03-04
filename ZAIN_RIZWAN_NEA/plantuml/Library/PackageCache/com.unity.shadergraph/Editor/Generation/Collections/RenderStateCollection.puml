@@ -1,0 +1,20 @@
+@startuml
+class RenderStateCollection {
+    + RenderStateCollection()
+    + Add(renderStates:RenderStateCollection) : RenderStateCollection
+    + Add(descriptor:RenderStateDescriptor) : RenderStateCollection
+    + Add(descriptor:RenderStateDescriptor, fieldCondition:FieldCondition) : RenderStateCollection
+    + Add(descriptor:RenderStateDescriptor, fieldConditions:FieldCondition[]) : RenderStateCollection
+    + GetEnumerator() : IEnumerator<Item>
+}
+class "IEnumerable`1"<T> {
+}
+class Item {
+    + value : string <<get>>
+    + Item(descriptor:RenderStateDescriptor, fieldConditions:FieldCondition[])
+}
+"IEnumerable`1" "<RenderStateCollection.Item>" <|-- RenderStateCollection
+RenderStateCollection +-- Item
+IConditional <|-- Item
+Item --> "descriptor" RenderStateDescriptor
+@enduml

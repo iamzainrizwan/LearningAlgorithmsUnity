@@ -1,0 +1,8 @@
+@startuml
+class MergeTab {
+}
+IIncomingChangesTab <|-- MergeTab
+IRefreshableView <|-- MergeTab
+IMergeView <|-- MergeTab
+IMergeViewMenuOperations <|-- MergeTab
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class TrackballUIDrawer <<sealed>> {
+    + OnGUI(property:SerializedProperty, overrideState:SerializedProperty, title:GUIContent, computeFunc:Func<Vector4, Vector3>) : void
+}
+@enduml

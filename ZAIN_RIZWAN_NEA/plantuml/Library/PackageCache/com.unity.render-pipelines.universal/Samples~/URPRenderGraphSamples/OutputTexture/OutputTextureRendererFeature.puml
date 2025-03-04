@@ -1,0 +1,20 @@
+@startuml
+class OutputTextureRendererFeature {
+    + <<override>> Create() : void
+    + <<override>> AddRenderPasses(renderer:ScriptableRenderer, renderingData:RenderingData) : void
+}
+enum TextureType {
+    OpaqueColor,
+    Depth,
+    Normal,
+    MotionVector,
+}
+class OutputTexturePass {
+    + Setup(textureName:string, textureType:TextureType, material:Material) : void
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+ScriptableRendererFeature <|-- OutputTextureRendererFeature
+OutputTextureRendererFeature +-- TextureType
+OutputTextureRendererFeature +-- OutputTexturePass
+ScriptableRenderPass <|-- OutputTexturePass
+@enduml

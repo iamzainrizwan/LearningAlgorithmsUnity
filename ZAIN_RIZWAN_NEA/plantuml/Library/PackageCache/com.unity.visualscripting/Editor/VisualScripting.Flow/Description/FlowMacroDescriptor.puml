@@ -1,0 +1,8 @@
+@startuml
+class FlowMacroDescriptor <<sealed>> {
+    + FlowMacroDescriptor(target:ScriptGraphAsset)
+}
+class "MacroDescriptor`2"<T1,T2> {
+}
+"MacroDescriptor`2" "<ScriptGraphAsset,MacroDescription>" <|-- FlowMacroDescriptor
+@enduml

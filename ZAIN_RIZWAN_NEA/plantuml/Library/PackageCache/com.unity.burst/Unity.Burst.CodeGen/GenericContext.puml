@@ -1,0 +1,12 @@
+@startuml
+struct GenericContext {
+    + IsEmpty() : bool
+    + Resolve(unresolvedMethod:MethodReference) : MethodReference
+    + Resolve(typeReference:TypeReference) : TypeReference
+    + {static} GetTypeReferenceForPointerOrReference(typeReference:TypeReference) : TypeReference
+    + {static} From(typeReference:TypeReference) : GenericContext
+    + {static} From(methodReference:MethodReference, typeReference:TypeReference) : GenericContext
+    + {static} ContainsGenericParameters(typeReference:TypeReference) : bool
+}
+GenericContext o-> "None" GenericContext
+@enduml

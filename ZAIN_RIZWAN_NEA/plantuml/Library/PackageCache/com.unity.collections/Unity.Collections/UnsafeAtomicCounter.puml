@@ -1,0 +1,18 @@
+@startuml
+struct UnsafeAtomicCounter32 {
+    + UnsafeAtomicCounter32(ptr:void*)
+    + Reset(value:int) : void
+    + Add(value:int) : int
+    + Sub(value:int) : int
+    + AddSat(value:int, max:int) : int
+    + SubSat(value:int, min:int) : int
+}
+struct UnsafeAtomicCounter64 {
+    + UnsafeAtomicCounter64(ptr:void*)
+    + Reset(value:long) : void
+    + Add(value:long) : long
+    + Sub(value:long) : long
+    + AddSat(value:long, max:long) : long
+    + SubSat(value:long, min:long) : long
+}
+@enduml

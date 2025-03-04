@@ -1,0 +1,14 @@
+@startuml
+class MergedGraphElementCollection <<sealed>> {
+    +  <<event>> ItemAdded : Action<IGraphElement> 
+    +  <<event>> ItemRemoved : Action<IGraphElement> 
+    +  <<event>> CollectionChanged : Action 
+    + <<override>> Include(collection:IKeyedCollection<Guid, TSubItem>) : void
+}
+class "MergedKeyedCollection`2"<T1,T2> {
+}
+class "INotifyCollectionChanged`1"<T> {
+}
+"MergedKeyedCollection`2" "<Guid,IGraphElement>" <|-- MergedGraphElementCollection
+"INotifyCollectionChanged`1" "<IGraphElement>" <|-- MergedGraphElementCollection
+@enduml

@@ -1,0 +1,33 @@
+@startuml
+abstract class "StateTransitionWidget`1"<TStateTransition> {
+    + <<override>> BeforeFrame() : void
+    + <<override>> CachePositionFirstPass() : void
+    + <<override>> CachePosition() : void
+    + <<override>> DrawForeground() : void
+    + <<override>> DrawBackground() : void
+    + <<override>> canSelect : bool <<get>>
+    + <<override>> canDrag : bool <<get>>
+    + <<override>> canDelete : bool <<get>>
+}
+class "NodeWidget`2"<T1,T2> {
+}
+class "IEnumerable`1"<T> {
+}
+class Styles <<static>> {
+    + {static} <<readonly>> spaceAroundIcon : float = 5
+    + {static} <<readonly>> revealSpeed : float = 15
+}
+"NodeWidget`2" "<StateCanvas,TStateTransition>" <|-- "StateTransitionWidget`1"
+IStateTransitionWidget <|-- "StateTransitionWidget`1"
+"StateTransitionWidget`1" --> "positionDependencies<IWidget>" "IEnumerable`1"
+"StateTransitionWidget`1" --> "positionDependers<IWidget>" "IEnumerable`1"
+"StateTransitionWidget`1" --> "iconPosition" Rect
+"StateTransitionWidget`1" --> "clipPosition" Rect
+"StateTransitionWidget`1" --> "labelInnerPosition" Rect
+"StateTransitionWidget`1" --> "position" Rect
+"StateTransitionWidget`1" --> "clippingPosition" Rect
+"StateTransitionWidget`1" +-- Styles
+Styles --> "label" GUIStyle
+Styles --> "labelInverted" GUIStyle
+Styles --> "eventIcon" GUIStyle
+@enduml

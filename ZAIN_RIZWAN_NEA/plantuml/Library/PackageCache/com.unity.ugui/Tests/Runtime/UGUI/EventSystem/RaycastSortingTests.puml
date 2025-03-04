@@ -1,0 +1,10 @@
+@startuml
+class RaycastSortingTests {
+    + Setup() : void
+    + TestSetup() : void
+    + RaycastResult_Sorting() : IEnumerator
+    + TearDown() : void
+    + OneTimeTearDown() : void
+}
+IPrebuildSetup <|-- RaycastSortingTests
+@enduml

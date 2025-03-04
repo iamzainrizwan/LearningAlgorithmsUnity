@@ -1,0 +1,6 @@
+@startuml
+class PhysicsRaycasterEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+Editor <|-- PhysicsRaycasterEditor
+@enduml

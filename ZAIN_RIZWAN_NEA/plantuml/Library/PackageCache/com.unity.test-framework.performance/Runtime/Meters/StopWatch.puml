@@ -1,0 +1,7 @@
+@startuml
+class StopWatch {
+    + Start() : void
+    + Split() : double
+}
+IStopWatch <|-- StopWatch
+@enduml

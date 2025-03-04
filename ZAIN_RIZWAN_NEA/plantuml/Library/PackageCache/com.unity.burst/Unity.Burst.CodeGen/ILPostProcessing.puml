@@ -1,0 +1,9 @@
+@startuml
+class ILPostProcessing {
+    + <<const>> PostfixManaged : string = "$BurstManaged"
+    + ILPostProcessing(loader:AssemblyResolver, isForEditor:bool, error:ErrorDiagnosticDelegate, log:LogDelegate, logLevel:int, skipInitializeOnLoad:bool)
+    + _skipInitializeOnLoad : bool
+    + IsForEditor : bool <<get>>
+    + Run(assemblyDefinition:AssemblyDefinition) : bool
+}
+@enduml

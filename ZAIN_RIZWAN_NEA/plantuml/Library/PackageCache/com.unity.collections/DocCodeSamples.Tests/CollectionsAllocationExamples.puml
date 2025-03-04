@@ -1,0 +1,14 @@
+@startuml
+class AliasingExample {
+    + foo() : void
+    + foo2() : void
+    + foo3() : void
+}
+struct ExampleJob {
+    + Execute() : void
+}
+class "NativeArray`1"<T> {
+}
+IJob <|-- ExampleJob
+ExampleJob --> "Nums<int>" "NativeArray`1"
+@enduml

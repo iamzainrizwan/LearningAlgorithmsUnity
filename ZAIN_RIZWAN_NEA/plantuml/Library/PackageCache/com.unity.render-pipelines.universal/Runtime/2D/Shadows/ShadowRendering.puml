@@ -1,0 +1,5 @@
+@startuml
+class ShadowRendering <<static>> {
+    + {static} maxTextureCount : uint <<get>>
+}
+@enduml

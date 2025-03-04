@@ -1,0 +1,17 @@
+@startuml
+class EnsureThat <<partial>> {
+    + IsNotNullOrWhiteSpace(value:string) : void
+    + IsNotNullOrEmpty(value:string) : void
+    + IsNotNull(value:string) : void
+    + IsNotEmpty(value:string) : void
+    + HasLengthBetween(value:string, minLength:int, maxLength:int) : void
+    + Matches(value:string, match:string) : void
+    + Matches(value:string, match:Regex) : void
+    + SizeIs(value:string, expected:int) : void
+    + IsEqualTo(value:string, expected:string) : void
+    + IsEqualTo(value:string, expected:string, comparison:StringComparison) : void
+    + IsNotEqualTo(value:string, expected:string) : void
+    + IsNotEqualTo(value:string, expected:string, comparison:StringComparison) : void
+    + IsGuid(value:string) : void
+}
+@enduml

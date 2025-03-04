@@ -1,0 +1,73 @@
+@startuml
+class DeferredConfig <<static>> {
+}
+enum LightFlag {
+    SubtractiveMixedLighting= 4,
+}
+class DeferredLights {
+    + Setup(additionalLightsShadowCasterPass:AdditionalLightsShadowCasterPass, hasDepthPrepass:bool, hasNormalPrepass:bool, hasRenderingLayerPrepass:bool, depthCopyTexture:RTHandle, depthAttachment:RTHandle, colorAttachment:RTHandle) : void
+    + OnCameraCleanup(cmd:CommandBuffer) : void
+}
+class ShaderConstants <<static>> {
+    + {static} <<readonly>> _LitStencilRef : int
+    + {static} <<readonly>> _LitStencilReadMask : int
+    + {static} <<readonly>> _LitStencilWriteMask : int
+    + {static} <<readonly>> _SimpleLitStencilRef : int
+    + {static} <<readonly>> _SimpleLitStencilReadMask : int
+    + {static} <<readonly>> _SimpleLitStencilWriteMask : int
+    + {static} <<readonly>> _StencilRef : int
+    + {static} <<readonly>> _StencilReadMask : int
+    + {static} <<readonly>> _StencilWriteMask : int
+    + {static} <<readonly>> _LitPunctualStencilRef : int
+    + {static} <<readonly>> _LitPunctualStencilReadMask : int
+    + {static} <<readonly>> _LitPunctualStencilWriteMask : int
+    + {static} <<readonly>> _SimpleLitPunctualStencilRef : int
+    + {static} <<readonly>> _SimpleLitPunctualStencilReadMask : int
+    + {static} <<readonly>> _SimpleLitPunctualStencilWriteMask : int
+    + {static} <<readonly>> _LitDirStencilRef : int
+    + {static} <<readonly>> _LitDirStencilReadMask : int
+    + {static} <<readonly>> _LitDirStencilWriteMask : int
+    + {static} <<readonly>> _SimpleLitDirStencilRef : int
+    + {static} <<readonly>> _SimpleLitDirStencilReadMask : int
+    + {static} <<readonly>> _SimpleLitDirStencilWriteMask : int
+    + {static} <<readonly>> _ClearStencilRef : int
+    + {static} <<readonly>> _ClearStencilReadMask : int
+    + {static} <<readonly>> _ClearStencilWriteMask : int
+    + {static} <<readonly>> _ScreenToWorld : int
+    + {static} _MainLightPosition : int
+    + {static} _MainLightColor : int
+    + {static} _MainLightLayerMask : int
+    + {static} _SpotLightScale : int
+    + {static} _SpotLightBias : int
+    + {static} _SpotLightGuard : int
+    + {static} _LightPosWS : int
+    + {static} _LightColor : int
+    + {static} _LightAttenuation : int
+    + {static} _LightOcclusionProbInfo : int
+    + {static} _LightDirection : int
+    + {static} _LightFlags : int
+    + {static} _ShadowLightIndex : int
+    + {static} _LightLayerMask : int
+    + {static} _CookieLightIndex : int
+}
+enum StencilDeferredPasses {
+    StencilVolume,
+    PunctualLit,
+    PunctualSimpleLit,
+    DirectionalLit,
+    DirectionalSimpleLit,
+    ClearStencilPartial,
+    Fog,
+    SSAOOnly,
+}
+struct InitParams {
+}
+class SetupLightPassData {
+}
+DeferredLights +-- ShaderConstants
+DeferredLights +-- StencilDeferredPasses
+DeferredLights +-- InitParams
+InitParams --> "stencilDeferredMaterial" Material
+InitParams --> "lightCookieManager" LightCookieManager
+DeferredLights +-- SetupLightPassData
+@enduml

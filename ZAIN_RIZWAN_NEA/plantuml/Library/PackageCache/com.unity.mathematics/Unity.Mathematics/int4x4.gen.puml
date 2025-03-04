@@ -1,0 +1,46 @@
+@startuml
+struct int4x4 {
+    + int4x4(c0:int4, c1:int4, c2:int4, c3:int4)
+    + int4x4(m00:int, m01:int, m02:int, m03:int, m10:int, m11:int, m12:int, m13:int, m20:int, m21:int, m22:int, m23:int, m30:int, m31:int, m32:int, m33:int)
+    + int4x4(v:int)
+    + int4x4(v:bool)
+    + int4x4(v:bool4x4)
+    + int4x4(v:uint)
+    + int4x4(v:uint4x4)
+    + int4x4(v:float)
+    + int4x4(v:float4x4)
+    + int4x4(v:double)
+    + int4x4(v:double4x4)
+    + Equals(rhs:int4x4) : bool
+    + <<override>> Equals(o:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+    + ToString(format:string, formatProvider:IFormatProvider) : string
+}
+class math <<static>> <<partial>> {
+    + {static} int4x4(c0:int4, c1:int4, c2:int4, c3:int4) : int4x4
+    + {static} int4x4(m00:int, m01:int, m02:int, m03:int, m10:int, m11:int, m12:int, m13:int, m20:int, m21:int, m22:int, m23:int, m30:int, m31:int, m32:int, m33:int) : int4x4
+    + {static} int4x4(v:int) : int4x4
+    + {static} int4x4(v:bool) : int4x4
+    + {static} int4x4(v:bool4x4) : int4x4
+    + {static} int4x4(v:uint) : int4x4
+    + {static} int4x4(v:uint4x4) : int4x4
+    + {static} int4x4(v:float) : int4x4
+    + {static} int4x4(v:float4x4) : int4x4
+    + {static} int4x4(v:double) : int4x4
+    + {static} int4x4(v:double4x4) : int4x4
+    + {static} transpose(v:int4x4) : int4x4
+    + {static} determinant(m:int4x4) : int
+    + {static} hash(v:int4x4) : uint
+    + {static} hashwide(v:int4x4) : uint4
+}
+class "IEquatable`1"<T> {
+}
+IFormattable <|-- int4x4
+int4x4 --> "c0" int4
+int4x4 --> "c1" int4
+int4x4 --> "c2" int4
+int4x4 --> "c3" int4
+int4x4 o-> "identity" int4x4
+int4x4 --> "zero" int4x4
+@enduml

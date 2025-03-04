@@ -1,0 +1,7 @@
+@startuml
+class TMP_PreBuildProcessor {
+    + callbackOrder : int <<get>>
+    + OnPreprocessBuild(report:BuildReport) : void
+}
+IPreprocessBuildWithReport <|-- TMP_PreBuildProcessor
+@enduml

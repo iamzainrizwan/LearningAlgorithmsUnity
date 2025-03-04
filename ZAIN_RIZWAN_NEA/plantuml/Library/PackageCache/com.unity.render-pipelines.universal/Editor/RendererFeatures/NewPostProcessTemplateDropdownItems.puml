@@ -1,0 +1,8 @@
+@startuml
+class NewPostProcessTemplateDropdownItems <<static>> {
+}
+class CreateCombinedScriptTemplateAssetsAction {
+    + <<override>> Action(instanceId:int, userPath:string, resourceFile:string) : void
+}
+NewPostProcessTemplateDropdownItems +-- CreateCombinedScriptTemplateAssetsAction
+@enduml

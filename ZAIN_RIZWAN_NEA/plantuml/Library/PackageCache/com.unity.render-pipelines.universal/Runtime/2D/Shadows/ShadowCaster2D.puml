@@ -1,0 +1,44 @@
+@startuml
+class ShadowCaster2D {
+    + trimEdge : float <<get>> <<set>>
+    + alphaCutoff : float <<get>> <<set>>
+    + useRendererSilhouette : bool <<set>> <<get>>
+    + selfShadows : bool <<set>> <<get>>
+    + castsShadows : bool <<set>> <<get>>
+    + Update() : void
+    + OnBeforeSerialize() : void
+    + OnAfterDeserialize() : void
+}
+enum ComponentVersions {
+    Version_Unserialized= 0,
+    Version_1= 1,
+    Version_2= 2,
+    Version_3= 3,
+    Version_4= 4,
+    Version_5= 5,
+}
+enum ShadowCastingSources {
+    None,
+    ShapeEditor,
+    ShapeProvider,
+}
+enum ShadowCastingOptions {
+    SelfShadow,
+    CastShadow,
+    CastAndSelfShadow,
+    NoShadow,
+}
+enum EdgeProcessing {
+    None= ShadowMesh2D.EdgeProcessing.None,
+    Clipping= ShadowMesh2D.EdgeProcessing.Clipping,
+}
+ShadowCasterGroup2D <|-- ShadowCaster2D
+ISerializationCallbackReceiver <|-- ShadowCaster2D
+ShadowCaster2D --> "mesh" Mesh
+ShadowCaster2D --> "boundingSphere" BoundingSphere
+ShadowCaster2D --> "castingOption" ShadowCastingOptions
+ShadowCaster2D +-- ComponentVersions
+ShadowCaster2D +-- ShadowCastingSources
+ShadowCaster2D +-- ShadowCastingOptions
+ShadowCaster2D +-- EdgeProcessing
+@enduml

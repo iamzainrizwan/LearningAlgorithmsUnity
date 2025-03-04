@@ -1,0 +1,5 @@
+@startuml
+class EnsureThat <<partial>> {
+    + IsNotEmpty(value:Guid) : void
+}
+@enduml

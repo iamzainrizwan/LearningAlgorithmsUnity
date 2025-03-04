@@ -1,0 +1,10 @@
+@startuml
+class TimeControlPlayable {
+    + {static} Create(graph:PlayableGraph, timeControl:ITimeControl) : ScriptPlayable<TimeControlPlayable>
+    + Initialize(timeControl:ITimeControl) : void
+    + <<override>> PrepareFrame(playable:Playable, info:FrameData) : void
+    + <<override>> OnBehaviourPlay(playable:Playable, info:FrameData) : void
+    + <<override>> OnBehaviourPause(playable:Playable, info:FrameData) : void
+}
+PlayableBehaviour <|-- TimeControlPlayable
+@enduml

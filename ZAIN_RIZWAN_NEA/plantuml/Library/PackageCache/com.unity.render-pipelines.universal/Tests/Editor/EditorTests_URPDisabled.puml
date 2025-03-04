@@ -1,0 +1,9 @@
+@startuml
+class EditorTests_URPDisabled {
+    + Setup() : void
+    + TearDown() : void
+    + CreatePipelineAssetWithoutErrors() : void
+    + CreateUniversalRendererAssetWithoutErrors() : void
+    + CreateRenderer2DAssetWithoutErrors() : void
+}
+@enduml

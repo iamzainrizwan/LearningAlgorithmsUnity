@@ -1,0 +1,10 @@
+@startuml
+class NullCheck <<sealed>> {
+    + Enter(flow:Flow) : ControlOutput
+}
+Unit <|-- NullCheck
+NullCheck --> "input" ValueInput
+NullCheck --> "enter" ControlInput
+NullCheck --> "ifNotNull" ControlOutput
+NullCheck --> "ifNull" ControlOutput
+@enduml

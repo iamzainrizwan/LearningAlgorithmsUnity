@@ -1,0 +1,9 @@
+@startuml
+class FlowGraphContext {
+    + FlowGraphContext(reference:GraphReference)
+    + <<override>> windowTitle : string <<get>>
+}
+class "GraphContext`2"<T1,T2> {
+}
+"GraphContext`2" "<FlowGraph,FlowCanvas>" <|-- FlowGraphContext
+@enduml

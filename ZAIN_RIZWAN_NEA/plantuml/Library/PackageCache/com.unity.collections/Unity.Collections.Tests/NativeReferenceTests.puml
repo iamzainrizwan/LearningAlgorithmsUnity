@@ -1,0 +1,49 @@
+@startuml
+class NativeReferenceTests {
+    + NativeReference_AllocateDeallocate_ReadWrite() : void
+    + NativeReference_CopyFrom() : void
+    + NativeReference_CopyTo() : void
+    + NativeReference_NullThrows() : void
+    + NativeReference_CopiedIsKeptInSync() : void
+    + NativeReference_TempInBurstJob() : void
+    + <<unsafe>> NativeReference_UnsafePtr() : void
+    + NativeReference_DisposeJob() : void
+    + NativeReference_NoGCAllocations() : void
+    + NativeReference_Equals() : void
+    + NativeReference_ReadOnly() : void
+    + NativeReference_GetHashCode() : void
+    + NativeReference_CustomAllocatorTest() : void
+    + <<unsafe>> NativeReference_BurstedCustomAllocatorTest() : void
+    + NativeReference_Nested() : void
+    + NativeReference_NestedJob_Error() : void
+}
+struct TestData {
+    + Integer : int
+    + Float : float
+}
+struct TempNativeReferenceInJob {
+    + Execute() : void
+}
+struct BurstedCustomAllocatorJob {
+    + Execute() : void
+}
+struct NestedContainer {
+}
+struct NestedContainerJob {
+    + Execute() : void
+}
+class "NativeReference`1"<T> {
+}
+CollectionsTestCommonBase <|-- NativeReferenceTests
+NativeReferenceTests +-- TestData
+NativeReferenceTests +-- TempNativeReferenceInJob
+IJob <|-- TempNativeReferenceInJob
+TempNativeReferenceInJob --> "Output<int>" "NativeReference`1"
+NativeReferenceTests +-- BurstedCustomAllocatorJob
+IJob <|-- BurstedCustomAllocatorJob
+NativeReferenceTests +-- NestedContainer
+NestedContainer --> "data<int>" "NativeReference`1"
+NativeReferenceTests +-- NestedContainerJob
+IJob <|-- NestedContainerJob
+NestedContainerJob --> "nestedContainer<NativeReference<int>>" "NativeReference`1"
+@enduml

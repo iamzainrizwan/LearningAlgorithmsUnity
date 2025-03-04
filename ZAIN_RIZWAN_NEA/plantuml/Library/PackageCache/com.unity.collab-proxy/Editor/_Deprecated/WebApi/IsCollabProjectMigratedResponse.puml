@@ -1,0 +1,8 @@
+@startuml
+class IsCollabProjectMigratedResponse {
+    + IsMigrated : bool <<get>> <<set>>
+    + WebServerUri : string <<get>> <<set>>
+    + PlasticCloudOrganizationName : string <<get>> <<set>>
+}
+IsCollabProjectMigratedResponse --> "Credentials" CredentialsResponse
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class GPUResidentBatcher <<partial>> {
+}
+IDisposable <|-- GPUResidentBatcher
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+class DynamicString {
+    + DynamicString()
+    + DynamicString(s:string)
+    + DynamicString(capacity:int)
+    + Append(s:string) : void
+    + Append(s:DynamicString) : void
+    + <<override>> ToString() : string
+}
+class "DynamicArray`1"<T> {
+}
+"DynamicArray`1" "<char>" <|-- DynamicString
+@enduml

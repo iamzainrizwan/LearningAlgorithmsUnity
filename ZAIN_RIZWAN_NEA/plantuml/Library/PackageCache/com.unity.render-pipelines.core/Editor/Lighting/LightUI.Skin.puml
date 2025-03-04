@@ -1,0 +1,21 @@
+@startuml
+class LightUI <<partial>> {
+}
+class Styles <<static>> {
+    + {static} <<readonly>> unsupportedPresetPropertiesMessage : string
+}
+LightUI +-- Styles
+Styles o-> "generalHeader" GUIContent
+Styles o-> "shapeHeader" GUIContent
+Styles o-> "renderingHeader" GUIContent
+Styles o-> "emissionHeader" GUIContent
+Styles o-> "shadowHeader" GUIContent
+Styles o-> "lightLayer" GUIContent
+Styles o-> "color" GUIContent
+Styles o-> "lightAppearance" GUIContent
+Styles o-> "colorFilter" GUIContent
+Styles o-> "colorTemperature" GUIContent
+Styles o-> "lightIntensity" GUIContent
+Styles o-> "luxAtDistance" GUIContent
+Styles o-> "enableSpotReflector" GUIContent
+@enduml

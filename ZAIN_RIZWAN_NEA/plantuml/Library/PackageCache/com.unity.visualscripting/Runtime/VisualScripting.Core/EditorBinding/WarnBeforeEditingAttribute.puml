@@ -1,0 +1,9 @@
+@startuml
+class WarnBeforeEditingAttribute <<sealed>> {
+    + WarnBeforeEditingAttribute(warningTitle:string, warningMessage:string)
+    + WarnBeforeEditingAttribute(warningTitle:string, warningMessage:string, emptyValues:object[])
+    + warningTitle : string <<get>>
+    + warningMessage : string <<get>>
+}
+Attribute <|-- WarnBeforeEditingAttribute
+@enduml

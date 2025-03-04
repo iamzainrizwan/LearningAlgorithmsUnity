@@ -1,0 +1,18 @@
+@startuml
+class TestExtensions <<static>> {
+    + {static} GetAllCategoriesFromTest(test:ITest) : List<string>
+    + {static} ParseForNameDuplicates(test:ITest) : void
+    + {static} ApplyPlatformToPropertyBag(test:ITest, testPlatform:TestPlatform) : void
+    + {static} GetChildIndex(test:ITest) : int
+    + {static} HasChildIndex(test:ITest) : bool
+    + {static} GetUniqueName(test:ITest) : string
+    + {static} GetRetryIteration(test:ITest) : int
+    + {static} GetRepeatIteration(test:ITest) : int
+    + {static} GetFullName(test:ITest) : string
+    + {static} GetFullNameWithoutDllPath(test:ITest) : string
+    + {static} GetSkipReason(test:ITest) : string
+    + {static} GetParentId(test:ITest) : string
+    + {static} GetParentFullName(test:ITest) : string
+    + {static} GetParentUniqueName(test:ITest) : string
+}
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class EnsureThat <<partial>> {
+    + IsTrue(value:bool) : void
+    + IsFalse(value:bool) : void
+}
+@enduml

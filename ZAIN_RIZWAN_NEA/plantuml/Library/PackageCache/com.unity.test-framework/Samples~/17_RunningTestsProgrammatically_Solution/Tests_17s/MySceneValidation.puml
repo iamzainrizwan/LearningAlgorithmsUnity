@@ -1,0 +1,8 @@
+@startuml
+class MySceneValidation {
+    + LoadScene() : void
+    + MySceneContainsFiveMyMonoBehaviors() : void
+    + AllMyMonobehaviorsAreConfigured() : void
+    + TearDown() : void
+}
+@enduml

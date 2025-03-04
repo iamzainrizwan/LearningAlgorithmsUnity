@@ -1,0 +1,41 @@
+@startuml
+enum ConversionType {
+    Position,
+    Direction,
+    Normal,
+}
+struct SpaceTransform {
+    + normalize : bool
+    + version : int
+    + <<const>> kLatestVersion : int = 2
+    + SpaceTransform(from:CoordinateSpace, to:CoordinateSpace, type:ConversionType, normalize:bool, version:int)
+}
+class SpaceTransformUtil <<static>> {
+    + {static} GenerateTangentTransform(sb:ShaderStringBuilder, tangentTransformSpace:CoordinateSpace) : string
+    + {static} Identity(xform:SpaceTransform, inputValue:string, outputVariable:string, sb:ShaderStringBuilder) : void
+    + {static} WorldToObject(xform:SpaceTransform, inputValue:string, outputVariable:string, sb:ShaderStringBuilder) : void
+    + {static} WorldToTangent(xform:SpaceTransform, inputValue:string, outputVariable:string, sb:ShaderStringBuilder) : void
+    + {static} WorldToView(xform:SpaceTransform, inputValue:string, outputVariable:string, sb:ShaderStringBuilder) : void
+    + {static} WorldToAbsoluteWorld(xform:SpaceTransform, inputValue:string, outputVariable:string, sb:ShaderStringBuilder) : void
+    + {static} ObjectToWorld(xform:SpaceTransform, inputValue:string, outputVariable:string, sb:ShaderStringBuilder) : void
+    + {static} ObjectToAbsoluteWorld(xform:SpaceTransform, inputValue:string, outputVariable:string, sb:ShaderStringBuilder) : void
+    + {static} TangentToWorld(xform:SpaceTransform, inputValue:string, outputVariable:string, sb:ShaderStringBuilder) : void
+    + {static} ViewToWorld(xform:SpaceTransform, inputValue:string, outputVariable:string, sb:ShaderStringBuilder) : void
+    + {static} AbsoluteWorldToWorld(xform:SpaceTransform, inputValue:string, outputVariable:string, sb:ShaderStringBuilder) : void
+    + {static} ObjectToHScreen(xform:SpaceTransform, inputValue:string, outputVariable:string, sb:ShaderStringBuilder) : void
+    + {static} ViewToHScreen(xform:SpaceTransform, inputValue:string, outputVariable:string, sb:ShaderStringBuilder) : void
+    + {static} WorldToHScreen(xform:SpaceTransform, inputValue:string, outputVariable:string, sb:ShaderStringBuilder) : void
+    + {static} HScreenToWorld(xform:SpaceTransform, inputValue:string, outputVariable:string, sb:ShaderStringBuilder) : void
+    + {static} GenerateTransformCodeStatement(xform:SpaceTransform, inputValue:string, outputVariable:string, sb:ShaderStringBuilder) : void
+}
+class "IEnumerable`1"<T> {
+}
+SpaceTransform --> "from" CoordinateSpace
+SpaceTransform --> "to" CoordinateSpace
+SpaceTransform --> "type" ConversionType
+SpaceTransform --> "RequiresNormal" NeededCoordinateSpace
+SpaceTransform --> "RequiresTangent" NeededCoordinateSpace
+SpaceTransform --> "RequiresBitangent" NeededCoordinateSpace
+SpaceTransform --> "RequiresPosition" NeededCoordinateSpace
+SpaceTransform --> "RequiresTransform<NeededTransform>" "IEnumerable`1"
+@enduml

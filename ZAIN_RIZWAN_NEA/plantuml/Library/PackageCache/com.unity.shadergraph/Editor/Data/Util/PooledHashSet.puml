@@ -1,0 +1,10 @@
+@startuml
+class "PooledHashSet`1"<T> {
+    + {static} Get() : PooledHashSet<T>
+    + Dispose() : void
+}
+class "HashSet`1"<T> {
+}
+"HashSet`1" "<T>" <|-- "PooledHashSet`1"
+IDisposable <|-- "PooledHashSet`1"
+@enduml

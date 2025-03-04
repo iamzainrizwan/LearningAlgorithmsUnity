@@ -1,0 +1,94 @@
+@startuml
+class Genome {
+    + inputs : int <<get>>
+    + outputs : int <<get>>
+    + unhidden : int
+    + maxNode : int
+    + fitness : int
+    + adjustedFitness : int
+    + Genome(inputs_userinput:int, outputs_userinput:int, default_activation_userinput:Activation)
+    + GenerateNetwork() : void
+    + Forward(programInputs:float[]) : float[]
+    + Mutate(probabilities:Dictionary<string, float>) : void
+    + SelectRandomChoice(population:List<string>, weights:List<float>) : string
+    + AddEnabled() : void
+    + ShiftWeight(type:string) : void
+    + ShiftBias(type:string) : void
+    + RandomPair() : (int, int)
+    + IsInput(n:int) : bool
+    + IsOutput(n:int) : bool
+    + IsHidden(n:int) : bool
+    + IsDisabled() : bool
+    + Reset() : void
+}
+class Specie {
+    + maxFitnessHistory : int <<get>>
+    + fitnessSum : float
+    + Specie(input_max_fitness_history:int, input_members:List<Genome>)
+    + Breed(mutationProbabilities:Dictionary<string, float>, breedProbabilities:Dictionary<string, float>) : Genome
+    + UpdateFitness() : void
+    + CullGenomes(fittestOnly:bool) : void
+    + GetBest() : Genome
+    + CanProgress() : bool
+    + SelectRandomChoice(population:List<string>, weights:List<float>) : string
+    + GenomicCrossover(a:Genome, b:Genome) : Genome
+}
+class Brain {
+    + inputs : int <<get>>
+    + outputs : int <<get>>
+    + populationSize : int <<get>>
+    + currentSpecies : int
+    + currentGenome : int
+    + Brain(input_NEAThyperparameters:NEATHyperparameters)
+    + Generate() : void
+    + ClassifyGenome(genome:Genome) : void
+    + GenomicDistance(a:Genome, b:Genome, weights:Dictionary<string, float>) : float
+    + UpdateFittest() : void
+    + Evolve() : void
+    + ShouldEvolve() : bool
+    + NextIteration() : void
+    + GetPopulationSize() : int
+}
+class NEATHyperparameters {
+    + deltaThreshold : float
+    + maxFitness : float
+    + maxGenerations : float
+    + maxFitnessHistory : int
+    + populationSize : int
+    + NEATHyperparameters()
+}
+struct Edge {
+    + weight : float
+    + enabled : bool
+    + Edge(weight_userinput:float)
+    + enable() : void
+    + exists() : bool
+}
+struct Node {
+    + output : float
+    + bias : float
+    + Node(default_activation:Activation)
+}
+class "List`1"<T> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+Genome --> "default_activation" Activation
+Genome --> "edges<List<Edge>>" "List`1"
+Genome --> "nodes<Node>" "List`1"
+Genome --> "rnd" Random
+Specie --> "rnd" Random
+Specie --> "members<Genome>" "List`1"
+Specie --> "fitnessHistory<float>" "List`1"
+Brain --> "hyperparameters" NEATHyperparameters
+Brain --> "species<Specie>" "List`1"
+Brain --> "globalBest" Genome
+Hyperparameters <|-- NEATHyperparameters
+NEATHyperparameters --> "defaultActivation" Activation
+NEATHyperparameters --> "distanceWeights<string,float>" "Dictionary`2"
+NEATHyperparameters --> "breedProbabilities<string,float>" "Dictionary`2"
+NEATHyperparameters --> "mutationProbabilities<string,float>" "Dictionary`2"
+Genome +-- Edge
+Genome +-- Node
+Node --> "activation" Activation
+@enduml

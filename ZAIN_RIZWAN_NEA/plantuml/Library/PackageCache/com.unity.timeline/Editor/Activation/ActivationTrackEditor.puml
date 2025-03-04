@@ -1,0 +1,7 @@
+@startuml
+class ActivationTrackEditor {
+    + <<override>> GetTrackOptions(track:TrackAsset, binding:Object) : TrackDrawOptions
+    + <<override>> OnCreate(track:TrackAsset, copiedFrom:TrackAsset) : void
+}
+TrackEditor <|-- ActivationTrackEditor
+@enduml

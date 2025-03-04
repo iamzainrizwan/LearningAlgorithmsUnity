@@ -1,0 +1,28 @@
+@startuml
+class ItemToItemGui <<static>> {
+    + {static} Add(clip:TimelineClip, gui:TimelineItemGUI) : void
+    + {static} Add(marker:IMarker, gui:TimelineItemGUI) : void
+    + {static} GetGuiForClip(clip:TimelineClip) : TimelineClipGUI
+    + {static} GetGuiForMarker(marker:IMarker) : TimelineMarkerGUI
+}
+abstract class TimelineItemGUI {
+    + {abstract} start : double <<get>>
+    + {abstract} end : double <<get>>
+    + {abstract} Draw(rect:Rect, rectChanged:bool, state:WindowState) : void
+    + {abstract} RectToTimeline(trackRect:Rect, state:WindowState) : Rect
+    + <<virtual>> Select() : void
+    + <<virtual>> IsSelected() : bool
+    + <<virtual>> Deselect() : void
+    + <<virtual>> CanSelect(evt:Event) : bool
+    + <<virtual>> StartDrag() : void
+    + <<virtual>> StopDrag() : void
+    + visible : bool <<get>> <<set>>
+    + isInvalid : bool <<get>> <<set>>
+}
+ISelectable <|-- TimelineItemGUI
+TimelineItemGUI --> "item" ITimelineItem
+TimelineItemGUI --> "zOrder" LayerZOrder
+TimelineItemGUI --> "parent" IRowGUI
+TimelineItemGUI --> "rect" Rect
+TimelineItemGUI --> "treeViewRect" Rect
+@enduml

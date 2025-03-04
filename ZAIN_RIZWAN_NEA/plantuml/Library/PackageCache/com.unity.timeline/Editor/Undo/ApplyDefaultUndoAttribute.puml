@@ -1,0 +1,7 @@
+@startuml
+class ApplyDefaultUndoAttribute {
+    + UndoTitle : string
+    + ApplyDefaultUndoAttribute(undoTitle:string)
+}
+Attribute <|-- ApplyDefaultUndoAttribute
+@enduml

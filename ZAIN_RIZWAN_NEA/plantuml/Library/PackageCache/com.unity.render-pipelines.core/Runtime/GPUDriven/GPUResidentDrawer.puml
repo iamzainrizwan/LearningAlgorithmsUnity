@@ -1,0 +1,32 @@
+@startuml
+class GPUResidentDrawer <<partial>> {
+    + {static} IsInstanceOcclusionCullingEnabled() : bool
+    + {static} PostCullBeginCameraRendering(context:RenderRequestBatcherContext) : void
+    + {static} OnSetupAmbientProbe() : void
+    + {static} InstanceOcclusionTest(renderGraph:RenderGraph, settings:OcclusionCullingSettings, subviewOcclusionTests:ReadOnlySpan<SubviewOcclusionTest>) : void
+    + {static} UpdateInstanceOccluders(renderGraph:RenderGraph, occluderParameters:OccluderParameters, occluderSubviewUpdates:ReadOnlySpan<OccluderSubviewUpdate>) : void
+    + {static} ReinitializeIfNeeded() : void
+    + {static} RenderDebugOcclusionTestOverlay(renderGraph:RenderGraph, debugSettings:DebugDisplayGPUResidentDrawer, viewInstanceID:int, colorBuffer:TextureHandle) : void
+    + {static} RenderDebugOccluderOverlay(renderGraph:RenderGraph, debugSettings:DebugDisplayGPUResidentDrawer, screenPos:Vector2, maxHeight:float, colorBuffer:TextureHandle) : void
+}
+struct FindUnsupportedMaterialsJob {
+    + <<unsafe>> Execute() : void
+}
+struct FindUnsupportedRenderersJob {
+    + <<unsafe>> Execute() : void
+}
+class "NativeParallelHashMap`2"<T1,T2> {
+}
+class "NativeArray`1"<T> {
+}
+class "NativeList`1"<T> {
+}
+GPUResidentDrawer +-- FindUnsupportedMaterialsJob
+IJob <|-- FindUnsupportedMaterialsJob
+FindUnsupportedMaterialsJob --> "batchMaterialHash<int,BatchMaterialID>" "NativeParallelHashMap`2"
+FindUnsupportedMaterialsJob --> "changedMaterialIDs<int>" "NativeArray`1"
+FindUnsupportedMaterialsJob --> "unsupportedMaterialIDs<int>" "NativeList`1"
+GPUResidentDrawer +-- FindUnsupportedRenderersJob
+IJob <|-- FindUnsupportedRenderersJob
+FindUnsupportedRenderersJob --> "unsupportedRenderers<int>" "NativeList`1"
+@enduml

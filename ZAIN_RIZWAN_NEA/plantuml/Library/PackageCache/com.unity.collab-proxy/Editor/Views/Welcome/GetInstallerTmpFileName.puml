@@ -1,0 +1,4 @@
+@startuml
+class GetInstallerTmpFileName <<static>> {
+}
+@enduml

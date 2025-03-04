@@ -1,0 +1,27 @@
+@startuml
+class CastingSourceDropDown {
+    {static} + GetShadowShapeProviders(go:GameObject) : List<ShadowShapeProviderData>
+    + OnCastingSource(serializedObject:SerializedObject, targets:UnityEngine.Object[], labelContent:GUIContent) : void
+}
+struct ShadowShapeProviderData {
+    + ShadowShapeProviderData(inComponent:Component, inProvider:ShadowShape2DProvider)
+}
+class SelectionData {
+    + newCastingSource : int
+    + SelectionData(inNewCastingSource:int, inNewShapeProvider:ShadowShape2DProvider, inNewShadowShapeComponent:Component, inShadowCaster:SerializedObject)
+}
+struct ProviderComparer {
+    + Compare(a:ShadowShapeProviderData, b:ShadowShapeProviderData) : int
+}
+class "IComparer`1"<T> {
+}
+CastingSourceDropDown +-- ShadowShapeProviderData
+ShadowShapeProviderData --> "component" Component
+ShadowShapeProviderData --> "provider" ShadowShape2DProvider
+CastingSourceDropDown +-- SelectionData
+SelectionData --> "shadowCaster" SerializedObject
+SelectionData --> "newShadowShapeProvider" ShadowShape2DProvider
+SelectionData --> "newShadowShapeComponent" Component
+CastingSourceDropDown +-- ProviderComparer
+"IComparer`1" "<ShadowShapeProviderData>" <|-- ProviderComparer
+@enduml

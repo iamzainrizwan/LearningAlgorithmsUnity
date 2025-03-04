@@ -1,0 +1,66 @@
+@startuml
+class TMP_Dropdown {
+    + alphaFadeSpeed : float <<get>> <<set>>
+    + value : int <<get>> <<set>>
+    + SetValueWithoutNotify(input:int) : void
+    + IsExpanded : bool <<get>>
+    + MultiSelect : bool <<get>> <<set>>
+    + RefreshShownValue() : void
+    + AddOptions(options:List<OptionData>) : void
+    + AddOptions(options:List<string>) : void
+    + AddOptions(options:List<Sprite>) : void
+    + ClearOptions() : void
+    + <<virtual>> OnPointerClick(eventData:PointerEventData) : void
+    + <<virtual>> OnSubmit(eventData:BaseEventData) : void
+    + <<virtual>> OnCancel(eventData:BaseEventData) : void
+    + Show() : void
+    + Hide() : void
+}
+class DropdownItem {
+    + <<virtual>> OnPointerEnter(eventData:PointerEventData) : void
+    + <<virtual>> OnCancel(eventData:BaseEventData) : void
+}
+class OptionData {
+    + text : string <<get>> <<set>>
+    + OptionData()
+    + OptionData(text:string)
+    + OptionData(image:Sprite)
+    + OptionData(text:string, image:Sprite, color:Color)
+}
+class OptionDataList {
+    + OptionDataList()
+}
+class DropdownEvent {
+}
+class "List`1"<T> {
+}
+class "UnityEvent`1"<T> {
+}
+Selectable <|-- TMP_Dropdown
+IPointerClickHandler <|-- TMP_Dropdown
+ISubmitHandler <|-- TMP_Dropdown
+ICancelHandler <|-- TMP_Dropdown
+TMP_Dropdown --> "template" RectTransform
+TMP_Dropdown --> "captionText" TMP_Text
+TMP_Dropdown --> "captionImage" Image
+TMP_Dropdown --> "placeholder" Graphic
+TMP_Dropdown --> "itemText" TMP_Text
+TMP_Dropdown --> "itemImage" Image
+TMP_Dropdown --> "options<OptionData>" "List`1"
+TMP_Dropdown --> "onValueChanged" DropdownEvent
+TMP_Dropdown +-- DropdownItem
+MonoBehaviour <|-- DropdownItem
+IPointerEnterHandler <|-- DropdownItem
+ICancelHandler <|-- DropdownItem
+DropdownItem --> "text" TMP_Text
+DropdownItem --> "image" Image
+DropdownItem --> "rectTransform" RectTransform
+DropdownItem --> "toggle" Toggle
+TMP_Dropdown +-- OptionData
+OptionData --> "image" Sprite
+OptionData --> "color" Color
+TMP_Dropdown +-- OptionDataList
+OptionDataList --> "options<OptionData>" "List`1"
+TMP_Dropdown +-- DropdownEvent
+"UnityEvent`1" "<int>" <|-- DropdownEvent
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+struct StencilDescriptor {
+    + ReadMask : string
+    + WriteMask : string
+    + Ref : string
+    + Comp : string
+    + ZFail : string
+    + Fail : string
+    + Pass : string
+    + CompBack : string
+    + ZFailBack : string
+    + FailBack : string
+    + PassBack : string
+}
+@enduml

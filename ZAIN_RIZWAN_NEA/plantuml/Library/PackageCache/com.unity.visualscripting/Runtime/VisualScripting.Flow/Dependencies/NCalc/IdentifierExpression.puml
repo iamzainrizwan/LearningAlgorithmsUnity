@@ -1,0 +1,8 @@
+@startuml
+class IdentifierExpression {
+    + IdentifierExpression(name:string)
+    + Name : string <<get>> <<set>>
+    + <<override>> Accept(visitor:LogicalExpressionVisitor) : void
+}
+LogicalExpression <|-- IdentifierExpression
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class DebugUIHandlerIntField {
+    + <<override>> OnSelection(fromNext:bool, previous:DebugUIHandlerWidget) : bool
+    + <<override>> OnDeselection() : void
+    + <<override>> OnIncrement(fast:bool) : void
+    + <<override>> OnDecrement(fast:bool) : void
+}
+DebugUIHandlerWidget <|-- DebugUIHandlerIntField
+DebugUIHandlerIntField --> "nameLabel" Text
+DebugUIHandlerIntField --> "valueLabel" Text
+@enduml

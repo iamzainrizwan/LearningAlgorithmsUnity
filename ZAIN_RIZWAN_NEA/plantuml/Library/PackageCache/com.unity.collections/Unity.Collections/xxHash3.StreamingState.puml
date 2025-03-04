@@ -1,0 +1,25 @@
+@startuml
+class xxHash3 <<static>> <<partial>> {
+}
+struct StreamingState {
+    + StreamingState(isHash64:bool, seed:ulong)
+    + <<unsafe>> Reset(isHash64:bool, seed:ulong) : void
+    + <<unsafe>> Update(input:void*, length:int) : void
+    + <<unsafe>> Update(input:T) : void
+    + <<unsafe>> DigestHash128() : uint4
+    + <<unsafe>> DigestHash64() : uint2
+}
+struct StreamingStateData {
+    + Acc : ulong
+    + Buffer : byte
+    + IsHash64 : int
+    + BufferedSize : int
+    + NbStripesSoFar : int
+    + TotalLength : long
+    + Seed : ulong
+    + SecretKey : byte
+    + _PadEnd : byte
+}
+xxHash3 +-- StreamingState
+StreamingState +-- StreamingStateData
+@enduml

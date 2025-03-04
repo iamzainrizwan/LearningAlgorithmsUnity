@@ -1,0 +1,5 @@
+@startuml
+class RemoveAdditionalDataUtils <<static>> {
+    + {static} RemoveAdditionalData(command:MenuCommand, promptDisplay:bool) : void
+}
+@enduml

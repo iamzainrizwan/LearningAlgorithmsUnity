@@ -1,0 +1,9 @@
+@startuml
+class ShaderTemplates {
+}
+class DoCreateUnifiedRayTracingShaders {
+    + <<override>> Action(instanceId:int, pathName:string, resourceFile:string) : void
+}
+ShaderTemplates +-- DoCreateUnifiedRayTracingShaders
+EndNameEditAction <|-- DoCreateUnifiedRayTracingShaders
+@enduml

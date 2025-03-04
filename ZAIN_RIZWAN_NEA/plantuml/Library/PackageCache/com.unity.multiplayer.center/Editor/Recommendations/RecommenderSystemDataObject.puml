@@ -1,0 +1,11 @@
+@startuml
+class RecommenderSystemDataObject {
+}
+class PathConstants <<static>> {
+    + <<const>> RecommendationDataPath : string
+}
+class "ScriptableSingleton`1"<T> {
+}
+"ScriptableSingleton`1" "<RecommenderSystemDataObject>" <|-- RecommenderSystemDataObject
+RecommenderSystemDataObject --> "RecommenderSystemData" RecommenderSystemData
+@enduml

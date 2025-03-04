@@ -1,0 +1,14 @@
+@startuml
+struct OverlayDrawer {
+    + {static} CreateColorOverlay(rectangle:Rect, backgroundColor:Color) : OverlayDrawer
+    + {static} CreateTextureOverlay(rectangle:Rect, backTexture:Texture2D) : OverlayDrawer
+    + {static} CreateTextBoxOverlay(rectangle:Rect, msg:string, textStyle:GUIStyle, textColor:Color, bgTextColor:Color, bgTextStyle:GUIStyle) : OverlayDrawer
+    + Draw() : void
+}
+enum OverlayType {
+    BackgroundColor,
+    BackgroundTexture,
+    TextBox,
+}
+OverlayDrawer +-- OverlayType
+@enduml

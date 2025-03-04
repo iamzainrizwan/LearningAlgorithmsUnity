@@ -1,0 +1,8 @@
+@startuml
+enum PlayerNotifications {
+    SendMessages,
+    BroadcastMessages,
+    InvokeUnityEvents,
+    InvokeCSharpEvents,
+}
+@enduml

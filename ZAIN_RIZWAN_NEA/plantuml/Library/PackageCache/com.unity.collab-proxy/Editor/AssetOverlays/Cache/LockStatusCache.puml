@@ -1,0 +1,7 @@
+@startuml
+class LockStatusCache {
+}
+class BuildStatusByNodeCache <<static>> {
+}
+LockStatusCache +-- BuildStatusByNodeCache
+@enduml

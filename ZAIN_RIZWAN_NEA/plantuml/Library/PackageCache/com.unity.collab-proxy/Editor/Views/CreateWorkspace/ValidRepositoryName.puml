@@ -1,0 +1,4 @@
+@startuml
+class ValidRepositoryName <<static>> {
+}
+@enduml

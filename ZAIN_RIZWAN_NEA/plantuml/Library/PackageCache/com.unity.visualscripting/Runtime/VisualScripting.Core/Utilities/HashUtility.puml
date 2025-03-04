@@ -1,0 +1,10 @@
+@startuml
+class HashUtility <<static>> {
+    + {static} GetHashCode(a:T) : int
+    + {static} GetHashCode(a:T1, b:T2) : int
+    + {static} GetHashCode(a:T1, b:T2, c:T3) : int
+    + {static} GetHashCode(a:T1, b:T2, c:T3, d:T4) : int
+    + {static} GetHashCode(a:T1, b:T2, c:T3, d:T4, e:T5) : int
+    + {static} GetHashCodeAlloc(values:object[]) : int
+}
+@enduml

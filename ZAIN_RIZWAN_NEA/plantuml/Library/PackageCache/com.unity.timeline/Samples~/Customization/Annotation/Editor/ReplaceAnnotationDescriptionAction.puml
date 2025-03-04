@@ -1,0 +1,8 @@
+@startuml
+class ReplaceAnnotationDescriptionAction {
+    + <<override>> Validate(markers:IEnumerable<IMarker>) : ActionValidity
+    + <<override>> Execute(markers:IEnumerable<IMarker>) : bool
+    + {static} InvokeShortcut() : void
+}
+MarkerAction <|-- ReplaceAnnotationDescriptionAction
+@enduml

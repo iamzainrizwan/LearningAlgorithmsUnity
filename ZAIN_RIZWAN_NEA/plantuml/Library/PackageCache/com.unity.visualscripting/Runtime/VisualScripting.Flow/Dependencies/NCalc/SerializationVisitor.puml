@@ -1,0 +1,13 @@
+@startuml
+class SerializationVisitor {
+    + SerializationVisitor()
+    + <<override>> Visit(ternary:TernaryExpression) : void
+    + <<override>> Visit(binary:BinaryExpression) : void
+    + <<override>> Visit(unary:UnaryExpression) : void
+    + <<override>> Visit(value:ValueExpression) : void
+    + <<override>> Visit(function:FunctionExpression) : void
+    + <<override>> Visit(identifier:IdentifierExpression) : void
+}
+LogicalExpressionVisitor <|-- SerializationVisitor
+SerializationVisitor --> "Result" StringBuilder
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class DraggablePanel {
+    + SetHeader(text:string) : void
+    + SetBody(text:string) : void
+    + DestroyPanel() : void
+}
+MonoBehaviour <|-- DraggablePanel
+@enduml

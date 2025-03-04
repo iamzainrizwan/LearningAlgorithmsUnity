@@ -1,0 +1,5 @@
+@startuml
+class ChangeTreeViewItem {
+}
+TreeViewItem <|-- ChangeTreeViewItem
+@enduml

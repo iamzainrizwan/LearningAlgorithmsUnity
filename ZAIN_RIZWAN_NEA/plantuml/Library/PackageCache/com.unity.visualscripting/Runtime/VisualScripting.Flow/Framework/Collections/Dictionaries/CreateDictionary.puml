@@ -1,0 +1,7 @@
+@startuml
+class CreateDictionary <<sealed>> {
+    + Create(flow:Flow) : IDictionary
+}
+Unit <|-- CreateDictionary
+CreateDictionary --> "dictionary" ValueOutput
+@enduml

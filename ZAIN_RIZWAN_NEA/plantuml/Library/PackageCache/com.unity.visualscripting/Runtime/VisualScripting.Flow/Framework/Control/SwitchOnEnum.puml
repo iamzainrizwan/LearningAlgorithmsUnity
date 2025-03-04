@@ -1,0 +1,14 @@
+@startuml
+class SwitchOnEnum <<sealed>> {
+    + <<override>> canDefine : bool <<get>>
+    + Enter(flow:Flow) : ControlOutput
+}
+class "Dictionary`2"<T1,T2> {
+}
+Unit <|-- SwitchOnEnum
+IBranchUnit <|-- SwitchOnEnum
+SwitchOnEnum --> "branches<Enum,ControlOutput>" "Dictionary`2"
+SwitchOnEnum --> "enumType" Type
+SwitchOnEnum --> "enter" ControlInput
+SwitchOnEnum --> "@enum" ValueInput
+@enduml

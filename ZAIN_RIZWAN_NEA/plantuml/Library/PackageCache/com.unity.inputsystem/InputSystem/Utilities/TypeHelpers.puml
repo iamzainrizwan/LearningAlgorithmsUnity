@@ -1,0 +1,9 @@
+@startuml
+class TypeHelpers <<static>> {
+    + {static} As(obj:object) : TObject
+    + {static} IsInt(type:TypeCode) : bool
+    + {static} GetValueType(member:MemberInfo) : Type
+    + {static} GetNiceTypeName(type:Type) : string
+    + {static} GetGenericTypeArgumentFromHierarchy(type:Type, genericTypeDefinition:Type, argumentIndex:int) : Type
+}
+@enduml

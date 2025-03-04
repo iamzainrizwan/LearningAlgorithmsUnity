@@ -1,0 +1,5 @@
+@startuml
+class SearcherHighlighter <<static>> {
+    + {static} HighlightTextBasedOnQuery(container:VisualElement, text:string, query:string) : void
+}
+@enduml

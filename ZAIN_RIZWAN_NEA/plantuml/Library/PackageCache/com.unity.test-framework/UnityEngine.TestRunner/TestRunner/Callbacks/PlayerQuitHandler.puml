@@ -1,0 +1,11 @@
+@startuml
+class PlayerQuitHandler {
+    + Start() : void
+    + RunStarted(testsToRun:ITest) : void
+    + RunFinished(testResults:ITestResult) : void
+    + TestStarted(test:ITest) : void
+    + TestFinished(result:ITestResult) : void
+}
+MonoBehaviour <|-- PlayerQuitHandler
+ITestRunnerListener <|-- PlayerQuitHandler
+@enduml

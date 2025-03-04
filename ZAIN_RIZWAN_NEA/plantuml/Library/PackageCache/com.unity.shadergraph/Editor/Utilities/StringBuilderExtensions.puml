@@ -1,0 +1,5 @@
+@startuml
+class StringBuilderExtensions <<static>> {
+    + {static} AppendIndentedLines(sb:StringBuilder, lines:string, indentation:string) : void
+}
+@enduml

@@ -1,0 +1,50 @@
+@startuml
+class InputActionTrace <<sealed>> {
+    + count : int <<get>>
+    + InputActionTrace()
+    + InputActionTrace(action:InputAction)
+    + InputActionTrace(actionMap:InputActionMap)
+    + SubscribeToAll() : void
+    + UnsubscribeFromAll() : void
+    + SubscribeTo(action:InputAction) : void
+    + SubscribeTo(actionMap:InputActionMap) : void
+    + UnsubscribeFrom(action:InputAction) : void
+    + UnsubscribeFrom(actionMap:InputActionMap) : void
+    + <<unsafe>> RecordAction(context:InputAction.CallbackContext) : void
+    + Clear() : void
+    + <<override>> ToString() : string
+    + Dispose() : void
+    + GetEnumerator() : IEnumerator<ActionEventPtr>
+}
+class "IEnumerable`1"<T> {
+}
+struct ActionEventPtr {
+    + time : double <<get>>
+    + startTime : double <<get>>
+    + duration : double <<get>>
+    + valueSizeInBytes : int <<get>>
+    + ReadValueAsObject() : object
+    + ReadValue(buffer:void*, bufferSize:int) : void
+    + ReadValue() : TValue
+    + <<override>> ToString() : string
+}
+struct Enumerator {
+    + Enumerator(trace:InputActionTrace)
+    + MoveNext() : bool
+    + Reset() : void
+    + Dispose() : void
+}
+class "IEnumerator`1"<T> {
+}
+"IEnumerable`1" "<InputActionTrace.ActionEventPtr>" <|-- InputActionTrace
+IDisposable <|-- InputActionTrace
+InputActionTrace --> "buffer" InputEventBuffer
+InputActionTrace +-- ActionEventPtr
+ActionEventPtr --> "action" InputAction
+ActionEventPtr --> "phase" InputActionPhase
+ActionEventPtr --> "control" InputControl
+ActionEventPtr --> "interaction" IInputInteraction
+InputActionTrace +-- Enumerator
+"IEnumerator`1" "<ActionEventPtr>" <|-- Enumerator
+Enumerator --> "Current" ActionEventPtr
+@enduml

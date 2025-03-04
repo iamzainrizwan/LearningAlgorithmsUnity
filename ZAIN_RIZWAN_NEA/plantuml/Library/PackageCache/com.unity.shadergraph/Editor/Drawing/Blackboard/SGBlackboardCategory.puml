@@ -1,0 +1,32 @@
+@startuml
+class SGBlackboardCategory <<sealed>> {
+    + OnControllerChanged(e:SGControllerChangedEvent) : void
+    + OnControllerEvent(e:SGControllerEvent) : void
+    + <<override>> title : string <<get>> <<set>>
+    + headerVisible : bool <<get>> <<set>>
+    + CategoryContains(selection:List<ISelectable>) : bool
+    + <<override>> Select(selectionContainer:VisualElement, additive:bool) : void
+    + <<override>> OnSelected() : void
+    + <<override>> OnUnselected() : void
+    + AddToSelection(selectable:ISelectable) : void
+    + RemoveFromSelection(selectable:ISelectable) : void
+    + ClearSelection() : void
+    + CompareTo(other:SGBlackboardCategory) : int
+    + Dispose() : void
+}
+class "ISGControlledElement`1"<T> {
+}
+class "IComparable`1"<T> {
+}
+class "List`1"<T> {
+}
+GraphElement <|-- SGBlackboardCategory
+"ISGControlledElement`1" "<BlackboardCategoryController>" <|-- SGBlackboardCategory
+ISelection <|-- SGBlackboardCategory
+"IComparable`1" "<SGBlackboardCategory>" <|-- SGBlackboardCategory
+SGBlackboardCategory --> "controller" BlackboardCategoryController
+SGBlackboardCategory --> "viewModel" BlackboardCategoryViewModel
+SGBlackboardCategory --> "canAcceptDrop" CanAcceptDropDelegate
+SGBlackboardCategory --> "contentContainer" VisualElement
+SGBlackboardCategory --> "selection<ISelectable>" "List`1"
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+class LabeledPopup <<static>> {
+    + {static} Popup(index:int, display:GUIContent, options:string[]) : int
+}
+struct IntegerWrapper {
+    + Value : int <<get>>
+    + IntegerWrapper(v:int)
+}
+class PopperCallBack {
+    + PopperCallBack(controlID:int)
+}
+LabeledPopup +-- IntegerWrapper
+LabeledPopup +-- PopperCallBack
+PopperCallBack o-> "Instance" PopperCallBack
+@enduml

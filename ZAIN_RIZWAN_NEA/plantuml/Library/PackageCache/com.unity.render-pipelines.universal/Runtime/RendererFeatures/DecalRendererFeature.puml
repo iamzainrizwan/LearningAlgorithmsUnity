@@ -1,0 +1,48 @@
+@startuml
+enum DecalSurfaceData {
+    Albedo,
+    AlbedoNormal,
+    AlbedoNormalMAOS,
+}
+enum DecalTechnique {
+    Invalid,
+    DBuffer,
+    ScreenSpace,
+    GBuffer,
+}
+enum DecalTechniqueOption {
+    Automatic,
+    DBuffer,
+    ScreenSpace,
+}
+class DBufferSettings {
+}
+enum DecalNormalBlend {
+    Low,
+    Medium,
+    High,
+}
+class DecalScreenSpaceSettings {
+}
+class DecalSettings {
+    + maxDrawDistance : float = 1000f
+    + decalLayers : bool = false
+}
+class SharedDecalEntityManager {
+    + Get() : DecalEntityManager
+    + Release(decalEntityManager:DecalEntityManager) : void
+    + Dispose() : void
+}
+class DecalRendererFeature {
+    + <<override>> Create() : void
+    + <<override>> OnCameraPreCull(renderer:ScriptableRenderer, cameraData:CameraData) : void
+    + <<override>> AddRenderPasses(renderer:ScriptableRenderer, renderingData:RenderingData) : void
+    + <<override>> SetupRenderPasses(renderer:ScriptableRenderer, renderingData:RenderingData) : void
+}
+DBufferSettings o-> "surfaceData" DecalSurfaceData
+DecalScreenSpaceSettings o-> "normalBlend" DecalNormalBlend
+DecalSettings o-> "technique" DecalTechniqueOption
+DecalSettings --> "dBufferSettings" DBufferSettings
+DecalSettings --> "screenSpaceSettings" DecalScreenSpaceSettings
+ScriptableRendererFeature <|-- DecalRendererFeature
+@enduml

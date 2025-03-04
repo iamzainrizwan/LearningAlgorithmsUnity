@@ -1,0 +1,6 @@
+@startuml
+class FullScreenPassRendererFeatureEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+Editor <|-- FullScreenPassRendererFeatureEditor
+@enduml

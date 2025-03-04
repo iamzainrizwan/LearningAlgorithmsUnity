@@ -1,0 +1,8 @@
+@startuml
+class GraphInputAnalyser {
+    + GraphInputAnalyser(reference:GraphReference, unit:GraphInput)
+}
+class "UnitAnalyser`1"<T> {
+}
+"UnitAnalyser`1" "<GraphInput>" <|-- GraphInputAnalyser
+@enduml

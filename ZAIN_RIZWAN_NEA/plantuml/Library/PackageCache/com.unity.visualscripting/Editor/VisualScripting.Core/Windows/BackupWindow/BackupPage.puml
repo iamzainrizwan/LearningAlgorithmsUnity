@@ -1,0 +1,13 @@
+@startuml
+class BackupPage {
+    + BackupPage()
+}
+class Styles <<static>> {
+}
+Page <|-- BackupPage
+BackupPage +-- Styles
+Styles --> "background" GUIStyle
+Styles --> "createBackupButton" GUIStyle
+Styles --> "backupCreatedLabel" GUIStyle
+Styles --> "closeButton" GUIStyle
+@enduml

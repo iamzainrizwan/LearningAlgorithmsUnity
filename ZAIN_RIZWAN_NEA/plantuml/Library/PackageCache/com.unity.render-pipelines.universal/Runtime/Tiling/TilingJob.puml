@@ -1,0 +1,24 @@
+@startuml
+struct TilingJob {
+    + itemsPerTile : int
+    + rangesPerItem : int
+    + near : float
+    + isOrthographic : bool
+    + Execute(jobIndex:int) : void
+}
+class "NativeArray`1"<T> {
+}
+class "Fixed2`1"<T> {
+}
+IJobFor <|-- TilingJob
+TilingJob --> "lights<VisibleLight>" "NativeArray`1"
+TilingJob --> "reflectionProbes<VisibleReflectionProbe>" "NativeArray`1"
+TilingJob --> "tileRanges<InclusiveRange>" "NativeArray`1"
+TilingJob --> "worldToViews<float4x4>" "Fixed2`1"
+TilingJob --> "tileScale" float2
+TilingJob --> "tileScaleInv" float2
+TilingJob --> "viewPlaneBottoms<float>" "Fixed2`1"
+TilingJob --> "viewPlaneTops<float>" "Fixed2`1"
+TilingJob --> "viewToViewportScaleBiases<float4>" "Fixed2`1"
+TilingJob --> "tileCount" int2
+@enduml

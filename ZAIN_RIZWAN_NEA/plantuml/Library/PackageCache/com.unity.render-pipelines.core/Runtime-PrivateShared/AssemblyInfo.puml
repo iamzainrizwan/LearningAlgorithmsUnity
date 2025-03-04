@@ -1,0 +1,5 @@
+@startuml
+class CameraCaptureBridge <<static>> {
+    + {static} GetCachedCaptureActionsEnumerator(camera:UnityEngine.Camera) : System.Collections.Generic.IEnumerator<System.Action<UnityEngine.Rendering.RenderTargetIdentifier, UnityEngine.Rendering.CommandBuffer>>
+}
+@enduml

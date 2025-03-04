@@ -1,0 +1,24 @@
+@startuml
+class "SavedParameter`1"<T> {
+    + SavedParameter(key:string, value:T, getter:GetParameter, setter:SetParameter)
+    + value : T <<get>> <<set>>
+}
+class SavedBool <<sealed>> {
+    + SavedBool(key:string, value:bool)
+}
+class SavedInt <<sealed>> {
+    + SavedInt(key:string, value:int)
+}
+class SavedFloat <<sealed>> {
+    + SavedFloat(key:string, value:float)
+}
+class SavedString <<sealed>> {
+    + SavedString(key:string, value:string)
+}
+class "IEquatable`1"<T> {
+}
+"SavedParameter`1" "<bool>" <|-- SavedBool
+"SavedParameter`1" "<int>" <|-- SavedInt
+"SavedParameter`1" "<float>" <|-- SavedFloat
+"SavedParameter`1" "<string>" <|-- SavedString
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+class GUIState {
+    + mouseButton : int <<get>>
+    + clickCount : int <<get>>
+    + isShiftDown : bool <<get>>
+    + isAltDown : bool <<get>>
+    + isActionKeyDown : bool <<get>>
+    + commandName : string <<get>>
+    + nearestControl : int <<get>> <<set>>
+    + hotControl : int <<get>> <<set>>
+    + changed : bool <<get>> <<set>>
+    + GetControlID(hint:int, focusType:FocusType) : int
+    + AddControl(controlID:int, distance:float) : void
+    + Slider(id:int, sliderData:SliderData, newPosition:Vector3) : bool
+    + UseCurrentEvent() : void
+    + Repaint() : void
+    + IsEventOutsideWindow() : bool
+    + IsViewToolActive() : bool
+    + HasCurrentCamera() : bool
+    + GetHandleSize(position:Vector3) : float
+    + DistanceToSegment(p1:Vector3, p2:Vector3) : float
+    + DistanceToCircle(center:Vector3, radius:float) : float
+    + GUIToWorld(guiPosition:Vector2, planeNormal:Vector3, planePos:Vector3) : Vector3
+}
+IGUIState <|-- GUIState
+GUIState --> "mousePosition" Vector2
+GUIState --> "keyCode" KeyCode
+GUIState --> "eventType" EventType
+@enduml

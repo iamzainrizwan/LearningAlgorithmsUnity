@@ -1,0 +1,9 @@
+@startuml
+class Vector3Average <<sealed>> {
+    + <<override>> Operation(a:UnityEngine.Vector3, b:UnityEngine.Vector3) : UnityEngine.Vector3
+    + <<override>> Operation(values:IEnumerable<UnityEngine.Vector3>) : UnityEngine.Vector3
+}
+class "Average`1"<T> {
+}
+"Average`1" "<UnityEngine.Vector3>" <|-- Vector3Average
+@enduml

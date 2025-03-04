@@ -1,0 +1,9 @@
+@startuml
+class ClipsLayer {
+    + ClipsLayer(layerOrder:Layer, parent:IRowGUI)
+    + <<override>> Draw(rect:Rect, state:WindowState) : void
+}
+class "ItemsLayer`1"<T> {
+}
+"ItemsLayer`1" "<TimelineClipGUI>" <|-- ClipsLayer
+@enduml

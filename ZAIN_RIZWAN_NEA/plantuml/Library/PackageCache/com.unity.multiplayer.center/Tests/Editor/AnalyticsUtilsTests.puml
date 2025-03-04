@@ -1,0 +1,16 @@
+@startuml
+class AnalyticsUtilsTests {
+    + AnalyticsUtils_GetQuestionDisplayNames_RightCount() : void
+    + AnalyticsUtils_GetQuestionDisplayNames_RightValuesForSelectedQuestions() : void
+    + AnalyticsUtils_GetAnswerDisplayNames_RightCount() : void
+    + AnalyticsUtils_GetPresetFullNames_RightCountAndIntValuesDidNotChange() : void
+    + AnalyticsUtils_GetPresetFullNames_RightValues() : void
+    + AnalyticsUtils_ToGameSpecs_AllIdsAreInTheGameSpecs() : void
+    + AnalyticsUtils_ToGameSpecs_ValueCheck() : void
+    + AnalyticsUtils_ToGameSpecs_NoEmptyString() : void
+    + AnalyticsUtils_AssumptionTest_HardCodedNumNetcodePackageMatchesRecommendations() : void
+    + AnalyticsUtils_AssumptionTest_HardCodedNumHostingPackageMatchesRecommendations() : void
+    + AnalyticsUtils_GetPackagesWithAnalyticsFormat_NetcodeValuesMakeSense() : void
+    + AnalyticsUtils_GetPackagesWithAnalyticsFormat_AllPackagesAreIn() : void
+}
+@enduml

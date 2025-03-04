@@ -1,0 +1,7 @@
+@startuml
+class TestRunData {
+    + SuiteName : string
+    + OneTimeSetUpDuration : long
+    + OneTimeTearDownDuration : long
+}
+@enduml

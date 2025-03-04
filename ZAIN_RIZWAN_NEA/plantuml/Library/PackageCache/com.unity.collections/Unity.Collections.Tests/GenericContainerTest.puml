@@ -1,0 +1,40 @@
+@startuml
+struct "GenericContainerJob`1"<T> {
+    + data : T
+    + Execute() : void
+}
+struct "GenericContainerReadonlyJob`1"<T> {
+    + data : T
+    + Execute() : void
+}
+class GenericContainerTests {
+    + Test_IsCreated_Uninitialized() : void
+    + INativeDisposable_Dispose_Uninitialized() : void
+    + INativeDisposable_Init_Double_Dispose() : void
+    + INativeDisposable_Init_Double_Dispose_Job() : void
+    + INativeDisposable_Dispose_Job_Missing_Dependency() : void
+    + INativeDisposable_Dispose_Job_Then_Schedule_Work() : void
+    + ForEach() : void
+}
+struct NativeHashMapJobForEach {
+    + Execute() : void
+}
+struct NativeHashMapJobForEachReadOnly {
+    + Execute() : void
+}
+struct NativeHashMapJobForEachEnumerator {
+    + Execute() : void
+}
+class "NativeHashMap`2"<T1,T2> {
+}
+IJob <|-- "GenericContainerJob`1"
+IJob <|-- "GenericContainerReadonlyJob`1"
+CollectionsTestFixture <|-- GenericContainerTests
+GenericContainerTests +-- NativeHashMapJobForEach
+IJob <|-- NativeHashMapJobForEach
+NativeHashMapJobForEach --> "input<int,int>" "NativeHashMap`2"
+GenericContainerTests +-- NativeHashMapJobForEachReadOnly
+IJob <|-- NativeHashMapJobForEachReadOnly
+GenericContainerTests +-- NativeHashMapJobForEachEnumerator
+IJob <|-- NativeHashMapJobForEachEnumerator
+@enduml

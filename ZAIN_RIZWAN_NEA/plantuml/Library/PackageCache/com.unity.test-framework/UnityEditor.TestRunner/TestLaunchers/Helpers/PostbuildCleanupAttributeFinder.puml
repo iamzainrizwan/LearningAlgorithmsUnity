@@ -1,0 +1,8 @@
+@startuml
+class PostbuildCleanupAttributeFinder {
+    + PostbuildCleanupAttributeFinder()
+}
+class "AttributeFinderBase`2"<T1,T2> {
+}
+"AttributeFinderBase`2" "<IPostBuildCleanup,PostBuildCleanupAttribute>" <|-- PostbuildCleanupAttributeFinder
+@enduml

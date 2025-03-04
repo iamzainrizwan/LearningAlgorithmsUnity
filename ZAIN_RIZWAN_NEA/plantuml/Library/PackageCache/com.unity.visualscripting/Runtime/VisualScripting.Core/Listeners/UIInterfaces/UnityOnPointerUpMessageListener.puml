@@ -1,0 +1,7 @@
+@startuml
+class UnityOnPointerUpMessageListener <<sealed>> {
+    + OnPointerUp(eventData:PointerEventData) : void
+}
+MessageListener <|-- UnityOnPointerUpMessageListener
+IPointerUpHandler <|-- UnityOnPointerUpMessageListener
+@enduml

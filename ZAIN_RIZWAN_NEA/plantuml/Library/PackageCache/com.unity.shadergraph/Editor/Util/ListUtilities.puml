@@ -1,0 +1,6 @@
+@startuml
+class ListUtilities <<static>> {
+    + {static} Slice(list:List<T>, start:int, end:int) : IEnumerable<T>
+    + {static} RemoveAllFromRange(list:List<T>, match:Predicate<T>, startIndex:int, count:int) : int
+}
+@enduml

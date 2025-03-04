@@ -1,0 +1,6 @@
+@startuml
+class CoreRenderPipelinePreferences <<static>> {
+    + {static} <<readonly>> corePreferencePath : string = "Preferences/Graphics"
+    + {static} Open() : void
+}
+@enduml

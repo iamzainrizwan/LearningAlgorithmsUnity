@@ -1,0 +1,66 @@
+@startuml
+struct FunctionPair {
+    + key : string
+    + value : string
+    + graphPrecisionFlags : int
+    + FunctionPair(key:string, value:string, graphPrecisionFlags:int)
+}
+class SlotCapability {
+    + slotName : string
+}
+class SlotDependencyPair {
+    + inputSlotName : string
+    + outputSlotName : string
+}
+class SlotDependencyInfo {
+}
+class SubGraphData {
+}
+class SubGraphAsset {
+    + isValid : bool
+    + processedAt : long
+    + functionName : string
+    + inputStructName : string
+    + hlslName : string
+    + assetGuid : string
+    + path : string
+    + GetInputDependencies(slotName:string) : SlotDependencyInfo
+    + GetOutputDependencies(slotName:string) : SlotDependencyInfo
+    + WriteData(inputs:IEnumerable<AbstractShaderProperty>, keywords:IEnumerable<ShaderKeyword>, dropdowns:IEnumerable<ShaderDropdown>, nodeProperties:IEnumerable<AbstractShaderProperty>, outputs:IEnumerable<MaterialSlot>, unsupportedTargets:IEnumerable<Target>) : void
+    + OnBeforeSerialize() : void
+    + OnAfterDeserialize() : void
+    + LoadGraphData() : void
+}
+class "List`1"<T> {
+}
+class "DataValueEnumerable`1"<T> {
+}
+SlotCapability o-> "capabilities" ShaderStageCapability
+JsonObject <|-- SubGraphData
+SubGraphData o-> "inputs<JsonData<AbstractShaderProperty>>" "List`1"
+SubGraphData o-> "keywords<JsonData<ShaderKeyword>>" "List`1"
+SubGraphData o-> "dropdowns<JsonData<ShaderDropdown>>" "List`1"
+SubGraphData o-> "nodeProperties<JsonData<AbstractShaderProperty>>" "List`1"
+SubGraphData o-> "outputs<JsonData<MaterialSlot>>" "List`1"
+SubGraphData o-> "unsupportedTargets<JsonData<Target>>" "List`1"
+ScriptableObject <|-- SubGraphAsset
+ISerializationCallbackReceiver <|-- SubGraphAsset
+SubGraphAsset --> "requirements" ShaderGraphRequirements
+SubGraphAsset o-> "functions<FunctionPair>" "List`1"
+SubGraphAsset --> "includes" IncludeCollection
+SubGraphAsset o-> "vtFeedbackVariables<string>" "List`1"
+SubGraphAsset --> "inputs<AbstractShaderProperty>" "DataValueEnumerable`1"
+SubGraphAsset --> "keywords<ShaderKeyword>" "DataValueEnumerable`1"
+SubGraphAsset --> "dropdowns<ShaderDropdown>" "DataValueEnumerable`1"
+SubGraphAsset --> "nodeProperties<AbstractShaderProperty>" "DataValueEnumerable`1"
+SubGraphAsset --> "outputs<MaterialSlot>" "DataValueEnumerable`1"
+SubGraphAsset --> "unsupportedTargets<Target>" "DataValueEnumerable`1"
+SubGraphAsset o-> "children<string>" "List`1"
+SubGraphAsset o-> "descendents<string>" "List`1"
+SubGraphAsset o-> "inputCapabilities<SlotCapability>" "List`1"
+SubGraphAsset o-> "outputCapabilities<SlotCapability>" "List`1"
+SubGraphAsset o-> "slotDependencies<SlotDependencyPair>" "List`1"
+SubGraphAsset --> "subGraphGraphPrecision" GraphPrecision
+SubGraphAsset --> "outputGraphPrecision" GraphPrecision
+SubGraphAsset --> "previewMode" PreviewMode
+@enduml

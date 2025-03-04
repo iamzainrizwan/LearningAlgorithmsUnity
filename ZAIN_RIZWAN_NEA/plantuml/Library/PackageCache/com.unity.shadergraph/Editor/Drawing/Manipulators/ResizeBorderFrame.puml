@@ -1,0 +1,9 @@
+@startuml
+class ResizeBorderFrame {
+    + maintainAspectRatio : bool <<get>> <<set>>
+    + ResizeBorderFrame(target:VisualElement)
+    + ResizeBorderFrame(target:VisualElement, container:VisualElement)
+}
+VisualElement <|-- ResizeBorderFrame
+ResizeBorderFrame --> "OnResizeFinished" Action
+@enduml

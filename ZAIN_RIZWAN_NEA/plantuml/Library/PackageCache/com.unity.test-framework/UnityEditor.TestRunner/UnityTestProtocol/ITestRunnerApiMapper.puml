@@ -1,0 +1,4 @@
+@startuml
+interface ITestRunnerApiMapper {
+}
+@enduml

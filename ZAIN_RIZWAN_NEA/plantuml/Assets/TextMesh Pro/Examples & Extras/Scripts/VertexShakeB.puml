@@ -1,0 +1,8 @@
+@startuml
+class VertexShakeB {
+    + AngleMultiplier : float = 1.0f
+    + SpeedMultiplier : float = 1.0f
+    + CurveScale : float = 1.0f
+}
+MonoBehaviour <|-- VertexShakeB
+@enduml

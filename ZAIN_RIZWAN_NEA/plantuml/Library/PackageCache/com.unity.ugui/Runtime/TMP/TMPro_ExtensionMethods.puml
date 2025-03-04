@@ -1,0 +1,31 @@
+@startuml
+class TMPro_ExtensionMethods <<static>> {
+    + {static} ToIntArray(text:string) : int[]
+    + {static} ArrayToString(chars:char[]) : string
+    + {static} IntToString(unicodes:int[]) : string
+    + {static} IntToString(unicodes:int[], start:int, length:int) : string
+    + {static} FindInstanceID(list:List<T>, target:T) : int
+    + {static} Compare(a:Color32, b:Color32) : bool
+    + {static} CompareRGB(a:Color32, b:Color32) : bool
+    + {static} Compare(a:Color, b:Color) : bool
+    + {static} CompareRGB(a:Color, b:Color) : bool
+    + {static} Multiply(c1:Color32, c2:Color32) : Color32
+    + {static} Tint(c1:Color32, c2:Color32) : Color32
+    + {static} Tint(c1:Color32, tint:float) : Color32
+    + {static} MinAlpha(c1:Color, c2:Color) : Color
+    + {static} Compare(v1:Vector3, v2:Vector3, accuracy:int) : bool
+    + {static} Compare(q1:Quaternion, q2:Quaternion, accuracy:int) : bool
+}
+class TMP_Math <<static>> {
+    + <<const>> FLOAT_MAX : float = 32767
+    + <<const>> FLOAT_MIN : float
+    + <<const>> INT_MAX : int = 2147483647
+    + <<const>> INT_MIN : int
+    + <<const>> FLOAT_UNSET : float
+    + <<const>> INT_UNSET : int
+    + {static} Approximately(a:float, b:float) : bool
+    + {static} Mod(a:int, b:int) : int
+}
+TMP_Math o-> "MAX_16BIT" Vector2
+TMP_Math o-> "MIN_16BIT" Vector2
+@enduml

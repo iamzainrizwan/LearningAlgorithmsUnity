@@ -1,0 +1,9 @@
+@startuml
+class MipmapStreamingShaderProperties <<static>> {
+}
+class MipmapStreamingShaderProperty <<sealed>> {
+}
+MipmapStreamingShaderProperties o-> "kDebugTex" MipmapStreamingShaderProperty
+MipmapStreamingShaderProperties +-- MipmapStreamingShaderProperty
+Texture2DShaderProperty <|-- MipmapStreamingShaderProperty
+@enduml

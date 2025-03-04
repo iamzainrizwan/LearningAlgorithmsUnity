@@ -1,0 +1,6 @@
+@startuml
+class TangentNode {
+    + TangentNode()
+}
+CodeFunctionNode <|-- TangentNode
+@enduml

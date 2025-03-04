@@ -1,0 +1,9 @@
+@startuml
+class XRLayoutStack {
+    + New() : XRLayout
+    + Release() : void
+    + Dispose() : void
+}
+IDisposable <|-- XRLayoutStack
+XRLayoutStack --> "top" XRLayout
+@enduml

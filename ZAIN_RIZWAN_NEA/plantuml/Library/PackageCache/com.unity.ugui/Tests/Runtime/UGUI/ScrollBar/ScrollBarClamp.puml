@@ -1,0 +1,10 @@
+@startuml
+class ScrollBarClamp {
+    + Setup() : void
+    + TestSetup() : void
+    + Scrollbar_clamp() : void
+    + TearDown() : void
+    + OneTimeTearDown() : void
+}
+IPrebuildSetup <|-- ScrollBarClamp
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class InfiniteRuntimeClip {
+    + InfiniteRuntimeClip(playable:Playable)
+    + <<override>> enable : bool <<set>>
+    + <<override>> EvaluateAt(localTime:double, frameData:FrameData) : void
+    + <<override>> DisableAt(localTime:double, rootDuration:double, frameData:FrameData) : void
+}
+RuntimeElement <|-- InfiniteRuntimeClip
+InfiniteRuntimeClip --> "intervalStart" Int64
+InfiniteRuntimeClip --> "intervalEnd" Int64
+@enduml

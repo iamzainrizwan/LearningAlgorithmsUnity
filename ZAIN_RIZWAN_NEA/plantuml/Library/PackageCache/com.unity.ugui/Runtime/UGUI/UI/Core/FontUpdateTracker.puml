@@ -1,0 +1,6 @@
+@startuml
+class FontUpdateTracker <<static>> {
+    + {static} TrackText(t:Text) : void
+    + {static} UntrackText(t:Text) : void
+}
+@enduml

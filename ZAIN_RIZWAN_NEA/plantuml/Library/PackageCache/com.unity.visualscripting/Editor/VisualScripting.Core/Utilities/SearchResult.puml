@@ -1,0 +1,10 @@
+@startuml
+interface ISearchResult {
+}
+struct "SearchResult`1"<T> {
+    + result : T <<get>>
+    + relevance : float <<get>>
+    + SearchResult(result:T, relevance:float)
+}
+ISearchResult <|-- "SearchResult`1"
+@enduml

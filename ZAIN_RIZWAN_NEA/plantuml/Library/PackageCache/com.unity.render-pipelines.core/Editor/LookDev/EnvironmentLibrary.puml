@@ -1,0 +1,23 @@
+@startuml
+class EnvironmentLibrary {
+    + Count : int <<get>>
+    + Add() : Environment
+    + Remove(index:int) : void
+    + Duplicate(fromIndex:int) : Environment
+    + IndexOf(environment:Environment) : int
+}
+class EnvironmentLibraryEditor {
+    + <<sealed>> <<override>> CreateInspectorGUI() : VisualElement
+    + <<sealed>> <<override>> OnInspectorGUI() : void
+}
+class EnvironmentLibraryCreator {
+    + SetField(field:ObjectField) : void
+    + <<override>> Cancelled(instanceId:int, pathName:string, resourceFile:string) : void
+    + <<override>> Action(instanceId:int, pathName:string, resourceFile:string) : void
+    + {static} CreateAndAssignTo(field:ObjectField) : void
+}
+class EnvironmentLibraryLoader <<static>> {
+}
+ScriptableObject <|-- EnvironmentLibrary
+Editor <|-- EnvironmentLibraryEditor
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class VariableUnitWidget <<sealed>> {
+    + VariableUnitWidget(canvas:FlowCanvas, unit:VariableUnit)
+}
+class "UnitWidget`1"<T> {
+}
+"UnitWidget`1" "<VariableUnit>" <|-- VariableUnitWidget
+@enduml

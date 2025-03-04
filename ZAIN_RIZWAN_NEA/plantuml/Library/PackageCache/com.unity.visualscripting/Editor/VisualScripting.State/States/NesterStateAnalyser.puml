@@ -1,0 +1,8 @@
+@startuml
+class "NesterStateAnalyser`1"<TNesterState> {
+    + NesterStateAnalyser(reference:GraphReference, state:TNesterState)
+}
+class "StateAnalyser`1"<T> {
+}
+"StateAnalyser`1" "<TNesterState>" <|-- "NesterStateAnalyser`1"
+@enduml

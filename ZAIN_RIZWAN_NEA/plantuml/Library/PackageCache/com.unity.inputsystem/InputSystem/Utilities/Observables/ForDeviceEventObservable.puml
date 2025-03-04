@@ -1,0 +1,19 @@
+@startuml
+class ForDeviceEventObservable {
+    + ForDeviceEventObservable(source:IObservable<InputEventPtr>, deviceType:Type, device:InputDevice)
+    + Subscribe(observer:IObserver<InputEventPtr>) : IDisposable
+}
+class "IObservable`1"<T> {
+}
+class ForDevice {
+    + ForDevice(deviceType:Type, device:InputDevice, observer:IObserver<InputEventPtr>)
+    + OnCompleted() : void
+    + OnError(error:Exception) : void
+    + OnNext(value:InputEventPtr) : void
+}
+class "IObserver`1"<T> {
+}
+"IObservable`1" "<InputEventPtr>" <|-- ForDeviceEventObservable
+ForDeviceEventObservable +-- ForDevice
+"IObserver`1" "<InputEventPtr>" <|-- ForDevice
+@enduml

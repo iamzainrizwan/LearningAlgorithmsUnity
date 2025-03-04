@@ -1,0 +1,32 @@
+@startuml
+class PostProcessDataAnalytics {
+    + callbackOrder : int <<get>>
+    + OnPostprocessBuild(report:BuildReport) : void
+}
+class Analytic {
+    + TryGatherData(data:IAnalytic.IData, error:Exception) : bool
+    + {static} ExtractData(postProcessDatas:List<PostProcessData>) : PropertyToGUIDs[]
+    + {static} GatherDataToBeSent(dictionary:PropertyToGUIDs[]) : IAnalytic.DataList<AnalyticsData>
+}
+struct AnalyticsData {
+    + property : string
+    + usage : string
+}
+class PropertyToGUIDs {
+    + propertyName : string
+    + defaultGUID : string
+}
+enum Usage {
+    ModifiedForTheProject,
+    ModifiedForEachQualityLevel,
+}
+class "List`1"<T> {
+}
+IPostprocessBuildWithReport <|-- PostProcessDataAnalytics
+PostProcessDataAnalytics +-- Analytic
+IAnalytic <|-- Analytic
+Analytic +-- AnalyticsData
+Analytic +-- PropertyToGUIDs
+PropertyToGUIDs o-> "usedGUIDs<string>" "List`1"
+Analytic +-- Usage
+@enduml

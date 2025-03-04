@@ -1,0 +1,9 @@
+@startuml
+class TestRunnerCallbacks {
+    + RunFinished(testResultAdaptor:ITestResultAdaptor) : void
+    + RunStarted(testAdaptor:ITestAdaptor) : void
+    + TestFinished(testResultAdaptor:ITestResultAdaptor) : void
+    + TestStarted(testAdaptor:ITestAdaptor) : void
+}
+ICallbacks <|-- TestRunnerCallbacks
+@enduml

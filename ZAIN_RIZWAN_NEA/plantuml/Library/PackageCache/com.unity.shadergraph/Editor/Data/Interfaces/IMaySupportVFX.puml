@@ -1,0 +1,8 @@
+@startuml
+interface IMaySupportVFX {
+}
+class MaySupportVFXExtensions <<static>> {
+    + {static} SupportsVFX(target:Target) : bool
+    + {static} CanSupportVFX(target:Target) : bool
+}
+@enduml

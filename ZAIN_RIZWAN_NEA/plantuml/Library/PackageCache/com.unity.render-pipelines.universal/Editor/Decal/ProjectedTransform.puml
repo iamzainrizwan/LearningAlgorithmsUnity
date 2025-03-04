@@ -1,0 +1,46 @@
+@startuml
+class ProjectedTransform {
+    + {static} DrawHandles(position:Vector3, zProjectionDistance:float, rotation:Quaternion) : Vector3
+}
+struct PositionHandleIds {
+    + <<readonly>> x : int
+    + <<readonly>> y : int
+    + <<readonly>> z : int
+    + <<readonly>> xy : int
+    + Has(id:int) : bool
+    + PositionHandleIds(x:int, y:int, z:int, xy:int)
+    + <<override>> GetHashCode() : int
+    + <<override>> Equals(obj:object) : bool
+}
+struct PositionHandleParam {
+    + ShouldShow(axis:int) : bool
+    + ShouldShow(handle:Handle) : bool
+    + PositionHandleParam(handles:Handle, axisOffset:Vector3, axisSize:Vector3, planeOffset:Vector3, planeSize:Vector3, axesOrientation:Orientation, planeOrientation:Orientation)
+}
+enum Handle {
+    None= 0,
+    X= 1 << 0,
+    Y= 1 << 1,
+    Z= 1 << 2,
+    XY= 1 << 3,
+    All= ~None,
+}
+enum Orientation {
+    Signed,
+    Camera,
+}
+ProjectedTransform +-- PositionHandleIds
+PositionHandleIds --> "@default" PositionHandleIds
+ProjectedTransform +-- PositionHandleParam
+PositionHandleParam o-> "defaultHandleXY" PositionHandleParam
+PositionHandleParam o-> "defaultHandleZ" PositionHandleParam
+PositionHandleParam --> "axisOffset" Vector3
+PositionHandleParam --> "axisSize" Vector3
+PositionHandleParam --> "planeOffset" Vector3
+PositionHandleParam --> "planeSize" Vector3
+PositionHandleParam --> "handles" Handle
+PositionHandleParam --> "axesOrientation" Orientation
+PositionHandleParam --> "planeOrientation" Orientation
+PositionHandleParam +-- Handle
+PositionHandleParam +-- Orientation
+@enduml

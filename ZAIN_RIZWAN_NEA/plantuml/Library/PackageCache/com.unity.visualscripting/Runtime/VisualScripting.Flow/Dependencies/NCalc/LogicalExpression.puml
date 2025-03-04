@@ -1,0 +1,42 @@
+@startuml
+abstract class LogicalExpression {
+    + And(operand:LogicalExpression) : BinaryExpression
+    + And(operand:object) : BinaryExpression
+    + DividedBy(operand:LogicalExpression) : BinaryExpression
+    + DividedBy(operand:object) : BinaryExpression
+    + EqualsTo(operand:LogicalExpression) : BinaryExpression
+    + EqualsTo(operand:object) : BinaryExpression
+    + GreaterThan(operand:LogicalExpression) : BinaryExpression
+    + GreaterThan(operand:object) : BinaryExpression
+    + GreaterOrEqualThan(operand:LogicalExpression) : BinaryExpression
+    + GreaterOrEqualThan(operand:object) : BinaryExpression
+    + LesserThan(operand:LogicalExpression) : BinaryExpression
+    + LesserThan(operand:object) : BinaryExpression
+    + LesserOrEqualThan(operand:LogicalExpression) : BinaryExpression
+    + LesserOrEqualThan(operand:object) : BinaryExpression
+    + Minus(operand:LogicalExpression) : BinaryExpression
+    + Minus(operand:object) : BinaryExpression
+    + Modulo(operand:LogicalExpression) : BinaryExpression
+    + Modulo(operand:object) : BinaryExpression
+    + NotEqual(operand:LogicalExpression) : BinaryExpression
+    + NotEqual(operand:object) : BinaryExpression
+    + Or(operand:LogicalExpression) : BinaryExpression
+    + Or(operand:object) : BinaryExpression
+    + Plus(operand:LogicalExpression) : BinaryExpression
+    + Plus(operand:object) : BinaryExpression
+    + Mult(operand:LogicalExpression) : BinaryExpression
+    + Mult(operand:object) : BinaryExpression
+    + BitwiseOr(operand:LogicalExpression) : BinaryExpression
+    + BitwiseOr(operand:object) : BinaryExpression
+    + BitwiseAnd(operand:LogicalExpression) : BinaryExpression
+    + BitwiseAnd(operand:object) : BinaryExpression
+    + BitwiseXOr(operand:LogicalExpression) : BinaryExpression
+    + BitwiseXOr(operand:object) : BinaryExpression
+    + LeftShift(operand:LogicalExpression) : BinaryExpression
+    + LeftShift(operand:object) : BinaryExpression
+    + RightShift(operand:LogicalExpression) : BinaryExpression
+    + RightShift(operand:object) : BinaryExpression
+    + <<override>> ToString() : string
+    + <<virtual>> Accept(visitor:LogicalExpressionVisitor) : void
+}
+@enduml

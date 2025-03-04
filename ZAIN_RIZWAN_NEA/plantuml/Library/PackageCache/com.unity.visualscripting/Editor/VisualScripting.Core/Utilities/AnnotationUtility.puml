@@ -1,0 +1,14 @@
+@startuml
+class AnnotationUtility {
+    + {static} GetAnnotation(type:Type) : Annotation
+    + {static} GetAnnotation() : Annotation
+}
+class Annotation {
+    + Annotation(instance:object)
+    + classID : int <<get>>
+    + scriptClass : string <<get>>
+    + iconEnabled : bool <<get>> <<set>>
+    + gizmoEnabled : bool <<get>> <<set>>
+}
+AnnotationUtility +-- Annotation
+@enduml

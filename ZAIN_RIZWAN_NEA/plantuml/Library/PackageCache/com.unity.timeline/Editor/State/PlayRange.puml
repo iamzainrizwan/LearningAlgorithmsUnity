@@ -1,0 +1,13 @@
+@startuml
+struct PlayRange {
+    + Equals(other:PlayRange) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + PlayRange(a:double, b:double)
+    + start : double
+    + end : double
+}
+class "IEquatable`1"<T> {
+}
+"IEquatable`1" "<PlayRange>" <|-- PlayRange
+@enduml

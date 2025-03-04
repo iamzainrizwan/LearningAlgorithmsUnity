@@ -1,0 +1,9 @@
+@startuml
+class UserChoicesMigrationTests {
+    + OneTimeSetup() : void
+    + OneTimeTearDown() : void
+    + TestMigration_Pre1_2To1_2_RemovesCompetitivenessButNothingElse() : void
+    + TestMigration_1_2To1_3_ChangesMediumPaceToSlow() : void
+    + TestMigration_SameVersion_RemovesNothing() : void
+}
+@enduml

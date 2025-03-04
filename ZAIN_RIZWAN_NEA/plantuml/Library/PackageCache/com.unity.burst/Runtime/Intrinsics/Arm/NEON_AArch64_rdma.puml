@@ -1,0 +1,42 @@
+@startuml
+class Arm <<unsafe>> <<static>> <<partial>> {
+}
+class Neon <<unsafe>> <<partial>> {
+    + {static} IsNeonRDMASupported : bool <<get>>
+    + {static} vqrdmlah_s16(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vqrdmlah_s32(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vqrdmlahq_s16(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vqrdmlahq_s32(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vqrdmlsh_s16(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vqrdmlsh_s32(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vqrdmlshq_s16(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vqrdmlshq_s32(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vqrdmlah_lane_s16(a0:v64, a1:v64, a2:v64, a3:Int32) : v64
+    + {static} vqrdmlahq_lane_s16(a0:v128, a1:v128, a2:v64, a3:Int32) : v128
+    + {static} vqrdmlah_laneq_s16(a0:v64, a1:v64, a2:v128, a3:Int32) : v64
+    + {static} vqrdmlahq_laneq_s16(a0:v128, a1:v128, a2:v128, a3:Int32) : v128
+    + {static} vqrdmlah_lane_s32(a0:v64, a1:v64, a2:v64, a3:Int32) : v64
+    + {static} vqrdmlahq_lane_s32(a0:v128, a1:v128, a2:v64, a3:Int32) : v128
+    + {static} vqrdmlah_laneq_s32(a0:v64, a1:v64, a2:v128, a3:Int32) : v64
+    + {static} vqrdmlahq_laneq_s32(a0:v128, a1:v128, a2:v128, a3:Int32) : v128
+    + {static} vqrdmlsh_lane_s16(a0:v64, a1:v64, a2:v64, a3:Int32) : v64
+    + {static} vqrdmlshq_lane_s16(a0:v128, a1:v128, a2:v64, a3:Int32) : v128
+    + {static} vqrdmlsh_laneq_s16(a0:v64, a1:v64, a2:v128, a3:Int32) : v64
+    + {static} vqrdmlshq_laneq_s16(a0:v128, a1:v128, a2:v128, a3:Int32) : v128
+    + {static} vqrdmlsh_lane_s32(a0:v64, a1:v64, a2:v64, a3:Int32) : v64
+    + {static} vqrdmlshq_lane_s32(a0:v128, a1:v128, a2:v64, a3:Int32) : v128
+    + {static} vqrdmlsh_laneq_s32(a0:v64, a1:v64, a2:v128, a3:Int32) : v64
+    + {static} vqrdmlshq_laneq_s32(a0:v128, a1:v128, a2:v128, a3:Int32) : v128
+    + {static} vqrdmlahh_s16(a0:Int16, a1:Int16, a2:Int16) : Int16
+    + {static} vqrdmlahs_s32(a0:Int32, a1:Int32, a2:Int32) : Int32
+    + {static} vqrdmlshh_s16(a0:Int16, a1:Int16, a2:Int16) : Int16
+    + {static} vqrdmlshs_s32(a0:Int32, a1:Int32, a2:Int32) : Int32
+    + {static} vqrdmlahh_lane_s16(a0:Int16, a1:Int16, a2:v64, a3:Int32) : Int16
+    + {static} vqrdmlahh_laneq_s16(a0:Int16, a1:Int16, a2:v128, a3:Int32) : Int16
+    + {static} vqrdmlahs_lane_s32(a0:Int32, a1:Int32, a2:v64, a3:Int32) : Int32
+    + {static} vqrdmlshh_lane_s16(a0:Int16, a1:Int16, a2:v64, a3:Int32) : Int16
+    + {static} vqrdmlshh_laneq_s16(a0:Int16, a1:Int16, a2:v128, a3:Int32) : Int16
+    + {static} vqrdmlshs_lane_s32(a0:Int32, a1:Int32, a2:v64, a3:Int32) : Int32
+}
+Arm +-- Neon
+@enduml

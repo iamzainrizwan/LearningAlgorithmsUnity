@@ -1,0 +1,7 @@
+@startuml
+class UnlockReloadAssembliesTask {
+    + UnlockReloadAssembliesTask()
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- UnlockReloadAssembliesTask
+@enduml

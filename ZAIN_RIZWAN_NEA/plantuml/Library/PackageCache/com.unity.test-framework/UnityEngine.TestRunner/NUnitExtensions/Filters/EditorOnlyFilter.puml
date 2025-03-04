@@ -1,0 +1,9 @@
+@startuml
+class EditorOnlyFilter {
+    + EditorOnlyFilter(editorOnly:bool)
+    + <<override>> Match(test:ITest) : bool
+    + <<override>> AddToXml(parentNode:TNode, recursive:bool) : TNode
+    + {static} ApplyPropertyToTest(test:ITest, isEditorOnly:bool) : void
+}
+NonExplicitFilter <|-- EditorOnlyFilter
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class TMP_MarkToBaseAdjustmentRecordPropertyDrawer {
+    + <<override>> OnGUI(position:Rect, property:SerializedProperty, label:GUIContent) : void
+}
+PropertyDrawer <|-- TMP_MarkToBaseAdjustmentRecordPropertyDrawer
+@enduml

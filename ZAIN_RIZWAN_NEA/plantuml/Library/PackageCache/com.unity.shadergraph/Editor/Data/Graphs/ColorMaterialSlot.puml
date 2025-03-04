@@ -1,0 +1,10 @@
+@startuml
+class ColorRGBAMaterialSlot {
+    + ColorRGBAMaterialSlot()
+    + ColorRGBAMaterialSlot(slotId:int, displayName:string, shaderOutputName:string, slotType:SlotType, value:Vector4, stageCapability:ShaderStageCapability, hidden:bool)
+    + <<override>> InstantiateControl() : VisualElement
+    + <<override>> AddDefaultProperty(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + <<override>> GetPreviewProperties(properties:List<PreviewProperty>, name:string) : void
+}
+Vector4MaterialSlot <|-- ColorRGBAMaterialSlot
+@enduml

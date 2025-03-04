@@ -1,0 +1,7 @@
+@startuml
+class VariableNameAttributeInspector {
+    + VariableNameAttributeInspector(metadata:Metadata)
+}
+Inspector <|-- VariableNameAttributeInspector
+VariableNameAttributeInspector --> "direction" ActionDirection
+@enduml

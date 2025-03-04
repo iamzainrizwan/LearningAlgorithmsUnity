@@ -1,0 +1,11 @@
+@startuml
+class FileUtility <<static>> {
+    + <<const>> WinSeparator : char = '\\'
+    + <<const>> UnixSeparator : char = '/'
+    + {static} GetPackageAssetFullPath(components:string[]) : string
+    + {static} GetAssetFullPath(asset:string) : string
+    + {static} NormalizePathSeparators(path:string) : string
+    + {static} NormalizeWindowsToUnix(path:string) : string
+    + {static} MakeAbsolutePath(path:string) : string
+}
+@enduml

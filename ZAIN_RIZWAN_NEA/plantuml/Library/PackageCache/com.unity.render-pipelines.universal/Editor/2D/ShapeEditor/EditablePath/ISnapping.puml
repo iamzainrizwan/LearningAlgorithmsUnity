@@ -1,0 +1,4 @@
+@startuml
+interface "ISnapping`1"<T> {
+}
+@enduml

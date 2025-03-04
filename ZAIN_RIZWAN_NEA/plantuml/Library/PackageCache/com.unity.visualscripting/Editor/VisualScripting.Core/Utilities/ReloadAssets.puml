@@ -1,0 +1,5 @@
+@startuml
+class ReloadAssets {
+    + {static} OnPostprocessBuild(target:BuildTarget, pathToBuiltProject:string) : void
+}
+@enduml

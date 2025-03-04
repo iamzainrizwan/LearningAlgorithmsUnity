@@ -1,0 +1,45 @@
+@startuml
+class AccelStructInstances <<sealed>> {
+    + Dispose() : void
+    + AddInstance(meshInstance:MeshInstanceDesc, materialID:uint, renderingLayerMask:uint) : int
+    + AddInstances(meshInstances:Span<MeshInstanceDesc>, materialIDs:Span<uint>, renderingLayerMask:Span<uint>) : int
+    + GetEntryGeomAllocation(handle:GeometryPoolHandle, submeshIndex:int) : GeometryPool.MeshChunk
+    + RemoveInstance(instanceHandle:int) : void
+    + ClearInstances() : void
+    + UpdateInstanceTransform(instanceHandle:int, localToWorldMatrix:Matrix4x4) : void
+    + UpdateInstanceMaterialID(instanceHandle:int, materialID:uint) : void
+    + UpdateRenderingLayerMask(instanceHandle:int, renderingLayerMask:uint) : void
+    + UpdateInstanceMask(instanceHandle:int, mask:uint) : void
+    + NextFrame() : void
+    + instanceListValid : bool <<get>>
+    + Bind(cmd:CommandBuffer, shader:IRayTracingShader) : void
+    + GetInstanceCount() : int
+}
+class "PersistentGpuArray`1"<T> {
+}
+class "IReadOnlyCollection`1"<T> {
+}
+struct RTInstance {
+    + renderingLayerMask : uint
+    + instanceMask : uint
+    + userMaterialID : uint
+    + geometryIndex : uint
+}
+class InstanceEntry {
+    + instanceMask : uint
+    + vertexOffset : uint
+    + indexOffset : uint
+}
+IDisposable <|-- AccelStructInstances
+AccelStructInstances --> "instanceBuffer<RTInstance>" "PersistentGpuArray`1"
+AccelStructInstances --> "instances<InstanceEntry>" "IReadOnlyCollection`1"
+AccelStructInstances --> "geometryPool" GeometryPool
+AccelStructInstances --> "indexBuffer" GraphicsBuffer
+AccelStructInstances --> "vertexBuffer" GraphicsBuffer
+AccelStructInstances +-- RTInstance
+RTInstance --> "localToWorld" float4x4
+RTInstance --> "previousLocalToWorld" float4x4
+RTInstance --> "localToWorldNormals" float4x4
+AccelStructInstances +-- InstanceEntry
+InstanceEntry --> "geometryPoolHandle" GeometryPoolHandle
+@enduml

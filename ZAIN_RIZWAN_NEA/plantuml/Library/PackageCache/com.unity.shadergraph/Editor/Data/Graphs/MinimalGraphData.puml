@@ -1,0 +1,5 @@
+@startuml
+class MinimalGraphData {
+    + {static} GatherMinimalDependenciesFromFile(assetPath:string, assetCollection:AssetCollection) : bool
+}
+@enduml

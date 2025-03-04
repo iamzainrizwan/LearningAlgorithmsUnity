@@ -1,0 +1,13 @@
+@startuml
+class CustomTextureSize {
+    + <<const>> OutputSlotWidthId : int = 0
+    + <<const>> OutputSlotHeightId : int = 1
+    + <<const>> OutputSlotDepthId : int = 2
+    + CustomTextureSize()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> GetVariableNameForSlot(slotId:int) : string
+    + GenerateNodeFunction(registry:FunctionRegistry, generationMode:GenerationMode) : void
+}
+AbstractMaterialNode <|-- CustomTextureSize
+IGeneratesFunction <|-- CustomTextureSize
+@enduml

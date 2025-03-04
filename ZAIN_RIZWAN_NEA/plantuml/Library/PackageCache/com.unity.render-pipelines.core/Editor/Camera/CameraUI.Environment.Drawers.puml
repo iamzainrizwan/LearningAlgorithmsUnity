@@ -1,0 +1,8 @@
+@startuml
+class CameraUI <<static>> <<partial>> {
+}
+class Environment <<static>> <<partial>> {
+    + {static} Drawer_Environment_VolumeLayerMask(p:ISerializedCamera, owner:Editor) : void
+}
+CameraUI +-- Environment
+@enduml

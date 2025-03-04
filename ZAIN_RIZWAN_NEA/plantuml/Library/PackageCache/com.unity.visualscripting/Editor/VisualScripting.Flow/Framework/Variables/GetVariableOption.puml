@@ -1,0 +1,9 @@
+@startuml
+class GetVariableOption {
+    + GetVariableOption()
+    + GetVariableOption(kind:VariableKind, defaultName:string)
+}
+class "UnifiedVariableUnitOption`1"<T> {
+}
+"UnifiedVariableUnitOption`1" "<GetVariable>" <|-- GetVariableOption
+@enduml

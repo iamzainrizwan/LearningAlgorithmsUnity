@@ -1,0 +1,65 @@
+@startuml
+class InputManager <<partial>> {
+    + pollingFrequency : float <<get>> <<set>>
+    + isProcessingEvents : bool <<get>>
+    + RegisterControlLayout(name:string, type:Type) : void
+    + RegisterControlLayout(json:string, name:string, isOverride:bool) : void
+    + RegisterControlLayoutBuilder(method:Func<InputControlLayout>, name:string, baseLayout:string) : void
+    + RegisterPrecompiledLayout(metadata:string) : void
+    + RegisterControlLayoutMatcher(layoutName:string, matcher:InputDeviceMatcher) : void
+    + RegisterControlLayoutMatcher(type:Type, matcher:InputDeviceMatcher) : void
+    + RemoveControlLayout(name:string) : void
+    + TryLoadControlLayout(type:Type) : InputControlLayout
+    + TryLoadControlLayout(name:InternedString) : InputControlLayout
+    + TryFindMatchingControlLayout(deviceDescription:InputDeviceDescription, deviceId:int) : InternedString
+    + ListControlLayouts(basedOn:string) : IEnumerable<string>
+    + GetControls(path:string, controls:InputControlList<TControl>) : int
+    + SetDeviceUsage(device:InputDevice, usage:InternedString) : void
+    + AddDeviceUsage(device:InputDevice, usage:InternedString) : void
+    + RemoveDeviceUsage(device:InputDevice, usage:InternedString) : void
+    + AddDevice(type:Type, name:string) : InputDevice
+    + AddDevice(layout:string, name:string, variants:InternedString) : InputDevice
+    + AddDevice(device:InputDevice) : void
+    + AddDevice(description:InputDeviceDescription) : InputDevice
+    + AddDevice(description:InputDeviceDescription, throwIfNoLayoutFound:bool, deviceName:string, deviceId:int, deviceFlags:InputDevice.DeviceFlags) : InputDevice
+    + AddDevice(description:InputDeviceDescription, layout:InternedString, deviceName:string, deviceId:int, deviceFlags:InputDevice.DeviceFlags) : InputDevice
+    + RemoveDevice(device:InputDevice, keepOnListOfAvailableDevices:bool) : void
+    + FlushDisconnectedDevices() : void
+    + <<unsafe>> ResetDevice(device:InputDevice, alsoResetDontResetControls:bool, issueResetCommand:bool?) : void
+    + TryGetDevice(nameOrLayout:string) : InputDevice
+    + GetDevice(nameOrLayout:string) : InputDevice
+    + TryGetDevice(layoutType:Type) : InputDevice
+    + TryGetDeviceById(id:int) : InputDevice
+    + GetUnsupportedDevices(descriptions:List<InputDeviceDescription>) : int
+    + EnableOrDisableDevice(device:InputDevice, enable:bool, scope:DeviceDisableScope) : void
+    + <<unsafe>> QueueEvent(ptr:InputEventPtr) : void
+    + <<unsafe>> QueueEvent(inputEvent:TEvent) : void
+    + Update() : void
+    + Update(updateType:InputUpdateType) : void
+}
+class "Action`2"<T1,T2> {
+}
+class "ReadOnlyArray`1"<T> {
+}
+enum DeviceDisableScope {
+    Everywhere,
+    InFrontendOnly,
+    TemporaryWhilePlayerIsInBackground,
+}
+struct AvailableDevice {
+    + deviceId : int
+    + isNative : bool
+    + isRemoved : bool
+}
+InputManager --> "devices<InputDevice>" "ReadOnlyArray`1"
+InputManager --> "processors" TypeTable
+InputManager --> "interactions" TypeTable
+InputManager --> "composites" TypeTable
+InputManager --> "metrics" InputMetrics
+InputManager --> "settings" InputSettings
+InputManager --> "updateMask" InputUpdateType
+InputManager --> "defaultUpdateType" InputUpdateType
+InputManager +-- DeviceDisableScope
+InputManager +-- AvailableDevice
+AvailableDevice --> "description" InputDeviceDescription
+@enduml

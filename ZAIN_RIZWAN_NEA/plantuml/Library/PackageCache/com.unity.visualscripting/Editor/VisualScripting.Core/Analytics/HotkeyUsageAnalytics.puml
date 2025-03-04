@@ -1,0 +1,26 @@
+@startuml
+class HotkeyUsageAnalytics <<static>> {
+}
+class Data {
+}
+struct HotkeyStringUsageCount {
+}
+enum Hotkey {
+    Zoom,
+    Scroll,
+    PanMmb,
+    PanAltLmb,
+    Home,
+    RmbRemoveConnections,
+    Cut,
+    Copy,
+    Paste,
+    Duplicate,
+    Delete,
+    SelectAll,
+    Tab,
+}
+HotkeyUsageAnalytics +-- Data
+HotkeyUsageAnalytics +-- HotkeyStringUsageCount
+HotkeyUsageAnalytics +-- Hotkey
+@enduml

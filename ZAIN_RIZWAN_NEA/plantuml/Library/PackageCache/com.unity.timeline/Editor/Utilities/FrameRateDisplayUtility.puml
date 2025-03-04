@@ -1,0 +1,7 @@
+@startuml
+class FrameRateDisplayUtility <<static>> {
+    + {static} GetStandardFromFrameRate(frameRate:double, standard:StandardFrameRates) : bool
+    + {static} RoundFrameRate(frameRate:double) : double
+    + {static} GetDefaultFrameRatesLabels(option:StandardFrameRates) : string[]
+}
+@enduml

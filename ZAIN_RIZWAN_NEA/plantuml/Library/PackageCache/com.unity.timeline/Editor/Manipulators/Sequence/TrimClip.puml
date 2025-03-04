@@ -1,0 +1,11 @@
+@startuml
+class TrimClip {
+    + <<override>> Overlay(evt:Event, state:WindowState) : void
+}
+class TrimClipAttractionHandler {
+    + OnAttractedEdge(attractable:IAttractable, manipulateEdges:ManipulateEdges, edge:AttractedEdge, time:double) : void
+}
+Manipulator <|-- TrimClip
+TrimClip +-- TrimClipAttractionHandler
+IAttractionHandler <|-- TrimClipAttractionHandler
+@enduml

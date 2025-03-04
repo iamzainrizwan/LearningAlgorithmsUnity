@@ -1,0 +1,24 @@
+@startuml
+class StandaloneInputModule {
+    + allowActivationOnMobileDevice : bool <<get>> <<set>>
+    + forceModuleActive : bool <<get>> <<set>>
+    + inputActionsPerSecond : float <<get>> <<set>>
+    + repeatDelay : float <<get>> <<set>>
+    + horizontalAxis : string <<get>> <<set>>
+    + verticalAxis : string <<get>> <<set>>
+    + submitButton : string <<get>> <<set>>
+    + cancelButton : string <<get>> <<set>>
+    + <<override>> UpdateModule() : void
+    + <<override>> ShouldActivateModule() : bool
+    + <<override>> ActivateModule() : void
+    + <<override>> DeactivateModule() : void
+    + <<override>> Process() : void
+}
+enum InputMode {
+    Mouse,
+    Buttons,
+}
+PointerInputModule <|-- StandaloneInputModule
+StandaloneInputModule --> "inputMode" InputMode
+StandaloneInputModule +-- InputMode
+@enduml

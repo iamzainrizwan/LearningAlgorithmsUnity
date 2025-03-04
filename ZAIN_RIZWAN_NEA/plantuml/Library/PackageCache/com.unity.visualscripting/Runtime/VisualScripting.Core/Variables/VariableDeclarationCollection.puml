@@ -1,0 +1,12 @@
+@startuml
+class VariableDeclarationCollection <<sealed>> {
+    + EditorRename(item:VariableDeclaration, newName:string) : void
+    + <<new>> TryGetValue(key:string, value:VariableDeclaration) : bool
+}
+class "KeyedCollection`2"<T1,T2> {
+}
+class "IKeyedCollection`2"<T1,T2> {
+}
+"KeyedCollection`2" "<string,VariableDeclaration>" <|-- VariableDeclarationCollection
+"IKeyedCollection`2" "<string,VariableDeclaration>" <|-- VariableDeclarationCollection
+@enduml

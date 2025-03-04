@@ -1,0 +1,57 @@
+@startuml
+struct NativeBitArray {
+    + NativeBitArray(numBits:int, allocator:AllocatorManager.AllocatorHandle, options:NativeArrayOptions)
+    + <<readonly>> IsCreated : bool <<get>>
+    + <<readonly>> IsEmpty : bool <<get>>
+    + Resize(numBits:int, options:NativeArrayOptions) : void
+    + SetCapacity(capacityInBits:int) : void
+    + TrimExcess() : void
+    + Dispose() : void
+    + Dispose(inputDeps:JobHandle) : JobHandle
+    + <<readonly>> Length : int <<get>>
+    + <<readonly>> Capacity : int <<get>>
+    + Clear() : void
+    + AsNativeArray() : NativeArray<T>
+    + Set(pos:int, value:bool) : void
+    + SetBits(pos:int, value:bool, numBits:int) : void
+    + SetBits(pos:int, value:ulong, numBits:int) : void
+    + GetBits(pos:int, numBits:int) : ulong
+    + IsSet(pos:int) : bool
+    + Copy(dstPos:int, srcPos:int, numBits:int) : void
+    + Copy(dstPos:int, srcBitArray:NativeBitArray, srcPos:int, numBits:int) : void
+    + Find(pos:int, numBits:int) : int
+    + Find(pos:int, count:int, numBits:int) : int
+    + TestNone(pos:int, numBits:int) : bool
+    + TestAny(pos:int, numBits:int) : bool
+    + TestAll(pos:int, numBits:int) : bool
+    + CountBits(pos:int, numBits:int) : int
+    + AsReadOnly() : ReadOnly
+}
+struct NativeBitArrayDispose {
+    + Dispose() : void
+}
+struct NativeBitArrayDisposeJob {
+    + Execute() : void
+}
+class NativeBitArrayUnsafeUtility <<static>> {
+    + {static} <<unsafe>> ConvertExistingDataToNativeBitArray(ptr:void*, sizeInBytes:int, allocator:AllocatorManager.AllocatorHandle) : NativeBitArray
+}
+struct ReadOnly {
+    + <<readonly>> IsCreated : bool <<get>>
+    + <<readonly>> IsEmpty : bool <<get>>
+    + <<readonly>> Length : int <<get>>
+    + <<readonly>> GetBits(pos:int, numBits:int) : ulong
+    + <<readonly>> IsSet(pos:int) : bool
+    + <<readonly>> Find(pos:int, numBits:int) : int
+    + <<readonly>> Find(pos:int, count:int, numBits:int) : int
+    + <<readonly>> TestNone(pos:int, numBits:int) : bool
+    + <<readonly>> TestAny(pos:int, numBits:int) : bool
+    + <<readonly>> TestAll(pos:int, numBits:int) : bool
+    + <<readonly>> CountBits(pos:int, numBits:int) : int
+}
+INativeDisposable <|-- NativeBitArray
+NativeBitArrayDispose --> "m_Allocator" AllocatorHandle
+IJob <|-- NativeBitArrayDisposeJob
+NativeBitArrayDisposeJob --> "Data" NativeBitArrayDispose
+NativeBitArray +-- ReadOnly
+@enduml

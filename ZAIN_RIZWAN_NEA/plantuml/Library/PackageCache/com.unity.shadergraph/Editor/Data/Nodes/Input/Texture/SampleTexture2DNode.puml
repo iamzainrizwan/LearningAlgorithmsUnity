@@ -1,0 +1,31 @@
+@startuml
+enum TextureType {
+    Default,
+    Normal,
+}
+class SampleTexture2DNode {
+    + <<const>> OutputSlotRGBAId : int = 0
+    + <<const>> OutputSlotRId : int = 4
+    + <<const>> OutputSlotGId : int = 5
+    + <<const>> OutputSlotBId : int = 6
+    + <<const>> OutputSlotAId : int = 7
+    + <<const>> TextureInputId : int = 1
+    + <<const>> UVInput : int = 2
+    + <<const>> SamplerInput : int = 3
+    + <<const>> MipBiasInput : int = 8
+    + <<const>> LodInput : int = 9
+    + <<const>> DdxInput : int = 10
+    + <<const>> DdyInput : int = 11
+    + <<override>> hasPreview : bool <<get>>
+    + SampleTexture2DNode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> Setup() : void
+    + <<virtual>> GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + RequiresMeshUV(channel:UVChannel, stageCapability:ShaderStageCapability) : bool
+}
+AbstractMaterialNode <|-- SampleTexture2DNode
+IGeneratesBodyCode <|-- SampleTexture2DNode
+IMayRequireMeshUV <|-- SampleTexture2DNode
+SampleTexture2DNode --> "textureType" TextureType
+SampleTexture2DNode --> "normalMapSpace" NormalMapSpace
+@enduml

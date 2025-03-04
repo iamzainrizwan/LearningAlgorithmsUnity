@@ -1,0 +1,11 @@
+@startuml
+class FuzzyGroup {
+    + FuzzyGroup(label:string)
+    + FuzzyGroup(label:string, icon:EditorTexture)
+    + FuzzyGroup(label:string, data:object)
+    + FuzzyGroup(label:string, icon:EditorTexture, data:object)
+    + label : string <<get>> <<set>>
+    + data : object <<get>> <<set>>
+}
+FuzzyGroup --> "icon" EditorTexture
+@enduml

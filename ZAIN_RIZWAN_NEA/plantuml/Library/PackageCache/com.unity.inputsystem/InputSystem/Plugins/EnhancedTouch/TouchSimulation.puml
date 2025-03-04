@@ -1,0 +1,11 @@
+@startuml
+class TouchSimulation {
+    + {static} Enable() : void
+    + {static} Disable() : void
+    + {static} Destroy() : void
+}
+MonoBehaviour <|-- TouchSimulation
+IInputStateChangeMonitor <|-- TouchSimulation
+TouchSimulation --> "simulatedTouchscreen" Touchscreen
+TouchSimulation --> "instance" TouchSimulation
+@enduml

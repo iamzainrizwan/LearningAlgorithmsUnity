@@ -1,0 +1,48 @@
+@startuml
+enum InstanceComponentGroup {
+    Default= 1 << 0,
+    Wind= 1 << 1,
+    LightProbe= 1 << 2,
+    Lightmap= 1 << 3,
+    DefaultWind= Default | Wind,
+    DefaultLightProbe= Default | LightProbe,
+    DefaultLightmap= Default | Lightmap,
+    DefaultWindLightProbe= Default | Wind | LightProbe,
+    DefaultWindLightmap= Default | Wind | Lightmap,
+}
+struct RenderersParameters {
+    + {static} CreateInstanceDataBuffer(flags:Flags, instanceNumInfo:InstanceNumInfo) : GPUInstanceDataBuffer
+    + RenderersParameters(instanceDataBuffer:GPUInstanceDataBuffer)
+}
+enum Flags {
+    None= 0,
+    UseBoundingSphereParameter= 1 << 0,
+}
+class ParamNames <<static>> {
+    + {static} <<readonly>> _BaseColor : int
+    + {static} <<readonly>> unity_SpecCube0_HDR : int
+    + {static} <<readonly>> unity_SHCoefficients : int
+    + {static} <<readonly>> unity_LightmapST : int
+    + {static} <<readonly>> unity_ObjectToWorld : int
+    + {static} <<readonly>> unity_WorldToObject : int
+    + {static} <<readonly>> unity_MatrixPreviousM : int
+    + {static} <<readonly>> unity_MatrixPreviousMI : int
+    + {static} <<readonly>> unity_WorldBoundingSphere : int
+}
+struct ParamInfo {
+    + index : int
+    + gpuAddress : int
+    + uintOffset : int
+    + valid : bool <<get>>
+}
+RenderersParameters --> "lightmapScale" ParamInfo
+RenderersParameters --> "localToWorld" ParamInfo
+RenderersParameters --> "worldToLocal" ParamInfo
+RenderersParameters --> "matrixPreviousM" ParamInfo
+RenderersParameters --> "matrixPreviousMI" ParamInfo
+RenderersParameters --> "shCoefficients" ParamInfo
+RenderersParameters --> "boundingSphere" ParamInfo
+RenderersParameters +-- Flags
+RenderersParameters +-- ParamNames
+RenderersParameters +-- ParamInfo
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class StateUnitEditor <<sealed>> {
+    + StateUnitEditor(metadata:Metadata)
+}
+NesterUnitEditor <|-- StateUnitEditor
+@enduml

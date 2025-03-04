@@ -1,0 +1,5 @@
+@startuml
+class ShaderExtensionsTests {
+    + TryGetRenderPipelineTag(shader:Shader) : (bool, string)
+}
+@enduml

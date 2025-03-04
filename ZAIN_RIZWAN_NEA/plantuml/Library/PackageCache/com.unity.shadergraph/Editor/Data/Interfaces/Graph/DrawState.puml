@@ -1,0 +1,6 @@
+@startuml
+struct DrawState {
+    + expanded : bool <<get>> <<set>>
+}
+DrawState --> "position" Rect
+@enduml

@@ -1,0 +1,120 @@
+@startuml
+interface IWindowState {
+}
+class WindowState {
+    + {static} kTimeEpsilon : double <<get>>
+    + {static} <<readonly>> kMaxShownTime : float
+    +  <<event>> windowOnGuiStarted : Action<WindowState, Event> 
+    +  <<event>> OnPlayStateChange : Action<bool> 
+    +  <<event>> OnDirtyStampChange : System.Action 
+    +  <<event>> OnRebuildGraphChange : System.Action 
+    +  <<event>> OnTimeChange : System.Action 
+    +  <<event>> OnRecordingChange : System.Action 
+    +  <<event>> OnBeforeSequenceChange : System.Action 
+    +  <<event>> OnAfterSequenceChange : System.Action 
+    + WindowState(w:TimelineWindow, hierarchy:SequenceHierarchy)
+    + rebuildGraph : bool <<get>> <<set>>
+    + mouseDragLag : float <<get>> <<set>>
+    + AddCaptured(manipulator:Manipulator) : void
+    + RemoveCaptured(manipulator:Manipulator) : void
+    + isJogging : bool <<get>> <<set>>
+    + viewStateHash : int <<get>>
+    + bindingAreaWidth : float <<get>> <<set>>
+    + sequencerHeaderWidth : float <<get>> <<set>>
+    + mainAreaWidth : float <<get>> <<set>>
+    + trackScale : float <<get>> <<set>>
+    + dirtyStamp : int <<get>>
+    + showQuadTree : bool <<get>> <<set>>
+    + canRecord : bool <<get>>
+    + recording : bool <<get>> <<set>>
+    + previewMode : bool <<get>> <<set>>
+    + playing : bool <<get>>
+    + playbackSpeed : float <<get>> <<set>>
+    + frameSnap : bool <<get>> <<set>>
+    + edgeSnaps : bool <<get>> <<set>>
+    + muteAudioScrubbing : bool <<get>> <<set>>
+    + showAudioWaveform : bool <<get>> <<set>>
+    + showMarkerHeader : bool <<get>> <<set>>
+    + OnDestroy() : void
+    + OnSceneSaved() : void
+    + SetCurrentSequence(timelineAsset:TimelineAsset, director:PlayableDirector, hostClip:TimelineClip) : void
+    + PopSequencesUntilCount(count:int) : void
+    + GetCurrentSequencePath() : SequencePath
+    + SetCurrentSequencePath(path:SequencePath, forceRebuild:bool) : void
+    + GetAllSequences() : IEnumerable<ISequenceState>
+    + GetSubSequences() : IEnumerable<SequenceContext>
+    + Reset() : void
+    + GetSnappedTimeAtMousePosition(mousePos:Vector2) : double
+    + SetTimeAreaTransform(newTranslation:Vector2, newScale:Vector2) : void
+    + SetTimeAreaShownRange(min:float, max:float) : void
+    + ResetPreviewMode() : void
+    + TimeIsInRange(value:float) : bool
+    + RangeIsVisible(range:Range) : bool
+    + EnsurePlayHeadIsVisible() : void
+    + SetPlayHeadToMiddle() : void
+    + windowHeight : float <<get>>
+    + playRangeEnabled : bool <<get>> <<set>>
+    + ignorePreview : bool <<get>>
+    + GetWindow() : TimelineWindow
+    + Play() : void
+    + Pause() : void
+    + SetPlaying(start:bool) : void
+    + Stop() : void
+    + RebuildPlayableGraph() : void
+    + Evaluate() : void
+    + EvaluateImmediate() : void
+    + Refresh() : void
+    + UpdateViewStateHash() : void
+    + IsEditingASubTimeline() : bool
+    + IsEditingAnEmptyTimeline() : bool
+    + IsEditingAPrefabAsset() : bool
+    + IsCurrentEditingASequencerTextField() : bool
+    + TimeToTimeAreaPixel(t:double) : float
+    + TimeToScreenSpacePixel(time:double) : float
+    + TimeToPixel(time:double) : float
+    + PixelToTime(pixel:float) : float
+    + PixelDeltaToDeltaTime(p:float) : float
+    + TimeAreaPixelToTime(pixel:float) : float
+    + ScreenSpacePixelToTimeAreaTime(p:float) : float
+    + TrackSpacePixelToTimeAreaTime(p:float) : float
+    + OffsetTimeArea(pixels:int) : void
+    + GetSceneReference(asset:TrackAsset) : GameObject
+    + CalculateRowRects() : void
+    + ArmForRecord(track:TrackAsset) : void
+    + UnarmForRecord(track:TrackAsset) : void
+    + UpdateRecordingState() : void
+    + IsTrackRecordable(track:TrackAsset) : bool
+    + IsArmedForRecord(track:TrackAsset) : bool
+    + GetArmedTrack(track:TrackAsset) : TrackAsset
+    + GatherProperties(director:PlayableDirector) : void
+    + AddStartFrameDelegate(updateDelegate:PendingUpdateDelegate) : void
+    + AddEndFrameDelegate(updateDelegate:PendingUpdateDelegate) : void
+    + UpdateRootPlayableDuration(duration:double) : void
+    + InvokeTimeChangeCallback() : void
+    + IsPlayableGraphDone() : bool
+}
+class "IEnumerable`1"<T> {
+}
+class "List`1"<T> {
+}
+IWindowState <|-- WindowState
+WindowState --> "previewDriver" AnimationModeDriver
+WindowState --> "editorWindow" EditorWindow
+WindowState --> "editSequence" ISequenceState
+WindowState --> "masterSequence" ISequenceState
+WindowState --> "referenceSequence" ISequenceState
+WindowState --> "allSequences<ISequenceState>" "IEnumerable`1"
+WindowState --> "spacePartitioner" SpacePartitioner
+WindowState --> "headerSpacePartitioner" SpacePartitioner
+WindowState --> "captured<Manipulator>" "List`1"
+WindowState --> "timeReferenceMode" TimeReferenceMode
+WindowState --> "timeFormat" TimeFormat
+WindowState --> "playRange" PlayRange
+WindowState --> "autoScrollMode" PlaybackScrollMode
+WindowState --> "previewedDirectors<PlayableDirector>" "List`1"
+WindowState o-> "analytics" TimelineWindowAnalytics
+WindowState --> "timeAreaShownRange" Vector2
+WindowState --> "timeAreaTranslation" Vector2
+WindowState --> "timeAreaScale" Vector2
+WindowState --> "timeAreaRect" Rect
+@enduml

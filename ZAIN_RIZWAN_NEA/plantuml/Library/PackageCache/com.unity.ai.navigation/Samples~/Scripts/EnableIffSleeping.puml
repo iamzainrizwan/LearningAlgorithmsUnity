@@ -1,0 +1,6 @@
+@startuml
+class EnableIffSleeping {
+}
+MonoBehaviour <|-- EnableIffSleeping
+EnableIffSleeping --> "m_Behaviour" Behaviour
+@enduml

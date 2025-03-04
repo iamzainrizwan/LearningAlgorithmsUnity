@@ -1,0 +1,391 @@
+@startuml
+struct half4 {
+    + half4(x:half, y:half, z:half, w:half)
+    + half4(x:half, y:half, zw:half2)
+    + half4(x:half, yz:half2, w:half)
+    + half4(x:half, yzw:half3)
+    + half4(xy:half2, z:half, w:half)
+    + half4(xy:half2, zw:half2)
+    + half4(xyz:half3, w:half)
+    + half4(xyzw:half4)
+    + half4(v:half)
+    + half4(v:float)
+    + half4(v:float4)
+    + half4(v:double)
+    + half4(v:double4)
+    + Equals(rhs:half4) : bool
+    + <<override>> Equals(o:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+    + ToString(format:string, formatProvider:IFormatProvider) : string
+}
+class math <<static>> <<partial>> {
+    + {static} half4(x:half, y:half, z:half, w:half) : half4
+    + {static} half4(x:half, y:half, zw:half2) : half4
+    + {static} half4(x:half, yz:half2, w:half) : half4
+    + {static} half4(x:half, yzw:half3) : half4
+    + {static} half4(xy:half2, z:half, w:half) : half4
+    + {static} half4(xy:half2, zw:half2) : half4
+    + {static} half4(xyz:half3, w:half) : half4
+    + {static} half4(xyzw:half4) : half4
+    + {static} half4(v:half) : half4
+    + {static} half4(v:float) : half4
+    + {static} half4(v:float4) : half4
+    + {static} half4(v:double) : half4
+    + {static} half4(v:double4) : half4
+    + {static} hash(v:half4) : uint
+    + {static} hashwide(v:half4) : uint4
+}
+class "IEquatable`1"<T> {
+}
+class DebuggerProxy <<sealed>> {
+    + DebuggerProxy(v:half4)
+}
+IFormattable <|-- half4
+half4 --> "x" half
+half4 --> "y" half
+half4 --> "z" half
+half4 --> "w" half
+half4 --> "zero" half4
+half4 --> "xxxx" half4
+half4 --> "xxxy" half4
+half4 --> "xxxz" half4
+half4 --> "xxxw" half4
+half4 --> "xxyx" half4
+half4 --> "xxyy" half4
+half4 --> "xxyz" half4
+half4 --> "xxyw" half4
+half4 --> "xxzx" half4
+half4 --> "xxzy" half4
+half4 --> "xxzz" half4
+half4 --> "xxzw" half4
+half4 --> "xxwx" half4
+half4 --> "xxwy" half4
+half4 --> "xxwz" half4
+half4 --> "xxww" half4
+half4 --> "xyxx" half4
+half4 --> "xyxy" half4
+half4 --> "xyxz" half4
+half4 --> "xyxw" half4
+half4 --> "xyyx" half4
+half4 --> "xyyy" half4
+half4 --> "xyyz" half4
+half4 --> "xyyw" half4
+half4 --> "xyzx" half4
+half4 --> "xyzy" half4
+half4 --> "xyzz" half4
+half4 --> "xyzw" half4
+half4 --> "xywx" half4
+half4 --> "xywy" half4
+half4 --> "xywz" half4
+half4 --> "xyww" half4
+half4 --> "xzxx" half4
+half4 --> "xzxy" half4
+half4 --> "xzxz" half4
+half4 --> "xzxw" half4
+half4 --> "xzyx" half4
+half4 --> "xzyy" half4
+half4 --> "xzyz" half4
+half4 --> "xzyw" half4
+half4 --> "xzzx" half4
+half4 --> "xzzy" half4
+half4 --> "xzzz" half4
+half4 --> "xzzw" half4
+half4 --> "xzwx" half4
+half4 --> "xzwy" half4
+half4 --> "xzwz" half4
+half4 --> "xzww" half4
+half4 --> "xwxx" half4
+half4 --> "xwxy" half4
+half4 --> "xwxz" half4
+half4 --> "xwxw" half4
+half4 --> "xwyx" half4
+half4 --> "xwyy" half4
+half4 --> "xwyz" half4
+half4 --> "xwyw" half4
+half4 --> "xwzx" half4
+half4 --> "xwzy" half4
+half4 --> "xwzz" half4
+half4 --> "xwzw" half4
+half4 --> "xwwx" half4
+half4 --> "xwwy" half4
+half4 --> "xwwz" half4
+half4 --> "xwww" half4
+half4 --> "yxxx" half4
+half4 --> "yxxy" half4
+half4 --> "yxxz" half4
+half4 --> "yxxw" half4
+half4 --> "yxyx" half4
+half4 --> "yxyy" half4
+half4 --> "yxyz" half4
+half4 --> "yxyw" half4
+half4 --> "yxzx" half4
+half4 --> "yxzy" half4
+half4 --> "yxzz" half4
+half4 --> "yxzw" half4
+half4 --> "yxwx" half4
+half4 --> "yxwy" half4
+half4 --> "yxwz" half4
+half4 --> "yxww" half4
+half4 --> "yyxx" half4
+half4 --> "yyxy" half4
+half4 --> "yyxz" half4
+half4 --> "yyxw" half4
+half4 --> "yyyx" half4
+half4 --> "yyyy" half4
+half4 --> "yyyz" half4
+half4 --> "yyyw" half4
+half4 --> "yyzx" half4
+half4 --> "yyzy" half4
+half4 --> "yyzz" half4
+half4 --> "yyzw" half4
+half4 --> "yywx" half4
+half4 --> "yywy" half4
+half4 --> "yywz" half4
+half4 --> "yyww" half4
+half4 --> "yzxx" half4
+half4 --> "yzxy" half4
+half4 --> "yzxz" half4
+half4 --> "yzxw" half4
+half4 --> "yzyx" half4
+half4 --> "yzyy" half4
+half4 --> "yzyz" half4
+half4 --> "yzyw" half4
+half4 --> "yzzx" half4
+half4 --> "yzzy" half4
+half4 --> "yzzz" half4
+half4 --> "yzzw" half4
+half4 --> "yzwx" half4
+half4 --> "yzwy" half4
+half4 --> "yzwz" half4
+half4 --> "yzww" half4
+half4 --> "ywxx" half4
+half4 --> "ywxy" half4
+half4 --> "ywxz" half4
+half4 --> "ywxw" half4
+half4 --> "ywyx" half4
+half4 --> "ywyy" half4
+half4 --> "ywyz" half4
+half4 --> "ywyw" half4
+half4 --> "ywzx" half4
+half4 --> "ywzy" half4
+half4 --> "ywzz" half4
+half4 --> "ywzw" half4
+half4 --> "ywwx" half4
+half4 --> "ywwy" half4
+half4 --> "ywwz" half4
+half4 --> "ywww" half4
+half4 --> "zxxx" half4
+half4 --> "zxxy" half4
+half4 --> "zxxz" half4
+half4 --> "zxxw" half4
+half4 --> "zxyx" half4
+half4 --> "zxyy" half4
+half4 --> "zxyz" half4
+half4 --> "zxyw" half4
+half4 --> "zxzx" half4
+half4 --> "zxzy" half4
+half4 --> "zxzz" half4
+half4 --> "zxzw" half4
+half4 --> "zxwx" half4
+half4 --> "zxwy" half4
+half4 --> "zxwz" half4
+half4 --> "zxww" half4
+half4 --> "zyxx" half4
+half4 --> "zyxy" half4
+half4 --> "zyxz" half4
+half4 --> "zyxw" half4
+half4 --> "zyyx" half4
+half4 --> "zyyy" half4
+half4 --> "zyyz" half4
+half4 --> "zyyw" half4
+half4 --> "zyzx" half4
+half4 --> "zyzy" half4
+half4 --> "zyzz" half4
+half4 --> "zyzw" half4
+half4 --> "zywx" half4
+half4 --> "zywy" half4
+half4 --> "zywz" half4
+half4 --> "zyww" half4
+half4 --> "zzxx" half4
+half4 --> "zzxy" half4
+half4 --> "zzxz" half4
+half4 --> "zzxw" half4
+half4 --> "zzyx" half4
+half4 --> "zzyy" half4
+half4 --> "zzyz" half4
+half4 --> "zzyw" half4
+half4 --> "zzzx" half4
+half4 --> "zzzy" half4
+half4 --> "zzzz" half4
+half4 --> "zzzw" half4
+half4 --> "zzwx" half4
+half4 --> "zzwy" half4
+half4 --> "zzwz" half4
+half4 --> "zzww" half4
+half4 --> "zwxx" half4
+half4 --> "zwxy" half4
+half4 --> "zwxz" half4
+half4 --> "zwxw" half4
+half4 --> "zwyx" half4
+half4 --> "zwyy" half4
+half4 --> "zwyz" half4
+half4 --> "zwyw" half4
+half4 --> "zwzx" half4
+half4 --> "zwzy" half4
+half4 --> "zwzz" half4
+half4 --> "zwzw" half4
+half4 --> "zwwx" half4
+half4 --> "zwwy" half4
+half4 --> "zwwz" half4
+half4 --> "zwww" half4
+half4 --> "wxxx" half4
+half4 --> "wxxy" half4
+half4 --> "wxxz" half4
+half4 --> "wxxw" half4
+half4 --> "wxyx" half4
+half4 --> "wxyy" half4
+half4 --> "wxyz" half4
+half4 --> "wxyw" half4
+half4 --> "wxzx" half4
+half4 --> "wxzy" half4
+half4 --> "wxzz" half4
+half4 --> "wxzw" half4
+half4 --> "wxwx" half4
+half4 --> "wxwy" half4
+half4 --> "wxwz" half4
+half4 --> "wxww" half4
+half4 --> "wyxx" half4
+half4 --> "wyxy" half4
+half4 --> "wyxz" half4
+half4 --> "wyxw" half4
+half4 --> "wyyx" half4
+half4 --> "wyyy" half4
+half4 --> "wyyz" half4
+half4 --> "wyyw" half4
+half4 --> "wyzx" half4
+half4 --> "wyzy" half4
+half4 --> "wyzz" half4
+half4 --> "wyzw" half4
+half4 --> "wywx" half4
+half4 --> "wywy" half4
+half4 --> "wywz" half4
+half4 --> "wyww" half4
+half4 --> "wzxx" half4
+half4 --> "wzxy" half4
+half4 --> "wzxz" half4
+half4 --> "wzxw" half4
+half4 --> "wzyx" half4
+half4 --> "wzyy" half4
+half4 --> "wzyz" half4
+half4 --> "wzyw" half4
+half4 --> "wzzx" half4
+half4 --> "wzzy" half4
+half4 --> "wzzz" half4
+half4 --> "wzzw" half4
+half4 --> "wzwx" half4
+half4 --> "wzwy" half4
+half4 --> "wzwz" half4
+half4 --> "wzww" half4
+half4 --> "wwxx" half4
+half4 --> "wwxy" half4
+half4 --> "wwxz" half4
+half4 --> "wwxw" half4
+half4 --> "wwyx" half4
+half4 --> "wwyy" half4
+half4 --> "wwyz" half4
+half4 --> "wwyw" half4
+half4 --> "wwzx" half4
+half4 --> "wwzy" half4
+half4 --> "wwzz" half4
+half4 --> "wwzw" half4
+half4 --> "wwwx" half4
+half4 --> "wwwy" half4
+half4 --> "wwwz" half4
+half4 --> "wwww" half4
+half4 --> "xxx" half3
+half4 --> "xxy" half3
+half4 --> "xxz" half3
+half4 --> "xxw" half3
+half4 --> "xyx" half3
+half4 --> "xyy" half3
+half4 --> "xyz" half3
+half4 --> "xyw" half3
+half4 --> "xzx" half3
+half4 --> "xzy" half3
+half4 --> "xzz" half3
+half4 --> "xzw" half3
+half4 --> "xwx" half3
+half4 --> "xwy" half3
+half4 --> "xwz" half3
+half4 --> "xww" half3
+half4 --> "yxx" half3
+half4 --> "yxy" half3
+half4 --> "yxz" half3
+half4 --> "yxw" half3
+half4 --> "yyx" half3
+half4 --> "yyy" half3
+half4 --> "yyz" half3
+half4 --> "yyw" half3
+half4 --> "yzx" half3
+half4 --> "yzy" half3
+half4 --> "yzz" half3
+half4 --> "yzw" half3
+half4 --> "ywx" half3
+half4 --> "ywy" half3
+half4 --> "ywz" half3
+half4 --> "yww" half3
+half4 --> "zxx" half3
+half4 --> "zxy" half3
+half4 --> "zxz" half3
+half4 --> "zxw" half3
+half4 --> "zyx" half3
+half4 --> "zyy" half3
+half4 --> "zyz" half3
+half4 --> "zyw" half3
+half4 --> "zzx" half3
+half4 --> "zzy" half3
+half4 --> "zzz" half3
+half4 --> "zzw" half3
+half4 --> "zwx" half3
+half4 --> "zwy" half3
+half4 --> "zwz" half3
+half4 --> "zww" half3
+half4 --> "wxx" half3
+half4 --> "wxy" half3
+half4 --> "wxz" half3
+half4 --> "wxw" half3
+half4 --> "wyx" half3
+half4 --> "wyy" half3
+half4 --> "wyz" half3
+half4 --> "wyw" half3
+half4 --> "wzx" half3
+half4 --> "wzy" half3
+half4 --> "wzz" half3
+half4 --> "wzw" half3
+half4 --> "wwx" half3
+half4 --> "wwy" half3
+half4 --> "wwz" half3
+half4 --> "www" half3
+half4 --> "xx" half2
+half4 --> "xy" half2
+half4 --> "xz" half2
+half4 --> "xw" half2
+half4 --> "yx" half2
+half4 --> "yy" half2
+half4 --> "yz" half2
+half4 --> "yw" half2
+half4 --> "zx" half2
+half4 --> "zy" half2
+half4 --> "zz" half2
+half4 --> "zw" half2
+half4 --> "wx" half2
+half4 --> "wy" half2
+half4 --> "wz" half2
+half4 --> "ww" half2
+half4 +-- DebuggerProxy
+DebuggerProxy --> "x" half
+DebuggerProxy --> "y" half
+DebuggerProxy --> "z" half
+DebuggerProxy --> "w" half
+@enduml

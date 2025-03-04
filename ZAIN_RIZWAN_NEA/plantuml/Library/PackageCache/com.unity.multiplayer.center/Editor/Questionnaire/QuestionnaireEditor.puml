@@ -1,0 +1,7 @@
+@startuml
+class QuestionnaireEditor {
+    + <<override>> CreateInspectorGUI() : VisualElement
+    + {static} OpenMyCustomAsset(instanceID:int, line:int) : bool
+}
+Editor <|-- QuestionnaireEditor
+@enduml

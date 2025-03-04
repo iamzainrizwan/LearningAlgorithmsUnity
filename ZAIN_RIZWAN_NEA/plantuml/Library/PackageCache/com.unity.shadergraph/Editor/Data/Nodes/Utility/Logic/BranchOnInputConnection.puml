@@ -1,0 +1,15 @@
+@startuml
+class BranchOnInputConnectionNode {
+    + <<const>> InputSlotId : int = 0
+    + <<const>> ConnectedSlotId : int = 1
+    + <<const>> NotConnectedSlotId : int = 2
+    + <<const>> OutSlotId : int = 3
+    + BranchOnInputConnectionNode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> allowedInMainGraph : bool <<get>>
+    + <<override>> hasPreview : bool <<get>>
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+}
+AbstractMaterialNode <|-- BranchOnInputConnectionNode
+IGeneratesBodyCode <|-- BranchOnInputConnectionNode
+@enduml

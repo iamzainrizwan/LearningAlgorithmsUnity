@@ -1,0 +1,14 @@
+@startuml
+class UtilsForMultiplayerCenterTests <<static>> {
+    + {static} CloseMultiplayerCenterWindow() : void
+    + {static} ResetUserChoices() : void
+    + {static} PopulateUserAnswersForPresetAndPlayerCount(preset:Preset, playerCount:int) : void
+    + {static} CreatePlayerCountAnswer(playerCount:int) : AnsweredQuestion
+    + {static} GetAnsweredQuestionThatIsNotInAdventurePreset() : AnsweredQuestion
+    + {static} CopyUserChoicesToTempFile() : void
+    + {static} RestoreUserChoicesFromTempFile() : void
+    + {static} OpenTabByIndex(tabIndex:int) : void
+    + {static} SetNetcodeSolutionToCustomNetcode(flag:bool) : void
+    + {static} SetSelectedSolutionToDistributedAuthority(flag:bool) : void
+}
+@enduml

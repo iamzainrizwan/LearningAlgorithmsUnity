@@ -1,0 +1,9 @@
+@startuml
+class AnyState <<sealed>> {
+    + <<override>> canBeDestination : bool <<get>>
+    + AnyState()
+    + <<override>> OnExit(flow:Flow, reason:StateExitReason) : void
+    + <<override>> OnBranchTo(flow:Flow, destination:IState) : void
+}
+State <|-- AnyState
+@enduml

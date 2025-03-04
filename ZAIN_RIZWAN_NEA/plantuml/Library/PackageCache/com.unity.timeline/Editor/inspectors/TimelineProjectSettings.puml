@@ -1,0 +1,23 @@
+@startuml
+class TimelineProjectSettings {
+    + assetDefaultFramerate : float
+    + defaultFrameRate : double <<get>> <<set>>
+    + Save() : void
+}
+class TimelineProjectSettingsProvider {
+    + TimelineProjectSettingsProvider(path:string, scopes:SettingsScope, keywords:IEnumerable<string>)
+    + <<override>> OnActivate(searchContext:string, rootElement:VisualElement) : void
+    + <<override>> OnGUI(searchContext:string) : void
+    + {static} CreateTimelineProjectSettingProvider() : SettingsProvider
+}
+class "ScriptableSingleton`1"<T> {
+}
+class Styles {
+    + {static} <<readonly>> WarningString : string
+}
+"ScriptableSingleton`1" "<TimelineProjectSettings>" <|-- TimelineProjectSettings
+SettingsProvider <|-- TimelineProjectSettingsProvider
+TimelineProjectSettingsProvider +-- Styles
+Styles o-> "DefaultFramerateLabel" GUIContent
+Styles o-> "TimelineAssetLabel" GUIContent
+@enduml

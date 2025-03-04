@@ -1,0 +1,6 @@
+@startuml
+class DoNotSerializeAttribute <<sealed>> {
+    + DoNotSerializeAttribute()
+}
+Attribute <|-- DoNotSerializeAttribute
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+class InputControlLayoutAttribute <<sealed>> {
+    + stateFormat : string <<get>> <<set>>
+    + variants : string <<get>> <<set>>
+    + isNoisy : bool <<get>> <<set>>
+    + canRunInBackground : bool <<get>> <<set>>
+    + updateBeforeRender : bool <<get>> <<set>>
+    + isGenericTypeOfDevice : bool <<get>> <<set>>
+    + displayName : string <<get>> <<set>>
+    + description : string <<get>> <<set>>
+    + hideInUI : bool <<get>> <<set>>
+}
+Attribute <|-- InputControlLayoutAttribute
+InputControlLayoutAttribute --> "stateType" Type
+@enduml

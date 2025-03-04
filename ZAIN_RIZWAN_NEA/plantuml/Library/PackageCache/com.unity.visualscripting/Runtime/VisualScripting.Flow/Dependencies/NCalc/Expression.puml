@@ -1,0 +1,19 @@
+@startuml
+class Expression {
+    + Expression(expression:string, options:EvaluateOptions)
+    + Expression(expression:LogicalExpression, options:EvaluateOptions)
+    +  <<event>> EvaluateFunction : EvaluateFunctionHandler 
+    +  <<event>> EvaluateParameter : EvaluateParameterHandler 
+    + Error : string <<get>>
+    + UpdateUnityTimeParameters() : void
+    + HasErrors() : bool
+    + Evaluate(flow:Flow) : object
+    + {static} Compile(expression:string, noCache:bool) : LogicalExpression
+    + {static} CacheEnabled : bool <<get>> <<set>>
+}
+class "Dictionary`2"<T1,T2> {
+}
+Expression --> "Options" EvaluateOptions
+Expression --> "ParsedExpression" LogicalExpression
+Expression --> "Parameters<string,object>" "Dictionary`2"
+@enduml

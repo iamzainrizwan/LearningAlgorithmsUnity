@@ -1,0 +1,19 @@
+@startuml
+class TimelineUtility <<static>> {
+    + {static} ReorderTracks(allTracks:List<ScriptableObject>, tracks:List<TrackAsset>, insertAfterAsset:ScriptableObject, up:bool) : void
+    + {static} GetSceneReferenceTrack(asset:TrackAsset) : TrackAsset
+    + {static} TrackHasAnimationCurves(track:TrackAsset) : bool
+    + {static} GetSceneGameObject(director:PlayableDirector, asset:TrackAsset) : GameObject
+    + {static} GetDirectorsInSceneUsingAsset(asset:PlayableAsset) : PlayableDirector[]
+    + {static} GetDirectorComponentForGameObject(gameObject:GameObject) : PlayableDirector
+    + {static} GetTimelineAssetForDirectorComponent(director:PlayableDirector) : TimelineAsset
+    + {static} IsPrefabOrAsset(obj:Object) : bool
+    + {static} HasCustomEditor(clip:TimelineClip) : bool
+    + {static} GetSubTimelines(clip:TimelineClip, director:IExposedPropertyTable) : IList<PlayableDirector>
+    + {static} IsAllSubTrackMuted(asset:TrackAsset) : bool
+    + {static} IsParentMuted(asset:TrackAsset) : bool
+    + {static} GetAllDirectorsInHierarchy(mainDirector:PlayableDirector) : IEnumerable<PlayableDirector>
+    + {static} IsLockedFromGroup(asset:TrackAsset) : bool
+    + {static} CreateAndSaveTimelineAsset(path:string) : TimelineAsset
+}
+@enduml

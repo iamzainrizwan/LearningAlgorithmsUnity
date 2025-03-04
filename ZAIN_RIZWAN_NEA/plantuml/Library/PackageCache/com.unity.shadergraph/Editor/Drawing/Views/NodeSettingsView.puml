@@ -1,0 +1,7 @@
+@startuml
+class NodeSettingsView {
+    + NodeSettingsView()
+}
+VisualElement <|-- NodeSettingsView
+NodeSettingsView --> "contentContainer" VisualElement
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class Misc <<static>> {
+    {static} + Destroy(obj:UnityEngine.Object) : void
+    {static} + DestroyImmediate(obj:Object) : void
+}
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class ShaderUtils <<static>> {
+}
+enum ShaderID {
+    Unknown= -1,
+    SG_Start= 1000,
+    SG_Unlit= SG_Start,
+    SG_Lit,
+}
+ShaderUtils +-- ShaderID
+@enduml

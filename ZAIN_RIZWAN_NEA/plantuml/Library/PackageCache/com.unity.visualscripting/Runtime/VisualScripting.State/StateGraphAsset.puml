@@ -1,0 +1,8 @@
+@startuml
+class StateGraphAsset <<sealed>> {
+    + <<override>> DefaultGraph() : StateGraph
+}
+class "Macro`1"<T> {
+}
+"Macro`1" "<StateGraph>" <|-- StateGraphAsset
+@enduml

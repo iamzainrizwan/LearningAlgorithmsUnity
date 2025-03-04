@@ -1,0 +1,5 @@
+@startuml
+interface IEventMachine {
+}
+IMachine <|-- IEventMachine
+@enduml

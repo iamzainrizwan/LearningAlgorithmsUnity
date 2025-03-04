@@ -1,0 +1,36 @@
+@startuml
+struct ShaderDependency {
+    + dependencyName : string
+    + shaderName : string
+    + CompareTo(other:ShaderDependency) : int
+}
+struct ShaderCustomEditor {
+    + shaderGUI : string
+    + renderPipelineAssetType : string
+    + CompareTo(other:ShaderCustomEditor) : int
+}
+struct SubShaderDescriptor {
+    + pipelineTag : string
+    + IgnoreProjector : string
+    + customTags : string
+    + renderType : string
+    + PreviewType : string
+    + CanUseSpriteAtlas : string
+    + renderQueue : string
+    + disableBatchingTag : string
+    + generatesPreview : bool
+    + additionalShaderID : string
+    + shaderCustomEditor : string
+    + shaderFallback : string
+}
+class "IComparable`1"<T> {
+}
+class "List`1"<T> {
+}
+"IComparable`1" "<ShaderDependency>" <|-- ShaderDependency
+"IComparable`1" "<ShaderCustomEditor>" <|-- ShaderCustomEditor
+SubShaderDescriptor --> "passes" PassCollection
+SubShaderDescriptor --> "usePassList<string>" "List`1"
+SubShaderDescriptor --> "shaderDependencies<ShaderDependency>" "List`1"
+SubShaderDescriptor --> "shaderCustomEditors<ShaderCustomEditor>" "List`1"
+@enduml

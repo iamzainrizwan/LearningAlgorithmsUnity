@@ -1,0 +1,6 @@
+@startuml
+class IncomingChangesTreeView {
+    + <<override>> GetRows() : IList<TreeViewItem>
+}
+TreeView <|-- IncomingChangesTreeView
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+class SliderNode {
+    + <<const>> OutputSlotId : int = 0
+    + SliderNode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> CollectShaderProperties(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + <<override>> GetVariableNameForSlot(slotId:int) : string
+    + <<override>> CollectPreviewMaterialProperties(properties:List<PreviewProperty>) : void
+    + AsShaderProperty() : AbstractShaderProperty
+    + outputSlotId : int <<get>>
+}
+AbstractMaterialNode <|-- SliderNode
+IGeneratesBodyCode <|-- SliderNode
+IPropertyFromNode <|-- SliderNode
+SliderNode --> "value" Vector3
+@enduml

@@ -1,0 +1,108 @@
+@startuml
+abstract class ScriptableRenderer <<partial>> {
+    + <<virtual>> SupportedCameraStackingTypes() : int
+    + SupportsCameraStackingType(cameraRenderType:CameraRenderType) : bool
+    + {static} SetCameraMatrices(cmd:CommandBuffer, cameraData:CameraData, setInverseMatrices:bool) : void
+    + {static} SetCameraMatrices(cmd:CommandBuffer, cameraData:UniversalCameraData, setInverseMatrices:bool) : void
+    + ScriptableRenderer(data:ScriptableRendererData)
+    + Dispose() : void
+    + ConfigureCameraTarget(colorTarget:RenderTargetIdentifier, depthTarget:RenderTargetIdentifier) : void
+    + ConfigureCameraTarget(colorTarget:RTHandle, depthTarget:RTHandle) : void
+    + {abstract} Setup(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + <<virtual>> SetupLights(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + <<virtual>> SetupCullingParameters(cullingParameters:ScriptableCullingParameters, cameraData:CameraData) : void
+    + <<virtual>> FinishRendering(cmd:CommandBuffer) : void
+    + <<virtual>> OnBeginRenderGraphFrame() : void
+    + <<virtual>> OnEndRenderGraphFrame() : void
+    + Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + EnqueuePass(pass:ScriptableRenderPass) : void
+    + <<virtual>> supportsGPUOcclusion : bool <<get>>
+}
+class Profiling <<static>> <<partial>> {
+}
+class RenderingFeatures {
+    + cameraStacking : bool <<get>> <<set>> = false
+    + msaa : bool <<get>> <<set>> = true
+}
+class RenderPassBlock <<static>> {
+    + {static} <<readonly>> BeforeRendering : int = 0
+    + {static} <<readonly>> MainRenderingOpaque : int = 1
+    + {static} <<readonly>> MainRenderingTransparent : int = 2
+    + {static} <<readonly>> AfterRendering : int = 3
+}
+class VFXProcessCameraPassData {
+}
+class DrawGizmosPassData {
+}
+class DrawWireOverlayPassData {
+}
+class BeginXRPassData {
+}
+class EndXRPassData {
+}
+class DummyData {
+}
+class PassData {
+}
+struct RenderBlocks {
+    + RenderBlocks(activeRenderPassQueue:List<ScriptableRenderPass>)
+    + Dispose() : void
+    + GetLength(index:int) : int
+    + GetRange(index:int) : BlockRange
+}
+class RenderBlock <<static>> {
+}
+class RenderPass <<static>> {
+}
+struct BlockRange {
+    + BlockRange(begin:int, end:int)
+    + GetEnumerator() : BlockRange
+    + MoveNext() : bool
+    + Current : int <<get>>
+    + Dispose() : void
+}
+IDisposable <|-- ScriptableRenderer
+ScriptableRenderer --> "cameraColorTarget" RenderTargetIdentifier
+ScriptableRenderer --> "cameraColorTargetHandle" RTHandle
+ScriptableRenderer --> "cameraDepthTarget" RenderTargetIdentifier
+ScriptableRenderer --> "cameraDepthTargetHandle" RTHandle
+ScriptableRenderer o-> "supportedRenderingFeatures" RenderingFeatures
+ScriptableRenderer +-- Profiling
+Profiling o-> "setPerCameraShaderVariables" ProfilingSampler
+Profiling o-> "sortRenderPasses" ProfilingSampler
+Profiling o-> "recordRenderGraph" ProfilingSampler
+Profiling o-> "setupLights" ProfilingSampler
+Profiling o-> "setupCamera" ProfilingSampler
+Profiling o-> "vfxProcessCamera" ProfilingSampler
+Profiling o-> "addRenderPasses" ProfilingSampler
+Profiling o-> "setupRenderPasses" ProfilingSampler
+Profiling o-> "clearRenderingState" ProfilingSampler
+Profiling o-> "internalStartRendering" ProfilingSampler
+Profiling o-> "internalFinishRenderingCommon" ProfilingSampler
+Profiling o-> "drawGizmos" ProfilingSampler
+Profiling o-> "drawWireOverlay" ProfilingSampler
+ScriptableRenderer +-- RenderingFeatures
+ScriptableRenderer +-- RenderPassBlock
+ScriptableRenderer +-- VFXProcessCameraPassData
+ScriptableRenderer +-- DrawGizmosPassData
+DrawGizmosPassData --> "gizmoRenderList" RendererListHandle
+ScriptableRenderer +-- DrawWireOverlayPassData
+DrawWireOverlayPassData --> "wireOverlayList" RendererListHandle
+ScriptableRenderer +-- BeginXRPassData
+ScriptableRenderer +-- EndXRPassData
+EndXRPassData --> "cameraData" UniversalCameraData
+ScriptableRenderer +-- DummyData
+ScriptableRenderer +-- PassData
+ScriptableRenderer +-- RenderBlocks
+IDisposable <|-- RenderBlocks
+Profiling +-- RenderBlock
+RenderBlock o-> "beforeRendering" ProfilingSampler
+RenderBlock o-> "mainRenderingOpaque" ProfilingSampler
+RenderBlock o-> "mainRenderingTransparent" ProfilingSampler
+RenderBlock o-> "afterRendering" ProfilingSampler
+Profiling +-- RenderPass
+RenderPass o-> "configure" ProfilingSampler
+RenderPass o-> "setRenderPassAttachments" ProfilingSampler
+RenderBlocks +-- BlockRange
+IDisposable <|-- BlockRange
+@enduml

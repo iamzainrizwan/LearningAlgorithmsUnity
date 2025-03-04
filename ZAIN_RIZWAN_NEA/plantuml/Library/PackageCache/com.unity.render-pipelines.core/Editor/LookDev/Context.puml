@@ -1,0 +1,68 @@
+@startuml
+enum ViewIndex {
+    First,
+    Second,
+}
+enum ViewCompositionIndex {
+    First= ViewIndex.First,
+    Second= ViewIndex.Second,
+    Composite,
+}
+enum Layout {
+    FullFirstView,
+    FullSecondView,
+    HorizontalSplit,
+    VerticalSplit,
+    CustomSplit,
+}
+enum SidePanel {
+    None= -1,
+    Environment,
+    Debug,
+}
+enum TargetDebugView {
+    First,
+    Both,
+    Second,
+}
+class Context {
+    + cameraSynced : bool <<get>> <<set>>
+    + GetViewContent(index:ViewIndex) : ViewContext
+    + UpdateEnvironmentLibrary(library:EnvironmentLibrary) : void
+    + SynchronizeCameraStates(baseCameraState:ViewIndex) : void
+    + SetFocusedCamera(index:ViewIndex) : void
+}
+class LayoutContext {
+}
+class ViewContext {
+    + hasEnvironment : bool <<get>>
+    + hasViewedObject : bool <<get>>
+    + UpdateEnvironment(environmentOrCubemapAsset:UnityEngine.Object) : void
+    + UpdateViewedObject(viewedObject:GameObject) : void
+    + ResetCameraState() : void
+}
+class DebugContext {
+    + shadow : bool = true
+    + viewMode : int
+}
+struct ViewIterator {
+}
+class "IEnumerable`1"<T> {
+}
+ScriptableObject <|-- Context
+IDisposable <|-- Context
+Context --> "environmentLibrary" EnvironmentLibrary
+Context o-> "layout" LayoutContext
+Context --> "viewContexts" ViewIterator
+LayoutContext --> "viewLayout" Layout
+LayoutContext o-> "lastFocusedView" ViewIndex
+LayoutContext --> "showedSidePanel" SidePanel
+LayoutContext o-> "debugPanelSource" TargetDebugView
+ViewContext o-> "camera" CameraState
+ViewContext o-> "debug" DebugContext
+ViewContext --> "environment" Environment
+ViewContext --> "viewedObjectReference" GameObject
+ViewContext --> "viewedInstanceInPreview" GameObject
+Context +-- ViewIterator
+"IEnumerable`1" "<ViewContext>" <|-- ViewIterator
+@enduml

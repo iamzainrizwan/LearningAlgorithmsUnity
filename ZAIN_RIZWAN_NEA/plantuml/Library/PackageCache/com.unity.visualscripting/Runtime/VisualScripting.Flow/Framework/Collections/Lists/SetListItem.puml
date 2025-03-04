@@ -1,0 +1,11 @@
+@startuml
+class SetListItem <<sealed>> {
+    + Set(flow:Flow) : ControlOutput
+}
+Unit <|-- SetListItem
+SetListItem --> "enter" ControlInput
+SetListItem --> "list" ValueInput
+SetListItem --> "index" ValueInput
+SetListItem --> "item" ValueInput
+SetListItem --> "exit" ControlOutput
+@enduml

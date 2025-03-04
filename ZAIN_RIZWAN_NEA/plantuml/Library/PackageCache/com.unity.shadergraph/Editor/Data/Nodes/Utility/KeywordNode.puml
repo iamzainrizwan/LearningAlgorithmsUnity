@@ -1,0 +1,19 @@
+@startuml
+class KeywordNode {
+    + KeywordNode()
+    + <<override>> canSetPrecision : bool <<get>>
+    + <<override>> hasPreview : bool <<get>>
+    + <<const>> OutputSlotId : int = 0
+    + UpdateNodeDisplayName(newDisplayName:string) : void
+    + OnEnable() : void
+    + UpdateNode() : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + GetSlotIdForPermutation(permutation:KeyValuePair<ShaderKeyword, int>) : int
+    + OnShaderInputUpdated(modificationScope:ModificationScope) : void
+}
+AbstractMaterialNode <|-- KeywordNode
+IOnAssetEnabled <|-- KeywordNode
+IGeneratesBodyCode <|-- KeywordNode
+IShaderInputObserver <|-- KeywordNode
+KeywordNode --> "keyword" ShaderKeyword
+@enduml

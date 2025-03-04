@@ -1,0 +1,17 @@
+@startuml
+class "DebugDisplaySettingsStats`1"<TProfileId> {
+    + DebugDisplaySettingsStats(debugDisplayStats:DebugDisplayStats<TProfileId>)
+    + AreAnySettingsActive : bool <<get>>
+    + CreatePanel() : IDebugDisplaySettingsPanelDisposable
+}
+class "DebugDisplayStats`1"<T> {
+}
+class StatsPanel {
+    + StatsPanel(displaySettingsStats:DebugDisplaySettingsStats<TProfileId>)
+    + <<override>> Dispose() : void
+}
+IDebugDisplaySettingsData <|-- "DebugDisplaySettingsStats`1"
+"DebugDisplaySettingsStats`1" --> "debugDisplayStats<TProfileId>" "DebugDisplayStats`1"
+"DebugDisplaySettingsStats`1" +-- StatsPanel
+DebugDisplaySettingsPanel <|-- StatsPanel
+@enduml

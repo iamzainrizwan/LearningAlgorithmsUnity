@@ -1,0 +1,14 @@
+@startuml
+struct "Pair`2"<Key,Value> {
+    + key : Key
+    + value : Value
+    + Pair(k:Key, v:Value)
+    + <<override>> ToString() : string
+}
+struct "ListPair`2"<Key,Value> {
+    + key : Key
+    + value : Value
+    + ListPair(k:Key, v:Value)
+    + <<override>> ToString() : string
+}
+@enduml

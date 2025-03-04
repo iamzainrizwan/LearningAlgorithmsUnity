@@ -1,0 +1,53 @@
+@startuml
+class InputControlPath <<static>> {
+    + <<const>> Wildcard : string = "*"
+    + <<const>> DoubleWildcard : string = "**"
+    + <<const>> Separator : char = '/'
+    + {static} Combine(parent:InputControl, path:string) : string
+    + {static} ToHumanReadableString(path:string, options:HumanReadableStringOptions, control:InputControl) : string
+    + {static} ToHumanReadableString(path:string, deviceLayoutName:string, controlPath:string, options:HumanReadableStringOptions, control:InputControl) : string
+    + {static} TryGetDeviceUsages(path:string) : string[]
+    + {static} TryGetDeviceLayout(path:string) : string
+    + {static} TryGetControlLayout(path:string) : string
+    + {static} TryFindControl(control:InputControl, path:string, indexInPath:int) : InputControl
+    + {static} TryFindControls(control:InputControl, path:string, indexInPath:int) : InputControl[]
+    + {static} TryFindControls(control:InputControl, path:string, matches:InputControlList<InputControl>, indexInPath:int) : int
+    + {static} TryFindControl(control:InputControl, path:string, indexInPath:int) : TControl
+    + {static} TryFindControls(control:InputControl, path:string, indexInPath:int, matches:InputControlList<TControl>) : int
+    + {static} TryFindChild(control:InputControl, path:string, indexInPath:int) : InputControl
+    + {static} TryFindChild(control:InputControl, path:string, indexInPath:int) : TControl
+    + {static} Matches(expected:string, control:InputControl) : bool
+    + {static} MatchesPrefix(expected:string, control:InputControl) : bool
+    + {static} Parse(path:string) : IEnumerable<ParsedPathComponent>
+}
+enum HumanReadableStringOptions {
+    None= 0,
+    OmitDevice= 1 << 1,
+    UseShortNames= 1 << 2,
+}
+enum PathComponentType {
+    Name,
+    DisplayName,
+    Usage,
+    Layout,
+}
+struct ParsedPathComponent {
+    + layout : string <<get>>
+    + name : string <<get>>
+    + displayName : string <<get>>
+    + Matches(control:InputControl) : bool
+}
+struct PathParser {
+    + isAtEnd : bool <<get>>
+    + PathParser(path:string)
+    + MoveToNextComponent() : bool
+}
+class "IEnumerable`1"<T> {
+}
+InputControlPath +-- HumanReadableStringOptions
+InputControlPath +-- PathComponentType
+InputControlPath +-- ParsedPathComponent
+ParsedPathComponent --> "usages<string>" "IEnumerable`1"
+InputControlPath +-- PathParser
+PathParser --> "current" ParsedPathComponent
+@enduml

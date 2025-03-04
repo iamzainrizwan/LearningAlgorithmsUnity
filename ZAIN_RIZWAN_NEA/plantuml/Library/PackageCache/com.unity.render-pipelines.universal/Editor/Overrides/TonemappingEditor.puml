@@ -1,0 +1,8 @@
+@startuml
+class TonemappingEditor <<sealed>> {
+    + <<override>> hasAdditionalProperties : bool <<get>>
+    + <<override>> OnEnable() : void
+    + <<override>> OnInspectorGUI() : void
+}
+VolumeComponentEditor <|-- TonemappingEditor
+@enduml

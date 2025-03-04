@@ -1,0 +1,5 @@
+@startuml
+class RiderInitializer {
+    + Initialize(editorPath:string) : void
+}
+@enduml

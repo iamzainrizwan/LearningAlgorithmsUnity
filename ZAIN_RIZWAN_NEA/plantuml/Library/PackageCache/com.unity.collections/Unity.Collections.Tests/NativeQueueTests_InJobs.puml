@@ -1,0 +1,40 @@
+@startuml
+class NativeQueueTests_InJobs {
+    + NativeQueue_NestedJob_Error() : void
+    + Enqueue() : void
+    + EnqueueDequeueMultipleQueuesInMultipleJobs() : void
+    + ToArray_WorksFromJobs() : void
+    + NativeQueue_ParallelWriter() : void
+}
+struct NestedContainerJob {
+    + Execute() : void
+}
+struct ConcurrentEnqueue {
+    + StartIndex : int
+    + Execute(index:int) : void
+}
+struct EnqueueDequeueJob {
+    + val : int
+    + Execute() : void
+}
+struct EnqueueJob {
+    + Execute(index:int) : void
+}
+class "NativeQueue`1"<T> {
+}
+class "NativeArray`1"<T> {
+}
+CollectionsTestCommonBase <|-- NativeQueueTests_InJobs
+NativeQueueTests_InJobs +-- NestedContainerJob
+IJob <|-- NestedContainerJob
+NestedContainerJob --> "nestedContainer<NativeQueue<int>>" "NativeQueue`1"
+NativeQueueTests_InJobs +-- ConcurrentEnqueue
+IJobParallelFor <|-- ConcurrentEnqueue
+ConcurrentEnqueue --> "result<int>" "NativeArray`1"
+NativeQueueTests_InJobs +-- EnqueueDequeueJob
+IJob <|-- EnqueueDequeueJob
+EnqueueDequeueJob --> "queue<int>" "NativeQueue`1"
+EnqueueDequeueJob --> "arr<int>" "NativeArray`1"
+NativeQueueTests_InJobs +-- EnqueueJob
+IJobParallelFor <|-- EnqueueJob
+@enduml

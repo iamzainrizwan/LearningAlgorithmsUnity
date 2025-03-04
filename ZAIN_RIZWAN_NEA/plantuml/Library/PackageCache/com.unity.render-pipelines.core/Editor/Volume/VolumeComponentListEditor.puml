@@ -1,0 +1,20 @@
+@startuml
+class VolumeComponentListEditor <<sealed>> {
+    + SetIsGlobalDefaultVolumeProfile(isDefaultVolumeProfile:bool) : void
+    + VolumeComponentListEditor(editor:Editor)
+    + Init(asset:VolumeProfile, serializedObject:SerializedObject) : void
+    + Clear() : void
+    + OnGUI() : void
+}
+class "List`1"<T> {
+}
+enum Move {
+    Up,
+    Down,
+    Top,
+    Bottom,
+}
+VolumeComponentListEditor --> "asset" VolumeProfile
+VolumeComponentListEditor --> "editors<VolumeComponentEditor>" "List`1"
+VolumeComponentListEditor +-- Move
+@enduml

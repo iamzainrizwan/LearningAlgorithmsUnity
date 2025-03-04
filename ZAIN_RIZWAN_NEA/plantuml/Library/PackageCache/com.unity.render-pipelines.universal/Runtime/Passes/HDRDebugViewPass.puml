@@ -1,0 +1,29 @@
+@startuml
+class HDRDebugViewPass {
+    + HDRDebugViewPass(mat:Material)
+    + {static} ConfigureDescriptorForCIEPrepass(descriptor:RenderTextureDescriptor) : void
+    + Dispose() : void
+    + Setup(cameraData:UniversalCameraData, hdrdebugMode:HDRDebugMode) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+}
+enum HDRDebugPassId {
+    CIExyPrepass= 0,
+    DebugViewPass= 1,
+}
+class PassDataCIExy {
+}
+class PassDataDebugView {
+}
+class ShaderConstants {
+    + {static} <<readonly>> _DebugHDRModeId : int
+    + {static} <<readonly>> _HDRDebugParamsId : int
+    + {static} <<readonly>> _xyTextureId : int
+    + {static} <<readonly>> _SizeOfHDRXYMapping : int = 512
+    + {static} <<readonly>> _CIExyUAVIndex : int = 1
+}
+ScriptableRenderPass <|-- HDRDebugViewPass
+HDRDebugViewPass +-- HDRDebugPassId
+HDRDebugViewPass +-- PassDataCIExy
+HDRDebugViewPass +-- PassDataDebugView
+HDRDebugViewPass +-- ShaderConstants
+@enduml

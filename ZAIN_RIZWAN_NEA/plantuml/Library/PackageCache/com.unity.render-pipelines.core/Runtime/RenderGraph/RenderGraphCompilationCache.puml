@@ -1,0 +1,14 @@
+@startuml
+class RenderGraphCompilationCache {
+    + RenderGraphCompilationCache()
+    + GetCompilationCache(hash:int, frameIndex:int, outGraph:RenderGraph.CompiledGraph) : bool
+    + GetCompilationCache(hash:int, frameIndex:int, outGraph:CompilerContextData) : bool
+    + Clear() : void
+}
+struct "HashEntry`1"<T> {
+    + hash : int
+    + lastFrameUsed : int
+    + compiledGraph : T
+}
+RenderGraphCompilationCache +-- "HashEntry`1"
+@enduml

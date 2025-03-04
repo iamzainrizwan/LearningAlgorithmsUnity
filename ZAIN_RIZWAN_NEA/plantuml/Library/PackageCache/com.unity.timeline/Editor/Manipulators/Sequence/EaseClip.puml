@@ -1,0 +1,11 @@
+@startuml
+class EaseClip {
+    + {static} <<readonly>> EaseInClipText : string
+    + {static} <<readonly>> EaseOutClipText : string
+    + {static} <<readonly>> EaseInText : string
+    + {static} <<readonly>> EaseOutText : string
+    + {static} <<readonly>> DurationText : string
+    + <<override>> Overlay(evt:Event, state:WindowState) : void
+}
+Manipulator <|-- EaseClip
+@enduml

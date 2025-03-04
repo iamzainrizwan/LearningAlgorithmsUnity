@@ -1,0 +1,10 @@
+@startuml
+class ScreenSettings {
+    + ScreenSettings(screenWidth:int, screenHeight:int, screenRefreshRate:int, fullscreen:bool)
+    + ScreenSettings()
+    + ScreenWidth : int
+    + ScreenHeight : int
+    + ScreenRefreshRate : int
+    + Fullscreen : bool
+}
+@enduml

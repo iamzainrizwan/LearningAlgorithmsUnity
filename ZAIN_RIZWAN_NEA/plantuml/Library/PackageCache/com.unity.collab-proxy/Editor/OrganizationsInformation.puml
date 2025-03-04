@@ -1,0 +1,4 @@
+@startuml
+class OrganizationsInformation <<static>> {
+}
+@enduml

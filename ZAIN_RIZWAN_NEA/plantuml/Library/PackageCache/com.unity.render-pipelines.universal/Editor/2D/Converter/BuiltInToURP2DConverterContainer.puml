@@ -1,0 +1,7 @@
+@startuml
+class BuiltInToURP2DConverterContainer <<sealed>> {
+    + <<override>> name : string <<get>>
+    + <<override>> info : string <<get>>
+}
+RenderPipelineConverterContainer <|-- BuiltInToURP2DConverterContainer
+@enduml

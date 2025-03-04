@@ -1,0 +1,18 @@
+@startuml
+class VariableDeclarations <<sealed>> {
+    + VariableDeclarations()
+    + Set(variable:string, value:object) : void
+    + Get(variable:string) : object
+    + Get(variable:string) : T
+    + Get(variable:string, expectedType:Type) : object
+    + Clear() : void
+    + IsDefined(variable:string) : bool
+    + GetDeclaration(variable:string) : VariableDeclaration
+    + GetEnumerator() : IEnumerator<VariableDeclaration>
+}
+class "IEnumerable`1"<T> {
+}
+"IEnumerable`1" "<VariableDeclaration>" <|-- VariableDeclarations
+ISpecifiesCloner <|-- VariableDeclarations
+VariableDeclarations --> "Kind" VariableKind
+@enduml

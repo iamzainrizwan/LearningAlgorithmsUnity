@@ -1,0 +1,10 @@
+@startuml
+class RenderPipelineGraphicsSettingsContainer {
+    + OnBeforeSerialize() : void
+    + OnAfterDeserialize() : void
+}
+class "List`1"<T> {
+}
+ISerializationCallbackReceiver <|-- RenderPipelineGraphicsSettingsContainer
+RenderPipelineGraphicsSettingsContainer --> "settingsList<IRenderPipelineGraphicsSettings>" "List`1"
+@enduml

@@ -1,0 +1,53 @@
+@startuml
+class FontWeightDrawer {
+    + <<override>> OnGUI(position:Rect, property:SerializedProperty, label:GUIContent) : void
+}
+class TMP_FontAssetEditor {
+    + OnEnable() : void
+    + OnDisable() : void
+    + <<override>> OnInspectorGUI() : void
+    + <<override>> HasPreviewGUI() : bool
+    + <<override>> OnPreviewGUI(rect:Rect, background:GUIStyle) : void
+}
+struct UI_PanelState {
+    + {static} faceInfoPanel : bool = true
+    + {static} generationSettingsPanel : bool = true
+    + {static} fontAtlasInfoPanel : bool = true
+    + {static} fontWeightPanel : bool = true
+    + {static} fallbackFontAssetPanel : bool = true
+    + {static} glyphTablePanel : bool = false
+    + {static} characterTablePanel : bool = false
+    + {static} LigatureSubstitutionTablePanel : bool
+    + {static} PairAdjustmentTablePanel : bool = false
+    + {static} MarkToBaseTablePanel : bool = false
+    + {static} MarkToMarkTablePanel : bool = false
+}
+struct GenerationSettings {
+    + faceIndex : int
+    + pointSize : int
+    + padding : int
+    + atlasWidth : int
+    + atlasHeight : int
+}
+struct Warning {
+    + isEnabled : bool
+    + expirationTime : double
+}
+enum RecordSelectionType {
+    CharacterRecord,
+    GlyphRecord,
+    LigatureSubstitutionRecord,
+    AdjustmentPairRecord,
+    MarkToBaseRecord,
+    MarkToMarkRecord,
+}
+PropertyDrawer <|-- FontWeightDrawer
+Editor <|-- TMP_FontAssetEditor
+TMP_FontAssetEditor o-> "getFontFeaturesLabel" GUIContent
+TMP_FontAssetEditor +-- UI_PanelState
+TMP_FontAssetEditor +-- GenerationSettings
+GenerationSettings --> "sourceFont" Font
+GenerationSettings --> "glyphRenderMode" GlyphRenderMode
+TMP_FontAssetEditor +-- Warning
+TMP_FontAssetEditor +-- RecordSelectionType
+@enduml

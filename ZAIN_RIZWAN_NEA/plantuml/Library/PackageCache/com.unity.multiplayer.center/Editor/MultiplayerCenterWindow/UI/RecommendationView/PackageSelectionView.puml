@@ -1,0 +1,15 @@
+@startuml
+class RecommendedPackagesSection {
+    + RecommendedPackagesSection()
+}
+class OtherSection {
+    + OtherSection()
+}
+class PackageSelectionView {
+    +  <<event>> OnPackageSelectionChanged : Action 
+    + UpdatePackageData(packages:List<RecommendedPackageViewData>) : void
+}
+PackageSelectionView <|-- RecommendedPackagesSection
+PackageSelectionView <|-- OtherSection
+VisualElement <|-- PackageSelectionView
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class UnityEditorInternals <<static>> {
+    + {static} DoObjectField(position:Rect, obj:Object, type:Type, controlId:int, allowScene:bool, allowAllObjects:bool) : Object
+}
+@enduml

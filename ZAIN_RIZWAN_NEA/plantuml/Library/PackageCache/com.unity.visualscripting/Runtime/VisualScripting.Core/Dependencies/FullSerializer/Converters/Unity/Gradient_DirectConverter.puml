@@ -1,0 +1,11 @@
+@startuml
+class fsConverterRegistrar <<partial>> {
+}
+class Gradient_DirectConverter {
+    + <<override>> CreateInstance(data:fsData, storageType:Type) : object
+}
+class "fsDirectConverter`1"<T> {
+}
+fsConverterRegistrar --> "Register_Gradient_DirectConverter" Gradient_DirectConverter
+"fsDirectConverter`1" "<Gradient>" <|-- Gradient_DirectConverter
+@enduml

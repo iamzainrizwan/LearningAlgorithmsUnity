@@ -1,0 +1,129 @@
+@startuml
+struct InstanceCullingBatcherDesc {
+    + {static} NewDefault() : InstanceCullingBatcherDesc
+}
+struct MeshProceduralInfo {
+    + baseVertex : uint
+    + firstIndex : uint
+    + indexCount : uint
+}
+struct PrefixSumDrawInstancesJob {
+    + Execute() : void
+}
+struct BuildDrawListsJob {
+    + <<const>> k_BatchSize : int = 128
+    + <<const>> k_IntsPerCacheLine : int
+    + Execute(index:int) : void
+}
+struct FindDrawInstancesJob {
+    + <<const>> k_BatchSize : int = 128
+    + Execute(startIndex:int, count:int) : void
+}
+struct FindMaterialDrawInstancesJob {
+    + <<const>> k_BatchSize : int = 128
+    + Execute(startIndex:int, count:int) : void
+}
+struct "FindNonRegisteredInstancesJob`1"<T> {
+    + <<const>> k_BatchSize : int = 128
+    + <<unsafe>> Execute(startIndex:int, count:int) : void
+}
+struct "RegisterNewInstancesJob`1"<T> {
+    + <<const>> k_BatchSize : int = 128
+    + <<unsafe>> Execute(index:int) : void
+}
+struct RemoveDrawInstanceIndicesJob {
+    + RemoveDrawRange(key:RangeKey) : void
+    + RemoveDrawBatch(key:DrawKey) : void
+    + <<unsafe>> Execute() : void
+}
+struct CreateDrawBatchesJob {
+    + implicitInstanceIndices : bool
+    + ProcessRenderer(i:int) : void
+    + Execute() : void
+}
+class CPUDrawInstanceData {
+    + valid : bool <<get>>
+    + Initialize() : void
+    + Dispose() : void
+    + RebuildDrawListsIfNeeded() : void
+    + <<unsafe>> DestroyDrawInstanceIndices(drawInstanceIndicesToDestroy:NativeArray<int>) : void
+    + <<unsafe>> DestroyDrawInstances(destroyedInstances:NativeArray<InstanceHandle>) : void
+    + <<unsafe>> DestroyMaterialDrawInstances(destroyedBatchMaterials:NativeArray<uint>) : void
+    + NeedsRebuild() : void
+}
+class InstanceCullingBatcher {
+    + InstanceCullingBatcher(batcherContext:RenderersBatchersContext, desc:InstanceCullingBatcherDesc, onFinishedCulling:BatchRendererGroup.OnFinishedCulling)
+    + Dispose() : void
+    + GetDrawInstanceData() : CPUDrawInstanceData
+    + <<unsafe>> OnPerformCulling(rendererGroup:BatchRendererGroup, cc:BatchCullingContext, cullingOutput:BatchCullingOutput, userContext:IntPtr) : JobHandle
+    + OnFinishedCulling(customCullingResult:IntPtr) : void
+    + DestroyInstances(instances:NativeArray<InstanceHandle>) : void
+    + DestroyMaterials(destroyedMaterials:NativeArray<int>) : void
+    + DestroyMeshes(destroyedMeshes:NativeArray<int>) : void
+    + PostCullBeginCameraRendering(context:RenderRequestBatcherContext) : void
+    + BuildBatch(instances:NativeArray<InstanceHandle>, usedMaterialIDs:NativeArray<int>, usedMeshIDs:NativeArray<int>, rendererData:GPUDrivenRendererGroupData) : void
+    + InstanceOccludersUpdated(viewInstanceID:int, subviewMask:int) : void
+    + UpdateFrame() : void
+    + GetCompactedVisibilityMasks(syncCullingJobs:bool) : ParallelBitArray
+    + OnEndContextRendering() : void
+    + OnBeginCameraRendering(camera:Camera) : void
+    + OnEndCameraRendering(camera:Camera) : void
+}
+class "NativeParallelHashMap`2"<T1,T2> {
+}
+class "NativeList`1"<T> {
+}
+class "NativeArray`1"<T> {
+}
+InstanceCullingBatcherDesc --> "onCompleteCallback" OnCullingCompleteCallback
+MeshProceduralInfo --> "topology" MeshTopology
+IJob <|-- PrefixSumDrawInstancesJob
+PrefixSumDrawInstancesJob --> "rangeHash<RangeKey,int>" "NativeParallelHashMap`2"
+PrefixSumDrawInstancesJob --> "drawRanges<DrawRange>" "NativeList`1"
+PrefixSumDrawInstancesJob --> "drawBatches<DrawBatch>" "NativeList`1"
+PrefixSumDrawInstancesJob --> "drawBatchIndices<int>" "NativeArray`1"
+IJobParallelFor <|-- BuildDrawListsJob
+BuildDrawListsJob --> "batchHash<DrawKey,int>" "NativeParallelHashMap`2"
+BuildDrawListsJob --> "drawInstances<DrawInstance>" "NativeList`1"
+BuildDrawListsJob --> "drawBatches<DrawBatch>" "NativeList`1"
+BuildDrawListsJob --> "internalDrawIndex<int>" "NativeArray`1"
+BuildDrawListsJob --> "drawInstanceIndices<int>" "NativeArray`1"
+IJobParallelForBatch <|-- FindDrawInstancesJob
+FindDrawInstancesJob --> "instancesSorted<InstanceHandle>" "NativeArray`1"
+FindDrawInstancesJob --> "drawInstances<DrawInstance>" "NativeList`1"
+IJobParallelForBatch <|-- FindMaterialDrawInstancesJob
+FindMaterialDrawInstancesJob --> "materialsSorted<uint>" "NativeArray`1"
+FindMaterialDrawInstancesJob --> "drawInstances<DrawInstance>" "NativeList`1"
+IJobParallelForBatch <|-- "FindNonRegisteredInstancesJob`1"
+"FindNonRegisteredInstancesJob`1" --> "instanceIDs<int>" "NativeArray`1"
+"FindNonRegisteredInstancesJob`1" --> "hashMap<int,T>" "NativeParallelHashMap`2"
+IJobParallelFor <|-- "RegisterNewInstancesJob`1"
+"RegisterNewInstancesJob`1" --> "instanceIDs<int>" "NativeArray`1"
+"RegisterNewInstancesJob`1" --> "batchIDs<T>" "NativeArray`1"
+IJob <|-- RemoveDrawInstanceIndicesJob
+RemoveDrawInstanceIndicesJob --> "drawInstanceIndices<int>" "NativeArray`1"
+RemoveDrawInstanceIndicesJob --> "drawInstances<DrawInstance>" "NativeList`1"
+RemoveDrawInstanceIndicesJob --> "rangeHash<RangeKey,int>" "NativeParallelHashMap`2"
+RemoveDrawInstanceIndicesJob --> "batchHash<DrawKey,int>" "NativeParallelHashMap`2"
+RemoveDrawInstanceIndicesJob --> "drawRanges<DrawRange>" "NativeList`1"
+RemoveDrawInstanceIndicesJob --> "drawBatches<DrawBatch>" "NativeList`1"
+IJob <|-- CreateDrawBatchesJob
+CreateDrawBatchesJob --> "instances<InstanceHandle>" "NativeArray`1"
+CreateDrawBatchesJob --> "rendererData" GPUDrivenRendererGroupData
+CreateDrawBatchesJob --> "batchMeshHash<int,BatchMeshID>" "NativeParallelHashMap`2"
+CreateDrawBatchesJob --> "batchMaterialHash<int,BatchMaterialID>" "NativeParallelHashMap`2"
+CreateDrawBatchesJob --> "rangeHash<RangeKey,int>" "NativeParallelHashMap`2"
+CreateDrawBatchesJob --> "drawRanges<DrawRange>" "NativeList`1"
+CreateDrawBatchesJob --> "batchHash<DrawKey,int>" "NativeParallelHashMap`2"
+CreateDrawBatchesJob --> "drawBatches<DrawBatch>" "NativeList`1"
+CreateDrawBatchesJob --> "drawInstances<DrawInstance>" "NativeList`1"
+CPUDrawInstanceData --> "drawInstances<DrawInstance>" "NativeList`1"
+CPUDrawInstanceData --> "batchHash<DrawKey,int>" "NativeParallelHashMap`2"
+CPUDrawInstanceData --> "drawBatches<DrawBatch>" "NativeList`1"
+CPUDrawInstanceData --> "rangeHash<RangeKey,int>" "NativeParallelHashMap`2"
+CPUDrawInstanceData --> "drawRanges<DrawRange>" "NativeList`1"
+CPUDrawInstanceData --> "drawBatchIndices<int>" "NativeArray`1"
+CPUDrawInstanceData --> "drawInstanceIndices<int>" "NativeArray`1"
+IDisposable <|-- InstanceCullingBatcher
+InstanceCullingBatcher --> "batchMaterialHash<int,BatchMaterialID>" "NativeParallelHashMap`2"
+@enduml

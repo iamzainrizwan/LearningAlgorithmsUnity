@@ -1,0 +1,14 @@
+@startuml
+enum Blend {
+    One,
+    Zero,
+    SrcColor,
+    SrcAlpha,
+    DstColor,
+    DstAlpha,
+    OneMinusSrcColor,
+    OneMinusSrcAlpha,
+    OneMinusDstColor,
+    OneMinusDstAlpha,
+}
+@enduml

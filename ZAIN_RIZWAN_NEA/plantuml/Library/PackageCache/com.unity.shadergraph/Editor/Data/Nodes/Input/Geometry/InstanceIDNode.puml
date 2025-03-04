@@ -1,0 +1,11 @@
+@startuml
+class InstanceIDNode {
+    + <<override>> hasPreview : bool <<get>>
+    + InstanceIDNode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> GetVariableNameForSlot(slotId:int) : string
+    + RequiresInstanceID(stageCapability:ShaderStageCapability) : bool
+}
+AbstractMaterialNode <|-- InstanceIDNode
+IMayRequireInstanceID <|-- InstanceIDNode
+@enduml

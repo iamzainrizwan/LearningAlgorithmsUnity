@@ -1,0 +1,12 @@
+@startuml
+class RecommendationTabView {
+    + Name : string <<get>>
+    + RecommendationTabView(name:string)
+    + Clear() : void
+    + SetVisible(visible:bool) : void
+    + Refresh() : void
+}
+ITabView <|-- RecommendationTabView
+RecommendationTabView --> "RootVisualElement" VisualElement
+RecommendationTabView --> "MultiplayerCenterAnalytics" IMultiplayerCenterAnalytics
+@enduml

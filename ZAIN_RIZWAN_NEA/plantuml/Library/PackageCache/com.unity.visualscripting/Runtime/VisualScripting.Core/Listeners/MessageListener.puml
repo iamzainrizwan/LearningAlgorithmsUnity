@@ -1,0 +1,7 @@
+@startuml
+abstract class MessageListener {
+    + {static} AddTo(gameObject:GameObject) : void
+    + {static} AddTo(messageListenerType:Type, gameObject:GameObject) : void
+}
+MonoBehaviour <|-- MessageListener
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class StickDeadzoneProcessor {
+    + min : float
+    + max : float
+    + <<override>> Process(value:Vector2, control:InputControl) : Vector2
+    + <<override>> ToString() : string
+}
+class "InputProcessor`1"<T> {
+}
+"InputProcessor`1" "<Vector2>" <|-- StickDeadzoneProcessor
+@enduml

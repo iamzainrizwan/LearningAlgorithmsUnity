@@ -1,0 +1,11 @@
+@startuml
+class UnityRemoteTestScript {
+    + ResetCube() : void
+}
+MonoBehaviour <|-- UnityRemoteTestScript
+UnityRemoteTestScript --> "camera" Camera
+UnityRemoteTestScript --> "accelerometerInputText" Text
+UnityRemoteTestScript --> "touchInputText" Text
+UnityRemoteTestScript --> "gyroInputText" Text
+UnityRemoteTestScript --> "rotatingCube" Transform
+@enduml

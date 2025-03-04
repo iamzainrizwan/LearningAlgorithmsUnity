@@ -1,0 +1,9 @@
+@startuml
+class OnJointBreak <<sealed>> {
+}
+class "GameObjectEventUnit`1"<T> {
+}
+"GameObjectEventUnit`1" "<float>" <|-- OnJointBreak
+OnJointBreak --> "MessageListenerType" Type
+OnJointBreak --> "breakForce" ValueOutput
+@enduml

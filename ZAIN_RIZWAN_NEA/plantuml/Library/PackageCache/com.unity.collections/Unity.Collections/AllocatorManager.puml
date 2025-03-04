@@ -1,0 +1,167 @@
+@startuml
+struct Spinner {
+}
+class AllocatorManager <<static>> {
+    + {static} <<unsafe>> Allocate(t:T, sizeOf:int, alignOf:int, items:int) : void*
+    + <<unsafe>> {static} Allocate(handle:AllocatorHandle, itemSizeInBytes:int, alignmentInBytes:int, items:int) : void*
+    + <<unsafe>> {static} Allocate(handle:AllocatorHandle, items:int) : T*
+    + <<unsafe>> {static} Free(handle:AllocatorHandle, pointer:void*, itemSizeInBytes:int, alignmentInBytes:int, items:int) : void
+    + <<unsafe>> {static} Free(handle:AllocatorHandle, pointer:void*) : void
+    + <<unsafe>> {static} Free(handle:AllocatorHandle, pointer:T*, items:int) : void
+    + {static} ConvertToAllocatorHandle(a:Allocator) : AllocatorHandle
+    + <<const>> kErrorNone : int = 0
+    + <<const>> kErrorBufferOverflow : int
+    + {static} <<unsafe>> Try(block:Block) : int
+    + {static} Initialize() : void
+    + {static} <<unsafe>> Register(t:T, IsAutoDispose:bool, isGlobal:bool, globalIndex:int) : void
+    + {static} UnmanagedUnregister(t:T) : void
+    + {static} Unregister(t:T) : void
+    + {static} Shutdown() : void
+    + <<const>> FirstUserIndex : ushort = 64
+    + <<const>> MaxNumCustomAllocators : ushort = 32768
+}
+struct "AllocatorHelper`1"<T> {
+    + AllocatorHelper(backingAllocator:AllocatorManager.AllocatorHandle, isGlobal:bool, globalIndex:int)
+    + Dispose() : void
+}
+struct AllocatorHandle {
+    + Index : ushort
+    + Version : ushort
+    + Value : int <<get>>
+    + TryAllocateBlock(block:Block, items:int) : int
+    + AllocateBlock(items:int) : Block
+    + Try(block:Block) : int
+    + IsCustomAllocator : bool <<get>>
+    + IsAutoDispose : bool <<get>>
+    + Dispose() : void
+    + <<override>> Equals(obj:object) : bool
+    + Equals(other:AllocatorHandle) : bool
+    + Equals(other:Allocator) : bool
+    + <<override>> GetHashCode() : int
+    + CompareTo(other:AllocatorHandle) : int
+}
+struct BlockHandle {
+    + Value : ushort
+}
+struct Range {
+    + Items : int
+    + Dispose() : void
+}
+struct Block {
+    + BytesPerItem : int
+    + AllocatedItems : int
+    + Log2Alignment : byte
+    + Padding0 : byte
+    + Padding1 : ushort
+    + Padding2 : uint
+    + Bytes : long <<get>>
+    + AllocatedBytes : long <<get>>
+    + Alignment : int <<get>> <<set>>
+    + Dispose() : void
+    + TryAllocate() : int
+    + TryFree() : int
+    + Allocate() : void
+    + Free() : void
+}
+interface IAllocator {
+}
+struct StackAllocator {
+    + IsCustomAllocator : bool <<get>>
+    + Initialize(storage:Block) : void
+    + <<unsafe>> Try(block:Block) : int
+    + {static} <<unsafe>> Try(allocatorState:IntPtr, block:Block) : int
+    + Dispose() : void
+}
+struct SlabAllocator {
+    + IsCustomAllocator : bool <<get>>
+    + BudgetInBytes : long <<get>>
+    + AllocatedBytes : long <<get>>
+    + Try(block:Block) : int
+    + {static} <<unsafe>> Try(allocatorState:IntPtr, block:Block) : int
+    + Dispose() : void
+}
+struct TableEntry {
+}
+struct "Array16`1"<T> {
+}
+struct "Array256`1"<T> {
+}
+struct "Array4096`1"<T> {
+}
+struct "Array32768`1"<T> {
+    + Length : int <<get>> <<set>>
+    + ElementAt(index:int) : ref T
+}
+class SharedStatics <<sealed>> {
+}
+class Managed <<static>> {
+    + {static} RegisterDelegate(index:int, function:TryFunction) : void
+    + {static} UnregisterDelegate(index:int) : void
+}
+class "AllocatorCache`1"<T> <<static>> {
+}
+class "IEquatable`1"<T> {
+}
+class "IComparable`1"<T> {
+}
+class "IIndexable`1"<T> {
+}
+class IsInstalled <<sealed>> {
+}
+class TableEntry <<sealed>> {
+}
+class IsAutoDispose <<sealed>> {
+}
+class "FunctionPointer`1"<T> {
+}
+AllocatorManager o-> "Invalid" AllocatorHandle
+AllocatorManager o-> "None" AllocatorHandle
+AllocatorManager o-> "Temp" AllocatorHandle
+AllocatorManager o-> "TempJob" AllocatorHandle
+AllocatorManager o-> "Persistent" AllocatorHandle
+AllocatorManager o-> "AudioKernel" AllocatorHandle
+IDisposable <|-- "AllocatorHelper`1"
+AllocatorManager +-- AllocatorHandle
+IAllocator <|-- AllocatorHandle
+"IEquatable`1" "<AllocatorHandle>" <|-- AllocatorHandle
+"IComparable`1" "<AllocatorHandle>" <|-- AllocatorHandle
+AllocatorHandle --> "Function" TryFunction
+AllocatorHandle --> "Handle" AllocatorHandle
+AllocatorHandle --> "ToAllocator" Allocator
+AllocatorManager +-- BlockHandle
+AllocatorManager +-- Range
+IDisposable <|-- Range
+Range --> "Pointer" IntPtr
+Range --> "Allocator" AllocatorHandle
+AllocatorManager +-- Block
+IDisposable <|-- Block
+Block --> "Range" Range
+AllocatorManager +-- IAllocator
+IDisposable <|-- IAllocator
+AllocatorManager +-- StackAllocator
+IAllocator <|-- StackAllocator
+IDisposable <|-- StackAllocator
+StackAllocator --> "Handle" AllocatorHandle
+StackAllocator --> "ToAllocator" Allocator
+StackAllocator --> "Function" TryFunction
+AllocatorManager +-- SlabAllocator
+IAllocator <|-- SlabAllocator
+IDisposable <|-- SlabAllocator
+SlabAllocator --> "Handle" AllocatorHandle
+SlabAllocator --> "ToAllocator" Allocator
+SlabAllocator --> "Function" TryFunction
+AllocatorManager +-- TableEntry
+AllocatorManager +-- "Array16`1"
+AllocatorManager +-- "Array256`1"
+AllocatorManager +-- "Array4096`1"
+AllocatorManager +-- "Array32768`1"
+"IIndexable`1" "<T>" <|-- "Array32768`1"
+AllocatorManager +-- SharedStatics
+AllocatorManager +-- Managed
+AllocatorManager +-- "AllocatorCache`1"
+"AllocatorCache`1" --> "TryFunction<TryFunction>" "FunctionPointer`1"
+"AllocatorCache`1" --> "CachedFunction" TryFunction
+SharedStatics +-- IsInstalled
+SharedStatics +-- TableEntry
+SharedStatics +-- IsAutoDispose
+@enduml

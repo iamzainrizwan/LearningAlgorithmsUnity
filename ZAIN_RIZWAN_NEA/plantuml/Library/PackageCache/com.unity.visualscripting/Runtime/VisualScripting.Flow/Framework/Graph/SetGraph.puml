@@ -1,0 +1,14 @@
+@startuml
+abstract class "SetGraph`3"<TGraph,TMacro,TMachine> {
+}
+class "Macro`1"<T> {
+}
+class "Machine`2"<T1,T2> {
+}
+Unit <|-- "SetGraph`3"
+"SetGraph`3" --> "enter" ControlInput
+"SetGraph`3" --> "target" ValueInput
+"SetGraph`3" --> "graphInput" ValueInput
+"SetGraph`3" --> "graphOutput" ValueOutput
+"SetGraph`3" --> "exit" ControlOutput
+@enduml

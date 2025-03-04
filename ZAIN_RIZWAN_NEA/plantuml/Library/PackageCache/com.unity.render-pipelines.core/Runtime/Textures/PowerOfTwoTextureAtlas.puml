@@ -1,0 +1,29 @@
+@startuml
+class PowerOfTwoTextureAtlas {
+    + PowerOfTwoTextureAtlas(size:int, mipPadding:int, format:GraphicsFormat, filterMode:FilterMode, name:string, useMipMap:bool)
+    + mipPadding : int <<get>>
+    + GetPayloadScaleOffset(texture:Texture, scaleOffset:Vector4) : Vector4
+    {static} + GetPayloadScaleOffset(textureSize:Vector2, paddingSize:Vector2, scaleOffset:Vector4) : Vector4
+    + <<override>> BlitTexture(cmd:CommandBuffer, scaleOffset:Vector4, texture:Texture, sourceScaleOffset:Vector4, blitMips:bool, overrideInstanceID:int) : void
+    + BlitTextureMultiply(cmd:CommandBuffer, scaleOffset:Vector4, texture:Texture, sourceScaleOffset:Vector4, blitMips:bool, overrideInstanceID:int) : void
+    + <<override>> BlitOctahedralTexture(cmd:CommandBuffer, scaleOffset:Vector4, texture:Texture, sourceScaleOffset:Vector4, blitMips:bool, overrideInstanceID:int) : void
+    + BlitOctahedralTextureMultiply(cmd:CommandBuffer, scaleOffset:Vector4, texture:Texture, sourceScaleOffset:Vector4, blitMips:bool, overrideInstanceID:int) : void
+    + <<override>> AllocateTexture(cmd:CommandBuffer, scaleOffset:Vector4, texture:Texture, width:int, height:int, overrideInstanceID:int) : bool
+    + ResetRequestedTexture() : void
+    + ReserveSpace(texture:Texture) : bool
+    + ReserveSpace(texture:Texture, width:int, height:int) : bool
+    + ReserveSpace(textureA:Texture, textureB:Texture, width:int, height:int) : bool
+    + ReserveSpace(id:int, width:int, height:int) : bool
+    + RelayoutEntries() : bool
+    + {static} GetApproxCacheSizeInByte(nbElement:int, resolution:int, hasMipmap:bool, format:GraphicsFormat) : long
+    + {static} GetMaxCacheSizeForWeightInByte(weight:int, hasMipmap:bool, format:GraphicsFormat) : int
+}
+enum BlitType {
+    Padding,
+    PaddingMultiply,
+    OctahedralPadding,
+    OctahedralPaddingMultiply,
+}
+Texture2DAtlas <|-- PowerOfTwoTextureAtlas
+PowerOfTwoTextureAtlas +-- BlitType
+@enduml

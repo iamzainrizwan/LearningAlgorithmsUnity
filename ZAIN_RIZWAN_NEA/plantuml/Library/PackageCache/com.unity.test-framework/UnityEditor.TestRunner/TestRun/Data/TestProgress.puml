@@ -1,0 +1,10 @@
+@startuml
+class TestProgress {
+    + CurrentTest : string
+    + TestProgress(allTestsToRun:string[])
+}
+class "List`1"<T> {
+}
+TestProgress --> "RemainingTests<string>" "List`1"
+TestProgress --> "CompletedTests<string>" "List`1"
+@enduml

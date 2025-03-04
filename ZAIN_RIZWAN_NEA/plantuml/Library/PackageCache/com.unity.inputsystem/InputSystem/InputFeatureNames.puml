@@ -1,0 +1,9 @@
+@startuml
+class InputFeatureNames <<static>> {
+    + <<const>> kRunPlayerUpdatesInEditMode : string = "RUN_PLAYER_UPDATES_IN_EDIT_MODE"
+    + <<const>> kDisableUnityRemoteSupport : string = "DISABLE_UNITY_REMOTE_SUPPORT"
+    + <<const>> kUseOptimizedControls : string = "USE_OPTIMIZED_CONTROLS"
+    + <<const>> kUseReadValueCaching : string = "USE_READ_VALUE_CACHING"
+    + <<const>> kParanoidReadValueCachingChecks : string = "PARANOID_READ_VALUE_CACHING_CHECKS"
+}
+@enduml

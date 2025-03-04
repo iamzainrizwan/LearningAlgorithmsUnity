@@ -1,0 +1,8 @@
+@startuml
+class FirstItem <<sealed>> {
+    + First(flow:Flow) : object
+}
+Unit <|-- FirstItem
+FirstItem --> "collection" ValueInput
+FirstItem --> "firstItem" ValueOutput
+@enduml

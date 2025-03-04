@@ -1,0 +1,24 @@
+@startuml
+class "GraphElementCollection`1"<TElement> <<sealed>> {
+    + GraphElementCollection(graph:IGraph)
+    +  <<event>> ItemAdded : Action<TElement> 
+    +  <<event>> ItemRemoved : Action<TElement> 
+    +  <<event>> CollectionChanged : Action 
+    + ProxyCollectionChange : bool <<get>> <<set>>
+    + BeforeAdd(element:TElement) : void
+    + AfterAdd(element:TElement) : void
+    + BeforeRemove(element:TElement) : void
+    + AfterRemove(element:TElement) : void
+    + <<new>> GetEnumerator() : NoAllocEnumerator<TElement>
+}
+class "GuidCollection`1"<T> {
+}
+class "IGraphElementCollection`1"<T> {
+}
+class "IProxyableNotifyCollectionChanged`1"<T> {
+}
+"GuidCollection`1" "<TElement>" <|-- "GraphElementCollection`1"
+"IGraphElementCollection`1" "<TElement>" <|-- "GraphElementCollection`1"
+"IProxyableNotifyCollectionChanged`1" "<TElement>" <|-- "GraphElementCollection`1"
+"GraphElementCollection`1" --> "graph" IGraph
+@enduml

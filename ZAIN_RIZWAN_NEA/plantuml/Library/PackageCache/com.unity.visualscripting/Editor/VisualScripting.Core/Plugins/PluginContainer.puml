@@ -1,0 +1,16 @@
+@startuml
+class PluginContainer <<sealed>> {
+    + {static} initialized : bool <<get>>
+    + {static} UpdateVersionMismatch() : void
+    + {static} ImportUnits() : void
+    + {static} GetPluginID(linkedType:Type) : string
+    + {static} GetPluginType(pluginId:string) : Type
+    + {static} GetAllPlugins() : IEnumerable<Plugin>
+    + {static} GetPlugin(pluginId:string) : Plugin
+    + {static} HasPlugin(pluginId:string) : bool
+    + {static} anyVersionMismatch : bool <<get>>
+}
+class "IEnumerable`1"<T> {
+}
+PluginContainer --> "plugins<Plugin>" "IEnumerable`1"
+@enduml

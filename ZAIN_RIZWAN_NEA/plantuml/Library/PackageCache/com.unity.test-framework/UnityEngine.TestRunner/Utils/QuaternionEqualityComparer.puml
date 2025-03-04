@@ -1,0 +1,11 @@
+@startuml
+class QuaternionEqualityComparer {
+    + QuaternionEqualityComparer(allowedError:float)
+    + Equals(expected:Quaternion, actual:Quaternion) : bool
+    + GetHashCode(quaternion:Quaternion) : int
+}
+class "IEqualityComparer`1"<T> {
+}
+"IEqualityComparer`1" "<Quaternion>" <|-- QuaternionEqualityComparer
+QuaternionEqualityComparer --> "Instance" QuaternionEqualityComparer
+@enduml

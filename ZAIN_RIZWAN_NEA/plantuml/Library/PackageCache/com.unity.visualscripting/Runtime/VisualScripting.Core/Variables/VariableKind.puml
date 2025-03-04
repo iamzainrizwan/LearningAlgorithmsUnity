@@ -1,0 +1,10 @@
+@startuml
+enum VariableKind {
+    Flow,
+    Graph,
+    Object,
+    Scene,
+    Application,
+    Saved,
+}
+@enduml

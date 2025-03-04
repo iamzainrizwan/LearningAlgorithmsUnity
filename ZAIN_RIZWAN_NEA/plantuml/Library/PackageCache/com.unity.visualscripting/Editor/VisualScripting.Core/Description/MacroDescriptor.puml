@@ -1,0 +1,10 @@
+@startuml
+class "MacroDescriptor`2"<TMacro,TMacroDescription> {
+    + <<override>> Title() : string
+    + <<override>> Summary() : string
+    + <<override>> Icon() : EditorTexture
+}
+class "Descriptor`2"<T1,T2> {
+}
+"Descriptor`2" "<TMacro,TMacroDescription>" <|-- "MacroDescriptor`2"
+@enduml

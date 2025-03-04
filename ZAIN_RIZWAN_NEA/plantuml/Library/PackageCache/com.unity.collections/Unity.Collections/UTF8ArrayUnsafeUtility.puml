@@ -1,0 +1,25 @@
+@startuml
+class UTF8ArrayUnsafeUtility <<static>> <<unsafe>> {
+    + {static} Copy(dest:byte *, destLength:int, destUTF8MaxLengthInBytes:int, src:char *, srcLength:int) : CopyError
+    + {static} Copy(dest:byte *, destLength:ushort, destUTF8MaxLengthInBytes:ushort, src:char *, srcLength:int) : CopyError
+    + {static} Copy(dest:byte *, destLength:int, destUTF8MaxLengthInBytes:int, src:byte *, srcLength:int) : CopyError
+    + {static} Copy(dest:byte *, destLength:ushort, destUTF8MaxLengthInBytes:ushort, src:byte *, srcLength:ushort) : CopyError
+    + {static} Copy(dest:char *, destLength:int, destUCS2MaxLengthInChars:int, src:byte *, srcLength:int) : CopyError
+    + {static} Copy(dest:char *, destLength:ushort, destUCS2MaxLengthInChars:ushort, src:byte *, srcLength:ushort) : CopyError
+    + {static} AppendUTF8Bytes(dest:byte*, destLength:int, destCapacity:int, src:byte*, srcLength:int) : FormatError
+    + {static} Append(dest:byte *, destLength:ushort, destUTF8MaxLengthInBytes:ushort, src:byte *, srcLength:ushort) : CopyError
+    + {static} Append(dest:byte *, destLength:ushort, destUTF8MaxLengthInBytes:ushort, src:char *, srcLength:int) : CopyError
+    + {static} Append(dest:char *, destLength:ushort, destUCS2MaxLengthInChars:ushort, src:byte *, srcLength:ushort) : CopyError
+    + {static} StrCmp(utf8BufferA:byte*, utf8LengthInBytesA:int, utf8BufferB:byte*, utf8LengthInBytesB:int) : int
+    + {static} StrCmp(utf16BufferA:char*, utf16LengthInCharsA:int, utf16BufferB:char*, utf16LengthInCharsB:int) : int
+    + {static} EqualsUTF8Bytes(aBytes:byte*, aLength:int, bBytes:byte*, bLength:int) : bool
+    + {static} StrCmp(utf8Buffer:byte*, utf8LengthInBytes:int, utf16Buffer:char*, utf16LengthInChars:int) : int
+    + {static} StrCmp(utf16Buffer:char*, utf16LengthInChars:int, utf8Buffer:byte*, utf8LengthInBytes:int) : int
+}
+struct Comparison {
+    + terminates : bool
+    + result : int
+    + Comparison(runeA:Unicode.Rune, errorA:ConversionError, runeB:Unicode.Rune, errorB:ConversionError)
+}
+UTF8ArrayUnsafeUtility +-- Comparison
+@enduml

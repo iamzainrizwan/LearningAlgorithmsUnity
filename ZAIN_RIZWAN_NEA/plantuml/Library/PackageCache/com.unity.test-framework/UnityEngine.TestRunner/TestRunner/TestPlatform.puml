@@ -1,0 +1,11 @@
+@startuml
+enum TestPlatform {
+    All= 0xFF,
+    EditMode= 1 << 1,
+    PlayMode= 1 << 2,
+}
+class TestPlatformEnumExtensions <<static>> {
+    + {static} IsFlagIncluded(flags:TestPlatform, flag:TestPlatform) : bool
+    + {static} MergeFlags(flags:TestPlatform[]) : TestPlatform
+}
+@enduml

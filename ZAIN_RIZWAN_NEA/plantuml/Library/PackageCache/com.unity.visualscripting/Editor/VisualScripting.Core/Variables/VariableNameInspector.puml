@@ -1,0 +1,15 @@
+@startuml
+class VariableNameInspector <<sealed>> {
+    + VariableNameInspector(metadata:Metadata, getSuggestions:Func<IEnumerable<string>>)
+    + <<override>> GetAdaptiveWidth() : float
+}
+class "Func`1"<T> {
+}
+class Styles <<static>> {
+}
+Inspector <|-- VariableNameInspector
+VariableNameInspector --> "getSuggestions<IEnumerable<string>>" "Func`1"
+VariableNameInspector +-- Styles
+Styles --> "textField" GUIStyle
+Styles --> "popup" GUIStyle
+@enduml

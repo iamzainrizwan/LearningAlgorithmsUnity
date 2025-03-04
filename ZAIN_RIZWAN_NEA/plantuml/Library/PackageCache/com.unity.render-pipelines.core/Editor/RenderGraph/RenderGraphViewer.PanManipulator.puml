@@ -1,0 +1,12 @@
+@startuml
+class RenderGraphViewer <<partial>> {
+}
+class PanManipulator {
+    + <<const>> k_ContentPanClassName : string = "content-pan"
+    + dragActive : bool <<get>>
+    + canStartDragging : bool <<get>> <<set>> = true
+    + PanManipulator(viewer:RenderGraphViewer)
+}
+RenderGraphViewer +-- PanManipulator
+MouseManipulator <|-- PanManipulator
+@enduml

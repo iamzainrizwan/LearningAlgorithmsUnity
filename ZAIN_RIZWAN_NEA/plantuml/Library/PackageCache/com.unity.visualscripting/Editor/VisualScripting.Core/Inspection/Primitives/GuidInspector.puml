@@ -1,0 +1,11 @@
+@startuml
+class GuidInspector <<sealed>> {
+    + GuidInspector(metadata:Metadata)
+}
+class Styles <<static>> {
+    + {static} <<readonly>> buttonWidth : float = 70
+    + {static} <<readonly>> buttonSpacing : float = 3
+}
+Inspector <|-- GuidInspector
+GuidInspector +-- Styles
+@enduml

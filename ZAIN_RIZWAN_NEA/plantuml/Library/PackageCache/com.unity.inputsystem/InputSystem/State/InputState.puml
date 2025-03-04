@@ -1,0 +1,28 @@
+@startuml
+class InputState <<static>> {
+    + {static} updateCount : uint <<get>>
+    + {static} currentTime : double <<get>>
+    + {static} <<unsafe>> Change(device:InputDevice, eventPtr:InputEventPtr, updateType:InputUpdateType) : void
+    + {static} Change(control:InputControl, state:TState, updateType:InputUpdateType, eventPtr:InputEventPtr) : void
+    + {static} <<unsafe>> Change(control:InputControl, state:TState, updateType:InputUpdateType, eventPtr:InputEventPtr) : void
+    + {static} IsIntegerFormat(format:FourCC) : bool
+    + {static} AddChangeMonitor(control:InputControl, monitor:IInputStateChangeMonitor, monitorIndex:long, groupIndex:uint) : void
+    + {static} AddChangeMonitor(control:InputControl, valueChangeCallback:NotifyControlValueChangeAction, monitorIndex:int, timerExpiredCallback:NotifyTimerExpiredAction) : IInputStateChangeMonitor
+    + {static} RemoveChangeMonitor(control:InputControl, monitor:IInputStateChangeMonitor, monitorIndex:long) : void
+    + {static} AddChangeMonitorTimeout(control:InputControl, monitor:IInputStateChangeMonitor, time:double, monitorIndex:long, timerIndex:int) : void
+    + {static} RemoveChangeMonitorTimeout(monitor:IInputStateChangeMonitor, monitorIndex:long, timerIndex:int) : void
+}
+class "Action`4"<T1,T2,T3,T4> {
+}
+class "Action`2"<T1,T2> {
+}
+class StateChangeMonitorDelegate {
+    + NotifyControlStateChanged(control:InputControl, time:double, eventPtr:InputEventPtr, monitorIndex:long) : void
+    + NotifyTimerExpired(control:InputControl, time:double, monitorIndex:long, timerIndex:int) : void
+}
+InputState --> "currentUpdateType" InputUpdateType
+InputState +-- StateChangeMonitorDelegate
+IInputStateChangeMonitor <|-- StateChangeMonitorDelegate
+StateChangeMonitorDelegate --> "valueChangeCallback" NotifyControlValueChangeAction
+StateChangeMonitorDelegate --> "timerExpiredCallback" NotifyTimerExpiredAction
+@enduml

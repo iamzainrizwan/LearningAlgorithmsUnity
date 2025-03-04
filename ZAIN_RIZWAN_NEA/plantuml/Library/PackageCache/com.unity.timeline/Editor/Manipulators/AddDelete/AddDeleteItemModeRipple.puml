@@ -1,0 +1,7 @@
+@startuml
+class AddDeleteItemModeRipple {
+    + InsertItemsAtTime(itemsGroups:IEnumerable<ItemsPerTrack>, requestedTime:double) : void
+    + RemoveItems(itemsGroups:IEnumerable<ItemsPerTrack>) : void
+}
+IAddDeleteItemMode <|-- AddDeleteItemModeRipple
+@enduml

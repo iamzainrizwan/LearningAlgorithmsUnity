@@ -1,0 +1,22 @@
+@startuml
+class Vector3Composite {
+    + up : int
+    + down : int
+    + left : int
+    + right : int
+    + forward : int
+    + backward : int
+    + <<override>> ReadValue(context:InputBindingCompositeContext) : Vector3
+    + <<override>> EvaluateMagnitude(context:InputBindingCompositeContext) : float
+}
+class "InputBindingComposite`1"<T> {
+}
+enum Mode {
+    Analog,
+    DigitalNormalized,
+    Digital,
+}
+"InputBindingComposite`1" "<Vector3>" <|-- Vector3Composite
+Vector3Composite o-> "mode" Mode
+Vector3Composite +-- Mode
+@enduml

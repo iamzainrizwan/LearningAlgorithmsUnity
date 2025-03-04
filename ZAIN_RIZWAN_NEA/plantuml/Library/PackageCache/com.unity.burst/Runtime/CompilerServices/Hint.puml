@@ -1,0 +1,7 @@
+@startuml
+class Hint <<static>> {
+    + {static} Likely(condition:bool) : bool
+    + {static} Unlikely(condition:bool) : bool
+    + {static} Assume(condition:bool) : void
+}
+@enduml

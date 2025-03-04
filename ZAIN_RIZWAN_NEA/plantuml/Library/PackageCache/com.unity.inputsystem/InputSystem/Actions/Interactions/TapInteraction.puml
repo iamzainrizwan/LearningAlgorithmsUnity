@@ -1,0 +1,9 @@
+@startuml
+class TapInteraction {
+    + duration : float
+    + pressPoint : float
+    + Process(context:InputInteractionContext) : void
+    + Reset() : void
+}
+IInputInteraction <|-- TapInteraction
+@enduml

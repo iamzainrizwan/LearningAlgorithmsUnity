@@ -1,0 +1,10 @@
+@startuml
+class SolutionProjectEntry {
+    + ProjectFactoryGuid : string <<get>> <<set>>
+    + Name : string <<get>> <<set>>
+    + FileName : string <<get>> <<set>>
+    + ProjectGuid : string <<get>> <<set>>
+    + Metadata : string <<get>> <<set>>
+    + IsSolutionFolderProjectFactory() : bool
+}
+@enduml

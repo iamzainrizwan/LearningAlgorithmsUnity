@@ -1,0 +1,40 @@
+@startuml
+struct Line {
+}
+struct ReceiverPlanes {
+    + lightFacingPlaneCount : int
+}
+struct FrustumPlaneCuller {
+}
+struct ReceiverSphereCuller {
+}
+class "NativeList`1"<T> {
+}
+struct PlanePacket4 {
+    + PlanePacket4(planes:NativeArray<Plane>, offset:int, limit:int)
+}
+struct SplitInfo {
+    + packetCount : int
+}
+struct SplitInfo {
+    + cascadeBlendCullingFactor : float
+}
+Line --> "m" float3
+Line --> "t" float3
+ReceiverPlanes --> "planes<Plane>" "NativeList`1"
+FrustumPlaneCuller --> "planePackets<PlanePacket4>" "NativeList`1"
+FrustumPlaneCuller --> "splitInfos<SplitInfo>" "NativeList`1"
+ReceiverSphereCuller --> "splitInfos<SplitInfo>" "NativeList`1"
+ReceiverSphereCuller --> "worldToLightSpaceRotation" float3x3
+FrustumPlaneCuller +-- PlanePacket4
+PlanePacket4 --> "nx" float4
+PlanePacket4 --> "ny" float4
+PlanePacket4 --> "nz" float4
+PlanePacket4 --> "d" float4
+PlanePacket4 --> "nxAbs" float4
+PlanePacket4 --> "nyAbs" float4
+PlanePacket4 --> "nzAbs" float4
+FrustumPlaneCuller +-- SplitInfo
+ReceiverSphereCuller +-- SplitInfo
+SplitInfo --> "receiverSphereLightSpace" float4
+@enduml

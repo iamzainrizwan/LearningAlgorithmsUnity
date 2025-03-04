@@ -1,0 +1,13 @@
+@startuml
+enum TimeFormat {
+    Frames,
+    Timecode,
+    Seconds,
+}
+class TimeDisplayUnitExtensions <<static>> {
+    + {static} ToTimeAreaFormat(timeDisplayUnit:TimeFormat) : TimeArea.TimeFormat
+    + {static} ToTimeString(timeFormat:TimeFormat, time:double, frameRate:double, format:string) : string
+    + {static} ToTimeStringWithDelta(timeFormat:TimeFormat, time:double, frameRate:double, delta:double, format:string) : string
+    + {static} FromTimeString(timeFormat:TimeFormat, timeString:string, frameRate:double, defaultValue:double) : double
+}
+@enduml

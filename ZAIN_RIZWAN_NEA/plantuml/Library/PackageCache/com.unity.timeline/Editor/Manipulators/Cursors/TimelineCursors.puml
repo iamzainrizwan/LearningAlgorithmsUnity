@@ -1,0 +1,22 @@
+@startuml
+class TimelineCursors {
+    + {static} SetCursor(cursorType:CursorType) : void
+    + {static} ClearCursor() : void
+}
+enum CursorType {
+    MixBoth,
+    MixLeft,
+    MixRight,
+    Replace,
+    Ripple,
+    Pan,
+}
+class CursorInfo {
+    + <<readonly>> assetPath : string
+    + CursorInfo(assetPath:string, hotSpot:Vector2, mouseCursorType:MouseCursor)
+}
+TimelineCursors +-- CursorType
+TimelineCursors +-- CursorInfo
+CursorInfo --> "hotSpot" Vector2
+CursorInfo --> "mouseCursorType" MouseCursor
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+class ShaderSpliceUtil <<static>> {
+    + {static} GetChannelSwizzle(firstChannel:int, channelCount:int) : string
+}
+class TemplatePreprocessor {
+    + TemplatePreprocessor(activeFields:ActiveFields, namedFragments:Dictionary<string, string>, isDebug:bool, templatePaths:string[], assetCollection:AssetCollection, humanReadable:bool, outShaderCodeResult:ShaderStringBuilder)
+    + GetShaderCode() : ShaderStringBuilder
+    + ProcessTemplateFile(filePath:string) : void
+    + ProcessTemplateLine(line:string, start:int, end:int) : void
+}
+struct Token {
+    + s : string
+    + start : int
+    + end : int
+    + Token(s:string, start:int, end:int)
+    + {static} Invalid() : Token
+    + IsValid() : bool
+    + Is(other:string) : bool
+    + GetString() : string
+}
+ShaderSpliceUtil +-- TemplatePreprocessor
+TemplatePreprocessor +-- Token
+@enduml

@@ -1,0 +1,28 @@
+@startuml
+class TMP_UIStyleManager <<static>> {
+}
+TMP_UIStyleManager --> "label" GUIStyle
+TMP_UIStyleManager --> "textAreaBoxWindow" GUIStyle
+TMP_UIStyleManager --> "boldFoldout" GUIStyle
+TMP_UIStyleManager --> "panelTitle" GUIStyle
+TMP_UIStyleManager --> "sectionHeader" GUIStyle
+TMP_UIStyleManager --> "centeredLabel" GUIStyle
+TMP_UIStyleManager --> "rightLabel" GUIStyle
+TMP_UIStyleManager --> "wrappingTextArea" GUIStyle
+TMP_UIStyleManager --> "alignmentButtonLeft" GUIStyle
+TMP_UIStyleManager --> "alignmentButtonMid" GUIStyle
+TMP_UIStyleManager --> "alignmentButtonRight" GUIStyle
+TMP_UIStyleManager --> "alignLeft" Texture2D
+TMP_UIStyleManager --> "alignCenter" Texture2D
+TMP_UIStyleManager --> "alignRight" Texture2D
+TMP_UIStyleManager --> "alignJustified" Texture2D
+TMP_UIStyleManager --> "alignFlush" Texture2D
+TMP_UIStyleManager --> "alignGeoCenter" Texture2D
+TMP_UIStyleManager --> "alignTop" Texture2D
+TMP_UIStyleManager --> "alignMiddle" Texture2D
+TMP_UIStyleManager --> "alignBottom" Texture2D
+TMP_UIStyleManager --> "alignBaseline" Texture2D
+TMP_UIStyleManager --> "alignMidline" Texture2D
+TMP_UIStyleManager --> "alignCapline" Texture2D
+TMP_UIStyleManager --> "sectionHeaderTexture" Texture2D
+@enduml

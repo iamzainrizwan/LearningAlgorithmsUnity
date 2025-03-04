@@ -1,0 +1,8 @@
+@startuml
+class TypeIconPriorityAttribute <<sealed>> {
+    + TypeIconPriorityAttribute(priority:int)
+    + TypeIconPriorityAttribute()
+    + priority : int <<get>>
+}
+Attribute <|-- TypeIconPriorityAttribute
+@enduml

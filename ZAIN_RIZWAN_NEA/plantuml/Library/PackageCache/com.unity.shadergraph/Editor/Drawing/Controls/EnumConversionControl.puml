@@ -1,0 +1,13 @@
+@startuml
+interface IEnumConversion {
+}
+class EnumConversionControlAttribute {
+    + InstantiateControl(node:AbstractMaterialNode, propertyInfo:PropertyInfo) : VisualElement
+}
+class EnumConversionControlView {
+    + EnumConversionControlView(node:AbstractMaterialNode, propertyInfo:PropertyInfo)
+}
+Attribute <|-- EnumConversionControlAttribute
+IControlAttribute <|-- EnumConversionControlAttribute
+VisualElement <|-- EnumConversionControlView
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+class fsCyclicReferenceManager {
+    + Enter() : void
+    + Exit() : bool
+    + GetReferenceObject(id:int) : object
+    + AddReferenceWithId(id:int, reference:object) : void
+    + GetReferenceId(item:object) : int
+    + IsReference(item:object) : bool
+    + MarkSerialized(item:object) : void
+}
+class ObjectReferenceEqualityComparator {
+}
+class "IEqualityComparer`1"<T> {
+}
+fsCyclicReferenceManager +-- ObjectReferenceEqualityComparator
+"IEqualityComparer`1" "<object>" <|-- ObjectReferenceEqualityComparator
+ObjectReferenceEqualityComparator o-> "Instance<object>" "IEqualityComparer`1"
+@enduml

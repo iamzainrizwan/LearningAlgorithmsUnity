@@ -1,0 +1,37 @@
+@startuml
+class HDROutputUtils <<static>> {
+    + {static} GetColorSpaceForGamut(gamut:ColorGamut, colorspace:int) : bool
+    + {static} GetColorEncodingForGamut(gamut:ColorGamut, encoding:int) : bool
+    + {static} ConfigureHDROutput(material:Material, gamut:ColorGamut, operations:Operation) : void
+    + {static} ConfigureHDROutput(properties:MaterialPropertyBlock, gamut:ColorGamut) : void
+    + {static} ConfigureHDROutput(material:Material, operations:Operation) : void
+    + {static} ConfigureHDROutput(computeShader:ComputeShader, gamut:ColorGamut, operations:Operation) : void
+    + {static} IsShaderVariantValid(shaderKeywordSet:ShaderKeywordSet, isHDREnabled:bool) : bool
+}
+enum Operation {
+    None= 0,
+    ColorConversion= 1 << 0,
+    ColorEncoding= 1 << 1,
+}
+struct HDRDisplayInformation {
+    + HDRDisplayInformation(maxFullFrameToneMapLuminance:int, maxToneMapLuminance:int, minToneMapLuminance:int, hdrPaperWhiteNits:float)
+    + maxFullFrameToneMapLuminance : int
+    + maxToneMapLuminance : int
+    + minToneMapLuminance : int
+    + paperWhiteNits : float
+}
+class ShaderKeywords <<static>> {
+    + <<const>> HDR_COLORSPACE_CONVERSION : string = "HDR_COLORSPACE_CONVERSION"
+    + <<const>> HDR_ENCODING : string = "HDR_ENCODING"
+    + <<const>> HDR_COLORSPACE_CONVERSION_AND_ENCODING : string = "HDR_COLORSPACE_CONVERSION_AND_ENCODING"
+    + <<const>> HDR_INPUT : string = "HDR_INPUT"
+}
+class ShaderPropertyId <<static>> {
+    + {static} <<readonly>> hdrColorSpace : int
+    + {static} <<readonly>> hdrEncoding : int
+}
+HDROutputUtils +-- Operation
+HDROutputUtils +-- HDRDisplayInformation
+HDROutputUtils +-- ShaderKeywords
+HDROutputUtils +-- ShaderPropertyId
+@enduml

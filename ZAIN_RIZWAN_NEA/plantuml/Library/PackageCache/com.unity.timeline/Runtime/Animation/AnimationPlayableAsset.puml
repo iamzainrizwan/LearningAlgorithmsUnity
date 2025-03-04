@@ -1,0 +1,30 @@
+@startuml
+class AnimationPlayableAsset <<partial>> {
+    + useTrackMatchFields : bool <<get>> <<set>>
+    + removeStartOffset : bool <<get>> <<set>>
+    + applyFootIK : bool <<get>> <<set>>
+    + <<override>> duration : double <<get>>
+    + <<override>> CreatePlayable(graph:PlayableGraph, go:GameObject) : Playable
+    + ResetOffsets() : void
+    + GatherProperties(director:PlayableDirector, driver:IPropertyCollector) : void
+}
+enum LoopMode {
+    UseSourceAsset= 0,
+    On= 1,
+    Off= 2,
+}
+class "IEnumerable`1"<T> {
+}
+PlayableAsset <|-- AnimationPlayableAsset
+ITimelineClipAsset <|-- AnimationPlayableAsset
+IPropertyPreview <|-- AnimationPlayableAsset
+AnimationPlayableAsset --> "position" Vector3
+AnimationPlayableAsset --> "rotation" Quaternion
+AnimationPlayableAsset --> "eulerAngles" Vector3
+AnimationPlayableAsset --> "matchTargetFields" MatchTargetFields
+AnimationPlayableAsset --> "loop" LoopMode
+AnimationPlayableAsset --> "clip" AnimationClip
+AnimationPlayableAsset --> "outputs<PlayableBinding>" "IEnumerable`1"
+AnimationPlayableAsset --> "clipCaps" ClipCaps
+AnimationPlayableAsset +-- LoopMode
+@enduml

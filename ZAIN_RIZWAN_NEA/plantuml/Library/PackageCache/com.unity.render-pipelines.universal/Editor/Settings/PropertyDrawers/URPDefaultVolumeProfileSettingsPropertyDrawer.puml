@@ -1,0 +1,11 @@
+@startuml
+class URPDefaultVolumeProfileSettingsPropertyDrawer {
+}
+class URPDefaultVolumeProfileSettingsContextMenu {
+}
+class "DefaultVolumeProfileSettingsContextMenu`2"<T1,T2> {
+}
+DefaultVolumeProfileSettingsPropertyDrawer <|-- URPDefaultVolumeProfileSettingsPropertyDrawer
+URPDefaultVolumeProfileSettingsPropertyDrawer +-- URPDefaultVolumeProfileSettingsContextMenu
+"DefaultVolumeProfileSettingsContextMenu`2" "<URPDefaultVolumeProfileSettings,UniversalRenderPipeline>" <|-- URPDefaultVolumeProfileSettingsContextMenu
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class ValueOutputterTests {
+    + Vector3ReturnsCorrectValue() : void
+    + FloatReturnsCorrectValue() : void
+    + QuaternionReturnsCorrectValue() : void
+}
+@enduml

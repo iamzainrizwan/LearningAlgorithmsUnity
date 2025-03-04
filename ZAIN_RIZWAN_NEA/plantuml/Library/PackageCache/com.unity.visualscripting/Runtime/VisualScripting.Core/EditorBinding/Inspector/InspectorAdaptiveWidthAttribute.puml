@@ -1,0 +1,7 @@
+@startuml
+class InspectorAdaptiveWidthAttribute <<sealed>> {
+    + InspectorAdaptiveWidthAttribute(width:float)
+    + width : float <<get>>
+}
+Attribute <|-- InspectorAdaptiveWidthAttribute
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class ShaderGraphAssetPostProcessor {
+}
+AssetPostprocessor <|-- ShaderGraphAssetPostProcessor
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class OnPointerClick <<sealed>> {
+}
+PointerEventUnit <|-- OnPointerClick
+OnPointerClick --> "MessageListenerType" Type
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+struct URPLightShadowCullingInfos {
+    + slicesValidMask : uint
+    + <<readonly>> IsSliceValid(i:int) : bool
+}
+class ShadowCulling <<static>> {
+    + {static} CullShadowCasters(context:ScriptableRenderContext, shadowData:UniversalShadowData, shadowAtlasLayout:AdditionalLightsShadowAtlasLayout, cullResults:CullingResults) : NativeArray<URPLightShadowCullingInfos>
+}
+class "NativeArray`1"<T> {
+}
+URPLightShadowCullingInfos --> "slices<ShadowSliceData>" "NativeArray`1"
+@enduml

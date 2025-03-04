@@ -1,0 +1,41 @@
+@startuml
+struct TrackDrawOptions {
+    + errorText : string <<get>> <<set>>
+    + minimumHeight : float <<get>> <<set>>
+    + <<override>> Equals(obj:object) : bool
+    + Equals(other:TrackDrawOptions) : bool
+    + <<override>> GetHashCode() : int
+}
+enum TrackBindingErrors {
+    None= 0,
+    BoundGameObjectDisabled= 1 << 0,
+    NoValidComponent= 1 << 1,
+    BehaviourIsDisabled= 1 << 2,
+    InvalidBinding= 1 << 3,
+    PrefabBound= 1 << 4,
+    All= Int32.MaxValue,
+}
+class TrackEditor {
+    + {static} <<readonly>> DefaultTrackHeight : float = 30.0f
+    + {static} <<readonly>> MinimumTrackHeight : float = 10.0f
+    + {static} <<readonly>> MaximumTrackHeight : float = 256.0f
+    + <<virtual>> GetTrackOptions(track:TrackAsset, binding:UnityEngine.Object) : TrackDrawOptions
+    + GetErrorText(track:TrackAsset, boundObject:UnityEngine.Object, detectErrors:TrackBindingErrors) : string
+    + GetTrackColor(track:TrackAsset) : Color
+    + GetBindingType(track:TrackAsset) : System.Type
+    + <<virtual>> OnCreate(track:TrackAsset, copiedFrom:TrackAsset) : void
+    + <<virtual>> OnTrackChanged(track:TrackAsset) : void
+    + <<virtual>> IsBindingAssignableFrom(candidate:UnityEngine.Object, track:TrackAsset) : bool
+    + <<virtual>> GetBindingFrom(candidate:UnityEngine.Object, track:TrackAsset) : UnityEngine.Object
+}
+class TrackEditorExtension <<static>> {
+    + {static} SupportsBindingAssign(editor:TrackEditor) : bool
+    + {static} OnCreate_Safe(editor:TrackEditor, track:TrackAsset, copiedFrom:TrackAsset) : void
+    + {static} GetTrackOptions_Safe(editor:TrackEditor, track:TrackAsset, binding:UnityEngine.Object) : TrackDrawOptions
+    + {static} GetBindingFrom_Safe(editor:TrackEditor, candidate:UnityEngine.Object, track:TrackAsset) : UnityEngine.Object
+    + {static} IsBindingAssignableFrom_Safe(editor:TrackEditor, candidate:UnityEngine.Object, track:TrackAsset) : bool
+    + {static} OnTrackChanged_Safe(editor:TrackEditor, track:TrackAsset) : void
+}
+TrackDrawOptions --> "trackColor" Color
+TrackDrawOptions --> "icon" Texture2D
+@enduml

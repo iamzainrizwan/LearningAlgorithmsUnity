@@ -1,0 +1,18 @@
+@startuml
+enum RecommendationType {
+    None,
+    MainArchitectureChoice,
+    SecondArchitectureChoice,
+    NetcodeFeatured,
+    HostingFeatured,
+    OptionalStandard,
+    NotRecommended,
+    Incompatible,
+    Hidden,
+}
+class RecommendationTypeExtensions <<static>> {
+    + {static} IsRecommendedPackage(type:RecommendationType) : bool
+    + {static} IsRecommendedSolution(type:RecommendationType) : bool
+    + {static} IsInstallableAsDirectDependency(type:RecommendationType) : bool
+}
+@enduml

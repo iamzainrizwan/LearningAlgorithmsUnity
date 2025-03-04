@@ -1,0 +1,8 @@
+@startuml
+class SbyteInspector {
+    + SbyteInspector(metadata:Metadata)
+}
+class "DiscreteNumberInspector`1"<T> {
+}
+"DiscreteNumberInspector`1" "<sbyte>" <|-- SbyteInspector
+@enduml

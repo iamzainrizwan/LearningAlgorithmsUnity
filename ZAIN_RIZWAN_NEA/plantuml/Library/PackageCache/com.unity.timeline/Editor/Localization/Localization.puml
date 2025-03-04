@@ -1,0 +1,22 @@
+@startuml
+class L10n <<static>> {
+    + {static} Tr(str:string) : string
+    + {static} Tr(str_list:string[]) : string[]
+    + {static} Tr(str:string, groupName:string) : string
+    + {static} TrPath(path:string) : string
+    + {static} TextContent(text:string, tooltip:string, icon:Texture) : GUIContent
+    + {static} TextContent(text:string, tooltip:string, iconName:string) : GUIContent
+    + {static} TextContent(text:string, icon:Texture) : GUIContent
+    + {static} TextContentWithIcon(text:string, icon:Texture) : GUIContent
+    + {static} TextContentWithIcon(text:string, iconName:string) : GUIContent
+    + {static} TextContentWithIcon(text:string, tooltip:string, iconName:string) : GUIContent
+    + {static} TextContentWithIcon(text:string, tooltip:string, icon:Texture) : GUIContent
+    + {static} TextContentWithIcon(text:string, tooltip:string, messageType:MessageType) : GUIContent
+    + {static} TextContentWithIcon(text:string, messageType:MessageType) : GUIContent
+    + {static} IconContent(iconName:string, tooltip:string) : GUIContent
+    + {static} IconContent(icon:Texture, tooltip:string) : GUIContent
+    + {static} TempContent(t:string) : GUIContent
+    + {static} TempContent(texts:string[]) : GUIContent[]
+    + {static} TempContent(texts:string[], tooltips:string[]) : GUIContent[]
+}
+@enduml

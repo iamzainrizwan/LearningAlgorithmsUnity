@@ -1,0 +1,7 @@
+@startuml
+class StringExtensions <<static>> {
+    + {static} ReplaceInvalidFileNameCharacters(input:string, replacement:string) : string
+    + {static} HasExtension(input:string, extension:string) : bool
+    + {static} ContainsAny(input:string, stringsToCheck:string[]) : bool
+}
+@enduml

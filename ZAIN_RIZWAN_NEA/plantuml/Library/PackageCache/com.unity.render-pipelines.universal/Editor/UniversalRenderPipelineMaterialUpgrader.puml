@@ -1,0 +1,65 @@
+@startuml
+class UniversalRenderPipelineMaterialUpgrader <<sealed>> {
+    + <<override>> name : string <<get>>
+    + <<override>> info : string <<get>>
+    + <<override>> priority : int <<get>>
+    + <<override>> OnInitialize(context:InitializeConverterContext, callback:Action) : void
+    + <<override>> OnRun(context:RunItemContext) : void
+    + <<override>> OnClicked(index:int) : void
+}
+class SupportedUpgradeParams <<static>> {
+}
+class StandardUpgrader {
+    + {static} UpdateStandardMaterialKeywords(material:Material) : void
+    + {static} UpdateStandardSpecularMaterialKeywords(material:Material) : void
+    + StandardUpgrader(oldShaderName:string)
+}
+class StandardSimpleLightingUpgrader {
+}
+class TerrainUpgrader {
+    + TerrainUpgrader(oldShaderName:string)
+}
+class SpeedTreeUpgrader {
+}
+class SpeedTreeBillboardUpgrader {
+}
+class ParticleUpgrader {
+    + ParticleUpgrader(oldShaderName:string)
+    + {static} UpdateStandardSurface(material:Material) : void
+    + {static} UpdateUnlit(material:Material) : void
+    + {static} UpdateSurfaceBlendModes(material:Material) : void
+}
+class AutodeskInteractiveUpgrader {
+    + AutodeskInteractiveUpgrader(oldShaderName:string)
+    + <<override>> Convert(srcMaterial:Material, dstMaterial:Material) : void
+}
+class "IReadOnlyList`1"<T> {
+}
+enum LegacyRenderingMode {
+    Opaque,
+    Cutout,
+    Fade,
+    Transparent,
+}
+RenderPipelineConverter <|-- UniversalRenderPipelineMaterialUpgrader
+UniversalRenderPipelineMaterialUpgrader --> "container" Type
+UniversalRenderPipelineMaterialUpgrader --> "upgraders<MaterialUpgrader>" "IReadOnlyList`1"
+SupportedUpgradeParams o-> "diffuseOpaque" UpgradeParams
+SupportedUpgradeParams o-> "specularOpaque" UpgradeParams
+SupportedUpgradeParams o-> "diffuseAlpha" UpgradeParams
+SupportedUpgradeParams o-> "specularAlpha" UpgradeParams
+SupportedUpgradeParams o-> "diffuseAlphaCutout" UpgradeParams
+SupportedUpgradeParams o-> "specularAlphaCutout" UpgradeParams
+SupportedUpgradeParams o-> "diffuseCubemap" UpgradeParams
+SupportedUpgradeParams o-> "specularCubemap" UpgradeParams
+SupportedUpgradeParams o-> "diffuseCubemapAlpha" UpgradeParams
+SupportedUpgradeParams o-> "specularCubemapAlpha" UpgradeParams
+MaterialUpgrader <|-- StandardUpgrader
+MaterialUpgrader <|-- StandardSimpleLightingUpgrader
+MaterialUpgrader <|-- TerrainUpgrader
+MaterialUpgrader <|-- SpeedTreeUpgrader
+MaterialUpgrader <|-- SpeedTreeBillboardUpgrader
+MaterialUpgrader <|-- ParticleUpgrader
+MaterialUpgrader <|-- AutodeskInteractiveUpgrader
+StandardUpgrader +-- LegacyRenderingMode
+@enduml

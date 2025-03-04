@@ -1,0 +1,7 @@
+@startuml
+class EnumeratorStepHelper {
+    + {static} SetEnumeratorPC(pc:int) : void
+    + {static} GetEnumeratorPC(enumerator:IEnumerator) : int
+    + {static} UpdateEnumeratorPcIfNeeded(enumerator:IEnumerator) : bool
+}
+@enduml

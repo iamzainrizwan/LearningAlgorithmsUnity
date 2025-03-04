@@ -1,0 +1,8 @@
+@startuml
+class UnitHeaderInspectableAttribute <<sealed>> {
+    + UnitHeaderInspectableAttribute()
+    + UnitHeaderInspectableAttribute(label:string)
+    + label : string <<get>>
+}
+Attribute <|-- UnitHeaderInspectableAttribute
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class ConsoleLogHandler {
+    + LogFormat(logType:LogType, context:UnityEngine.Object, format:string, args:object[]) : void
+    + LogException(exception:Exception, context:UnityEngine.Object) : void
+}
+ILogHandler <|-- ConsoleLogHandler
+@enduml

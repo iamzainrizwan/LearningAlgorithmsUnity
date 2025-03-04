@@ -1,0 +1,20 @@
+@startuml
+class AspectRatioFitter {
+    + aspectRatio : float <<get>> <<set>>
+    + <<virtual>> SetLayoutHorizontal() : void
+    + <<virtual>> SetLayoutVertical() : void
+    + IsComponentValidOnObject() : bool
+    + IsAspectModeValid() : bool
+}
+enum AspectMode {
+    None,
+    WidthControlsHeight,
+    HeightControlsWidth,
+    FitInParent,
+    EnvelopeParent,
+}
+UIBehaviour <|-- AspectRatioFitter
+ILayoutSelfController <|-- AspectRatioFitter
+AspectRatioFitter --> "aspectMode" AspectMode
+AspectRatioFitter +-- AspectMode
+@enduml

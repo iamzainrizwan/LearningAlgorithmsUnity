@@ -1,0 +1,22 @@
+@startuml
+abstract class OnScreenControl {
+    + controlPath : string <<get>> <<set>>
+}
+class UGUIOnScreenControlUtils <<static>> {
+    + {static} GetCanvasRectTransform(transform:Transform) : RectTransform
+}
+struct OnScreenDeviceInfo {
+    + AddControl(control:OnScreenControl) : OnScreenDeviceInfo
+    + RemoveControl(control:OnScreenControl) : OnScreenDeviceInfo
+    + Destroy() : void
+}
+class "NativeArray`1"<T> {
+}
+MonoBehaviour <|-- OnScreenControl
+OnScreenControl --> "control" InputControl
+OnScreenControl +-- OnScreenDeviceInfo
+OnScreenDeviceInfo --> "eventPtr" InputEventPtr
+OnScreenDeviceInfo --> "buffer<byte>" "NativeArray`1"
+OnScreenDeviceInfo --> "device" InputDevice
+OnScreenDeviceInfo --> "firstControl" OnScreenControl
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class NativeContainerTests_ValidateTypesFixture {
+}
+CollectionsTestCommonBase <|-- NativeContainerTests_ValidateTypesFixture
+@enduml

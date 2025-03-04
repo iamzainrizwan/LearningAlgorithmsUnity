@@ -1,0 +1,10 @@
+@startuml
+enum GenerationMode {
+    Preview,
+    ForReals,
+    VFX,
+}
+class GenerationModeExtensions <<static>> {
+    + {static} IsPreview(mode:GenerationMode) : bool
+}
+@enduml

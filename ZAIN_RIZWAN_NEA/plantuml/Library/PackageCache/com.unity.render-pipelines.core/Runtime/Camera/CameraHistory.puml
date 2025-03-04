@@ -1,0 +1,18 @@
+@startuml
+interface IPerFrameHistoryAccessTracker {
+    + RequestAccess() : void
+}
+interface ICameraHistoryWriteAccess {
+    + IsAccessRequested() : bool
+    + GetHistoryForWrite() : Type
+    + IsWritten() : bool
+}
+interface ICameraHistoryReadAccess {
+    + GetHistoryForRead() : Type
+    +  <<event>> OnGatherHistoryRequests : HistoryRequestDelegate 
+}
+abstract class CameraHistoryItem {
+    + <<virtual>> OnCreate(owner:BufferedRTHandleSystem, typeId:uint) : void
+}
+ContextItem <|-- CameraHistoryItem
+@enduml

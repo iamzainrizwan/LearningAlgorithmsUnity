@@ -1,0 +1,50 @@
+@startuml
+struct double4x4 {
+    + double4x4(c0:double4, c1:double4, c2:double4, c3:double4)
+    + double4x4(m00:double, m01:double, m02:double, m03:double, m10:double, m11:double, m12:double, m13:double, m20:double, m21:double, m22:double, m23:double, m30:double, m31:double, m32:double, m33:double)
+    + double4x4(v:double)
+    + double4x4(v:bool)
+    + double4x4(v:bool4x4)
+    + double4x4(v:int)
+    + double4x4(v:int4x4)
+    + double4x4(v:uint)
+    + double4x4(v:uint4x4)
+    + double4x4(v:float)
+    + double4x4(v:float4x4)
+    + Equals(rhs:double4x4) : bool
+    + <<override>> Equals(o:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+    + ToString(format:string, formatProvider:IFormatProvider) : string
+}
+class math <<static>> <<partial>> {
+    + {static} double4x4(c0:double4, c1:double4, c2:double4, c3:double4) : double4x4
+    + {static} double4x4(m00:double, m01:double, m02:double, m03:double, m10:double, m11:double, m12:double, m13:double, m20:double, m21:double, m22:double, m23:double, m30:double, m31:double, m32:double, m33:double) : double4x4
+    + {static} double4x4(v:double) : double4x4
+    + {static} double4x4(v:bool) : double4x4
+    + {static} double4x4(v:bool4x4) : double4x4
+    + {static} double4x4(v:int) : double4x4
+    + {static} double4x4(v:int4x4) : double4x4
+    + {static} double4x4(v:uint) : double4x4
+    + {static} double4x4(v:uint4x4) : double4x4
+    + {static} double4x4(v:float) : double4x4
+    + {static} double4x4(v:float4x4) : double4x4
+    + {static} rotate(a:double4x4, b:double3) : double3
+    + {static} transform(a:double4x4, b:double3) : double3
+    + {static} transpose(v:double4x4) : double4x4
+    + {static} inverse(m:double4x4) : double4x4
+    + {static} fastinverse(m:double4x4) : double4x4
+    + {static} determinant(m:double4x4) : double
+    + {static} hash(v:double4x4) : uint
+    + {static} hashwide(v:double4x4) : uint4
+}
+class "IEquatable`1"<T> {
+}
+IFormattable <|-- double4x4
+double4x4 --> "c0" double4
+double4x4 --> "c1" double4
+double4x4 --> "c2" double4
+double4x4 --> "c3" double4
+double4x4 o-> "identity" double4x4
+double4x4 --> "zero" double4x4
+@enduml

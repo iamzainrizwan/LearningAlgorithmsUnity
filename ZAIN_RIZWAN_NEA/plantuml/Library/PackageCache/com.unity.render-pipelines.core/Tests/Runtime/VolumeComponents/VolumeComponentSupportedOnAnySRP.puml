@@ -1,0 +1,5 @@
+@startuml
+class VolumeComponentSupportedOnAnySRP {
+}
+VolumeComponent <|-- VolumeComponentSupportedOnAnySRP
+@enduml

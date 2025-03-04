@@ -1,0 +1,10 @@
+@startuml
+class UTF8ArrayUnsafeUtilityTests {
+    + CopyTest(text:string) : void
+    + AppendUTF8BytesTest(text:string) : void
+    + AppendTest(text:string) : void
+    + EqualsUTF8BytesTest(text:string) : void
+    + <<unsafe>> StrCmpTest(utf16A:string, utf16B:string) : void
+}
+CollectionsTestCommonBase <|-- UTF8ArrayUnsafeUtilityTests
+@enduml

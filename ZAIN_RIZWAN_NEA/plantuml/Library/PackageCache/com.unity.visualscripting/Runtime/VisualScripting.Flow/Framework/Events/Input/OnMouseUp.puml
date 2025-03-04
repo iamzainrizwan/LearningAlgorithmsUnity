@@ -1,0 +1,9 @@
+@startuml
+class OnMouseUp <<sealed>> {
+}
+class "GameObjectEventUnit`1"<T> {
+}
+"GameObjectEventUnit`1" "<EmptyEventArgs>" <|-- OnMouseUp
+IMouseEventUnit <|-- OnMouseUp
+OnMouseUp --> "MessageListenerType" Type
+@enduml

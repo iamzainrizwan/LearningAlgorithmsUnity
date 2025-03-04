@@ -1,0 +1,17 @@
+@startuml
+class HeaderFoldout <<partial>> {
+    + documentationURL : string <<get>> <<set>>
+    + HeaderFoldout()
+}
+class HeaderToggleFoldout {
+    + enabled : bool <<get>> <<set>>
+    + HeaderToggleFoldout()
+}
+class "Func`1"<T> {
+}
+Foldout <|-- HeaderFoldout
+HeaderFoldout --> "contextMenuGenerator<GenericMenu>" "Func`1"
+HeaderFoldout --> "icon" Texture2D
+HeaderFoldout <|-- HeaderToggleFoldout
+HeaderToggleFoldout --> "enableToggle" Toggle
+@enduml

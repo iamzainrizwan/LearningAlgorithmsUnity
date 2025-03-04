@@ -1,0 +1,11 @@
+@startuml
+enum ReciprocalMethod {
+    Default,
+    Fast,
+}
+class ReciprocalNode {
+    + ReciprocalNode()
+}
+CodeFunctionNode <|-- ReciprocalNode
+ReciprocalNode --> "reciprocalMethod" ReciprocalMethod
+@enduml

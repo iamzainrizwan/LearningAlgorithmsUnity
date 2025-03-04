@@ -1,0 +1,9 @@
+@startuml
+class TestPlanMessage {
+    + TestPlanMessage()
+}
+class "List`1"<T> {
+}
+Message <|-- TestPlanMessage
+TestPlanMessage --> "tests<string>" "List`1"
+@enduml

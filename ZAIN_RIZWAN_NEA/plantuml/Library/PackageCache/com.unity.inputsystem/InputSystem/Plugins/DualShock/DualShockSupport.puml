@@ -1,0 +1,5 @@
+@startuml
+class DualShockSupport <<static>> {
+    + {static} Initialize() : void
+}
+@enduml

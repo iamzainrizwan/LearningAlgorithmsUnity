@@ -1,0 +1,53 @@
+@startuml
+class TestDouble3 {
+    + {static} double3_zero() : void
+    + {static} double3_constructor() : void
+    + {static} double3_scalar_constructor() : void
+    + {static} double3_static_constructor() : void
+    + {static} double3_static_scalar_constructor() : void
+    + {static} double3_operator_equal_wide_wide() : void
+    + {static} double3_operator_equal_wide_scalar() : void
+    + {static} double3_operator_equal_scalar_wide() : void
+    + {static} double3_operator_not_equal_wide_wide() : void
+    + {static} double3_operator_not_equal_wide_scalar() : void
+    + {static} double3_operator_not_equal_scalar_wide() : void
+    + {static} double3_operator_less_wide_wide() : void
+    + {static} double3_operator_less_wide_scalar() : void
+    + {static} double3_operator_less_scalar_wide() : void
+    + {static} double3_operator_greater_wide_wide() : void
+    + {static} double3_operator_greater_wide_scalar() : void
+    + {static} double3_operator_greater_scalar_wide() : void
+    + {static} double3_operator_less_equal_wide_wide() : void
+    + {static} double3_operator_less_equal_wide_scalar() : void
+    + {static} double3_operator_less_equal_scalar_wide() : void
+    + {static} double3_operator_greater_equal_wide_wide() : void
+    + {static} double3_operator_greater_equal_wide_scalar() : void
+    + {static} double3_operator_greater_equal_scalar_wide() : void
+    + {static} double3_operator_add_wide_wide() : void
+    + {static} double3_operator_add_wide_scalar() : void
+    + {static} double3_operator_add_scalar_wide() : void
+    + {static} double3_operator_sub_wide_wide() : void
+    + {static} double3_operator_sub_wide_scalar() : void
+    + {static} double3_operator_sub_scalar_wide() : void
+    + {static} double3_operator_mul_wide_wide() : void
+    + {static} double3_operator_mul_wide_scalar() : void
+    + {static} double3_operator_mul_scalar_wide() : void
+    + {static} double3_operator_div_wide_wide() : void
+    + {static} double3_operator_div_wide_scalar() : void
+    + {static} double3_operator_div_scalar_wide() : void
+    + {static} double3_operator_mod_wide_wide() : void
+    + {static} double3_operator_mod_wide_scalar() : void
+    + {static} double3_operator_mod_scalar_wide() : void
+    + {static} double3_operator_plus() : void
+    + {static} double3_operator_neg() : void
+    + {static} double3_operator_prefix_inc() : void
+    + {static} double3_operator_postfix_inc() : void
+    + {static} double3_operator_prefix_dec() : void
+    + {static} double3_operator_postfix_dec() : void
+    + {static} double3_shuffle_result_1() : void
+    + {static} double3_shuffle_result_2() : void
+    + {static} double3_shuffle_result_3() : void
+    + {static} double3_shuffle_result_4() : void
+    + {static} double3_EqualsObjectOverride() : void
+}
+@enduml

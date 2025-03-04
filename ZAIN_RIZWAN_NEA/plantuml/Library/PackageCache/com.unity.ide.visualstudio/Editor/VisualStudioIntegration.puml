@@ -1,0 +1,9 @@
+@startuml
+class VisualStudioIntegration {
+}
+class Client {
+    + LastMessage : double <<get>> <<set>>
+}
+VisualStudioIntegration +-- Client
+Client --> "EndPoint" IPEndPoint
+@enduml

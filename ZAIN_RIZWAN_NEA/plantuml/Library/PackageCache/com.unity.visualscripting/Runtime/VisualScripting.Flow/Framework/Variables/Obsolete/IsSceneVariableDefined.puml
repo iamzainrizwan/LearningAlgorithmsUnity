@@ -1,0 +1,8 @@
+@startuml
+class IsSceneVariableDefined <<sealed>> {
+    + IsSceneVariableDefined()
+    + IsSceneVariableDefined(defaultName:string)
+}
+IsVariableDefinedUnit <|-- IsSceneVariableDefined
+ISceneVariableUnit <|-- IsSceneVariableDefined
+@enduml

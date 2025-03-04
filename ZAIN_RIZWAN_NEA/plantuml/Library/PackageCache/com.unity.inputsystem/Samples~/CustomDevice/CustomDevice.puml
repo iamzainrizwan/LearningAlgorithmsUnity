@@ -1,0 +1,20 @@
+@startuml
+struct CustomDeviceState {
+    + buttons : ushort
+    + x : byte
+    + y : byte
+}
+class CustomDevice {
+    + <<override>> MakeCurrent() : void
+    + OnUpdate() : void
+}
+IInputStateTypeInfo <|-- CustomDeviceState
+CustomDeviceState --> "format" FourCC
+InputDevice <|-- CustomDevice
+IInputUpdateCallbackReceiver <|-- CustomDevice
+CustomDevice --> "firstButton" ButtonControl
+CustomDevice --> "secondButton" ButtonControl
+CustomDevice --> "thirdButton" ButtonControl
+CustomDevice --> "stick" StickControl
+CustomDevice --> "current" CustomDevice
+@enduml

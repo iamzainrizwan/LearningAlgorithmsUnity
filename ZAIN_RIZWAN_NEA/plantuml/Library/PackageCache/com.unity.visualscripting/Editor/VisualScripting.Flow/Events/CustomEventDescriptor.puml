@@ -1,0 +1,8 @@
+@startuml
+class CustomEventDescriptor {
+    + CustomEventDescriptor(@event:CustomEvent)
+}
+class "EventUnitDescriptor`1"<T> {
+}
+"EventUnitDescriptor`1" "<CustomEvent>" <|-- CustomEventDescriptor
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+class InspectorView {
+    + <<override>> windowTitle : string <<get>>
+    + <<override>> elementName : string <<get>>
+    + <<override>> styleName : string <<get>>
+    + <<override>> UxmlName : string <<get>>
+    + <<override>> layoutKey : string <<get>>
+    + InspectorView(viewModel:InspectorViewModel)
+    + InitializeGraphSettings() : void
+    + doesInspectorNeedUpdate : bool <<get>> <<set>>
+    + TriggerInspectorUpdate(selectionList:IEnumerable<ISelectable>) : void
+    + Update() : void
+    + RefreshInspectables() : void
+    + <<override>> Dispose() : void
+}
+class InspectorUtils <<static>> {
+}
+GraphSubWindow <|-- InspectorView
+@enduml

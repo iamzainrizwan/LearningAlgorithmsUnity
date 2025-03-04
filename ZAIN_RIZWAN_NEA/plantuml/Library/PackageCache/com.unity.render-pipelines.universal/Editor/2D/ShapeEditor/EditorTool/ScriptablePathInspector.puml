@@ -1,0 +1,16 @@
+@startuml
+class ScriptablePathInspector {
+    + <<override>> OnInspectorGUI() : void
+}
+class Contents <<static>> {
+}
+Editor <|-- ScriptablePathInspector
+ScriptablePathInspector +-- Contents
+Contents o-> "linearIcon" GUIContent
+Contents o-> "continuousIcon" GUIContent
+Contents o-> "brokenIcon" GUIContent
+Contents o-> "positionLabel" GUIContent
+Contents o-> "enableSnapLabel" GUIContent
+Contents o-> "tangentModeLabel" GUIContent
+Contents o-> "pointLabel" GUIContent
+@enduml

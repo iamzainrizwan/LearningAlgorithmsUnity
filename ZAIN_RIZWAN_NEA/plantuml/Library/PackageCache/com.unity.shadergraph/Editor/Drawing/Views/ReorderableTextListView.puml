@@ -1,0 +1,11 @@
+@startuml
+class "ReorderableListView`1"<T> {
+}
+class "List`1"<T> {
+}
+VisualElement <|-- "ReorderableListView`1"
+"ReorderableListView`1" --> "GetAddMenuOptions" GetAddMenuOptionsDelegate
+"ReorderableListView`1" --> "OnAddMenuItemCallback" OnAddMenuItemDelegate
+"ReorderableListView`1" --> "RemoveItemCallback" RemoveItemDelegate
+"ReorderableListView`1" --> "OnListReorderedCallback" ListReorderedDelegate
+@enduml

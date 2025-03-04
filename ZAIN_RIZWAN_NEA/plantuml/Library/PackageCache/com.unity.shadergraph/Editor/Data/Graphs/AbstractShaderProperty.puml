@@ -1,0 +1,52 @@
+@startuml
+abstract class AbstractShaderProperty {
+    + gpuInstanced : bool <<get>> <<set>>
+    + hidden : bool <<get>> <<set>>
+    + <<virtual>> GetPropertyTypeString() : string
+}
+abstract class "AbstractShaderProperty`1"<T> {
+    + <<virtual>> value : T <<get>> <<set>>
+}
+class LegacyShaderPropertyData {
+    + m_GPUInstanced : bool = false
+    + {static} UpgradeToHLSLDeclarationOverride(json:string, property:AbstractShaderProperty) : void
+}
+enum HLSLType {
+    _float,
+    _float2,
+    _float3,
+    _float4,
+    _matrix4x4,
+    FirstObjectType,
+    _Texture2D= FirstObjectType,
+    _Texture3D,
+    _TextureCube,
+    _Texture2DArray,
+    _SamplerState,
+    _CUSTOM,
+}
+enum HLSLDeclaration {
+    DoNotDeclare,
+    Global,
+    UnityPerMaterial,
+    HybridPerInstance,
+}
+struct HLSLProperty {
+    + name : string
+    + HLSLProperty(type:HLSLType, name:string, declaration:HLSLDeclaration, precision:ConcretePrecision)
+    + ValueEquals(other:HLSLProperty) : bool
+    + IsObjectType() : bool
+    + GetValueTypeString() : string
+    + AppendTo(ssb:ShaderStringBuilder, nameModifier:Func<string, string>) : void
+}
+class "Action`1"<T> {
+}
+ShaderInput <|-- AbstractShaderProperty
+AbstractShaderProperty --> "propertyType" PropertyType
+AbstractShaderProperty --> "concretePrecision" ConcretePrecision
+AbstractShaderProperty <|-- "AbstractShaderProperty`1"
+HLSLProperty --> "type" HLSLType
+HLSLProperty --> "precision" ConcretePrecision
+HLSLProperty --> "declaration" HLSLDeclaration
+HLSLProperty --> "customDeclaration<ShaderStringBuilder>" "Action`1"
+@enduml

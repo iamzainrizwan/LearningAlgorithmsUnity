@@ -1,0 +1,10 @@
+@startuml
+class Physics2DRaycasterTests {
+    + TestSetup() : void
+    + TearDown() : void
+    + RaycastAllResultsAreSortedByRendererSortingOrder() : void
+    + RaycastAllResultsAreSortedBySortGroupOrder() : void
+    + RaycastAllResultsAreSortedBySortGroupOrderAndSortingOrder() : void
+    + RaycastAllResultsAreSortedBySortGroupDistanceAlongRay() : void
+}
+@enduml

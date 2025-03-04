@@ -1,0 +1,7 @@
+@startuml
+class CanvasSizeCorrectInAwakeAndStartScript {
+    + isStartCalled : bool <<get>>
+    + isAwakeCalled : bool <<get>>
+}
+MonoBehaviour <|-- CanvasSizeCorrectInAwakeAndStartScript
+@enduml

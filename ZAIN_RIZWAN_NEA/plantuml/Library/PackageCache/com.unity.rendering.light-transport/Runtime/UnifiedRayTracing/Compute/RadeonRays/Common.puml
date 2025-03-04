@@ -1,0 +1,6 @@
+@startuml
+class Common <<static>> {
+    + {static} CeilDivide(val:uint, div:uint) : uint
+    + {static} EnableKeyword(cmd:CommandBuffer, shader:ComputeShader, keyword:string, enable:bool) : void
+}
+@enduml

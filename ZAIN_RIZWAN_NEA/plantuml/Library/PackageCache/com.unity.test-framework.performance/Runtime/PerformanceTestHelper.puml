@@ -1,0 +1,6 @@
+@startuml
+class PerformanceTestHelper {
+}
+MonoBehaviour <|-- PerformanceTestHelper
+PerformanceTestHelper --> "ActiveTest" PerformanceTest
+@enduml

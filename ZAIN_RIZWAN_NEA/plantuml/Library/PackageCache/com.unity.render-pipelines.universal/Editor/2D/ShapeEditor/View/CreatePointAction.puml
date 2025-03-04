@@ -1,0 +1,12 @@
+@startuml
+class CreatePointAction {
+    + CreatePointAction(pointControl:Control, edgeControl:Control)
+}
+class "Func`3"<T1,T2,T3> {
+}
+class "Action`2"<T1,T2> {
+}
+ClickAction <|-- CreatePointAction
+CreatePointAction --> "guiToWorld<IGUIState,Vector2,Vector3>" "Func`3"
+CreatePointAction --> "onCreatePoint<int,Vector3>" "Action`2"
+@enduml

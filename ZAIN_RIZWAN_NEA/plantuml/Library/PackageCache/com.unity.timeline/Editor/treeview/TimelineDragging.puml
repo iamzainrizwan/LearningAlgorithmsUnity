@@ -1,0 +1,28 @@
+@startuml
+class TimelineDragging {
+    + TimelineDragging(treeView:TreeViewController, window:TimelineWindow, data:TimelineAsset)
+    + <<override>> CanStartDrag(targetItem:TreeViewItem, draggedItemIDs:List<int>, mouseDownPosition:Vector2) : bool
+    + <<override>> StartDrag(draggedNode:TreeViewItem, draggedItemIDs:List<int>) : void
+    + {static} ResolveType(types:IEnumerable<System.Type>, onComplete:Action<Type>, formatString:string) : bool
+    + <<override>> DragElement(targetItem:TreeViewItem, targetItemRect:Rect, row:int) : bool
+    + <<override>> DoDrag(parentItem:TreeViewItem, targetItem:TreeViewItem, perform:bool, dropPos:DropPosition) : DragAndDropVisualMode
+    + {static} HandleHierarchyPaneDragAndDrop(objectsBeingDropped:IEnumerable<UnityObject>, targetTrack:TrackAsset, perform:bool, timeline:TimelineAsset, director:PlayableDirector, typeResolver:TypeResolver, insertBefore:TrackAsset) : DragAndDropVisualMode
+    + {static} HandleClipPaneObjectDragAndDrop(objectsBeingDropped:IEnumerable<UnityObject>, targetTrack:TrackAsset, perform:bool, timeline:TimelineAsset, parent:TrackAsset, director:PlayableDirector, candidateTime:double, typeResolver:TypeResolver, insertBefore:TrackAsset) : DragAndDropVisualMode
+    + {static} HandleClipPaneMonoScriptDragAndDrop(scriptsBeingDropped:IEnumerable<MonoScript>, targetTrack:TrackAsset, perform:bool, timeline:TimelineAsset, parent:TrackAsset, director:PlayableDirector, candidateTime:double) : DragAndDropVisualMode
+    + {static} HandleClipPanePlayableAssetDragAndDrop(assetsBeingDropped:IEnumerable<IPlayableAsset>, targetTrack:TrackAsset, perform:bool, timeline:TimelineAsset, parent:TrackAsset, director:PlayableDirector, candidateTime:double, typeResolver:TypeResolver) : DragAndDropVisualMode
+    + HandleTrackDrop(parentItem:TreeViewItem, targetItem:TreeViewItem, perform:bool, dropPos:DropPosition) : DragAndDropVisualMode
+    + {static} OnTrackBindingDragUpdate(dropTarget:TrackAsset) : void
+}
+class "IEnumerable`1"<T> {
+}
+class "Action`1"<T> {
+}
+class TimelineDragData {
+    + TimelineDragData(draggedItems:List<TreeViewItem>)
+}
+class "List`1"<T> {
+}
+TreeViewDragging <|-- TimelineDragging
+TimelineDragging +-- TimelineDragData
+TimelineDragData --> "draggedItems<TreeViewItem>" "List`1"
+@enduml

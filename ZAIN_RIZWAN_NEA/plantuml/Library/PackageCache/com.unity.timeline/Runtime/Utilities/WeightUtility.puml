@@ -1,0 +1,5 @@
+@startuml
+class WeightUtility <<static>> {
+    + {static} NormalizeMixer(mixer:Playable) : float
+}
+@enduml

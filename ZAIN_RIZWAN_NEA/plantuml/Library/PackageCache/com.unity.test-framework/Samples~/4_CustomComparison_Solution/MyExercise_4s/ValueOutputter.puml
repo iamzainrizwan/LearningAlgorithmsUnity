@@ -1,0 +1,7 @@
+@startuml
+class ValueOutputter {
+    + GetVector3() : Vector3
+    + GetQuaternion() : Quaternion
+    + GetFloat() : float
+}
+@enduml

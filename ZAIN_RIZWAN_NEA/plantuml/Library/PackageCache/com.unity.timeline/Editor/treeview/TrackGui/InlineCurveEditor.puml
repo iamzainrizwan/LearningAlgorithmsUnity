@@ -1,0 +1,18 @@
+@startuml
+interface IClipCurveEditorOwner {
+}
+class InlineCurveResizeHandle {
+    + InlineCurveResizeHandle(trackGUI:TimelineTrackGUI)
+    + Draw(headerRect:Rect, state:WindowState) : void
+}
+class InlineCurveEditor {
+    + InlineCurveEditor(trackGUI:TimelineTrackGUI)
+    + Draw(headerRect:Rect, trackRect:Rect, state:WindowState) : void
+}
+IBounds <|-- InlineCurveResizeHandle
+InlineCurveResizeHandle --> "boundingRect" Rect
+InlineCurveResizeHandle --> "trackGUI" TimelineTrackGUI
+IBounds <|-- InlineCurveEditor
+InlineCurveEditor --> "currentClipGui" TimelineClipGUI
+InlineCurveEditor --> "currentCurveEditor" IClipCurveEditorOwner
+@enduml

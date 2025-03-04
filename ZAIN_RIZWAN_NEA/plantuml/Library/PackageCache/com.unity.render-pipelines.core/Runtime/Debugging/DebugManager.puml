@@ -1,0 +1,29 @@
+@startuml
+interface IDebugData {
+}
+class DebugManager <<sealed>> <<partial>> {
+    +  <<event>> onDisplayRuntimeUIChanged : Action<bool> 
+    +  <<event>> onSetDirty : Action 
+    + refreshEditorRequested : bool
+    + isAnyDebugUIActive : bool <<get>>
+    + RefreshEditor() : void
+    + Reset() : void
+    + ReDrawOnScreenDebug() : void
+    + RegisterData(data:IDebugData) : void
+    + UnregisterData(data:IDebugData) : void
+    + GetState() : int
+    + PanelIndex(displayName:string) : int
+    + PanelDiplayName(panelIndex:int) : string
+    + RequestEditorWindowPanelIndex(index:int) : void
+    + GetPanel(displayName:string, createIfNull:bool, groupIndex:int, overrideIfExist:bool) : DebugUI.Panel
+    + FindPanelIndex(displayName:string) : int
+    + RemovePanel(displayName:string) : void
+    + RemovePanel(panel:DebugUI.Panel) : void
+    + GetItems(flags:DebugUI.Flags) : DebugUI.Widget[]
+    + GetItem(queryPath:string) : DebugUI.Widget
+}
+class "ReadOnlyCollection`1"<T> {
+}
+DebugManager --> "instance" DebugManager
+DebugManager --> "panels<DebugUI.Panel>" "ReadOnlyCollection`1"
+@enduml

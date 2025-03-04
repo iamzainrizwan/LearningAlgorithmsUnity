@@ -1,0 +1,12 @@
+@startuml
+class TangentVectorNode {
+    + <<const>> kOutputSlotId : int = 0
+    + <<const>> kOutputSlotName : string = "Out"
+    + TangentVectorNode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> GetVariableNameForSlot(slotId:int) : string
+    + RequiresTangent(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+}
+GeometryNode <|-- TangentVectorNode
+IMayRequireTangent <|-- TangentVectorNode
+@enduml

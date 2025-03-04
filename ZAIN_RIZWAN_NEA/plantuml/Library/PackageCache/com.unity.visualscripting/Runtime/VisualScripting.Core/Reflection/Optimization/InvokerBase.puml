@@ -1,0 +1,13 @@
+@startuml
+abstract class InvokerBase {
+    + Compile() : void
+    + {abstract} Invoke(target:object, args:object[]) : object
+    + <<virtual>> Invoke(target:object) : object
+    + <<virtual>> Invoke(target:object, arg0:object) : object
+    + <<virtual>> Invoke(target:object, arg0:object, arg1:object) : object
+    + <<virtual>> Invoke(target:object, arg0:object, arg1:object, arg2:object) : object
+    + <<virtual>> Invoke(target:object, arg0:object, arg1:object, arg2:object, arg3:object) : object
+    + <<virtual>> Invoke(target:object, arg0:object, arg1:object, arg2:object, arg3:object, arg4:object) : object
+}
+IOptimizedInvoker <|-- InvokerBase
+@enduml

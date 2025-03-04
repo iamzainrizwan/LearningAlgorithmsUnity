@@ -1,0 +1,10 @@
+@startuml
+class EventBus <<static>> {
+    + {static} Register(hook:EventHook, handler:Action<TArgs>) : void
+    + {static} Unregister(hook:EventHook, handler:Delegate) : void
+    + {static} Trigger(hook:EventHook, args:TArgs) : void
+    + {static} Trigger(name:string, target:GameObject, args:TArgs) : void
+    + {static} Trigger(hook:EventHook) : void
+    + {static} Trigger(name:string, target:GameObject) : void
+}
+@enduml

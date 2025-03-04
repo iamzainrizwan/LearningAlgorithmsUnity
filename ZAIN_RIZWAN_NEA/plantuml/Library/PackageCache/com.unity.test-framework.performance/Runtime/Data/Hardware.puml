@@ -1,0 +1,11 @@
+@startuml
+class Hardware {
+    + OperatingSystem : string
+    + DeviceModel : string
+    + DeviceName : string
+    + ProcessorType : string
+    + ProcessorCount : int
+    + GraphicsDeviceName : string
+    + SystemMemorySizeMB : int
+}
+@enduml

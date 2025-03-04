@@ -1,0 +1,9 @@
+@startuml
+class HeatmapColors {
+    + <<const>> Title : string = "Heatmap"
+    + <<override>> GetTitle() : string
+    + <<override>> AllowCustom() : bool
+    + <<override>> ClearOnDirty() : bool
+}
+ColorProviderFromCode <|-- HeatmapColors
+@enduml

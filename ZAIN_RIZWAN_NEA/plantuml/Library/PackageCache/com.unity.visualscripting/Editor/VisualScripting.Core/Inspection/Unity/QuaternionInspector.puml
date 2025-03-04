@@ -1,0 +1,6 @@
+@startuml
+class QuaternionInspector {
+    + QuaternionInspector(metadata:Metadata)
+}
+Inspector <|-- QuaternionInspector
+@enduml

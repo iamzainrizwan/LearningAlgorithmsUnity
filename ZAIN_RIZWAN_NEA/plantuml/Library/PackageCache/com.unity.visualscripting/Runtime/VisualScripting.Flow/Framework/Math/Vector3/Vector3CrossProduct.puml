@@ -1,0 +1,8 @@
+@startuml
+class Vector3CrossProduct <<sealed>> {
+    + <<override>> Operation(a:UnityEngine.Vector3, b:UnityEngine.Vector3) : UnityEngine.Vector3
+}
+class "CrossProduct`1"<T> {
+}
+"CrossProduct`1" "<UnityEngine.Vector3>" <|-- Vector3CrossProduct
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class ScalarMinimum <<sealed>> {
+    + <<override>> Operation(a:float, b:float) : float
+    + <<override>> Operation(values:IEnumerable<float>) : float
+}
+class "Minimum`1"<T> {
+}
+"Minimum`1" "<float>" <|-- ScalarMinimum
+@enduml

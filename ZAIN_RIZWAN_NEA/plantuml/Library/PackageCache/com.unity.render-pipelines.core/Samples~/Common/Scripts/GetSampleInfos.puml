@@ -1,0 +1,13 @@
+@startuml
+class GetSampleInfos {
+}
+enum Type {
+    Introduction,
+    Title,
+    Description,
+}
+MonoBehaviour <|-- GetSampleInfos
+GetSampleInfos --> "type" Type
+GetSampleInfos --> "prefab" GameObject
+GetSampleInfos +-- Type
+@enduml

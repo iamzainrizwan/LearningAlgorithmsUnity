@@ -1,0 +1,23 @@
+@startuml
+enum MetalMaterialType {
+    Iron,
+    Silver,
+    Aluminium,
+    Gold,
+    Copper,
+    Chromium,
+    Nickel,
+    Titanium,
+    Cobalt,
+    Platinum,
+}
+class MetalReflectanceNode {
+    + MetalReflectanceNode()
+    + <<override>> hasPreview : bool <<get>>
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+}
+AbstractMaterialNode <|-- MetalReflectanceNode
+IGeneratesBodyCode <|-- MetalReflectanceNode
+MetalReflectanceNode --> "material" MetalMaterialType
+@enduml

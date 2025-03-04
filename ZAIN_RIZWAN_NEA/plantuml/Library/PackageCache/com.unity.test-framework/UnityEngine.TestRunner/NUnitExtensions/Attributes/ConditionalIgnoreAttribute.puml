@@ -1,0 +1,9 @@
+@startuml
+class ConditionalIgnoreAttribute {
+    + ConditionalIgnoreAttribute(conditionKey:string, ignoreReason:string)
+    + ApplyToTest(test:Test) : void
+    + {static} AddConditionalIgnoreMapping(key:string, value:bool) : void
+}
+NUnitAttribute <|-- ConditionalIgnoreAttribute
+IApplyToTest <|-- ConditionalIgnoreAttribute
+@enduml

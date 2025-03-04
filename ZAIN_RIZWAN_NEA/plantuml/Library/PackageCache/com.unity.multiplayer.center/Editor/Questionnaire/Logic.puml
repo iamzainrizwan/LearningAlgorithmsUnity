@@ -1,0 +1,14 @@
+@startuml
+class Logic <<static>> {
+    + {static} ValidateAnswers(questions:QuestionnaireData, currentAnswers:AnswerData) : List<string>
+    + {static} FindFirstUnansweredQuestion(questions:QuestionnaireData, currentAnswers:AnswerData) : int
+    + {static} ApplyPresetToAnswerData(currentAnswers:AnswerData, preset:Preset, questionnaire:QuestionnaireData) : (AnswerData, RecommendationViewData)
+    + {static} Update(data:AnswerData, a:AnsweredQuestion) : void
+    + {static} AreMandatoryQuestionsFilled(questionnaire:QuestionnaireData, answers:AnswerData) : bool
+    + {static} ConvertInfrastructure(serverArchitectureOption:RecommendedSolutionViewData) : SelectedSolutionsData.HostingModel
+    + {static} ConvertNetcodeSolution(netcodeOption:RecommendedSolutionViewData) : SelectedSolutionsData.NetcodeSolution
+    + {static} MigrateUserChoices(questionnaire:QuestionnaireData, userChoices:UserChoicesObject) : void
+}
+class "Dictionary`2"<T1,T2> {
+}
+@enduml

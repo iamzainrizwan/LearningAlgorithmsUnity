@@ -1,0 +1,7 @@
+@startuml
+class MarkRunAsPlayModeTask {
+    + MarkRunAsPlayModeTask()
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- MarkRunAsPlayModeTask
+@enduml

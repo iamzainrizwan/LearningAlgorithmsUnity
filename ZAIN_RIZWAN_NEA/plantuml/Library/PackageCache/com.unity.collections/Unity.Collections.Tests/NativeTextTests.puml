@@ -1,0 +1,77 @@
+@startuml
+class NativeTextTests {
+    + NativeTextFixedStringCtors() : void
+    + NativeTextCorrectLengthAfterClear() : void
+    + NativeTextFormatExtension1Params() : void
+    + NativeTextFormatExtension2Params() : void
+    + NativeTextFormatExtension3Params() : void
+    + NativeTextFormatExtension4Params() : void
+    + NativeTextFormatExtension5Params() : void
+    + NativeTextFormatExtension6Params() : void
+    + NativeTextFormatExtension7Params() : void
+    + NativeTextFormatExtension8Params() : void
+    + NativeTextFormatExtension9Params() : void
+    + NativeTextFormatExtension10Params() : void
+    + NativeTextAppendGrows() : void
+    + NativeTextAppendString() : void
+    + NativeTextCopyFromBytesWorks(a:String) : void
+    + NativeTextToStringWorks(a:String) : void
+    + NativeTextEqualsWorks(a:String, b:String) : void
+    + NativeTextForEach() : void
+    + NativeTextNSubstring() : void
+    + NativeTextIndexOf() : void
+    + NativeTextLastIndexOf() : void
+    + NativeTextContains() : void
+    + NativeTextComparisons() : void
+    + NativeTextCustomAllocatorTest() : void
+    + <<unsafe>> NativeTextBurstedCustomAllocatorTest() : void
+    + NativeTextIsEmpty() : void
+    + NativeTextIsEmptyReturnsTrueForNotConstructed() : void
+    + NativeTextReadonlyCtor() : void
+    + NativeTextReadOnlyEqualsWorks(a:String, b:String) : void
+    + NativeTextReadOnlyIndexOf() : void
+    + NativeTextReadOnlyLastIndexOf() : void
+    + NativeTextReadOnlyContains() : void
+    + NativeTextReadOnlyComparisons() : void
+    + NativeTextReadOnlyMakeMoreThanOne() : void
+    + NativeTextReadOnlyIsNotACopy() : void
+    + NativeTextReadOnlyIsEmpty() : void
+    + NativeTextReadOnlyIsEmptyReturnsTrueOrThrowsForNotConstructed() : void
+    + NativeTextReadOnlyIsNotWritable() : void
+    + NativeTextReadOnlyCannotBeUsedAfterSourceIsDisposed() : void
+    + NativeTextReadOnlyCannotBeUsedAfterSourceIsChanged() : void
+    + NativeTextReadOnlyModificationDuringEnumerationThrows() : void
+    + NativeTextReadOnlyCannotScheduledSourceTextForWrite() : void
+    + NativeTextReadOnlyCanReadFromSourceTextModifiedInJob() : void
+    + NativeTextReadOnlyCanScheduledSourceTextForRead() : void
+    + NativeTextReadOnlyThrowWhenUsingReadOnlyInJobAfterSourceHasBeenDisposed() : void
+}
+struct BurstedCustomAllocatorJob {
+    + Execute() : void
+}
+struct TestWriteOfTextMappedToReadOnly {
+    + Execute() : void
+}
+struct TestClearTextMappedToReadOnly {
+    + Execute() : void
+}
+struct TestReadOfTextMappedToReadOnly {
+    + Execute() : void
+}
+struct TestReadFromReadOnly {
+    + Execute() : void
+}
+NativeTextTests +-- BurstedCustomAllocatorJob
+IJob <|-- BurstedCustomAllocatorJob
+NativeTextTests +-- TestWriteOfTextMappedToReadOnly
+IJob <|-- TestWriteOfTextMappedToReadOnly
+TestWriteOfTextMappedToReadOnly --> "Text" NativeText
+NativeTextTests +-- TestClearTextMappedToReadOnly
+IJob <|-- TestClearTextMappedToReadOnly
+TestClearTextMappedToReadOnly --> "Text" NativeText
+NativeTextTests +-- TestReadOfTextMappedToReadOnly
+IJob <|-- TestReadOfTextMappedToReadOnly
+TestReadOfTextMappedToReadOnly --> "Text" NativeText
+NativeTextTests +-- TestReadFromReadOnly
+IJob <|-- TestReadFromReadOnly
+@enduml

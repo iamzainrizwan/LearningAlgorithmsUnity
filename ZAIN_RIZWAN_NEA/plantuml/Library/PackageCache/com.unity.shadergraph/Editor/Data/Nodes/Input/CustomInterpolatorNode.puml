@@ -1,0 +1,11 @@
+@startuml
+class CustomInterpolatorNode {
+    + <<override>> hasPreview : bool <<get>>
+    + <<override>> allowedInSubGraph : bool <<get>>
+    + CustomInterpolatorNode()
+    + <<override>> ValidateNode() : void
+    + <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> GetVariableNameForSlot(slotid:int) : string
+}
+AbstractMaterialNode <|-- CustomInterpolatorNode
+@enduml

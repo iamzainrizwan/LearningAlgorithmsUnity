@@ -1,0 +1,11 @@
+@startuml
+enum CoreProfileId {
+    BlitTextureInPotAtlas,
+    APVCellStreamingUpdate,
+    APVScenarioBlendingUpdate,
+    APVIndexDefragUpdate,
+    APVDiskStreamingUpdate,
+    APVDiskStreamingUpdatePool,
+    APVSamplingDebug,
+}
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class CreateWorkspace {
+}
+enum Status {
+    Starting= 1,
+    ConfiguringCredentials= 2,
+    CreatingWorkspace= 3,
+    PerformingInitialCheckin= 4,
+    Finished= 5,
+}
+CreateWorkspace +-- Status
+@enduml

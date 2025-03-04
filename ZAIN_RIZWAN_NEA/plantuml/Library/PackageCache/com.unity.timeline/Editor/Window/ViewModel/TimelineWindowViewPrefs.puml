@@ -1,0 +1,27 @@
+@startuml
+class TimelineWindowViewPrefs <<static>> {
+    + <<const>> FilePath : string = "Library/Timeline"
+    + {static} viewModelCount : int <<get>>
+    + {static} GetOrCreateViewModel(asset:TimelineAsset) : TimelineAssetViewModel
+    + {static} CreateUnassociatedViewModel() : TimelineAssetViewModel
+    + {static} SaveViewModel(asset:TimelineAsset) : void
+    + {static} SaveAll() : void
+    + {static} UnloadViewModel(asset:TimelineAsset) : void
+    + {static} UnloadAllViewModels() : void
+    + {static} GetTrackViewModelData(track:TrackAsset) : TrackViewModelData
+    + {static} IsTrackCollapsed(track:TrackAsset) : bool
+    + {static} SetTrackCollapsed(track:TrackAsset, collapsed:bool) : void
+    + {static} IsShowMarkers(track:TrackAsset) : bool
+    + {static} SetTrackShowMarkers(track:TrackAsset, collapsed:bool) : void
+    + {static} GetShowInlineCurves(track:TrackAsset) : bool
+    + {static} SetShowInlineCurves(track:TrackAsset, inlineOn:bool) : void
+    + {static} GetInlineCurveHeight(asset:TrackAsset) : float
+    + {static} SetInlineCurveHeight(asset:TrackAsset, height:float) : void
+    + {static} GetTrackHeightExtension(asset:TrackAsset) : int
+    + {static} SetTrackHeightExtension(asset:TrackAsset, height:int) : void
+}
+class "Dictionary`2"<T1,T2> {
+}
+class "List`1"<T> {
+}
+@enduml

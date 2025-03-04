@@ -1,0 +1,101 @@
+@startuml
+class InputSystem <<static>> <<partial>> {
+    + {static} RegisterLayout(type:Type, name:string, matches:InputDeviceMatcher?) : void
+    + {static} RegisterLayout(name:string, matches:InputDeviceMatcher?) : void
+    + {static} RegisterLayout(json:string, name:string, matches:InputDeviceMatcher?) : void
+    + {static} RegisterLayoutOverride(json:string, name:string) : void
+    + {static} RegisterLayoutMatcher(layoutName:string, matcher:InputDeviceMatcher) : void
+    + {static} RegisterLayoutMatcher(matcher:InputDeviceMatcher) : void
+    + {static} RegisterLayoutBuilder(buildMethod:Func<InputControlLayout>, name:string, baseLayout:string, matches:InputDeviceMatcher?) : void
+    + {static} RegisterPrecompiledLayout(metadata:string) : void
+    + {static} RemoveLayout(name:string) : void
+    + {static} TryFindMatchingLayout(deviceDescription:InputDeviceDescription) : string
+    + {static} ListLayouts() : IEnumerable<string>
+    + {static} ListLayoutsBasedOn(baseLayout:string) : IEnumerable<string>
+    + {static} LoadLayout(name:string) : InputControlLayout
+    + {static} LoadLayout() : InputControlLayout
+    + {static} GetNameOfBaseLayout(layoutName:string) : string
+    + {static} IsFirstLayoutBasedOnSecond(firstLayoutName:string, secondLayoutName:string) : bool
+    + {static} RegisterProcessor(type:Type, name:string) : void
+    + {static} RegisterProcessor(name:string) : void
+    + {static} TryGetProcessor(name:string) : Type
+    + {static} ListProcessors() : IEnumerable<string>
+    + {static} pollingFrequency : float <<get>> <<set>>
+    + {static} AddDevice(layout:string, name:string, variants:string) : InputDevice
+    + {static} AddDevice(name:string) : TDevice
+    + {static} AddDevice(description:InputDeviceDescription) : InputDevice
+    + {static} AddDevice(device:InputDevice) : void
+    + {static} RemoveDevice(device:InputDevice) : void
+    + {static} FlushDisconnectedDevices() : void
+    + {static} GetDevice(nameOrLayout:string) : InputDevice
+    + {static} GetDevice() : TDevice
+    + {static} GetDevice(type:Type) : InputDevice
+    + {static} GetDevice(usage:InternedString) : TDevice
+    + {static} GetDevice(usage:string) : TDevice
+    + {static} GetDeviceById(deviceId:int) : InputDevice
+    + {static} GetUnsupportedDevices() : List<InputDeviceDescription>
+    + {static} GetUnsupportedDevices(descriptions:List<InputDeviceDescription>) : int
+    + {static} EnableDevice(device:InputDevice) : void
+    + {static} DisableDevice(device:InputDevice, keepSendingEvents:bool) : void
+    + {static} TrySyncDevice(device:InputDevice) : bool
+    + {static} ResetDevice(device:InputDevice, alsoResetDontResetControls:bool) : void
+    + {static} TryResetDevice(device:InputDevice) : bool
+    + {static} PauseHaptics() : void
+    + {static} ResumeHaptics() : void
+    + {static} ResetHaptics() : void
+    + {static} SetDeviceUsage(device:InputDevice, usage:string) : void
+    + {static} SetDeviceUsage(device:InputDevice, usage:InternedString) : void
+    + {static} AddDeviceUsage(device:InputDevice, usage:string) : void
+    + {static} AddDeviceUsage(device:InputDevice, usage:InternedString) : void
+    + {static} RemoveDeviceUsage(device:InputDevice, usage:string) : void
+    + {static} RemoveDeviceUsage(device:InputDevice, usage:InternedString) : void
+    + {static} FindControl(path:string) : InputControl
+    + {static} FindControls(path:string) : InputControlList<InputControl>
+    + {static} FindControls(path:string) : InputControlList<TControl>
+    + {static} FindControls(path:string, controls:InputControlList<TControl>) : int
+    + {static} QueueEvent(eventPtr:InputEventPtr) : void
+    + {static} QueueEvent(inputEvent:TEvent) : void
+    + {static} <<unsafe>> QueueStateEvent(device:InputDevice, state:TState, time:double) : void
+    + {static} <<unsafe>> QueueDeltaStateEvent(control:InputControl, delta:TDelta, time:double) : void
+    + {static} QueueConfigChangeEvent(device:InputDevice, time:double) : void
+    + {static} QueueTextEvent(device:InputDevice, character:char, time:double) : void
+    + {static} Update() : void
+    + {static} RegisterInteraction(type:Type, name:string) : void
+    + {static} RegisterInteraction(name:string) : void
+    + {static} TryGetInteraction(name:string) : Type
+    + {static} ListInteractions() : IEnumerable<string>
+    + {static} RegisterBindingComposite(type:Type, name:string) : void
+    + {static} RegisterBindingComposite(name:string) : void
+    + {static} TryGetBindingComposite(name:string) : Type
+    + {static} DisableAllEnabledActions() : void
+    + {static} ListEnabledActions() : List<InputAction>
+    + {static} ListEnabledActions(actions:List<InputAction>) : int
+    + {static} runInBackground : bool <<get>> <<set>>
+}
+class "Action`2"<T1,T2> {
+}
+class "ReadOnlyArray`1"<T> {
+}
+class "IObservable`1"<T> {
+}
+struct StateEventBuffer {
+    + <<const>> kMaxSize : int = 512
+    + <<fixed>> data : byte
+}
+struct DeltaStateEventBuffer {
+    + <<const>> kMaxSize : int = 512
+    + <<fixed>> data : byte
+}
+InputSystem --> "devices<InputDevice>" "ReadOnlyArray`1"
+InputSystem --> "disconnectedDevices<InputDevice>" "ReadOnlyArray`1"
+InputSystem --> "onEvent" InputEventListener
+InputSystem --> "onAnyButtonPress<InputControl>" "IObservable`1"
+InputSystem --> "settings" InputSettings
+InputSystem --> "remoting" InputRemoting
+InputSystem --> "version" Version
+InputSystem --> "metrics" InputMetrics
+InputSystem +-- StateEventBuffer
+StateEventBuffer --> "stateEvent" StateEvent
+InputSystem +-- DeltaStateEventBuffer
+DeltaStateEventBuffer --> "stateEvent" DeltaStateEvent
+@enduml

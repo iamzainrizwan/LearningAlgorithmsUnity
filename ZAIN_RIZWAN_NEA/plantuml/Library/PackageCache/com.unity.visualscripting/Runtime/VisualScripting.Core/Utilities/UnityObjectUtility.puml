@@ -1,0 +1,12 @@
+@startuml
+class UnityObjectUtility <<static>> {
+    + {static} IsDestroyed(target:UnityObject) : bool
+    + {static} IsUnityNull(obj:object) : bool
+    + {static} ToSafeString(uo:UnityObject) : string
+    + {static} ToSafeString(obj:object) : string
+    + {static} AsUnityNull(obj:T) : T
+    + {static} TrulyEqual(a:UnityObject, b:UnityObject) : bool
+    + {static} NotUnityNull(enumerable:IEnumerable<T>) : IEnumerable<T>
+    + {static} FindObjectsOfTypeIncludingInactive() : IEnumerable<T>
+}
+@enduml

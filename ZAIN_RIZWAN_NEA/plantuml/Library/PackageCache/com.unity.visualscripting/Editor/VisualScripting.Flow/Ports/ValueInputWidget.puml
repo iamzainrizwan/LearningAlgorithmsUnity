@@ -1,0 +1,10 @@
+@startuml
+class ValueInputWidget {
+    + ValueInputWidget(canvas:FlowCanvas, port:ValueInput)
+    + <<override>> FetchInspectorMetadata() : Metadata
+}
+class "UnitInputPortWidget`1"<T> {
+}
+"UnitInputPortWidget`1" "<ValueInput>" <|-- ValueInputWidget
+ValueInputWidget --> "color" Color
+@enduml

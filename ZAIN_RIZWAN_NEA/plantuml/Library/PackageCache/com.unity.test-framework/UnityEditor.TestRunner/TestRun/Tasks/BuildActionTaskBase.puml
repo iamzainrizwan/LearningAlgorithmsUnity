@@ -1,0 +1,6 @@
+@startuml
+abstract class "BuildActionTaskBase`1"<T> {
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- "BuildActionTaskBase`1"
+@enduml

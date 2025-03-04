@@ -1,0 +1,16 @@
+@startuml
+class BindingUtility <<static>> {
+    + {static} Bind(director:PlayableDirector, bindTo:TrackAsset, objectToBind:Object) : void
+    + {static} BindWithEditorValidation(director:PlayableDirector, bindTo:TrackAsset, objectToBind:Object) : void
+    + {static} BindWithInteractiveEditorValidation(director:PlayableDirector, bindTo:TrackAsset, objectToBind:Object) : void
+    + {static} GetBindingAction(requiredBindingType:Type, objectToBind:Object) : BindingAction
+    + {static} GetBinding(bindingAction:BindingAction, objectToBind:Object, requiredBindingType:Type) : Object
+}
+enum BindingAction {
+    DoNotBind,
+    BindDirectly,
+    BindToExistingComponent,
+    BindToMissingComponent,
+}
+BindingUtility +-- BindingAction
+@enduml

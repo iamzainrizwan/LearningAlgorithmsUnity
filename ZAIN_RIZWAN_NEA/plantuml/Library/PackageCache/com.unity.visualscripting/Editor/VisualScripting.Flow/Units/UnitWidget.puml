@@ -1,0 +1,66 @@
+@startuml
+class "UnitWidget`1"<TUnit> {
+    + UnitWidget(canvas:FlowCanvas, unit:TUnit)
+    + <<override>> Dispose() : void
+    + <<virtual>> GetPortInspector(port:IUnitPort, metadata:Metadata) : Inspector
+    + <<override>> foregroundRequiresInput : bool <<get>>
+    + <<override>> HandleInput() : void
+    + <<override>> CachePosition() : void
+    + <<override>> DrawForeground() : void
+    + <<override>> canSelect : bool <<get>>
+    + <<override>> canDrag : bool <<get>>
+    + <<override>> ExpandDragGroup(dragGroup:HashSet<IGraphElement>) : void
+    + <<override>> canDelete : bool <<get>>
+    + <<override>> ExpandCopyGroup(copyGroup:HashSet<IGraphElement>) : void
+}
+class UnitWidgetHelper {
+}
+class "NodeWidget`2"<T1,T2> {
+}
+class "IEnumerable`1"<T> {
+}
+class "List`1"<T> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+class Styles <<static>> {
+    + {static} <<readonly>> spaceAroundLineIcon : float = 5
+    + {static} <<readonly>> spaceBeforePorts : float = 5
+    + {static} <<readonly>> spaceBetweenInputsAndOutputs : float = 8
+    + {static} <<readonly>> spaceBeforeSettings : float = 2
+    + {static} <<readonly>> spaceBetweenSettings : float = 3
+    + {static} <<readonly>> spaceBetweenPorts : float = 3
+    + {static} <<readonly>> spaceAfterSettings : float = 0
+    + {static} <<readonly>> maxSettingsWidth : float = 150
+    + {static} <<readonly>> iconSize : float
+    + {static} <<readonly>> iconsSize : float
+    + {static} <<readonly>> iconsSpacing : float = 3
+    + {static} <<readonly>> iconsPerColumn : int = 2
+    + {static} <<readonly>> spaceAfterIcon : float = 6
+    + {static} <<readonly>> spaceAfterSurtitle : float = 2
+    + {static} <<readonly>> spaceBeforeSubtitle : float = 0
+    + {static} <<readonly>> invokeFadeDuration : float = 0.5f
+}
+"NodeWidget`2" "<FlowCanvas,TUnit>" <|-- "UnitWidget`1"
+IUnitWidget <|-- "UnitWidget`1"
+"UnitWidget`1" --> "subWidgets<IWidget>" "IEnumerable`1"
+"UnitWidget`1" --> "positionDependers<IWidget>" "IEnumerable`1"
+"UnitWidget`1" --> "position" Rect
+"UnitWidget`1" --> "titlePosition" Rect
+"UnitWidget`1" --> "surtitlePosition" Rect
+"UnitWidget`1" --> "subtitlePosition" Rect
+"UnitWidget`1" --> "iconPosition" Rect
+"UnitWidget`1" o-> "iconsPositions<Rect>" "List`1"
+"UnitWidget`1" o-> "settingsPositions<Metadata,Rect>" "Dictionary`2"
+"UnitWidget`1" --> "headerAddonPosition" Rect
+"UnitWidget`1" --> "portsBackgroundPosition" Rect
+"UnitWidget`1" +-- Styles
+Styles --> "title" GUIStyle
+Styles --> "surtitle" GUIStyle
+Styles --> "subtitle" GUIStyle
+Styles --> "titleInverted" GUIStyle
+Styles --> "surtitleInverted" GUIStyle
+Styles --> "subtitleInverted" GUIStyle
+Styles --> "settingLabel" GUIStyle
+Styles --> "portsBackground" GUIStyle
+@enduml

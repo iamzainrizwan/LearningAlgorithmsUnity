@@ -1,0 +1,5 @@
+@startuml
+class SpriteUtilities <<static>> {
+    + {static} <<unsafe>> CreateCircleSprite(radius:int, colour:Color32) : Sprite
+}
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class BoolParameterDrawer <<sealed>> {
+    + <<override>> OnGUI(parameter:SerializedDataParameter, title:GUIContent) : bool
+}
+enum BoolEnum {
+    Disabled= 0,
+    Enabled= 1,
+}
+VolumeParameterDrawer <|-- BoolParameterDrawer
+BoolParameterDrawer +-- BoolEnum
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class TimeFieldDrawer {
+    + <<override>> OnGUI(position:Rect, property:SerializedProperty, label:GUIContent) : void
+}
+PropertyDrawer <|-- TimeFieldDrawer
+@enduml

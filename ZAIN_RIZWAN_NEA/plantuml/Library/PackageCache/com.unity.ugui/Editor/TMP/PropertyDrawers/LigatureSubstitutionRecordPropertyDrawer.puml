@@ -1,0 +1,6 @@
+@startuml
+class LigatureSubstitutionRecordPropertyDrawer {
+    + <<override>> OnGUI(position:Rect, property:SerializedProperty, label:GUIContent) : void
+}
+PropertyDrawer <|-- LigatureSubstitutionRecordPropertyDrawer
+@enduml

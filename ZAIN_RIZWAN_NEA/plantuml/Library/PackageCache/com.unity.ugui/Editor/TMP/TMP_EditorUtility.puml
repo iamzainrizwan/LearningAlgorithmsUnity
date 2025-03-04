@@ -1,0 +1,6 @@
+@startuml
+class TMP_EditorUtility <<static>> {
+    + {static} packageRelativePath : string <<get>>
+    + {static} packageFullPath : string <<get>>
+}
+@enduml

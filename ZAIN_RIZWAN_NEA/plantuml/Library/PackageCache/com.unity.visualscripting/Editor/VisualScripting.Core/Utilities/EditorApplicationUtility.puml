@@ -1,0 +1,23 @@
+@startuml
+class EditorApplicationUtility <<static>> {
+    + {static} isAssemblyReloadLocked : bool <<get>>
+    + {static} LockReloadAssemblies() : void
+    + {static} UnlockReloadAssemblies() : void
+    + {static} ClearProgressBar() : void
+    + {static} WantsScriptChangesDuringPlay() : bool
+    + {static}  <<event>> onAssemblyReload : Action 
+    + {static}  <<event>> onEnterPlayMode : Action 
+    + {static}  <<event>> onExitPlayMode : Action 
+    + {static}  <<event>> onEnterEditMode : Action 
+    + {static}  <<event>> onExitEditMode : Action 
+    + {static}  <<event>> onModeChange : Action 
+    + {static}  <<event>> onPause : Action 
+    + {static}  <<event>> onResume : Action 
+    + {static}  <<event>> onPauseChange : Action 
+    + {static}  <<event>> onSelectionChange : Action 
+    + {static}  <<event>> onProjectChange : Action 
+    + {static}  <<event>> onHierarchyChange : Action 
+    + {static}  <<event>> onUndoRedo : Action 
+}
+EditorApplicationUtility --> "unityVersion" SemanticVersion
+@enduml

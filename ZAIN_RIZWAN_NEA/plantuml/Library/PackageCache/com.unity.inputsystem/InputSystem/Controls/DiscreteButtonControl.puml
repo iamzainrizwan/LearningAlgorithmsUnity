@@ -1,0 +1,17 @@
+@startuml
+class DiscreteButtonControl {
+    + minValue : int
+    + maxValue : int
+    + wrapAtValue : int
+    + nullValue : int
+    + <<override>> <<unsafe>> ReadUnprocessedValueFromState(statePtr:void*) : float
+    + <<override>> <<unsafe>> WriteValueIntoState(value:float, statePtr:void*) : void
+}
+enum WriteMode {
+    WriteDisabled= 0,
+    WriteNullAndMaxValue= 1,
+}
+ButtonControl <|-- DiscreteButtonControl
+DiscreteButtonControl --> "writeMode" WriteMode
+DiscreteButtonControl +-- WriteMode
+@enduml

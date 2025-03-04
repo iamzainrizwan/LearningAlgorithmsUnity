@@ -1,0 +1,6 @@
+@startuml
+class NullMeansSelfAttribute <<sealed>> {
+    + NullMeansSelfAttribute()
+}
+Attribute <|-- NullMeansSelfAttribute
+@enduml

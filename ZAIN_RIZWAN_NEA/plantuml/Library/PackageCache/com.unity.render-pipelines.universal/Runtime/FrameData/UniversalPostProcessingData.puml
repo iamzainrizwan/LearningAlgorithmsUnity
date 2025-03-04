@@ -1,0 +1,12 @@
+@startuml
+class UniversalPostProcessingData {
+    + isEnabled : bool
+    + lutSize : int
+    + useFastSRGBLinearConversion : bool
+    + supportScreenSpaceLensFlare : bool
+    + supportDataDrivenLensFlare : bool
+    + <<override>> Reset() : void
+}
+ContextItem <|-- UniversalPostProcessingData
+UniversalPostProcessingData --> "gradingMode" ColorGradingMode
+@enduml

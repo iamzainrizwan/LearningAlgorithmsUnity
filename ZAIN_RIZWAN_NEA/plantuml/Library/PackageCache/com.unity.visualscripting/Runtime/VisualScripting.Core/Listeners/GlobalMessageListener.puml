@@ -1,0 +1,7 @@
+@startuml
+class GlobalMessageListener <<sealed>> {
+    + {static} Require() : void
+}
+MonoBehaviour <|-- GlobalMessageListener
+ISingleton <|-- GlobalMessageListener
+@enduml

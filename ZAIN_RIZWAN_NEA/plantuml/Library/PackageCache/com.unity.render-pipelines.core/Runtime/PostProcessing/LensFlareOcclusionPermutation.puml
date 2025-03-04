@@ -1,0 +1,6 @@
+@startuml
+enum LensFlareOcclusionPermutation {
+    Depth= (1 << 0),
+    FogOpacity= (1 << 2),
+}
+@enduml

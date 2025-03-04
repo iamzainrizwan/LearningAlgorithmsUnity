@@ -1,0 +1,24 @@
+@startuml
+class AdditionalLightsShadowCasterPass <<partial>> {
+    + AdditionalLightsShadowCasterPass(evt:RenderPassEvent)
+    + Dispose() : void
+    + Setup(renderingData:RenderingData) : bool
+    + Setup(renderingData:UniversalRenderingData, cameraData:UniversalCameraData, lightData:UniversalLightData, shadowData:UniversalShadowData) : bool
+    + <<override>> Configure(cmd:CommandBuffer, cameraTextureDescriptor:RenderTextureDescriptor) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + GetShadowLightIndexFromLightIndex(visibleLightIndex:int) : int
+}
+class AdditionalShadowsConstantBuffer <<static>> {
+    + {static} _AdditionalLightsWorldToShadow : int
+    + {static} _AdditionalShadowParams : int
+    + {static} _AdditionalShadowOffset0 : int
+    + {static} _AdditionalShadowOffset1 : int
+    + {static} _AdditionalShadowFadeParams : int
+    + {static} _AdditionalShadowmapSize : int
+}
+class PassData {
+}
+ScriptableRenderPass <|-- AdditionalLightsShadowCasterPass
+AdditionalLightsShadowCasterPass +-- AdditionalShadowsConstantBuffer
+AdditionalLightsShadowCasterPass +-- PassData
+@enduml

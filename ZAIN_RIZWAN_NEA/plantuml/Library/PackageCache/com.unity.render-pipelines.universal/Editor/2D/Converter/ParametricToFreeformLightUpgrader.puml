@@ -1,0 +1,14 @@
+@startuml
+class ParametricToFreeformLightUpgrader <<sealed>> {
+    + <<override>> name : string <<get>>
+    + <<override>> info : string <<get>>
+    + <<override>> priority : int <<get>>
+    + {static} UpgradeParametricLight(light:Light2D) : void
+    + <<override>> OnInitialize(context:InitializeConverterContext, callback:Action) : void
+    + <<override>> OnRun(context:RunItemContext) : void
+    + <<override>> OnClicked(index:int) : void
+    + <<override>> OnPostRun() : void
+}
+RenderPipelineConverter <|-- ParametricToFreeformLightUpgrader
+ParametricToFreeformLightUpgrader --> "container" Type
+@enduml

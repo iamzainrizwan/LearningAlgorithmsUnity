@@ -1,0 +1,7 @@
+@startuml
+class RegisterTestRunCallbackEventsTask {
+    + RegisterTestRunCallbackEventsTask()
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- RegisterTestRunCallbackEventsTask
+@enduml

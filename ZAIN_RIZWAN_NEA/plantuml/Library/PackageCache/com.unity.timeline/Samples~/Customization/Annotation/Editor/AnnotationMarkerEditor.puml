@@ -1,0 +1,7 @@
+@startuml
+class AnnotationMarkerEditor {
+    + <<override>> DrawOverlay(marker:IMarker, uiState:MarkerUIStates, region:MarkerOverlayRegion) : void
+    + <<override>> GetMarkerOptions(marker:IMarker) : MarkerDrawOptions
+}
+MarkerEditor <|-- AnnotationMarkerEditor
+@enduml

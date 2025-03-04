@@ -1,0 +1,51 @@
+@startuml
+struct "NativeQueue`1"<T> {
+    + NativeQueue(allocator:AllocatorManager.AllocatorHandle)
+    + <<readonly>> IsEmpty() : bool
+    + <<readonly>> Count : int <<get>>
+    + Peek() : T
+    + Enqueue(value:T) : void
+    + Dequeue() : T
+    + TryDequeue(item:T) : bool
+    + ToArray(allocator:AllocatorManager.AllocatorHandle) : NativeArray<T>
+    + Clear() : void
+    + <<readonly>> IsCreated : bool <<get>>
+    + Dispose() : void
+    + Dispose(inputDeps:JobHandle) : JobHandle
+    + AsReadOnly() : ReadOnly
+    + AsParallelWriter() : ParallelWriter
+}
+struct NativeQueueDispose {
+    + Dispose() : void
+}
+struct NativeQueueDisposeJob {
+    + Execute() : void
+}
+struct Enumerator {
+    + Dispose() : void
+    + MoveNext() : bool
+    + Reset() : void
+}
+struct ReadOnly {
+    + <<readonly>> IsCreated : bool <<get>>
+    + <<readonly>> IsEmpty() : bool
+    + <<readonly>> Count : int <<get>>
+    + <<readonly>> GetEnumerator() : Enumerator
+}
+struct ParallelWriter {
+    + Enqueue(value:T) : void
+}
+class "IEnumerator`1"<T> {
+}
+class "IEnumerable`1"<T> {
+}
+INativeDisposable <|-- "NativeQueue`1"
+IJob <|-- NativeQueueDisposeJob
+NativeQueueDisposeJob --> "Data" NativeQueueDispose
+"NativeQueue`1" +-- Enumerator
+"IEnumerator`1" "<T>" <|-- Enumerator
+Enumerator --> "Current" T
+"NativeQueue`1" +-- ReadOnly
+"IEnumerable`1" "<T>" <|-- ReadOnly
+"NativeQueue`1" +-- ParallelWriter
+@enduml

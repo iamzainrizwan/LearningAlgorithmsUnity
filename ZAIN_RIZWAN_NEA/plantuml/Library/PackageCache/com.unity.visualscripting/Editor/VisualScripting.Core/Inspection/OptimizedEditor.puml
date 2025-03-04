@@ -1,0 +1,5 @@
+@startuml
+abstract class "OptimizedEditor`1"<TIndividual> {
+    + <<sealed>> <<override>> OnInspectorGUI() : void
+}
+@enduml

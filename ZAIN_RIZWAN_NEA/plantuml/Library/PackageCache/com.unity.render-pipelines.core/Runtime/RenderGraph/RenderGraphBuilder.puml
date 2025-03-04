@@ -1,0 +1,26 @@
+@startuml
+struct RenderGraphBuilder {
+    + UseColorBuffer(input:TextureHandle, index:int) : TextureHandle
+    + UseDepthBuffer(input:TextureHandle, flags:DepthAccess) : TextureHandle
+    + ReadTexture(input:TextureHandle) : TextureHandle
+    + WriteTexture(input:TextureHandle) : TextureHandle
+    + ReadWriteTexture(input:TextureHandle) : TextureHandle
+    + CreateTransientTexture(desc:TextureDesc) : TextureHandle
+    + CreateTransientTexture(texture:TextureHandle) : TextureHandle
+    + WriteRayTracingAccelerationStructure(input:RayTracingAccelerationStructureHandle) : RayTracingAccelerationStructureHandle
+    + ReadRayTracingAccelerationStructure(input:RayTracingAccelerationStructureHandle) : RayTracingAccelerationStructureHandle
+    + UseRendererList(input:RendererListHandle) : RendererListHandle
+    + ReadBuffer(input:BufferHandle) : BufferHandle
+    + WriteBuffer(input:BufferHandle) : BufferHandle
+    + CreateTransientBuffer(desc:BufferDesc) : BufferHandle
+    + CreateTransientBuffer(graphicsbuffer:BufferHandle) : BufferHandle
+    + SetRenderFunc(renderFunc:BaseRenderFunc<PassData, RenderGraphContext>) : void
+    + EnableAsyncCompute(value:bool) : void
+    + AllowPassCulling(value:bool) : void
+    + EnableFoveatedRasterization(value:bool) : void
+    + Dispose() : void
+    + AllowRendererListCulling(value:bool) : void
+    + DependsOn(input:RendererListHandle) : RendererListHandle
+}
+IDisposable <|-- RenderGraphBuilder
+@enduml

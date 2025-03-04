@@ -1,0 +1,18 @@
+@startuml
+struct InputMetrics {
+    + maxNumDevices : int <<get>> <<set>>
+    + currentNumDevices : int <<get>> <<set>>
+    + maxStateSizeInBytes : int <<get>> <<set>>
+    + currentStateSizeInBytes : int <<get>> <<set>>
+    + currentControlCount : int <<get>> <<set>>
+    + currentLayoutCount : int <<get>> <<set>>
+    + totalEventBytes : int <<get>> <<set>>
+    + totalEventCount : int <<get>> <<set>>
+    + totalUpdateCount : int <<get>> <<set>>
+    + totalEventProcessingTime : double <<get>> <<set>>
+    + totalEventLagTime : double <<get>> <<set>>
+    + averageEventBytesPerFrame : float <<get>>
+    + averageProcessingTimePerEvent : double <<get>>
+    + averageLagTimePerEvent : double <<get>>
+}
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class ExposeOption {
+    + ExposeOption()
+    + ExposeOption(unit:Expose)
+    + <<override>> Deserialize(row:UnitOptionRow) : void
+    + <<override>> Serialize() : UnitOptionRow
+}
+class "UnitOption`1"<T> {
+}
+"UnitOption`1" "<Expose>" <|-- ExposeOption
+ExposeOption --> "exposedType" Type
+@enduml

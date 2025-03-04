@@ -1,0 +1,16 @@
+@startuml
+enum ShaderStageCapability {
+    None= 0,
+    Vertex= 1 << 0,
+    Fragment= 1 << 1,
+    All= Vertex | Fragment,
+}
+enum ShaderStage {
+    Vertex= 1 << 0,
+    Fragment= 1 << 1,
+}
+class ShaderStageExtensions <<static>> {
+    + {static} TryGetShaderStage(capability:ShaderStageCapability, stage:ShaderStage) : bool
+    + {static} GetShaderStageCapability(stage:ShaderStage) : ShaderStageCapability
+}
+@enduml

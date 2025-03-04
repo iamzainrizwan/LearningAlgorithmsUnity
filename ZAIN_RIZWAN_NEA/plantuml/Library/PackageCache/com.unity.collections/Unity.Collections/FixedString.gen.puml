@@ -1,0 +1,717 @@
+@startuml
+struct FixedBytes16Align8 {
+    + byte0000 : ulong
+    + byte0008 : ulong
+}
+struct FixedBytes16 {
+    + byte0000 : byte
+    + byte0001 : byte
+    + byte0002 : byte
+    + byte0003 : byte
+    + byte0004 : byte
+    + byte0005 : byte
+    + byte0006 : byte
+    + byte0007 : byte
+    + byte0008 : byte
+    + byte0009 : byte
+    + byte0010 : byte
+    + byte0011 : byte
+    + byte0012 : byte
+    + byte0013 : byte
+    + byte0014 : byte
+    + byte0015 : byte
+}
+struct FixedBytes32Align8 {
+}
+struct FixedBytes64Align8 {
+}
+struct FixedBytes128Align8 {
+}
+struct FixedBytes512Align8 {
+}
+struct FixedBytes4096Align8 {
+}
+struct FixedBytes30 {
+    + byte0016 : byte
+    + byte0017 : byte
+    + byte0018 : byte
+    + byte0019 : byte
+    + byte0020 : byte
+    + byte0021 : byte
+    + byte0022 : byte
+    + byte0023 : byte
+    + byte0024 : byte
+    + byte0025 : byte
+    + byte0026 : byte
+    + byte0027 : byte
+    + byte0028 : byte
+    + byte0029 : byte
+}
+struct FixedString32Bytes {
+    + {static} UTF8MaxLengthInBytes : int <<get>>
+    + Value : string <<get>>
+    + <<readonly>> <<unsafe>> GetUnsafePtr() : byte*
+    + Length : int <<readonly get>> <<set>>
+    + Capacity : int <<readonly get>> <<set>>
+    + TryResize(newLength:int, clearOptions:NativeArrayOptions) : bool
+    + <<readonly>> IsEmpty : bool <<get>>
+    + ElementAt(index:int) : ref byte
+    + Clear() : void
+    + Add(value:byte) : void
+    + GetEnumerator() : Enumerator
+    + CompareTo(other:String) : int
+    + Equals(other:String) : bool
+    + <<unsafe>> AsFixedList() : ref FixedList32Bytes<byte>
+    + FixedString32Bytes(source:String)
+    + FixedString32Bytes(rune:Unicode.Rune, count:int)
+    <<unsafe>> + FixedString32Bytes(other:NativeText.ReadOnly)
+    <<unsafe>> + FixedString32Bytes(other:UnsafeText)
+    + CompareTo(other:FixedString32Bytes) : int
+    + FixedString32Bytes(other:FixedString32Bytes)
+    + Equals(other:FixedString32Bytes) : bool
+    + CompareTo(other:FixedString64Bytes) : int
+    + FixedString32Bytes(other:FixedString64Bytes)
+    + Equals(other:FixedString64Bytes) : bool
+    + CompareTo(other:FixedString128Bytes) : int
+    + FixedString32Bytes(other:FixedString128Bytes)
+    + Equals(other:FixedString128Bytes) : bool
+    + CompareTo(other:FixedString512Bytes) : int
+    + FixedString32Bytes(other:FixedString512Bytes)
+    + Equals(other:FixedString512Bytes) : bool
+    + CompareTo(other:FixedString4096Bytes) : int
+    + FixedString32Bytes(other:FixedString4096Bytes)
+    + Equals(other:FixedString4096Bytes) : bool
+    + <<override>> ToString() : String
+    + <<override>> GetHashCode() : int
+    + <<override>> Equals(obj:object) : bool
+}
+struct FixedBytes62 {
+    + byte0048 : byte
+    + byte0049 : byte
+    + byte0050 : byte
+    + byte0051 : byte
+    + byte0052 : byte
+    + byte0053 : byte
+    + byte0054 : byte
+    + byte0055 : byte
+    + byte0056 : byte
+    + byte0057 : byte
+    + byte0058 : byte
+    + byte0059 : byte
+    + byte0060 : byte
+    + byte0061 : byte
+}
+struct FixedString64Bytes {
+    + {static} UTF8MaxLengthInBytes : int <<get>>
+    + Value : string <<get>>
+    + <<readonly>> <<unsafe>> GetUnsafePtr() : byte*
+    + Length : int <<readonly get>> <<set>>
+    + Capacity : int <<readonly get>> <<set>>
+    + TryResize(newLength:int, clearOptions:NativeArrayOptions) : bool
+    + <<readonly>> IsEmpty : bool <<get>>
+    + ElementAt(index:int) : ref byte
+    + Clear() : void
+    + Add(value:byte) : void
+    + GetEnumerator() : Enumerator
+    + CompareTo(other:String) : int
+    + Equals(other:String) : bool
+    + <<unsafe>> AsFixedList() : ref FixedList64Bytes<byte>
+    + FixedString64Bytes(source:String)
+    + FixedString64Bytes(rune:Unicode.Rune, count:int)
+    <<unsafe>> + FixedString64Bytes(other:NativeText.ReadOnly)
+    <<unsafe>> + FixedString64Bytes(other:UnsafeText)
+    + CompareTo(other:FixedString32Bytes) : int
+    + FixedString64Bytes(other:FixedString32Bytes)
+    + Equals(other:FixedString32Bytes) : bool
+    + CompareTo(other:FixedString64Bytes) : int
+    + FixedString64Bytes(other:FixedString64Bytes)
+    + Equals(other:FixedString64Bytes) : bool
+    + CompareTo(other:FixedString128Bytes) : int
+    + FixedString64Bytes(other:FixedString128Bytes)
+    + Equals(other:FixedString128Bytes) : bool
+    + CompareTo(other:FixedString512Bytes) : int
+    + FixedString64Bytes(other:FixedString512Bytes)
+    + Equals(other:FixedString512Bytes) : bool
+    + CompareTo(other:FixedString4096Bytes) : int
+    + FixedString64Bytes(other:FixedString4096Bytes)
+    + Equals(other:FixedString4096Bytes) : bool
+    + <<override>> ToString() : String
+    + <<override>> GetHashCode() : int
+    + <<override>> Equals(obj:object) : bool
+}
+struct FixedBytes126 {
+    + byte0112 : byte
+    + byte0113 : byte
+    + byte0114 : byte
+    + byte0115 : byte
+    + byte0116 : byte
+    + byte0117 : byte
+    + byte0118 : byte
+    + byte0119 : byte
+    + byte0120 : byte
+    + byte0121 : byte
+    + byte0122 : byte
+    + byte0123 : byte
+    + byte0124 : byte
+    + byte0125 : byte
+}
+struct FixedString128Bytes {
+    + {static} UTF8MaxLengthInBytes : int <<get>>
+    + Value : string <<get>>
+    + <<readonly>> <<unsafe>> GetUnsafePtr() : byte*
+    + Length : int <<readonly get>> <<set>>
+    + Capacity : int <<readonly get>> <<set>>
+    + TryResize(newLength:int, clearOptions:NativeArrayOptions) : bool
+    + <<readonly>> IsEmpty : bool <<get>>
+    + ElementAt(index:int) : ref byte
+    + Clear() : void
+    + Add(value:byte) : void
+    + GetEnumerator() : Enumerator
+    + CompareTo(other:String) : int
+    + Equals(other:String) : bool
+    + <<unsafe>> AsFixedList() : ref FixedList128Bytes<byte>
+    + FixedString128Bytes(source:String)
+    + FixedString128Bytes(rune:Unicode.Rune, count:int)
+    <<unsafe>> + FixedString128Bytes(other:NativeText.ReadOnly)
+    <<unsafe>> + FixedString128Bytes(other:UnsafeText)
+    + CompareTo(other:FixedString32Bytes) : int
+    + FixedString128Bytes(other:FixedString32Bytes)
+    + Equals(other:FixedString32Bytes) : bool
+    + CompareTo(other:FixedString64Bytes) : int
+    + FixedString128Bytes(other:FixedString64Bytes)
+    + Equals(other:FixedString64Bytes) : bool
+    + CompareTo(other:FixedString128Bytes) : int
+    + FixedString128Bytes(other:FixedString128Bytes)
+    + Equals(other:FixedString128Bytes) : bool
+    + CompareTo(other:FixedString512Bytes) : int
+    + FixedString128Bytes(other:FixedString512Bytes)
+    + Equals(other:FixedString512Bytes) : bool
+    + CompareTo(other:FixedString4096Bytes) : int
+    + FixedString128Bytes(other:FixedString4096Bytes)
+    + Equals(other:FixedString4096Bytes) : bool
+    + <<override>> ToString() : String
+    + <<override>> GetHashCode() : int
+    + <<override>> Equals(obj:object) : bool
+}
+struct FixedBytes510 {
+    + byte0496 : byte
+    + byte0497 : byte
+    + byte0498 : byte
+    + byte0499 : byte
+    + byte0500 : byte
+    + byte0501 : byte
+    + byte0502 : byte
+    + byte0503 : byte
+    + byte0504 : byte
+    + byte0505 : byte
+    + byte0506 : byte
+    + byte0507 : byte
+    + byte0508 : byte
+    + byte0509 : byte
+}
+struct FixedString512Bytes {
+    + {static} UTF8MaxLengthInBytes : int <<get>>
+    + Value : string <<get>>
+    + <<readonly>> <<unsafe>> GetUnsafePtr() : byte*
+    + Length : int <<readonly get>> <<set>>
+    + Capacity : int <<readonly get>> <<set>>
+    + TryResize(newLength:int, clearOptions:NativeArrayOptions) : bool
+    + <<readonly>> IsEmpty : bool <<get>>
+    + ElementAt(index:int) : ref byte
+    + Clear() : void
+    + Add(value:byte) : void
+    + GetEnumerator() : Enumerator
+    + CompareTo(other:String) : int
+    + Equals(other:String) : bool
+    + <<unsafe>> AsFixedList() : ref FixedList512Bytes<byte>
+    + FixedString512Bytes(source:String)
+    + FixedString512Bytes(rune:Unicode.Rune, count:int)
+    <<unsafe>> + FixedString512Bytes(other:NativeText.ReadOnly)
+    <<unsafe>> + FixedString512Bytes(other:UnsafeText)
+    + CompareTo(other:FixedString32Bytes) : int
+    + FixedString512Bytes(other:FixedString32Bytes)
+    + Equals(other:FixedString32Bytes) : bool
+    + CompareTo(other:FixedString64Bytes) : int
+    + FixedString512Bytes(other:FixedString64Bytes)
+    + Equals(other:FixedString64Bytes) : bool
+    + CompareTo(other:FixedString128Bytes) : int
+    + FixedString512Bytes(other:FixedString128Bytes)
+    + Equals(other:FixedString128Bytes) : bool
+    + CompareTo(other:FixedString512Bytes) : int
+    + FixedString512Bytes(other:FixedString512Bytes)
+    + Equals(other:FixedString512Bytes) : bool
+    + CompareTo(other:FixedString4096Bytes) : int
+    + FixedString512Bytes(other:FixedString4096Bytes)
+    + Equals(other:FixedString4096Bytes) : bool
+    + <<override>> ToString() : String
+    + <<override>> GetHashCode() : int
+    + <<override>> Equals(obj:object) : bool
+}
+struct FixedBytes4094 {
+    + byte4080 : byte
+    + byte4081 : byte
+    + byte4082 : byte
+    + byte4083 : byte
+    + byte4084 : byte
+    + byte4085 : byte
+    + byte4086 : byte
+    + byte4087 : byte
+    + byte4088 : byte
+    + byte4089 : byte
+    + byte4090 : byte
+    + byte4091 : byte
+    + byte4092 : byte
+    + byte4093 : byte
+}
+struct FixedString4096Bytes {
+    + {static} UTF8MaxLengthInBytes : int <<get>>
+    + Value : string <<get>>
+    + <<readonly>> <<unsafe>> GetUnsafePtr() : byte*
+    + Length : int <<readonly get>> <<set>>
+    + Capacity : int <<readonly get>> <<set>>
+    + TryResize(newLength:int, clearOptions:NativeArrayOptions) : bool
+    + <<readonly>> IsEmpty : bool <<get>>
+    + ElementAt(index:int) : ref byte
+    + Clear() : void
+    + Add(value:byte) : void
+    + GetEnumerator() : Enumerator
+    + CompareTo(other:String) : int
+    + Equals(other:String) : bool
+    + <<unsafe>> AsFixedList() : ref FixedList4096Bytes<byte>
+    + FixedString4096Bytes(source:String)
+    + FixedString4096Bytes(rune:Unicode.Rune, count:int)
+    <<unsafe>> + FixedString4096Bytes(other:NativeText.ReadOnly)
+    <<unsafe>> + FixedString4096Bytes(other:UnsafeText)
+    + CompareTo(other:FixedString32Bytes) : int
+    + FixedString4096Bytes(other:FixedString32Bytes)
+    + Equals(other:FixedString32Bytes) : bool
+    + CompareTo(other:FixedString64Bytes) : int
+    + FixedString4096Bytes(other:FixedString64Bytes)
+    + Equals(other:FixedString64Bytes) : bool
+    + CompareTo(other:FixedString128Bytes) : int
+    + FixedString4096Bytes(other:FixedString128Bytes)
+    + Equals(other:FixedString128Bytes) : bool
+    + CompareTo(other:FixedString512Bytes) : int
+    + FixedString4096Bytes(other:FixedString512Bytes)
+    + Equals(other:FixedString512Bytes) : bool
+    + CompareTo(other:FixedString4096Bytes) : int
+    + FixedString4096Bytes(other:FixedString4096Bytes)
+    + Equals(other:FixedString4096Bytes) : bool
+    + <<override>> ToString() : String
+    + <<override>> GetHashCode() : int
+    + <<override>> Equals(obj:object) : bool
+}
+class "INativeList`1"<T> {
+}
+class "IComparable`1"<T> {
+}
+class "IEquatable`1"<T> {
+}
+struct Enumerator {
+    + Enumerator(other:FixedString32Bytes)
+    + Dispose() : void
+    + MoveNext() : bool
+    + Reset() : void
+}
+struct Enumerator {
+    + Enumerator(other:FixedString64Bytes)
+    + Dispose() : void
+    + MoveNext() : bool
+    + Reset() : void
+}
+struct Enumerator {
+    + Enumerator(other:FixedString128Bytes)
+    + Dispose() : void
+    + MoveNext() : bool
+    + Reset() : void
+}
+struct Enumerator {
+    + Enumerator(other:FixedString512Bytes)
+    + Dispose() : void
+    + MoveNext() : bool
+    + Reset() : void
+}
+struct Enumerator {
+    + Enumerator(other:FixedString4096Bytes)
+    + Dispose() : void
+    + MoveNext() : bool
+    + Reset() : void
+}
+FixedBytes30 --> "offset0000" FixedBytes16
+"INativeList`1" "<byte>" <|-- FixedString32Bytes
+IUTF8Bytes <|-- FixedString32Bytes
+"IComparable`1" "<String>" <|-- FixedString32Bytes
+"IEquatable`1" "<String>" <|-- FixedString32Bytes
+"IComparable`1" "<FixedString32Bytes>" <|-- FixedString32Bytes
+"IEquatable`1" "<FixedString32Bytes>" <|-- FixedString32Bytes
+"IComparable`1" "<FixedString64Bytes>" <|-- FixedString32Bytes
+"IEquatable`1" "<FixedString64Bytes>" <|-- FixedString32Bytes
+"IComparable`1" "<FixedString128Bytes>" <|-- FixedString32Bytes
+"IEquatable`1" "<FixedString128Bytes>" <|-- FixedString32Bytes
+"IComparable`1" "<FixedString512Bytes>" <|-- FixedString32Bytes
+"IEquatable`1" "<FixedString512Bytes>" <|-- FixedString32Bytes
+"IComparable`1" "<FixedString4096Bytes>" <|-- FixedString32Bytes
+"IEquatable`1" "<FixedString4096Bytes>" <|-- FixedString32Bytes
+FixedBytes62 --> "offset0000" FixedBytes16
+FixedBytes62 --> "offset0016" FixedBytes16
+FixedBytes62 --> "offset0032" FixedBytes16
+"INativeList`1" "<byte>" <|-- FixedString64Bytes
+IUTF8Bytes <|-- FixedString64Bytes
+"IComparable`1" "<String>" <|-- FixedString64Bytes
+"IEquatable`1" "<String>" <|-- FixedString64Bytes
+"IComparable`1" "<FixedString32Bytes>" <|-- FixedString64Bytes
+"IEquatable`1" "<FixedString32Bytes>" <|-- FixedString64Bytes
+"IComparable`1" "<FixedString64Bytes>" <|-- FixedString64Bytes
+"IEquatable`1" "<FixedString64Bytes>" <|-- FixedString64Bytes
+"IComparable`1" "<FixedString128Bytes>" <|-- FixedString64Bytes
+"IEquatable`1" "<FixedString128Bytes>" <|-- FixedString64Bytes
+"IComparable`1" "<FixedString512Bytes>" <|-- FixedString64Bytes
+"IEquatable`1" "<FixedString512Bytes>" <|-- FixedString64Bytes
+"IComparable`1" "<FixedString4096Bytes>" <|-- FixedString64Bytes
+"IEquatable`1" "<FixedString4096Bytes>" <|-- FixedString64Bytes
+FixedBytes126 --> "offset0000" FixedBytes16
+FixedBytes126 --> "offset0016" FixedBytes16
+FixedBytes126 --> "offset0032" FixedBytes16
+FixedBytes126 --> "offset0048" FixedBytes16
+FixedBytes126 --> "offset0064" FixedBytes16
+FixedBytes126 --> "offset0080" FixedBytes16
+FixedBytes126 --> "offset0096" FixedBytes16
+"INativeList`1" "<byte>" <|-- FixedString128Bytes
+IUTF8Bytes <|-- FixedString128Bytes
+"IComparable`1" "<String>" <|-- FixedString128Bytes
+"IEquatable`1" "<String>" <|-- FixedString128Bytes
+"IComparable`1" "<FixedString32Bytes>" <|-- FixedString128Bytes
+"IEquatable`1" "<FixedString32Bytes>" <|-- FixedString128Bytes
+"IComparable`1" "<FixedString64Bytes>" <|-- FixedString128Bytes
+"IEquatable`1" "<FixedString64Bytes>" <|-- FixedString128Bytes
+"IComparable`1" "<FixedString128Bytes>" <|-- FixedString128Bytes
+"IEquatable`1" "<FixedString128Bytes>" <|-- FixedString128Bytes
+"IComparable`1" "<FixedString512Bytes>" <|-- FixedString128Bytes
+"IEquatable`1" "<FixedString512Bytes>" <|-- FixedString128Bytes
+"IComparable`1" "<FixedString4096Bytes>" <|-- FixedString128Bytes
+"IEquatable`1" "<FixedString4096Bytes>" <|-- FixedString128Bytes
+FixedBytes510 --> "offset0000" FixedBytes16
+FixedBytes510 --> "offset0016" FixedBytes16
+FixedBytes510 --> "offset0032" FixedBytes16
+FixedBytes510 --> "offset0048" FixedBytes16
+FixedBytes510 --> "offset0064" FixedBytes16
+FixedBytes510 --> "offset0080" FixedBytes16
+FixedBytes510 --> "offset0096" FixedBytes16
+FixedBytes510 --> "offset0112" FixedBytes16
+FixedBytes510 --> "offset0128" FixedBytes16
+FixedBytes510 --> "offset0144" FixedBytes16
+FixedBytes510 --> "offset0160" FixedBytes16
+FixedBytes510 --> "offset0176" FixedBytes16
+FixedBytes510 --> "offset0192" FixedBytes16
+FixedBytes510 --> "offset0208" FixedBytes16
+FixedBytes510 --> "offset0224" FixedBytes16
+FixedBytes510 --> "offset0240" FixedBytes16
+FixedBytes510 --> "offset0256" FixedBytes16
+FixedBytes510 --> "offset0272" FixedBytes16
+FixedBytes510 --> "offset0288" FixedBytes16
+FixedBytes510 --> "offset0304" FixedBytes16
+FixedBytes510 --> "offset0320" FixedBytes16
+FixedBytes510 --> "offset0336" FixedBytes16
+FixedBytes510 --> "offset0352" FixedBytes16
+FixedBytes510 --> "offset0368" FixedBytes16
+FixedBytes510 --> "offset0384" FixedBytes16
+FixedBytes510 --> "offset0400" FixedBytes16
+FixedBytes510 --> "offset0416" FixedBytes16
+FixedBytes510 --> "offset0432" FixedBytes16
+FixedBytes510 --> "offset0448" FixedBytes16
+FixedBytes510 --> "offset0464" FixedBytes16
+FixedBytes510 --> "offset0480" FixedBytes16
+"INativeList`1" "<byte>" <|-- FixedString512Bytes
+IUTF8Bytes <|-- FixedString512Bytes
+"IComparable`1" "<String>" <|-- FixedString512Bytes
+"IEquatable`1" "<String>" <|-- FixedString512Bytes
+"IComparable`1" "<FixedString32Bytes>" <|-- FixedString512Bytes
+"IEquatable`1" "<FixedString32Bytes>" <|-- FixedString512Bytes
+"IComparable`1" "<FixedString64Bytes>" <|-- FixedString512Bytes
+"IEquatable`1" "<FixedString64Bytes>" <|-- FixedString512Bytes
+"IComparable`1" "<FixedString128Bytes>" <|-- FixedString512Bytes
+"IEquatable`1" "<FixedString128Bytes>" <|-- FixedString512Bytes
+"IComparable`1" "<FixedString512Bytes>" <|-- FixedString512Bytes
+"IEquatable`1" "<FixedString512Bytes>" <|-- FixedString512Bytes
+"IComparable`1" "<FixedString4096Bytes>" <|-- FixedString512Bytes
+"IEquatable`1" "<FixedString4096Bytes>" <|-- FixedString512Bytes
+FixedBytes4094 --> "offset0000" FixedBytes16
+FixedBytes4094 --> "offset0016" FixedBytes16
+FixedBytes4094 --> "offset0032" FixedBytes16
+FixedBytes4094 --> "offset0048" FixedBytes16
+FixedBytes4094 --> "offset0064" FixedBytes16
+FixedBytes4094 --> "offset0080" FixedBytes16
+FixedBytes4094 --> "offset0096" FixedBytes16
+FixedBytes4094 --> "offset0112" FixedBytes16
+FixedBytes4094 --> "offset0128" FixedBytes16
+FixedBytes4094 --> "offset0144" FixedBytes16
+FixedBytes4094 --> "offset0160" FixedBytes16
+FixedBytes4094 --> "offset0176" FixedBytes16
+FixedBytes4094 --> "offset0192" FixedBytes16
+FixedBytes4094 --> "offset0208" FixedBytes16
+FixedBytes4094 --> "offset0224" FixedBytes16
+FixedBytes4094 --> "offset0240" FixedBytes16
+FixedBytes4094 --> "offset0256" FixedBytes16
+FixedBytes4094 --> "offset0272" FixedBytes16
+FixedBytes4094 --> "offset0288" FixedBytes16
+FixedBytes4094 --> "offset0304" FixedBytes16
+FixedBytes4094 --> "offset0320" FixedBytes16
+FixedBytes4094 --> "offset0336" FixedBytes16
+FixedBytes4094 --> "offset0352" FixedBytes16
+FixedBytes4094 --> "offset0368" FixedBytes16
+FixedBytes4094 --> "offset0384" FixedBytes16
+FixedBytes4094 --> "offset0400" FixedBytes16
+FixedBytes4094 --> "offset0416" FixedBytes16
+FixedBytes4094 --> "offset0432" FixedBytes16
+FixedBytes4094 --> "offset0448" FixedBytes16
+FixedBytes4094 --> "offset0464" FixedBytes16
+FixedBytes4094 --> "offset0480" FixedBytes16
+FixedBytes4094 --> "offset0496" FixedBytes16
+FixedBytes4094 --> "offset0512" FixedBytes16
+FixedBytes4094 --> "offset0528" FixedBytes16
+FixedBytes4094 --> "offset0544" FixedBytes16
+FixedBytes4094 --> "offset0560" FixedBytes16
+FixedBytes4094 --> "offset0576" FixedBytes16
+FixedBytes4094 --> "offset0592" FixedBytes16
+FixedBytes4094 --> "offset0608" FixedBytes16
+FixedBytes4094 --> "offset0624" FixedBytes16
+FixedBytes4094 --> "offset0640" FixedBytes16
+FixedBytes4094 --> "offset0656" FixedBytes16
+FixedBytes4094 --> "offset0672" FixedBytes16
+FixedBytes4094 --> "offset0688" FixedBytes16
+FixedBytes4094 --> "offset0704" FixedBytes16
+FixedBytes4094 --> "offset0720" FixedBytes16
+FixedBytes4094 --> "offset0736" FixedBytes16
+FixedBytes4094 --> "offset0752" FixedBytes16
+FixedBytes4094 --> "offset0768" FixedBytes16
+FixedBytes4094 --> "offset0784" FixedBytes16
+FixedBytes4094 --> "offset0800" FixedBytes16
+FixedBytes4094 --> "offset0816" FixedBytes16
+FixedBytes4094 --> "offset0832" FixedBytes16
+FixedBytes4094 --> "offset0848" FixedBytes16
+FixedBytes4094 --> "offset0864" FixedBytes16
+FixedBytes4094 --> "offset0880" FixedBytes16
+FixedBytes4094 --> "offset0896" FixedBytes16
+FixedBytes4094 --> "offset0912" FixedBytes16
+FixedBytes4094 --> "offset0928" FixedBytes16
+FixedBytes4094 --> "offset0944" FixedBytes16
+FixedBytes4094 --> "offset0960" FixedBytes16
+FixedBytes4094 --> "offset0976" FixedBytes16
+FixedBytes4094 --> "offset0992" FixedBytes16
+FixedBytes4094 --> "offset1008" FixedBytes16
+FixedBytes4094 --> "offset1024" FixedBytes16
+FixedBytes4094 --> "offset1040" FixedBytes16
+FixedBytes4094 --> "offset1056" FixedBytes16
+FixedBytes4094 --> "offset1072" FixedBytes16
+FixedBytes4094 --> "offset1088" FixedBytes16
+FixedBytes4094 --> "offset1104" FixedBytes16
+FixedBytes4094 --> "offset1120" FixedBytes16
+FixedBytes4094 --> "offset1136" FixedBytes16
+FixedBytes4094 --> "offset1152" FixedBytes16
+FixedBytes4094 --> "offset1168" FixedBytes16
+FixedBytes4094 --> "offset1184" FixedBytes16
+FixedBytes4094 --> "offset1200" FixedBytes16
+FixedBytes4094 --> "offset1216" FixedBytes16
+FixedBytes4094 --> "offset1232" FixedBytes16
+FixedBytes4094 --> "offset1248" FixedBytes16
+FixedBytes4094 --> "offset1264" FixedBytes16
+FixedBytes4094 --> "offset1280" FixedBytes16
+FixedBytes4094 --> "offset1296" FixedBytes16
+FixedBytes4094 --> "offset1312" FixedBytes16
+FixedBytes4094 --> "offset1328" FixedBytes16
+FixedBytes4094 --> "offset1344" FixedBytes16
+FixedBytes4094 --> "offset1360" FixedBytes16
+FixedBytes4094 --> "offset1376" FixedBytes16
+FixedBytes4094 --> "offset1392" FixedBytes16
+FixedBytes4094 --> "offset1408" FixedBytes16
+FixedBytes4094 --> "offset1424" FixedBytes16
+FixedBytes4094 --> "offset1440" FixedBytes16
+FixedBytes4094 --> "offset1456" FixedBytes16
+FixedBytes4094 --> "offset1472" FixedBytes16
+FixedBytes4094 --> "offset1488" FixedBytes16
+FixedBytes4094 --> "offset1504" FixedBytes16
+FixedBytes4094 --> "offset1520" FixedBytes16
+FixedBytes4094 --> "offset1536" FixedBytes16
+FixedBytes4094 --> "offset1552" FixedBytes16
+FixedBytes4094 --> "offset1568" FixedBytes16
+FixedBytes4094 --> "offset1584" FixedBytes16
+FixedBytes4094 --> "offset1600" FixedBytes16
+FixedBytes4094 --> "offset1616" FixedBytes16
+FixedBytes4094 --> "offset1632" FixedBytes16
+FixedBytes4094 --> "offset1648" FixedBytes16
+FixedBytes4094 --> "offset1664" FixedBytes16
+FixedBytes4094 --> "offset1680" FixedBytes16
+FixedBytes4094 --> "offset1696" FixedBytes16
+FixedBytes4094 --> "offset1712" FixedBytes16
+FixedBytes4094 --> "offset1728" FixedBytes16
+FixedBytes4094 --> "offset1744" FixedBytes16
+FixedBytes4094 --> "offset1760" FixedBytes16
+FixedBytes4094 --> "offset1776" FixedBytes16
+FixedBytes4094 --> "offset1792" FixedBytes16
+FixedBytes4094 --> "offset1808" FixedBytes16
+FixedBytes4094 --> "offset1824" FixedBytes16
+FixedBytes4094 --> "offset1840" FixedBytes16
+FixedBytes4094 --> "offset1856" FixedBytes16
+FixedBytes4094 --> "offset1872" FixedBytes16
+FixedBytes4094 --> "offset1888" FixedBytes16
+FixedBytes4094 --> "offset1904" FixedBytes16
+FixedBytes4094 --> "offset1920" FixedBytes16
+FixedBytes4094 --> "offset1936" FixedBytes16
+FixedBytes4094 --> "offset1952" FixedBytes16
+FixedBytes4094 --> "offset1968" FixedBytes16
+FixedBytes4094 --> "offset1984" FixedBytes16
+FixedBytes4094 --> "offset2000" FixedBytes16
+FixedBytes4094 --> "offset2016" FixedBytes16
+FixedBytes4094 --> "offset2032" FixedBytes16
+FixedBytes4094 --> "offset2048" FixedBytes16
+FixedBytes4094 --> "offset2064" FixedBytes16
+FixedBytes4094 --> "offset2080" FixedBytes16
+FixedBytes4094 --> "offset2096" FixedBytes16
+FixedBytes4094 --> "offset2112" FixedBytes16
+FixedBytes4094 --> "offset2128" FixedBytes16
+FixedBytes4094 --> "offset2144" FixedBytes16
+FixedBytes4094 --> "offset2160" FixedBytes16
+FixedBytes4094 --> "offset2176" FixedBytes16
+FixedBytes4094 --> "offset2192" FixedBytes16
+FixedBytes4094 --> "offset2208" FixedBytes16
+FixedBytes4094 --> "offset2224" FixedBytes16
+FixedBytes4094 --> "offset2240" FixedBytes16
+FixedBytes4094 --> "offset2256" FixedBytes16
+FixedBytes4094 --> "offset2272" FixedBytes16
+FixedBytes4094 --> "offset2288" FixedBytes16
+FixedBytes4094 --> "offset2304" FixedBytes16
+FixedBytes4094 --> "offset2320" FixedBytes16
+FixedBytes4094 --> "offset2336" FixedBytes16
+FixedBytes4094 --> "offset2352" FixedBytes16
+FixedBytes4094 --> "offset2368" FixedBytes16
+FixedBytes4094 --> "offset2384" FixedBytes16
+FixedBytes4094 --> "offset2400" FixedBytes16
+FixedBytes4094 --> "offset2416" FixedBytes16
+FixedBytes4094 --> "offset2432" FixedBytes16
+FixedBytes4094 --> "offset2448" FixedBytes16
+FixedBytes4094 --> "offset2464" FixedBytes16
+FixedBytes4094 --> "offset2480" FixedBytes16
+FixedBytes4094 --> "offset2496" FixedBytes16
+FixedBytes4094 --> "offset2512" FixedBytes16
+FixedBytes4094 --> "offset2528" FixedBytes16
+FixedBytes4094 --> "offset2544" FixedBytes16
+FixedBytes4094 --> "offset2560" FixedBytes16
+FixedBytes4094 --> "offset2576" FixedBytes16
+FixedBytes4094 --> "offset2592" FixedBytes16
+FixedBytes4094 --> "offset2608" FixedBytes16
+FixedBytes4094 --> "offset2624" FixedBytes16
+FixedBytes4094 --> "offset2640" FixedBytes16
+FixedBytes4094 --> "offset2656" FixedBytes16
+FixedBytes4094 --> "offset2672" FixedBytes16
+FixedBytes4094 --> "offset2688" FixedBytes16
+FixedBytes4094 --> "offset2704" FixedBytes16
+FixedBytes4094 --> "offset2720" FixedBytes16
+FixedBytes4094 --> "offset2736" FixedBytes16
+FixedBytes4094 --> "offset2752" FixedBytes16
+FixedBytes4094 --> "offset2768" FixedBytes16
+FixedBytes4094 --> "offset2784" FixedBytes16
+FixedBytes4094 --> "offset2800" FixedBytes16
+FixedBytes4094 --> "offset2816" FixedBytes16
+FixedBytes4094 --> "offset2832" FixedBytes16
+FixedBytes4094 --> "offset2848" FixedBytes16
+FixedBytes4094 --> "offset2864" FixedBytes16
+FixedBytes4094 --> "offset2880" FixedBytes16
+FixedBytes4094 --> "offset2896" FixedBytes16
+FixedBytes4094 --> "offset2912" FixedBytes16
+FixedBytes4094 --> "offset2928" FixedBytes16
+FixedBytes4094 --> "offset2944" FixedBytes16
+FixedBytes4094 --> "offset2960" FixedBytes16
+FixedBytes4094 --> "offset2976" FixedBytes16
+FixedBytes4094 --> "offset2992" FixedBytes16
+FixedBytes4094 --> "offset3008" FixedBytes16
+FixedBytes4094 --> "offset3024" FixedBytes16
+FixedBytes4094 --> "offset3040" FixedBytes16
+FixedBytes4094 --> "offset3056" FixedBytes16
+FixedBytes4094 --> "offset3072" FixedBytes16
+FixedBytes4094 --> "offset3088" FixedBytes16
+FixedBytes4094 --> "offset3104" FixedBytes16
+FixedBytes4094 --> "offset3120" FixedBytes16
+FixedBytes4094 --> "offset3136" FixedBytes16
+FixedBytes4094 --> "offset3152" FixedBytes16
+FixedBytes4094 --> "offset3168" FixedBytes16
+FixedBytes4094 --> "offset3184" FixedBytes16
+FixedBytes4094 --> "offset3200" FixedBytes16
+FixedBytes4094 --> "offset3216" FixedBytes16
+FixedBytes4094 --> "offset3232" FixedBytes16
+FixedBytes4094 --> "offset3248" FixedBytes16
+FixedBytes4094 --> "offset3264" FixedBytes16
+FixedBytes4094 --> "offset3280" FixedBytes16
+FixedBytes4094 --> "offset3296" FixedBytes16
+FixedBytes4094 --> "offset3312" FixedBytes16
+FixedBytes4094 --> "offset3328" FixedBytes16
+FixedBytes4094 --> "offset3344" FixedBytes16
+FixedBytes4094 --> "offset3360" FixedBytes16
+FixedBytes4094 --> "offset3376" FixedBytes16
+FixedBytes4094 --> "offset3392" FixedBytes16
+FixedBytes4094 --> "offset3408" FixedBytes16
+FixedBytes4094 --> "offset3424" FixedBytes16
+FixedBytes4094 --> "offset3440" FixedBytes16
+FixedBytes4094 --> "offset3456" FixedBytes16
+FixedBytes4094 --> "offset3472" FixedBytes16
+FixedBytes4094 --> "offset3488" FixedBytes16
+FixedBytes4094 --> "offset3504" FixedBytes16
+FixedBytes4094 --> "offset3520" FixedBytes16
+FixedBytes4094 --> "offset3536" FixedBytes16
+FixedBytes4094 --> "offset3552" FixedBytes16
+FixedBytes4094 --> "offset3568" FixedBytes16
+FixedBytes4094 --> "offset3584" FixedBytes16
+FixedBytes4094 --> "offset3600" FixedBytes16
+FixedBytes4094 --> "offset3616" FixedBytes16
+FixedBytes4094 --> "offset3632" FixedBytes16
+FixedBytes4094 --> "offset3648" FixedBytes16
+FixedBytes4094 --> "offset3664" FixedBytes16
+FixedBytes4094 --> "offset3680" FixedBytes16
+FixedBytes4094 --> "offset3696" FixedBytes16
+FixedBytes4094 --> "offset3712" FixedBytes16
+FixedBytes4094 --> "offset3728" FixedBytes16
+FixedBytes4094 --> "offset3744" FixedBytes16
+FixedBytes4094 --> "offset3760" FixedBytes16
+FixedBytes4094 --> "offset3776" FixedBytes16
+FixedBytes4094 --> "offset3792" FixedBytes16
+FixedBytes4094 --> "offset3808" FixedBytes16
+FixedBytes4094 --> "offset3824" FixedBytes16
+FixedBytes4094 --> "offset3840" FixedBytes16
+FixedBytes4094 --> "offset3856" FixedBytes16
+FixedBytes4094 --> "offset3872" FixedBytes16
+FixedBytes4094 --> "offset3888" FixedBytes16
+FixedBytes4094 --> "offset3904" FixedBytes16
+FixedBytes4094 --> "offset3920" FixedBytes16
+FixedBytes4094 --> "offset3936" FixedBytes16
+FixedBytes4094 --> "offset3952" FixedBytes16
+FixedBytes4094 --> "offset3968" FixedBytes16
+FixedBytes4094 --> "offset3984" FixedBytes16
+FixedBytes4094 --> "offset4000" FixedBytes16
+FixedBytes4094 --> "offset4016" FixedBytes16
+FixedBytes4094 --> "offset4032" FixedBytes16
+FixedBytes4094 --> "offset4048" FixedBytes16
+FixedBytes4094 --> "offset4064" FixedBytes16
+"INativeList`1" "<byte>" <|-- FixedString4096Bytes
+IUTF8Bytes <|-- FixedString4096Bytes
+"IComparable`1" "<String>" <|-- FixedString4096Bytes
+"IEquatable`1" "<String>" <|-- FixedString4096Bytes
+"IComparable`1" "<FixedString32Bytes>" <|-- FixedString4096Bytes
+"IEquatable`1" "<FixedString32Bytes>" <|-- FixedString4096Bytes
+"IComparable`1" "<FixedString64Bytes>" <|-- FixedString4096Bytes
+"IEquatable`1" "<FixedString64Bytes>" <|-- FixedString4096Bytes
+"IComparable`1" "<FixedString128Bytes>" <|-- FixedString4096Bytes
+"IEquatable`1" "<FixedString128Bytes>" <|-- FixedString4096Bytes
+"IComparable`1" "<FixedString512Bytes>" <|-- FixedString4096Bytes
+"IEquatable`1" "<FixedString512Bytes>" <|-- FixedString4096Bytes
+"IComparable`1" "<FixedString4096Bytes>" <|-- FixedString4096Bytes
+"IEquatable`1" "<FixedString4096Bytes>" <|-- FixedString4096Bytes
+FixedString32Bytes +-- Enumerator
+IEnumerator <|-- Enumerator
+FixedString64Bytes +-- Enumerator
+IEnumerator <|-- Enumerator
+FixedString128Bytes +-- Enumerator
+IEnumerator <|-- Enumerator
+FixedString512Bytes +-- Enumerator
+IEnumerator <|-- Enumerator
+FixedString4096Bytes +-- Enumerator
+IEnumerator <|-- Enumerator
+@enduml

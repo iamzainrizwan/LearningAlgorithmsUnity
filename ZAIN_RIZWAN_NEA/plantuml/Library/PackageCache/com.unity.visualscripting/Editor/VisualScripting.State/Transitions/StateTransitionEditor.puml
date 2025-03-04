@@ -1,0 +1,8 @@
+@startuml
+class StateTransitionEditor {
+    + StateTransitionEditor(metadata:Metadata)
+}
+class "GraphElementEditor`1"<T> {
+}
+"GraphElementEditor`1" "<StateGraphContext>" <|-- StateTransitionEditor
+@enduml

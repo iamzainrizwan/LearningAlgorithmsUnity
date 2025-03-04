@@ -1,0 +1,5 @@
+@startuml
+class HistoryListViewItem {
+}
+TreeViewItem <|-- HistoryListViewItem
+@enduml

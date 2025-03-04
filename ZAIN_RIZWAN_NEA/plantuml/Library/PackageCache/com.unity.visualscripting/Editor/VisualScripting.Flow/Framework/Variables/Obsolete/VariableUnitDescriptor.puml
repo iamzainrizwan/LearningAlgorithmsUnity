@@ -1,0 +1,8 @@
+@startuml
+class "VariableUnitDescriptor`1"<TVariableUnit> {
+    + VariableUnitDescriptor(unit:TVariableUnit)
+}
+class "UnitDescriptor`1"<T> {
+}
+"UnitDescriptor`1" "<TVariableUnit>" <|-- "VariableUnitDescriptor`1"
+@enduml

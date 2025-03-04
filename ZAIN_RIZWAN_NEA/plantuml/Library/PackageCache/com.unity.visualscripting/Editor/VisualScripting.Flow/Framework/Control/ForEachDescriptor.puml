@@ -1,0 +1,8 @@
+@startuml
+class ForEachDescriptor {
+    + ForEachDescriptor(unit:ForEach)
+}
+class "UnitDescriptor`1"<T> {
+}
+"UnitDescriptor`1" "<ForEach>" <|-- ForEachDescriptor
+@enduml

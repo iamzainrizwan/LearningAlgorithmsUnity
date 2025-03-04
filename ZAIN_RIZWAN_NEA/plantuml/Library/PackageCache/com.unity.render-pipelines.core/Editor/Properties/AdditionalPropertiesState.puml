@@ -1,0 +1,23 @@
+@startuml
+abstract class "AdditionalPropertiesStateBase`1"<TState> {
+    + {abstract} GetAdditionalPropertiesState(mask:TState) : bool
+    + SetAdditionalPropertiesState(mask:TState, value:bool) : void
+    + {abstract} ShowAll() : void
+    + {abstract} HideAll() : void
+    + RegisterEditor(editor:Editor) : void
+    + UnregisterEditor(editor:Editor) : void
+}
+class "AdditionalPropertiesState`2"<TState,TTarget> {
+    + AdditionalPropertiesState(defaultValue:TState, prefix:string, stateId:string)
+    + <<override>> GetAdditionalPropertiesState(_:TState) : bool
+    + <<override>> ShowAll() : void
+    + <<override>> HideAll() : void
+}
+class "AdditionalPropertiesStateList`1"<TTarget> {
+    + AdditionalPropertiesStateList(prefix:string)
+    + SwapFlags(srcIndex:int, dstIndex:int) : void
+    + RemoveFlagAtIndex(index:int) : void
+}
+"AdditionalPropertiesStateBase`1" "<TState>" <|-- "AdditionalPropertiesState`2"
+"AdditionalPropertiesState`2" "<int,TTarget>" <|-- "AdditionalPropertiesStateList`1"
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class VirtualTextureMaterialSlot {
+    + VirtualTextureMaterialSlot()
+    + VirtualTextureMaterialSlot(slotId:int, displayName:string, shaderOutputName:string, slotType:SlotType, stageCapability:ShaderStageCapability, hidden:bool)
+    + <<override>> AddDefaultProperty(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + <<override>> CopyValuesFrom(foundSlot:MaterialSlot) : void
+    + <<override>> isDefaultValue : bool <<get>>
+}
+MaterialSlot <|-- VirtualTextureMaterialSlot
+VirtualTextureMaterialSlot --> "valueType" SlotValueType
+VirtualTextureMaterialSlot --> "concreteValueType" ConcreteSlotValueType
+@enduml

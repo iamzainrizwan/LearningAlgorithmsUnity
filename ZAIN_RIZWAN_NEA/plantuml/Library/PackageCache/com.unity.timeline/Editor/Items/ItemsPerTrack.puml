@@ -1,0 +1,13 @@
+@startuml
+class ItemsPerTrack {
+    + ItemsPerTrack(targetTrack:TrackAsset, items:IEnumerable<ITimelineItem>)
+}
+class "IEnumerable`1"<T> {
+}
+ItemsPerTrack --> "targetTrack" TrackAsset
+ItemsPerTrack --> "items<ITimelineItem>" "IEnumerable`1"
+ItemsPerTrack --> "clips<TimelineClip>" "IEnumerable`1"
+ItemsPerTrack --> "markers<IMarker>" "IEnumerable`1"
+ItemsPerTrack --> "leftMostItem" ITimelineItem
+ItemsPerTrack --> "rightMostItem" ITimelineItem
+@enduml

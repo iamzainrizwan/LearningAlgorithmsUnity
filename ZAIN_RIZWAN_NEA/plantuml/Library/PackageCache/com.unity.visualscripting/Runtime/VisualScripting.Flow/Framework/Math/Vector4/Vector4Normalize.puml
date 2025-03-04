@@ -1,0 +1,8 @@
+@startuml
+class Vector4Normalize <<sealed>> {
+    + <<override>> Operation(input:UnityEngine.Vector4) : UnityEngine.Vector4
+}
+class "Normalize`1"<T> {
+}
+"Normalize`1" "<UnityEngine.Vector4>" <|-- Vector4Normalize
+@enduml

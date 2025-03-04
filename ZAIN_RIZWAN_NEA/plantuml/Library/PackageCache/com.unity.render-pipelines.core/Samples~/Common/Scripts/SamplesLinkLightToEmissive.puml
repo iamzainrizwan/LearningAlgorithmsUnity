@@ -1,0 +1,9 @@
+@startuml
+class SamplesLinkLightToEmissive {
+    + emissionColorProperty : string = "_Emission_Color"
+    + emissionIntensityProperty : string = "_Intensity"
+}
+MonoBehaviour <|-- SamplesLinkLightToEmissive
+SamplesLinkLightToEmissive --> "emissiveObject" GameObject
+SamplesLinkLightToEmissive --> "lightToLink" Light
+@enduml

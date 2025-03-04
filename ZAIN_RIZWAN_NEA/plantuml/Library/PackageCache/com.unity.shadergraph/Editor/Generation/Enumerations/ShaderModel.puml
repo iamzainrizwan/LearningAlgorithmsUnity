@@ -1,0 +1,15 @@
+@startuml
+enum ShaderModel {
+    Target20,
+    Target25,
+    Target30,
+    Target35,
+    Target40,
+    Target45,
+    Target46,
+    Target50,
+}
+class ShaderModelExtensions <<static>> {
+    + {static} ToShaderString(shaderModel:ShaderModel) : string
+}
+@enduml

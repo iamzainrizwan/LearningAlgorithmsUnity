@@ -1,0 +1,125 @@
+@startuml
+class InputField {
+    + shouldHideMobileInput : bool <<set>> <<get>>
+    + <<virtual>> shouldActivateOnSelect : bool <<set>> <<get>>
+    + text : string <<get>> <<set>>
+    + SetTextWithoutNotify(input:string) : void
+    + isFocused : bool <<get>>
+    + caretBlinkRate : float <<get>> <<set>>
+    + caretWidth : int <<get>> <<set>>
+    + customCaretColor : bool <<get>> <<set>>
+    + characterLimit : int <<get>> <<set>>
+    + readOnly : bool <<get>> <<set>>
+    + multiLine : bool <<get>>
+    + asteriskChar : char <<get>> <<set>>
+    + wasCanceled : bool <<get>>
+    + caretPosition : int <<get>> <<set>>
+    + selectionAnchorPosition : int <<get>> <<set>>
+    + selectionFocusPosition : int <<get>> <<set>>
+    + MoveTextEnd(shift:bool) : void
+    + MoveTextStart(shift:bool) : void
+    + ScreenToLocal(screen:Vector2) : Vector2
+    + <<virtual>> OnBeginDrag(eventData:PointerEventData) : void
+    + <<virtual>> OnDrag(eventData:PointerEventData) : void
+    + <<virtual>> OnEndDrag(eventData:PointerEventData) : void
+    + <<override>> OnPointerDown(eventData:PointerEventData) : void
+    + ProcessEvent(e:Event) : void
+    + <<virtual>> OnUpdateSelected(eventData:BaseEventData) : void
+    + ForceLabelUpdate() : void
+    + <<virtual>> Rebuild(update:CanvasUpdate) : void
+    + <<virtual>> LayoutComplete() : void
+    + <<virtual>> GraphicUpdateComplete() : void
+    + ActivateInputField() : void
+    + <<override>> OnSelect(eventData:BaseEventData) : void
+    + <<virtual>> OnPointerClick(eventData:PointerEventData) : void
+    + DeactivateInputField() : void
+    + <<override>> OnDeselect(eventData:BaseEventData) : void
+    + <<virtual>> OnSubmit(eventData:BaseEventData) : void
+    + <<virtual>> CalculateLayoutInputHorizontal() : void
+    + <<virtual>> CalculateLayoutInputVertical() : void
+    + <<virtual>> minWidth : float <<get>>
+    + <<virtual>> preferredWidth : float <<get>>
+    + <<virtual>> flexibleWidth : float <<get>>
+    + <<virtual>> minHeight : float <<get>>
+    + <<virtual>> preferredHeight : float <<get>>
+    + <<virtual>> flexibleHeight : float <<get>>
+    + <<virtual>> layoutPriority : int <<get>>
+}
+enum ContentType {
+    Standard,
+    Autocorrected,
+    IntegerNumber,
+    DecimalNumber,
+    Alphanumeric,
+    Name,
+    EmailAddress,
+    Password,
+    Pin,
+    Custom,
+}
+enum InputType {
+    Standard,
+    AutoCorrect,
+    Password,
+}
+enum CharacterValidation {
+    None,
+    Integer,
+    Decimal,
+    Alphanumeric,
+    Name,
+    EmailAddress,
+}
+enum LineType {
+    SingleLine,
+    MultiLineSubmit,
+    MultiLineNewline,
+}
+class SubmitEvent {
+}
+class EndEditEvent {
+}
+class OnChangeEvent {
+}
+enum EditState {
+    Continue,
+    Finish,
+}
+class "UnityEvent`1"<T> {
+}
+Selectable <|-- InputField
+IUpdateSelectedHandler <|-- InputField
+IBeginDragHandler <|-- InputField
+IDragHandler <|-- InputField
+IEndDragHandler <|-- InputField
+IPointerClickHandler <|-- InputField
+ISubmitHandler <|-- InputField
+ICanvasElement <|-- InputField
+ILayoutElement <|-- InputField
+InputField --> "textComponent" Text
+InputField --> "placeholder" Graphic
+InputField --> "caretColor" Color
+InputField --> "selectionColor" Color
+InputField --> "onEndEdit" EndEditEvent
+InputField --> "onSubmit" SubmitEvent
+InputField --> "onValueChange" OnChangeEvent
+InputField --> "onValueChanged" OnChangeEvent
+InputField --> "onValidateInput" OnValidateInput
+InputField --> "contentType" ContentType
+InputField --> "lineType" LineType
+InputField --> "inputType" InputType
+InputField --> "touchScreenKeyboard" TouchScreenKeyboard
+InputField --> "keyboardType" TouchScreenKeyboardType
+InputField --> "characterValidation" CharacterValidation
+InputField +-- ContentType
+InputField +-- InputType
+InputField +-- CharacterValidation
+InputField +-- LineType
+InputField +-- SubmitEvent
+"UnityEvent`1" "<string>" <|-- SubmitEvent
+InputField +-- EndEditEvent
+"UnityEvent`1" "<string>" <|-- EndEditEvent
+InputField +-- OnChangeEvent
+"UnityEvent`1" "<string>" <|-- OnChangeEvent
+InputField +-- EditState
+@enduml

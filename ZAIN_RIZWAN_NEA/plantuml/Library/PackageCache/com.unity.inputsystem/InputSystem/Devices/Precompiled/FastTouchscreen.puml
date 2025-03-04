@@ -1,0 +1,6 @@
+@startuml
+class FastTouchscreen <<partial>> {
+    + <<const>> metadata : string = "AutoWindowSpace;Touch;Vector2;Delta;Analog;TouchPress;Button;Axis;Integer;TouchPhase;Double;Touchscreen;Pointer"
+    + FastTouchscreen()
+}
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class ProjectSettingsProviderView {
+    + ProjectSettingsProviderView()
+    + <<override>> OnGUI(searchContext:string) : void
+}
+class Styles <<static>> {
+}
+SettingsProvider <|-- ProjectSettingsProviderView
+ProjectSettingsProviderView +-- Styles
+Styles --> "defaultsButton" GUIStyle
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+class UniversalAnalytics {
+    + callbackOrder : int <<get>>
+    + OnPostprocessBuild(report:BuildReport) : void
+}
+class Analytic {
+    + TryGatherData(data:IAnalytic.IData, error:Exception) : bool
+}
+struct AnalyticsData {
+    + renderer_data_amount : int
+    + renderer_features_amount : int
+    + main_light_rendering_mode : string
+    + additional_light_rendering_mode : string
+}
+IPostprocessBuildWithReport <|-- UniversalAnalytics
+UniversalAnalytics +-- Analytic
+IAnalytic <|-- Analytic
+Analytic +-- AnalyticsData
+@enduml

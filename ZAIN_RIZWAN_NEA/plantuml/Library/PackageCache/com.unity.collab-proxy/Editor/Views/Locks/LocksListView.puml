@@ -1,0 +1,7 @@
+@startuml
+class LocksListView <<sealed>> {
+    + <<override>> GetRows() : IList<TreeViewItem>
+    + <<override>> OnGUI(rect:Rect) : void
+}
+TreeView <|-- LocksListView
+@enduml

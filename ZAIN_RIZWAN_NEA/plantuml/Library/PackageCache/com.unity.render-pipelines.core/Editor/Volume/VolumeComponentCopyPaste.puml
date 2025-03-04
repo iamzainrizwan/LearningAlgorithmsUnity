@@ -1,0 +1,10 @@
+@startuml
+class VolumeComponentCopyPaste <<static>> {
+    + {static} CanPaste(targetComponents:List<VolumeComponent>) : bool
+    + {static} CanPaste(targetComponent:VolumeComponent) : bool
+    + {static} CopySettings(targetComponent:VolumeComponent) : void
+    + {static} PasteSettings(targetComponent:VolumeComponent) : void
+    + {static} CopySettings(targetComponents:List<VolumeComponent>) : void
+    + {static} PasteSettings(targetComponents:List<VolumeComponent>) : void
+}
+@enduml

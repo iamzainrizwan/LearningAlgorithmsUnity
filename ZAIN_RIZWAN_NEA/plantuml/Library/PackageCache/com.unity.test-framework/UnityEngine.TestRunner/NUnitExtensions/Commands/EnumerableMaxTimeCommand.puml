@@ -1,0 +1,9 @@
+@startuml
+class EnumerableMaxTimeCommand {
+    + EnumerableMaxTimeCommand(commandToReplace:MaxTimeCommand)
+    + <<override>> Execute(context:ITestExecutionContext) : TestResult
+    + ExecuteEnumerable(context:ITestExecutionContext) : IEnumerable
+}
+DelegatingTestCommand <|-- EnumerableMaxTimeCommand
+IEnumerableTestMethodCommand <|-- EnumerableMaxTimeCommand
+@enduml

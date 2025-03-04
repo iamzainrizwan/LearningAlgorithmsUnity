@@ -1,0 +1,7 @@
+@startuml
+class UserVisibleTextTests {
+    + AllScoreImpacts_ShouldHaveANonEmptyReason() : void
+    + AllScoreImpacts_StartWithAVerbAndDoNotEndWithADot() : void
+    + AllSolutionsData_DoNotHaveAVerbBeforeDynamicText() : void
+}
+@enduml

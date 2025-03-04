@@ -1,0 +1,38 @@
+@startuml
+class TimelineClipGUI {
+    + inlineCurvesSelected : bool <<get>>
+    + GetClipBlends() : ClipBlends
+    + <<override>> start : double <<get>>
+    + <<override>> end : double <<get>>
+    + supportsLooping : bool <<get>>
+    + supportsSubTimelines : bool <<get>>
+    + minLoopIndex : int <<get>>
+    + <<override>> Select() : void
+    + <<override>> IsSelected() : bool
+    + <<override>> Deselect() : void
+    + <<override>> CanSelect(evt:Event) : bool
+    + TimelineClipGUI(clip:TimelineClip, parent:IRowGUI, provider:IZOrderProvider)
+    + DrawGhostClip(targetRect:Rect) : void
+    + DrawInvalidClip(targetRect:Rect) : void
+    + <<override>> Draw(trackRect:Rect, trackRectChanged:bool, state:WindowState) : void
+    + <<override>> RectToTimeline(trackRect:Rect, state:WindowState) : Rect
+    + SnappableEdgesFor(attractable:IAttractable, manipulateEdges:ManipulateEdges) : IEnumerable<Edge>
+    + ShouldSnapTo(snappable:ISnappable) : bool
+    + SelectCurves() : void
+    + ValidateCurvesSelection() : void
+}
+TimelineItemGUI <|-- TimelineClipGUI
+IClipCurveEditorOwner <|-- TimelineClipGUI
+ISnappable <|-- TimelineClipGUI
+IAttractable <|-- TimelineClipGUI
+TimelineClipGUI --> "clipCurveEditor" ClipCurveEditor
+TimelineClipGUI --> "previousClip" TimelineClipGUI
+TimelineClipGUI --> "nextClip" TimelineClipGUI
+TimelineClipGUI --> "mixOutRect" Rect
+TimelineClipGUI --> "mixInRect" Rect
+TimelineClipGUI --> "clippedRect" Rect
+TimelineClipGUI --> "item" ITimelineItem
+TimelineClipGUI --> "leftHandle" TimelineClipHandle
+TimelineClipGUI --> "rightHandle" TimelineClipHandle
+TimelineClipGUI --> "clip" TimelineClip
+@enduml

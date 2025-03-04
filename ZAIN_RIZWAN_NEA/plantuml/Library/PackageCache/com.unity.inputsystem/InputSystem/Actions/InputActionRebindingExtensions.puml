@@ -1,0 +1,102 @@
+@startuml
+class InputActionRebindingExtensions <<static>> <<partial>> {
+    + {static} GetBindingIndex(action:InputAction, bindingMask:InputBinding) : int
+    + {static} GetBindingIndex(actionMap:InputActionMap, bindingMask:InputBinding) : int
+    + {static} GetBindingIndex(action:InputAction, group:string, path:string) : int
+    + {static} GetBindingForControl(action:InputAction, control:InputControl) : InputBinding?
+    + {static} <<unsafe>> GetBindingIndexForControl(action:InputAction, control:InputControl) : int
+    + {static} GetBindingDisplayString(action:InputAction, options:InputBinding.DisplayStringOptions, group:string) : string
+    + {static} GetBindingDisplayString(action:InputAction, bindingMask:InputBinding, options:InputBinding.DisplayStringOptions) : string
+    + {static} GetBindingDisplayString(action:InputAction, bindingIndex:int, options:InputBinding.DisplayStringOptions) : string
+    + {static} <<unsafe>> GetBindingDisplayString(action:InputAction, bindingIndex:int, deviceLayoutName:string, controlPath:string, options:InputBinding.DisplayStringOptions) : string
+    + {static} ApplyBindingOverride(action:InputAction, newPath:string, group:string, path:string) : void
+    + {static} ApplyBindingOverride(action:InputAction, bindingOverride:InputBinding) : void
+    + {static} ApplyBindingOverride(action:InputAction, bindingIndex:int, bindingOverride:InputBinding) : void
+    + {static} ApplyBindingOverride(action:InputAction, bindingIndex:int, path:string) : void
+    + {static} ApplyBindingOverride(actionMap:InputActionMap, bindingOverride:InputBinding) : int
+    + {static} ApplyBindingOverride(actionMap:InputActionMap, bindingIndex:int, bindingOverride:InputBinding) : void
+    + {static} RemoveBindingOverride(action:InputAction, bindingIndex:int) : void
+    + {static} RemoveBindingOverride(action:InputAction, bindingMask:InputBinding) : void
+    + {static} RemoveAllBindingOverrides(actions:IInputActionCollection2) : void
+    + {static} RemoveAllBindingOverrides(action:InputAction) : void
+    + {static} ApplyBindingOverrides(actionMap:InputActionMap, overrides:IEnumerable<InputBinding>) : void
+    + {static} RemoveBindingOverrides(actionMap:InputActionMap, overrides:IEnumerable<InputBinding>) : void
+    + {static} ApplyBindingOverridesOnMatchingControls(action:InputAction, control:InputControl) : int
+    + {static} ApplyBindingOverridesOnMatchingControls(actionMap:InputActionMap, control:InputControl) : int
+    + {static} SaveBindingOverridesAsJson(actions:IInputActionCollection2) : string
+    + {static} SaveBindingOverridesAsJson(action:InputAction) : string
+    + {static} LoadBindingOverridesFromJson(actions:IInputActionCollection2, json:string, removeExisting:bool) : void
+    + {static} LoadBindingOverridesFromJson(action:InputAction, json:string, removeExisting:bool) : void
+    + {static} PerformInteractiveRebinding(action:InputAction, bindingIndex:int) : RebindingOperation
+}
+class RebindingOperation <<sealed>> {
+    + <<const>> kDefaultMagnitudeThreshold : float = 0.2f
+    + started : bool <<get>>
+    + completed : bool <<get>>
+    + canceled : bool <<get>>
+    + startTime : double <<get>>
+    + timeout : float <<get>>
+    + expectedControlType : string <<get>>
+    + WithAction(action:InputAction) : RebindingOperation
+    + WithMatchingEventsBeingSuppressed(value:bool) : RebindingOperation
+    + WithCancelingThrough(binding:string) : RebindingOperation
+    + WithCancelingThrough(control:InputControl) : RebindingOperation
+    + WithExpectedControlType(layoutName:string) : RebindingOperation
+    + WithExpectedControlType(type:Type) : RebindingOperation
+    + WithExpectedControlType() : RebindingOperation
+    + WithTargetBinding(bindingIndex:int) : RebindingOperation
+    + WithBindingMask(bindingMask:InputBinding?) : RebindingOperation
+    + WithBindingGroup(group:string) : RebindingOperation
+    + WithoutGeneralizingPathOfSelectedControl() : RebindingOperation
+    + WithRebindAddingNewBinding(group:string) : RebindingOperation
+    + WithMagnitudeHavingToBeGreaterThan(magnitude:float) : RebindingOperation
+    + WithoutIgnoringNoisyControls() : RebindingOperation
+    + WithControlsHavingToMatchPath(path:string) : RebindingOperation
+    + WithControlsExcluding(path:string) : RebindingOperation
+    + WithTimeout(timeInSeconds:float) : RebindingOperation
+    + OnComplete(callback:Action<RebindingOperation>) : RebindingOperation
+    + OnCancel(callback:Action<RebindingOperation>) : RebindingOperation
+    + OnPotentialMatch(callback:Action<RebindingOperation>) : RebindingOperation
+    + OnGeneratePath(callback:Func<InputControl, string>) : RebindingOperation
+    + OnComputeScore(callback:Func<InputControl, InputEventPtr, float>) : RebindingOperation
+    + OnApplyBinding(callback:Action<RebindingOperation, string>) : RebindingOperation
+    + OnMatchWaitForAnother(seconds:float) : RebindingOperation
+    + Start() : RebindingOperation
+    + Cancel() : void
+    + Complete() : void
+    + AddCandidate(control:InputControl, score:float, magnitude:float) : void
+    + RemoveCandidate(control:InputControl) : void
+    + Dispose() : void
+    + Reset() : RebindingOperation
+}
+class DeferBindingResolutionWrapper {
+    + Acquire() : void
+    + Dispose() : void
+}
+class "InputControlList`1"<T> {
+}
+class "ReadOnlyArray`1"<T> {
+}
+enum Flags {
+    Started= 1 << 0,
+    Completed= 1 << 1,
+    Canceled= 1 << 2,
+    OnEventHooked= 1 << 3,
+    OnAfterUpdateHooked= 1 << 4,
+    DontIgnoreNoisyControls= 1 << 6,
+    DontGeneralizePathOfSelectedControl= 1 << 7,
+    AddNewBinding= 1 << 8,
+    SuppressMatchingEvents= 1 << 9,
+}
+InputActionRebindingExtensions +-- RebindingOperation
+IDisposable <|-- RebindingOperation
+RebindingOperation --> "action" InputAction
+RebindingOperation --> "bindingMask" InputBinding
+RebindingOperation --> "candidates<InputControl>" "InputControlList`1"
+RebindingOperation --> "scores<float>" "ReadOnlyArray`1"
+RebindingOperation --> "magnitudes<float>" "ReadOnlyArray`1"
+RebindingOperation --> "selectedControl" InputControl
+InputActionRebindingExtensions +-- DeferBindingResolutionWrapper
+IDisposable <|-- DeferBindingResolutionWrapper
+RebindingOperation +-- Flags
+@enduml

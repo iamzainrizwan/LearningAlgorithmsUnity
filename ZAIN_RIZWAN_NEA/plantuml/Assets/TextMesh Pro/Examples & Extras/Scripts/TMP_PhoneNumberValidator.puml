@@ -1,0 +1,6 @@
+@startuml
+class TMP_PhoneNumberValidator {
+    + <<override>> Validate(text:string, pos:int, ch:char) : char
+}
+TMP_InputValidator <|-- TMP_PhoneNumberValidator
+@enduml

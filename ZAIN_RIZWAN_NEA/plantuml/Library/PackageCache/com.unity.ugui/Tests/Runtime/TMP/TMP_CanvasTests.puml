@@ -1,0 +1,6 @@
+@startuml
+class TMP_CanvasTests {
+    + Setup() : void
+    + EnablingAndDisablingCanvasDoesNotRegenerateText() : void
+}
+@enduml

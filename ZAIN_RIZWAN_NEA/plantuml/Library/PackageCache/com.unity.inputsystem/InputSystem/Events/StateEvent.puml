@@ -1,0 +1,17 @@
+@startuml
+struct StateEvent {
+    + <<const>> Type : int = 0x53544154
+    + stateSizeInBytes : uint <<get>>
+    + ToEventPtr() : InputEventPtr
+    + GetState() : TState
+    + {static} GetState(ptr:InputEventPtr) : TState
+    + {static} GetEventSizeWithPayload() : int
+    + {static} From(ptr:InputEventPtr) : StateEvent*
+    + {static} From(device:InputDevice, eventPtr:InputEventPtr, allocator:Allocator) : NativeArray<byte>
+    + {static} FromDefaultStateFor(device:InputDevice, eventPtr:InputEventPtr, allocator:Allocator) : NativeArray<byte>
+}
+IInputEventTypeInfo <|-- StateEvent
+StateEvent --> "baseEvent" InputEvent
+StateEvent --> "stateFormat" FourCC
+StateEvent --> "typeStatic" FourCC
+@enduml

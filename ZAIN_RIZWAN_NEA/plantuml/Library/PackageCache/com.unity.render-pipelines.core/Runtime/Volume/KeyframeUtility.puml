@@ -1,0 +1,6 @@
+@startuml
+class KeyframeUtility {
+    {static} + ResetAnimationCurve(curve:AnimationCurve) : void
+    {static} + InterpAnimationCurve(lhsAndResultCurve:AnimationCurve, rhsCurve:AnimationCurve, t:float) : void
+}
+@enduml

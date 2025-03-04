@@ -1,0 +1,7 @@
+@startuml
+class UnityOnSelectMessageListener <<sealed>> {
+    + OnSelect(eventData:BaseEventData) : void
+}
+MessageListener <|-- UnityOnSelectMessageListener
+ISelectHandler <|-- UnityOnSelectMessageListener
+@enduml

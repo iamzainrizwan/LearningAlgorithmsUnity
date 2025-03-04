@@ -1,0 +1,5 @@
+@startuml
+class ModelPostprocessor {
+}
+AssetPostprocessor <|-- ModelPostprocessor
+@enduml

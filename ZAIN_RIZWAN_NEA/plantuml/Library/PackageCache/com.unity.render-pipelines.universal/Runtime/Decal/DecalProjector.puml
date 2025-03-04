@@ -1,0 +1,22 @@
+@startuml
+enum DecalScaleMode {
+    ScaleInvariant,
+    InheritFromHierarchy,
+}
+class DecalProjector {
+    + drawDistance : float <<get>> <<set>>
+    + fadeScale : float <<get>> <<set>>
+    + startAngleFade : float <<get>> <<set>>
+    + endAngleFade : float <<get>> <<set>>
+    + renderingLayerMask : uint <<get>> <<set>>
+    + fadeFactor : float <<get>> <<set>>
+    + IsValid() : bool
+}
+MonoBehaviour <|-- DecalProjector
+DecalProjector --> "material" Material
+DecalProjector --> "uvScale" Vector2
+DecalProjector --> "uvBias" Vector2
+DecalProjector --> "scaleMode" DecalScaleMode
+DecalProjector --> "pivot" Vector3
+DecalProjector --> "size" Vector3
+@enduml

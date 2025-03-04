@@ -1,0 +1,4 @@
+@startuml
+interface "INotifyCollectionChanged`1"<T> {
+}
+@enduml

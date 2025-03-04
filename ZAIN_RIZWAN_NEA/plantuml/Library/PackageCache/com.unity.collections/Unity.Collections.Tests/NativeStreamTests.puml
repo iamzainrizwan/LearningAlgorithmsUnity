@@ -1,0 +1,42 @@
+@startuml
+class NativeStreamTests {
+    + NativeStream_PopulateInts(count:int, batchSize:int) : void
+    + NativeStream_CreateAndDestroy(count:int) : void
+    + NativeStream_ItemCount(count:int, batchSize:int) : void
+    + NativeStream_ToArray(count:int, batchSize:int) : void
+    + NativeStream_DisposeJob() : void
+    + NativeStream_CustomAllocatorTest() : void
+    + <<unsafe>> NativeStream_BurstedCustomAllocatorTest() : void
+    + NativeStream_Nested() : void
+    + <<unsafe>> NativeStream_Continue_Append() : void
+    + NativeStream_NestedJob_Error() : void
+}
+struct WriteInts {
+    + Execute(index:int) : void
+}
+struct ReadInts {
+    + Execute(index:int) : void
+}
+struct BurstedCustomAllocatorJob {
+    + Execute() : void
+}
+struct NestedContainer {
+}
+struct NestedContainerJob {
+    + Execute() : void
+}
+class "NativeList`1"<T> {
+}
+CollectionsTestFixture <|-- NativeStreamTests
+NativeStreamTests +-- WriteInts
+IJobParallelFor <|-- WriteInts
+NativeStreamTests +-- ReadInts
+IJobParallelFor <|-- ReadInts
+NativeStreamTests +-- BurstedCustomAllocatorJob
+IJob <|-- BurstedCustomAllocatorJob
+NativeStreamTests +-- NestedContainer
+NestedContainer --> "data<int>" "NativeList`1"
+NativeStreamTests +-- NestedContainerJob
+IJob <|-- NestedContainerJob
+NestedContainerJob --> "nestedContainer" NativeStream
+@enduml

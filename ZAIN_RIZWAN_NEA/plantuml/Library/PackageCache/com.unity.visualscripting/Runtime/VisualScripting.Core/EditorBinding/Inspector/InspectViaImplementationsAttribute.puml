@@ -1,0 +1,6 @@
+@startuml
+class InspectViaImplementationsAttribute <<sealed>> {
+    + InspectViaImplementationsAttribute()
+}
+Attribute <|-- InspectViaImplementationsAttribute
+@enduml

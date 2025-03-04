@@ -1,0 +1,6 @@
+@startuml
+class CleanUpContext {
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- CleanUpContext
+@enduml

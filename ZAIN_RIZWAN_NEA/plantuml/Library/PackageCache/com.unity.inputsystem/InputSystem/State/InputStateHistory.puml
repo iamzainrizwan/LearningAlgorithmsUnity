@@ -1,0 +1,118 @@
+@startuml
+class InputStateHistory {
+    + Count : int <<get>>
+    + version : uint <<get>>
+    + historyDepth : int <<get>> <<set>>
+    + extraMemoryPerRecord : int <<get>> <<set>>
+    + InputStateHistory(maxStateSizeInBytes:int)
+    + InputStateHistory(path:string)
+    + InputStateHistory(control:InputControl)
+    + InputStateHistory(controls:IEnumerable<InputControl>)
+    + Clear() : void
+    + <<unsafe>> AddRecord(record:Record) : Record
+    + StartRecording() : void
+    + StopRecording() : void
+    + <<unsafe>> RecordStateChange(control:InputControl, eventPtr:InputEventPtr) : Record
+    + <<unsafe>> RecordStateChange(control:InputControl, statePtr:void*, time:double) : Record
+    + GetEnumerator() : IEnumerator<Record>
+    + Dispose() : void
+}
+class "InputStateHistory`1"<TValue> {
+    + InputStateHistory(maxStateSizeInBytes:int?)
+    + InputStateHistory(control:InputControl<TValue>)
+    + InputStateHistory(path:string)
+    + <<unsafe>> AddRecord(record:Record) : Record
+    + <<unsafe>> RecordStateChange(control:InputControl<TValue>, value:TValue, time:double) : Record
+    + <<new>> GetEnumerator() : IEnumerator<Record>
+}
+class "IEnumerable`1"<T> {
+}
+class "ReadOnlyArray`1"<T> {
+}
+class "Action`1"<T> {
+}
+class "Func`4"<T1,T2,T3,T4> {
+}
+struct Enumerator {
+    + Enumerator(history:InputStateHistory)
+    + MoveNext() : bool
+    + Reset() : void
+    + Dispose() : void
+}
+struct RecordHeader {
+    + time : double
+    + version : uint
+    + controlIndex : int
+    + <<const>> kSizeWithControlIndex : int = 16
+    + <<const>> kSizeWithoutControlIndex : int = 12
+}
+struct Record {
+    + valid : bool <<get>>
+    + index : int <<get>>
+    + time : double <<get>>
+    + ReadValue() : TValue
+    + ReadValueAsObject() : object
+    + GetUnsafeMemoryPtr() : void*
+    + GetUnsafeExtraMemoryPtr() : void*
+    + CopyFrom(record:Record) : void
+    + Equals(other:Record) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+}
+class "IReadOnlyList`1"<T> {
+}
+struct Enumerator {
+    + Enumerator(history:InputStateHistory<TValue>)
+    + MoveNext() : bool
+    + Reset() : void
+    + Dispose() : void
+}
+struct Record {
+    + valid : bool <<get>>
+    + index : int <<get>>
+    + time : double <<get>>
+    + ReadValue() : TValue
+    + GetUnsafeMemoryPtr() : void*
+    + GetUnsafeExtraMemoryPtr() : void*
+    + CopyFrom(record:Record) : void
+    + Equals(other:Record) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+}
+class "IEnumerator`1"<T> {
+}
+class "IEquatable`1"<T> {
+}
+class "InputControl`1"<T> {
+}
+IDisposable <|-- InputStateHistory
+"IEnumerable`1" "<InputStateHistory.Record>" <|-- InputStateHistory
+IInputStateChangeMonitor <|-- InputStateHistory
+InputStateHistory --> "updateMask" InputUpdateType
+InputStateHistory --> "controls<InputControl>" "ReadOnlyArray`1"
+InputStateHistory --> "onRecordAdded<Record>" "Action`1"
+InputStateHistory --> "onShouldRecordStateChange<InputControl,double,InputEventPtr,bool>" "Func`4"
+InputStateHistory <|-- "InputStateHistory`1"
+"IReadOnlyList`1" "<InputStateHistory<TValue>.Record>" <|-- "InputStateHistory`1"
+InputStateHistory +-- Enumerator
+"IEnumerator`1" "<Record>" <|-- Enumerator
+Enumerator --> "Current" Record
+InputStateHistory +-- RecordHeader
+InputStateHistory +-- Record
+"IEquatable`1" "<Record>" <|-- Record
+Record --> "owner" InputStateHistory
+Record --> "control" InputControl
+Record --> "next" Record
+Record --> "previous" Record
+"InputStateHistory`1" +-- Enumerator
+"IEnumerator`1" "<Record>" <|-- Enumerator
+Enumerator --> "Current" Record
+"InputStateHistory`1" +-- Record
+"IEquatable`1" "<Record>" <|-- Record
+Record --> "owner<TValue>" "InputStateHistory`1"
+Record --> "control<TValue>" "InputControl`1"
+Record --> "next" Record
+Record --> "previous" Record
+@enduml

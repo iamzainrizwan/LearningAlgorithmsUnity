@@ -1,0 +1,8 @@
+@startuml
+struct "Fixed2`1"<T> {
+    + item1 : T
+    + item2 : T
+    + Fixed2(item1:T)
+    + Fixed2(item1:T, item2:T)
+}
+@enduml

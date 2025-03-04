@@ -1,0 +1,6 @@
+@startuml
+class EditorEventCallbacks <<static>> {
+}
+class TMP_EditorResourceManager {
+}
+@enduml

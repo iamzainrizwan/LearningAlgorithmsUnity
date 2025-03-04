@@ -1,0 +1,11 @@
+@startuml
+class TemperatureSlider {
+    + TemperatureSlider(descriptor:LightUnitSliderUIDescriptor)
+    + Setup(settings:LightEditor.Settings) : void
+}
+class TemperatureSliderUIDrawer {
+    + {static} Draw(settings:LightEditor.Settings, serializedObject:SerializedObject, value:SerializedProperty, rect:Rect) : void
+    + {static} ClampValue(value:SerializedProperty) : void
+}
+LightUnitSlider <|-- TemperatureSlider
+@enduml

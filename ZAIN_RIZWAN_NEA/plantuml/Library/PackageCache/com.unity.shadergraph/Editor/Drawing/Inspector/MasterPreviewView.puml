@@ -1,0 +1,10 @@
+@startuml
+class MasterPreviewView {
+    + assetName : string <<get>> <<set>>
+    + MasterPreviewView(previewManager:PreviewManager, graph:GraphData)
+}
+VisualElement <|-- MasterPreviewView
+MasterPreviewView --> "previewTextureView" Image
+MasterPreviewView --> "previewResizeBorderFrame" ResizeBorderFrame
+MasterPreviewView --> "preview" VisualElement
+@enduml

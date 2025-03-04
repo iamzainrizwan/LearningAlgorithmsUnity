@@ -1,0 +1,7 @@
+@startuml
+interface IMayRequireVertexSkinning {
+}
+class MayRequireVertexSkinningExtensions <<static>> {
+    + {static} RequiresVertexSkinning(slot:MaterialSlot) : bool
+}
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class LightmappingShaderProperties <<static>> {
+}
+class LightmapTextureArrayProperty {
+}
+LightmappingShaderProperties o-> "kLightmapsArray" LightmapTextureArrayProperty
+LightmappingShaderProperties o-> "kLightmapsIndirectionArray" LightmapTextureArrayProperty
+LightmappingShaderProperties o-> "kShadowMasksArray" LightmapTextureArrayProperty
+LightmappingShaderProperties +-- LightmapTextureArrayProperty
+Texture2DArrayShaderProperty <|-- LightmapTextureArrayProperty
+@enduml

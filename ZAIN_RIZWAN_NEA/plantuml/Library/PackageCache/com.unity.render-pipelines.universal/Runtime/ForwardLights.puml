@@ -1,0 +1,28 @@
+@startuml
+class ForwardLights {
+    + ForwardLights()
+    + Setup(context:ScriptableRenderContext, renderingData:RenderingData) : void
+}
+class LightConstantBuffer <<static>> {
+    + {static} _MainLightPosition : int
+    + {static} _MainLightColor : int
+    + {static} _MainLightOcclusionProbesChannel : int
+    + {static} _MainLightLayerMask : int
+    + {static} _AdditionalLightsCount : int
+    + {static} _AdditionalLightsPosition : int
+    + {static} _AdditionalLightsColor : int
+    + {static} _AdditionalLightsAttenuation : int
+    + {static} _AdditionalLightsSpotDir : int
+    + {static} _AdditionalLightOcclusionProbeChannel : int
+    + {static} _AdditionalLightsLayerMasks : int
+}
+struct InitParams {
+    + forwardPlus : bool
+}
+class SetupLightPassData {
+}
+ForwardLights +-- LightConstantBuffer
+ForwardLights +-- InitParams
+InitParams --> "lightCookieManager" LightCookieManager
+ForwardLights +-- SetupLightPassData
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+abstract class BinaryComparisonUnit {
+    + numeric : bool <<get>> <<set>> = true
+}
+Unit <|-- BinaryComparisonUnit
+BinaryComparisonUnit --> "a" ValueInput
+BinaryComparisonUnit --> "b" ValueInput
+BinaryComparisonUnit --> "comparison" ValueOutput
+@enduml

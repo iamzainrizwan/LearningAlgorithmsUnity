@@ -1,0 +1,47 @@
+@startuml
+class FixedSlotTests {
+    + RunBeforeAnyTests() : void
+    + TestSetUp() : void
+    + ConnectV1ToV1Works() : void
+    + ConnectBoolToV1Works() : void
+    + ConnectV1ToV2Works() : void
+    + ConnectBoolToV2Works() : void
+    + ConnectV1ToV3Works() : void
+    + ConnectBoolToV3Works() : void
+    + ConnectV1ToV4Works() : void
+    + ConnectBoolToV4Works() : void
+    + ConnectV2ToV1Works() : void
+    + ConnectV2ToBoolWorks() : void
+    + ConnectV2ToV2Works() : void
+    + ConnectV2ToV3Works() : void
+    + ConnectV2ToV4Works() : void
+    + ConnectV3ToV1Works() : void
+    + ConnectV3ToBoolWorks() : void
+    + ConnectV3ToV2Works() : void
+    + ConnectV3ToV3Works() : void
+    + ConnectV3ToV4Works() : void
+    + ConnectV4ToV1Works() : void
+    + ConnectV4ToBoolWorks() : void
+    + ConnectV4ToV2Works() : void
+    + ConnectV4ToV3Works() : void
+    + ConnectV4ToV4Works() : void
+    + ConnectBoolToBoolWorks() : void
+    + ConnectTexToBoolFails() : void
+}
+class TestNode {
+    + <<const>> V1Out : int = 0
+    + <<const>> V2Out : int = 1
+    + <<const>> V3Out : int = 2
+    + <<const>> V4Out : int = 3
+    + <<const>> BoolOut : int = 8
+    + <<const>> TexOut : int = 10
+    + <<const>> V1In : int = 4
+    + <<const>> V2In : int = 5
+    + <<const>> V3In : int = 6
+    + <<const>> V4In : int = 7
+    + <<const>> BoolIn : int = 9
+    + TestNode()
+}
+FixedSlotTests +-- TestNode
+AbstractMaterialNode <|-- TestNode
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class Migration_1_0_2_to_1_0_3 {
+    + Migration_1_0_2_to_1_0_3(plugin:Plugin)
+    + <<override>> Run() : void
+}
+PluginMigration <|-- Migration_1_0_2_to_1_0_3
+Migration_1_0_2_to_1_0_3 --> "@from" SemanticVersion
+Migration_1_0_2_to_1_0_3 --> "to" SemanticVersion
+@enduml

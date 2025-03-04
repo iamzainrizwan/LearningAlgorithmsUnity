@@ -1,0 +1,10 @@
+@startuml
+enum AlignOperation {
+    AlignLeftEdges,
+    AlignCenters,
+    AlignRightEdges,
+    AlignTopEdges,
+    AlignMiddles,
+    AlignBottomEdges,
+}
+@enduml

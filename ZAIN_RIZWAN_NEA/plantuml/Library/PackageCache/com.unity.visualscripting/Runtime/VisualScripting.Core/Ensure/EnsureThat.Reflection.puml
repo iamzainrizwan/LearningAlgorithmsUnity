@@ -1,0 +1,8 @@
+@startuml
+class EnsureThat <<partial>> {
+    + HasAttribute(param:Type, attributeType:Type) : void
+    + HasAttribute(param:Type) : void
+    + HasConstructorAccepting(param:Type, parameterTypes:Type[]) : void
+    + HasPublicConstructorAccepting(param:Type, parameterTypes:Type[]) : void
+}
+@enduml

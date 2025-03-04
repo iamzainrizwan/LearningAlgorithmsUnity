@@ -1,0 +1,174 @@
+@startuml
+struct uint3 {
+    + x : uint
+    + y : uint
+    + z : uint
+    + uint3(x:uint, y:uint, z:uint)
+    + uint3(x:uint, yz:uint2)
+    + uint3(xy:uint2, z:uint)
+    + uint3(xyz:uint3)
+    + uint3(v:uint)
+    + uint3(v:bool)
+    + uint3(v:bool3)
+    + uint3(v:int)
+    + uint3(v:int3)
+    + uint3(v:float)
+    + uint3(v:float3)
+    + uint3(v:double)
+    + uint3(v:double3)
+    + Equals(rhs:uint3) : bool
+    + <<override>> Equals(o:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+    + ToString(format:string, formatProvider:IFormatProvider) : string
+}
+class math <<static>> <<partial>> {
+    + {static} uint3(x:uint, y:uint, z:uint) : uint3
+    + {static} uint3(x:uint, yz:uint2) : uint3
+    + {static} uint3(xy:uint2, z:uint) : uint3
+    + {static} uint3(xyz:uint3) : uint3
+    + {static} uint3(v:uint) : uint3
+    + {static} uint3(v:bool) : uint3
+    + {static} uint3(v:bool3) : uint3
+    + {static} uint3(v:int) : uint3
+    + {static} uint3(v:int3) : uint3
+    + {static} uint3(v:float) : uint3
+    + {static} uint3(v:float3) : uint3
+    + {static} uint3(v:double) : uint3
+    + {static} uint3(v:double3) : uint3
+    + {static} hash(v:uint3) : uint
+    + {static} hashwide(v:uint3) : uint3
+    + {static} shuffle(left:uint3, right:uint3, x:ShuffleComponent) : uint
+    + {static} shuffle(left:uint3, right:uint3, x:ShuffleComponent, y:ShuffleComponent) : uint2
+    + {static} shuffle(left:uint3, right:uint3, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent) : uint3
+    + {static} shuffle(left:uint3, right:uint3, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent, w:ShuffleComponent) : uint4
+}
+class "IEquatable`1"<T> {
+}
+class DebuggerProxy <<sealed>> {
+    + x : uint
+    + y : uint
+    + z : uint
+    + DebuggerProxy(v:uint3)
+}
+IFormattable <|-- uint3
+uint3 --> "zero" uint3
+uint3 --> "xxxx" uint4
+uint3 --> "xxxy" uint4
+uint3 --> "xxxz" uint4
+uint3 --> "xxyx" uint4
+uint3 --> "xxyy" uint4
+uint3 --> "xxyz" uint4
+uint3 --> "xxzx" uint4
+uint3 --> "xxzy" uint4
+uint3 --> "xxzz" uint4
+uint3 --> "xyxx" uint4
+uint3 --> "xyxy" uint4
+uint3 --> "xyxz" uint4
+uint3 --> "xyyx" uint4
+uint3 --> "xyyy" uint4
+uint3 --> "xyyz" uint4
+uint3 --> "xyzx" uint4
+uint3 --> "xyzy" uint4
+uint3 --> "xyzz" uint4
+uint3 --> "xzxx" uint4
+uint3 --> "xzxy" uint4
+uint3 --> "xzxz" uint4
+uint3 --> "xzyx" uint4
+uint3 --> "xzyy" uint4
+uint3 --> "xzyz" uint4
+uint3 --> "xzzx" uint4
+uint3 --> "xzzy" uint4
+uint3 --> "xzzz" uint4
+uint3 --> "yxxx" uint4
+uint3 --> "yxxy" uint4
+uint3 --> "yxxz" uint4
+uint3 --> "yxyx" uint4
+uint3 --> "yxyy" uint4
+uint3 --> "yxyz" uint4
+uint3 --> "yxzx" uint4
+uint3 --> "yxzy" uint4
+uint3 --> "yxzz" uint4
+uint3 --> "yyxx" uint4
+uint3 --> "yyxy" uint4
+uint3 --> "yyxz" uint4
+uint3 --> "yyyx" uint4
+uint3 --> "yyyy" uint4
+uint3 --> "yyyz" uint4
+uint3 --> "yyzx" uint4
+uint3 --> "yyzy" uint4
+uint3 --> "yyzz" uint4
+uint3 --> "yzxx" uint4
+uint3 --> "yzxy" uint4
+uint3 --> "yzxz" uint4
+uint3 --> "yzyx" uint4
+uint3 --> "yzyy" uint4
+uint3 --> "yzyz" uint4
+uint3 --> "yzzx" uint4
+uint3 --> "yzzy" uint4
+uint3 --> "yzzz" uint4
+uint3 --> "zxxx" uint4
+uint3 --> "zxxy" uint4
+uint3 --> "zxxz" uint4
+uint3 --> "zxyx" uint4
+uint3 --> "zxyy" uint4
+uint3 --> "zxyz" uint4
+uint3 --> "zxzx" uint4
+uint3 --> "zxzy" uint4
+uint3 --> "zxzz" uint4
+uint3 --> "zyxx" uint4
+uint3 --> "zyxy" uint4
+uint3 --> "zyxz" uint4
+uint3 --> "zyyx" uint4
+uint3 --> "zyyy" uint4
+uint3 --> "zyyz" uint4
+uint3 --> "zyzx" uint4
+uint3 --> "zyzy" uint4
+uint3 --> "zyzz" uint4
+uint3 --> "zzxx" uint4
+uint3 --> "zzxy" uint4
+uint3 --> "zzxz" uint4
+uint3 --> "zzyx" uint4
+uint3 --> "zzyy" uint4
+uint3 --> "zzyz" uint4
+uint3 --> "zzzx" uint4
+uint3 --> "zzzy" uint4
+uint3 --> "zzzz" uint4
+uint3 --> "xxx" uint3
+uint3 --> "xxy" uint3
+uint3 --> "xxz" uint3
+uint3 --> "xyx" uint3
+uint3 --> "xyy" uint3
+uint3 --> "xyz" uint3
+uint3 --> "xzx" uint3
+uint3 --> "xzy" uint3
+uint3 --> "xzz" uint3
+uint3 --> "yxx" uint3
+uint3 --> "yxy" uint3
+uint3 --> "yxz" uint3
+uint3 --> "yyx" uint3
+uint3 --> "yyy" uint3
+uint3 --> "yyz" uint3
+uint3 --> "yzx" uint3
+uint3 --> "yzy" uint3
+uint3 --> "yzz" uint3
+uint3 --> "zxx" uint3
+uint3 --> "zxy" uint3
+uint3 --> "zxz" uint3
+uint3 --> "zyx" uint3
+uint3 --> "zyy" uint3
+uint3 --> "zyz" uint3
+uint3 --> "zzx" uint3
+uint3 --> "zzy" uint3
+uint3 --> "zzz" uint3
+uint3 --> "xx" uint2
+uint3 --> "xy" uint2
+uint3 --> "xz" uint2
+uint3 --> "yx" uint2
+uint3 --> "yy" uint2
+uint3 --> "yz" uint2
+uint3 --> "zx" uint2
+uint3 --> "zy" uint2
+uint3 --> "zz" uint2
+uint3 +-- DebuggerProxy
+@enduml

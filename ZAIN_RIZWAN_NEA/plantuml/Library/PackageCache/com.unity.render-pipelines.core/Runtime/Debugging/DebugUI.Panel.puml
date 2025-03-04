@@ -1,0 +1,26 @@
+@startuml
+class DebugUI <<partial>> {
+}
+class Panel {
+    + displayName : string <<get>> <<set>>
+    + groupIndex : int <<get>> <<set>>
+    + queryPath : string <<get>>
+    + isEditorOnly : bool <<get>>
+    + isRuntimeOnly : bool <<get>>
+    + isInactiveInEditor : bool <<get>>
+    + editorForceUpdate : bool <<get>>
+    +  <<event>> onSetDirty : Action<Panel> 
+    + Panel()
+    + SetDirty() : void
+    + <<override>> GetHashCode() : int
+}
+class "IComparable`1"<T> {
+}
+class "ObservableList`1"<T> {
+}
+DebugUI +-- Panel
+IContainer <|-- Panel
+"IComparable`1" "<Panel>" <|-- Panel
+Panel --> "flags" Flags
+Panel --> "children<Widget>" "ObservableList`1"
+@enduml

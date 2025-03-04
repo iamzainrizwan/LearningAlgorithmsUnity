@@ -1,0 +1,9 @@
+@startuml
+class UniversalSpeedTree8Upgrader {
+    {static} + UniversalSpeedTree8MaterialFinalizer(mat:Material) : void
+}
+class UniversalSpeedTree8PostProcessor {
+}
+SpeedTree8MaterialUpgrader <|-- UniversalSpeedTree8Upgrader
+AssetPostprocessor <|-- UniversalSpeedTree8PostProcessor
+@enduml

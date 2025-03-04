@@ -1,0 +1,9 @@
+@startuml
+class "Singleton`1"<T> <<static>> {
+    + {static} instantiated : bool <<get>>
+    + {static} instance : T <<get>>
+    + {static} Instantiate() : T
+    + {static} Awake(instance:T) : void
+    + {static} OnDestroy(instance:T) : void
+}
+@enduml

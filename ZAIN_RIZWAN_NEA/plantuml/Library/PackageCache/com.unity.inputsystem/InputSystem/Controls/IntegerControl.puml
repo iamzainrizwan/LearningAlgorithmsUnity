@@ -1,0 +1,10 @@
+@startuml
+class IntegerControl {
+    + IntegerControl()
+    + <<override>> <<unsafe>> ReadUnprocessedValueFromState(statePtr:void*) : int
+    + <<override>> <<unsafe>> WriteValueIntoState(value:int, statePtr:void*) : void
+}
+class "InputControl`1"<T> {
+}
+"InputControl`1" "<int>" <|-- IntegerControl
+@enduml

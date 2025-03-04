@@ -1,0 +1,9 @@
+@startuml
+class UniversalRenderPipelineCameraUI <<static>> <<partial>> {
+}
+class "CoreEditorDrawer`1"<T> {
+}
+class Output <<partial>> {
+}
+UniversalRenderPipelineCameraUI +-- Output
+@enduml

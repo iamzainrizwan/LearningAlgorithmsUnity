@@ -1,0 +1,6 @@
+@startuml
+class TweenTrack {
+    + <<override>> CreateTrackMixer(graph:PlayableGraph, go:GameObject, inputCount:int) : Playable
+}
+TrackAsset <|-- TweenTrack
+@enduml

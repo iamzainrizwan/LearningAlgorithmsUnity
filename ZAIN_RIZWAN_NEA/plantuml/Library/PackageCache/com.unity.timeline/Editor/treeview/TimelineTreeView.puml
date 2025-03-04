@@ -1,0 +1,27 @@
+@startuml
+class TimelineTreeView {
+    + showInsertionMarker : bool <<get>> <<set>>
+    + <<virtual>> topRowMargin : float <<get>>
+    + <<virtual>> bottomRowMargin : float <<get>>
+    + TimelineTreeView(sequencerWindow:TimelineWindow, treeView:TreeViewController)
+    + OnInitialize() : void
+    + GetRectForFraming(row:int) : Rect
+    + <<virtual>> BeginRowGUI() : void
+    + <<virtual>> EndRowGUI() : void
+    + <<virtual>> OnRowGUI(rowRect:Rect, item:TreeViewItem, row:int, selected:bool, focused:bool) : void
+    + GetRenameRect(rowRect:Rect, row:int, item:TreeViewItem) : Rect
+    + BeginPingItem(item:TreeViewItem, topPixelOfRow:float, availableWidth:float) : void
+    + EndPingItem() : void
+    + GetRowRect(row:int, rowWidth:float) : Rect
+    + GetRowRect(row:int) : Rect
+    + CalculateRowRects() : void
+    + <<virtual>> BeginRename(item:TreeViewItem, delay:float) : bool
+    + <<virtual>> EndRename() : void
+    + <<virtual>> GetContentIndent(item:TreeViewItem) : float
+    + GetNumRowsOnPageUpDown(fromItem:TreeViewItem, pageUp:bool, heightOfTreeView:float) : int
+    + GetFirstAndLastRowVisible(firstRowVisible:int, lastRowVisible:int) : void
+    + GetTotalSize() : Vector2
+    + <<virtual>> halfDropBetweenHeight : float <<get>>
+}
+ITreeViewGUI <|-- TimelineTreeView
+@enduml

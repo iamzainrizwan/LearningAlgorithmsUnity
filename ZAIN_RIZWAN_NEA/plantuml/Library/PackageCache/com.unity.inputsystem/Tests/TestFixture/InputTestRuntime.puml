@@ -1,0 +1,63 @@
+@startuml
+class InputTestRuntime {
+    + AllocateDeviceId() : int
+    + <<unsafe>> Update(type:InputUpdateType) : void
+    + <<unsafe>> QueueEvent(eventPtr:InputEvent*) : void
+    + <<unsafe>> SetCanRunInBackground(deviceId:int) : void
+    + SetDeviceCommandCallback(device:InputDevice, callback:DeviceCommandCallback) : void
+    + SetDeviceCommandCallback(deviceId:int, callback:DeviceCommandCallback) : void
+    + SetDeviceCommandCallback(deviceId:int, result:TCommand) : void
+    + <<unsafe>> DeviceCommand(deviceId:int, commandPtr:InputDeviceCommand*) : long
+    + InvokePlayerFocusChanged(newFocusState:bool) : void
+    + PlayerFocusLost() : void
+    + PlayerFocusGained() : void
+    + ReportNewInputDevice(deviceDescriptor:string, deviceId:int) : int
+    + ReportNewInputDevice(description:InputDeviceDescription, deviceId:int, userHandle:ulong, userName:string, userId:string) : int
+    + ReportNewInputDevice(deviceId:int, userHandle:ulong, userName:string, userId:string) : int
+    + <<unsafe>> ReportInputDeviceRemoved(deviceId:int) : void
+    + ReportInputDeviceRemoved(device:InputDevice) : void
+    + AssociateInputDeviceWithUser(deviceId:int, userHandle:ulong, userName:string, userId:string) : void
+    + AssociateInputDeviceWithUser(device:InputDevice, userHandle:ulong, userName:string, userId:string) : void
+    + isPlayerFocused : bool <<get>>
+    + pollingFrequency : float <<get>> <<set>>
+    + currentTime : double <<get>> <<set>>
+    + currentTimeForFixedUpdate : double <<get>> <<set>>
+    + unscaledGameTime : float <<get>> <<set>> = 1
+    + dontAdvanceUnscaledGameTimeNextDynamicUpdate : bool <<get>> <<set>>
+    + advanceTimeEachDynamicUpdate : double <<get>> <<set>>
+    + dontAdvanceTimeNextDynamicUpdate : bool <<get>> <<set>>
+    + runInBackground : bool <<get>> <<set>> = false
+    + normalizeScrollWheelDelta : bool <<get>> <<set>> = true
+    + scrollWheelDeltaPerTick : float <<get>> <<set>> = 1.0f
+    + Dispose() : void
+    + currentTimeOffsetToRealtimeSinceStartup : double <<get>> <<set>>
+    + isInBatchMode : bool <<get>> <<set>>
+    + eventCount : int <<get>>
+}
+struct PairedUser {
+    + deviceId : int
+    + userHandle : ulong
+    + userName : string
+    + userId : string
+}
+class "Action`1"<T> {
+}
+class "Func`2"<T1,T2> {
+}
+class "Action`2"<T1,T2> {
+}
+class "List`1"<T> {
+}
+IInputRuntime <|-- InputTestRuntime
+IDisposable <|-- InputTestRuntime
+InputTestRuntime --> "onUpdate" InputUpdateDelegate
+InputTestRuntime --> "onBeforeUpdate<InputUpdateType>" "Action`1"
+InputTestRuntime --> "onShouldRunUpdate<InputUpdateType,bool>" "Func`2"
+InputTestRuntime --> "onDeviceDiscovered<int,string>" "Action`2"
+InputTestRuntime --> "onShutdown" Action
+InputTestRuntime --> "onPlayerFocusChanged<bool>" "Action`1"
+InputTestRuntime o-> "screenSize" Vector2
+InputTestRuntime o-> "screenOrientation" ScreenOrientation
+InputTestRuntime --> "userAccountPairings<PairedUser>" "List`1"
+InputTestRuntime +-- PairedUser
+@enduml

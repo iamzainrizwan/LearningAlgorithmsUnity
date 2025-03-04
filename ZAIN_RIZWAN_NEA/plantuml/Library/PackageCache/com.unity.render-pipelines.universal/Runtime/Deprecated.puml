@@ -1,0 +1,108 @@
+@startuml
+abstract class ScriptableRenderPass <<partial>> {
+    + <<virtual>> FrameCleanup(cmd:CommandBuffer) : void
+}
+class AdditionalLightsShadowCasterPass <<partial>> {
+    + {static} m_AdditionalShadowsBufferId : int
+    + {static} m_AdditionalShadowsIndicesId : int
+}
+enum ShadowCascadesOption {
+    NoCascades,
+    TwoCascades,
+    FourCascades,
+}
+enum ShaderVariantLogLevel {
+    Disabled,
+    OnlyUniversalRPShaders,
+    AllShaders,
+}
+class UniversalRenderPipelineAsset <<partial>> {
+}
+abstract class ScriptableRenderer <<partial>> {
+}
+abstract class ScriptableRendererData <<partial>> {
+}
+class Bloom <<sealed>> <<partial>> {
+}
+class XRSystemData {
+}
+class UniversalRendererData <<partial>> {
+}
+class UniversalRenderPipelineEditorResources {
+}
+class ShaderResources <<sealed>> {
+}
+class UniversalRenderPipelineGlobalSettings <<partial>> {
+    + stripUnusedLODCrossFadeVariants : bool <<get>> <<set>>
+    + supportRuntimeDebugDisplay : bool = false
+}
+class TextureResources <<sealed>> {
+    + NeedsReload() : bool
+}
+class DebugShaderResources <<sealed>> {
+}
+class ProbeVolumeResources <<sealed>> {
+}
+class ShaderResources <<sealed>> {
+}
+class ShaderResources <<sealed>> {
+}
+class MaterialResources <<sealed>> {
+}
+UniversalRenderPipelineAsset --> "shaderVariantLogLevel" ShaderVariantLogLevel
+UniversalRenderPipelineAsset --> "shadowCascadeOption" ShadowCascadesOption
+UniversalRenderPipelineAsset --> "textures" TextureResources
+ScriptableRenderer --> "cameraDepth" RenderTargetIdentifier
+ScriptableRendererData --> "debugShaders" DebugShaderResources
+ScriptableRendererData --> "probeVolumeResources" ProbeVolumeResources
+VolumeComponent <|-- Bloom
+IPostProcessComponent <|-- Bloom
+Bloom o-> "skipIterations" ClampedIntParameter
+ScriptableObject <|-- XRSystemData
+XRSystemData --> "shaders" ShaderResources
+ScriptableObject <|-- UniversalRenderPipelineEditorResources
+UniversalRenderPipelineEditorResources --> "shaders" ShaderResources
+UniversalRenderPipelineEditorResources --> "materials" MaterialResources
+ShaderResources --> "blitPS" Shader
+ShaderResources --> "copyDepthPS" Shader
+ShaderResources o-> "screenSpaceShadowPS" Shader
+ShaderResources --> "samplingPS" Shader
+ShaderResources --> "stencilDeferredPS" Shader
+ShaderResources --> "fallbackErrorPS" Shader
+ShaderResources --> "fallbackLoadingPS" Shader
+ShaderResources o-> "materialErrorPS" Shader
+ShaderResources --> "cameraMotionVector" Shader
+ShaderResources --> "screenSpaceLensFlare" Shader
+ShaderResources --> "dataDrivenLensFlare" Shader
+UniversalRenderPipelineAsset +-- TextureResources
+TextureResources --> "blueNoise64LTex" Texture2D
+TextureResources --> "bayerMatrixTex" Texture2D
+ScriptableRendererData +-- DebugShaderResources
+DebugShaderResources --> "debugReplacementPS" Shader
+DebugShaderResources --> "hdrDebugViewPS" Shader
+ScriptableRendererData +-- ProbeVolumeResources
+ProbeVolumeResources --> "probeVolumeDebugShader" Shader
+ProbeVolumeResources --> "probeVolumeFragmentationDebugShader" Shader
+ProbeVolumeResources --> "probeVolumeOffsetDebugShader" Shader
+ProbeVolumeResources --> "probeVolumeSamplingDebugShader" Shader
+ProbeVolumeResources --> "probeSamplingDebugMesh" Mesh
+ProbeVolumeResources --> "probeSamplingDebugTexture" Texture2D
+ProbeVolumeResources --> "probeVolumeBlendStatesCS" ComputeShader
+XRSystemData +-- ShaderResources
+ShaderResources --> "xrOcclusionMeshPS" Shader
+ShaderResources --> "xrMirrorViewPS" Shader
+UniversalRenderPipelineEditorResources +-- ShaderResources
+ShaderResources --> "autodeskInteractivePS" Shader
+ShaderResources --> "autodeskInteractiveTransparentPS" Shader
+ShaderResources --> "autodeskInteractiveMaskedPS" Shader
+ShaderResources --> "terrainDetailLitPS" Shader
+ShaderResources --> "terrainDetailGrassPS" Shader
+ShaderResources --> "terrainDetailGrassBillboardPS" Shader
+ShaderResources --> "defaultSpeedTree7PS" Shader
+ShaderResources --> "defaultSpeedTree8PS" Shader
+UniversalRenderPipelineEditorResources +-- MaterialResources
+MaterialResources --> "lit" Material
+MaterialResources --> "particleLit" Material
+MaterialResources --> "terrainLit" Material
+MaterialResources --> "decal" Material
+@enduml

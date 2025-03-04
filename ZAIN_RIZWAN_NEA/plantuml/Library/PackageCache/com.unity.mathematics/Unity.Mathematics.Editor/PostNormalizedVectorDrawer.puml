@@ -1,0 +1,21 @@
+@startuml
+class PostNormalizedVectorDrawer {
+    + <<override>> GetPropertyHeight(property:SerializedProperty, label:GUIContent) : float
+    + <<override>> OnGUI(position:Rect, property:SerializedProperty, label:GUIContent) : void
+}
+class Content <<static>> {
+    + {static} <<readonly>> tooltip : string
+}
+class VectorPropertyGUIData {
+    + <<readonly>> Valid : bool
+    + VectorPropertyGUIData(property:SerializedProperty)
+    + UpdatePreNormalizedValues() : void
+    + ApplyPreNormalizedValues() : void
+    + UnapplyPreNormalizedValues() : void
+    + PostNormalize(normalize:Func<double4, double4>) : void
+    + RebuildIfDirty() : void
+}
+PrimitiveVectorDrawer <|-- PostNormalizedVectorDrawer
+PostNormalizedVectorDrawer +-- Content
+PostNormalizedVectorDrawer +-- VectorPropertyGUIData
+@enduml

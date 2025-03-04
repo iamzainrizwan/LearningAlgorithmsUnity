@@ -1,0 +1,11 @@
+@startuml
+class LightUnitTests {
+    + Setup() : void
+    + TearDown() : void
+    + LightUnitSupport() : void
+    + DirectionalAndBoxLightUnitConversion() : void
+    + PointLightUnitConversion() : void
+    + SpotLightUnitConversion() : void
+    + AreaLightUnitConversion() : void
+}
+@enduml

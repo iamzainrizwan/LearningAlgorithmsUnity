@@ -1,0 +1,13 @@
+@startuml
+class PropertiesPreferencesProvider {
+    + PreferenceGUI() : void
+}
+class Styles {
+}
+class "List`1"<T> {
+}
+ICoreRenderPipelinePreferencesProvider <|-- PropertiesPreferencesProvider
+PropertiesPreferencesProvider --> "keywords<string>" "List`1"
+PropertiesPreferencesProvider +-- Styles
+Styles o-> "additionalPropertiesLabel" GUIContent
+@enduml

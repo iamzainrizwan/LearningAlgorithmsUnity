@@ -1,0 +1,10 @@
+@startuml
+class RegisterGenericJobTypeAttribute {
+    + RegisterGenericJobTypeAttribute(type:Type)
+}
+class DOTSCompilerGeneratedAttribute {
+}
+Attribute <|-- RegisterGenericJobTypeAttribute
+RegisterGenericJobTypeAttribute --> "ConcreteType" Type
+Attribute <|-- DOTSCompilerGeneratedAttribute
+@enduml

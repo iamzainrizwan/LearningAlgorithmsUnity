@@ -1,0 +1,9 @@
+@startuml
+class "StateAnalyser`1"<TState> {
+    + StateAnalyser(reference:GraphReference, target:TState)
+    + state : TState <<get>>
+}
+class "Analyser`2"<T1,T2> {
+}
+"Analyser`2" "<TState,StateAnalysis>" <|-- "StateAnalyser`1"
+@enduml

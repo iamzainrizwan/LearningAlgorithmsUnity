@@ -1,0 +1,42 @@
+@startuml
+enum CaretPosition {
+    None,
+    Left,
+    Right,
+}
+struct CaretInfo {
+    + index : int
+    + CaretInfo(index:int, position:CaretPosition)
+}
+class TMP_TextUtilities <<static>> {
+    + {static} GetCursorIndexFromPosition(textComponent:TMP_Text, position:Vector3, camera:Camera) : int
+    + {static} GetCursorIndexFromPosition(textComponent:TMP_Text, position:Vector3, camera:Camera, cursor:CaretPosition) : int
+    + {static} FindNearestLine(text:TMP_Text, position:Vector3, camera:Camera) : int
+    + {static} FindNearestCharacterOnLine(text:TMP_Text, position:Vector3, line:int, camera:Camera, visibleOnly:bool) : int
+    + {static} IsIntersectingRectTransform(rectTransform:RectTransform, position:Vector3, camera:Camera) : bool
+    + {static} FindIntersectingCharacter(text:TMP_Text, position:Vector3, camera:Camera, visibleOnly:bool) : int
+    + {static} FindNearestCharacter(text:TMP_Text, position:Vector3, camera:Camera, visibleOnly:bool) : int
+    + {static} FindIntersectingWord(text:TMP_Text, position:Vector3, camera:Camera) : int
+    + {static} FindNearestWord(text:TMP_Text, position:Vector3, camera:Camera) : int
+    + {static} FindIntersectingLine(text:TMP_Text, position:Vector3, camera:Camera) : int
+    + {static} FindIntersectingLink(text:TMP_Text, position:Vector3, camera:Camera) : int
+    + {static} FindNearestLink(text:TMP_Text, position:Vector3, camera:Camera) : int
+    + {static} ScreenPointToWorldPointInRectangle(transform:Transform, screenPoint:Vector2, cam:Camera, worldPoint:Vector3) : bool
+    + {static} DistanceToLine(a:Vector3, b:Vector3, point:Vector3) : float
+    + {static} ToLowerFast(c:char) : char
+    + {static} ToUpperFast(c:char) : char
+    + {static} GetHashCode(s:string) : int
+    + {static} GetSimpleHashCode(s:string) : int
+    + {static} GetSimpleHashCodeLowercase(s:string) : uint
+    + {static} GetHashCodeCaseInSensitive(s:string) : uint
+    + {static} HexToInt(hex:char) : int
+    + {static} StringHexToInt(s:string) : int
+}
+struct LineSegment {
+    + LineSegment(p1:Vector3, p2:Vector3)
+}
+CaretInfo --> "position" CaretPosition
+TMP_TextUtilities +-- LineSegment
+LineSegment --> "Point1" Vector3
+LineSegment --> "Point2" Vector3
+@enduml

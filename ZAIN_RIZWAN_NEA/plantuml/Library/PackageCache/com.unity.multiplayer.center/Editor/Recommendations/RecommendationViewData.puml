@@ -1,0 +1,38 @@
+@startuml
+class RecommendationViewData {
+}
+class SolutionsToRecommendedPackageViewData {
+    + SolutionsToRecommendedPackageViewData(selections:SolutionSelection[], packages:RecommendedPackageViewData[][])
+    + GetPackagesForSelection(netcode:PossibleSolution, hosting:PossibleSolution) : RecommendedPackageViewData[]
+    + GetPackagesForSelection(selection:SolutionSelection) : RecommendedPackageViewData[]
+}
+class RecommendedItemViewData {
+    + Selected : bool
+    + Reason : string
+    + DocsUrl : string
+    + IsInstalledAsProjectDependency : bool
+    + InstalledVersion : string
+}
+class RecommendedSolutionViewData {
+    + Title : string
+    + Score : float
+    + WarningString : string
+    + RecommendedSolutionViewData(data:RecommenderSystemData, solution:RecommendedSolution, type:RecommendationType, scoring:Scoring, installedPackageDictionary:Dictionary<string, string>)
+}
+class RecommendedPackageViewData {
+    + PackageId : string
+    + Name : string
+    + PreReleaseVersion : string
+    + ShortDescription : string = "Short description not added yet"
+    + RecommendedPackageViewData(details:PackageDetails, type:RecommendationType, installedVersion:string, reason:string)
+    + RecommendedPackageViewData(details:PackageDetails, recommendation:RecommendedPackage, installedVersion:string)
+}
+struct RecommendedPackageViewDataArray {
+}
+RecommendedItemViewData --> "RecommendationType" RecommendationType
+RecommendedItemViewData <|-- RecommendedSolutionViewData
+RecommendedSolutionViewData --> "Solution" PossibleSolution
+RecommendedSolutionViewData --> "MainPackage" RecommendedPackageViewData
+RecommendedItemViewData <|-- RecommendedPackageViewData
+SolutionsToRecommendedPackageViewData +-- RecommendedPackageViewDataArray
+@enduml

@@ -1,0 +1,31 @@
+@startuml
+enum FontFeatureLookupFlags {
+    None=     0x0,
+    IgnoreLigatures=   0x004,
+    IgnoreSpacingAdjustments=   0x100,
+}
+struct TMP_GlyphValueRecord {
+    + xPlacement : float <<get>> <<set>>
+    + yPlacement : float <<get>> <<set>>
+    + xAdvance : float <<get>> <<set>>
+    + yAdvance : float <<get>> <<set>>
+    + TMP_GlyphValueRecord(xPlacement:float, yPlacement:float, xAdvance:float, yAdvance:float)
+}
+struct TMP_GlyphAdjustmentRecord {
+    + glyphIndex : uint <<get>> <<set>>
+    + TMP_GlyphAdjustmentRecord(glyphIndex:uint, glyphValueRecord:TMP_GlyphValueRecord)
+}
+class TMP_GlyphPairAdjustmentRecord {
+    + TMP_GlyphPairAdjustmentRecord(firstAdjustmentRecord:TMP_GlyphAdjustmentRecord, secondAdjustmentRecord:TMP_GlyphAdjustmentRecord)
+}
+struct GlyphPairKey {
+    + firstGlyphIndex : uint
+    + secondGlyphIndex : uint
+    + key : uint
+    + GlyphPairKey(firstGlyphIndex:uint, secondGlyphIndex:uint)
+}
+TMP_GlyphAdjustmentRecord --> "glyphValueRecord" TMP_GlyphValueRecord
+TMP_GlyphPairAdjustmentRecord --> "firstAdjustmentRecord" TMP_GlyphAdjustmentRecord
+TMP_GlyphPairAdjustmentRecord --> "secondAdjustmentRecord" TMP_GlyphAdjustmentRecord
+TMP_GlyphPairAdjustmentRecord --> "featureLookupFlags" FontFeatureLookupFlags
+@enduml

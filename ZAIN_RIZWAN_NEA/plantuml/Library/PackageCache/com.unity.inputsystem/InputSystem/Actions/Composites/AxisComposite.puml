@@ -1,0 +1,21 @@
+@startuml
+class AxisComposite {
+    + negative : int = 0
+    + positive : int = 0
+    + minValue : float
+    + maxValue : float = 1
+    + midPoint : float <<get>>
+    + <<override>> ReadValue(context:InputBindingCompositeContext) : float
+    + <<override>> EvaluateMagnitude(context:InputBindingCompositeContext) : float
+}
+class "InputBindingComposite`1"<T> {
+}
+enum WhichSideWins {
+    Neither= 0,
+    Positive= 1,
+    Negative= 2,
+}
+"InputBindingComposite`1" "<float>" <|-- AxisComposite
+AxisComposite o-> "whichSideWins" WhichSideWins
+AxisComposite +-- WhichSideWins
+@enduml

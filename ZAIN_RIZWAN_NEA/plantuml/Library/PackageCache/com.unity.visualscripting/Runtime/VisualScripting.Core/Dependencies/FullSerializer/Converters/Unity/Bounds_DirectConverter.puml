@@ -1,0 +1,11 @@
+@startuml
+class fsConverterRegistrar <<partial>> {
+}
+class Bounds_DirectConverter {
+    + <<override>> CreateInstance(data:fsData, storageType:Type) : object
+}
+class "fsDirectConverter`1"<T> {
+}
+fsConverterRegistrar --> "Register_Bounds_DirectConverter" Bounds_DirectConverter
+"fsDirectConverter`1" "<Bounds>" <|-- Bounds_DirectConverter
+@enduml

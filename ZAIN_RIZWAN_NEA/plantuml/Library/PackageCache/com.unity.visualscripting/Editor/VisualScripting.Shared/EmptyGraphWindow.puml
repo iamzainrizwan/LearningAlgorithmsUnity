@@ -1,0 +1,9 @@
+@startuml
+class DropdownOptions {
+}
+class SplitDropdown {
+}
+class EmptyGraphWindow {
+}
+EditorWindow <|-- EmptyGraphWindow
+@enduml

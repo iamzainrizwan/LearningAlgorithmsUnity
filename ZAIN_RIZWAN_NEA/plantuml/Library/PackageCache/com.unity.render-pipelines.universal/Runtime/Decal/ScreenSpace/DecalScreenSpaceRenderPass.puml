@@ -1,0 +1,16 @@
+@startuml
+class DecalDrawScreenSpaceSystem {
+    + DecalDrawScreenSpaceSystem(entityManager:DecalEntityManager)
+}
+class DecalScreenSpaceRenderPass {
+    + DecalScreenSpaceRenderPass(settings:DecalScreenSpaceSettings, drawSystem:DecalDrawScreenSpaceSystem, decalLayers:bool)
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+    + <<override>> OnCameraCleanup(cmd:CommandBuffer) : void
+}
+class PassData {
+}
+DecalDrawSystem <|-- DecalDrawScreenSpaceSystem
+ScriptableRenderPass <|-- DecalScreenSpaceRenderPass
+DecalScreenSpaceRenderPass +-- PassData
+@enduml

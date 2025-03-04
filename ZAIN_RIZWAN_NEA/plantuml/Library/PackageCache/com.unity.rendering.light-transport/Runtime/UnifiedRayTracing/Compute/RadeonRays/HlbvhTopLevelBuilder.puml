@@ -1,0 +1,30 @@
+@startuml
+struct TopLevelAccelStruct {
+    + instanceCount : uint
+    + Dispose() : void
+}
+class HlbvhTopLevelBuilder {
+    + HlbvhTopLevelBuilder(shaders:RadeonRaysShaders)
+    + GetScratchDataSizeInDwords(instanceCount:uint) : ulong
+    + {static} GetBvhNodeCount(leafCount:uint) : uint
+    + AllocateResultBuffers(instanceCount:uint, accelStruct:TopLevelAccelStruct) : void
+    + CreateEmpty(accelStruct:TopLevelAccelStruct) : void
+    + Execute(cmd:CommandBuffer, scratch:GraphicsBuffer, accelStruct:TopLevelAccelStruct) : void
+}
+struct ScratchBufferLayout {
+    + Aabb : uint
+    + MortonCodes : uint
+    + PrimitiveRefs : uint
+    + SortedMortonCodes : uint
+    + SortedPrimitiveRefs : uint
+    + SortMemory : uint
+    + InternalNodeRange : uint
+    + TotalSize : uint
+    + {static} Create(instanceCount:uint) : ScratchBufferLayout
+}
+IDisposable <|-- TopLevelAccelStruct
+TopLevelAccelStruct --> "topLevelBvh" GraphicsBuffer
+TopLevelAccelStruct --> "bottomLevelBvhs" GraphicsBuffer
+TopLevelAccelStruct --> "instanceInfos" GraphicsBuffer
+HlbvhTopLevelBuilder +-- ScratchBufferLayout
+@enduml

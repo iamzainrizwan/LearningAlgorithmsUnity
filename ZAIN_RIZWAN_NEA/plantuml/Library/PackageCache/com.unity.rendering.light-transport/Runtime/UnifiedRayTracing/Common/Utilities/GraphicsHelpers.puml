@@ -1,0 +1,11 @@
+@startuml
+class GraphicsHelpers <<static>> {
+    {static} + CopyBuffer(copyShader:ComputeShader, cmd:CommandBuffer, src:GraphicsBuffer, srcOffsetInDWords:int, dst:GraphicsBuffer, dstOffsetInDwords:int, sizeInDWords:int) : void
+    {static} + CopyBuffer(copyShader:ComputeShader, src:GraphicsBuffer, srcOffsetInDWords:int, dst:GraphicsBuffer, dstOffsetInDwords:int, sizeInDwords:int) : void
+    {static} + DivUp(x:int, y:int) : int
+    {static} + DivUp(x:int, y:uint) : int
+    {static} + DivUp(x:uint, y:uint) : uint
+    {static} + DivUp(x:uint3, y:uint3) : uint3
+    {static} + Flush(cmd:CommandBuffer) : void
+}
+@enduml

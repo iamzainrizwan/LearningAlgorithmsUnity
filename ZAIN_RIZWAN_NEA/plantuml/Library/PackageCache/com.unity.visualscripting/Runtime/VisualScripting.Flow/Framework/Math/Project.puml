@@ -1,0 +1,9 @@
+@startuml
+abstract class "Project`1"<T> {
+    + {abstract} Operation(a:T, b:T) : T
+}
+Unit <|-- "Project`1"
+"Project`1" --> "a" ValueInput
+"Project`1" --> "b" ValueInput
+"Project`1" --> "projection" ValueOutput
+@enduml

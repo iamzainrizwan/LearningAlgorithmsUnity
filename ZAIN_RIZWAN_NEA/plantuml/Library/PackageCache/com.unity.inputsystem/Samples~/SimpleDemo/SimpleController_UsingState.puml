@@ -1,0 +1,9 @@
+@startuml
+class SimpleController_UsingState {
+    + moveSpeed : float
+    + rotateSpeed : float
+    + Update() : void
+}
+MonoBehaviour <|-- SimpleController_UsingState
+SimpleController_UsingState --> "projectile" GameObject
+@enduml

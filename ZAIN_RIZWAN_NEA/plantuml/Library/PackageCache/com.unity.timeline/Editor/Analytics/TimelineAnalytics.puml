@@ -1,0 +1,55 @@
+@startuml
+class TimelineSceneInfo {
+    + numTracks : int = 0
+    + minDuration : int
+    + maxDuration : int
+    + minNumTracks : int
+    + maxNumTracks : int
+    + numRecorded : int = 0
+}
+struct TrackInfo {
+    + name : string
+    + percent : double
+}
+class TimelineEventInfo {
+    + num_timelines : int
+    + min_duration : int
+    + max_duration : int
+    + min_num_tracks : int
+    + max_num_tracks : int
+    + recorded_percent : double
+    + most_popular_user_track : string
+    + TimelineEventInfo(sceneInfo:TimelineSceneInfo)
+    + {static} IsUserType(t:Type) : bool
+}
+class TimelineAnalytics <<static>> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+class "HashSet`1"<T> {
+}
+class "List`1"<T> {
+}
+class TimelineAnalyticsPreProcess {
+    + callbackOrder : int <<get>>
+    + OnPreprocessBuild(report:BuildReport) : void
+}
+class TimelineAnalyticsProcess {
+    + callbackOrder : int <<get>>
+    + OnProcessScene(scene:Scene, report:BuildReport) : void
+}
+class TimelineAnalyticsPostProcess {
+    + callbackOrder : int <<get>>
+    + OnPostprocessBuild(report:BuildReport) : void
+}
+TimelineSceneInfo o-> "trackCount<string,int>" "Dictionary`2"
+TimelineSceneInfo o-> "userTrackTypesCount<string,int>" "Dictionary`2"
+TimelineSceneInfo o-> "uniqueDirectors<TimelineAsset>" "HashSet`1"
+TimelineEventInfo o-> "track_info<TrackInfo>" "List`1"
+TimelineAnalytics +-- TimelineAnalyticsPreProcess
+IPreprocessBuildWithReport <|-- TimelineAnalyticsPreProcess
+TimelineAnalytics +-- TimelineAnalyticsProcess
+IProcessSceneWithReport <|-- TimelineAnalyticsProcess
+TimelineAnalytics +-- TimelineAnalyticsPostProcess
+IPostprocessBuildWithReport <|-- TimelineAnalyticsPostProcess
+@enduml

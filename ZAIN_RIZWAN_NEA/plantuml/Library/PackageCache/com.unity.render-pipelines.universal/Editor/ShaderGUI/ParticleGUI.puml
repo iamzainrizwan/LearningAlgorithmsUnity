@@ -1,0 +1,61 @@
+@startuml
+class ParticleGUI <<static>> {
+    + {static} SetupMaterialWithColorMode(material:Material) : void
+    + {static} FadingOptions(material:Material, materialEditor:MaterialEditor, properties:ParticleProperties) : void
+    + {static} DoVertexStreamsArea(material:Material, renderers:List<ParticleSystemRenderer>, useLighting:bool) : void
+    + {static} SetMaterialKeywords(material:Material) : void
+}
+enum ColorMode {
+    Multiply,
+    Additive,
+    Subtractive,
+    Overlay,
+    Color,
+    Difference,
+}
+class Styles <<static>> {
+    + {static} streamPositionText : string = "Position (POSITION.xyz)"
+    + {static} streamNormalText : string = "Normal (NORMAL.xyz)"
+    + {static} streamColorText : string = "Color (COLOR.xyzw)"
+    + {static} streamColorInstancedText : string = "Color (INSTANCED0.xyzw)"
+    + {static} streamUVText : string = "UV (TEXCOORD0.xy)"
+    + {static} streamUV2Text : string = "UV2 (TEXCOORD0.zw)"
+    + {static} streamAnimBlendText : string = "AnimBlend (TEXCOORD1.x)"
+    + {static} streamAnimFrameText : string = "AnimFrame (INSTANCED1.x)"
+    + {static} streamTangentText : string = "Tangent (TANGENT.xyzw)"
+    + {static} undoApplyCustomVertexStreams : string
+}
+struct ParticleProperties {
+    + ParticleProperties(properties:MaterialProperty[])
+}
+ParticleGUI +-- ColorMode
+ParticleGUI +-- Styles
+Styles o-> "colorMode" GUIContent
+Styles o-> "flipbookMode" GUIContent
+Styles o-> "softParticlesEnabled" GUIContent
+Styles o-> "softParticlesFadeText" GUIContent
+Styles o-> "softParticlesNearFadeDistanceText" GUIContent
+Styles o-> "softParticlesFarFadeDistanceText" GUIContent
+Styles o-> "cameraFadingEnabled" GUIContent
+Styles o-> "cameraFadingDistanceText" GUIContent
+Styles o-> "cameraNearFadeDistanceText" GUIContent
+Styles o-> "cameraFarFadeDistanceText" GUIContent
+Styles o-> "distortionEnabled" GUIContent
+Styles o-> "distortionStrength" GUIContent
+Styles o-> "distortionBlend" GUIContent
+Styles o-> "VertexStreams" GUIContent
+Styles o-> "streamApplyToAllSystemsText" GUIContent
+Styles o-> "vertexStreamIcon" GUIStyle
+ParticleGUI +-- ParticleProperties
+ParticleProperties --> "colorMode" MaterialProperty
+ParticleProperties --> "flipbookMode" MaterialProperty
+ParticleProperties --> "softParticlesEnabled" MaterialProperty
+ParticleProperties --> "cameraFadingEnabled" MaterialProperty
+ParticleProperties --> "distortionEnabled" MaterialProperty
+ParticleProperties --> "softParticlesNearFadeDistance" MaterialProperty
+ParticleProperties --> "softParticlesFarFadeDistance" MaterialProperty
+ParticleProperties --> "cameraNearFadeDistance" MaterialProperty
+ParticleProperties --> "cameraFarFadeDistance" MaterialProperty
+ParticleProperties --> "distortionBlend" MaterialProperty
+ParticleProperties --> "distortionStrength" MaterialProperty
+@enduml

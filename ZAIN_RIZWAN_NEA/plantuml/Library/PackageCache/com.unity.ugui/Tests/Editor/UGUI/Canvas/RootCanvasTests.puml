@@ -1,0 +1,12 @@
+@startuml
+class RootCanvasTests {
+    + <<override>> TestSetup() : void
+    + IsRootCanvasTest() : void
+    + CorrectRootCanvasReturned() : void
+    + NotRootCanvasAnchorsDontGetReset() : void
+    + ChildOfDisabledCanvasCantReceiveClicks() : void
+}
+class "TestBehaviourBase`1"<T> {
+}
+"TestBehaviourBase`1" "<UnityEngine.Canvas>" <|-- RootCanvasTests
+@enduml

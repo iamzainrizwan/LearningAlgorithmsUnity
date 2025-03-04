@@ -1,0 +1,10 @@
+@startuml
+class TextMeshProFloatingText {
+    + SpawnType : int
+    + IsTextObjectScaleStatic : bool
+    + DisplayTextMeshProFloatingText() : IEnumerator
+    + DisplayTextMeshFloatingText() : IEnumerator
+}
+MonoBehaviour <|-- TextMeshProFloatingText
+TextMeshProFloatingText --> "TheFont" Font
+@enduml

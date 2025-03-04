@@ -1,0 +1,8 @@
+@startuml
+class EditorAssemblyWrapper {
+    + EditorAssemblyWrapper(assembly:Assembly)
+    + <<override>> GetReferencedAssemblies() : AssemblyName[]
+    + <<override>> Location : string <<get>>
+}
+AssemblyWrapper <|-- EditorAssemblyWrapper
+@enduml

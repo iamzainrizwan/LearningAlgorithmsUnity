@@ -1,0 +1,13 @@
+@startuml
+class UnityThread <<static>> {
+    + {static} allowsAPI : bool <<get>>
+    + {static} EditorAsync(action:Action) : void
+}
+class "Action`1"<T> {
+}
+class "ConcurrentQueue`1"<T> {
+}
+UnityThread o-> "thread" Thread
+UnityThread --> "editorAsync<Action>" "Action`1"
+UnityThread o-> "pendingQueue<Action>" "ConcurrentQueue`1"
+@enduml

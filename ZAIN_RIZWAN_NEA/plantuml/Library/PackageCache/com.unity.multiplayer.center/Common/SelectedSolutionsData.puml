@@ -1,0 +1,22 @@
+@startuml
+class SelectedSolutionsData {
+}
+enum HostingModel {
+    None,
+    ClientHosted,
+    DedicatedServer,
+    CloudCode,
+    DistributedAuthority,
+}
+enum NetcodeSolution {
+    None,
+    NGO,
+    N4E,
+    CustomNetcode,
+    NoNetcode,
+}
+SelectedSolutionsData --> "SelectedHostingModel" HostingModel
+SelectedSolutionsData --> "SelectedNetcodeSolution" NetcodeSolution
+SelectedSolutionsData +-- HostingModel
+SelectedSolutionsData +-- NetcodeSolution
+@enduml

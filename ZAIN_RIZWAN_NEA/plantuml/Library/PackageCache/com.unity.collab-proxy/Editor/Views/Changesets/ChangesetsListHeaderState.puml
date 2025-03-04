@@ -1,0 +1,15 @@
+@startuml
+enum ChangesetsListColumn {
+    Name,
+    CreationDate,
+    CreatedBy,
+    Comment,
+    Branch,
+    Repository,
+    Guid,
+}
+class ChangesetsListHeaderState {
+}
+MultiColumnHeaderState <|-- ChangesetsListHeaderState
+ISerializationCallbackReceiver <|-- ChangesetsListHeaderState
+@enduml

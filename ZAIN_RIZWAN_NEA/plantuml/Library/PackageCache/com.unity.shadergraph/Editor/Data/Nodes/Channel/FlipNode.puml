@@ -1,0 +1,18 @@
+@startuml
+class FlipNode {
+    + FlipNode()
+    + <<override>> hasPreview : bool <<get>>
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + <<override>> CollectPreviewMaterialProperties(properties:List<PreviewProperty>) : void
+    + <<override>> CollectShaderProperties(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + GenerateNodeFunction(registry:FunctionRegistry, generationMode:GenerationMode) : void
+}
+AbstractMaterialNode <|-- FlipNode
+IGeneratesBodyCode <|-- FlipNode
+IGeneratesFunction <|-- FlipNode
+FlipNode --> "redChannel" ToggleData
+FlipNode --> "greenChannel" ToggleData
+FlipNode --> "blueChannel" ToggleData
+FlipNode --> "alphaChannel" ToggleData
+@enduml

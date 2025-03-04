@@ -1,0 +1,6 @@
+@startuml
+enum SlotType {
+    Input,
+    Output,
+}
+@enduml

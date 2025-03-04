@@ -1,0 +1,15 @@
+@startuml
+enum PendingChangesTreeColumn {
+    Item,
+    Status,
+    Size,
+    Extension,
+    Type,
+    DateModififed,
+    Repository,
+}
+class PendingChangesTreeHeaderState {
+}
+MultiColumnHeaderState <|-- PendingChangesTreeHeaderState
+ISerializationCallbackReceiver <|-- PendingChangesTreeHeaderState
+@enduml

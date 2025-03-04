@@ -1,0 +1,6 @@
+@startuml
+class PlusHandler <<sealed>> {
+    + PlusHandler()
+}
+UnaryOperatorHandler <|-- PlusHandler
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class TextUtil <<static>> {
+    + {static} PascalToLabel(pascalString:string) : string
+}
+@enduml

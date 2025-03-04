@@ -1,0 +1,6 @@
+@startuml
+class MaskEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+Editor <|-- MaskEditor
+@enduml

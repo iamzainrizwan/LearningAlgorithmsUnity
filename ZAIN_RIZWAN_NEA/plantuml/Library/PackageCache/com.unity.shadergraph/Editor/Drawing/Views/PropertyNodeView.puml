@@ -1,0 +1,27 @@
+@startuml
+class PropertyNodeView <<sealed>> {
+    + PropertyNodeView(node:PropertyNode, edgeConnectorListener:EdgeConnectorListener)
+    + inspectorTitle : string <<get>>
+    + GetObjectToInspect() : object
+    + SupplyDataToPropertyDrawer(propertyDrawer:IPropertyDrawer, inspectorUpdateDelegate:Action) : void
+    + SetColor(newColor:Color) : void
+    + ResetColor() : void
+    + UpdatePortInputTypes() : void
+    + UpdateDropdownEntries() : void
+    + FindPort(slot:SlotReference, port:ShaderPort) : bool
+    + OnModified(scope:ModificationScope) : void
+    + SetActive(state:bool) : void
+    + AttachMessage(errString:string, severity:ShaderCompilerMessageSeverity) : void
+    + ClearMessage() : void
+    + Dispose() : void
+    + OnShaderInputUpdated(modificationScope:ModificationScope) : void
+}
+TokenNode <|-- PropertyNodeView
+IShaderNodeView <|-- PropertyNodeView
+IInspectable <|-- PropertyNodeView
+IShaderInputObserver <|-- PropertyNodeView
+PropertyNodeView --> "styleSheet" StyleSheet
+PropertyNodeView --> "gvNode" Node
+PropertyNodeView --> "node" AbstractMaterialNode
+PropertyNodeView --> "colorElement" VisualElement
+@enduml

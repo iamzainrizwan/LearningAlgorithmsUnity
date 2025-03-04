@@ -1,0 +1,10 @@
+@startuml
+class ScreenNode <<sealed>> {
+    + <<const>> OutputSlotId : int = 0
+    + <<const>> OutputSlot1Id : int = 1
+    + ScreenNode()
+    + <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> GetVariableNameForSlot(slotId:int) : string
+}
+AbstractMaterialNode <|-- ScreenNode
+@enduml

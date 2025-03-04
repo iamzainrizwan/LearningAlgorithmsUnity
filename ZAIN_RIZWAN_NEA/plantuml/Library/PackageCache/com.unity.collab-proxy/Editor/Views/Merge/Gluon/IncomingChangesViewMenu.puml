@@ -1,0 +1,7 @@
+@startuml
+class IncomingChangesViewMenu {
+}
+interface IMetaMenuOperations {
+}
+IncomingChangesViewMenu +-- IMetaMenuOperations
+@enduml

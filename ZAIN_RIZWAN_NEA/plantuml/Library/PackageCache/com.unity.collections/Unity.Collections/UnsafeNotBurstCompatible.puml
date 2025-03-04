@@ -1,0 +1,8 @@
+@startuml
+class Extensions <<static>> {
+    + {static} ToArray(set:UnsafeParallelHashSet<T>) : T[]
+    + {static} <<unsafe>> AddNBC(buffer:UnsafeAppendBuffer, value:string) : void
+    + {static} <<unsafe>> ToBytesNBC(buffer:UnsafeAppendBuffer) : byte[]
+    + {static} <<unsafe>> ReadNextNBC(reader:UnsafeAppendBuffer.Reader, value:string) : void
+}
+@enduml

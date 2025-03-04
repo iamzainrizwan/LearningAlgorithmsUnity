@@ -1,0 +1,5 @@
+@startuml
+class TestResultXmlParser {
+    + GetPerformanceTestRunFromXml(resultXmlFileName:string) : Run
+}
+@enduml

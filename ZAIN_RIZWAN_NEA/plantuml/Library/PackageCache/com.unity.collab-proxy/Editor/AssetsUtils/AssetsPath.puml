@@ -1,0 +1,10 @@
+@startuml
+class AssetsPath <<static>> {
+}
+class GetFullPath <<static>> {
+}
+class GetFullPathUnderWorkspace <<static>> {
+}
+AssetsPath +-- GetFullPath
+AssetsPath +-- GetFullPathUnderWorkspace
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class TMP_SpriteAssetImporter {
+    + {static} ShowFontAtlasCreatorWindow() : void
+    + OnGUI() : void
+}
+EditorWindow <|-- TMP_SpriteAssetImporter
+@enduml

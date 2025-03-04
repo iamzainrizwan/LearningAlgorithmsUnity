@@ -1,0 +1,9 @@
+@startuml
+abstract class "MultiDecoratorProvider`3"<TDecorated,TDecorator,TAttribute> {
+    + GetDecorators(decorated:TDecorated) : IEnumerable<TDecorator>
+    + GetDecorators(decorated:TDecorated) : IEnumerable<TSpecificDecorator>
+    + <<virtual>> ClearCache() : void
+    + HasDecorator(type:Type) : bool
+    + GetDecoratorTypes(type:Type) : IEnumerable<Type>
+}
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class FuzzyOptionAttribute <<sealed>> {
+    + FuzzyOptionAttribute(type:Type)
+}
+Attribute <|-- FuzzyOptionAttribute
+IDecoratorAttribute <|-- FuzzyOptionAttribute
+FuzzyOptionAttribute --> "type" Type
+@enduml

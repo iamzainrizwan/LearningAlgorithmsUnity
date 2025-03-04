@@ -1,0 +1,37 @@
+@startuml
+class FullscreenShaderGUI {
+    <<override>> + OnGUI(materialEditor:MaterialEditor, properties:MaterialProperty[]) : void
+    + <<virtual>> OnOpenGUI(material:Material, materialEditor:MaterialEditor, properties:MaterialProperty[]) : void
+    + <<override>> AssignNewShaderToMaterial(material:Material, oldShader:Shader, newShader:Shader) : void
+    + <<override>> ValidateMaterial(material:Material) : void
+    + {static} SetupSurface(material:Material) : void
+}
+enum Expandable {
+    SurfaceOptions= 1 << 0,
+    SurfaceInputs= 1 << 1,
+}
+class Styles {
+}
+ShaderGUI <|-- FullscreenShaderGUI
+FullscreenShaderGUI +-- Expandable
+FullscreenShaderGUI +-- Styles
+Styles o-> "SurfaceOptions" GUIContent
+Styles o-> "SurfaceInputs" GUIContent
+Styles o-> "blendingMode" GUIContent
+Styles o-> "srcColorBlendMode" GUIContent
+Styles o-> "dstColorBlendMode" GUIContent
+Styles o-> "colorBlendOperation" GUIContent
+Styles o-> "srcAlphaBlendMode" GUIContent
+Styles o-> "dstAlphaBlendMode" GUIContent
+Styles o-> "alphaBlendOperation" GUIContent
+Styles o-> "depthWrite" GUIContent
+Styles o-> "depthTest" GUIContent
+Styles o-> "stencil" GUIContent
+Styles o-> "stencilRef" GUIContent
+Styles o-> "stencilReadMask" GUIContent
+Styles o-> "stencilWriteMask" GUIContent
+Styles o-> "stencilComparison" GUIContent
+Styles o-> "stencilPass" GUIContent
+Styles o-> "stencilFail" GUIContent
+Styles o-> "stencilDepthFail" GUIContent
+@enduml

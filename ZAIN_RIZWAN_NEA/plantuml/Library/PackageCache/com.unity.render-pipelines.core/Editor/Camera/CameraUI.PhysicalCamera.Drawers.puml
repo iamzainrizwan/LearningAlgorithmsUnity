@@ -1,0 +1,21 @@
+@startuml
+class CameraUI <<static>> <<partial>> {
+}
+class PhysicalCamera <<static>> <<partial>> {
+    + {static} Drawer_PhysicalCamera_CameraBody_Sensor(p:ISerializedCamera, owner:Editor) : void
+    + {static} Drawer_PhysicalCamera_CameraBody_GateFit(p:ISerializedCamera, owner:Editor) : void
+    + {static} Drawer_PhysicalCamera_Lens_FocalLength(p:ISerializedCamera, owner:Editor) : void
+    + {static} Drawer_PhysicalCamera_Lens_Shift(p:ISerializedCamera, owner:Editor) : void
+    + {static} Drawer_PhysicalCamera_FocusDistance(p:ISerializedCamera, owner:Editor) : void
+    + {static} Drawer_PhysicalCamera_CameraBody_ISO(p:ISerializedCamera, owner:Editor) : void
+    + {static} Drawer_PhysicalCamera_CameraBody_ShutterSpeed(p:ISerializedCamera, owner:Editor) : void
+    + {static} Drawer_PhysicalCamera_Lens_Aperture(p:ISerializedCamera, owner:Editor) : void
+    + {static} Drawer_PhysicalCamera_ApertureShape(p:ISerializedCamera, owner:Editor) : void
+}
+enum ShutterSpeedUnit {
+    Second,
+    OneOverSecond,
+}
+CameraUI +-- PhysicalCamera
+PhysicalCamera +-- ShutterSpeedUnit
+@enduml

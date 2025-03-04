@@ -1,0 +1,18 @@
+@startuml
+class PathEditorToolContents <<static>> {
+}
+interface IDuringSceneGuiTool {
+}
+class EditorToolManager {
+}
+abstract class "PathEditorTool`1"<T> {
+    + enableSnapping : bool <<get>> <<set>>
+    + <<override>> IsAvailable() : bool
+    + GetPath(targetObject:UnityObject) : T
+    + SetPath(target:UnityObject) : void
+}
+PathEditorToolContents --> "icon" GUIContent
+EditorTool <|-- "PathEditorTool`1"
+IDuringSceneGuiTool <|-- "PathEditorTool`1"
+"PathEditorTool`1" --> "toolbarIcon" GUIContent
+@enduml

@@ -1,0 +1,68 @@
+@startuml
+class TestBitmanipulation {
+    + {static} bitmask_bool4() : void
+    + {static} countbits_int1() : void
+    + {static} countbits_int2() : void
+    + {static} countbits_int3() : void
+    + {static} countbits_int4() : void
+    + {static} countbits_uint() : void
+    + {static} countbits_uint2() : void
+    + {static} countbits_uint3() : void
+    + {static} countbits_uint4() : void
+    + {static} countbits_long() : void
+    + {static} countbits_ulong() : void
+    + {static} lzcnt_int() : void
+    + {static} lzcnt_int2() : void
+    + {static} lzcnt_int3() : void
+    + {static} lzcnt_int4() : void
+    + {static} lzcnt_uint() : void
+    + {static} lzcnt_uint2() : void
+    + {static} lzcnt_uint3() : void
+    + {static} lzcnt_uint4() : void
+    + {static} lzcnt_long() : void
+    + {static} lzcnt_ulong() : void
+    + {static} tzcnt_int() : void
+    + {static} tzcnt_int2() : void
+    + {static} tzcnt_int3() : void
+    + {static} tzcnt_int4() : void
+    + {static} tzcnt_uint() : void
+    + {static} tzcnt_uint2() : void
+    + {static} tzcnt_uint3() : void
+    + {static} tzcnt_uint4() : void
+    + {static} tzcnt_long() : void
+    + {static} tzcnt_ulong() : void
+    + {static} reversebits_int() : void
+    + {static} reversebits_int2() : void
+    + {static} reversebits_int3() : void
+    + {static} reversebits_int4() : void
+    + {static} reversebits_uint() : void
+    + {static} reversebits_uint2() : void
+    + {static} reversebits_uint3() : void
+    + {static} reversebits_uint4() : void
+    + {static} reversebits_long() : void
+    + {static} reversebits_ulong() : void
+    + {static} rol_int() : void
+    + {static} rol_int2() : void
+    + {static} rol_int3() : void
+    + {static} rol_int4() : void
+    + {static} rol_uint() : void
+    + {static} rol_uint2() : void
+    + {static} rol_uint3() : void
+    + {static} rol_uint4() : void
+    + {static} rol_long() : void
+    + {static} rol_ulong() : void
+    + {static} ror_int() : void
+    + {static} ror_int2() : void
+    + {static} ror_int3() : void
+    + {static} ror_int4() : void
+    + {static} ror_uint() : void
+    + {static} ror_uint2() : void
+    + {static} ror_uint3() : void
+    + {static} ror_uint4() : void
+    + {static} ror_long() : void
+    + {static} ror_ulong() : void
+}
+class Assert2 {
+    + {static} AreEqual(a:object, b:object) : void
+}
+@enduml

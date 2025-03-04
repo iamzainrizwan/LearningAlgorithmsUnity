@@ -1,0 +1,8 @@
+@startuml
+class NormalReconstruction <<static>> {
+    + {static} SetupProperties(cmd:CommandBuffer, cameraData:CameraData) : void
+    + {static} SetupProperties(cmd:RasterCommandBuffer, cameraData:CameraData) : void
+    + {static} SetupProperties(cmd:CommandBuffer, cameraData:UniversalCameraData) : void
+    + {static} SetupProperties(cmd:RasterCommandBuffer, cameraData:UniversalCameraData) : void
+}
+@enduml

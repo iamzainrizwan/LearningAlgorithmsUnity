@@ -1,0 +1,16 @@
+@startuml
+class VolumeManagerTests {
+    + VolumeManagerTests(volumeType:string)
+    + Setup() : void
+    + TearDown() : void
+    + ParameterEvaluationTest(disableAction:Action<VolumeManager, Volume>, enableAction:Action<VolumeManager, Volume>) : void
+    + ParameterOverrideTest() : void
+}
+class VolumeManagerDefaultProfileTests {
+    + Setup() : void
+    + TearDown() : void
+    + ParameterIsCorrectByDefault() : void
+    + DefaultProfilesAreAppliedToDefaultState() : void
+    + CustomDefaultProfilesAreAppliedInOrder() : void
+}
+@enduml

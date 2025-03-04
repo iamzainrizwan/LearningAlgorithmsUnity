@@ -1,0 +1,13 @@
+@startuml
+class TestLaunchFailedException {
+    + TestLaunchFailedException()
+    + TestLaunchFailedException(message:string)
+}
+class PlayerLauncher {
+    + PlayerLauncher(settings:PlaymodeTestsControllerSettings, targetPlatform:BuildTarget?, overloadTestRunSettings:ITestRunSettings, heartbeatTimeout:int, playerWithTestsPath:string, scenePath:string, scene:Scene, runner:PlaymodeTestsController)
+    + <<override>> Run() : void
+    + PrepareScene(sceneName:string, scene:Scene, runner:PlaymodeTestsController) : void
+}
+Exception <|-- TestLaunchFailedException
+RuntimeTestLauncherBase <|-- PlayerLauncher
+@enduml

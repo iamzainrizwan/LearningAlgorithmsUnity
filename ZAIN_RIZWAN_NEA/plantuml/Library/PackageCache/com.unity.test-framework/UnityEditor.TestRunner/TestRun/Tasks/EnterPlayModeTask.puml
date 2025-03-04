@@ -1,0 +1,10 @@
+@startuml
+class EnterPlayModeTask {
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+class "Func`1"<T> {
+}
+TestTaskBase <|-- EnterPlayModeTask
+EnterPlayModeTask o-> "IsInPlayMode<bool>" "Func`1"
+EnterPlayModeTask o-> "EnterPlayMode" Action
+@enduml

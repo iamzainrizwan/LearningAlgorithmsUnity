@@ -1,0 +1,10 @@
+@startuml
+class "ArrayPool`1"<T> <<static>> {
+    + {static} New(length:int) : T[]
+    + {static} Free(array:T[]) : void
+}
+class XArrayPool <<static>> {
+    + {static} ToArrayPooled(source:IEnumerable<T>) : T[]
+    + {static} Free(array:T[]) : void
+}
+@enduml

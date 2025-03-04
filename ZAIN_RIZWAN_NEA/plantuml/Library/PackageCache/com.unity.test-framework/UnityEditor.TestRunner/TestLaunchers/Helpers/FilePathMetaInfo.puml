@@ -1,0 +1,15 @@
+@startuml
+class FilePathMetaInfo <<static>> {
+    + {static} TryCreateFile(runnerLoadedTest:ITest, playerBuildOptions:BuildPlayerOptions) : void
+}
+struct FileReference {
+    + FilePath : string
+    + LineNumber : int
+}
+enum PathType {
+    ProjectRepositoryPath,
+    ProjectPath,
+}
+FilePathMetaInfo +-- FileReference
+FilePathMetaInfo +-- PathType
+@enduml

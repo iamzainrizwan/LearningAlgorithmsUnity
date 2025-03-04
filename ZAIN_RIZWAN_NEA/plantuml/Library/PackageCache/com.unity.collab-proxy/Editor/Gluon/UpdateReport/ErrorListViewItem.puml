@@ -1,0 +1,5 @@
+@startuml
+class ErrorListViewItem {
+}
+TreeViewItem <|-- ErrorListViewItem
+@enduml

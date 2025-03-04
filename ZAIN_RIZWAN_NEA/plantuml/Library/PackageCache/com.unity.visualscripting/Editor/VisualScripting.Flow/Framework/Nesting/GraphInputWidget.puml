@@ -1,0 +1,8 @@
+@startuml
+class GraphInputWidget <<sealed>> {
+    + GraphInputWidget(canvas:FlowCanvas, unit:GraphInput)
+}
+class "UnitWidget`1"<T> {
+}
+"UnitWidget`1" "<GraphInput>" <|-- GraphInputWidget
+@enduml

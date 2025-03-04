@@ -1,0 +1,11 @@
+@startuml
+class ColorLookup <<sealed>> {
+    + IsActive() : bool
+    + IsTileCompatible() : bool
+    + ValidateLUT() : bool
+}
+VolumeComponent <|-- ColorLookup
+IPostProcessComponent <|-- ColorLookup
+ColorLookup o-> "texture" TextureParameter
+ColorLookup o-> "contribution" ClampedFloatParameter
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+abstract class FuzzyOptionTree {
+    + showBackgroundWorkerProgress : bool <<get>> <<protected set>>
+    + <<virtual>> Prewarm() : void
+    + <<virtual>> Option(item:object) : IFuzzyOption
+    + multithreaded : bool <<get>> = true
+    + {abstract} Root() : IEnumerable<object>
+    + {abstract} Children(parent:object) : IEnumerable<object>
+    + <<virtual>> searchable : bool <<get>> = false
+    + <<virtual>> OrderedSearchResults(query:string, cancellation:CancellationToken) : IEnumerable<object>
+    + <<virtual>> SearchResults(query:string, cancellation:CancellationToken) : IEnumerable<ISearchResult>
+    + <<virtual>> SearchResultLabel(item:object, query:string) : string
+    + <<virtual>> FavoritesLabel(item:object) : string
+    + <<virtual>> CanFavorite(item:object) : bool
+    + <<virtual>> OnFavoritesChange() : void
+}
+class "ICollection`1"<T> {
+}
+IFuzzyOptionTree <|-- FuzzyOptionTree
+FuzzyOptionTree --> "header" GUIContent
+FuzzyOptionTree o-> "selected<object>" "ICollection`1"
+FuzzyOptionTree --> "favorites<object>" "ICollection`1"
+@enduml

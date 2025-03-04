@@ -1,0 +1,9 @@
+@startuml
+interface IGUIDGenerator {
+}
+class GUIDProvider {
+    + ProjectGuid(projectName:string, assemblyName:string) : string
+    + SolutionGuid(projectName:string, scriptingLanguage:ScriptingLanguage) : string
+}
+IGUIDGenerator <|-- GUIDProvider
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+struct OccluderDepthPyramidConstants {
+    + <<fixed>> _InvViewProjMatrix : float
+    + <<fixed>> _SilhouettePlanes : float
+    + <<fixed>> _SrcOffset : uint
+    + <<fixed>> _MipOffsetAndSize : uint
+    + _OccluderMipLayoutSizeX : uint
+    + _OccluderMipLayoutSizeY : uint
+    + _OccluderDepthPyramidPad0 : uint
+    + _OccluderDepthPyramidPad1 : uint
+    + _SrcSliceIndices : uint
+    + _DstSubviewIndices : uint
+    + _MipCount : uint
+    + _SilhouettePlaneCount : uint
+}
+@enduml

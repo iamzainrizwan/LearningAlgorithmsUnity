@@ -1,0 +1,56 @@
+@startuml
+class VariantStrippingTests {
+    + Setup() : void
+    + TearDown() : void
+    + CheckNumberOfVariantsIsCorrect(preprocessType:Type, shader:Shader, inputCount:int) : int
+    + CheckExceptionsAreRaised(preprocessType:Type, shader:Shader, variants:List<Rendering.ShaderCompilerData>) : Type
+    + GivenAnStripperImplementingAllTheCallbacksTheyAreExecutedProperly() : void
+    + GivenAnStripperSkippingAShaderTheCallbackCanRemoveIsNotCalled() : void
+}
+abstract class ShaderVariantStripperTest {
+    + active : bool <<get>>
+    + {abstract} CanRemoveVariant(shader:Shader, shaderVariant:ShaderSnippetData, shaderCompilerData:ShaderCompilerData) : bool
+}
+class StripHalf {
+    + <<override>> CanRemoveVariant(shader:Shader, shaderVariant:ShaderSnippetData, shaderCompilerData:ShaderCompilerData) : bool
+}
+class StripNothing {
+    + <<override>> CanRemoveVariant(shader:Shader, shaderVariant:ShaderSnippetData, shaderCompilerData:ShaderCompilerData) : bool
+}
+class StripAll {
+    + <<override>> CanRemoveVariant(shader:Shader, shaderVariant:ShaderSnippetData, shaderCompilerData:ShaderCompilerData) : bool
+}
+class CallbacksAreCalledStripper {
+    + AfterShaderStripping(shader:Shader) : void
+    + BeforeShaderStripping(shader:Shader) : void
+    + <<override>> CanRemoveVariant(shader:Shader, shaderVariant:ShaderSnippetData, shaderCompilerData:ShaderCompilerData) : bool
+    + SkipShader(shader:Shader, shaderVariant:ShaderSnippetData) : bool
+}
+class SkipReturnsTrue {
+    + <<override>> CanRemoveVariant(shader:Shader, shaderVariant:ShaderSnippetData, shaderCompilerData:ShaderCompilerData) : bool
+    + SkipShader(shader:Shader, shaderVariant:ShaderSnippetData) : bool
+}
+class ShaderPrepocessorTests {
+    + ShaderPrepocessorTests(type:Type)
+    + TryProcessShader(shader:Shader, snippet:ShaderSnippetData, inputData:IList<ShaderCompilerData>, error:Exception) : bool
+}
+class "ShaderPreprocessor`2"<T1,T2> {
+}
+VariantStrippingTests +-- ShaderVariantStripperTest
+IShaderVariantStripper <|-- ShaderVariantStripperTest
+VariantStrippingTests +-- StripHalf
+ShaderVariantStripperTest <|-- StripHalf
+VariantStrippingTests +-- StripNothing
+ShaderVariantStripperTest <|-- StripNothing
+VariantStrippingTests +-- StripAll
+ShaderVariantStripperTest <|-- StripAll
+VariantStrippingTests +-- CallbacksAreCalledStripper
+ShaderVariantStripperTest <|-- CallbacksAreCalledStripper
+IShaderVariantStripperScope <|-- CallbacksAreCalledStripper
+IShaderVariantStripperSkipper <|-- CallbacksAreCalledStripper
+VariantStrippingTests +-- SkipReturnsTrue
+ShaderVariantStripperTest <|-- SkipReturnsTrue
+IShaderVariantStripperSkipper <|-- SkipReturnsTrue
+VariantStrippingTests +-- ShaderPrepocessorTests
+"ShaderPreprocessor`2" "<Shader,ShaderSnippetData>" <|-- ShaderPrepocessorTests
+@enduml

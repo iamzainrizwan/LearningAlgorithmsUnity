@@ -1,0 +1,5 @@
+@startuml
+class DiffPanel {
+}
+IDiffTreeViewMenuOperations <|-- DiffPanel
+@enduml

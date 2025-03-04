@@ -1,0 +1,23 @@
+@startuml
+class DictionaryAsset <<sealed>> {
+    + Count : int <<get>>
+    + Clear() : void
+    + ContainsKey(key:string) : bool
+    + Add(key:string, value:object) : void
+    + Merge(other:DictionaryAsset, overwriteExisting:bool) : void
+    + Remove(key:string) : bool
+    + TryGetValue(key:string, value:object) : bool
+    + GetEnumerator() : IEnumerator<KeyValuePair<string, object>>
+}
+class "IDictionary`2"<T1,T2> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+class "ICollection`1"<T> {
+}
+LudiqScriptableObject <|-- DictionaryAsset
+"IDictionary`2" "<string,object>" <|-- DictionaryAsset
+DictionaryAsset o-> "dictionary<string,object>" "Dictionary`2"
+DictionaryAsset --> "Keys<string>" "ICollection`1"
+DictionaryAsset --> "Values<object>" "ICollection`1"
+@enduml

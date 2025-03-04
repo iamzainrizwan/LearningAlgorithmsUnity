@@ -1,0 +1,21 @@
+@startuml
+class MrtRendererFeature {
+    + textureName : string = "_ColorTexture"
+    + <<override>> Create() : void
+    + <<override>> AddRenderPasses(renderer:ScriptableRenderer, renderingData:RenderingData) : void
+}
+class MrtPass {
+    + Setup(texName:string, material:Material, renderTextures:RenderTexture[]) : void
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+class PassData {
+    + texName : string
+}
+ScriptableRendererFeature <|-- MrtRendererFeature
+MrtRendererFeature --> "mrtMaterial" Material
+MrtRendererFeature +-- MrtPass
+ScriptableRenderPass <|-- MrtPass
+MrtPass +-- PassData
+PassData --> "color" TextureHandle
+PassData --> "material" Material
+@enduml

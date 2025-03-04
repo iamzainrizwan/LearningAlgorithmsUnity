@@ -1,0 +1,7 @@
+@startuml
+class ValueOutputter {
+    + GetString() : string
+    + GetInt() : int
+    + GetFloat() : float
+}
+@enduml

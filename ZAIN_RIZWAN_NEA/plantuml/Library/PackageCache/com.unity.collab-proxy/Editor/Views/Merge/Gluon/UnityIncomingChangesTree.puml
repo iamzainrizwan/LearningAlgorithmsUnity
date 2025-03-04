@@ -1,0 +1,10 @@
+@startuml
+class UnityIncomingChangesTree {
+}
+class MetaCache {
+}
+class BuildKey <<static>> {
+}
+UnityIncomingChangesTree +-- MetaCache
+MetaCache +-- BuildKey
+@enduml

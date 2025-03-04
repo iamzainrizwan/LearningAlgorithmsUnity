@@ -1,0 +1,12 @@
+@startuml
+class "GraphData`1"<TGraph> {
+    + GraphData(definition:TGraph)
+    + TryGetElementData(element:IGraphElementWithData, data:IGraphElementData) : bool
+    + TryGetChildGraphData(element:IGraphParentElement, data:IGraphData) : bool
+    + CreateElementData(element:IGraphElementWithData) : IGraphElementData
+    + FreeElementData(element:IGraphElementWithData) : void
+    + CreateChildGraphData(element:IGraphParentElement) : IGraphData
+    + FreeChildGraphData(element:IGraphParentElement) : void
+}
+IGraphData <|-- "GraphData`1"
+@enduml

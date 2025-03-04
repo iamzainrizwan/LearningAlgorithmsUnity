@@ -1,0 +1,7 @@
+@startuml
+class CreateAnnotationAction {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(context:ActionContext) : bool
+}
+TimelineAction <|-- CreateAnnotationAction
+@enduml

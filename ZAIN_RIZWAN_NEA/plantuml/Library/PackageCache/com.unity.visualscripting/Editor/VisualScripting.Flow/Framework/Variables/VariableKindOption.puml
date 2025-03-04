@@ -1,0 +1,8 @@
+@startuml
+class VariableKindOption {
+    + VariableKindOption(kind:VariableKind)
+}
+class "DocumentedOption`1"<T> {
+}
+"DocumentedOption`1" "<VariableKind>" <|-- VariableKindOption
+@enduml

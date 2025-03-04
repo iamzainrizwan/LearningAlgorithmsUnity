@@ -1,0 +1,6 @@
+@startuml
+class GenerationAPIAttribute {
+    + GenerationAPIAttribute()
+}
+Attribute <|-- GenerationAPIAttribute
+@enduml

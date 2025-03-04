@@ -1,0 +1,16 @@
+@startuml
+class CameraUI <<static>> <<partial>> {
+    + {static} Drawer_Projection(p:ISerializedCamera, owner:Editor) : void
+}
+enum ProjectionType {
+    Perspective,
+    Orthographic,
+}
+enum ProjectionMatrixMode {
+    Explicit,
+    Implicit,
+    PhysicalPropertiesBased,
+}
+CameraUI +-- ProjectionType
+CameraUI +-- ProjectionMatrixMode
+@enduml

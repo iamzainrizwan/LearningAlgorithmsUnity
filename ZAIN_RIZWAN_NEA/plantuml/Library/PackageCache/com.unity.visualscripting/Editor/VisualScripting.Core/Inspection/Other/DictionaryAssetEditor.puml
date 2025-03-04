@@ -1,0 +1,6 @@
+@startuml
+class DictionaryAssetEditor <<sealed>> {
+    + DictionaryAssetEditor(metadata:Metadata)
+}
+Inspector <|-- DictionaryAssetEditor
+@enduml

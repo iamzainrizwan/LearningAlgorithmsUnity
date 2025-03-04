@@ -1,0 +1,60 @@
+@startuml
+struct bool2 {
+    + x : bool
+    + y : bool
+    + bool2(x:bool, y:bool)
+    + bool2(xy:bool2)
+    + bool2(v:bool)
+    + Equals(rhs:bool2) : bool
+    + <<override>> Equals(o:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+}
+class math <<static>> <<partial>> {
+    + {static} bool2(x:bool, y:bool) : bool2
+    + {static} bool2(xy:bool2) : bool2
+    + {static} bool2(v:bool) : bool2
+    + {static} hash(v:bool2) : uint
+    + {static} hashwide(v:bool2) : uint2
+    + {static} shuffle(left:bool2, right:bool2, x:ShuffleComponent) : bool
+    + {static} shuffle(left:bool2, right:bool2, x:ShuffleComponent, y:ShuffleComponent) : bool2
+    + {static} shuffle(left:bool2, right:bool2, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent) : bool3
+    + {static} shuffle(left:bool2, right:bool2, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent, w:ShuffleComponent) : bool4
+}
+class "IEquatable`1"<T> {
+}
+class DebuggerProxy <<sealed>> {
+    + x : bool
+    + y : bool
+    + DebuggerProxy(v:bool2)
+}
+bool2 --> "xxxx" bool4
+bool2 --> "xxxy" bool4
+bool2 --> "xxyx" bool4
+bool2 --> "xxyy" bool4
+bool2 --> "xyxx" bool4
+bool2 --> "xyxy" bool4
+bool2 --> "xyyx" bool4
+bool2 --> "xyyy" bool4
+bool2 --> "yxxx" bool4
+bool2 --> "yxxy" bool4
+bool2 --> "yxyx" bool4
+bool2 --> "yxyy" bool4
+bool2 --> "yyxx" bool4
+bool2 --> "yyxy" bool4
+bool2 --> "yyyx" bool4
+bool2 --> "yyyy" bool4
+bool2 --> "xxx" bool3
+bool2 --> "xxy" bool3
+bool2 --> "xyx" bool3
+bool2 --> "xyy" bool3
+bool2 --> "yxx" bool3
+bool2 --> "yxy" bool3
+bool2 --> "yyx" bool3
+bool2 --> "yyy" bool3
+bool2 --> "xx" bool2
+bool2 --> "xy" bool2
+bool2 --> "yx" bool2
+bool2 --> "yy" bool2
+bool2 +-- DebuggerProxy
+@enduml

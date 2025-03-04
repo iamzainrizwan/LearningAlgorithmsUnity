@@ -1,0 +1,107 @@
+@startuml
+class TestUtils {
+    + {static} AreEqual(expected:bool, actual:bool) : void
+    + {static} AreEqual(expected:int, actual:int) : void
+    + {static} AreEqual(expected:uint, actual:uint) : void
+    + {static} AreEqual(expected:long, actual:long) : void
+    + {static} AreEqual(expected:ulong, actual:ulong) : void
+    + {static} AreEqual(expected:float, actual:float, delta:float) : void
+    + {static} AreEqual(expected:float, actual:float, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:double, actual:double, delta:double) : void
+    + {static} AreEqual(expected:double, actual:double, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:bool2, actual:bool2) : void
+    + {static} AreEqual(expected:bool3, actual:bool3) : void
+    + {static} AreEqual(expected:bool4, actual:bool4) : void
+    + {static} AreEqual(expected:bool2x2, actual:bool2x2) : void
+    + {static} AreEqual(expected:bool3x2, actual:bool3x2) : void
+    + {static} AreEqual(expected:bool4x2, actual:bool4x2) : void
+    + {static} AreEqual(expected:bool2x3, actual:bool2x3) : void
+    + {static} AreEqual(expected:bool3x3, actual:bool3x3) : void
+    + {static} AreEqual(expected:bool4x3, actual:bool4x3) : void
+    + {static} AreEqual(expected:bool2x4, actual:bool2x4) : void
+    + {static} AreEqual(expected:bool3x4, actual:bool3x4) : void
+    + {static} AreEqual(expected:bool4x4, actual:bool4x4) : void
+    + {static} AreEqual(expected:int2, actual:int2) : void
+    + {static} AreEqual(expected:int3, actual:int3) : void
+    + {static} AreEqual(expected:int4, actual:int4) : void
+    + {static} AreEqual(expected:int2x2, actual:int2x2) : void
+    + {static} AreEqual(expected:int3x2, actual:int3x2) : void
+    + {static} AreEqual(expected:int4x2, actual:int4x2) : void
+    + {static} AreEqual(expected:int2x3, actual:int2x3) : void
+    + {static} AreEqual(expected:int3x3, actual:int3x3) : void
+    + {static} AreEqual(expected:int4x3, actual:int4x3) : void
+    + {static} AreEqual(expected:int2x4, actual:int2x4) : void
+    + {static} AreEqual(expected:int3x4, actual:int3x4) : void
+    + {static} AreEqual(expected:int4x4, actual:int4x4) : void
+    + {static} AreEqual(expected:uint2, actual:uint2) : void
+    + {static} AreEqual(expected:uint3, actual:uint3) : void
+    + {static} AreEqual(expected:uint4, actual:uint4) : void
+    + {static} AreEqual(expected:uint2x2, actual:uint2x2) : void
+    + {static} AreEqual(expected:uint3x2, actual:uint3x2) : void
+    + {static} AreEqual(expected:uint4x2, actual:uint4x2) : void
+    + {static} AreEqual(expected:uint2x3, actual:uint2x3) : void
+    + {static} AreEqual(expected:uint3x3, actual:uint3x3) : void
+    + {static} AreEqual(expected:uint4x3, actual:uint4x3) : void
+    + {static} AreEqual(expected:uint2x4, actual:uint2x4) : void
+    + {static} AreEqual(expected:uint3x4, actual:uint3x4) : void
+    + {static} AreEqual(expected:uint4x4, actual:uint4x4) : void
+    + {static} AreEqual(expected:float2, actual:float2, delta:float) : void
+    + {static} AreEqual(expected:float2, actual:float2, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:float3, actual:float3, delta:float) : void
+    + {static} AreEqual(expected:float3, actual:float3, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:float4, actual:float4, delta:float) : void
+    + {static} AreEqual(expected:float4, actual:float4, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:float2x2, actual:float2x2, delta:float) : void
+    + {static} AreEqual(expected:float2x2, actual:float2x2, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:float3x2, actual:float3x2, delta:float) : void
+    + {static} AreEqual(expected:float3x2, actual:float3x2, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:float4x2, actual:float4x2, delta:float) : void
+    + {static} AreEqual(expected:float4x2, actual:float4x2, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:float2x3, actual:float2x3, delta:float) : void
+    + {static} AreEqual(expected:float2x3, actual:float2x3, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:float3x3, actual:float3x3, delta:float) : void
+    + {static} AreEqual(expected:float3x3, actual:float3x3, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:float4x3, actual:float4x3, delta:float) : void
+    + {static} AreEqual(expected:float4x3, actual:float4x3, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:float2x4, actual:float2x4, delta:float) : void
+    + {static} AreEqual(expected:float2x4, actual:float2x4, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:float3x4, actual:float3x4, delta:float) : void
+    + {static} AreEqual(expected:float3x4, actual:float3x4, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:float4x4, actual:float4x4, delta:float) : void
+    + {static} AreEqual(expected:float4x4, actual:float4x4, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:double2, actual:double2, delta:double) : void
+    + {static} AreEqual(expected:double2, actual:double2, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:double3, actual:double3, delta:double) : void
+    + {static} AreEqual(expected:double3, actual:double3, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:double4, actual:double4, delta:double) : void
+    + {static} AreEqual(expected:double4, actual:double4, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:double2x2, actual:double2x2, delta:double) : void
+    + {static} AreEqual(expected:double2x2, actual:double2x2, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:double3x2, actual:double3x2, delta:double) : void
+    + {static} AreEqual(expected:double3x2, actual:double3x2, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:double4x2, actual:double4x2, delta:double) : void
+    + {static} AreEqual(expected:double4x2, actual:double4x2, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:double2x3, actual:double2x3, delta:double) : void
+    + {static} AreEqual(expected:double2x3, actual:double2x3, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:double3x3, actual:double3x3, delta:double) : void
+    + {static} AreEqual(expected:double3x3, actual:double3x3, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:double4x3, actual:double4x3, delta:double) : void
+    + {static} AreEqual(expected:double4x3, actual:double4x3, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:double2x4, actual:double2x4, delta:double) : void
+    + {static} AreEqual(expected:double2x4, actual:double2x4, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:double3x4, actual:double3x4, delta:double) : void
+    + {static} AreEqual(expected:double3x4, actual:double3x4, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:double4x4, actual:double4x4, delta:double) : void
+    + {static} AreEqual(expected:double4x4, actual:double4x4, maxUlp:int, signedZeroEqual:bool) : void
+    + {static} AreEqual(expected:quaternion, actual:quaternion, delta:float) : void
+    + {static} AreEqual(expected:RigidTransform, actual:RigidTransform, delta:float) : void
+    + {static} IsTrue(condition:bool) : void
+    + {static} IsFalse(condition:bool) : void
+    + {static} UnsignedFloatQNaN() : float
+    + {static} UnsignedDoubleQNaN() : double
+    + {static} SignedFloatQNaN() : float
+    + {static} SignedDoubleQNaN() : double
+    + {static} SignedFloatZero() : float
+    + {static} SignedDoubleZero() : double
+}
+@enduml

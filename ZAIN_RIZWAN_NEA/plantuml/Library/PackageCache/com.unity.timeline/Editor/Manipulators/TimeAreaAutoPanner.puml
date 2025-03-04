@@ -1,0 +1,6 @@
+@startuml
+class TimeAreaAutoPanner {
+    + TimeAreaAutoPanner(state:WindowState)
+    + OnGUI(evt:Event) : void
+}
+@enduml

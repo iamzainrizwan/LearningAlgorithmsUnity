@@ -1,0 +1,52 @@
+@startuml
+class RenderingDebuggerTests <<partial>> {
+    + TestOrderAndPanelName() : void
+}
+class TestDebugDisplaySettings {
+    + TestDebugDisplaySettings()
+    + <<override>> Reset() : void
+}
+class "DebugDisplaySettings`1"<T> {
+}
+abstract class TestDebugDisplaySettingsData {
+    + AreAnySettingsActive : bool <<get>>
+    + IsPostProcessingAllowed : bool <<get>>
+    + IsLightingActive : bool <<get>>
+    + {abstract} CreatePanel() : IDebugDisplaySettingsPanelDisposable
+    + TryGetScreenClearColor(_:UnityEngine.Color) : bool
+}
+class Test1Panel {
+    + <<override>> CreatePanel() : IDebugDisplaySettingsPanelDisposable
+}
+class Test2Panel {
+    + <<override>> CreatePanel() : IDebugDisplaySettingsPanelDisposable
+}
+class Test3Panel {
+    + <<override>> CreatePanel() : IDebugDisplaySettingsPanelDisposable
+}
+class StatsPanel {
+    + StatsPanel()
+}
+class StatsPanel {
+    + StatsPanel()
+}
+class StatsPanel {
+    + StatsPanel()
+}
+RenderingDebuggerTests +-- TestDebugDisplaySettings
+"DebugDisplaySettings`1" "<TestDebugDisplaySettings>" <|-- TestDebugDisplaySettings
+TestDebugDisplaySettings +-- TestDebugDisplaySettingsData
+IDebugDisplaySettingsData <|-- TestDebugDisplaySettingsData
+TestDebugDisplaySettings +-- Test1Panel
+TestDebugDisplaySettingsData <|-- Test1Panel
+TestDebugDisplaySettings +-- Test2Panel
+TestDebugDisplaySettingsData <|-- Test2Panel
+TestDebugDisplaySettings +-- Test3Panel
+TestDebugDisplaySettingsData <|-- Test3Panel
+Test1Panel +-- StatsPanel
+DebugDisplaySettingsPanel <|-- StatsPanel
+Test2Panel +-- StatsPanel
+DebugDisplaySettingsPanel <|-- StatsPanel
+Test3Panel +-- StatsPanel
+DebugDisplaySettingsPanel <|-- StatsPanel
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+class UniversalRenderPipelineDebugDisplaySettings {
+    + <<override>> IsPostProcessingAllowed : bool <<get>>
+    + UniversalRenderPipelineDebugDisplaySettings()
+    + <<override>> Reset() : void
+}
+class "DebugDisplaySettings`1"<T> {
+}
+"DebugDisplaySettings`1" "<UniversalRenderPipelineDebugDisplaySettings>" <|-- UniversalRenderPipelineDebugDisplaySettings
+UniversalRenderPipelineDebugDisplaySettings --> "materialSettings" DebugDisplaySettingsMaterial
+UniversalRenderPipelineDebugDisplaySettings --> "renderingSettings" DebugDisplaySettingsRendering
+UniversalRenderPipelineDebugDisplaySettings --> "lightingSettings" DebugDisplaySettingsLighting
+UniversalRenderPipelineDebugDisplaySettings --> "volumeSettings" DebugDisplaySettingsVolume
+@enduml

@@ -1,0 +1,44 @@
+@startuml
+struct Dependency {
+    + name : string
+    + dependsOn : string
+    + Dependency(name:string, dependsOn:string)
+}
+class InterpolatorPack {
+    + InterpolatorPack()
+}
+class Semantic {
+    + semantic : string
+    + Semantic(semantic:string)
+}
+class Optional {
+    + Optional()
+}
+class OverrideType {
+    + typeName : string
+    + OverrideType(typeName:string)
+}
+class SystemGenerated {
+    + SystemGenerated()
+}
+class PreprocessorIf {
+    + conditional : string
+    + PreprocessorIf(conditional:string)
+}
+class NewGraphAction {
+    + <<override>> Action(instanceId:int, pathName:string, resourceFile:string) : void
+}
+class GraphUtil <<static>> {
+    + {static} CreateNewGraph() : void
+    + {static} CreateNewGraphWithOutputs(targets:Target[], blockDescriptors:BlockFieldDescriptor[]) : void
+    + {static} TryGetMetadataOfType(shader:Shader, obj:T) : bool
+    + {static} IsShaderGraph(material:Material) : bool
+    + {static} IsShaderGraphAsset(shader:Shader) : bool
+    + {static} IsShaderGraph(shader:Shader) : bool
+    + {static} GetLegacyTypeRemapping() : Dictionary<SerializationHelper.TypeSerializationInfo, SerializationHelper.TypeSerializationInfo>
+    + {static} WriteToFile(path:string, content:string) : bool
+    + {static} OpenFile(path:string) : void
+    + {static} FindDownStreamNodesOfType(node:AbstractMaterialNode) : List<NodeType>
+}
+EndNameEditAction <|-- NewGraphAction
+@enduml

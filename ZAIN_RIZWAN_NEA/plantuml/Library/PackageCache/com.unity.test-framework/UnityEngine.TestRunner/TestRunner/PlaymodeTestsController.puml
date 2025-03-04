@@ -1,0 +1,16 @@
+@startuml
+class PlaymodeTestsController {
+    + RunInfrastructureHasRegistered : bool = false
+    + Start() : IEnumerator
+    + TestRunnerCoroutine() : IEnumerator
+    + Run() : IEnumerator
+    + Cleanup() : void
+}
+class "List`1"<T> {
+}
+MonoBehaviour <|-- PlaymodeTestsController
+PlaymodeTestsController --> "ActiveController" PlaymodeTestsController
+PlaymodeTestsController --> "RaisedException" Exception
+PlaymodeTestsController --> "AssembliesWithTests<string>" "List`1"
+PlaymodeTestsController o-> "settings" PlaymodeTestsControllerSettings
+@enduml

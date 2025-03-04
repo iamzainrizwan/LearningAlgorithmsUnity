@@ -1,0 +1,13 @@
+@startuml
+class PropertyDrawerUtils <<static>> {
+    + {static} CreateLabel(text:string, indentLevel:int, fontStyle:FontStyle) : Label
+    + {static} CreateLabel(text:string, indentLevel:int) : Label
+}
+enum UIPrecisionForShaderGraphs {
+    Inherit= Precision.Inherit,
+    Single= Precision.Single,
+    Half= Precision.Half,
+    UseGraphPrecision= Precision.Graph,
+}
+PropertyDrawerUtils +-- UIPrecisionForShaderGraphs
+@enduml

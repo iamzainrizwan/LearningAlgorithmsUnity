@@ -1,0 +1,13 @@
+@startuml
+abstract class "Descriptor`2"<TTarget,TDescription> {
+    + <<override>> ValueChanged() : void
+    + <<virtual>> Title() : string
+    + <<virtual>> Summary() : string
+    + <<virtual>> Icon() : EditorTexture
+    + description : TDescription <<get>>
+}
+class "Assigner`2"<T1,T2> {
+}
+"Assigner`2" "<TTarget,TDescription>" <|-- "Descriptor`2"
+IDescriptor <|-- "Descriptor`2"
+@enduml

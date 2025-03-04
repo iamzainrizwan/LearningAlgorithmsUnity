@@ -1,0 +1,20 @@
+@startuml
+class GPUResidentBatcher <<partial>> {
+    + GPUResidentBatcher(batcherContext:RenderersBatchersContext, instanceCullerBatcherDesc:InstanceCullingBatcherDesc, gpuDrivenProcessor:GPUDrivenProcessor)
+    + Dispose() : void
+    + OnBeginContextRendering() : void
+    + OnEndContextRendering() : void
+    + OnBeginCameraRendering(camera:Camera) : void
+    + OnEndCameraRendering(camera:Camera) : void
+    + UpdateFrame() : void
+    + DestroyMaterials(destroyedMaterials:NativeArray<int>) : void
+    + DestroyInstances(instances:NativeArray<InstanceHandle>) : void
+    + DestroyMeshes(destroyedMeshes:NativeArray<int>) : void
+    + InstanceOcclusionTest(renderGraph:RenderGraph, settings:OcclusionCullingSettings, subviewOcclusionTests:ReadOnlySpan<SubviewOcclusionTest>) : void
+    + UpdateInstanceOccluders(renderGraph:RenderGraph, occluderParams:OccluderParameters, occluderSubviewUpdates:ReadOnlySpan<OccluderSubviewUpdate>) : void
+    + UpdateRenderers(renderersID:NativeArray<int>) : void
+    + PostCullBeginCameraRendering(context:RenderRequestBatcherContext) : void
+    + OnSetupAmbientProbe() : void
+}
+IDisposable <|-- GPUResidentBatcher
+@enduml

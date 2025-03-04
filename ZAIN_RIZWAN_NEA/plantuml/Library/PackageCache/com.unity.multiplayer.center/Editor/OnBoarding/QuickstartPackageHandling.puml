@@ -1,0 +1,8 @@
+@startuml
+class QuickstartIsMissingView {
+    + <<const>> PackageId : string = "com.unity.multiplayer.center.quickstart"
+    + {static} ShouldShow : bool <<get>>
+    + QuickstartIsMissingView()
+}
+QuickstartIsMissingView --> "RootVisualElement" VisualElement
+@enduml

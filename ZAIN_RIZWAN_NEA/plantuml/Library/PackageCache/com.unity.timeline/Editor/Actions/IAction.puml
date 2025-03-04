@@ -1,0 +1,13 @@
+@startuml
+interface IAction {
+}
+class ActionExtensions <<static>> {
+    + {static} GetUndoName(action:IAction) : string
+    + {static} GetMenuEntryName(action:IAction) : string
+    + {static} GetDisplayName(action:IAction) : string
+    + {static} HasAutoUndo(action:IAction) : bool
+    + {static} IsChecked(action:IAction) : bool
+    + {static} IsActionActiveInMode(action:IAction, mode:TimelineModes) : bool
+    + {static} GetShortcut(action:IAction) : string
+}
+@enduml

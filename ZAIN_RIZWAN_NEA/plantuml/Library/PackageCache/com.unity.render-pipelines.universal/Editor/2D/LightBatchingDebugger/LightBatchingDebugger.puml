@@ -1,0 +1,16 @@
+@startuml
+class LightBatchingDebugger {
+    + {static} ShowExample() : void
+    + QueueRefresh() : void
+}
+class LayerBatch {
+    + batchId : int
+}
+class "List`1"<T> {
+}
+EditorWindow <|-- LightBatchingDebugger
+LightBatchingDebugger +-- LayerBatch
+LayerBatch o-> "LayerNames<string>" "List`1"
+LayerBatch o-> "Lights<UnityEngine.Object>" "List`1"
+LayerBatch o-> "Shadows<UnityEngine.Object>" "List`1"
+@enduml

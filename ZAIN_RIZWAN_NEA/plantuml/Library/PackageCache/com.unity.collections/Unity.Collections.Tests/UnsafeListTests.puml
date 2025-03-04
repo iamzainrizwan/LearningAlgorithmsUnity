@@ -1,0 +1,58 @@
+@startuml
+class UnsafeListTests {
+    + UnsafeListT_Init() : void
+    + <<unsafe>> UnsafeListT_Init_ClearMemory() : void
+    + <<unsafe>> UnsafeListT_Allocate_Deallocate_Read_Write() : void
+    + <<unsafe>> UnsafeListT_Resize_ClearMemory() : void
+    + <<unsafe>> UnsafeListT_Resize_Zero() : void
+    + <<unsafe>> UnsafeListT_SetCapacity() : void
+    + <<unsafe>> UnsafeListT_TrimExcess() : void
+    + <<unsafe>> UnsafeListT_DisposeJob() : void
+    + UnsafeListT_AddReplicate() : void
+    + <<unsafe>> UnsafeListT_AddNoResize() : void
+    + <<unsafe>> UnsafeListT_AddNoResize_Read() : void
+    + <<unsafe>> UnsafeListT_RemoveAtSwapBack() : void
+    + <<unsafe>> UnsafeListT_RemoveRangeSwapBackBE() : void
+    + <<unsafe>> UnsafeListT_RemoveAt() : void
+    + <<unsafe>> UnsafeListT_RemoveRange() : void
+    + <<unsafe>> UnsafeListT_Remove_Throws() : void
+    + <<unsafe>> UnsafeListT_PtrLength() : void
+    + UnsafeListT_AsReadOnly() : void
+    + UnsafeListT_ParallelWriter() : void
+    + UnsafeListT_ParallelWriter_NoPtrCaching() : void
+    + <<unsafe>> UnsafeListT_IndexOf() : void
+    + UnsafeListT_InsertRangeWithBeginEnd() : void
+    + UnsafeListT_InsertRange() : void
+    + UnsafeListT_ForEach(n:int) : void
+    + UnsafeListT_CustomAllocatorTest() : void
+    + <<unsafe>> UnsafeListT_BurstedCustomAllocatorTest() : void
+    + <<unsafe>> UnsafeListT_TestInterfaces() : void
+    + <<unsafe>> NativeList_TestInterfaces() : void
+    + <<unsafe>> FixedList32Bytes_TestInterfaces() : void
+    + <<unsafe>> FixedList64Bytes_TestInterfaces() : void
+    + <<unsafe>> FixedList128Bytes_TestInterfaces() : void
+    + <<unsafe>> FixedList512Bytes_TestInterfaces() : void
+    + <<unsafe>> FixedList4096Bytes_TestInterfaces() : void
+}
+struct UnsafeListAsReadOnly {
+    + Execute() : void
+}
+struct UnsafeListParallelWriter {
+    + Execute(index:int) : void
+}
+struct UnsafeListTestParallelWriter {
+    + <<unsafe>> Execute() : void
+}
+struct BurstedCustomAllocatorJob {
+    + Execute() : void
+}
+CollectionsTestCommonBase <|-- UnsafeListTests
+UnsafeListTests +-- UnsafeListAsReadOnly
+IJob <|-- UnsafeListAsReadOnly
+UnsafeListTests +-- UnsafeListParallelWriter
+IJobParallelFor <|-- UnsafeListParallelWriter
+UnsafeListTests +-- UnsafeListTestParallelWriter
+IJob <|-- UnsafeListTestParallelWriter
+UnsafeListTests +-- BurstedCustomAllocatorJob
+IJob <|-- BurstedCustomAllocatorJob
+@enduml

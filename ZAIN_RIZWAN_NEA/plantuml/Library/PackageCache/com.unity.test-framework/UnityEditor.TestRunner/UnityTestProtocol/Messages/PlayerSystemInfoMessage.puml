@@ -1,0 +1,7 @@
+@startuml
+class PlayerSystemInfoMessage {
+    + PlayerSystemInfoMessage()
+}
+Message <|-- PlayerSystemInfoMessage
+PlayerSystemInfoMessage --> "PlayerSystemInfo" PlayerSystemInfo
+@enduml

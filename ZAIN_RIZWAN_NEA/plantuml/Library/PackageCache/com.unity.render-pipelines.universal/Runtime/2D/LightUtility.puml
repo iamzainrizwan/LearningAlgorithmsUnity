@@ -1,0 +1,29 @@
+@startuml
+struct PerLight2D {
+}
+class LightUtility <<static>> {
+    + {static} CheckForChange(a:Light2D.LightType, b:Light2D.LightType) : bool
+    + {static} CheckForChange(a:Component, b:Component) : bool
+    + {static} CheckForChange(a:int, b:int) : bool
+    + {static} CheckForChange(a:float, b:float) : bool
+    + {static} CheckForChange(a:bool, b:bool) : bool
+    + {static} GenerateShapeMesh(light:Light2D, shapePath:Vector3[], falloffDistance:float, batchColor:float) : Bounds
+    + {static} GenerateParametricMesh(light:Light2D, radius:float, falloffDistance:float, angle:float, sides:int, batchColor:float) : Bounds
+    + {static} GenerateSpriteMesh(light:Light2D, sprite:Sprite, batchColor:float) : Bounds
+    + {static} GetShapePathHash(path:Vector3[]) : int
+}
+enum PivotType {
+    PivotBase,
+    PivotCurve,
+    PivotIntersect,
+    PivotSkip,
+    PivotClip,
+}
+struct LightMeshVertex {
+}
+LightUtility +-- PivotType
+LightUtility +-- LightMeshVertex
+LightMeshVertex --> "position" Vector3
+LightMeshVertex --> "color" Color
+LightMeshVertex --> "uv" Vector2
+@enduml

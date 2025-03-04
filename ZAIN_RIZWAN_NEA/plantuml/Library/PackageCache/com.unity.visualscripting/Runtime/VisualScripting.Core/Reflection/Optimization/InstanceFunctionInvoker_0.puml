@@ -1,0 +1,11 @@
+@startuml
+class "InstanceFunctionInvoker`2"<TTarget,TResult> <<sealed>> {
+    + InstanceFunctionInvoker(methodInfo:MethodInfo)
+    + <<override>> Invoke(target:object, args:object[]) : object
+    + <<override>> Invoke(target:object) : object
+    + InvokeUnsafe(target:object) : object
+}
+class "InstanceFunctionInvokerBase`2"<T1,T2> {
+}
+"InstanceFunctionInvokerBase`2" "<TTarget,TResult>" <|-- "InstanceFunctionInvoker`2"
+@enduml

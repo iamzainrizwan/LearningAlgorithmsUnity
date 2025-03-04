@@ -1,0 +1,19 @@
+@startuml
+class Cloning <<static>> {
+    + {static} Clone(original:object, fallbackCloner:ICloner, tryPreserveInstances:bool) : object
+    + {static} Clone(original:T, fallbackCloner:ICloner, tryPreserveInstances:bool) : T
+    + {static} CloneViaFakeSerialization(original:object) : object
+    + {static} CloneViaFakeSerialization(original:T) : T
+    + {static} GetCloner(original:object, type:Type) : ICloner
+}
+class "HashSet`1"<T> {
+}
+Cloning o-> "cloners<ICloner>" "HashSet`1"
+Cloning o-> "arrayCloner" ArrayCloner
+Cloning o-> "dictionaryCloner" DictionaryCloner
+Cloning o-> "enumerableCloner" EnumerableCloner
+Cloning o-> "listCloner" ListCloner
+Cloning o-> "animationCurveCloner" AnimationCurveCloner
+Cloning o-> "fieldsCloner" FieldsCloner
+Cloning o-> "fakeSerializationCloner" FakeSerializationCloner
+@enduml

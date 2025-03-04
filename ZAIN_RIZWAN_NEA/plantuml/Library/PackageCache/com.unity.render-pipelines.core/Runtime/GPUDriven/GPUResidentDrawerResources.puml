@@ -1,0 +1,21 @@
+@startuml
+class GPUResidentDrawerResources {
+}
+enum Version {
+    Initial,
+    Count,
+    Latest= Count - 1,
+}
+IRenderPipelineResources <|-- GPUResidentDrawerResources
+GPUResidentDrawerResources --> "instanceDataBufferCopyKernels" ComputeShader
+GPUResidentDrawerResources --> "instanceDataBufferUploadKernels" ComputeShader
+GPUResidentDrawerResources --> "transformUpdaterKernels" ComputeShader
+GPUResidentDrawerResources --> "m_WindDataUpdaterKernels" ComputeShader
+GPUResidentDrawerResources --> "windDataUpdaterKernels" ComputeShader
+GPUResidentDrawerResources --> "occluderDepthPyramidKernels" ComputeShader
+GPUResidentDrawerResources --> "instanceOcclusionCullingKernels" ComputeShader
+GPUResidentDrawerResources --> "occlusionCullingDebugKernels" ComputeShader
+GPUResidentDrawerResources --> "debugOcclusionTestPS" Shader
+GPUResidentDrawerResources --> "debugOccluderPS" Shader
+GPUResidentDrawerResources +-- Version
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+class AllocatingGCMemoryConstraint {
+    + <<override>> ApplyTo(obj:object) : ConstraintResult
+    + <<override>> ApplyTo(del:ActualValueDelegate<TActual>) : ConstraintResult
+    + <<override>> Description : string <<get>>
+}
+class AllocatingGCMemoryResult {
+    + AllocatingGCMemoryResult(constraint:IConstraint, actualValue:object, diff:int)
+    + <<override>> WriteMessageTo(writer:MessageWriter) : void
+}
+Constraint <|-- AllocatingGCMemoryConstraint
+AllocatingGCMemoryConstraint +-- AllocatingGCMemoryResult
+ConstraintResult <|-- AllocatingGCMemoryResult
+@enduml

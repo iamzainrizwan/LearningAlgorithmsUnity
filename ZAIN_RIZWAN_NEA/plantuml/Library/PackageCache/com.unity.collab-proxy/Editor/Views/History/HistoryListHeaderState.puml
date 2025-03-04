@@ -1,0 +1,13 @@
+@startuml
+enum HistoryListColumn {
+    Changeset,
+    CreationDate,
+    CreatedBy,
+    Comment,
+    Branch,
+}
+class HistoryListHeaderState {
+}
+MultiColumnHeaderState <|-- HistoryListHeaderState
+ISerializationCallbackReceiver <|-- HistoryListHeaderState
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+class DebugOverlay {
+    + x : int <<get>>
+    + y : int <<get>>
+    + overlaySize : int <<get>>
+    + StartOverlay(initialX:int, initialY:int, overlaySize:int, screenWidth:int) : void
+    + Next(aspect:float) : Rect
+    + SetViewport(cmd:CommandBuffer) : void
+}
+@enduml

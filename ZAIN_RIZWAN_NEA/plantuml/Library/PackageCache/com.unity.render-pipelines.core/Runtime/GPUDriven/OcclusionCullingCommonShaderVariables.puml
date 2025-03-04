@@ -1,0 +1,19 @@
+@startuml
+struct OcclusionCullingCommonShaderVariables {
+    + <<fixed>> _OccluderMipBounds : uint
+    + <<fixed>> _ViewProjMatrix : float
+    + <<fixed>> _ViewOriginWorldSpace : float
+    + <<fixed>> _FacingDirWorldSpace : float
+    + <<fixed>> _RadialDirWorldSpace : float
+    + _OccluderMipLayoutSizeX : uint
+    + _OccluderMipLayoutSizeY : uint
+    + _OcclusionTestDebugFlags : uint
+    + _OcclusionCullingCommonPad0 : uint
+    + _OcclusionTestCount : int
+    + _OccluderSubviewIndices : int
+    + _CullingSplitIndices : int
+    + _CullingSplitMask : int
+}
+OcclusionCullingCommonShaderVariables --> "_DepthSizeInOccluderPixels" Vector4
+OcclusionCullingCommonShaderVariables --> "_OccluderDepthPyramidSize" Vector4
+@enduml

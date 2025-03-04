@@ -1,0 +1,10 @@
+@startuml
+class StickyNoteEditor <<sealed>> {
+    + StickyNoteEditor(metadata:Metadata)
+}
+class Styles <<static>> {
+}
+Inspector <|-- StickyNoteEditor
+StickyNoteEditor +-- Styles
+Styles --> "inspectorPadding" RectOffset
+@enduml

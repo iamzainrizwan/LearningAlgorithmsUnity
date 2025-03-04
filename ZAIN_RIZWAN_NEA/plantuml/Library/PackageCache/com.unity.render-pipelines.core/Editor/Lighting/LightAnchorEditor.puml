@@ -1,0 +1,41 @@
+@startuml
+class LightAnchorEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+class AngleFieldState {
+    + radius : float
+}
+class LightAnchorStyles <<static>> {
+    {static} + inspectorWidthPadding : float = 60f
+    {static} + presetButtonCount : float = 9f
+    {static} + k_IconFolder : string = @"Packages/com.unity.render-pipelines.core/Editor/Lighting/Icons/"
+    {static} + BackgroundIconColor() : Color
+    {static} + DiskBackgroundAngleColor() : Color
+    {static} + WireDiskAngleColor() : Color
+}
+Editor <|-- LightAnchorEditor
+AngleFieldState --> "position" Vector2
+LightAnchorStyles o-> "centeredLabel" GUIStyle
+LightAnchorStyles o-> "presetTextureRimLeft" GUIContent
+LightAnchorStyles o-> "presetTextureKickLeft" GUIContent
+LightAnchorStyles o-> "presetTextureBounceLeft" GUIContent
+LightAnchorStyles o-> "presetTextureFillLeft" GUIContent
+LightAnchorStyles o-> "presetTextureHair" GUIContent
+LightAnchorStyles o-> "presetTextureFillRight" GUIContent
+LightAnchorStyles o-> "presetTextureBounceRight" GUIContent
+LightAnchorStyles o-> "presetTextureKickRight" GUIContent
+LightAnchorStyles o-> "presetTextureRimRight" GUIContent
+LightAnchorStyles o-> "distanceProperty" GUIContent
+LightAnchorStyles o-> "upDirectionProperty" GUIContent
+LightAnchorStyles o-> "anchorPositionOverrideProperty" GUIContent
+LightAnchorStyles o-> "anchorPositionOffsetProperty" GUIContent
+LightAnchorStyles o-> "totalTransparentColor" Color
+LightAnchorStyles o-> "hoverColor" Color
+LightAnchorStyles o-> "darkBackgroundIconColor" Color
+LightAnchorStyles o-> "lightBackgroundIconColor" Color
+LightAnchorStyles o-> "angleDiskBorderColor" Color
+LightAnchorStyles o-> "darkDiskBackgroundAngleColor" Color
+LightAnchorStyles o-> "lightDiskBackgroundAngleColor" Color
+LightAnchorStyles o-> "darkWireDiskAngleColor" Color
+LightAnchorStyles o-> "lightWireDiskAngleColor" Color
+@enduml

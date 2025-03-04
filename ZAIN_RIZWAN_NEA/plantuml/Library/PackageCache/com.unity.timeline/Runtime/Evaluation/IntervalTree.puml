@@ -1,0 +1,25 @@
+@startuml
+interface IInterval {
+}
+struct IntervalTreeNode {
+    + first : int
+    + last : int
+    + left : int
+    + right : int
+}
+class "IntervalTree`1"<T> {
+    + dirty : bool <<get>> <<internal set>>
+    + Add(item:T) : void
+    + IntersectsWith(value:Int64, results:List<T>) : void
+    + IntersectsWithRange(start:Int64, end:Int64, results:List<T>) : void
+    + UpdateIntervals() : void
+    + Clear() : void
+}
+struct Entry {
+}
+IntervalTreeNode --> "center" Int64
+"IntervalTree`1" +-- Entry
+Entry --> "intervalStart" Int64
+Entry --> "intervalEnd" Int64
+Entry --> "item" T
+@enduml

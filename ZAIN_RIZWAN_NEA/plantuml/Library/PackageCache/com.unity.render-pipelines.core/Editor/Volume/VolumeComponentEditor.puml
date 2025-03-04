@@ -1,0 +1,38 @@
+@startuml
+class VolumeComponentEditor {
+    + expanded : bool <<get>> <<set>>
+    + <<virtual>> hasAdditionalProperties : bool <<get>>
+    + showAdditionalProperties : bool <<get>> <<set>>
+    + <<new>> Repaint() : void
+    + <<virtual>> OnEnable() : void
+    + <<virtual>> OnDisable() : void
+    + <<override>> OnInspectorGUI() : void
+    + <<virtual>> GetDisplayTitle() : GUIContent
+    + enableOverrides : bool <<get>> <<set>> = true
+}
+class Styles <<static>> {
+    + {static} toggleAllText : string <<get>>
+    + <<const>> overrideCheckboxWidth : int = 14
+    + <<const>> overrideCheckboxOffset : int = 9
+}
+struct OverridablePropertyScope {
+    + displayed : bool <<get>>
+    + OverridablePropertyScope(property:SerializedDataParameter, label:GUIContent, editor:VolumeComponentEditor)
+    + OverridablePropertyScope(property:SerializedDataParameter, label:string, editor:VolumeComponentEditor)
+}
+class IndentLevelScope {
+    + IndentLevelScope(offset:int)
+}
+Editor <|-- VolumeComponentEditor
+VolumeComponentEditor --> "volumeComponent" VolumeComponent
+VolumeComponentEditor --> "baseProperty" SerializedProperty
+VolumeComponentEditor --> "activeProperty" SerializedProperty
+VolumeComponentEditor +-- Styles
+Styles o-> "k_OverrideSettingText" GUIContent
+Styles o-> "k_AllText" GUIContent
+Styles o-> "k_NoneText" GUIContent
+VolumeComponentEditor +-- OverridablePropertyScope
+IDisposable <|-- OverridablePropertyScope
+OverridablePropertyScope --> "label" GUIContent
+VolumeComponentEditor +-- IndentLevelScope
+@enduml

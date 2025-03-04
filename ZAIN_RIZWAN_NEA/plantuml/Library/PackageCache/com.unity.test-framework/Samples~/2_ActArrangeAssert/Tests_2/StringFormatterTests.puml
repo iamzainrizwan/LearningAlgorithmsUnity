@@ -1,0 +1,5 @@
+@startuml
+class StringFormatterTests {
+    + YourTestGoesHere() : void
+}
+@enduml

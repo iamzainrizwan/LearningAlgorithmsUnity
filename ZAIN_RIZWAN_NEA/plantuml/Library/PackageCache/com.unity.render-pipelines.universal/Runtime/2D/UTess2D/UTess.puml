@@ -1,0 +1,93 @@
+@startuml
+enum UEventType {
+    EVENT_POINT= 0,
+    EVENT_END= 1,
+    EVENT_START= 2,
+}
+struct UEvent {
+    + idx : int
+    + type : int
+}
+struct UHull {
+    + idx : int
+    + ilcount : int
+    + iucount : int
+}
+struct UStar {
+    + pointCount : int
+}
+struct UBounds {
+}
+struct UCircle {
+    + radius : float
+}
+struct UTriangle {
+    + area : float
+}
+struct UEncroachingSegment {
+    + index : int
+}
+interface "ICondition2`2"<in T,in U> {
+}
+struct XCompare {
+    + Compare(a:double, b:double) : int
+}
+struct IntersectionCompare {
+    + <<fixed>> xvasort : double
+    + <<fixed>> xvbsort : double
+    + Compare(a:int2, b:int2) : int
+}
+struct TessEventCompare {
+    + Compare(a:UEvent, b:UEvent) : int
+}
+struct TessEdgeCompare {
+    + Compare(a:int2, b:int2) : int
+}
+struct TessCellCompare {
+    + Compare(a:int3, b:int3) : int
+}
+struct TessJunctionCompare {
+    + Compare(a:int2, b:int2) : int
+}
+struct DelaEdgeCompare {
+    + Compare(a:int4, b:int4) : int
+}
+struct TessLink {
+}
+struct ModuleHandle {
+    + {static} ConvexQuad(allocator:Allocator, points:NativeArray<float2>, edges:NativeArray<int2>, outVertices:NativeArray<float2>, outVertexCount:int, outIndices:NativeArray<int>, outIndexCount:int, outEdges:NativeArray<int2>, outEdgeCount:int) : float4
+    + {static} Tessellate(allocator:Allocator, points:NativeArray<float2>, edges:NativeArray<int2>, outVertices:NativeArray<float2>, outVertexCount:int, outIndices:NativeArray<int>, outIndexCount:int, outEdges:NativeArray<int2>, outEdgeCount:int) : float4
+}
+class "ArraySlice`1"<T> {
+}
+class "IComparer`1"<T> {
+}
+class "NativeArray`1"<T> {
+}
+UEvent --> "a" float2
+UEvent --> "b" float2
+UHull --> "a" float2
+UHull --> "b" float2
+UHull --> "ilarray<int>" "ArraySlice`1"
+UHull --> "iuarray<int>" "ArraySlice`1"
+UStar --> "points<int>" "ArraySlice`1"
+UBounds --> "min" double2
+UBounds --> "max" double2
+UCircle --> "center" float2
+UTriangle --> "va" float2
+UTriangle --> "vb" float2
+UTriangle --> "vc" float2
+UTriangle --> "c" UCircle
+UTriangle --> "indices" int3
+UEncroachingSegment --> "a" float2
+UEncroachingSegment --> "b" float2
+"IComparer`1" "<double>" <|-- XCompare
+"IComparer`1" "<int2>" <|-- IntersectionCompare
+IntersectionCompare --> "points<double2>" "NativeArray`1"
+IntersectionCompare --> "edges<int2>" "NativeArray`1"
+"IComparer`1" "<UEvent>" <|-- TessEventCompare
+"IComparer`1" "<int2>" <|-- TessEdgeCompare
+"IComparer`1" "<int3>" <|-- TessCellCompare
+"IComparer`1" "<int2>" <|-- TessJunctionCompare
+"IComparer`1" "<int4>" <|-- DelaEdgeCompare
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+class TestReportWindow {
+    + searchString : string
+    + GetResults() : Run
+    + SelectTest(index:int) : void
+    + SelectTest(name:string) : void
+    + SelectTest(result:PerformanceTestResult) : void
+    + SetupMaterial() : void
+    + DrawStart(r:Rect) : bool
+    + DrawStart(w:float, h:float, style:GUIStyle) : bool
+    + DrawEnd() : void
+    + DrawBar(x:float, y:float, w:float, h:float, col:Color) : void
+}
+EditorWindow <|-- TestReportWindow
+TestReportWindow o-> "m_colorWhite" Color
+TestReportWindow o-> "m_colorBarBackground" Color
+TestReportWindow o-> "m_colorBoxAndWhiskerBackground" Color
+TestReportWindow o-> "m_colorBar" Color
+TestReportWindow o-> "m_colorStandardLine" Color
+TestReportWindow o-> "m_colorMedianLine" Color
+TestReportWindow o-> "m_colorMedianText" Color
+TestReportWindow o-> "m_colorWarningText" Color
+TestReportWindow o-> "m_toolbarSeparator" Color
+@enduml

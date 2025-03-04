@@ -1,0 +1,7 @@
+@startuml
+class MotionVectorsPersistentData <<sealed>> {
+    + Reset() : void
+    + Update(cameraData:UniversalCameraData) : void
+    + SetGlobalMotionMatrices(cmd:RasterCommandBuffer, xr:XRPass) : void
+}
+@enduml

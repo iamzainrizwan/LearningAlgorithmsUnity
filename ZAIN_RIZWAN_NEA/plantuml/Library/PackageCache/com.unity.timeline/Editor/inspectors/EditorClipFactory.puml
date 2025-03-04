@@ -1,0 +1,7 @@
+@startuml
+class EditorClipFactory <<static>> {
+    + {static} GetEditorClip(clip:TimelineClip) : EditorClip
+    + {static} RemoveEditorClip(clip:TimelineClip) : void
+    + {static} Contains(clip:TimelineClip) : bool
+}
+@enduml

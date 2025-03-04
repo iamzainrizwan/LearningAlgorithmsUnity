@@ -1,0 +1,6 @@
+@startuml
+class ButtonEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+SelectableEditor <|-- ButtonEditor
+@enduml

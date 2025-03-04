@@ -1,0 +1,19 @@
+@startuml
+class "SelectManyObservable`2"<TSource,TResult> {
+    + SelectManyObservable(source:IObservable<TSource>, filter:Func<TSource, IEnumerable<TResult>>)
+    + Subscribe(observer:IObserver<TResult>) : IDisposable
+}
+class "IObservable`1"<T> {
+}
+class Select {
+    + Select(observable:SelectManyObservable<TSource, TResult>, observer:IObserver<TResult>)
+    + OnCompleted() : void
+    + OnError(error:Exception) : void
+    + OnNext(evt:TSource) : void
+}
+class "IObserver`1"<T> {
+}
+"IObservable`1" "<TResult>" <|-- "SelectManyObservable`2"
+"SelectManyObservable`2" +-- Select
+"IObserver`1" "<TSource>" <|-- Select
+@enduml

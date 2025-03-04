@@ -1,0 +1,30 @@
+@startuml
+class "MergedList`1"<T> {
+    + MergedList()
+    + Count : int <<get>>
+    + IsReadOnly : bool <<get>>
+    + <<virtual>> Include(list:IList<TI>) : void
+    + Includes() : bool
+    + Includes(elementType:Type) : bool
+    + ForType() : IList<TI>
+    + Contains(item:T) : bool
+    + <<virtual>> Add(item:T) : void
+    + <<virtual>> Clear() : void
+    + <<virtual>> Remove(item:T) : bool
+    + CopyTo(array:T[], arrayIndex:int) : void
+    + GetEnumerator() : Enumerator
+}
+class "IMergedCollection`1"<T> {
+}
+struct Enumerator {
+    + Enumerator(merged:MergedList<T>)
+    + Dispose() : void
+    + MoveNext() : bool
+}
+class "IEnumerator`1"<T> {
+}
+"IMergedCollection`1" "<T>" <|-- "MergedList`1"
+"MergedList`1" +-- Enumerator
+"IEnumerator`1" "<T>" <|-- Enumerator
+Enumerator --> "Current" T
+@enduml

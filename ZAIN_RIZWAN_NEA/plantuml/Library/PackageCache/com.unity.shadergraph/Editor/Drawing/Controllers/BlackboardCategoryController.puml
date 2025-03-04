@@ -1,0 +1,38 @@
+@startuml
+class MoveShaderInputAction {
+}
+class DeleteCategoryAction {
+}
+class ChangeCategoryIsExpandedAction {
+    + editorPrefsBaseKey : string
+    + isExpanded : bool <<get>> <<set>>
+}
+class ChangeCategoryNameAction {
+    + categoryGuid : string <<get>> <<set>>
+}
+class BlackboardCategoryController {
+    + <<override>> Dispose() : void
+}
+class "DataStore`1"<T> {
+}
+class "Action`1"<T> {
+}
+class "HashSet`1"<T> {
+}
+class "List`1"<T> {
+}
+class "SGViewController`2"<T1,T2> {
+}
+IGraphDataAction <|-- MoveShaderInputAction
+MoveShaderInputAction --> "modifyGraphDataAction<GraphData>" "Action`1"
+IGraphDataAction <|-- DeleteCategoryAction
+DeleteCategoryAction --> "modifyGraphDataAction<GraphData>" "Action`1"
+DeleteCategoryAction o-> "categoriesToRemoveGuids<string>" "HashSet`1"
+IGraphDataAction <|-- ChangeCategoryIsExpandedAction
+ChangeCategoryIsExpandedAction --> "categoryGuids<string>" "List`1"
+ChangeCategoryIsExpandedAction --> "modifyGraphDataAction<GraphData>" "Action`1"
+IGraphDataAction <|-- ChangeCategoryNameAction
+ChangeCategoryNameAction --> "modifyGraphDataAction<GraphData>" "Action`1"
+"SGViewController`2" "<CategoryData,BlackboardCategoryViewModel>" <|-- BlackboardCategoryController
+IDisposable <|-- BlackboardCategoryController
+@enduml

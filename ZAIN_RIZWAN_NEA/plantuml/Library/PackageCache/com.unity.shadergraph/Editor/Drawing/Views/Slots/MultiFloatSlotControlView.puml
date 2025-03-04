@@ -1,0 +1,6 @@
+@startuml
+class MultiFloatSlotControlView {
+    + MultiFloatSlotControlView(node:AbstractMaterialNode, labels:string[], get:Func<Vector4>, set:Action<Vector4>)
+}
+VisualElement <|-- MultiFloatSlotControlView
+@enduml

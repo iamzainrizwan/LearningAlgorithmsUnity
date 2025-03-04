@@ -1,0 +1,44 @@
+@startuml
+class ShaderDebugPrintManager <<sealed>> {
+    + SetShaderDebugPrintInputConstants(cmd:CommandBuffer, input:ShaderDebugPrintInput) : void
+    + SetShaderDebugPrintBindings(cmd:CommandBuffer) : void
+    + EndFrame() : void
+    + PrintImmediate() : void
+    + outputLine : string <<get>>
+    + DefaultOutput(line:string) : void
+}
+struct ShaderDebugPrintInput {
+    + leftDown : bool <<get>> <<set>>
+    + rightDown : bool <<get>> <<set>>
+    + middleDown : bool <<get>> <<set>>
+    + String() : string
+}
+class ShaderDebugPrintInputProducer <<static>> {
+    {static} + Get() : ShaderDebugPrintInput
+}
+class Profiling <<static>> {
+}
+enum DebugValueType {
+    TypeUint= 1,
+    TypeInt= 2,
+    TypeFloat= 3,
+    TypeUint2= 4,
+    TypeInt2= 5,
+    TypeFloat2= 6,
+    TypeUint3= 7,
+    TypeInt3= 8,
+    TypeFloat3= 9,
+    TypeUint4= 10,
+    TypeInt4= 11,
+    TypeFloat4= 12,
+    TypeBool= 13,
+}
+class "Action`1"<T> {
+}
+ShaderDebugPrintManager --> "instance" ShaderDebugPrintManager
+ShaderDebugPrintManager --> "outputAction<string>" "Action`1"
+ShaderDebugPrintInput --> "pos" Vector2
+ShaderDebugPrintManager +-- Profiling
+Profiling o-> "BufferReadComplete" ProfilingSampler
+ShaderDebugPrintManager +-- DebugValueType
+@enduml

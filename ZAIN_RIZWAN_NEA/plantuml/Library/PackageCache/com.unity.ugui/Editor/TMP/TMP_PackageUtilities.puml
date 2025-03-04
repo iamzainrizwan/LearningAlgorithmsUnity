@@ -1,0 +1,44 @@
+@startuml
+struct AssetConversionRecord {
+    + referencedResource : string
+    + target : string
+    + replacement : string
+}
+class AssetConversionData {
+}
+class TMP_ProjectTextSpacingConversionTool {
+}
+class TMP_ProjectConversionUtility {
+}
+class TMP_PackageUtilities {
+    + {static} ImportProjectResourcesMenu() : void
+    + {static} ImportExamplesContentMenu() : void
+}
+class "List`1"<T> {
+}
+struct AssetModificationRecord {
+    + assetFilePath : string
+    + assetDataFile : string
+}
+struct AssetFileRecord {
+    + assetFilePath : string
+    + AssetFileRecord(filePath:string, metaFilePath:string)
+}
+struct AssetModificationRecord {
+    + assetFilePath : string
+    + assetDataFile : string
+}
+struct AssetFileRecord {
+    + assetFilePath : string
+    + assetMetaFilePath : string
+    + AssetFileRecord(filePath:string, metaFilePath:string)
+}
+AssetConversionData --> "assetRecords<AssetConversionRecord>" "List`1"
+EditorWindow <|-- TMP_ProjectTextSpacingConversionTool
+EditorWindow <|-- TMP_ProjectConversionUtility
+Editor <|-- TMP_PackageUtilities
+TMP_ProjectTextSpacingConversionTool +-- AssetModificationRecord
+TMP_ProjectTextSpacingConversionTool +-- AssetFileRecord
+TMP_ProjectConversionUtility +-- AssetModificationRecord
+TMP_ProjectConversionUtility +-- AssetFileRecord
+@enduml

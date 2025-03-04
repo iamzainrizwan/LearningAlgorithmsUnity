@@ -1,0 +1,10 @@
+@startuml
+class ContextData <<sealed>> {
+    + ContextData()
+}
+class "List`1"<T> {
+}
+ContextData --> "blocks<JsonRef<BlockNode>>" "List`1"
+ContextData --> "position" Vector2
+ContextData --> "shaderStage" ShaderStage
+@enduml

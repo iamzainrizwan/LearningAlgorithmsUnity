@@ -1,0 +1,16 @@
+@startuml
+class VolumeCollectionTests {
+    + Setup() : void
+    + Teardown() : void
+    + IsRegistered() : void
+    + GrabVolumesLayerAndEverything() : void
+    + GrabVolumesFromMultipleLayers() : void
+    + {static} VolumeTestCases() : IEnumerable<TestCaseData>
+    + VolumesAreSortedByPriority(action:Action<Volume, int>) : void
+    + VolumesAreSortedByPriorityChanges(action:Action<Volume, int>) : void
+    + UpdateLayer() : void
+    + UpdateLayerMultipleVolumes() : void
+    + VolumeOnMultipleLayers() : void
+    + VolumeOnMultipleLayersGrabMultiple() : void
+}
+@enduml

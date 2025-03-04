@@ -1,0 +1,17 @@
+@startuml
+class IntegerNode {
+    + <<const>> OutputSlotId : int = 0
+    + IntegerNode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + value : int <<get>> <<set>>
+    + <<override>> CollectShaderProperties(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + <<override>> GetVariableNameForSlot(slotId:int) : string
+    + <<override>> CollectPreviewMaterialProperties(properties:List<PreviewProperty>) : void
+    + AsShaderProperty() : AbstractShaderProperty
+    + outputSlotId : int <<get>>
+}
+AbstractMaterialNode <|-- IntegerNode
+IGeneratesBodyCode <|-- IntegerNode
+IPropertyFromNode <|-- IntegerNode
+@enduml

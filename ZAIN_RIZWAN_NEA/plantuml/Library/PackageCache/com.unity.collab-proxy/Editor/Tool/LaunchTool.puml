@@ -1,0 +1,16 @@
+@startuml
+class LaunchTool <<static>> {
+}
+interface IShowDownloadPlasticExeWindow {
+}
+interface IProcessExecutor {
+}
+class ShowDownloadPlasticExeWindow {
+}
+class ProcessExecutor {
+}
+LaunchTool +-- IShowDownloadPlasticExeWindow
+LaunchTool +-- IProcessExecutor
+LaunchTool +-- ShowDownloadPlasticExeWindow
+LaunchTool +-- ProcessExecutor
+@enduml

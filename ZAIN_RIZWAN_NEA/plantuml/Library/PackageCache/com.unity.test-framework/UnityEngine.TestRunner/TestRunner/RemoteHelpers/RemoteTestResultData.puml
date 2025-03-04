@@ -1,0 +1,22 @@
+@startuml
+class RemoteTestResultData {
+    + testId : string
+    + name : string
+    + fullName : string
+    + resultState : string
+    + duration : double
+    + message : string
+    + stackTrace : string
+    + assertCount : int
+    + failCount : int
+    + passCount : int
+    + skipCount : int
+    + inconclusiveCount : int
+    + hasChildren : bool
+    + output : string
+    + xml : string
+}
+RemoteTestResultData --> "testStatus" TestStatus
+RemoteTestResultData --> "startTime" DateTime
+RemoteTestResultData --> "endTime" DateTime
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+class StencilStateDataDrawer {
+    + <<override>> OnGUI(rect:Rect, property:SerializedProperty, label:GUIContent) : void
+    + <<override>> GetPropertyHeight(property:SerializedProperty, label:GUIContent) : float
+}
+class Styles {
+}
+PropertyDrawer <|-- StencilStateDataDrawer
+StencilStateDataDrawer +-- Styles
+Styles o-> "overrideStencil" GUIContent
+Styles o-> "stencilValue" GUIContent
+Styles o-> "stencilFunction" GUIContent
+Styles o-> "stencilPass" GUIContent
+Styles o-> "stencilFail" GUIContent
+Styles o-> "stencilZFail" GUIContent
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class TaaHistory <<sealed>> {
+    + <<override>> OnCreate(owner:BufferedRTHandleSystem, typeId:uint) : void
+    + <<override>> Reset() : void
+    + GetAccumulationTexture(eyeIndex:int) : RTHandle
+    + GetAccumulationVersion(eyeIndex:int) : int
+}
+CameraHistoryItem <|-- TaaHistory
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+abstract class TMP_Asset {
+    + version : string <<get>> <<internal set>>
+    + instanceID : int <<get>>
+    + hashCode : int <<get>> <<set>>
+    + materialHashCode : int <<get>> <<set>>
+}
+ScriptableObject <|-- TMP_Asset
+TMP_Asset --> "faceInfo" FaceInfo
+TMP_Asset --> "material" Material
+@enduml

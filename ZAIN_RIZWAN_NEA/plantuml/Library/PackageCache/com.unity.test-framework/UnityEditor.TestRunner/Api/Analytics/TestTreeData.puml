@@ -1,0 +1,13 @@
+@startuml
+class TestTreeData {
+    + totalNumberOfTests : int
+    + numTestAttributes : int
+    + numUnityTestAttributes : int
+    + numCategoryAttributes : int
+    + numTestFixtureAttributes : int
+    + numConditionalIgnoreAttributes : int
+    + numRequiresPlayModeAttributesTrue : int
+    + numRequiresPlayModeAttributesFalse : int
+    + numUnityPlatformAttributes : int
+}
+@enduml

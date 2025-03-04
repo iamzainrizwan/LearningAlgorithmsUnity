@@ -1,0 +1,26 @@
+@startuml
+class Searcher {
+    + Searcher(database:SearcherDatabaseBase, title:string)
+    + Searcher(databases:IEnumerable<SearcherDatabaseBase>, title:string)
+    + Searcher(database:SearcherDatabaseBase, adapter:ISearcherAdapter)
+    + Searcher(databases:IEnumerable<SearcherDatabaseBase>, adapter:ISearcherAdapter)
+    + BuildIndices() : void
+    + Search(query:string) : IEnumerable<SearcherItem>
+}
+class "Comparison`1"<T> {
+}
+class AnalyticsEvent {
+    + <<readonly>> currentSearchFieldText : string
+    + AnalyticsEvent(eventType:EventType, currentSearchFieldText:string)
+}
+enum EventType {
+    Pending,
+    Picked,
+    Cancelled,
+}
+Searcher --> "Adapter" ISearcherAdapter
+Searcher --> "SortComparison<SearcherItem>" "Comparison`1"
+Searcher +-- AnalyticsEvent
+AnalyticsEvent --> "eventType" EventType
+AnalyticsEvent +-- EventType
+@enduml

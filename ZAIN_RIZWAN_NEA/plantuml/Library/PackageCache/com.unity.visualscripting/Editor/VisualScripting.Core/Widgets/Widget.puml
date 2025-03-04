@@ -1,0 +1,43 @@
+@startuml
+abstract class "Widget`2"<TCanvas,TItem> {
+    + disposed : bool <<get>>
+    + <<virtual>> Dispose() : void
+    + <<override>> ToString() : string
+    + <<virtual>> FetchMetadata() : Metadata
+    + <<virtual>> CacheItem() : void
+    + RegisterControl() : void
+    + <<virtual>> BeforeFrame() : void
+    + <<virtual>> HandleCapture() : void
+    + <<virtual>> HandleInput() : void
+    + <<virtual>> HandleRelease() : void
+    + <<virtual>> Update() : void
+    + isPositionValid : bool <<get>> <<set>>
+    + {abstract} zIndex : float <<get>> <<set>>
+    + Reposition() : void
+    + <<virtual>> CachePositionFirstPass() : void
+    + <<virtual>> CachePosition() : void
+    + BringToFront() : void
+    + SendToBack() : void
+    + <<virtual>> canClip : bool <<get>>
+    + <<virtual>> OnViewportChange() : void
+    + isVisible : bool <<get>> <<set>>
+    + isMouseThrough : bool <<get>>
+    + isMouseOver : bool <<get>>
+    + <<virtual>> foregroundRequiresInput : bool <<get>>
+    + <<virtual>> backgroundRequiresInput : bool <<get>>
+    + <<virtual>> overlayRequiresInput : bool <<get>>
+    + <<virtual>> DrawForeground() : void
+    + <<virtual>> DrawBackground() : void
+    + <<virtual>> DrawOverlay() : void
+}
+class "IEnumerable`1"<T> {
+}
+IWidget <|-- "Widget`2"
+"Widget`2" --> "subWidgets<IWidget>" "IEnumerable`1"
+"Widget`2" --> "metadata" Metadata
+"Widget`2" --> "positionDependers<IWidget>" "IEnumerable`1"
+"Widget`2" --> "positionDependencies<IWidget>" "IEnumerable`1"
+"Widget`2" --> "position" Rect
+"Widget`2" --> "clippingPosition" Rect
+"Widget`2" --> "hotArea" Rect
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class RayConverter {
+    + <<override>> CreateInstance(data:fsData, storageType:Type) : object
+}
+class "fsDirectConverter`1"<T> {
+}
+"fsDirectConverter`1" "<Ray>" <|-- RayConverter
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class PerformanceAttribute {
+    + PerformanceAttribute()
+    + BeforeTest(test:ITest) : IEnumerator
+    + AfterTest(test:ITest) : IEnumerator
+}
+CategoryAttribute <|-- PerformanceAttribute
+IOuterUnityTestAction <|-- PerformanceAttribute
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+class NameUtility <<static>> {
+    + {static} SelectedName(type:Type, human:bool, includeGenericParameters:bool) : string
+    + {static} SelectedName(member:MemberInfo, human:bool, direction:ActionDirection, expectingBoolean:bool) : string
+    + {static} SelectedName(parameter:ParameterInfo, human:bool) : string
+    + {static} SelectedName(exception:Exception, human:bool) : string
+    + {static} SelectedName(@enum:Enum, human:bool) : string
+    + {static} SelectedName(@namespace:Namespace, human:bool, full:bool) : string
+    + {static} SelectedParameterString(methodBase:MethodBase, targetType:Type, human:bool) : string
+    + {static} DisplayName(type:Type, includeGenericParameters:bool) : string
+    + {static} DisplayName(member:MemberInfo, direction:ActionDirection, expectingBoolean:bool) : string
+    + {static} DisplayName(parameter:ParameterInfo) : string
+    + {static} DisplayName(exception:Exception) : string
+    + {static} DisplayName(@enum:Enum) : string
+    + {static} DisplayName(@namespace:Namespace, full:bool) : string
+    + {static} DisplayParameterString(methodBase:MethodBase, targetType:Type) : string
+    + {static} HumanName(type:Type, includeGenericParameters:bool) : string
+    + {static} HumanName(member:MemberInfo, direction:ActionDirection, expectingBoolean:bool) : string
+    + {static} HumanName(parameter:ParameterInfo) : string
+    + {static} HumanName(exception:Exception) : string
+    + {static} HumanName(@enum:Enum) : string
+    + {static} CSharpName(@namespace:Namespace, full:bool) : string
+    + {static} HumanName(@namespace:Namespace, full:bool) : string
+    + {static} ToSummaryString(ex:Exception) : string
+}
+class "Dictionary`2"<T1,T2> {
+}
+NameUtility o-> "humanOperatorNames<string,string>" "Dictionary`2"
+@enduml

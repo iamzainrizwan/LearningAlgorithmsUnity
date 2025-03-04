@@ -1,0 +1,40 @@
+@startuml
+struct InputDeviceMatcher {
+    + empty : bool <<get>>
+    + WithInterface(pattern:string, supportRegex:bool) : InputDeviceMatcher
+    + WithDeviceClass(pattern:string, supportRegex:bool) : InputDeviceMatcher
+    + WithManufacturer(pattern:string, supportRegex:bool) : InputDeviceMatcher
+    + WithManufacturerContains(noRegExPattern:string) : InputDeviceMatcher
+    + WithProduct(pattern:string, supportRegex:bool) : InputDeviceMatcher
+    + WithVersion(pattern:string, supportRegex:bool) : InputDeviceMatcher
+    + WithCapability(path:string, value:TValue) : InputDeviceMatcher
+    + MatchPercentage(deviceDescription:InputDeviceDescription) : float
+    + {static} FromDeviceDescription(deviceDescription:InputDeviceDescription) : InputDeviceMatcher
+    + <<override>> ToString() : string
+    + Equals(other:InputDeviceMatcher) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+class "IEquatable`1"<T> {
+}
+class "IEnumerable`1"<T> {
+}
+struct MatcherJson {
+    + @interface : string
+    + deviceClass : string
+    + manufacturer : string
+    + manufacturerContains : string
+    + product : string
+    + version : string
+    + {static} FromMatcher(matcher:InputDeviceMatcher) : MatcherJson
+    + ToMatcher() : InputDeviceMatcher
+}
+struct Capability {
+    + path : string
+    + value : string
+}
+"IEquatable`1" "<InputDeviceMatcher>" <|-- InputDeviceMatcher
+InputDeviceMatcher --> "patterns<KeyValuePair<string, object>>" "IEnumerable`1"
+InputDeviceMatcher +-- MatcherJson
+MatcherJson +-- Capability
+@enduml

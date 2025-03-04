@@ -1,0 +1,15 @@
+@startuml
+class SubscriptionDetailsResponse {
+    + ProductType : string <<get>> <<set>>
+    + OrderSource : string <<get>> <<set>>
+    + GenesisOrgId : string <<get>> <<set>>
+    + OrganizationName : string <<get>> <<set>>
+    + ReadonlyStatus : string <<get>> <<set>>
+    + IsAdmin : bool <<get>> <<set>>
+    + IsOwner : bool <<get>> <<set>>
+}
+class "Dictionary`2"<T1,T2> {
+}
+SubscriptionDetailsResponse --> "CreatedAt" DateTime
+SubscriptionDetailsResponse --> "ExtraData<string,object>" "Dictionary`2"
+@enduml

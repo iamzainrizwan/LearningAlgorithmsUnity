@@ -1,0 +1,10 @@
+@startuml
+class AndroidPlatformSetup {
+    + Setup() : void
+    + PostBuildAction() : void
+    + PostSuccessfulBuildAction() : void
+    + PostSuccessfulLaunchAction() : void
+    + CleanUp() : void
+}
+IPlatformSetup <|-- AndroidPlatformSetup
+@enduml

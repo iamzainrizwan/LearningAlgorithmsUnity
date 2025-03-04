@@ -1,0 +1,15 @@
+@startuml
+class StateUnit <<sealed>> {
+    + StateUnit()
+    + StateUnit(macro:StateGraphAsset)
+    + {static} WithStart() : StateUnit
+    + <<override>> DefaultGraph() : StateGraph
+}
+class "NesterUnit`2"<T1,T2> {
+}
+"NesterUnit`2" "<StateGraph,StateGraphAsset>" <|-- StateUnit
+StateUnit --> "start" ControlInput
+StateUnit --> "stop" ControlInput
+StateUnit --> "started" ControlOutput
+StateUnit --> "stopped" ControlOutput
+@enduml

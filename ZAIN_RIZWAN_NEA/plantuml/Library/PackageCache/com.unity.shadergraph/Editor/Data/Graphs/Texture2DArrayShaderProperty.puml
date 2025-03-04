@@ -1,0 +1,8 @@
+@startuml
+class Texture2DArrayShaderProperty {
+}
+class "AbstractShaderProperty`1"<T> {
+}
+"AbstractShaderProperty`1" "<SerializableTextureArray>" <|-- Texture2DArrayShaderProperty
+Texture2DArrayShaderProperty --> "propertyType" PropertyType
+@enduml

@@ -1,0 +1,34 @@
+@startuml
+class KeepFrameFeature {
+    + <<override>> Create() : void
+    + <<override>> AddRenderPasses(renderer:ScriptableRenderer, renderingData:RenderingData) : void
+    + <<override>> SetupRenderPasses(renderer:ScriptableRenderer, renderingData:RenderingData) : void
+}
+class CopyFramePass {
+    + Setup(destination:RTHandle) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+class DrawOldFramePass {
+    + Setup(drawOldFrameMaterial:Material, handle:RTHandle, textureName:string) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+class Settings {
+    + textureName : string
+}
+class PassData {
+    + name : string
+}
+ScriptableRendererFeature <|-- KeepFrameFeature
+KeepFrameFeature o-> "settings" Settings
+KeepFrameFeature +-- CopyFramePass
+ScriptableRenderPass <|-- CopyFramePass
+KeepFrameFeature +-- DrawOldFramePass
+ScriptableRenderPass <|-- DrawOldFramePass
+KeepFrameFeature +-- Settings
+Settings --> "displayMaterial" Material
+DrawOldFramePass +-- PassData
+PassData --> "source" TextureHandle
+PassData --> "material" Material
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class EnhancedTouchSupport <<static>> {
+    + {static} enabled : bool <<get>>
+    + {static} Enable() : void
+    + {static} Disable() : void
+}
+@enduml

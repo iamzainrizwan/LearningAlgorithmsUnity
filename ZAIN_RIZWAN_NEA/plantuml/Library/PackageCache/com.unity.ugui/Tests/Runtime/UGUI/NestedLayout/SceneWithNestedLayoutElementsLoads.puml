@@ -1,0 +1,12 @@
+@startuml
+class SceneWithNestedLayoutElementsLoad {
+    + Setup() : void
+    + SceneWithNestedAspectRatioFitterLoads() : IEnumerator
+    + SceneWithNestedContentSizeFitterLoads() : IEnumerator
+    + SceneWithNestedLayoutGroupLoads() : IEnumerator
+    + TestSetup() : void
+    + TearDown() : void
+    + OnTimeTearDown() : void
+}
+IPrebuildSetup <|-- SceneWithNestedLayoutElementsLoad
+@enduml

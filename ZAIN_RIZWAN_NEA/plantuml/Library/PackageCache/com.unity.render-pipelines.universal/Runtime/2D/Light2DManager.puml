@@ -1,0 +1,12 @@
+@startuml
+class Light2DManager <<static>> {
+    + {static} RegisterLight(light:Light2D) : void
+    + {static} DeregisterLight(light:Light2D) : void
+    + {static} ErrorIfDuplicateGlobalLight(light:Light2D) : void
+    + {static} GetGlobalColor(sortingLayerIndex:int, blendStyleIndex:int, color:Color) : bool
+    + {static} GetCachedSortingLayer() : SortingLayer[]
+}
+class "List`1"<T> {
+}
+Light2DManager o-> "lights<Light2D>" "List`1"
+@enduml

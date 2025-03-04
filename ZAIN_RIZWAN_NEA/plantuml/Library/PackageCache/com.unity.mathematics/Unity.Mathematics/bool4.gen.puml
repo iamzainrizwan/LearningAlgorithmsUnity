@@ -1,0 +1,384 @@
+@startuml
+struct bool4 {
+    + x : bool
+    + y : bool
+    + z : bool
+    + w : bool
+    + bool4(x:bool, y:bool, z:bool, w:bool)
+    + bool4(x:bool, y:bool, zw:bool2)
+    + bool4(x:bool, yz:bool2, w:bool)
+    + bool4(x:bool, yzw:bool3)
+    + bool4(xy:bool2, z:bool, w:bool)
+    + bool4(xy:bool2, zw:bool2)
+    + bool4(xyz:bool3, w:bool)
+    + bool4(xyzw:bool4)
+    + bool4(v:bool)
+    + Equals(rhs:bool4) : bool
+    + <<override>> Equals(o:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+}
+class math <<static>> <<partial>> {
+    + {static} bool4(x:bool, y:bool, z:bool, w:bool) : bool4
+    + {static} bool4(x:bool, y:bool, zw:bool2) : bool4
+    + {static} bool4(x:bool, yz:bool2, w:bool) : bool4
+    + {static} bool4(x:bool, yzw:bool3) : bool4
+    + {static} bool4(xy:bool2, z:bool, w:bool) : bool4
+    + {static} bool4(xy:bool2, zw:bool2) : bool4
+    + {static} bool4(xyz:bool3, w:bool) : bool4
+    + {static} bool4(xyzw:bool4) : bool4
+    + {static} bool4(v:bool) : bool4
+    + {static} hash(v:bool4) : uint
+    + {static} hashwide(v:bool4) : uint4
+    + {static} shuffle(left:bool4, right:bool4, x:ShuffleComponent) : bool
+    + {static} shuffle(left:bool4, right:bool4, x:ShuffleComponent, y:ShuffleComponent) : bool2
+    + {static} shuffle(left:bool4, right:bool4, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent) : bool3
+    + {static} shuffle(left:bool4, right:bool4, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent, w:ShuffleComponent) : bool4
+}
+class "IEquatable`1"<T> {
+}
+class DebuggerProxy <<sealed>> {
+    + x : bool
+    + y : bool
+    + z : bool
+    + w : bool
+    + DebuggerProxy(v:bool4)
+}
+bool4 --> "xxxx" bool4
+bool4 --> "xxxy" bool4
+bool4 --> "xxxz" bool4
+bool4 --> "xxxw" bool4
+bool4 --> "xxyx" bool4
+bool4 --> "xxyy" bool4
+bool4 --> "xxyz" bool4
+bool4 --> "xxyw" bool4
+bool4 --> "xxzx" bool4
+bool4 --> "xxzy" bool4
+bool4 --> "xxzz" bool4
+bool4 --> "xxzw" bool4
+bool4 --> "xxwx" bool4
+bool4 --> "xxwy" bool4
+bool4 --> "xxwz" bool4
+bool4 --> "xxww" bool4
+bool4 --> "xyxx" bool4
+bool4 --> "xyxy" bool4
+bool4 --> "xyxz" bool4
+bool4 --> "xyxw" bool4
+bool4 --> "xyyx" bool4
+bool4 --> "xyyy" bool4
+bool4 --> "xyyz" bool4
+bool4 --> "xyyw" bool4
+bool4 --> "xyzx" bool4
+bool4 --> "xyzy" bool4
+bool4 --> "xyzz" bool4
+bool4 --> "xyzw" bool4
+bool4 --> "xywx" bool4
+bool4 --> "xywy" bool4
+bool4 --> "xywz" bool4
+bool4 --> "xyww" bool4
+bool4 --> "xzxx" bool4
+bool4 --> "xzxy" bool4
+bool4 --> "xzxz" bool4
+bool4 --> "xzxw" bool4
+bool4 --> "xzyx" bool4
+bool4 --> "xzyy" bool4
+bool4 --> "xzyz" bool4
+bool4 --> "xzyw" bool4
+bool4 --> "xzzx" bool4
+bool4 --> "xzzy" bool4
+bool4 --> "xzzz" bool4
+bool4 --> "xzzw" bool4
+bool4 --> "xzwx" bool4
+bool4 --> "xzwy" bool4
+bool4 --> "xzwz" bool4
+bool4 --> "xzww" bool4
+bool4 --> "xwxx" bool4
+bool4 --> "xwxy" bool4
+bool4 --> "xwxz" bool4
+bool4 --> "xwxw" bool4
+bool4 --> "xwyx" bool4
+bool4 --> "xwyy" bool4
+bool4 --> "xwyz" bool4
+bool4 --> "xwyw" bool4
+bool4 --> "xwzx" bool4
+bool4 --> "xwzy" bool4
+bool4 --> "xwzz" bool4
+bool4 --> "xwzw" bool4
+bool4 --> "xwwx" bool4
+bool4 --> "xwwy" bool4
+bool4 --> "xwwz" bool4
+bool4 --> "xwww" bool4
+bool4 --> "yxxx" bool4
+bool4 --> "yxxy" bool4
+bool4 --> "yxxz" bool4
+bool4 --> "yxxw" bool4
+bool4 --> "yxyx" bool4
+bool4 --> "yxyy" bool4
+bool4 --> "yxyz" bool4
+bool4 --> "yxyw" bool4
+bool4 --> "yxzx" bool4
+bool4 --> "yxzy" bool4
+bool4 --> "yxzz" bool4
+bool4 --> "yxzw" bool4
+bool4 --> "yxwx" bool4
+bool4 --> "yxwy" bool4
+bool4 --> "yxwz" bool4
+bool4 --> "yxww" bool4
+bool4 --> "yyxx" bool4
+bool4 --> "yyxy" bool4
+bool4 --> "yyxz" bool4
+bool4 --> "yyxw" bool4
+bool4 --> "yyyx" bool4
+bool4 --> "yyyy" bool4
+bool4 --> "yyyz" bool4
+bool4 --> "yyyw" bool4
+bool4 --> "yyzx" bool4
+bool4 --> "yyzy" bool4
+bool4 --> "yyzz" bool4
+bool4 --> "yyzw" bool4
+bool4 --> "yywx" bool4
+bool4 --> "yywy" bool4
+bool4 --> "yywz" bool4
+bool4 --> "yyww" bool4
+bool4 --> "yzxx" bool4
+bool4 --> "yzxy" bool4
+bool4 --> "yzxz" bool4
+bool4 --> "yzxw" bool4
+bool4 --> "yzyx" bool4
+bool4 --> "yzyy" bool4
+bool4 --> "yzyz" bool4
+bool4 --> "yzyw" bool4
+bool4 --> "yzzx" bool4
+bool4 --> "yzzy" bool4
+bool4 --> "yzzz" bool4
+bool4 --> "yzzw" bool4
+bool4 --> "yzwx" bool4
+bool4 --> "yzwy" bool4
+bool4 --> "yzwz" bool4
+bool4 --> "yzww" bool4
+bool4 --> "ywxx" bool4
+bool4 --> "ywxy" bool4
+bool4 --> "ywxz" bool4
+bool4 --> "ywxw" bool4
+bool4 --> "ywyx" bool4
+bool4 --> "ywyy" bool4
+bool4 --> "ywyz" bool4
+bool4 --> "ywyw" bool4
+bool4 --> "ywzx" bool4
+bool4 --> "ywzy" bool4
+bool4 --> "ywzz" bool4
+bool4 --> "ywzw" bool4
+bool4 --> "ywwx" bool4
+bool4 --> "ywwy" bool4
+bool4 --> "ywwz" bool4
+bool4 --> "ywww" bool4
+bool4 --> "zxxx" bool4
+bool4 --> "zxxy" bool4
+bool4 --> "zxxz" bool4
+bool4 --> "zxxw" bool4
+bool4 --> "zxyx" bool4
+bool4 --> "zxyy" bool4
+bool4 --> "zxyz" bool4
+bool4 --> "zxyw" bool4
+bool4 --> "zxzx" bool4
+bool4 --> "zxzy" bool4
+bool4 --> "zxzz" bool4
+bool4 --> "zxzw" bool4
+bool4 --> "zxwx" bool4
+bool4 --> "zxwy" bool4
+bool4 --> "zxwz" bool4
+bool4 --> "zxww" bool4
+bool4 --> "zyxx" bool4
+bool4 --> "zyxy" bool4
+bool4 --> "zyxz" bool4
+bool4 --> "zyxw" bool4
+bool4 --> "zyyx" bool4
+bool4 --> "zyyy" bool4
+bool4 --> "zyyz" bool4
+bool4 --> "zyyw" bool4
+bool4 --> "zyzx" bool4
+bool4 --> "zyzy" bool4
+bool4 --> "zyzz" bool4
+bool4 --> "zyzw" bool4
+bool4 --> "zywx" bool4
+bool4 --> "zywy" bool4
+bool4 --> "zywz" bool4
+bool4 --> "zyww" bool4
+bool4 --> "zzxx" bool4
+bool4 --> "zzxy" bool4
+bool4 --> "zzxz" bool4
+bool4 --> "zzxw" bool4
+bool4 --> "zzyx" bool4
+bool4 --> "zzyy" bool4
+bool4 --> "zzyz" bool4
+bool4 --> "zzyw" bool4
+bool4 --> "zzzx" bool4
+bool4 --> "zzzy" bool4
+bool4 --> "zzzz" bool4
+bool4 --> "zzzw" bool4
+bool4 --> "zzwx" bool4
+bool4 --> "zzwy" bool4
+bool4 --> "zzwz" bool4
+bool4 --> "zzww" bool4
+bool4 --> "zwxx" bool4
+bool4 --> "zwxy" bool4
+bool4 --> "zwxz" bool4
+bool4 --> "zwxw" bool4
+bool4 --> "zwyx" bool4
+bool4 --> "zwyy" bool4
+bool4 --> "zwyz" bool4
+bool4 --> "zwyw" bool4
+bool4 --> "zwzx" bool4
+bool4 --> "zwzy" bool4
+bool4 --> "zwzz" bool4
+bool4 --> "zwzw" bool4
+bool4 --> "zwwx" bool4
+bool4 --> "zwwy" bool4
+bool4 --> "zwwz" bool4
+bool4 --> "zwww" bool4
+bool4 --> "wxxx" bool4
+bool4 --> "wxxy" bool4
+bool4 --> "wxxz" bool4
+bool4 --> "wxxw" bool4
+bool4 --> "wxyx" bool4
+bool4 --> "wxyy" bool4
+bool4 --> "wxyz" bool4
+bool4 --> "wxyw" bool4
+bool4 --> "wxzx" bool4
+bool4 --> "wxzy" bool4
+bool4 --> "wxzz" bool4
+bool4 --> "wxzw" bool4
+bool4 --> "wxwx" bool4
+bool4 --> "wxwy" bool4
+bool4 --> "wxwz" bool4
+bool4 --> "wxww" bool4
+bool4 --> "wyxx" bool4
+bool4 --> "wyxy" bool4
+bool4 --> "wyxz" bool4
+bool4 --> "wyxw" bool4
+bool4 --> "wyyx" bool4
+bool4 --> "wyyy" bool4
+bool4 --> "wyyz" bool4
+bool4 --> "wyyw" bool4
+bool4 --> "wyzx" bool4
+bool4 --> "wyzy" bool4
+bool4 --> "wyzz" bool4
+bool4 --> "wyzw" bool4
+bool4 --> "wywx" bool4
+bool4 --> "wywy" bool4
+bool4 --> "wywz" bool4
+bool4 --> "wyww" bool4
+bool4 --> "wzxx" bool4
+bool4 --> "wzxy" bool4
+bool4 --> "wzxz" bool4
+bool4 --> "wzxw" bool4
+bool4 --> "wzyx" bool4
+bool4 --> "wzyy" bool4
+bool4 --> "wzyz" bool4
+bool4 --> "wzyw" bool4
+bool4 --> "wzzx" bool4
+bool4 --> "wzzy" bool4
+bool4 --> "wzzz" bool4
+bool4 --> "wzzw" bool4
+bool4 --> "wzwx" bool4
+bool4 --> "wzwy" bool4
+bool4 --> "wzwz" bool4
+bool4 --> "wzww" bool4
+bool4 --> "wwxx" bool4
+bool4 --> "wwxy" bool4
+bool4 --> "wwxz" bool4
+bool4 --> "wwxw" bool4
+bool4 --> "wwyx" bool4
+bool4 --> "wwyy" bool4
+bool4 --> "wwyz" bool4
+bool4 --> "wwyw" bool4
+bool4 --> "wwzx" bool4
+bool4 --> "wwzy" bool4
+bool4 --> "wwzz" bool4
+bool4 --> "wwzw" bool4
+bool4 --> "wwwx" bool4
+bool4 --> "wwwy" bool4
+bool4 --> "wwwz" bool4
+bool4 --> "wwww" bool4
+bool4 --> "xxx" bool3
+bool4 --> "xxy" bool3
+bool4 --> "xxz" bool3
+bool4 --> "xxw" bool3
+bool4 --> "xyx" bool3
+bool4 --> "xyy" bool3
+bool4 --> "xyz" bool3
+bool4 --> "xyw" bool3
+bool4 --> "xzx" bool3
+bool4 --> "xzy" bool3
+bool4 --> "xzz" bool3
+bool4 --> "xzw" bool3
+bool4 --> "xwx" bool3
+bool4 --> "xwy" bool3
+bool4 --> "xwz" bool3
+bool4 --> "xww" bool3
+bool4 --> "yxx" bool3
+bool4 --> "yxy" bool3
+bool4 --> "yxz" bool3
+bool4 --> "yxw" bool3
+bool4 --> "yyx" bool3
+bool4 --> "yyy" bool3
+bool4 --> "yyz" bool3
+bool4 --> "yyw" bool3
+bool4 --> "yzx" bool3
+bool4 --> "yzy" bool3
+bool4 --> "yzz" bool3
+bool4 --> "yzw" bool3
+bool4 --> "ywx" bool3
+bool4 --> "ywy" bool3
+bool4 --> "ywz" bool3
+bool4 --> "yww" bool3
+bool4 --> "zxx" bool3
+bool4 --> "zxy" bool3
+bool4 --> "zxz" bool3
+bool4 --> "zxw" bool3
+bool4 --> "zyx" bool3
+bool4 --> "zyy" bool3
+bool4 --> "zyz" bool3
+bool4 --> "zyw" bool3
+bool4 --> "zzx" bool3
+bool4 --> "zzy" bool3
+bool4 --> "zzz" bool3
+bool4 --> "zzw" bool3
+bool4 --> "zwx" bool3
+bool4 --> "zwy" bool3
+bool4 --> "zwz" bool3
+bool4 --> "zww" bool3
+bool4 --> "wxx" bool3
+bool4 --> "wxy" bool3
+bool4 --> "wxz" bool3
+bool4 --> "wxw" bool3
+bool4 --> "wyx" bool3
+bool4 --> "wyy" bool3
+bool4 --> "wyz" bool3
+bool4 --> "wyw" bool3
+bool4 --> "wzx" bool3
+bool4 --> "wzy" bool3
+bool4 --> "wzz" bool3
+bool4 --> "wzw" bool3
+bool4 --> "wwx" bool3
+bool4 --> "wwy" bool3
+bool4 --> "wwz" bool3
+bool4 --> "www" bool3
+bool4 --> "xx" bool2
+bool4 --> "xy" bool2
+bool4 --> "xz" bool2
+bool4 --> "xw" bool2
+bool4 --> "yx" bool2
+bool4 --> "yy" bool2
+bool4 --> "yz" bool2
+bool4 --> "yw" bool2
+bool4 --> "zx" bool2
+bool4 --> "zy" bool2
+bool4 --> "zz" bool2
+bool4 --> "zw" bool2
+bool4 --> "wx" bool2
+bool4 --> "wy" bool2
+bool4 --> "wz" bool2
+bool4 --> "ww" bool2
+bool4 +-- DebuggerProxy
+@enduml

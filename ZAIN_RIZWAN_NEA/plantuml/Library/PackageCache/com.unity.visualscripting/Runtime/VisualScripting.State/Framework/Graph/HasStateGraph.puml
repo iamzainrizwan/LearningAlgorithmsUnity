@@ -1,0 +1,8 @@
+@startuml
+class HasStateGraph <<sealed>> {
+}
+class "HasGraph`3"<T1,T2,T3> {
+}
+"HasGraph`3" "<StateGraph,StateGraphAsset,StateMachine>" <|-- HasStateGraph
+HasStateGraph --> "containerType" StateGraphContainerType
+@enduml

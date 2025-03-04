@@ -1,0 +1,8 @@
+@startuml
+class Vector3Distance <<sealed>> {
+    + <<override>> Operation(a:UnityEngine.Vector3, b:UnityEngine.Vector3) : float
+}
+class "Distance`1"<T> {
+}
+"Distance`1" "<UnityEngine.Vector3>" <|-- Vector3Distance
+@enduml

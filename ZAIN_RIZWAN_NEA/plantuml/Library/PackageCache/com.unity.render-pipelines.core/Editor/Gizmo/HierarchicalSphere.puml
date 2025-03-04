@@ -1,0 +1,10 @@
+@startuml
+class HierarchicalSphere {
+    + radius : float <<get>> <<set>>
+    + HierarchicalSphere(baseColor:Color, parent:HierarchicalSphere)
+    + DrawHull(filled:bool) : void
+    + DrawHandle() : void
+}
+HierarchicalSphere --> "center" Vector3
+HierarchicalSphere --> "baseColor" Color
+@enduml

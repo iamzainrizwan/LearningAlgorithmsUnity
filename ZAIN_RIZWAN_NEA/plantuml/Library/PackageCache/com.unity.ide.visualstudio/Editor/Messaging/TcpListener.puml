@@ -1,0 +1,8 @@
+@startuml
+class TcpListener {
+    + {static} Queue(buffer:byte[]) : int
+}
+class State {
+}
+TcpListener +-- State
+@enduml

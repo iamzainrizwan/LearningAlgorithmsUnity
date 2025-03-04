@@ -1,0 +1,9 @@
+@startuml
+class ListOption {
+    + ListOption(value:object)
+    + ListOption(value:object, label:GUIContent)
+    + ListOption(value:object, label:string)
+    + value : object <<get>> <<set>>
+}
+ListOption --> "label" GUIContent
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class CommandLineParser {
+    + CommandLineParser(args:string[])
+}
+class "Dictionary`2"<T1,T2> {
+}
+CommandLineParser o-> "Options<string,string>" "Dictionary`2"
+@enduml

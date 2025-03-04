@@ -1,0 +1,24 @@
+@startuml
+enum IdentifierType {
+    kNullIdentifier= 0,
+    kImportedAsset= 1,
+    kSceneObject= 2,
+    kSourceAsset= 3,
+    kBuiltInAsset= 4,
+}
+class ReadonlyMaterialMap <<static>> {
+}
+class ReadonlyMaterialConverter {
+    + <<override>> name : string <<get>>
+    + <<override>> info : string <<get>>
+    + <<override>> needsIndexing : bool <<get>>
+    + <<override>> OnInitialize(ctx:InitializeConverterContext, callback:Action) : void
+    + <<override>> OnRun(ctx:RunItemContext) : void
+    + <<override>> OnClicked(index:int) : void
+}
+class "Dictionary`2"<T1,T2> {
+}
+ReadonlyMaterialMap o-> "Map<string,string>" "Dictionary`2"
+RenderPipelineConverter <|-- ReadonlyMaterialConverter
+ReadonlyMaterialConverter --> "container" Type
+@enduml

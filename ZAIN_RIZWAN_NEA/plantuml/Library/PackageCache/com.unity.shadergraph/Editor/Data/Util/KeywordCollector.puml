@@ -1,0 +1,12 @@
+@startuml
+class KeywordCollector {
+    + KeywordCollector()
+    + AddShaderKeyword(chunk:ShaderKeyword) : void
+    + GetKeywordsDeclaration(builder:ShaderStringBuilder, mode:GenerationMode) : void
+    + CalculateKeywordPermutations() : void
+}
+class "List`1"<T> {
+}
+KeywordCollector --> "keywords<ShaderKeyword>" "List`1"
+KeywordCollector --> "permutations<List<KeyValuePair<ShaderKeyword, int>>>" "List`1"
+@enduml

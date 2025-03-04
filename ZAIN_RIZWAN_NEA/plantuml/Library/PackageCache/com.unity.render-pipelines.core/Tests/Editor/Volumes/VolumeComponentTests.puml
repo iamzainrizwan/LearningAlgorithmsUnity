@@ -1,0 +1,50 @@
+@startuml
+class TestAnimationCurveVolumeComponent {
+}
+class VolumeComponentAnimCurveTests {
+    + RenderInterpolateAnimationCurve(lhsCurve:AnimationCurve, rhsCurve:AnimationCurve, t:float) : void
+    + Setup() : void
+    + TearDown() : void
+    + AnimationCurveParameterKeysAreNotShared(actionToPerform:ActionTest) : (int, int, int)
+}
+class VolumeComponentEditorTests {
+    + TestOverridesChanges() : void
+    + AdditionalProperties(volumeComponentType:Type) : string[]
+    + TestHandleParameterDecorators() : void
+    + TestSupportedOnAvoidedIfHideInInspector() : void
+    + VolumeManagerLifetime() : void
+    + TestInputForGetVolumeComponentsForDisplay() : void
+    + TestVolumeManagerFetchsTypesWhenNotInitialized() : void
+}
+class "Action`5"<T1,T2,T3,T4,T5> {
+}
+class VolumeComponentNoAdditionalAttributes {
+}
+class VolumeComponentAllAdditionalAttributes {
+}
+class VolumeComponentMixedAdditionalAttributes {
+}
+class VolumeComponentDecorators {
+}
+VolumeComponent <|-- TestAnimationCurveVolumeComponent
+TestAnimationCurveVolumeComponent o-> "testParameter" AnimationCurveParameter
+RenderPipelineTests <|-- VolumeComponentEditorTests
+VolumeComponentEditorTests +-- VolumeComponentNoAdditionalAttributes
+VolumeComponent <|-- VolumeComponentNoAdditionalAttributes
+VolumeComponentNoAdditionalAttributes o-> "parameter" MinFloatParameter
+VolumeComponentEditorTests +-- VolumeComponentAllAdditionalAttributes
+VolumeComponent <|-- VolumeComponentAllAdditionalAttributes
+VolumeComponentAllAdditionalAttributes o-> "parameter1" MinFloatParameter
+VolumeComponentAllAdditionalAttributes o-> "parameter2" FloatParameter
+VolumeComponentEditorTests +-- VolumeComponentMixedAdditionalAttributes
+VolumeComponent <|-- VolumeComponentMixedAdditionalAttributes
+VolumeComponentMixedAdditionalAttributes o-> "parameter1" MinFloatParameter
+VolumeComponentMixedAdditionalAttributes o-> "parameter2" FloatParameter
+VolumeComponentMixedAdditionalAttributes o-> "parameter3" MinFloatParameter
+VolumeComponentMixedAdditionalAttributes o-> "parameter4" FloatParameter
+VolumeComponentEditorTests +-- VolumeComponentDecorators
+VolumeComponent <|-- VolumeComponentDecorators
+VolumeComponentDecorators o-> "_NoiseTileSize" FloatParameter
+VolumeComponentDecorators o-> "_FogColor" ColorParameter
+VolumeComponentDecorators o-> "_HighNoiseSpaceFreq" ClampedFloatParameter
+@enduml

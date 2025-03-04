@@ -1,0 +1,12 @@
+@startuml
+class TimelineWindow <<partial>> {
+}
+class PlayableLookup {
+    + UpdatePlayableLookup(clip:TimelineClip, go:GameObject, p:Playable) : void
+    + UpdatePlayableLookup(track:TrackAsset, go:GameObject, p:Playable) : void
+    + GetPlayableFromAnimClip(clip:AnimationClip, p:Playable) : bool
+    + GetTimelineClipFromCurves(clip:AnimationClip) : TimelineClip
+    + ClearPlayableLookup() : void
+}
+TimelineWindow +-- PlayableLookup
+@enduml

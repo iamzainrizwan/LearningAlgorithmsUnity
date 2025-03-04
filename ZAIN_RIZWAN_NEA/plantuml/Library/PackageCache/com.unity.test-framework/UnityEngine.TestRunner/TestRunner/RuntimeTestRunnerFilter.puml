@@ -1,0 +1,7 @@
+@startuml
+class RuntimeTestRunnerFilter {
+    + synchronousOnly : bool
+    + BuildNUnitFilter() : ITestFilter
+}
+RuntimeTestRunnerFilter --> "testMode" TestPlatform
+@enduml

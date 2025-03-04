@@ -1,0 +1,16 @@
+@startuml
+class Migration_1_4_5_to_1_4_6 {
+    + Migration_1_4_5_to_1_4_6(plugin:Plugin)
+    + <<override>> Run() : void
+}
+class Migration_1_4_6_to_1_4_6f3 {
+    + Migration_1_4_6_to_1_4_6f3(plugin:Plugin)
+    + <<override>> Run() : void
+}
+BoltCoreMigration <|-- Migration_1_4_5_to_1_4_6
+Migration_1_4_5_to_1_4_6 --> "@from" SemanticVersion
+Migration_1_4_5_to_1_4_6 --> "to" SemanticVersion
+BoltCoreMigration <|-- Migration_1_4_6_to_1_4_6f3
+Migration_1_4_6_to_1_4_6f3 --> "@from" SemanticVersion
+Migration_1_4_6_to_1_4_6f3 --> "to" SemanticVersion
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+class NavMeshModifierVolumeEditor {
+    + <<override>> OnInspectorGUI() : void
+    + {static} CreateNavMeshModifierVolume(menuCommand:MenuCommand) : void
+}
+class Content <<static>> {
+    + {static} <<readonly>> UndoModifyVolume : string
+}
+NavMeshModifierVolumeEditor +-- Content
+Content o-> "Size" GUIContent
+Content o-> "Center" GUIContent
+Content o-> "Area" GUIContent
+Content o-> "AffectedAgents" GUIContent
+@enduml

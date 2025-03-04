@@ -1,0 +1,9 @@
+@startuml
+class SliderRectRefernces {
+    + TestSetup() : void
+    + TearDown() : void
+    + AssigningSelfResultsInNullReferenceField() : void
+    + AssigningOtherObjectResultsInCorrectReferenceField() : void
+}
+Behaviour <|-- SliderRectRefernces
+@enduml

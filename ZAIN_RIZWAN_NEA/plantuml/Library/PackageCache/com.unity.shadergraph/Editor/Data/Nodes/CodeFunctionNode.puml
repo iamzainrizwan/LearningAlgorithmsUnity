@@ -1,0 +1,117 @@
+@startuml
+abstract class CodeFunctionNode {
+    + <<override>> hasPreview : bool <<get>>
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + <<virtual>> GenerateNodeFunction(registry:FunctionRegistry, generationMode:GenerationMode) : void
+    + RequiresNormal(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresViewDirection(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresPosition(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresPositionPredisplacement(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresTangent(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresBitangent(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresMeshUV(channel:UVChannel, stageCapability:ShaderStageCapability) : bool
+    + RequiresScreenPosition(stageCapability:ShaderStageCapability) : bool
+    + RequiresNDCPosition(stageCapability:ShaderStageCapability) : bool
+    + RequiresPixelPosition(stageCapability:ShaderStageCapability) : bool
+    + RequiresVertexColor(stageCapability:ShaderStageCapability) : bool
+}
+struct Boolean {
+}
+struct Vector1 {
+}
+struct Texture2D {
+}
+struct Texture2DArray {
+}
+struct Texture3D {
+}
+struct SamplerState {
+}
+struct Gradient {
+}
+struct DynamicDimensionVector {
+}
+struct ColorRGBA {
+}
+struct ColorRGB {
+}
+struct Matrix3x3 {
+}
+struct Matrix2x2 {
+}
+struct DynamicDimensionMatrix {
+}
+struct PropertyConnectionState {
+}
+enum Binding {
+    None,
+    ObjectSpaceNormal,
+    ObjectSpaceTangent,
+    ObjectSpaceBitangent,
+    ObjectSpacePosition,
+    ViewSpaceNormal,
+    ViewSpaceTangent,
+    ViewSpaceBitangent,
+    ViewSpacePosition,
+    WorldSpaceNormal,
+    WorldSpaceTangent,
+    WorldSpaceBitangent,
+    WorldSpacePosition,
+    TangentSpaceNormal,
+    TangentSpaceTangent,
+    TangentSpaceBitangent,
+    TangentSpacePosition,
+    MeshUV0,
+    MeshUV1,
+    MeshUV2,
+    MeshUV3,
+    ScreenPosition,
+    ObjectSpaceViewDirection,
+    ViewSpaceViewDirection,
+    WorldSpaceViewDirection,
+    TangentSpaceViewDirection,
+    VertexColor,
+}
+class SlotAttribute {
+    + slotId : int <<get>>
+    + hidden : bool <<get>>
+    + SlotAttribute(mSlotId:int, mImplicitBinding:Binding, mStageCapability:ShaderStageCapability)
+    + SlotAttribute(mSlotId:int, mImplicitBinding:Binding, mHidden:bool, mStageCapability:ShaderStageCapability)
+    + SlotAttribute(mSlotId:int, mImplicitBinding:Binding, defaultX:float, defaultY:float, defaultZ:float, defaultW:float, mStageCapability:ShaderStageCapability)
+}
+AbstractMaterialNode <|-- CodeFunctionNode
+IGeneratesBodyCode <|-- CodeFunctionNode
+IGeneratesFunction <|-- CodeFunctionNode
+IMayRequireNormal <|-- CodeFunctionNode
+IMayRequireTangent <|-- CodeFunctionNode
+IMayRequireBitangent <|-- CodeFunctionNode
+IMayRequireMeshUV <|-- CodeFunctionNode
+IMayRequireScreenPosition <|-- CodeFunctionNode
+IMayRequireNDCPosition <|-- CodeFunctionNode
+IMayRequirePixelPosition <|-- CodeFunctionNode
+IMayRequireViewDirection <|-- CodeFunctionNode
+IMayRequirePosition <|-- CodeFunctionNode
+IMayRequirePositionPredisplacement <|-- CodeFunctionNode
+IMayRequireVertexColor <|-- CodeFunctionNode
+CodeFunctionNode +-- Boolean
+CodeFunctionNode +-- Vector1
+CodeFunctionNode +-- Texture2D
+CodeFunctionNode +-- Texture2DArray
+CodeFunctionNode +-- Texture3D
+CodeFunctionNode +-- SamplerState
+CodeFunctionNode +-- Gradient
+CodeFunctionNode +-- DynamicDimensionVector
+CodeFunctionNode +-- ColorRGBA
+CodeFunctionNode +-- ColorRGB
+CodeFunctionNode +-- Matrix3x3
+CodeFunctionNode +-- Matrix2x2
+CodeFunctionNode +-- DynamicDimensionMatrix
+CodeFunctionNode +-- PropertyConnectionState
+CodeFunctionNode +-- Binding
+CodeFunctionNode +-- SlotAttribute
+Attribute <|-- SlotAttribute
+SlotAttribute --> "binding" Binding
+SlotAttribute --> "defaultValue" Vector4
+SlotAttribute --> "stageCapability" ShaderStageCapability
+@enduml

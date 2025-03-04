@@ -1,0 +1,30 @@
+@startuml
+class NativeArrayTests {
+    + <<unsafe>> NativeArray_IndexOf_Int() : void
+    + <<unsafe>> NativeArray_IndexOf_FixedString128() : void
+    + NativeArray_DisposeJob() : void
+    + NativeArray_DisposeJobWithMissingDependencyThrows() : void
+    + NativeArray_DisposeJobCantBeScheduled() : void
+    <<unsafe>> + NativeArray_ConvertExistingDataToNativeArray() : void
+    <<unsafe>> + NativeArray_ConvertExistingDataToNativeArray_SetTempMemoryHandle() : void
+    <<unsafe>> + NativeArray_ConvertExistingNativeListToNativeArray() : void
+    + NativeArray_CustomAllocator_DisposeException() : void
+    + NativeArray_CustomAllocator_DisposeHandleException() : void
+}
+struct NativeArrayPokeJob {
+    + NativeArrayPokeJob(array:NativeArray<int>)
+    + Execute() : void
+}
+struct SimpleTestJob {
+    + ElementValue : int
+    + Execute() : void
+}
+class "NativeArray`1"<T> {
+}
+CollectionsTestFixture <|-- NativeArrayTests
+NativeArrayTests +-- NativeArrayPokeJob
+IJob <|-- NativeArrayPokeJob
+NativeArrayTests +-- SimpleTestJob
+IJob <|-- SimpleTestJob
+SimpleTestJob --> "Result<int>" "NativeArray`1"
+@enduml

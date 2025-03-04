@@ -1,0 +1,18 @@
+@startuml
+class ProbeBrickPool {
+    + GetRemainingChunkCount() : int
+    + {static} CreateDataTexture(width:int, height:int, depth:int, format:GraphicsFormat, name:string, allocateRendertexture:bool, allocatedBytes:int) : Texture
+    + {static} CreateDataLocation(numProbes:int, compressed:bool, bands:ProbeVolumeSHBands, name:string, allocateRendertexture:bool, allocateValidityData:bool, allocateRenderingLayers:bool, allocateSkyOcclusionData:bool, allocateSkyShadingDirectionData:bool, allocateProbeOcclusionData:bool, allocatedBytes:int) : DataLocation
+}
+class ProbeBrickBlendingPool {
+}
+struct BrickChunkAlloc {
+    + x : int
+    + y : int
+    + z : int
+}
+struct DataLocation {
+}
+ProbeBrickPool +-- BrickChunkAlloc
+ProbeBrickPool +-- DataLocation
+@enduml

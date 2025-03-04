@@ -1,0 +1,22 @@
+@startuml
+class "DebugDictionary`2"<TKey,TValue> {
+    + label : string <<get>> <<set>> = "Dictionary"
+    + debug : bool <<get>> <<set>> = false
+    + Count : int <<get>>
+    + Clear() : void
+    + Contains(item:KeyValuePair<TKey, TValue>) : bool
+    + GetEnumerator() : IEnumerator<KeyValuePair<TKey, TValue>>
+    + ContainsKey(key:TKey) : bool
+    + Add(key:TKey, value:TValue) : void
+    + Remove(key:TKey) : bool
+    + TryGetValue(key:TKey, value:TValue) : bool
+}
+class "IDictionary`2"<T1,T2> {
+}
+class "ICollection`1"<T> {
+}
+"IDictionary`2" "<TKey,TValue>" <|-- "DebugDictionary`2"
+IDictionary <|-- "DebugDictionary`2"
+"DebugDictionary`2" --> "Keys<TKey>" "ICollection`1"
+"DebugDictionary`2" --> "Values<TValue>" "ICollection`1"
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class URPProcessScene {
+    + callbackOrder : int <<get>>
+    + OnProcessScene(scene:UnityEngine.SceneManagement.Scene, report:BuildReport) : void
+}
+IProcessSceneWithReport <|-- URPProcessScene
+@enduml

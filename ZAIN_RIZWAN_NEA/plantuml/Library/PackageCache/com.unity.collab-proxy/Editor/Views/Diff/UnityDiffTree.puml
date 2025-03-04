@@ -1,0 +1,10 @@
+@startuml
+class UnityDiffTree {
+}
+class MetaCache {
+}
+class BuildKey <<static>> {
+}
+UnityDiffTree +-- MetaCache
+MetaCache +-- BuildKey
+@enduml

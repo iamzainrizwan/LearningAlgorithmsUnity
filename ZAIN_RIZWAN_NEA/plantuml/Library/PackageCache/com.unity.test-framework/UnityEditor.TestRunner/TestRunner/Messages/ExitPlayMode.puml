@@ -1,0 +1,9 @@
+@startuml
+class ExitPlayMode {
+    + ExpectDomainReload : bool <<get>>
+    + ExpectedPlaymodeState : bool <<get>>
+    + ExitPlayMode()
+    + Perform() : IEnumerator
+}
+IEditModeTestYieldInstruction <|-- ExitPlayMode
+@enduml

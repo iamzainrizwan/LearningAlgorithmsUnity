@@ -1,0 +1,10 @@
+@startuml
+class GUISystem {
+    + GUISystem(guiState:IGUIState)
+    + AddControl(control:Control) : void
+    + RemoveControl(control:Control) : void
+    + AddAction(action:GUIAction) : void
+    + RemoveAction(action:GUIAction) : void
+    + OnGUI() : void
+}
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class FieldResetter {
+    + ResetFields() : void
+}
+MonoBehaviour <|-- FieldResetter
+FieldResetter --> "resetButton" Button
+FieldResetter --> "algoDropdown" TMP_Dropdown
+@enduml

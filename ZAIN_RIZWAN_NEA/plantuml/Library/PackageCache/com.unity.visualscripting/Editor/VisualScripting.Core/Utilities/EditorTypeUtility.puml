@@ -1,0 +1,14 @@
+@startuml
+class EditorTypeUtility <<static>> {
+}
+class "IEnumerable`1"<T> {
+}
+struct BehaviourTypeAssociation {
+    + BehaviourTypeAssociation(typeFor3D:Type, typeFor2D:Type)
+    + For(mode:EditorBehaviorMode) : Type
+}
+EditorTypeUtility --> "commonTypes<Type>" "IEnumerable`1"
+EditorTypeUtility +-- BehaviourTypeAssociation
+BehaviourTypeAssociation --> "typeFor3D" Type
+BehaviourTypeAssociation --> "typeFor2D" Type
+@enduml

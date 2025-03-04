@@ -1,0 +1,49 @@
+@startuml
+class CoreUnsafeUtils <<static>> <<unsafe>> {
+    + {static} CopyTo(list:List<T>, dest:void*, count:int) : void
+    + {static} CopyTo(list:T[], dest:void*, count:int) : void
+    + {static} <<unsafe>> MergeSort(arr:uint[], sortSize:int, supportArray:uint[]) : void
+    + {static} <<unsafe>> MergeSort(arr:NativeArray<uint>, sortSize:int, supportArray:NativeArray<uint>) : void
+    + {static} <<unsafe>> InsertionSort(arr:uint[], sortSize:int) : void
+    + {static} <<unsafe>> InsertionSort(arr:NativeArray<uint>, sortSize:int) : void
+    + {static} <<unsafe>> RadixSort(arr:uint[], sortSize:int, supportArray:uint[], radixBits:int) : void
+    + {static} <<unsafe>> RadixSort(array:NativeArray<uint>, sortSize:int, supportArray:NativeArray<uint>, radixBits:int) : void
+    + {static} <<unsafe>> QuickSort(arr:uint[], left:int, right:int) : void
+    + {static} <<unsafe>> QuickSort(arr:ulong[], left:int, right:int) : void
+    + {static} QuickSort(count:int, data:void*) : void
+    + {static} QuickSort(count:int, data:void*) : void
+    + {static} QuickSort(data:void*, left:int, right:int) : void
+    + {static} IndexOf(data:void*, count:int, v:T) : int
+    + {static} CompareHashes(oldHashCount:int, oldHashes:void*, newHashCount:int, newHashes:void*, addIndices:int*, removeIndices:int*, addCount:int, remCount:int) : int
+    + {static} CompareHashes(oldHashCount:int, oldHashes:Hash128*, newHashCount:int, newHashes:Hash128*, addIndices:int*, removeIndices:int*, addCount:int, remCount:int) : int
+    + {static} CombineHashes(count:int, hashes:void*, outHash:Hash128*) : void
+    + {static} CombineHashes(count:int, hashes:Hash128*, outHash:Hash128*) : void
+    + {static} <<unsafe>> HaveDuplicates(arr:int[]) : bool
+}
+struct FixedBufferStringQueue {
+    + Count : int <<get>>
+    + FixedBufferStringQueue(ptr:byte*, length:int)
+    + TryPush(v:string) : bool
+    + TryPop(v:string) : bool
+    + Clear() : void
+}
+interface "IKeyGetter`2"<TValue,TKey> {
+}
+struct "DefaultKeyGetter`1"<T> {
+    + Get(v:T) : T
+}
+struct UintKeyGetter {
+    + Get(v:uint) : uint
+}
+struct UlongKeyGetter {
+    + Get(v:ulong) : ulong
+}
+CoreUnsafeUtils +-- FixedBufferStringQueue
+CoreUnsafeUtils +-- "IKeyGetter`2"
+CoreUnsafeUtils +-- "DefaultKeyGetter`1"
+"IKeyGetter`2" "<T,T>" <|-- "DefaultKeyGetter`1"
+CoreUnsafeUtils +-- UintKeyGetter
+"IKeyGetter`2" "<uint,uint>" <|-- UintKeyGetter
+CoreUnsafeUtils +-- UlongKeyGetter
+"IKeyGetter`2" "<ulong,ulong>" <|-- UlongKeyGetter
+@enduml

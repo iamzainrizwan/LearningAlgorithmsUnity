@@ -1,0 +1,40 @@
+@startuml
+class "ObjectPool`1"<T> {
+    + countAll : int <<get>>
+    + countActive : int <<get>>
+    + countInactive : int <<get>>
+    + ObjectPool(actionOnGet:UnityAction<T>, actionOnRelease:UnityAction<T>, collectionCheck:bool)
+    + Get() : T
+    + Get(v:T) : PooledObject
+    + Release(element:T) : void
+}
+class "GenericPool`1"<T> <<static>> {
+    + {static} Get() : T
+    + {static} Get(value:T) : ObjectPool<T>.PooledObject
+    + {static} Release(toRelease:T) : void
+}
+class "UnsafeGenericPool`1"<T> <<static>> {
+    + {static} Get() : T
+    + {static} Get(value:T) : ObjectPool<T>.PooledObject
+    + {static} Release(toRelease:T) : void
+}
+class "ListPool`1"<T> <<static>> {
+    + {static} Get() : List<T>
+    + {static} Get(value:List<T>) : ObjectPool<List<T>>.PooledObject
+    + {static} Release(toRelease:List<T>) : void
+}
+class "HashSetPool`1"<T> <<static>> {
+    + {static} Get() : HashSet<T>
+    + {static} Get(value:HashSet<T>) : ObjectPool<HashSet<T>>.PooledObject
+    + {static} Release(toRelease:HashSet<T>) : void
+}
+class "DictionaryPool`2"<TKey,TValue> <<static>> {
+    + {static} Get() : Dictionary<TKey, TValue>
+    + {static} Get(value:Dictionary<TKey, TValue>) : ObjectPool<Dictionary<TKey, TValue>>.PooledObject
+    + {static} Release(toRelease:Dictionary<TKey, TValue>) : void
+}
+struct PooledObject {
+}
+"ObjectPool`1" +-- PooledObject
+IDisposable <|-- PooledObject
+@enduml

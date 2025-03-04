@@ -1,0 +1,8 @@
+@startuml
+class GetApplicationVariable <<sealed>> {
+    + GetApplicationVariable()
+    + GetApplicationVariable(defaultName:string)
+}
+GetVariableUnit <|-- GetApplicationVariable
+IApplicationVariableUnit <|-- GetApplicationVariable
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class TestListenerWrapper {
+    + TestListenerWrapper(testStartedEvent:TestStartedEvent, testFinishedEvent:TestFinishedEvent)
+    + TestStarted(test:ITest) : void
+    + TestFinished(result:ITestResult) : void
+    + TestOutput(output:TestOutput) : void
+}
+ITestListener <|-- TestListenerWrapper
+@enduml

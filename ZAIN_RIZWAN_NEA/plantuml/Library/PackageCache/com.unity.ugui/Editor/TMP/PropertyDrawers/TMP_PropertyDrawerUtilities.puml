@@ -1,0 +1,10 @@
+@startuml
+struct GlyphProxy {
+    + index : uint
+    + atlasIndex : int
+}
+class TMP_PropertyDrawerUtilities <<static>> {
+}
+GlyphProxy --> "glyphRect" GlyphRect
+GlyphProxy --> "metrics" GlyphMetrics
+@enduml

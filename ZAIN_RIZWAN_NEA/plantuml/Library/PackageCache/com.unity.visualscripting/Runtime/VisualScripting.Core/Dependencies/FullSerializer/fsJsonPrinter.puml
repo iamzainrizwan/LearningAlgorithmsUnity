@@ -1,0 +1,8 @@
+@startuml
+class fsJsonPrinter <<static>> {
+    + {static} PrettyJson(data:fsData, outputStream:TextWriter) : void
+    + {static} PrettyJson(data:fsData) : string
+    + {static} CompressedJson(data:fsData, outputStream:StreamWriter) : void
+    + {static} CompressedJson(data:fsData) : string
+}
+@enduml

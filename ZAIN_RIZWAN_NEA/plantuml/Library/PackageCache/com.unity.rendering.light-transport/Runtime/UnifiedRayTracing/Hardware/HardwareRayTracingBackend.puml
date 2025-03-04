@@ -1,0 +1,9 @@
+@startuml
+class HardwareRayTracingBackend {
+    + HardwareRayTracingBackend(resources:RayTracingResources)
+    + CreateRayTracingShader(shader:Object, kernelName:string, dispatchBuffer:GraphicsBuffer) : IRayTracingShader
+    + CreateAccelerationStructure(options:AccelerationStructureOptions, counter:ReferenceCounter) : IRayTracingAccelStruct
+    + GetRequiredTraceScratchBufferSizeInBytes(width:uint, height:uint, depth:uint) : ulong
+}
+IRayTracingBackend <|-- HardwareRayTracingBackend
+@enduml

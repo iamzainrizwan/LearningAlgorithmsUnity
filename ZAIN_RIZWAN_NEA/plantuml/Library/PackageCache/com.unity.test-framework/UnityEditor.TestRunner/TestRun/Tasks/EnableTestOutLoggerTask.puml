@@ -1,0 +1,9 @@
+@startuml
+class EnableTestOutLoggerTask {
+    + EnableTestOutLoggerTask()
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+    + Dispose() : void
+}
+TestTaskBase <|-- EnableTestOutLoggerTask
+IDisposable <|-- EnableTestOutLoggerTask
+@enduml

@@ -1,0 +1,50 @@
+@startuml
+class "UnitOption`1"<TUnit> {
+    + UnitOption()
+    + UnitOption(unit:TUnit)
+    + unit : TUnit <<get>> <<protected set>>
+    + <<virtual>> InstantiateUnit() : IUnit
+    + <<virtual>> PreconfigureUnit(unit:TUnit) : void
+    + <<virtual>> Deserialize(row:UnitOptionRow) : void
+    + <<virtual>> Serialize() : UnitOptionRow
+    + <<virtual>> OnPopulate() : void
+    + <<virtual>> Prewarm() : void
+    + value : object <<get>>
+    + parentOnly : bool <<get>>
+    + <<virtual>> headerLabel : string <<get>>
+    + <<virtual>> showHeaderIcon : bool <<get>>
+    + <<virtual>> favoritable : bool <<get>>
+    + label : string <<get>>
+    + order : int <<get>>
+    + haystack : string <<get>>
+    + favoriteKey : string <<get>>
+    + <<virtual>> formerHaystack : string <<get>>
+    + controlInputCount : int <<get>>
+    + controlOutputCount : int <<get>>
+    + <<virtual>> SearchResultLabel(query:string) : string
+    + hasFooter : bool <<get>>
+    + GetFooterHeight(width:float) : float
+    + OnFooterGUI(position:Rect) : void
+}
+class "HashSet`1"<T> {
+}
+class FooterStyles <<static>> {
+    + {static} <<readonly>> spaceAfterUnitIcon : float = 7
+    + {static} <<readonly>> unitIconSize : int
+    + {static} <<readonly>> spaceAfterPortIcon : float = 6
+    + {static} <<readonly>> portIconSize : int
+    + {static} <<readonly>> spaceBetweenDescriptionAndPorts : float = 8
+    + {static} <<readonly>> spaceBetweenPorts : float = 8
+    + {static} <<readonly>> padding : float = 8
+}
+IUnitOption <|-- "UnitOption`1"
+"UnitOption`1" --> "unitType" Type
+"UnitOption`1" --> "sourceScriptGuids<string>" "HashSet`1"
+"UnitOption`1" --> "category" UnitCategory
+"UnitOption`1" --> "icon" EditorTexture
+"UnitOption`1" --> "valueInputTypes<Type>" "HashSet`1"
+"UnitOption`1" --> "valueOutputTypes<Type>" "HashSet`1"
+"UnitOption`1" +-- FooterStyles
+FooterStyles --> "description" GUIStyle
+FooterStyles --> "portDescription" GUIStyle
+@enduml

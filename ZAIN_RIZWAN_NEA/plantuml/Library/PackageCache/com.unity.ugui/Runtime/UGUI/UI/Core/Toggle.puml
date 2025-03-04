@@ -1,0 +1,30 @@
+@startuml
+class Toggle {
+    + <<virtual>> Rebuild(executing:CanvasUpdate) : void
+    + <<virtual>> LayoutComplete() : void
+    + <<virtual>> GraphicUpdateComplete() : void
+    + isOn : bool <<get>> <<set>>
+    + SetIsOnWithoutNotify(value:bool) : void
+    + <<virtual>> OnPointerClick(eventData:PointerEventData) : void
+    + <<virtual>> OnSubmit(eventData:BaseEventData) : void
+}
+enum ToggleTransition {
+    None,
+    Fade,
+}
+class ToggleEvent {
+}
+class "UnityEvent`1"<T> {
+}
+Selectable <|-- Toggle
+IPointerClickHandler <|-- Toggle
+ISubmitHandler <|-- Toggle
+ICanvasElement <|-- Toggle
+Toggle o-> "toggleTransition" ToggleTransition
+Toggle --> "graphic" Graphic
+Toggle --> "group" ToggleGroup
+Toggle o-> "onValueChanged" ToggleEvent
+Toggle +-- ToggleTransition
+Toggle +-- ToggleEvent
+"UnityEvent`1" "<bool>" <|-- ToggleEvent
+@enduml

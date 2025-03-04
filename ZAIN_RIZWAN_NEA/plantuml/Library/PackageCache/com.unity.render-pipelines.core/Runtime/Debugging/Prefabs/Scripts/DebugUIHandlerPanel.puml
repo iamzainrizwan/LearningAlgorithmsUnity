@@ -1,0 +1,13 @@
+@startuml
+class DebugUIHandlerPanel {
+    + SelectNextItem() : void
+    + SelectPreviousItem() : void
+    + OnScrollbarClicked() : void
+    + ResetDebugManager() : void
+}
+MonoBehaviour <|-- DebugUIHandlerPanel
+DebugUIHandlerPanel --> "nameLabel" Text
+DebugUIHandlerPanel --> "scrollRect" ScrollRect
+DebugUIHandlerPanel --> "viewport" RectTransform
+DebugUIHandlerPanel --> "Canvas" DebugUIHandlerCanvas
+@enduml

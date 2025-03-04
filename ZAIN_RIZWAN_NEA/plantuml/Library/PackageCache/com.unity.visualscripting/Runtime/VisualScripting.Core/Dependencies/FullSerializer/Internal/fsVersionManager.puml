@@ -1,0 +1,6 @@
+@startuml
+class fsVersionManager <<static>> {
+    + {static} GetVersionImportPath(currentVersion:string, targetVersion:fsVersionedType, path:List<fsVersionedType>) : fsResult
+    + {static} GetVersionedType(type:Type) : fsOption<fsVersionedType>
+}
+@enduml

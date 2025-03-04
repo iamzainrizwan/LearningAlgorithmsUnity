@@ -1,0 +1,43 @@
+@startuml
+class PreviewManager {
+    + PreviewManager(graph:GraphData, messenger:MessageManager)
+    + ResizeMasterPreview(newSize:Vector2) : void
+    + GetPreviewRenderData(node:AbstractMaterialNode) : PreviewRenderData
+    + UpdateMasterPreview(scope:ModificationScope) : void
+    + ReloadChangedFiles(ChangedFileDependencyGUIDs:string) : void
+    + HandleGraphChanges() : void
+    + RenderPreviews(editorWindow:EditorWindow, requestShaders:bool) : void
+    + Dispose() : void
+}
+class PreviewShaderData {
+    + shaderString : string
+    + passesCompiling : int
+    + isOutOfDate : bool
+    + hasError : bool
+}
+class PreviewRenderData {
+    + previewName : string
+    + NotifyPreviewChanged() : void
+}
+enum PropagationDirection {
+    Upstream,
+    Downstream,
+}
+class NodeProcessor {
+    + NodeProcessor(graphData:GraphData, process:Action<AbstractMaterialNode, IEnumerable<AbstractMaterialNode>>)
+    + ProcessInDependencyOrder(root:AbstractMaterialNode) : void
+    + ProcessInDependencyOrderRecursive(node:AbstractMaterialNode) : void
+}
+IDisposable <|-- PreviewManager
+PreviewManager --> "masterRenderData" PreviewRenderData
+PreviewShaderData --> "node" AbstractMaterialNode
+PreviewShaderData --> "shader" Shader
+PreviewShaderData --> "mat" Material
+PreviewRenderData --> "shaderData" PreviewShaderData
+PreviewRenderData --> "renderTexture" RenderTexture
+PreviewRenderData --> "texture" Texture
+PreviewRenderData --> "previewMode" PreviewMode
+PreviewRenderData --> "onPreviewChanged" OnPreviewChanged
+PreviewManager +-- PropagationDirection
+PreviewManager +-- NodeProcessor
+@enduml

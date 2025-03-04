@@ -1,0 +1,5 @@
+@startuml
+class DefaultShaderIncludes <<static>> {
+    + {static} GetAssetsPackagePath() : string
+}
+@enduml

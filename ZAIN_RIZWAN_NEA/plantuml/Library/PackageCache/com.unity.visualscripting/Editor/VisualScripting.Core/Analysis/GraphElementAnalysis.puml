@@ -1,0 +1,8 @@
+@startuml
+class GraphElementAnalysis {
+}
+class "List`1"<T> {
+}
+IGraphElementAnalysis <|-- GraphElementAnalysis
+GraphElementAnalysis o-> "warnings<Warning>" "List`1"
+@enduml

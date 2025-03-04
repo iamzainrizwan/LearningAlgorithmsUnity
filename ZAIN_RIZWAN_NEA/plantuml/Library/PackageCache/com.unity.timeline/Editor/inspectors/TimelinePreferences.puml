@@ -1,0 +1,33 @@
+@startuml
+class TimelinePreferences {
+    + timeUnitInFrame : bool
+    + showAudioWaveform : bool = true
+    + audioScrubbing : bool <<get>> <<set>>
+    + snapToFrame : bool = true
+    + playbackLockedToFrame : bool <<get>> <<set>>
+    + edgeSnap : bool = true
+    + Save() : void
+}
+class TimelinePreferencesProvider {
+    + TimelinePreferencesProvider(path:string, scopes:SettingsScope, keywords:IEnumerable<string>)
+    + <<override>> OnActivate(searchContext:string, rootElement:VisualElement) : void
+    + <<override>> OnGUI(searchContext:string) : void
+    + {static} CreateTimelineProjectSettingProvider() : SettingsProvider
+}
+class "ScriptableSingleton`1"<T> {
+}
+class Styles {
+}
+"ScriptableSingleton`1" "<TimelinePreferences>" <|-- TimelinePreferences
+TimelinePreferences --> "timeFormat" TimeFormat
+TimelinePreferences --> "playbackScrollMode" PlaybackScrollMode
+SettingsProvider <|-- TimelinePreferencesProvider
+TimelinePreferencesProvider +-- Styles
+Styles o-> "TimeUnitLabel" GUIContent
+Styles o-> "ShowAudioWaveformLabel" GUIContent
+Styles o-> "AudioScrubbingLabel" GUIContent
+Styles o-> "SnapToFrameLabel" GUIContent
+Styles o-> "EdgeSnapLabel" GUIContent
+Styles o-> "PlaybackScrollModeLabel" GUIContent
+Styles o-> "EditorSettingLabel" GUIContent
+@enduml

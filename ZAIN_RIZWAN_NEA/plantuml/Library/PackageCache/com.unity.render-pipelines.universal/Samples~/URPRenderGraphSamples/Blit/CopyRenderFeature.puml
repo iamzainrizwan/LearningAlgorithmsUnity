@@ -1,0 +1,13 @@
+@startuml
+class CopyRenderFeature {
+    + <<override>> Create() : void
+    + <<override>> AddRenderPasses(renderer:ScriptableRenderer, renderingData:RenderingData) : void
+}
+class CopyRenderPass {
+    + CopyRenderPass()
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+ScriptableRendererFeature <|-- CopyRenderFeature
+CopyRenderFeature +-- CopyRenderPass
+ScriptableRenderPass <|-- CopyRenderPass
+@enduml

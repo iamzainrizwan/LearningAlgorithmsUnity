@@ -1,0 +1,5 @@
+@startuml
+class DropArea {
+    + DropArea(acceptedTypes:Type[], area:VisualElement, OnDrop:Action<UnityEngine.Object, Vector2>)
+}
+@enduml

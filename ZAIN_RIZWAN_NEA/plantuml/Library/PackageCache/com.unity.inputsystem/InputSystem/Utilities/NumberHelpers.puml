@@ -1,0 +1,13 @@
+@startuml
+class NumberHelpers <<static>> {
+    + {static} AlignToMultipleOf(number:int, alignment:int) : int
+    + {static} AlignToMultipleOf(number:long, alignment:long) : long
+    + {static} AlignToMultipleOf(number:uint, alignment:uint) : uint
+    + {static} Approximately(a:double, b:double) : bool
+    + {static} IntToNormalizedFloat(value:int, minValue:int, maxValue:int) : float
+    + {static} NormalizedFloatToInt(value:float, intMinValue:int, intMaxValue:int) : int
+    + {static} UIntToNormalizedFloat(value:uint, minValue:uint, maxValue:uint) : float
+    + {static} NormalizedFloatToUInt(value:float, uintMinValue:uint, uintMaxValue:uint) : uint
+    + {static} RemapUIntBitsToNormalizeFloatToUIntBits(value:uint, inBitSize:uint, outBitSize:uint) : uint
+}
+@enduml

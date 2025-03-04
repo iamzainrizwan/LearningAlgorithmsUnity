@@ -1,0 +1,13 @@
+@startuml
+struct InputDeviceBuilder {
+    + Setup(layout:InternedString, variants:InternedString, deviceDescription:InputDeviceDescription) : void
+    + Finish() : InputDevice
+    + Dispose() : void
+}
+struct RefInstance {
+    + Dispose() : void
+}
+IDisposable <|-- InputDeviceBuilder
+InputDeviceBuilder +-- RefInstance
+IDisposable <|-- RefInstance
+@enduml

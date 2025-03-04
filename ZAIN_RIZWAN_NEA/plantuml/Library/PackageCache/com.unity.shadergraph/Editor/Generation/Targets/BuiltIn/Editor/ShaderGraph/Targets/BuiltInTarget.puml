@@ -1,0 +1,178 @@
+@startuml
+enum MaterialType {
+    Lit,
+    UnLit,
+}
+enum WorkflowMode {
+    Specular,
+    Metallic,
+}
+enum SurfaceType {
+    Opaque,
+    Transparent,
+}
+enum ZWriteControl {
+    Auto= 0,
+    ForceEnabled= 1,
+    ForceDisabled= 2,
+}
+enum ZTestMode {
+    Never= 1,
+    Less= 2,
+    Equal= 3,
+    LEqual= 4,
+    Greater= 5,
+    NotEqual= 6,
+    GEqual= 7,
+    Always= 8,
+}
+enum AlphaMode {
+    Alpha,
+    Premultiply,
+    Additive,
+    Multiply,
+}
+enum RenderFace {
+    Front= 2,
+    Back= 1,
+    Both= 0,
+}
+class BuiltInTarget <<sealed>> {
+    + <<override>> latestVersion : int <<get>>
+    + <<const>> kPipelineTag : string = "BuiltInPipeline"
+    + <<const>> kLitMaterialTypeTag : string = "\"BuiltInMaterialType\" = \"Lit\""
+    + <<const>> kUnlitMaterialTypeTag : string = "\"BuiltInMaterialType\" = \"Unlit\""
+    + <<const>> kTemplatePath : string = "Packages/com.unity.shadergraph/Editor/Generation/Targets/BuiltIn/Editor/ShaderGraph/Templates/ShaderPass.template"
+    + BuiltInTarget()
+    + renderType : string <<get>>
+    + renderQueue : string <<get>>
+    + allowMaterialOverride : bool <<get>> <<set>>
+    + alphaClip : bool <<get>> <<set>>
+    + customEditorGUI : string <<get>> <<set>>
+    + mayWriteDepth : bool <<get>>
+    + <<override>> IsActive() : bool
+    + <<override>> IsNodeAllowedByTarget(nodeType:Type) : bool
+    + <<override>> Setup(context:TargetSetupContext) : void
+    + <<override>> OnAfterMultiDeserialize(json:string) : void
+    + <<override>> GetFields(context:TargetFieldContext) : void
+    + <<override>> GetActiveBlocks(context:TargetActiveBlockContext) : void
+    + <<override>> CollectShaderProperties(collector:PropertyCollector, generationMode:GenerationMode) : void
+    + <<override>> ProcessPreviewMaterial(material:Material) : void
+    + <<override>> saveContext : object <<get>>
+    + <<override>> GetPropertiesGUI(context:TargetPropertyGUIContext, onChange:Action, registerUndo:Action<String>) : void
+    + AddDefaultMaterialOverrideGUI(context:TargetPropertyGUIContext, onChange:Action, registerUndo:Action<String>) : void
+    + GetDefaultSurfacePropertiesGUI(context:TargetPropertyGUIContext, onChange:Action, registerUndo:Action<String>) : void
+    + TrySetActiveSubTarget(subTargetType:Type) : bool
+    + <<override>> WorksWithSRP(scriptableRenderPipeline:RenderPipelineAsset) : bool
+    + SetDataOnSubTarget(subTarget:SubTarget) : void
+    + ValidateDataForSubTarget(subTarget:SubTarget, data:T) : void
+    + <<override>> OnBeforeSerialize() : void
+    + <<override>> OnAfterDeserialize(json:string) : void
+}
+class CorePasses <<static>> {
+    + {static} DepthOnly(target:BuiltInTarget) : PassDescriptor
+    + {static} ShadowCaster(target:BuiltInTarget) : PassDescriptor
+    + {static} SceneSelection(target:BuiltInTarget) : PassDescriptor
+    + {static} ScenePicking(target:BuiltInTarget) : PassDescriptor
+}
+class CoreBlockMasks {
+}
+class CoreStructCollections <<static>> {
+}
+class CoreRequiredFields <<static>> {
+}
+class CoreFieldDependencies <<static>> {
+}
+class CoreRenderStates <<static>> {
+    + {static} RenderFaceToCull(renderFace:RenderFace) : Cull
+    + {static} ZWriteControlToZWrite(zWriteControl:ZWriteControl, surfaceType:SurfaceType) : ZWrite
+    + {static} AddUberSwitchedZTest(target:BuiltInTarget, renderStates:RenderStateCollection) : void
+    + {static} AddUberSwitchedZWrite(target:BuiltInTarget, renderStates:RenderStateCollection) : void
+    + {static} AddUberSwitchedCull(target:BuiltInTarget, renderStates:RenderStateCollection) : void
+    + {static} AddUberSwitchedBlend(target:BuiltInTarget, renderStates:RenderStateCollection) : void
+    + {static} Default(target:BuiltInTarget) : RenderStateCollection
+    + {static} ForwardAdd(target:BuiltInTarget) : RenderStateCollection
+    + {static} ShadowCaster(target:BuiltInTarget) : RenderStateCollection
+    + {static} DepthOnly(target:BuiltInTarget) : RenderStateCollection
+    + {static} SceneSelection(target:BuiltInTarget) : RenderStateCollection
+    + {static} ScenePicking(target:BuiltInTarget) : RenderStateCollection
+}
+class CorePragmas <<static>> {
+}
+class CoreIncludes <<static>> {
+}
+class CoreDefines <<static>> {
+}
+class CoreKeywordDescriptors <<static>> {
+}
+class CoreKeywords <<static>> {
+}
+class CoreFields <<static>> {
+}
+class CoreCustomInterpDescriptors <<static>> {
+}
+class Uniforms <<static>> {
+    + {static} <<readonly>> srcBlend : string
+    + {static} <<readonly>> dstBlend : string
+    + {static} <<readonly>> cullMode : string
+    + {static} <<readonly>> zWrite : string
+    + {static} <<readonly>> zTest : string
+}
+Target <|-- BuiltInTarget
+IHasMetadata <|-- BuiltInTarget
+BuiltInTarget --> "activeSubTarget" SubTarget
+BuiltInTarget --> "surfaceType" SurfaceType
+BuiltInTarget --> "zWriteControl" ZWriteControl
+BuiltInTarget --> "zTestMode" ZTestMode
+BuiltInTarget --> "alphaMode" AlphaMode
+BuiltInTarget --> "renderFace" RenderFace
+CoreStructCollections o-> "Default" StructCollection
+CoreRequiredFields o-> "ShadowCaster" FieldCollection
+CoreFieldDependencies o-> "Default" DependencyCollection
+CoreRenderStates o-> "MaterialControlledDefault" RenderStateCollection
+CoreRenderStates o-> "Meta" RenderStateCollection
+CorePragmas o-> "Default" PragmaCollection
+CorePragmas o-> "Instanced" PragmaCollection
+CorePragmas o-> "Forward" PragmaCollection
+CorePragmas o-> "ForwardAdd" PragmaCollection
+CorePragmas o-> "Deferred" PragmaCollection
+CorePragmas o-> "ShadowCaster" PragmaCollection
+CoreIncludes o-> "CorePregraph" IncludeCollection
+CoreIncludes o-> "ShaderGraphPregraph" IncludeCollection
+CoreIncludes o-> "CorePostgraph" IncludeCollection
+CoreIncludes o-> "DepthOnly" IncludeCollection
+CoreIncludes o-> "ShadowCaster" IncludeCollection
+CoreIncludes o-> "SceneSelection" IncludeCollection
+CoreIncludes o-> "ScenePicking" IncludeCollection
+CoreDefines o-> "UseLegacySpriteBlocks" DefineCollection
+CoreDefines o-> "BuiltInTargetAPI" DefineCollection
+CoreDefines o-> "SceneSelection" DefineCollection
+CoreDefines o-> "ScenePicking" DefineCollection
+CoreKeywordDescriptors o-> "Lightmap" KeywordDescriptor
+CoreKeywordDescriptors o-> "DirectionalLightmapCombined" KeywordDescriptor
+CoreKeywordDescriptors o-> "SampleGI" KeywordDescriptor
+CoreKeywordDescriptors o-> "AlphaTestOn" KeywordDescriptor
+CoreKeywordDescriptors o-> "AlphaClip" KeywordDescriptor
+CoreKeywordDescriptors o-> "SurfaceTypeTransparent" KeywordDescriptor
+CoreKeywordDescriptors o-> "AlphaPremultiplyOn" KeywordDescriptor
+CoreKeywordDescriptors o-> "MainLightShadows" KeywordDescriptor
+CoreKeywordDescriptors o-> "CastingPunctualLightShadow" KeywordDescriptor
+CoreKeywordDescriptors o-> "AdditionalLights" KeywordDescriptor
+CoreKeywordDescriptors o-> "AdditionalLightShadows" KeywordDescriptor
+CoreKeywordDescriptors o-> "ShadowsSoft" KeywordDescriptor
+CoreKeywordDescriptors o-> "MixedLightingSubtractive" KeywordDescriptor
+CoreKeywordDescriptors o-> "LightmapShadowMixing" KeywordDescriptor
+CoreKeywordDescriptors o-> "ShadowsShadowmask" KeywordDescriptor
+CoreKeywordDescriptors o-> "SmoothnessChannel" KeywordDescriptor
+CoreKeywordDescriptors o-> "ShapeLightType0" KeywordDescriptor
+CoreKeywordDescriptors o-> "ShapeLightType1" KeywordDescriptor
+CoreKeywordDescriptors o-> "ShapeLightType2" KeywordDescriptor
+CoreKeywordDescriptors o-> "ShapeLightType3" KeywordDescriptor
+CoreKeywordDescriptors o-> "UseLegacySpriteBlocks" KeywordDescriptor
+CoreKeywordDescriptors o-> "BuiltInTargetAPI" KeywordDescriptor
+CoreKeywordDescriptors o-> "SceneSelectionPass" KeywordDescriptor
+CoreKeywordDescriptors o-> "ScenePickingPass" KeywordDescriptor
+CoreKeywords o-> "ShadowCaster" KeywordCollection
+CoreFields o-> "UseLegacySpriteBlocks" FieldDescriptor
+CoreRenderStates +-- Uniforms
+@enduml

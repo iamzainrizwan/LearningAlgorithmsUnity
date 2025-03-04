@@ -1,0 +1,35 @@
+@startuml
+class Text {
+    + FontTextureChanged() : void
+    + <<virtual>> text : string <<get>> <<set>>
+    + supportRichText : bool <<get>> <<set>>
+    + resizeTextForBestFit : bool <<get>> <<set>>
+    + resizeTextMinSize : int <<get>> <<set>>
+    + resizeTextMaxSize : int <<get>> <<set>>
+    + alignByGeometry : bool <<get>> <<set>>
+    + fontSize : int <<get>> <<set>>
+    + lineSpacing : float <<get>> <<set>>
+    + pixelsPerUnit : float <<get>>
+    + GetGenerationSettings(extents:Vector2) : TextGenerationSettings
+    {static} + GetTextAnchorPivot(anchor:TextAnchor) : Vector2
+    + <<virtual>> CalculateLayoutInputHorizontal() : void
+    + <<virtual>> CalculateLayoutInputVertical() : void
+    + <<virtual>> minWidth : float <<get>>
+    + <<virtual>> preferredWidth : float <<get>>
+    + <<virtual>> flexibleWidth : float <<get>>
+    + <<virtual>> minHeight : float <<get>>
+    + <<virtual>> preferredHeight : float <<get>>
+    + <<virtual>> flexibleHeight : float <<get>>
+    + <<virtual>> layoutPriority : int <<get>>
+}
+MaskableGraphic <|-- Text
+ILayoutElement <|-- Text
+Text --> "cachedTextGenerator" TextGenerator
+Text --> "cachedTextGeneratorForLayout" TextGenerator
+Text --> "mainTexture" Texture
+Text --> "font" Font
+Text --> "alignment" TextAnchor
+Text --> "horizontalOverflow" HorizontalWrapMode
+Text --> "verticalOverflow" VerticalWrapMode
+Text --> "fontStyle" FontStyle
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+abstract class AbstractEventData {
+    + <<virtual>> Reset() : void
+    + <<virtual>> Use() : void
+    + <<virtual>> used : bool <<get>>
+}
+class BaseEventData {
+    + BaseEventData(eventSystem:EventSystem)
+}
+AbstractEventData <|-- BaseEventData
+BaseEventData --> "currentInputModule" BaseInputModule
+BaseEventData --> "selectedObject" GameObject
+@enduml

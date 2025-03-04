@@ -1,0 +1,6 @@
+@startuml
+class DebugAnalytics {
+    + DebugAnalytics(questionnaireVersion:string, questionDisplayNames:IReadOnlyDictionary<string, string>, answerDisplayNames:IReadOnlyDictionary<string,string>)
+}
+MultiplayerCenterAnalytics <|-- DebugAnalytics
+@enduml

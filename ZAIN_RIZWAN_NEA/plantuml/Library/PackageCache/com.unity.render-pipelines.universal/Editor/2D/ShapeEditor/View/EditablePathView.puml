@@ -1,0 +1,10 @@
+@startuml
+class EditablePathView {
+    + EditablePathView()
+    + EditablePathView(drawer:IDrawer)
+    + Install(guiSystem:GUISystem) : void
+    + Uninstall(guiSystem:GUISystem) : void
+}
+IEditablePathView <|-- EditablePathView
+EditablePathView --> "controller" IEditablePathController
+@enduml

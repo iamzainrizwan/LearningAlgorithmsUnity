@@ -1,0 +1,8 @@
+@startuml
+class InfiniteTrackDrawer {
+    + InfiniteTrackDrawer(dataSource:IPropertyKeyDataSource)
+    + CanDraw(track:TrackAsset, state:WindowState) : bool
+    + <<override>> DrawTrack(trackRect:Rect, trackAsset:TrackAsset, visibleTime:Vector2, state:WindowState) : bool
+}
+TrackDrawer <|-- InfiniteTrackDrawer
+@enduml

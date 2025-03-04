@@ -1,0 +1,72 @@
+@startuml
+class ScrollRect {
+    + horizontal : bool <<get>> <<set>>
+    + vertical : bool <<get>> <<set>>
+    + elasticity : float <<get>> <<set>>
+    + inertia : bool <<get>> <<set>>
+    + decelerationRate : float <<get>> <<set>>
+    + scrollSensitivity : float <<get>> <<set>>
+    + horizontalScrollbarSpacing : float <<get>> <<set>>
+    + verticalScrollbarSpacing : float <<get>> <<set>>
+    + <<virtual>> Rebuild(executing:CanvasUpdate) : void
+    + <<virtual>> LayoutComplete() : void
+    + <<virtual>> GraphicUpdateComplete() : void
+    + <<override>> IsActive() : bool
+    + <<virtual>> StopMovement() : void
+    + <<virtual>> OnScroll(data:PointerEventData) : void
+    + <<virtual>> OnInitializePotentialDrag(eventData:PointerEventData) : void
+    + <<virtual>> OnBeginDrag(eventData:PointerEventData) : void
+    + <<virtual>> OnEndDrag(eventData:PointerEventData) : void
+    + <<virtual>> OnDrag(eventData:PointerEventData) : void
+    + horizontalNormalizedPosition : float <<get>> <<set>>
+    + verticalNormalizedPosition : float <<get>> <<set>>
+    + <<virtual>> CalculateLayoutInputHorizontal() : void
+    + <<virtual>> CalculateLayoutInputVertical() : void
+    + <<virtual>> minWidth : float <<get>>
+    + <<virtual>> preferredWidth : float <<get>>
+    + <<virtual>> flexibleWidth : float <<get>>
+    + <<virtual>> minHeight : float <<get>>
+    + <<virtual>> preferredHeight : float <<get>>
+    + <<virtual>> flexibleHeight : float <<get>>
+    + <<virtual>> layoutPriority : int <<get>>
+    + <<virtual>> SetLayoutHorizontal() : void
+    + <<virtual>> SetLayoutVertical() : void
+}
+enum MovementType {
+    Unrestricted,
+    Elastic,
+    Clamped,
+}
+enum ScrollbarVisibility {
+    Permanent,
+    AutoHide,
+    AutoHideAndExpandViewport,
+}
+class ScrollRectEvent {
+}
+class "UnityEvent`1"<T> {
+}
+UIBehaviour <|-- ScrollRect
+IInitializePotentialDragHandler <|-- ScrollRect
+IBeginDragHandler <|-- ScrollRect
+IEndDragHandler <|-- ScrollRect
+IDragHandler <|-- ScrollRect
+IScrollHandler <|-- ScrollRect
+ICanvasElement <|-- ScrollRect
+ILayoutElement <|-- ScrollRect
+ILayoutGroup <|-- ScrollRect
+ScrollRect --> "content" RectTransform
+ScrollRect --> "movementType" MovementType
+ScrollRect --> "viewport" RectTransform
+ScrollRect --> "horizontalScrollbar" Scrollbar
+ScrollRect --> "verticalScrollbar" Scrollbar
+ScrollRect --> "horizontalScrollbarVisibility" ScrollbarVisibility
+ScrollRect --> "verticalScrollbarVisibility" ScrollbarVisibility
+ScrollRect --> "onValueChanged" ScrollRectEvent
+ScrollRect --> "velocity" Vector2
+ScrollRect --> "normalizedPosition" Vector2
+ScrollRect +-- MovementType
+ScrollRect +-- ScrollbarVisibility
+ScrollRect +-- ScrollRectEvent
+"UnityEvent`1" "<Vector2>" <|-- ScrollRectEvent
+@enduml

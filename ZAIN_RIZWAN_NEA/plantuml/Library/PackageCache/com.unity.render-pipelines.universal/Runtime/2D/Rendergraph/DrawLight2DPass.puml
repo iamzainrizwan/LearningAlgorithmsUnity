@@ -1,0 +1,11 @@
+@startuml
+class DrawLight2DPass {
+    + Setup(renderGraph:RenderGraph, rendererData:Renderer2DData) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + Render(graph:RenderGraph, frameData:ContextContainer, rendererData:Renderer2DData, layerBatch:LayerBatch, batchIndex:int, isVolumetric:bool) : void
+}
+class PassData {
+}
+ScriptableRenderPass <|-- DrawLight2DPass
+DrawLight2DPass +-- PassData
+@enduml

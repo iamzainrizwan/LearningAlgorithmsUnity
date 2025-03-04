@@ -1,0 +1,14 @@
+@startuml
+class IncludeAdditionalRPAssets {
+    + includeReferencedInScenes : bool <<get>> <<set>>
+    + includeAssetsByLabel : bool <<get>> <<set>>
+    + labelToInclude : string <<get>> <<set>>
+}
+enum Version {
+    Initial,
+    Count,
+    Last= Count - 1,
+}
+IRenderPipelineGraphicsSettings <|-- IncludeAdditionalRPAssets
+IncludeAdditionalRPAssets +-- Version
+@enduml

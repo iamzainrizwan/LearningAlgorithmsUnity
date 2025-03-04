@@ -1,0 +1,58 @@
+@startuml
+class InputSettings <<partial>> {
+    + compensateForScreenOrientation : bool <<get>> <<set>>
+    + filterNoiseOnCurrent : bool <<get>> <<set>>
+    + defaultDeadzoneMin : float <<get>> <<set>>
+    + defaultDeadzoneMax : float <<get>> <<set>>
+    + defaultButtonPressPoint : float <<get>> <<set>>
+    + buttonReleaseThreshold : float <<get>> <<set>>
+    + defaultTapTime : float <<get>> <<set>>
+    + defaultSlowTapTime : float <<get>> <<set>>
+    + defaultHoldTime : float <<get>> <<set>>
+    + tapRadius : float <<get>> <<set>>
+    + multiTapDelayTime : float <<get>> <<set>>
+    + maxEventBytesPerUpdate : int <<get>> <<set>>
+    + maxQueuedEventsPerUpdate : int <<get>> <<set>>
+    + disableRedundantEventsMerging : bool <<get>> <<set>>
+    + shortcutKeysConsumeInput : bool <<get>> <<set>>
+    + SetInternalFeatureFlag(featureName:string, enabled:bool) : void
+}
+class "ReadOnlyArray`1"<T> {
+}
+enum UpdateMode {
+    ProcessEventsInDynamicUpdate= 1,
+    ProcessEventsInFixedUpdate,
+    ProcessEventsManually,
+}
+enum ScrollDeltaBehavior {
+    UniformAcrossAllPlatforms= 0,
+    KeepPlatformSpecificInputRange= 1,
+}
+enum BackgroundBehavior {
+    ResetAndDisableNonBackgroundDevices= 0,
+    ResetAndDisableAllDevices= 1,
+    IgnoreFocus= 2,
+}
+enum EditorInputBehaviorInPlayMode {
+    PointersAndKeyboardsRespectGameViewFocus,
+    AllDevicesRespectGameViewFocus,
+    AllDeviceInputAlwaysGoesToGameView,
+}
+enum InputActionPropertyDrawerMode {
+    Compact,
+    MultilineEffective,
+    MultilineBoth,
+}
+ScriptableObject <|-- InputSettings
+InputSettings --> "updateMode" UpdateMode
+InputSettings --> "scrollDeltaBehavior" ScrollDeltaBehavior
+InputSettings --> "backgroundBehavior" BackgroundBehavior
+InputSettings --> "editorInputBehaviorInPlayMode" EditorInputBehaviorInPlayMode
+InputSettings --> "inputActionPropertyDrawerMode" InputActionPropertyDrawerMode
+InputSettings --> "supportedDevices<string>" "ReadOnlyArray`1"
+InputSettings +-- UpdateMode
+InputSettings +-- ScrollDeltaBehavior
+InputSettings +-- BackgroundBehavior
+InputSettings +-- EditorInputBehaviorInPlayMode
+InputSettings +-- InputActionPropertyDrawerMode
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+abstract class UnaryOperatorHandler {
+    + Operate(operand:object) : object
+}
+OperatorHandler <|-- UnaryOperatorHandler
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class ScriptAddingTests {
+    + Setup() : IEnumerator
+    + CreatedScriptIsVerified() : void
+    + Teardown() : IEnumerator
+}
+@enduml

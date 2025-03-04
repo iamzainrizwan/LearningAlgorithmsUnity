@@ -1,0 +1,33 @@
+@startuml
+class "NonNullableDictionary`2"<TKey,TValue> {
+    + NonNullableDictionary()
+    + NonNullableDictionary(capacity:int)
+    + NonNullableDictionary(comparer:IEqualityComparer<TKey>)
+    + NonNullableDictionary(dictionary:IDictionary<TKey, TValue>)
+    + NonNullableDictionary(capacity:int, comparer:IEqualityComparer<TKey>)
+    + NonNullableDictionary(dictionary:IDictionary<TKey, TValue>, comparer:IEqualityComparer<TKey>)
+    + Count : int <<get>>
+    + IsSynchronized : bool <<get>>
+    + SyncRoot : object <<get>>
+    + IsReadOnly : bool <<get>>
+    + IsFixedSize : bool <<get>>
+    + CopyTo(array:Array, index:int) : void
+    + Add(key:TKey, value:TValue) : void
+    + Add(key:object, value:object) : void
+    + Clear() : void
+    + Contains(key:object) : bool
+    + Remove(key:object) : void
+    + ContainsKey(key:TKey) : bool
+    + GetEnumerator() : IEnumerator<KeyValuePair<TKey, TValue>>
+    + Remove(key:TKey) : bool
+    + TryGetValue(key:TKey, value:TValue) : bool
+}
+class "IDictionary`2"<T1,T2> {
+}
+class "ICollection`1"<T> {
+}
+"IDictionary`2" "<TKey,TValue>" <|-- "NonNullableDictionary`2"
+IDictionary <|-- "NonNullableDictionary`2"
+"NonNullableDictionary`2" --> "Keys<TKey>" "ICollection`1"
+"NonNullableDictionary`2" --> "Values<TValue>" "ICollection`1"
+@enduml

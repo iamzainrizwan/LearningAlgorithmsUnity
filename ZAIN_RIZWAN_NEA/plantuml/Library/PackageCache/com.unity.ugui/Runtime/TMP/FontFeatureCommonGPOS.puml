@@ -1,0 +1,23 @@
+@startuml
+struct GlyphAnchorPoint {
+    + xCoordinate : float <<get>> <<set>>
+    + yCoordinate : float <<get>> <<set>>
+}
+struct MarkPositionAdjustment {
+    + xPositionAdjustment : float <<get>> <<set>>
+    + yPositionAdjustment : float <<get>> <<set>>
+    + MarkPositionAdjustment(x:float, y:float)
+}
+struct MarkToBaseAdjustmentRecord {
+    + baseGlyphID : uint <<get>> <<set>>
+    + markGlyphID : uint <<get>> <<set>>
+}
+struct MarkToMarkAdjustmentRecord {
+    + baseMarkGlyphID : uint <<get>> <<set>>
+    + combiningMarkGlyphID : uint <<get>> <<set>>
+}
+MarkToBaseAdjustmentRecord --> "baseGlyphAnchorPoint" GlyphAnchorPoint
+MarkToBaseAdjustmentRecord --> "markPositionAdjustment" MarkPositionAdjustment
+MarkToMarkAdjustmentRecord --> "baseMarkGlyphAnchorPoint" GlyphAnchorPoint
+MarkToMarkAdjustmentRecord --> "combiningMarkPositionAdjustment" MarkPositionAdjustment
+@enduml

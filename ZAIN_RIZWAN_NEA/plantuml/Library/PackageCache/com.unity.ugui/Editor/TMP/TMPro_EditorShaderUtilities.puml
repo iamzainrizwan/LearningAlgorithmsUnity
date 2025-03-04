@@ -1,0 +1,5 @@
+@startuml
+class EditorShaderUtilities <<static>> {
+    + {static} CopyMaterialProperties(source:Material, destination:Material) : void
+}
+@enduml

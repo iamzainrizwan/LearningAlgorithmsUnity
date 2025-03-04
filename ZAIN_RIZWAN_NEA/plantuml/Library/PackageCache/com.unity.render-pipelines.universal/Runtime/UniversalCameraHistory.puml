@@ -1,0 +1,26 @@
+@startuml
+class UniversalCameraHistory {
+    + RequestAccess() : void
+    + GetHistoryForRead() : Type
+    + IsAccessRequested() : bool
+    + GetHistoryForWrite() : Type
+    + IsWritten() : bool
+    +  <<event>> OnGatherHistoryRequests : ICameraHistoryReadAccess.HistoryRequestDelegate 
+    + Dispose() : void
+}
+class "TypeId`1"<T> <<static>> {
+    + {static} value : uint
+}
+struct Item {
+    + requestVersion : int
+    + writeVersion : int
+    + Reset() : void
+}
+ICameraHistoryReadAccess <|-- UniversalCameraHistory
+ICameraHistoryWriteAccess <|-- UniversalCameraHistory
+IPerFrameHistoryAccessTracker <|-- UniversalCameraHistory
+IDisposable <|-- UniversalCameraHistory
+UniversalCameraHistory +-- "TypeId`1"
+UniversalCameraHistory +-- Item
+Item --> "storage" ContextItem
+@enduml

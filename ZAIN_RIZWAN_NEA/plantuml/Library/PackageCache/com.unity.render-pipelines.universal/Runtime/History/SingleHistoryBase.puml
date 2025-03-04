@@ -1,0 +1,10 @@
+@startuml
+abstract class SingleHistoryBase {
+    + <<override>> OnCreate(owner:BufferedRTHandleSystem, typeId:uint) : void
+    + GetTexture(frameIndex:int) : RTHandle
+    + GetCurrentTexture() : RTHandle
+    + GetPreviousTexture() : RTHandle
+    + <<override>> Reset() : void
+}
+CameraHistoryItem <|-- SingleHistoryBase
+@enduml

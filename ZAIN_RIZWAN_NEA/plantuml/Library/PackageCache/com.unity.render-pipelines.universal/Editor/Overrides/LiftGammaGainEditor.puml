@@ -1,0 +1,13 @@
+@startuml
+class LiftGammaGainEditor <<sealed>> {
+    + <<override>> OnEnable() : void
+    + <<override>> OnInspectorGUI() : void
+}
+class Styles <<static>> {
+}
+VolumeComponentEditor <|-- LiftGammaGainEditor
+LiftGammaGainEditor +-- Styles
+Styles o-> "liftLabel" GUIContent
+Styles o-> "gammaLabel" GUIContent
+Styles o-> "gainLabel" GUIContent
+@enduml

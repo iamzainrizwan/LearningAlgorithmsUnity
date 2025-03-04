@@ -1,0 +1,64 @@
+@startuml
+class FixedStringSizedTests {
+    + FixedString32BytesSerializes() : void
+    + FixedString32BytesAtMaximumSizeWorks(a:String, expectedError:FormatError) : void
+    + <<unsafe>> FixedString32BytesToFixedList() : void
+    + <<unsafe>> FixedString32BytesEqualsStringNoGC(a:string) : void
+    + FixedString32BytesToFixedString64Works(a:String) : void
+    + FixedString32BytesToFixedString128Works(a:String) : void
+    + FixedString32BytesToFixedString512Works(a:String) : void
+    + FixedString32BytesToFixedString4096Works(a:String) : void
+    + FixedString64BytesSerializes() : void
+    + FixedString64BytesAtMaximumSizeWorks(a:String, expectedError:FormatError) : void
+    + <<unsafe>> FixedString64BytesToFixedList() : void
+    + <<unsafe>> FixedString64BytesEqualsStringNoGC(a:string) : void
+    + FixedString64BytesToFixedString32Works(a:String) : void
+    + FixedString64BytesToFixedString128Works(a:String) : void
+    + FixedString64BytesToFixedString512Works(a:String) : void
+    + FixedString64BytesToFixedString4096Works(a:String) : void
+    + FixedString128BytesSerializes() : void
+    + FixedString128BytesAtMaximumSizeWorks(a:String, expectedError:FormatError) : void
+    + <<unsafe>> FixedString128BytesToFixedList() : void
+    + <<unsafe>> FixedString128BytesEqualsStringNoGC(a:string) : void
+    + FixedString128BytesToFixedString32Works(a:String) : void
+    + FixedString128BytesToFixedString64Works(a:String) : void
+    + FixedString128BytesToFixedString512Works(a:String) : void
+    + FixedString128BytesToFixedString4096Works(a:String) : void
+    + FixedString512BytesSerializes() : void
+    + FixedString512BytesAtMaximumSizeWorks(a:String, expectedError:FormatError) : void
+    + <<unsafe>> FixedString512BytesToFixedList() : void
+    + <<unsafe>> FixedString512BytesEqualsStringNoGC(a:string) : void
+    + FixedString512BytesToFixedString32Works(a:String) : void
+    + FixedString512BytesToFixedString64Works(a:String) : void
+    + FixedString512BytesToFixedString128Works(a:String) : void
+    + FixedString512BytesToFixedString4096Works(a:String) : void
+    + FixedString4096BytesSerializes() : void
+    + FixedString4096BytesAtMaximumSizeWorks(a:String, expectedError:FormatError) : void
+    + <<unsafe>> FixedString4096BytesToFixedList() : void
+    + <<unsafe>> FixedString4096BytesEqualsStringNoGC(a:string) : void
+    + FixedString4096BytesToFixedString32Works(a:String) : void
+    + FixedString4096BytesToFixedString64Works(a:String) : void
+    + FixedString4096BytesToFixedString128Works(a:String) : void
+    + FixedString4096BytesToFixedString512Works(a:String) : void
+}
+class ScriptableObjectFixedString32Bytes {
+}
+class ScriptableObjectFixedString64Bytes {
+}
+class ScriptableObjectFixedString128Bytes {
+}
+class ScriptableObjectFixedString512Bytes {
+}
+class ScriptableObjectFixedString4096Bytes {
+}
+FixedStringSizedTests +-- ScriptableObjectFixedString32Bytes
+ScriptableObjectFixedString32Bytes --> "String" FixedString32Bytes
+FixedStringSizedTests +-- ScriptableObjectFixedString64Bytes
+ScriptableObjectFixedString64Bytes --> "String" FixedString64Bytes
+FixedStringSizedTests +-- ScriptableObjectFixedString128Bytes
+ScriptableObjectFixedString128Bytes --> "String" FixedString128Bytes
+FixedStringSizedTests +-- ScriptableObjectFixedString512Bytes
+ScriptableObjectFixedString512Bytes --> "String" FixedString512Bytes
+FixedStringSizedTests +-- ScriptableObjectFixedString4096Bytes
+ScriptableObjectFixedString4096Bytes --> "String" FixedString4096Bytes
+@enduml

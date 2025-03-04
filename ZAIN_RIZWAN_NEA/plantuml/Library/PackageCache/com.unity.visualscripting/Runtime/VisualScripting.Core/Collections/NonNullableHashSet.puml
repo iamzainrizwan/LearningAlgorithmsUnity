@@ -1,0 +1,29 @@
+@startuml
+class "NonNullableHashSet`1"<T> {
+    + NonNullableHashSet()
+    + NonNullableHashSet(comparer:IEqualityComparer<T>)
+    + NonNullableHashSet(collection:IEnumerable<T>)
+    + NonNullableHashSet(collection:IEnumerable<T>, comparer:IEqualityComparer<T>)
+    + Count : int <<get>>
+    + IsReadOnly : bool <<get>>
+    + Add(item:T) : bool
+    + Clear() : void
+    + Contains(item:T) : bool
+    + CopyTo(array:T[], arrayIndex:int) : void
+    + ExceptWith(other:IEnumerable<T>) : void
+    + GetEnumerator() : IEnumerator<T>
+    + IntersectWith(other:IEnumerable<T>) : void
+    + IsProperSubsetOf(other:IEnumerable<T>) : bool
+    + IsProperSupersetOf(other:IEnumerable<T>) : bool
+    + IsSubsetOf(other:IEnumerable<T>) : bool
+    + IsSupersetOf(other:IEnumerable<T>) : bool
+    + Overlaps(other:IEnumerable<T>) : bool
+    + Remove(item:T) : bool
+    + SetEquals(other:IEnumerable<T>) : bool
+    + SymmetricExceptWith(other:IEnumerable<T>) : void
+    + UnionWith(other:IEnumerable<T>) : void
+}
+class "ISet`1"<T> {
+}
+"ISet`1" "<T>" <|-- "NonNullableHashSet`1"
+@enduml

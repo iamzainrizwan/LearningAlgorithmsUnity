@@ -1,0 +1,7 @@
+@startuml
+abstract class TimelineAction {
+    + {abstract} Execute(context:ActionContext) : bool
+    + {abstract} Validate(context:ActionContext) : ActionValidity
+}
+IAction <|-- TimelineAction
+@enduml

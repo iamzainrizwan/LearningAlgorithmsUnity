@@ -1,0 +1,16 @@
+@startuml
+class ObjectSpin {
+    + TranslationSpeed : float = 1.0f
+    + SpinSpeed : float = 5
+    + RotationRange : int = 15
+}
+enum MotionType {
+    Rotation,
+    SearchLight,
+    Translation,
+}
+MonoBehaviour <|-- ObjectSpin
+ObjectSpin --> "Motion" MotionType
+ObjectSpin o-> "TranslationDistance" Vector3
+ObjectSpin +-- MotionType
+@enduml

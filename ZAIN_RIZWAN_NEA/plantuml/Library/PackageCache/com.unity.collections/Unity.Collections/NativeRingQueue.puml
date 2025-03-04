@@ -1,0 +1,27 @@
+@startuml
+struct "NativeRingQueue`1"<T> {
+    + <<readonly>> IsCreated : bool <<get>>
+    + <<readonly>> IsEmpty : bool <<get>>
+    + <<readonly>> Length : int <<get>>
+    + <<readonly>> Capacity : int <<get>>
+    + NativeRingQueue(capacity:int, allocator:AllocatorManager.AllocatorHandle, options:NativeArrayOptions)
+    + Dispose() : void
+    + Dispose(inputDeps:JobHandle) : JobHandle
+    + TryEnqueue(value:T) : bool
+    + Enqueue(value:T) : void
+    + TryDequeue(item:T) : bool
+    + Dequeue() : T
+}
+class "NativeRingQueueDebugView`1"<T> <<unsafe>> <<sealed>> {
+    + NativeRingQueueDebugView(data:NativeRingQueue<T>)
+}
+struct NativeRingQueueDispose {
+    + Dispose() : void
+}
+struct NativeRingQueueDisposeJob {
+    + Execute() : void
+}
+INativeDisposable <|-- "NativeRingQueue`1"
+IJob <|-- NativeRingQueueDisposeJob
+NativeRingQueueDisposeJob --> "Data" NativeRingQueueDispose
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+enum UnifiedRayTracingError {
+    Unknown,
+    OutOfGraphicsBufferMemory,
+}
+class UnifiedRayTracingException {
+    + UnifiedRayTracingException(message:string, errorCode:UnifiedRayTracingError)
+}
+Exception <|-- UnifiedRayTracingException
+UnifiedRayTracingException --> "errorCode" UnifiedRayTracingError
+@enduml

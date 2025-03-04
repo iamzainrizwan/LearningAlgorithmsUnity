@@ -1,0 +1,6 @@
+@startuml
+class DirectorNamedColorInspector {
+    + <<override>> OnInspectorGUI() : void
+}
+Editor <|-- DirectorNamedColorInspector
+@enduml

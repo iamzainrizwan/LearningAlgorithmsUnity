@@ -1,0 +1,8 @@
+@startuml
+class SetGraphVariable <<sealed>> {
+    + SetGraphVariable()
+    + SetGraphVariable(defaultName:string)
+}
+SetVariableUnit <|-- SetGraphVariable
+IGraphVariableUnit <|-- SetGraphVariable
+@enduml

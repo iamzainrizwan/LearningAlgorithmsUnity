@@ -1,0 +1,27 @@
+@startuml
+class LogScope <<sealed>> {
+    + IgnoreFailingMessages : bool <<get>> <<set>>
+    + IsNUnitException : bool <<get>>
+    + IsNUnitSuccessException : bool <<get>>
+    + IsNUnitInconclusiveException : bool <<get>>
+    + IsNUnitIgnoreException : bool <<get>>
+    + NUnitExceptionMessage : string <<get>>
+    + {static} HasCurrentLogScope() : bool
+    + LogScope()
+    + AddLog(message:string, stacktrace:string, type:LogType) : void
+    + Dispose() : void
+    + AnyFailingLogs() : bool
+    + EvaluateLogScope(endOfScopeCheck:bool) : void
+    + ProcessExpectedLogs() : void
+    + NoUnexpectedReceived() : void
+}
+class "Queue`1"<T> {
+}
+class "List`1"<T> {
+}
+ILogScope <|-- LogScope
+LogScope --> "ExpectedLogs<LogMatch>" "Queue`1"
+LogScope --> "AllLogs<LogEvent>" "List`1"
+LogScope --> "FailingLogs<LogEvent>" "List`1"
+LogScope --> "Current" LogScope
+@enduml

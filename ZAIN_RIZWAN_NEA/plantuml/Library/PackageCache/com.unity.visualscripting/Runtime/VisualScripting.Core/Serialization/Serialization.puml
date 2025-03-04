@@ -1,0 +1,20 @@
+@startuml
+class Serialization <<static>> {
+    + <<const>> ConstructorWarning : string = "This parameterless constructor is only made public for serialization. Use another constructor instead."
+    + {static} isUnitySerializing : bool <<get>> <<set>>
+    + {static} isCustomSerializing : bool <<get>>
+    + {static} isSerializing : bool <<get>>
+    + {static} CloneViaSerialization(value:T, forceReflected:bool) : T
+    + {static} CloneViaSerializationInto(value:TSource, instance:TDestination, forceReflected:bool) : void
+    + {static} Serialize(value:object, forceReflected:bool) : SerializationData
+    + {static} DeserializeInto(data:SerializationData, instance:object, forceReflected:bool) : void
+    + {static} Deserialize(data:SerializationData, forceReflected:bool) : object
+    + {static} PrettyPrint(json:string) : string
+    + {static} AwaitDependencies(depender:ISerializationDepender) : void
+    + {static} NotifyDependencyDeserializing(dependency:ISerializationDependency) : void
+    + {static} NotifyDependencyDeserialized(dependency:ISerializationDependency) : void
+    + {static} NotifyDependencyUnavailable(dependency:ISerializationDependency) : void
+    + {static} NotifyDependencyAvailable(dependency:ISerializationDependency) : void
+    + {static} LogStuckDependers() : void
+}
+@enduml

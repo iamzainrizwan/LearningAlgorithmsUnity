@@ -1,0 +1,6 @@
+@startuml
+class NavMeshSurfaceBuildFromAwake {
+}
+MonoBehaviour <|-- NavMeshSurfaceBuildFromAwake
+NavMeshSurfaceBuildFromAwake --> "surface" NavMeshSurface
+@enduml

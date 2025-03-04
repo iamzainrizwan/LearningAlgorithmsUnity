@@ -1,0 +1,6 @@
+@startuml
+class GenerateBlocksAttribute {
+    + GenerateBlocksAttribute(path:string)
+}
+Attribute <|-- GenerateBlocksAttribute
+@enduml

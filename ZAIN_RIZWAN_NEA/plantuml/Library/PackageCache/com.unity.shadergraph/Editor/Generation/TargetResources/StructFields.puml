@@ -1,0 +1,135 @@
+@startuml
+class StructFields <<static>> {
+}
+struct Attributes {
+    + {static} name : string = "Attributes"
+}
+struct Varyings {
+    + {static} name : string = "Varyings"
+}
+struct VertexDescriptionInputs {
+    + {static} name : string = "VertexDescriptionInputs"
+}
+struct SurfaceDescriptionInputs {
+    + {static} name : string = "SurfaceDescriptionInputs"
+}
+StructFields +-- Attributes
+Attributes o-> "positionOS" FieldDescriptor
+Attributes o-> "normalOS" FieldDescriptor
+Attributes o-> "tangentOS" FieldDescriptor
+Attributes o-> "uv0" FieldDescriptor
+Attributes o-> "uv1" FieldDescriptor
+Attributes o-> "uv2" FieldDescriptor
+Attributes o-> "uv3" FieldDescriptor
+Attributes o-> "weights" FieldDescriptor
+Attributes o-> "indices" FieldDescriptor
+Attributes o-> "color" FieldDescriptor
+Attributes o-> "instanceID" FieldDescriptor
+Attributes o-> "vertexID" FieldDescriptor
+StructFields +-- Varyings
+Varyings o-> "positionCS" FieldDescriptor
+Varyings o-> "positionWS" FieldDescriptor
+Varyings o-> "positionPredisplacementWS" FieldDescriptor
+Varyings o-> "normalWS" FieldDescriptor
+Varyings o-> "tangentWS" FieldDescriptor
+Varyings o-> "texCoord0" FieldDescriptor
+Varyings o-> "texCoord1" FieldDescriptor
+Varyings o-> "texCoord2" FieldDescriptor
+Varyings o-> "texCoord3" FieldDescriptor
+Varyings o-> "color" FieldDescriptor
+Varyings o-> "screenPosition" FieldDescriptor
+Varyings o-> "instanceID" FieldDescriptor
+Varyings o-> "cullFace" FieldDescriptor
+Varyings o-> "vertexID" FieldDescriptor
+Varyings o-> "stereoTargetEyeIndexAsRTArrayIdx" FieldDescriptor
+Varyings o-> "stereoTargetEyeIndexAsBlendIdx0" FieldDescriptor
+Varyings o-> "worldToElement0" FieldDescriptor
+Varyings o-> "worldToElement1" FieldDescriptor
+Varyings o-> "worldToElement2" FieldDescriptor
+Varyings o-> "elementToWorld0" FieldDescriptor
+Varyings o-> "elementToWorld1" FieldDescriptor
+Varyings o-> "elementToWorld2" FieldDescriptor
+StructFields +-- VertexDescriptionInputs
+VertexDescriptionInputs o-> "ObjectSpaceNormal" FieldDescriptor
+VertexDescriptionInputs o-> "ViewSpaceNormal" FieldDescriptor
+VertexDescriptionInputs o-> "WorldSpaceNormal" FieldDescriptor
+VertexDescriptionInputs o-> "TangentSpaceNormal" FieldDescriptor
+VertexDescriptionInputs o-> "ObjectSpaceTangent" FieldDescriptor
+VertexDescriptionInputs o-> "ViewSpaceTangent" FieldDescriptor
+VertexDescriptionInputs o-> "WorldSpaceTangent" FieldDescriptor
+VertexDescriptionInputs o-> "TangentSpaceTangent" FieldDescriptor
+VertexDescriptionInputs o-> "ObjectSpaceBiTangent" FieldDescriptor
+VertexDescriptionInputs o-> "ViewSpaceBiTangent" FieldDescriptor
+VertexDescriptionInputs o-> "WorldSpaceBiTangent" FieldDescriptor
+VertexDescriptionInputs o-> "TangentSpaceBiTangent" FieldDescriptor
+VertexDescriptionInputs o-> "ObjectSpaceViewDirection" FieldDescriptor
+VertexDescriptionInputs o-> "ViewSpaceViewDirection" FieldDescriptor
+VertexDescriptionInputs o-> "WorldSpaceViewDirection" FieldDescriptor
+VertexDescriptionInputs o-> "TangentSpaceViewDirection" FieldDescriptor
+VertexDescriptionInputs o-> "ObjectSpacePosition" FieldDescriptor
+VertexDescriptionInputs o-> "ViewSpacePosition" FieldDescriptor
+VertexDescriptionInputs o-> "WorldSpacePosition" FieldDescriptor
+VertexDescriptionInputs o-> "TangentSpacePosition" FieldDescriptor
+VertexDescriptionInputs o-> "AbsoluteWorldSpacePosition" FieldDescriptor
+VertexDescriptionInputs o-> "ObjectSpacePositionPredisplacement" FieldDescriptor
+VertexDescriptionInputs o-> "ViewSpacePositionPredisplacement" FieldDescriptor
+VertexDescriptionInputs o-> "WorldSpacePositionPredisplacement" FieldDescriptor
+VertexDescriptionInputs o-> "TangentSpacePositionPredisplacement" FieldDescriptor
+VertexDescriptionInputs o-> "AbsoluteWorldSpacePositionPredisplacement" FieldDescriptor
+VertexDescriptionInputs o-> "ScreenPosition" FieldDescriptor
+VertexDescriptionInputs o-> "NDCPosition" FieldDescriptor
+VertexDescriptionInputs o-> "PixelPosition" FieldDescriptor
+VertexDescriptionInputs o-> "uv0" FieldDescriptor
+VertexDescriptionInputs o-> "uv1" FieldDescriptor
+VertexDescriptionInputs o-> "uv2" FieldDescriptor
+VertexDescriptionInputs o-> "uv3" FieldDescriptor
+VertexDescriptionInputs o-> "VertexColor" FieldDescriptor
+VertexDescriptionInputs o-> "TimeParameters" FieldDescriptor
+VertexDescriptionInputs o-> "BoneWeights" FieldDescriptor
+VertexDescriptionInputs o-> "BoneIndices" FieldDescriptor
+VertexDescriptionInputs o-> "VertexID" FieldDescriptor
+VertexDescriptionInputs o-> "InstanceID" FieldDescriptor
+StructFields +-- SurfaceDescriptionInputs
+SurfaceDescriptionInputs o-> "ObjectSpaceNormal" FieldDescriptor
+SurfaceDescriptionInputs o-> "ViewSpaceNormal" FieldDescriptor
+SurfaceDescriptionInputs o-> "WorldSpaceNormal" FieldDescriptor
+SurfaceDescriptionInputs o-> "TangentSpaceNormal" FieldDescriptor
+SurfaceDescriptionInputs o-> "ObjectSpaceTangent" FieldDescriptor
+SurfaceDescriptionInputs o-> "ViewSpaceTangent" FieldDescriptor
+SurfaceDescriptionInputs o-> "WorldSpaceTangent" FieldDescriptor
+SurfaceDescriptionInputs o-> "TangentSpaceTangent" FieldDescriptor
+SurfaceDescriptionInputs o-> "ObjectSpaceBiTangent" FieldDescriptor
+SurfaceDescriptionInputs o-> "ViewSpaceBiTangent" FieldDescriptor
+SurfaceDescriptionInputs o-> "WorldSpaceBiTangent" FieldDescriptor
+SurfaceDescriptionInputs o-> "TangentSpaceBiTangent" FieldDescriptor
+SurfaceDescriptionInputs o-> "ObjectSpaceViewDirection" FieldDescriptor
+SurfaceDescriptionInputs o-> "ViewSpaceViewDirection" FieldDescriptor
+SurfaceDescriptionInputs o-> "WorldSpaceViewDirection" FieldDescriptor
+SurfaceDescriptionInputs o-> "TangentSpaceViewDirection" FieldDescriptor
+SurfaceDescriptionInputs o-> "ObjectSpacePosition" FieldDescriptor
+SurfaceDescriptionInputs o-> "ViewSpacePosition" FieldDescriptor
+SurfaceDescriptionInputs o-> "WorldSpacePosition" FieldDescriptor
+SurfaceDescriptionInputs o-> "TangentSpacePosition" FieldDescriptor
+SurfaceDescriptionInputs o-> "AbsoluteWorldSpacePosition" FieldDescriptor
+SurfaceDescriptionInputs o-> "ObjectSpacePositionPredisplacement" FieldDescriptor
+SurfaceDescriptionInputs o-> "ViewSpacePositionPredisplacement" FieldDescriptor
+SurfaceDescriptionInputs o-> "WorldSpacePositionPredisplacement" FieldDescriptor
+SurfaceDescriptionInputs o-> "TangentSpacePositionPredisplacement" FieldDescriptor
+SurfaceDescriptionInputs o-> "AbsoluteWorldSpacePositionPredisplacement" FieldDescriptor
+SurfaceDescriptionInputs o-> "ScreenPosition" FieldDescriptor
+SurfaceDescriptionInputs o-> "NDCPosition" FieldDescriptor
+SurfaceDescriptionInputs o-> "PixelPosition" FieldDescriptor
+SurfaceDescriptionInputs o-> "uv0" FieldDescriptor
+SurfaceDescriptionInputs o-> "uv1" FieldDescriptor
+SurfaceDescriptionInputs o-> "uv2" FieldDescriptor
+SurfaceDescriptionInputs o-> "uv3" FieldDescriptor
+SurfaceDescriptionInputs o-> "VertexColor" FieldDescriptor
+SurfaceDescriptionInputs o-> "TimeParameters" FieldDescriptor
+SurfaceDescriptionInputs o-> "FaceSign" FieldDescriptor
+SurfaceDescriptionInputs o-> "BoneWeights" FieldDescriptor
+SurfaceDescriptionInputs o-> "BoneIndices" FieldDescriptor
+SurfaceDescriptionInputs o-> "VertexID" FieldDescriptor
+SurfaceDescriptionInputs o-> "InstanceID" FieldDescriptor
+SurfaceDescriptionInputs o-> "worldToElement" FieldDescriptor
+SurfaceDescriptionInputs o-> "elementToWorld" FieldDescriptor
+@enduml

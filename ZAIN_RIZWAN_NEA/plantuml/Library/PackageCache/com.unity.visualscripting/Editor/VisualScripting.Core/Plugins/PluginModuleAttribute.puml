@@ -1,0 +1,6 @@
+@startuml
+class PluginModuleAttribute {
+    + required : bool <<get>> <<set>> = true
+}
+Attribute <|-- PluginModuleAttribute
+@enduml

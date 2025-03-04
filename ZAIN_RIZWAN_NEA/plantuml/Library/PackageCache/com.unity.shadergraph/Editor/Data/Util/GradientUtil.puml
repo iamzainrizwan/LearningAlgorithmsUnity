@@ -1,0 +1,10 @@
+@startuml
+class GradientUtil <<static>> {
+    + {static} GetGradientValue(gradient:Gradient, delimiter:string) : string
+    + {static} GetGradientForPreview(name:string) : string
+    + {static} GetGradientPropertiesForPreview(properties:PropertyCollector, name:string, value:Gradient) : void
+    + {static} CheckEquivalency(A:Gradient, B:Gradient) : bool
+    + {static} ColorKeyToVector(key:GradientColorKey) : Vector4
+    + {static} AlphaKeyToVector(key:GradientAlphaKey) : Vector2
+}
+@enduml

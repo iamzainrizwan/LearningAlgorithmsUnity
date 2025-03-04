@@ -1,0 +1,60 @@
+@startuml
+enum RenderGraphResourceType {
+    Texture= 0,
+    Buffer,
+    AccelerationStructure,
+    Count,
+}
+struct ResourceHandle {
+    + index : int <<get>>
+    + iType : int <<get>>
+    + version : int <<get>> <<set>>
+    + IsValid() : bool
+    + IsNull() : bool
+    {static} + NewFrame(executionIndex:int) : void
+    + IsVersioned : bool <<get>>
+    + Equals(hdl:ResourceHandle) : bool
+}
+class IRenderGraphResource {
+    + imported : bool
+    + shared : bool
+    + sharedExplicitRelease : bool
+    + requestFallBack : bool
+    + forceRelease : bool
+    + writeCount : uint
+    + cachedHash : int
+    + transientPassIndex : int
+    + sharedResourceLastFrameUsed : int
+    + version : int
+    + <<virtual>> Reset(_:IRenderGraphResourcePool) : void
+    + <<virtual>> GetName() : string
+    + <<virtual>> IsCreated() : bool
+    + <<virtual>> IncrementWriteCount() : void
+    + <<virtual>> NewVersion() : int
+    + <<virtual>> NeedsFallBack() : bool
+    + <<virtual>> CreatePooledGraphicsResource() : void
+    + <<virtual>> CreateGraphicsResource() : void
+    + <<virtual>> UpdateGraphicsResource() : void
+    + <<virtual>> ReleasePooledGraphicsResource(frameIndex:int) : void
+    + <<virtual>> ReleaseGraphicsResource() : void
+    + <<virtual>> LogCreation(logger:RenderGraphLogger) : void
+    + <<virtual>> LogRelease(logger:RenderGraphLogger) : void
+    + <<virtual>> GetSortIndex() : int
+    + <<virtual>> GetDescHashCode() : int
+}
+abstract class "RenderGraphResource`2"<DescType,ResType> {
+    + desc : DescType
+    + validDesc : bool
+    + graphicsResource : ResType
+    + <<override>> Reset(pool:IRenderGraphResourcePool) : void
+    + <<override>> IsCreated() : bool
+    + <<override>> ReleaseGraphicsResource() : void
+    + <<override>> CreatePooledGraphicsResource() : void
+    + <<override>> ReleasePooledGraphicsResource(frameIndex:int) : void
+}
+class "IEquatable`1"<T> {
+}
+"IEquatable`1" "<ResourceHandle>" <|-- ResourceHandle
+ResourceHandle --> "type" RenderGraphResourceType
+IRenderGraphResource <|-- "RenderGraphResource`2"
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class OnApplicationResume <<sealed>> {
+}
+class "GlobalEventUnit`1"<T> {
+}
+"GlobalEventUnit`1" "<EmptyEventArgs>" <|-- OnApplicationResume
+@enduml

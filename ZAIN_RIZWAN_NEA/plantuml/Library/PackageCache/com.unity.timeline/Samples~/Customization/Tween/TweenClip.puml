@@ -1,0 +1,17 @@
+@startuml
+class TweenClip {
+    + shouldTweenPosition : bool = true
+    + shouldTweenRotation : bool = true
+    + <<override>> CreatePlayable(graph:PlayableGraph, owner:GameObject) : Playable
+    + GatherProperties(director:PlayableDirector, driver:IPropertyCollector) : void
+}
+class "ExposedReference`1"<T> {
+}
+PlayableAsset <|-- TweenClip
+ITimelineClipAsset <|-- TweenClip
+IPropertyPreview <|-- TweenClip
+TweenClip --> "startLocation<Transform>" "ExposedReference`1"
+TweenClip --> "endLocation<Transform>" "ExposedReference`1"
+TweenClip o-> "curve" AnimationCurve
+TweenClip --> "clipCaps" ClipCaps
+@enduml

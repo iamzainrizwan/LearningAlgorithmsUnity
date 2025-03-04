@@ -1,0 +1,13 @@
+@startuml
+class SampleDependencyImporter {
+    + OnPackageAddedOrUpdated(packageInfo:PackageInfo) : void
+    + OnPackageRemoved(packageInfo:PackageInfo) : void
+    + GetSampleInformation(sampleName:string) : SampleInformation
+}
+class SamplePostprocessor {
+    + {static}  <<event>> AssetImported : Action<string> 
+}
+IPackageManagerExtension <|-- SampleDependencyImporter
+SampleDependencyImporter +-- SamplePostprocessor
+AssetPostprocessor <|-- SamplePostprocessor
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class ScreenPositionSlotControlView {
+    + ScreenPositionSlotControlView(slot:ScreenPositionMaterialSlot)
+}
+VisualElement <|-- ScreenPositionSlotControlView
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class StickyNoteData0 {
+    + m_GuidSerialized : string
+    + m_Title : string
+    + m_Content : string
+    + m_TextSize : int
+    + m_Theme : int
+    + m_GroupGuidSerialized : string
+}
+StickyNoteData0 --> "m_Position" Rect
+@enduml

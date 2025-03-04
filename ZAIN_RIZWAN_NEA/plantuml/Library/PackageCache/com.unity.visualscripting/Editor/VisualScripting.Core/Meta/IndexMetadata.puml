@@ -1,0 +1,14 @@
+@startuml
+class IndexMetadata <<sealed>> {
+    + IndexMetadata(index:int, parent:Metadata)
+    + index : int <<get>>
+    + <<override>> GetCustomAttributes(inherit:bool) : Attribute[]
+}
+enum Mode {
+    List,
+    Enumerable,
+}
+Metadata <|-- IndexMetadata
+IndexMetadata --> "mode" Mode
+IndexMetadata +-- Mode
+@enduml

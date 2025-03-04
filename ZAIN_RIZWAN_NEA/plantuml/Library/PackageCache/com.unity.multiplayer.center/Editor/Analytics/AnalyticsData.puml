@@ -1,0 +1,31 @@
+@startuml
+struct Package {
+    + PackageId : string
+    + SelectedForInstall : bool
+    + IsRecommended : bool
+    + IsAlreadyInstalled : bool
+}
+struct GameSpec {
+    + QuestionId : string
+    + QuestionText : string
+    + AcceptsMultipleAnswers : bool
+    + AnswerId : string
+    + AnswerText : string
+}
+struct RecommendationData {
+    + Preset : int
+    + PresetName : string
+    + QuestionnaireVersion : string
+}
+struct InteractionData {
+    + SectionId : string
+    + DisplayName : string
+    + TargetPackageId : string
+}
+struct InstallData {
+    + Preset : int
+    + PresetName : string
+    + QuestionnaireVersion : string
+}
+InteractionData --> "Type" InteractionDataType
+@enduml

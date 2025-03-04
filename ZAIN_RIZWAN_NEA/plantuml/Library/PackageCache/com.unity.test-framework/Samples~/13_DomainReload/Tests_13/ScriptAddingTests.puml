@@ -1,0 +1,5 @@
+@startuml
+class ScriptAddingTests {
+    + YourTestGoesHere() : void
+}
+@enduml

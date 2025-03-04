@@ -1,0 +1,9 @@
+@startuml
+class RawImage {
+    + <<override>> SetNativeSize() : void
+}
+MaskableGraphic <|-- RawImage
+RawImage --> "mainTexture" Texture
+RawImage --> "texture" Texture
+RawImage --> "uvRect" Rect
+@enduml

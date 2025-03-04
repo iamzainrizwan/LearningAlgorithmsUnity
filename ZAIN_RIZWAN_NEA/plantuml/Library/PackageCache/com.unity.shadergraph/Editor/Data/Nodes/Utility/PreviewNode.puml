@@ -1,0 +1,10 @@
+@startuml
+class PreviewNode {
+    + <<override>> hasPreview : bool <<get>>
+    + SetDimensions(width:float, height:float) : void
+    + width : float <<get>>
+    + height : float <<get>>
+    + PreviewNode()
+}
+CodeFunctionNode <|-- PreviewNode
+@enduml

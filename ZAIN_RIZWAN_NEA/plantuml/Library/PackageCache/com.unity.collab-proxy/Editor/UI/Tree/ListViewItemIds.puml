@@ -1,0 +1,4 @@
+@startuml
+class "ListViewItemIds`1"<I> {
+}
+@enduml

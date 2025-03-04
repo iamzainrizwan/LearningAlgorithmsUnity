@@ -1,0 +1,8 @@
+@startuml
+class GraphInputDescriptor {
+    + GraphInputDescriptor(unit:GraphInput)
+}
+class "UnitDescriptor`1"<T> {
+}
+"UnitDescriptor`1" "<GraphInput>" <|-- GraphInputDescriptor
+@enduml

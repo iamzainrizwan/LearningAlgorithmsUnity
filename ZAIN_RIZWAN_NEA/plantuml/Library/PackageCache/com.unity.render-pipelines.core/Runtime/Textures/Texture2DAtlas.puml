@@ -1,0 +1,47 @@
+@startuml
+class AtlasAllocator {
+    + AtlasAllocator(width:int, height:int, potPadding:bool)
+    + Allocate(result:Vector4, width:int, height:int) : bool
+    + Reset() : void
+}
+class Texture2DAtlas {
+    + {static} maxMipLevelPadding : int <<get>>
+    + Texture2DAtlas(width:int, height:int, format:GraphicsFormat, filterMode:FilterMode, powerOfTwoPadding:bool, name:string, useMipMap:bool)
+    + Release() : void
+    + ResetAllocator() : void
+    + ClearTarget(cmd:CommandBuffer) : void
+    + <<virtual>> BlitTexture(cmd:CommandBuffer, scaleOffset:Vector4, texture:Texture, sourceScaleOffset:Vector4, blitMips:bool, overrideInstanceID:int) : void
+    + <<virtual>> BlitOctahedralTexture(cmd:CommandBuffer, scaleOffset:Vector4, texture:Texture, sourceScaleOffset:Vector4, blitMips:bool, overrideInstanceID:int) : void
+    + <<virtual>> BlitCubeTexture2D(cmd:CommandBuffer, scaleOffset:Vector4, texture:Texture, blitMips:bool, overrideInstanceID:int) : void
+    + <<virtual>> AllocateTexture(cmd:CommandBuffer, scaleOffset:Vector4, texture:Texture, width:int, height:int, overrideInstanceID:int) : bool
+    + AllocateTextureWithoutBlit(texture:Texture, width:int, height:int, scaleOffset:Vector4) : bool
+    + <<virtual>> AllocateTextureWithoutBlit(instanceId:int, width:int, height:int, scaleOffset:Vector4) : bool
+    + GetTextureID(texture:Texture) : int
+    + GetTextureID(textureA:Texture, textureB:Texture) : int
+    + IsCached(scaleOffset:Vector4, textureA:Texture, textureB:Texture) : bool
+    + IsCached(scaleOffset:Vector4, texture:Texture) : bool
+    + IsCached(scaleOffset:Vector4, id:int) : bool
+    + <<virtual>> NeedsUpdate(texture:Texture, needMips:bool) : bool
+    + <<virtual>> NeedsUpdate(id:int, updateCount:int, needMips:bool) : bool
+    + <<virtual>> NeedsUpdate(textureA:Texture, textureB:Texture, needMips:bool) : bool
+    + <<virtual>> AddTexture(cmd:CommandBuffer, scaleOffset:Vector4, texture:Texture) : bool
+    + <<virtual>> UpdateTexture(cmd:CommandBuffer, oldTexture:Texture, newTexture:Texture, scaleOffset:Vector4, sourceScaleOffset:Vector4, updateIfNeeded:bool, blitMips:bool) : bool
+    + <<virtual>> UpdateTexture(cmd:CommandBuffer, texture:Texture, scaleOffset:Vector4, updateIfNeeded:bool, blitMips:bool) : bool
+}
+class AtlasNode {
+    + Allocate(pool:ObjectPool<AtlasNode>, width:int, height:int, powerOfTwoPadding:bool) : AtlasNode
+    + Release(pool:ObjectPool<AtlasNode>) : void
+}
+enum BlitType {
+    Default,
+    CubeTo2DOctahedral,
+    SingleChannel,
+    CubeTo2DOctahedralSingleChannel,
+}
+Texture2DAtlas --> "AtlasTexture" RTHandle
+AtlasAllocator +-- AtlasNode
+AtlasNode o-> "m_RightChild" AtlasNode
+AtlasNode o-> "m_BottomChild" AtlasNode
+AtlasNode o-> "m_Rect" Vector4
+Texture2DAtlas +-- BlitType
+@enduml

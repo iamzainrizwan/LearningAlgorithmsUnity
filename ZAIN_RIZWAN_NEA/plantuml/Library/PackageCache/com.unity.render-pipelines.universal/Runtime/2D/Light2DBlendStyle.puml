@@ -1,0 +1,34 @@
+@startuml
+struct Light2DBlendStyle {
+    + name : string
+}
+enum TextureChannel {
+    None= 0,
+    R= 1,
+    G= 2,
+    B= 3,
+    A= 4,
+    OneMinusR= 5,
+    OneMinusG= 6,
+    OneMinusB= 7,
+    OneMinusA= 8,
+}
+struct MaskChannelFilter {
+    + MaskChannelFilter(m:Vector4, i:Vector4)
+}
+enum BlendMode {
+    Additive= 0,
+    Multiply= 1,
+    Subtractive= 2,
+}
+struct BlendFactors {
+    + multiplicative : float
+    + additive : float
+}
+Light2DBlendStyle +-- TextureChannel
+Light2DBlendStyle +-- MaskChannelFilter
+MaskChannelFilter --> "mask" Vector4
+MaskChannelFilter --> "inverted" Vector4
+Light2DBlendStyle +-- BlendMode
+Light2DBlendStyle +-- BlendFactors
+@enduml

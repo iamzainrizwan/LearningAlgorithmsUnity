@@ -1,0 +1,17 @@
+@startuml
+class CustomTextureSubTarget <<sealed>> {
+    + CustomTextureSubTarget()
+    + <<override>> IsActive() : bool
+    + <<override>> Setup(context:TargetSetupContext) : void
+    + <<override>> GetFields(context:TargetFieldContext) : void
+    + <<override>> GetActiveBlocks(context:TargetActiveBlockContext) : void
+    + <<override>> GetPropertiesGUI(context:TargetPropertyGUIContext, onChange:Action, registerUndo:Action<String>) : void
+}
+class "SubTarget`1"<T> {
+}
+class SubShaders <<static>> {
+}
+"SubTarget`1" "<CustomRenderTextureTarget>" <|-- CustomTextureSubTarget
+CustomTextureSubTarget +-- SubShaders
+SubShaders o-> "CustomRenderTexture" SubShaderDescriptor
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class fsIgnoreAttribute <<sealed>> {
+}
+Attribute <|-- fsIgnoreAttribute
+@enduml

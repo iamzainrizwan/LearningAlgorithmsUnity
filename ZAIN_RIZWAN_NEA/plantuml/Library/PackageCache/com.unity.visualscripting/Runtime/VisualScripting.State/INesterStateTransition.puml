@@ -1,0 +1,6 @@
+@startuml
+interface INesterStateTransition {
+}
+IStateTransition <|-- INesterStateTransition
+IGraphNesterElement <|-- INesterStateTransition
+@enduml

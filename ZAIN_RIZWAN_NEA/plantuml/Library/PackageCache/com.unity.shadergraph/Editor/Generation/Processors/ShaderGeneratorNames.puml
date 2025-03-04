@@ -1,0 +1,16 @@
+@startuml
+class ShaderGeneratorNames <<static>> {
+    + {static} UVCount : int = 4
+    + <<const>> ScreenPosition : string = "ScreenPosition"
+    + <<const>> NDCPosition : string = "NDCPosition"
+    + <<const>> PixelPosition : string = "PixelPosition"
+    + <<const>> VertexColor : string = "VertexColor"
+    + <<const>> FaceSign : string = "FaceSign"
+    + <<const>> TimeParameters : string = "TimeParameters"
+    + <<const>> BoneWeights : string = "BoneWeights"
+    + <<const>> BoneIndices : string = "BoneIndices"
+    + <<const>> VertexID : string = "VertexID"
+    + <<const>> InstanceID : string = "InstanceID"
+    + {static} GetUVName(channel:UVChannel) : string
+}
+@enduml

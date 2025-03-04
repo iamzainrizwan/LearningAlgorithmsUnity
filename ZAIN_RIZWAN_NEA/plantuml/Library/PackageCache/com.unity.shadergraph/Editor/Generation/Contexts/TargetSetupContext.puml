@@ -1,0 +1,20 @@
+@startuml
+class TargetSetupContext {
+    + TargetSetupContext(assetCollection:AssetCollection)
+    + SetupFinalize() : void
+    + AddSubShader(subShader:SubShaderDescriptor) : void
+    + AddKernel(kernel:KernelDescriptor) : void
+    + AddAssetDependency(guid:GUID, flags:AssetCollection.Flags) : void
+    + SetDefaultShaderGUI(defaultShaderGUI:string) : void
+    + AddCustomEditorForRenderPipeline(shaderGUI:string, renderPipelineAssetType:Type) : void
+    + AddCustomEditorForRenderPipeline(shaderGUI:string, renderPipelineAssetTypeFullName:string) : void
+    + HasCustomEditorForRenderPipeline() : bool
+    + HasCustomEditorForRenderPipeline(renderPipelineAssetType:Type) : bool
+    + HasCustomEditorForRenderPipeline(renderPipelineAssetTypeFullName:string) : bool
+}
+class "List`1"<T> {
+}
+TargetSetupContext --> "subShaders<SubShaderDescriptor>" "List`1"
+TargetSetupContext --> "kernels" KernelCollection
+TargetSetupContext --> "assetCollection" AssetCollection
+@enduml

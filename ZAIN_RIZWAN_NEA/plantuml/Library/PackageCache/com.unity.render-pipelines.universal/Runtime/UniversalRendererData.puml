@@ -1,0 +1,43 @@
+@startuml
+enum CopyDepthMode {
+    AfterOpaques,
+    AfterTransparents,
+    ForcePrepass,
+}
+enum RenderPathCompatibility {
+    Forward= 1 << 0,
+    Deferred= 1 << 1,
+    ForwardPlus= 1 << 2,
+    All= Forward | Deferred | ForwardPlus,
+}
+class RenderPathCompatibleAttribute <<sealed>> {
+    + RenderPathCompatibleAttribute(renderPath:RenderPathCompatibility)
+}
+enum DepthFormat {
+    Default,
+    Depth_16= GraphicsFormat.D16_UNorm,
+    Depth_24= GraphicsFormat.D24_UNorm,
+    Depth_32= GraphicsFormat.D32_SFloat,
+    Depth_16_Stencil_8= GraphicsFormat.D16_UNorm_S8_UInt,
+    Depth_24_Stencil_8= GraphicsFormat.D24_UNorm_S8_UInt,
+    Depth_32_Stencil_8= GraphicsFormat.D32_SFloat_S8_UInt,
+}
+class UniversalRendererData <<partial>> {
+    + shadowTransparentReceive : bool <<get>> <<set>>
+    + accurateGbufferNormals : bool <<get>> <<set>>
+}
+Attribute <|-- RenderPathCompatibleAttribute
+RenderPathCompatibleAttribute --> "renderPath" RenderPathCompatibility
+ScriptableRendererData <|-- UniversalRendererData
+ISerializationCallbackReceiver <|-- UniversalRendererData
+UniversalRendererData o-> "postProcessData" PostProcessData
+UniversalRendererData --> "opaqueLayerMask" LayerMask
+UniversalRendererData --> "transparentLayerMask" LayerMask
+UniversalRendererData --> "defaultStencilState" StencilStateData
+UniversalRendererData --> "renderingMode" RenderingMode
+UniversalRendererData --> "depthPrimingMode" DepthPrimingMode
+UniversalRendererData --> "copyDepthMode" CopyDepthMode
+UniversalRendererData --> "depthAttachmentFormat" DepthFormat
+UniversalRendererData --> "depthTextureFormat" DepthFormat
+UniversalRendererData --> "intermediateTextureMode" IntermediateTextureMode
+@enduml

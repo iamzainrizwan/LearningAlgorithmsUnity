@@ -1,0 +1,9 @@
+@startuml
+class DictionaryCloner <<sealed>> {
+    + <<override>> Handles(type:Type) : bool
+    + <<override>> FillClone(type:Type, clone:IDictionary, original:IDictionary, context:CloningContext) : void
+}
+class "Cloner`1"<T> {
+}
+"Cloner`1" "<IDictionary>" <|-- DictionaryCloner
+@enduml

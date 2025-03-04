@@ -1,0 +1,20 @@
+@startuml
+abstract class TestTaskBase {
+    + RerunAfterResume : bool
+    + RerunAfterEnteredEditMode : bool
+    + SupportsResumingEnumerator : bool
+    + RunOnCancel : bool
+    + CanRunInstantly : bool = true
+    + {abstract} Execute(testJobData:TestJobData) : IEnumerator
+    + <<virtual>> GetName() : string
+    + GetTitle() : string
+    + ShouldExecute(taskInfo:TaskInfo) : bool
+}
+enum ErrorRunMode {
+    DoNotRunOnError,
+    RunOnlyOnError,
+    RunAlways,
+}
+TestTaskBase o-> "RunOnError" ErrorRunMode
+TestTaskBase +-- ErrorRunMode
+@enduml

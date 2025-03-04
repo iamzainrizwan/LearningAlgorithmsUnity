@@ -1,0 +1,62 @@
+@startuml
+class DebugUI <<partial>> {
+}
+class Container {
+    + Container()
+    + Container(id:string)
+    + Container(displayName:string, children:ObservableList<Widget>)
+    + <<override>> GetHashCode() : int
+}
+class Foldout {
+    + isReadOnly : bool <<get>>
+    + opened : bool
+    + isHeader : bool
+    + Foldout()
+    + Foldout(displayName:string, children:ObservableList<Widget>, columnLabels:string[], columnTooltips:string[])
+    + GetValue() : bool
+    + SetValue(value:object) : void
+    + ValidateValue(value:object) : object
+    + SetValue(value:bool) : void
+}
+class HBox {
+    + HBox()
+}
+class VBox {
+    + VBox()
+}
+class Table {
+    + isReadOnly : bool = false
+    + Table()
+    + SetColumnVisibility(index:int, visible:bool) : void
+    + GetColumnVisibility(index:int) : bool
+}
+class "ObservableList`1"<T> {
+}
+struct ContextMenuItem {
+    + displayName : string
+}
+class "List`1"<T> {
+}
+class Row {
+    + Row()
+}
+DebugUI +-- Container
+Widget <|-- Container
+IContainer <|-- Container
+Container --> "children<Widget>" "ObservableList`1"
+Container --> "panel" Panel
+DebugUI +-- Foldout
+Container <|-- Foldout
+IValueField <|-- Foldout
+Foldout o-> "contextMenuItems<ContextMenuItem>" "List`1"
+DebugUI +-- HBox
+Container <|-- HBox
+DebugUI +-- VBox
+Container <|-- VBox
+DebugUI +-- Table
+Container <|-- Table
+Foldout +-- ContextMenuItem
+ContextMenuItem --> "action" Action
+Table +-- Row
+Foldout <|-- Row
+@enduml

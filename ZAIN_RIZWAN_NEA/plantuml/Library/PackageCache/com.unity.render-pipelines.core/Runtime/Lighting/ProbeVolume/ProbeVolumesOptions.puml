@@ -1,0 +1,22 @@
+@startuml
+class APVLeakReductionModeParameter <<sealed>> {
+    + APVLeakReductionModeParameter(value:APVLeakReductionMode, overrideState:bool)
+}
+class ProbeVolumesOptions <<sealed>> {
+}
+class "VolumeParameter`1"<T> {
+}
+"VolumeParameter`1" "<APVLeakReductionMode>" <|-- APVLeakReductionModeParameter
+VolumeComponent <|-- ProbeVolumesOptions
+ProbeVolumesOptions o-> "normalBias" ClampedFloatParameter
+ProbeVolumesOptions o-> "viewBias" ClampedFloatParameter
+ProbeVolumesOptions o-> "scaleBiasWithMinProbeDistance" BoolParameter
+ProbeVolumesOptions o-> "samplingNoise" ClampedFloatParameter
+ProbeVolumesOptions o-> "animateSamplingNoise" BoolParameter
+ProbeVolumesOptions o-> "leakReductionMode" APVLeakReductionModeParameter
+ProbeVolumesOptions o-> "minValidDotProductValue" ClampedFloatParameter
+ProbeVolumesOptions o-> "occlusionOnlyReflectionNormalization" BoolParameter
+ProbeVolumesOptions o-> "intensityMultiplier" ClampedFloatParameter
+ProbeVolumesOptions o-> "skyOcclusionIntensityMultiplier" ClampedFloatParameter
+ProbeVolumesOptions o-> "worldOffset" Vector3Parameter
+@enduml

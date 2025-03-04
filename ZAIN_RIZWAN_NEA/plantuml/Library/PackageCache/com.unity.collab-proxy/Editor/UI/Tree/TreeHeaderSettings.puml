@@ -1,0 +1,4 @@
+@startuml
+class TreeHeaderSettings <<static>> {
+}
+@enduml

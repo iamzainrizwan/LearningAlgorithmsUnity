@@ -1,0 +1,29 @@
+@startuml
+abstract class Product {
+    + <<virtual>> Initialize() : void
+    + id : string <<get>>
+    + <<virtual>> requiresSetup : bool <<get>>
+    + {abstract} name : string <<get>>
+    + {abstract} author : string <<get>>
+    + {abstract} description : string <<get>>
+    + <<virtual>> authorLabel : string <<get>>
+    + <<virtual>> copyrightHolder : string <<get>>
+    + <<virtual>> copyrightYear : int <<get>>
+    + <<virtual>> publisherUrl : string <<get>>
+    + <<virtual>> websiteUrl : string <<get>>
+    + <<virtual>> supportUrl : string <<get>>
+    + <<virtual>> manualUrl : string <<get>>
+    + <<virtual>> assetStoreUrl : string <<get>>
+    + authorUrl : string <<get>>
+    + url : string <<get>>
+    + {abstract} configurationPanelLabel : string <<get>>
+}
+class "ReadOnlyCollection`1"<T> {
+}
+IAboutable <|-- Product
+Product --> "plugins<Plugin>" "ReadOnlyCollection`1"
+Product --> "logo" Texture2D
+Product --> "version" SemanticVersion
+Product --> "authorLogo" Texture2D
+Product --> "configurationPanel" ConfigurationPanel
+@enduml

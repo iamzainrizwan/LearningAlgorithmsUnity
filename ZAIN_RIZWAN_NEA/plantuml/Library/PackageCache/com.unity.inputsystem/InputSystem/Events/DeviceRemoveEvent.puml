@@ -1,0 +1,10 @@
+@startuml
+struct DeviceRemoveEvent {
+    + <<const>> Type : int = 0x4452454D
+    + <<unsafe>> ToEventPtr() : InputEventPtr
+    + {static} Create(deviceId:int, time:double) : DeviceRemoveEvent
+}
+IInputEventTypeInfo <|-- DeviceRemoveEvent
+DeviceRemoveEvent --> "baseEvent" InputEvent
+DeviceRemoveEvent --> "typeStatic" FourCC
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+struct "CallbackArray`1"<TDelegate> {
+    + length : int <<get>>
+    + Clear() : void
+    + AddCallback(dlg:TDelegate) : void
+    + RemoveCallback(dlg:TDelegate) : void
+    + LockForChanges() : void
+    + UnlockForChanges() : void
+}
+@enduml

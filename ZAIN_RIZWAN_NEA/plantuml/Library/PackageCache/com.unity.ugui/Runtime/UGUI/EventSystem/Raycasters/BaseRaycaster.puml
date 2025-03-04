@@ -1,0 +1,12 @@
+@startuml
+abstract class BaseRaycaster {
+    + {abstract} Raycast(eventData:PointerEventData, resultAppendList:List<RaycastResult>) : void
+    + <<virtual>> priority : int <<get>>
+    + <<virtual>> sortOrderPriority : int <<get>>
+    + <<virtual>> renderOrderPriority : int <<get>>
+    + <<override>> ToString() : string
+}
+UIBehaviour <|-- BaseRaycaster
+BaseRaycaster --> "eventCamera" Camera
+BaseRaycaster --> "rootRaycaster" BaseRaycaster
+@enduml

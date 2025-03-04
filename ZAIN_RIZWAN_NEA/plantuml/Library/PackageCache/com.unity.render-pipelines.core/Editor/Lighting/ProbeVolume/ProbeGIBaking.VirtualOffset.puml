@@ -1,0 +1,50 @@
+@startuml
+class AdaptiveProbeVolumes <<partial>> {
+}
+class AdaptiveProbeVolumes <<partial>> {
+}
+abstract class VirtualOffsetBaker {
+    + {abstract} currentStep : ulong <<get>>
+    + {abstract} stepCount : ulong <<get>>
+    + {abstract} Initialize(bakingSet:ProbeVolumeBakingSet, probePositions:NativeArray<Vector3>) : void
+    + {abstract} Step() : bool
+    + {abstract} Dispose() : void
+}
+class DefaultVirtualOffset {
+    + <<override>> currentStep : ulong <<get>>
+    + <<override>> stepCount : ulong <<get>>
+    + <<override>> Initialize(bakingSet:ProbeVolumeBakingSet, probePositions:NativeArray<Vector3>) : void
+    + <<override>> Step() : bool
+    + <<override>> Dispose() : void
+}
+struct TouchupsPerCell {
+}
+enum InstanceFlags {
+    DIRECT_RAY_VIS_MASK= 1,
+    INDIRECT_RAY_VIS_MASK= 2,
+    SHADOW_RAY_VIS_MASK= 4,
+}
+class "NativeArray`1"<T> {
+}
+struct ProbeData {
+    + originBias : float
+    + tMax : float
+    + geometryBias : float
+    + probeIndex : int
+    + validityThreshold : float
+}
+class "List`1"<T> {
+}
+AdaptiveProbeVolumes +-- VirtualOffsetBaker
+IDisposable <|-- VirtualOffsetBaker
+VirtualOffsetBaker --> "offsets<Vector3>" "NativeArray`1"
+AdaptiveProbeVolumes +-- DefaultVirtualOffset
+VirtualOffsetBaker <|-- DefaultVirtualOffset
+DefaultVirtualOffset --> "offsets<Vector3>" "NativeArray`1"
+AdaptiveProbeVolumes +-- TouchupsPerCell
+TouchupsPerCell --> "appliers<(ProbeAdjustmentVolume touchup, ProbeReferenceVolume.Volume obb, Vector3 center, Vector3 offset)>" "List`1"
+TouchupsPerCell --> "overriders<(ProbeAdjustmentVolume touchup, ProbeReferenceVolume.Volume obb, Vector3 center)>" "List`1"
+AdaptiveProbeVolumes +-- InstanceFlags
+DefaultVirtualOffset +-- ProbeData
+ProbeData --> "position" Vector3
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class CreateFullscreenShaderGraph <<static>> {
+    + {static} CreateFullscreenGraph() : void
+}
+@enduml

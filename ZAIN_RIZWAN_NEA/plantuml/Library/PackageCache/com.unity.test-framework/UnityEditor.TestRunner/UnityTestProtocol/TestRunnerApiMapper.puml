@@ -1,0 +1,12 @@
+@startuml
+class TestRunnerApiMapper {
+    + TestRunnerApiMapper(projectRepoPath:string)
+    + MapTestToTestPlanMessage(testsToRun:ITestAdaptor) : TestPlanMessage
+    + MapTestToTestStartedMessage(test:ITestAdaptor) : TestStartedMessage
+    + TestResultToTestFinishedMessage(result:ITestResultAdaptor) : TestFinishedMessage
+    + GetRunStateFromResultNunitXml(result:ITestResultAdaptor) : string
+    + GetTestStateFromResult(result:ITestResultAdaptor) : TestState
+    + FlattenTestNames(test:ITestAdaptor) : List<string>
+}
+ITestRunnerApiMapper <|-- TestRunnerApiMapper
+@enduml

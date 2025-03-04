@@ -1,0 +1,107 @@
+@startuml
+class DirectorStyles {
+    + <<const>> stylesheetsPath : string = "Packages/com.unity.timeline/Editor/StyleSheets/"
+    + <<const>> newTimelineDefaultNameSuffix : string = "Timeline"
+    + {static} <<readonly>> kBaseIndent : float = 15.0f
+    + {static} <<readonly>> kDurationGuiThickness : float = 5.0f
+    + <<const>> markerDefaultStyle : string = "MarkerItem"
+    + {static} IsInitialized : bool <<get>>
+    + {static} ReloadStylesIfNeeded() : void
+    + ExportSkinToFile() : void
+    + ReloadSkin() : void
+    + Initialize() : void
+    + {static} GetGUIStyle(s:string) : GUIStyle
+    + {static} TrIconContent(iconName:string, tooltip:string) : GUIContent
+    + {static} IconContent(iconName:string) : GUIContent
+    + {static} TrTextContentWithIcon(text:string, tooltip:string, iconName:string) : GUIContent
+    + {static} TrTextContent(text:string, tooltip:string) : GUIContent
+    + {static} LoadIcon(iconName:string) : Texture2D
+    + {static} Elipsify(label:string, rect:Rect, style:GUIStyle) : string
+    + {static} Elipsify(label:string, destinationWidth:float, neededWidth:float) : string
+    + {static} GetBackgroundImage(style:GUIStyle, state:StyleState) : Texture2D
+    + {static} LoadStyleSheet(path:string) : StyleSheet
+}
+DirectorStyles o-> "referenceTrackLabel" GUIContent
+DirectorStyles o-> "recordingLabel" GUIContent
+DirectorStyles o-> "noTimelineAssetSelected" GUIContent
+DirectorStyles o-> "createTimelineOnSelection" GUIContent
+DirectorStyles o-> "noTimelinesInScene" GUIContent
+DirectorStyles o-> "createNewTimelineText" GUIContent
+DirectorStyles o-> "previewContent" GUIContent
+DirectorStyles o-> "previewDisabledContent" GUIContent
+DirectorStyles o-> "mixOff" GUIContent
+DirectorStyles o-> "mixOn" GUIContent
+DirectorStyles o-> "rippleOff" GUIContent
+DirectorStyles o-> "rippleOn" GUIContent
+DirectorStyles o-> "replaceOff" GUIContent
+DirectorStyles o-> "replaceOn" GUIContent
+DirectorStyles o-> "showMarkersOn" GUIContent
+DirectorStyles o-> "showMarkersOff" GUIContent
+DirectorStyles o-> "showMarkersOnTimeline" GUIContent
+DirectorStyles o-> "timelineMarkerTrackHeader" GUIContent
+DirectorStyles o-> "signalTrackIcon" GUIContent
+DirectorStyles o-> "playContent" GUIContent
+DirectorStyles o-> "gotoBeginingContent" GUIContent
+DirectorStyles o-> "gotoEndContent" GUIContent
+DirectorStyles o-> "nextFrameContent" GUIContent
+DirectorStyles o-> "previousFrameContent" GUIContent
+DirectorStyles o-> "newContent" GUIContent
+DirectorStyles o-> "optionsCogIcon" GUIContent
+DirectorStyles o-> "animationTrackIcon" GUIContent
+DirectorStyles o-> "audioTrackIcon" GUIContent
+DirectorStyles o-> "playableTrackIcon" GUIContent
+DirectorStyles o-> "timelineSelectorArrow" GUIContent
+DirectorStyles --> "playrangeContent" GUIContent
+DirectorStyles o-> "kClipErrorColor" Color
+DirectorStyles o-> "kMixToolColor" Color
+DirectorStyles o-> "kRippleToolColor" Color
+DirectorStyles o-> "kReplaceToolColor" Color
+DirectorStyles --> "groupBackground" GUIStyle
+DirectorStyles --> "displayBackground" GUIStyle
+DirectorStyles --> "fontClip" GUIStyle
+DirectorStyles --> "fontClipLoop" GUIStyle
+DirectorStyles --> "trackHeaderFont" GUIStyle
+DirectorStyles --> "trackGroupAddButton" GUIStyle
+DirectorStyles --> "groupFont" GUIStyle
+DirectorStyles --> "timeCursor" GUIStyle
+DirectorStyles --> "endmarker" GUIStyle
+DirectorStyles --> "tinyFont" GUIStyle
+DirectorStyles --> "foldout" GUIStyle
+DirectorStyles --> "trackMuteButton" GUIStyle
+DirectorStyles --> "trackLockButton" GUIStyle
+DirectorStyles --> "trackRecordButton" GUIStyle
+DirectorStyles --> "playTimeRangeStart" GUIStyle
+DirectorStyles --> "playTimeRangeEnd" GUIStyle
+DirectorStyles --> "selectedStyle" GUIStyle
+DirectorStyles --> "trackSwatchStyle" GUIStyle
+DirectorStyles --> "connector" GUIStyle
+DirectorStyles --> "keyframe" GUIStyle
+DirectorStyles --> "warning" GUIStyle
+DirectorStyles --> "extrapolationHold" GUIStyle
+DirectorStyles --> "extrapolationLoop" GUIStyle
+DirectorStyles --> "extrapolationPingPong" GUIStyle
+DirectorStyles --> "extrapolationContinue" GUIStyle
+DirectorStyles --> "trackMarkerButton" GUIStyle
+DirectorStyles --> "markerMultiOverlay" GUIStyle
+DirectorStyles --> "bottomShadow" GUIStyle
+DirectorStyles --> "trackOptions" GUIStyle
+DirectorStyles --> "infiniteTrack" GUIStyle
+DirectorStyles --> "clipOut" GUIStyle
+DirectorStyles --> "clipIn" GUIStyle
+DirectorStyles --> "trackCurvesButton" GUIStyle
+DirectorStyles --> "trackLockOverlay" GUIStyle
+DirectorStyles --> "activation" GUIStyle
+DirectorStyles --> "playrange" GUIStyle
+DirectorStyles --> "timelineLockButton" GUIStyle
+DirectorStyles --> "trackAvatarMaskButton" GUIStyle
+DirectorStyles --> "markerWarning" GUIStyle
+DirectorStyles --> "editModeBtn" GUIStyle
+DirectorStyles --> "showMarkersBtn" GUIStyle
+DirectorStyles --> "sequenceSwitcher" GUIStyle
+DirectorStyles --> "inlineCurveHandle" GUIStyle
+DirectorStyles --> "timeReferenceButton" GUIStyle
+DirectorStyles --> "trackButtonSuite" GUIStyle
+DirectorStyles --> "previewButtonDisabled" GUIStyle
+DirectorStyles --> "Instance" DirectorStyles
+DirectorStyles --> "customSkin" DirectorNamedColor
+@enduml

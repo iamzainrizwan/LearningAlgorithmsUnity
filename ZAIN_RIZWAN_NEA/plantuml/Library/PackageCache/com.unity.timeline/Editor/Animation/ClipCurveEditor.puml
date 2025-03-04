@@ -1,0 +1,20 @@
+@startuml
+class ClipCurveEditor {
+    + ClipCurveEditor(dataSource:CurveDataSource, parentWindow:TimelineWindow, hostTrack:TrackAsset)
+    + SelectAllKeys() : void
+    + FrameClip() : void
+    + DrawHeader(headerRect:Rect) : void
+    + GetSelectedProperties(useForcedGroups:bool) : IEnumerable<EditorCurveBinding>
+    + RemoveCurves(bindings:IEnumerable<EditorCurveBinding>) : void
+    + DrawCurveEditor(rect:Rect, state:WindowState, clipRange:Vector2, loop:bool, selected:bool) : void
+}
+class CurveEditorState {
+    + rippleTime : bool <<get>>
+}
+ClipCurveEditor --> "bindingHierarchy" BindingSelector
+ClipCurveEditor --> "shownAreaInsideMargins" Rect
+ClipCurveEditor --> "dataSource" CurveDataSource
+ClipCurveEditor +-- CurveEditorState
+ICurveEditorState <|-- CurveEditorState
+CurveEditorState --> "timeRange" Vector2
+@enduml

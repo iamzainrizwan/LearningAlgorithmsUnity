@@ -1,0 +1,7 @@
+@startuml
+struct GraphDataReadOnly {
+    + GraphDataReadOnly(graph:GraphData)
+    + AnyVertexAnimationActive() : bool
+    + IsVFXCompatible() : bool
+}
+@enduml

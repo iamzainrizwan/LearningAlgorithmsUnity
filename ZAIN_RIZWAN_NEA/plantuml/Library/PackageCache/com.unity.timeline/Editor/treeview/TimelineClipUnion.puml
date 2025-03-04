@@ -1,0 +1,8 @@
+@startuml
+class TimelineClipUnion {
+    + Draw(parentRect:Rect, state:WindowState) : void
+    + {static} Build(clips:List<TimelineClipGUI>) : List<TimelineClipUnion>
+    + {static} Encompass(a:Rect, b:Rect) : Rect
+    + {static} Intersection(r1:Rect, r2:Rect, intersection:Rect) : bool
+}
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+class TimelineWindow <<partial>> {
+}
+class Styles <<static>> {
+    + {static} DurationModeText : string
+}
+class TimelineTimeArea {
+    + TimelineTimeArea(state:WindowState, minimalGUI:bool)
+    + <<override>> FormatTickTime(time:float, frameRate:float, timeFormat:TimeFormat) : string
+}
+TimelineWindow --> "timeArea" TimeArea
+TimelineWindow +-- Styles
+TimelineWindow +-- TimelineTimeArea
+TimeArea <|-- TimelineTimeArea
+@enduml

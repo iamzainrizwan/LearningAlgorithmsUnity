@@ -1,0 +1,10 @@
+@startuml
+abstract class "Analyser`2"<TTarget,TAnalysis> {
+    + analysis : TAnalysis <<get>>
+}
+class "Assigner`2"<T1,T2> {
+}
+"Assigner`2" "<TTarget,TAnalysis>" <|-- "Analyser`2"
+IAnalyser <|-- "Analyser`2"
+"Analyser`2" --> "reference" GraphReference
+@enduml

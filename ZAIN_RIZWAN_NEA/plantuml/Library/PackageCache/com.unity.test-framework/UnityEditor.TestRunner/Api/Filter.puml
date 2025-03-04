@@ -1,0 +1,7 @@
+@startuml
+class Filter {
+    + targetPlatform : BuildTarget?
+    + <<override>> ToString() : string
+}
+Filter --> "testMode" TestMode
+@enduml

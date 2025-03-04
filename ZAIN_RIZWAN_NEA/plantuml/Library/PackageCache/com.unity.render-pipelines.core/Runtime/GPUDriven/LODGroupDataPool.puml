@@ -1,0 +1,89 @@
+@startuml
+struct LODGroupData {
+    + <<const>> k_MaxLODLevelsCount : int = 8
+    + valid : bool
+    + lodCount : int
+    + rendererCount : int
+    + <<fixed>> screenRelativeTransitionHeights : float
+    + <<fixed>> fadeTransitionWidth : float
+}
+struct LODGroupCullingData {
+    + lodCount : int
+    + <<fixed>> sqrDistances : float
+    + <<fixed>> transitionDistances : float
+    + worldSpaceSize : float
+    + <<fixed>> percentageFlags : bool
+}
+struct UpdateLODGroupTransformJob {
+    + <<const>> k_BatchSize : int = 256
+    + requiresGPUUpload : bool
+    + supportDitheringCrossFade : bool
+    + <<unsafe>> Execute(index:int) : void
+}
+struct AllocateOrGetLODGroupDataInstancesJob {
+    + Execute() : void
+}
+struct UpdateLODGroupDataJob {
+    + <<const>> k_BatchSize : int = 256
+    + supportDitheringCrossFade : bool
+    + Execute(index:int) : void
+}
+struct FreeLODGroupDataJob {
+    + Execute() : void
+}
+class LODGroupDataPool {
+    + crossfadedRendererCount : int <<get>>
+    + activeLodGroupCount : int <<get>>
+    + LODGroupDataPool(resources:GPUResidentDrawerResources, initialInstanceCount:int, supportDitheringCrossFade:bool)
+    + Dispose() : void
+    + <<unsafe>> UpdateLODGroupTransformData(inputData:GPUDrivenLODGroupData) : void
+    + <<unsafe>> UpdateLODGroupData(inputData:GPUDrivenLODGroupData) : void
+    + <<unsafe>> FreeLODGroupData(destroyedLODGroupsID:NativeArray<int>) : void
+}
+class "NativeParallelHashMap`2"<T1,T2> {
+}
+class "NativeArray`1"<T> {
+}
+class "NativeList`1"<T> {
+}
+class LodGroupShaderIDs <<static>> {
+    + {static} <<readonly>> _SupportDitheringCrossFade : int
+    + {static} <<readonly>> _LodGroupCullingDataGPUByteSize : int
+    + {static} <<readonly>> _LodGroupCullingDataStartOffset : int
+    + {static} <<readonly>> _LodCullingDataQueueCount : int
+    + {static} <<readonly>> _InputLodCullingDataIndices : int
+    + {static} <<readonly>> _InputLodCullingDataBuffer : int
+    + {static} <<readonly>> _LodGroupCullingData : int
+}
+LODGroupCullingData --> "worldSpaceReferencePoint" float3
+IJobParallelFor <|-- UpdateLODGroupTransformJob
+UpdateLODGroupTransformJob --> "lodGroupDataHash<int,GPUInstanceIndex>" "NativeParallelHashMap`2"
+UpdateLODGroupTransformJob --> "lodGroupIDs<int>" "NativeArray`1"
+UpdateLODGroupTransformJob --> "worldSpaceReferencePoints<Vector3>" "NativeArray`1"
+UpdateLODGroupTransformJob --> "worldSpaceSizes<float>" "NativeArray`1"
+UpdateLODGroupTransformJob --> "lodGroupData<LODGroupData>" "NativeList`1"
+UpdateLODGroupTransformJob --> "lodGroupCullingData<LODGroupCullingData>" "NativeList`1"
+UpdateLODGroupTransformJob --> "atomicUpdateCount" UnsafeAtomicCounter32
+IJob <|-- AllocateOrGetLODGroupDataInstancesJob
+AllocateOrGetLODGroupDataInstancesJob --> "lodGroupsID<int>" "NativeArray`1"
+AllocateOrGetLODGroupDataInstancesJob --> "lodGroupsData<LODGroupData>" "NativeList`1"
+AllocateOrGetLODGroupDataInstancesJob --> "lodGroupCullingData<LODGroupCullingData>" "NativeList`1"
+AllocateOrGetLODGroupDataInstancesJob --> "lodGroupDataHash<int,GPUInstanceIndex>" "NativeParallelHashMap`2"
+AllocateOrGetLODGroupDataInstancesJob --> "freeLODGroupDataHandles<GPUInstanceIndex>" "NativeList`1"
+AllocateOrGetLODGroupDataInstancesJob --> "lodGroupInstances<GPUInstanceIndex>" "NativeArray`1"
+IJobParallelFor <|-- UpdateLODGroupDataJob
+UpdateLODGroupDataJob --> "lodGroupInstances<GPUInstanceIndex>" "NativeArray`1"
+UpdateLODGroupDataJob --> "inputData" GPUDrivenLODGroupData
+UpdateLODGroupDataJob --> "lodGroupsData<LODGroupData>" "NativeArray`1"
+UpdateLODGroupDataJob --> "lodGroupsCullingData<LODGroupCullingData>" "NativeArray`1"
+UpdateLODGroupDataJob --> "rendererCount" UnsafeAtomicCounter32
+IJob <|-- FreeLODGroupDataJob
+FreeLODGroupDataJob --> "destroyedLODGroupsID<int>" "NativeArray`1"
+FreeLODGroupDataJob --> "lodGroupsData<LODGroupData>" "NativeList`1"
+FreeLODGroupDataJob --> "lodGroupDataHash<int,GPUInstanceIndex>" "NativeParallelHashMap`2"
+FreeLODGroupDataJob --> "freeLODGroupDataHandles<GPUInstanceIndex>" "NativeList`1"
+IDisposable <|-- LODGroupDataPool
+LODGroupDataPool --> "lodGroupDataHash<int,GPUInstanceIndex>" "NativeParallelHashMap`2"
+LODGroupDataPool --> "lodGroupCullingData<LODGroupCullingData>" "NativeList`1"
+LODGroupDataPool +-- LodGroupShaderIDs
+@enduml

@@ -1,0 +1,30 @@
+@startuml
+class PBRMasterNode1 {
+    + m_TwoSided : bool
+    + m_ShaderGUIOverride : string
+    + m_OverrideEnabled : bool
+}
+enum SurfaceType {
+    Opaque,
+    Transparent,
+}
+enum AlphaMode {
+    Alpha,
+    Premultiply,
+    Additive,
+    Multiply,
+}
+enum Model {
+    Specular,
+    Metallic,
+}
+AbstractMaterialNode <|-- PBRMasterNode1
+IMasterNode1 <|-- PBRMasterNode1
+PBRMasterNode1 --> "m_Model" Model
+PBRMasterNode1 --> "m_SurfaceType" SurfaceType
+PBRMasterNode1 --> "m_AlphaMode" AlphaMode
+PBRMasterNode1 --> "m_NormalDropOffSpace" NormalDropOffSpace
+PBRMasterNode1 +-- SurfaceType
+PBRMasterNode1 +-- AlphaMode
+PBRMasterNode1 +-- Model
+@enduml

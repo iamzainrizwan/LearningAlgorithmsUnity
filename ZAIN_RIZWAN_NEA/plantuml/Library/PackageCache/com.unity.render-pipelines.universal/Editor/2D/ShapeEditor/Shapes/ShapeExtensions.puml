@@ -1,0 +1,8 @@
+@startuml
+class ShapeExtensions <<static>> {
+    + {static} ToPolygon(points:Vector3[], isOpenEnded:bool) : Polygon
+    + {static} ToSpline(points:Vector3[], isOpenEnded:bool) : Spline
+    + {static} IsSpline(points:Vector3[], isOpenEnded:bool) : bool
+    + {static} ToSpline(polygon:Polygon) : Spline
+}
+@enduml

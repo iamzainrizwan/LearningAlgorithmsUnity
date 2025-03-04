@@ -1,0 +1,86 @@
+@startuml
+class Image {
+    + DisableSpriteOptimizations() : void
+    + preserveAspect : bool <<get>> <<set>>
+    + fillCenter : bool <<get>> <<set>>
+    + fillAmount : float <<get>> <<set>>
+    + fillClockwise : bool <<get>> <<set>>
+    + fillOrigin : int <<get>> <<set>>
+    + eventAlphaThreshold : float <<get>> <<set>>
+    + alphaHitTestMinimumThreshold : float <<get>> <<set>>
+    + useSpriteMesh : bool <<get>> <<set>>
+    + hasBorder : bool <<get>>
+    + pixelsPerUnitMultiplier : float <<get>> <<set>>
+    + pixelsPerUnit : float <<get>>
+    + <<virtual>> OnBeforeSerialize() : void
+    + <<virtual>> OnAfterDeserialize() : void
+    + <<override>> SetNativeSize() : void
+    + <<virtual>> CalculateLayoutInputHorizontal() : void
+    + <<virtual>> CalculateLayoutInputVertical() : void
+    + <<virtual>> minWidth : float <<get>>
+    + <<virtual>> preferredWidth : float <<get>>
+    + <<virtual>> flexibleWidth : float <<get>>
+    + <<virtual>> minHeight : float <<get>>
+    + <<virtual>> preferredHeight : float <<get>>
+    + <<virtual>> flexibleHeight : float <<get>>
+    + <<virtual>> layoutPriority : int <<get>>
+    + <<virtual>> IsRaycastLocationValid(screenPoint:Vector2, eventCamera:Camera) : bool
+}
+enum Type {
+    Simple,
+    Sliced,
+    Tiled,
+    Filled,
+}
+enum FillMethod {
+    Horizontal,
+    Vertical,
+    Radial90,
+    Radial180,
+    Radial360,
+}
+enum OriginHorizontal {
+    Left,
+    Right,
+}
+enum OriginVertical {
+    Bottom,
+    Top,
+}
+enum Origin90 {
+    BottomLeft,
+    TopLeft,
+    TopRight,
+    BottomRight,
+}
+enum Origin180 {
+    Bottom,
+    Left,
+    Top,
+    Right,
+}
+enum Origin360 {
+    Bottom,
+    Right,
+    Top,
+    Left,
+}
+MaskableGraphic <|-- Image
+ISerializationCallbackReceiver <|-- Image
+ILayoutElement <|-- Image
+ICanvasRaycastFilter <|-- Image
+Image --> "sprite" Sprite
+Image --> "overrideSprite" Sprite
+Image --> "type" Type
+Image --> "fillMethod" FillMethod
+Image --> "defaultETC1GraphicMaterial" Material
+Image --> "mainTexture" Texture
+Image --> "material" Material
+Image +-- Type
+Image +-- FillMethod
+Image +-- OriginHorizontal
+Image +-- OriginVertical
+Image +-- Origin90
+Image +-- Origin180
+Image +-- Origin360
+@enduml

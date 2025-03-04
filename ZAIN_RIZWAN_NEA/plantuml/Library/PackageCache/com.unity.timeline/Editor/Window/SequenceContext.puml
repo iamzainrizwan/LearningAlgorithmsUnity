@@ -1,0 +1,14 @@
+@startuml
+struct SequenceContext {
+    + SequenceContext(director:PlayableDirector, clip:TimelineClip)
+    + IsValid() : bool
+    + Equals(other:SequenceContext) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+class "IEquatable`1"<T> {
+}
+"IEquatable`1" "<SequenceContext>" <|-- SequenceContext
+SequenceContext --> "director" PlayableDirector
+SequenceContext --> "clip" TimelineClip
+@enduml

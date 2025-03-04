@@ -1,0 +1,9 @@
+@startuml
+class BoltFlowManifest <<sealed>> {
+    + <<override>> name : string <<get>>
+    + <<override>> author : string <<get>>
+    + <<override>> description : string <<get>>
+}
+PluginManifest <|-- BoltFlowManifest
+BoltFlowManifest --> "version" SemanticVersion
+@enduml

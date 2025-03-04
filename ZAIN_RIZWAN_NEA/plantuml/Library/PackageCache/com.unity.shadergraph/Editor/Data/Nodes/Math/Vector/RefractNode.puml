@@ -1,0 +1,17 @@
+@startuml
+enum RefractMode {
+    CriticalAngle,
+    Safe,
+}
+class RefractNode {
+    + RefractNode()
+    + <<override>> hasPreview : bool <<get>>
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + GenerateNodeFunction(registry:FunctionRegistry, generationMode:GenerationMode) : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+}
+AbstractMaterialNode <|-- RefractNode
+IGeneratesBodyCode <|-- RefractNode
+IGeneratesFunction <|-- RefractNode
+RefractNode --> "refractMode" RefractMode
+@enduml

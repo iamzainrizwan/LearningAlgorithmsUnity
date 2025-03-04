@@ -1,0 +1,14 @@
+@startuml
+class Vector3Control {
+    + Vector3Control()
+    + <<override>> <<unsafe>> ReadUnprocessedValueFromState(statePtr:void*) : Vector3
+    + <<override>> <<unsafe>> WriteValueIntoState(value:Vector3, statePtr:void*) : void
+    + <<override>> <<unsafe>> EvaluateMagnitude(statePtr:void*) : float
+}
+class "InputControl`1"<T> {
+}
+"InputControl`1" "<Vector3>" <|-- Vector3Control
+Vector3Control --> "x" AxisControl
+Vector3Control --> "y" AxisControl
+Vector3Control --> "z" AxisControl
+@enduml

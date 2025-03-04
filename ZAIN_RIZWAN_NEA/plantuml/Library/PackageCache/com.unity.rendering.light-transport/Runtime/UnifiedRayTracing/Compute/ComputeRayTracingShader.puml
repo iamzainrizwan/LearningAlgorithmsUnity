@@ -1,0 +1,17 @@
+@startuml
+class ComputeRayTracingShader {
+    + GetThreadGroupSizes() : uint3
+    + SetAccelerationStructure(cmd:CommandBuffer, name:string, accelStruct:IRayTracingAccelStruct) : void
+    + SetIntParam(cmd:CommandBuffer, nameID:int, val:int) : void
+    + SetFloatParam(cmd:CommandBuffer, nameID:int, val:float) : void
+    + SetVectorParam(cmd:CommandBuffer, nameID:int, val:Vector4) : void
+    + SetMatrixParam(cmd:CommandBuffer, nameID:int, val:Matrix4x4) : void
+    + SetTextureParam(cmd:CommandBuffer, nameID:int, rt:RenderTargetIdentifier) : void
+    + SetBufferParam(cmd:CommandBuffer, nameID:int, buffer:GraphicsBuffer) : void
+    + SetBufferParam(cmd:CommandBuffer, nameID:int, buffer:ComputeBuffer) : void
+    + Dispatch(cmd:CommandBuffer, scratchBuffer:GraphicsBuffer, width:uint, height:uint, depth:uint) : void
+    + Dispatch(cmd:CommandBuffer, scratchBuffer:GraphicsBuffer, argsBuffer:GraphicsBuffer) : void
+    + GetTraceScratchBufferRequiredSizeInBytes(width:uint, height:uint, depth:uint) : ulong
+}
+IRayTracingShader <|-- ComputeRayTracingShader
+@enduml

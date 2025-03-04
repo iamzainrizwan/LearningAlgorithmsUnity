@@ -1,0 +1,15 @@
+@startuml
+class GraphStack <<sealed>> {
+    + Clone() : GraphStack
+    + Dispose() : void
+    + <<override>> AsReference() : GraphReference
+    + ToReference() : GraphReference
+    + <<new>> EnterParentElement(parentElement:IGraphParentElement) : void
+    + TryEnterParentElement(parentElement:IGraphParentElement) : bool
+    + TryEnterParentElementUnsafe(parentElement:IGraphParentElement) : bool
+    + <<new>> ExitParentElement() : void
+}
+GraphPointer <|-- GraphStack
+IPoolable <|-- GraphStack
+IDisposable <|-- GraphStack
+@enduml

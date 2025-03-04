@@ -1,0 +1,7 @@
+@startuml
+class UnitSurtitleAttribute <<sealed>> {
+    + UnitSurtitleAttribute(surtitle:string)
+    + surtitle : string <<get>>
+}
+Attribute <|-- UnitSurtitleAttribute
+@enduml

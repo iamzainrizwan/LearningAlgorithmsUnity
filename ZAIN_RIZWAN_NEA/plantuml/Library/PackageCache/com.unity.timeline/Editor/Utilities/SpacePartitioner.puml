@@ -1,0 +1,27 @@
+@startuml
+interface IBounds {
+}
+class SpacePartitioner {
+    + Clear() : void
+    + AddBounds(bounds:IBounds) : void
+    + AddBounds(item:object, rect:Rect) : void
+    + GetItemsAtPosition(position:Vector2) : IEnumerable<T>
+    + GetItemsInArea(area:Rect) : IEnumerable<T>
+    + DebugDraw(fillColor:Color, outlineColor:Color) : void
+}
+class "CachedList`1"<T> {
+}
+struct Entry {
+    + item : object <<get>> <<set>>
+    + intervalStart : long <<get>> <<set>>
+    + intervalEnd : long <<get>> <<set>>
+    {static} + FromFloat(f:float) : Int64
+}
+class "List`1"<T> {
+}
+SpacePartitioner +-- "CachedList`1"
+"CachedList`1" o-> "Instance<T>" "List`1"
+SpacePartitioner +-- Entry
+IInterval <|-- Entry
+Entry --> "bounds" Rect
+@enduml

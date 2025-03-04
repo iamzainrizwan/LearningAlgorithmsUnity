@@ -1,0 +1,13 @@
+@startuml
+class DebugUIPrefabBundle {
+    + type : string
+}
+class DebugUIHandlerCanvas {
+}
+class "List`1"<T> {
+}
+DebugUIPrefabBundle --> "prefab" RectTransform
+MonoBehaviour <|-- DebugUIHandlerCanvas
+DebugUIHandlerCanvas --> "panelPrefab" Transform
+DebugUIHandlerCanvas --> "prefabs<DebugUIPrefabBundle>" "List`1"
+@enduml

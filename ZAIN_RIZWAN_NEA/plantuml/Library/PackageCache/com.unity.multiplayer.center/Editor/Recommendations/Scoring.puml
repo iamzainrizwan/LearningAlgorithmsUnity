@@ -1,0 +1,14 @@
+@startuml
+struct ScoreWithReason {
+    + Score : float
+    + Reason : string
+    + ScoreWithReason(score:float, reason:string)
+}
+class Scoring {
+    + <<const>> DynamicKeyword : string = "[dynamic]"
+    + TotalScore : float <<get>> = 0f
+    + Scoring(primaryDescription:string)
+    + AddScore(score:float, reason:string) : void
+    + GetReasonString() : string
+}
+@enduml

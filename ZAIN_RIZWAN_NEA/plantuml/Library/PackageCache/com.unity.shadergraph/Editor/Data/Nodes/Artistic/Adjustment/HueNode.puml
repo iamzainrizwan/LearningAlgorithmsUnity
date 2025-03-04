@@ -1,0 +1,11 @@
+@startuml
+enum HueMode {
+    Degrees,
+    Normalized,
+}
+class HueNode {
+    + HueNode()
+}
+CodeFunctionNode <|-- HueNode
+HueNode --> "hueMode" HueMode
+@enduml

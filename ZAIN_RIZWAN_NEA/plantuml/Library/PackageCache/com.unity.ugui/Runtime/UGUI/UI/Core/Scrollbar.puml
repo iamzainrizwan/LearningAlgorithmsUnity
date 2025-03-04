@@ -1,0 +1,48 @@
+@startuml
+class Scrollbar {
+    + value : float <<get>> <<set>>
+    + <<virtual>> SetValueWithoutNotify(input:float) : void
+    + size : float <<get>> <<set>>
+    + numberOfSteps : int <<get>> <<set>>
+    + <<virtual>> Rebuild(executing:CanvasUpdate) : void
+    + <<virtual>> LayoutComplete() : void
+    + <<virtual>> GraphicUpdateComplete() : void
+    + <<virtual>> OnBeginDrag(eventData:PointerEventData) : void
+    + <<virtual>> OnDrag(eventData:PointerEventData) : void
+    + <<override>> OnPointerDown(eventData:PointerEventData) : void
+    + <<override>> OnPointerUp(eventData:PointerEventData) : void
+    + <<override>> OnMove(eventData:AxisEventData) : void
+    + <<override>> FindSelectableOnLeft() : Selectable
+    + <<override>> FindSelectableOnRight() : Selectable
+    + <<override>> FindSelectableOnUp() : Selectable
+    + <<override>> FindSelectableOnDown() : Selectable
+    + <<virtual>> OnInitializePotentialDrag(eventData:PointerEventData) : void
+    + SetDirection(direction:Direction, includeRectLayouts:bool) : void
+}
+enum Direction {
+    LeftToRight,
+    RightToLeft,
+    BottomToTop,
+    TopToBottom,
+}
+class ScrollEvent {
+}
+enum Axis {
+    Horizontal= 0,
+    Vertical= 1,
+}
+class "UnityEvent`1"<T> {
+}
+Selectable <|-- Scrollbar
+IBeginDragHandler <|-- Scrollbar
+IDragHandler <|-- Scrollbar
+IInitializePotentialDragHandler <|-- Scrollbar
+ICanvasElement <|-- Scrollbar
+Scrollbar --> "handleRect" RectTransform
+Scrollbar --> "direction" Direction
+Scrollbar --> "onValueChanged" ScrollEvent
+Scrollbar +-- Direction
+Scrollbar +-- ScrollEvent
+"UnityEvent`1" "<float>" <|-- ScrollEvent
+Scrollbar +-- Axis
+@enduml

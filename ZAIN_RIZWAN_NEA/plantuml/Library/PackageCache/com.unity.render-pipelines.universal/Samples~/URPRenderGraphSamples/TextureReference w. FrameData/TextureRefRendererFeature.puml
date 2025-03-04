@@ -1,0 +1,30 @@
+@startuml
+class TextureRefRendererFeature {
+    + <<override>> Create() : void
+    + <<override>> AddRenderPasses(renderer:ScriptableRenderer, renderingData:RenderingData) : void
+}
+class TexRefData {
+    + <<override>> Reset() : void
+}
+class UpdateRefPass {
+    + Setup(materials:Material[]) : void
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+class CopyBackRefPass {
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+class PassData {
+}
+ScriptableRendererFeature <|-- TextureRefRendererFeature
+TextureRefRendererFeature +-- TexRefData
+ContextItem <|-- TexRefData
+TexRefData o-> "texture" TextureHandle
+TextureRefRendererFeature +-- UpdateRefPass
+ScriptableRenderPass <|-- UpdateRefPass
+TextureRefRendererFeature +-- CopyBackRefPass
+ScriptableRenderPass <|-- CopyBackRefPass
+UpdateRefPass +-- PassData
+PassData --> "source" TextureHandle
+PassData --> "destination" TextureHandle
+PassData --> "material" Material
+@enduml

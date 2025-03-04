@@ -1,0 +1,20 @@
+@startuml
+class UnityTestAssemblyBuilder {
+    + UnityTestAssemblyBuilder(orderedTestNames:string[], randomSeed:int)
+    + Build(assemblies:Assembly[], testPlatforms:TestPlatform[], options:IDictionary<string, object>) : ITest
+    + BuildAsync(assemblies:Assembly[], testPlatforms:TestPlatform[], options:IDictionary<string, object>) : IEnumerator<ITest>
+    + {static} GetNUnitTestBuilderSettings(testPlatform:TestPlatform) : Dictionary<string, object>
+}
+struct PlatformAssembly {
+    + Equals(other:PlatformAssembly) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+class "IEquatable`1"<T> {
+}
+DefaultTestAssemblyBuilder <|-- UnityTestAssemblyBuilder
+IAsyncTestAssemblyBuilder <|-- UnityTestAssemblyBuilder
+UnityTestAssemblyBuilder +-- PlatformAssembly
+"IEquatable`1" "<PlatformAssembly>" <|-- PlatformAssembly
+PlatformAssembly --> "Platform" TestPlatform
+@enduml

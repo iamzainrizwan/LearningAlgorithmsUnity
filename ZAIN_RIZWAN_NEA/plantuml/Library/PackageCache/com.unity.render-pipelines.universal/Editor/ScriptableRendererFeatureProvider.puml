@@ -1,0 +1,12 @@
+@startuml
+class ScriptableRendererFeatureProvider {
+    + ScriptableRendererFeatureProvider(editor:ScriptableRendererDataEditor)
+    + CreateComponentTree(tree:List<FilterWindow.Element>) : void
+    + GoToChild(element:FilterWindow.Element, addIfComponent:bool) : bool
+}
+class FeatureElement {
+}
+ScriptableRendererFeatureProvider --> "position" Vector2
+ScriptableRendererFeatureProvider +-- FeatureElement
+FeatureElement --> "type" Type
+@enduml

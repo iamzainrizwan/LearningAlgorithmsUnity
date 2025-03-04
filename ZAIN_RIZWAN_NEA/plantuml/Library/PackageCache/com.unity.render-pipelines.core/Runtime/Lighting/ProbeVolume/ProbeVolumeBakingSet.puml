@@ -1,0 +1,66 @@
+@startuml
+class LogarithmicAttribute {
+    + min : int
+    + max : int
+    + LogarithmicAttribute(min:int, max:int)
+}
+class ProbeVolumeBakingSet <<sealed>> <<partial>> {
+    + simplificationLevels : int = 3
+    + cellSizeInBricks : int <<get>>
+    + minDistanceBetweenProbes : float = 1.0f
+    + maxSubdivision : int <<get>>
+    + minBrickSize : float <<get>>
+    + cellSizeInMeters : float <<get>>
+    + minRendererVolumeSize : float = 0.1f
+    + skyOcclusion : bool = false
+    + skyOcclusionBakingSamples : int = 2048
+    + skyOcclusionBakingBounces : int = 2
+    + skyOcclusionAverageAlbedo : float = 0.6f
+    + skyOcclusionBackFaceCulling : bool = false
+    + skyOcclusionShadingDirection : bool = false
+    + HasBakedData(scenario:string) : bool
+}
+enum Version {
+    Initial,
+    RemoveProbeVolumeSceneData,
+}
+class PerScenarioDataInfo {
+    + Initialize(shBands:ProbeVolumeSHBands) : void
+    + IsValid() : bool
+    + HasValidData(shBands:ProbeVolumeSHBands) : bool
+    + ComputeHasValidData(shBands:ProbeVolumeSHBands) : bool
+    + sceneHash : int
+}
+struct CellCounts {
+    + bricksCount : int
+    + chunksCount : int
+    + Add(o:CellCounts) : void
+}
+class "IReadOnlyList`1"<T> {
+}
+struct SerializedPerSceneCellList {
+    + sceneGUID : string
+}
+struct ProbeLayerMask {
+    + name : string
+}
+class "List`1"<T> {
+}
+PropertyAttribute <|-- LogarithmicAttribute
+ScriptableObject <|-- ProbeVolumeBakingSet
+ISerializationCallbackReceiver <|-- ProbeVolumeBakingSet
+ProbeVolumeBakingSet --> "sceneGUIDs<string>" "IReadOnlyList`1"
+ProbeVolumeBakingSet --> "lightingScenarios<string>" "IReadOnlyList`1"
+ProbeVolumeBakingSet o-> "probeOffset" Vector3
+ProbeVolumeBakingSet o-> "renderersLayerMask" LayerMask
+ProbeVolumeBakingSet +-- Version
+ProbeVolumeBakingSet +-- PerScenarioDataInfo
+PerScenarioDataInfo --> "cellDataAsset" ProbeVolumeStreamableAsset
+PerScenarioDataInfo --> "cellOptionalDataAsset" ProbeVolumeStreamableAsset
+PerScenarioDataInfo --> "cellProbeOcclusionDataAsset" ProbeVolumeStreamableAsset
+ProbeVolumeBakingSet +-- CellCounts
+ProbeVolumeBakingSet +-- SerializedPerSceneCellList
+SerializedPerSceneCellList --> "cellList<int>" "List`1"
+ProbeVolumeBakingSet +-- ProbeLayerMask
+ProbeLayerMask --> "mask" RenderingLayerMask
+@enduml

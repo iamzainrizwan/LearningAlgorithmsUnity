@@ -1,0 +1,9 @@
+@startuml
+class MergeLists <<sealed>> {
+    + Merge(flow:Flow) : IList
+}
+class "MultiInputUnit`1"<T> {
+}
+"MultiInputUnit`1" "<IEnumerable>" <|-- MergeLists
+MergeLists --> "list" ValueOutput
+@enduml

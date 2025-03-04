@@ -1,0 +1,6 @@
+@startuml
+class AdditionHandler <<sealed>> {
+    + AdditionHandler()
+}
+BinaryOperatorHandler <|-- AdditionHandler
+@enduml

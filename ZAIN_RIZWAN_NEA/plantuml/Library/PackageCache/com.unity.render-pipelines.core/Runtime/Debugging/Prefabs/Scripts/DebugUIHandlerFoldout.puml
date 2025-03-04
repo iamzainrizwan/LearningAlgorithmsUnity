@@ -1,0 +1,13 @@
+@startuml
+class DebugUIHandlerFoldout {
+    + <<override>> OnSelection(fromNext:bool, previous:DebugUIHandlerWidget) : bool
+    + <<override>> OnDeselection() : void
+    + <<override>> OnIncrement(fast:bool) : void
+    + <<override>> OnDecrement(fast:bool) : void
+    + <<override>> OnAction() : void
+    + <<override>> Next() : DebugUIHandlerWidget
+}
+DebugUIHandlerWidget <|-- DebugUIHandlerFoldout
+DebugUIHandlerFoldout --> "nameLabel" Text
+DebugUIHandlerFoldout --> "valueToggle" UIFoldout
+@enduml

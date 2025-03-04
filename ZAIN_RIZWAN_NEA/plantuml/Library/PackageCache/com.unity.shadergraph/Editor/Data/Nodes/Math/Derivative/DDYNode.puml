@@ -1,0 +1,6 @@
+@startuml
+class DDYNode {
+    + DDYNode()
+}
+CodeFunctionNode <|-- DDYNode
+@enduml

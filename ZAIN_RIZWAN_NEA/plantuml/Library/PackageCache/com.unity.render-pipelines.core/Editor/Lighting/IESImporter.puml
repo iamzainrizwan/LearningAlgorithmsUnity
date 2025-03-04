@@ -1,0 +1,9 @@
+@startuml
+class IESImporter <<partial>> {
+    + {static}  <<event>> createRenderPipelinePrefabLight : System.Action<AssetImportContext, string, bool, string, float, Light, Texture> 
+    + <<override>> OnImportAsset(ctx:AssetImportContext) : void
+}
+ScriptedImporter <|-- IESImporter
+IESImporter o-> "engine" IESEngine
+IESImporter o-> "iesMetaData" IESMetaData
+@enduml

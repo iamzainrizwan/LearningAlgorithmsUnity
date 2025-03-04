@@ -1,0 +1,44 @@
+@startuml
+enum RayTracingBackend {
+    Hardware= 0,
+    Compute= 1,
+}
+class RayTracingContext <<sealed>> {
+    + RayTracingContext(backend:RayTracingBackend, resources:RayTracingResources)
+    + Dispose() : void
+    {static} + IsBackendSupported(backend:RayTracingBackend) : bool
+    + CreateRayTracingShader(shader:Object) : IRayTracingShader
+    + {static} GetScratchBufferStrideInBytes() : uint
+    + CreateRayTracingShader(rtShader:RayTracingShader) : IRayTracingShader
+    + CreateRayTracingShader(computeShader:ComputeShader) : IRayTracingShader
+    + CreateAccelerationStructure(options:AccelerationStructureOptions) : IRayTracingAccelStruct
+    + GetRequiredTraceScratchBufferSizeInBytes(width:uint, height:uint, depth:uint) : ulong
+}
+enum BuildFlags {
+    None= 0,
+    PreferFastTrace= 1 << 0,
+    PreferFastBuild= 1 << 1,
+    MinimizeMemory= 1 << 2,
+}
+class AccelerationStructureOptions {
+    + enableCompaction : bool = false
+}
+class ReferenceCounter {
+    + value : ulong = 0
+    + Inc() : void
+    + Dec() : void
+}
+class RayTracingHelper <<static>> {
+    {static} + <<readonly>> k_DimensionByteOffset : uint = 0
+    {static} + <<readonly>> k_GroupSizeByteOffset : uint = 12
+    {static} + CreateDispatchDimensionBuffer() : GraphicsBuffer
+    {static} + CreateScratchBufferForBuildAndDispatch(accelStruct:IRayTracingAccelStruct, shader:IRayTracingShader, dispatchWidth:uint, dispatchHeight:uint, dispatchDepth:uint) : GraphicsBuffer
+    {static} + CreateScratchBufferForBuild(accelStruct:IRayTracingAccelStruct) : GraphicsBuffer
+    {static} + ResizeScratchBufferForTrace(shader:IRayTracingShader, dispatchWidth:uint, dispatchHeight:uint, dispatchDepth:uint, scratchBuffer:GraphicsBuffer) : void
+    {static} + ResizeScratchBufferForBuild(accelStruct:IRayTracingAccelStruct, scratchBuffer:GraphicsBuffer) : void
+}
+IDisposable <|-- RayTracingContext
+RayTracingContext --> "Resources" RayTracingResources
+RayTracingContext --> "BackendType" RayTracingBackend
+AccelerationStructureOptions o-> "buildFlags" BuildFlags
+@enduml

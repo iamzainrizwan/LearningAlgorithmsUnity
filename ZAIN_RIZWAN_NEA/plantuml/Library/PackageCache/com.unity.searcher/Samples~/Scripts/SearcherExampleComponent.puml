@@ -1,0 +1,5 @@
+@startuml
+class SearcherExampleComponent {
+}
+MonoBehaviour <|-- SearcherExampleComponent
+@enduml

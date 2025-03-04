@@ -1,0 +1,33 @@
+@startuml
+class RTHandles <<static>> {
+    + {static} maxWidth : int <<get>>
+    + {static} maxHeight : int <<get>>
+    + {static} CalculateDimensions(scaleFactor:Vector2) : Vector2Int
+    + {static} CalculateDimensions(scaleFunc:ScaleFunc) : Vector2Int
+    + {static} Alloc(width:int, height:int, slices:int, depthBufferBits:DepthBits, colorFormat:GraphicsFormat, filterMode:FilterMode, wrapMode:TextureWrapMode, dimension:TextureDimension, enableRandomWrite:bool, useMipMap:bool, autoGenerateMips:bool, isShadowMap:bool, anisoLevel:int, mipMapBias:float, msaaSamples:MSAASamples, bindTextureMS:bool, useDynamicScale:bool, useDynamicScaleExplicit:bool, memoryless:RenderTextureMemoryless, vrUsage:VRTextureUsage, name:string) : RTHandle
+    + {static} Alloc(width:int, height:int, format:GraphicsFormat, slices:int, filterMode:FilterMode, wrapMode:TextureWrapMode, dimension:TextureDimension, enableRandomWrite:bool, useMipMap:bool, autoGenerateMips:bool, isShadowMap:bool, anisoLevel:int, mipMapBias:float, msaaSamples:MSAASamples, bindTextureMS:bool, useDynamicScale:bool, useDynamicScaleExplicit:bool, memoryless:RenderTextureMemoryless, vrUsage:VRTextureUsage, name:string) : RTHandle
+    + {static} Alloc(width:int, height:int, wrapModeU:TextureWrapMode, wrapModeV:TextureWrapMode, wrapModeW:TextureWrapMode, slices:int, depthBufferBits:DepthBits, colorFormat:GraphicsFormat, filterMode:FilterMode, dimension:TextureDimension, enableRandomWrite:bool, useMipMap:bool, autoGenerateMips:bool, isShadowMap:bool, anisoLevel:int, mipMapBias:float, msaaSamples:MSAASamples, bindTextureMS:bool, useDynamicScale:bool, useDynamicScaleExplicit:bool, memoryless:RenderTextureMemoryless, vrUsage:VRTextureUsage, name:string) : RTHandle
+    + {static} Alloc(width:int, height:int, info:RTHandleAllocInfo) : RTHandle
+    + {static} Alloc(descriptor:RenderTextureDescriptor, filterMode:FilterMode, wrapMode:TextureWrapMode, isShadowMap:bool, anisoLevel:int, mipMapBias:float, name:string) : RTHandle
+    + {static} Alloc(scaleFactor:Vector2, slices:int, depthBufferBits:DepthBits, colorFormat:GraphicsFormat, filterMode:FilterMode, wrapMode:TextureWrapMode, dimension:TextureDimension, enableRandomWrite:bool, useMipMap:bool, autoGenerateMips:bool, isShadowMap:bool, anisoLevel:int, mipMapBias:float, msaaSamples:MSAASamples, bindTextureMS:bool, useDynamicScale:bool, useDynamicScaleExplicit:bool, memoryless:RenderTextureMemoryless, vrUsage:VRTextureUsage, name:string) : RTHandle
+    + {static} Alloc(scaleFactor:Vector2, format:GraphicsFormat, slices:int, filterMode:FilterMode, wrapMode:TextureWrapMode, dimension:TextureDimension, enableRandomWrite:bool, useMipMap:bool, autoGenerateMips:bool, isShadowMap:bool, anisoLevel:int, mipMapBias:float, msaaSamples:MSAASamples, bindTextureMS:bool, useDynamicScale:bool, useDynamicScaleExplicit:bool, memoryless:RenderTextureMemoryless, vrUsage:VRTextureUsage, name:string) : RTHandle
+    + {static} Alloc(scaleFactor:Vector2, descriptor:RenderTextureDescriptor, filterMode:FilterMode, wrapMode:TextureWrapMode, isShadowMap:bool, anisoLevel:int, mipMapBias:float, name:string) : RTHandle
+    + {static} Alloc(scaleFactor:Vector2, info:RTHandleAllocInfo) : RTHandle
+    + {static} Alloc(scaleFunc:ScaleFunc, slices:int, depthBufferBits:DepthBits, colorFormat:GraphicsFormat, filterMode:FilterMode, wrapMode:TextureWrapMode, dimension:TextureDimension, enableRandomWrite:bool, useMipMap:bool, autoGenerateMips:bool, isShadowMap:bool, anisoLevel:int, mipMapBias:float, msaaSamples:MSAASamples, bindTextureMS:bool, useDynamicScale:bool, useDynamicScaleExplicit:bool, memoryless:RenderTextureMemoryless, vrUsage:VRTextureUsage, name:string) : RTHandle
+    + {static} Alloc(scaleFunc:ScaleFunc, format:GraphicsFormat, slices:int, filterMode:FilterMode, wrapMode:TextureWrapMode, dimension:TextureDimension, enableRandomWrite:bool, useMipMap:bool, autoGenerateMips:bool, isShadowMap:bool, anisoLevel:int, mipMapBias:float, msaaSamples:MSAASamples, bindTextureMS:bool, useDynamicScale:bool, useDynamicScaleExplicit:bool, memoryless:RenderTextureMemoryless, vrUsage:VRTextureUsage, name:string) : RTHandle
+    + {static} Alloc(scaleFunc:ScaleFunc, descriptor:RenderTextureDescriptor, filterMode:FilterMode, wrapMode:TextureWrapMode, isShadowMap:bool, anisoLevel:int, mipMapBias:float, name:string) : RTHandle
+    + {static} Alloc(scaleFunc:ScaleFunc, info:RTHandleAllocInfo) : RTHandle
+    + {static} Alloc(tex:Texture) : RTHandle
+    + {static} Alloc(tex:RenderTexture, transferOwnership:bool) : RTHandle
+    + {static} Alloc(tex:RenderTargetIdentifier) : RTHandle
+    + {static} Alloc(tex:RenderTargetIdentifier, name:string) : RTHandle
+    + {static} Initialize(width:int, height:int) : void
+    + {static} Initialize(width:int, height:int, useLegacyDynamicResControl:bool) : void
+    + {static} Release(rth:RTHandle) : void
+    + {static} SetHardwareDynamicResolutionState(hwDynamicResRequested:bool) : void
+    + {static} SetReferenceSize(width:int, height:int) : void
+    + {static} ResetReferenceSize(width:int, height:int) : void
+    + {static} CalculateRatioAgainstMaxSize(width:int, height:int) : Vector2
+}
+RTHandles --> "rtHandleProperties" RTHandleProperties
+@enduml

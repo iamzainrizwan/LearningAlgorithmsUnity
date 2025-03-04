@@ -1,0 +1,36 @@
+@startuml
+interface ISystemObjectInspector {
+}
+class ValueInspector {
+    + ValueInspector(parent:SystemObjectInspector)
+    + Dispose() : void
+    + OnGUI(position:Rect, label:GUIContent, showLabels:bool, y:float) : void
+    + GetHeight(width:float, label:GUIContent) : float
+    + GetWidth() : float
+}
+class ValueTypeInspector {
+    + ValueTypeInspector(parent:SystemObjectInspector)
+    + Dispose() : void
+    + OnGUI(position:Rect, label:GUIContent, showLabels:bool, y:float) : void
+    + GetHeight(width:float, label:GUIContent) : float
+    + GetWidth() : float
+}
+class SystemObjectInspector {
+    + chooseType : bool <<get>>
+    + showValue : bool <<get>>
+    + SystemObjectInspector(metadata:Metadata)
+    + <<override>> Initialize() : void
+    + <<override>> Dispose() : void
+    + <<override>> GetAdaptiveWidth() : float
+}
+class Styles <<static>> {
+    + {static} <<readonly>> spaceBetweenTypeAndValue : float = 2
+    + {static} <<readonly>> labelWidth : float = 38
+}
+IDisposable <|-- ISystemObjectInspector
+ISystemObjectInspector <|-- ValueInspector
+ISystemObjectInspector <|-- ValueTypeInspector
+Inspector <|-- SystemObjectInspector
+SystemObjectInspector --> "typeFilter" TypeFilter
+SystemObjectInspector +-- Styles
+@enduml

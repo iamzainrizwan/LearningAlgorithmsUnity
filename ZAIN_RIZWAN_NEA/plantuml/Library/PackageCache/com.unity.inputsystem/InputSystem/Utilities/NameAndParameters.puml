@@ -1,0 +1,11 @@
+@startuml
+struct NameAndParameters {
+    + name : string <<get>> <<set>>
+    + <<override>> ToString() : string
+    + {static} ParseMultiple(text:string) : IEnumerable<NameAndParameters>
+    + {static} Parse(text:string) : NameAndParameters
+}
+class "ReadOnlyArray`1"<T> {
+}
+NameAndParameters --> "parameters<NamedValue>" "ReadOnlyArray`1"
+@enduml

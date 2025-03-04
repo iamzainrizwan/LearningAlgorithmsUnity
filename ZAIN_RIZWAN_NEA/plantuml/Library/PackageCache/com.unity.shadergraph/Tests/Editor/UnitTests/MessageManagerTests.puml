@@ -1,0 +1,34 @@
+@startuml
+class TestMessageManager {
+}
+class MessageManagerTests {
+    + Setup() : void
+    + NewManager_IsEmpty() : void
+    + AddMessage_CreatesMessage() : void
+    + AddMessage_DirtiesManager() : void
+    + GettingMessages_ClearsDirtyFlag() : void
+    + GettingMessages_DoesNotChangeLists() : void
+    + RemoveNode_DoesNotDirty_IfNodeDoesNotExist() : void
+    + RemoveNode_DirtiesList_IfNodeExists() : void
+    + RemoveNode_RemovesNode() : void
+    + RemoveNode_RemovesNode_FromAllProvides() : void
+    + AppendMessage_AppendsMessage() : void
+    + Warnings_SortedAfterErrors() : void
+    + Warnings_FromDifferentProviders_SortedAfterErrors() : void
+    + MultipleNodes_RemainSeparate() : void
+    + MultipleCreators_AggregatePerNode() : void
+    + DuplicateEntries_AreNotIgnored() : void
+    + ClearAllFromProvider_ZerosMessageLists() : void
+    + GetList_RemovesZeroLengthLists() : void
+    + ClearNodesFromProvider_ClearsNodes() : void
+    + ClearNodesFromProvider_LeavesOtherNodes() : void
+    + ReportAnyErrors_EmptyManager() : void
+    + ReportAnyErrors_ComplexManager() : void
+    + ReportAnyErrors_EmptyManager_OnlyWarnings() : void
+    + ReportAnyErrors_EmptyManager_ErrorOneProvider() : void
+}
+class "Dictionary`2"<T1,T2> {
+}
+MessageManager <|-- TestMessageManager
+TestMessageManager --> "Messages<object,Dictionary<string, List<ShaderMessage>>>" "Dictionary`2"
+@enduml

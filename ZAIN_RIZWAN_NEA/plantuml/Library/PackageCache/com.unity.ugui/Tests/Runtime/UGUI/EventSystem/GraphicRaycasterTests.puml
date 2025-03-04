@@ -1,0 +1,10 @@
+@startuml
+class GraphicRaycasterTests {
+    + TestSetup() : void
+    + GraphicRaycasterDoesNotHitGraphicBehindCameraFarClipPlane() : IEnumerator
+    + GraphicRaycasterReturnsWorldPositionAndWorldNormal() : IEnumerator
+    + GraphicRaycasterUsesGraphicPadding() : IEnumerator
+    + GraphicOnTheSamePlaneAsTheCameraCanBeTargetedForEvents() : IEnumerator
+    + TearDown() : void
+}
+@enduml

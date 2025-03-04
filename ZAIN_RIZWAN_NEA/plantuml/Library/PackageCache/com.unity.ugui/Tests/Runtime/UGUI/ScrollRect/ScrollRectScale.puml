@@ -1,0 +1,9 @@
+@startuml
+class ScrollRectScale {
+    + Setup() : void
+    + TestSetup() : void
+    + SmallScaleDoesNotCauseInvalidContentPosition() : IEnumerator
+    + TearDown() : void
+}
+IPrebuildSetup <|-- ScrollRectScale
+@enduml

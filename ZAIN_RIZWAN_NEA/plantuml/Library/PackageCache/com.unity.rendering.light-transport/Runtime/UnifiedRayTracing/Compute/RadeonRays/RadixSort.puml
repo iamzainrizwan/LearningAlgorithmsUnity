@@ -1,0 +1,7 @@
+@startuml
+class RadixSort {
+    + RadixSort(shaders:RadeonRaysShaders)
+    + Execute(cmd:CommandBuffer, buffer:GraphicsBuffer, inputKeysOffset:uint, outputKeysOffset:uint, inputValuesOffset:uint, outputValuesOffset:uint, scratchDataOffset:uint, size:uint) : void
+    {static} + GetScratchDataSizeInDwords(size:uint) : ulong
+}
+@enduml

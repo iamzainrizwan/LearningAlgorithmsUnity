@@ -1,0 +1,13 @@
+@startuml
+abstract class ScriptableRendererFeature {
+    + isActive : bool <<get>>
+    + {abstract} Create() : void
+    + <<virtual>> OnCameraPreCull(renderer:ScriptableRenderer, cameraData:CameraData) : void
+    + {abstract} AddRenderPasses(renderer:ScriptableRenderer, renderingData:RenderingData) : void
+    + <<virtual>> SetupRenderPasses(renderer:ScriptableRenderer, renderingData:RenderingData) : void
+    + SetActive(active:bool) : void
+    + Dispose() : void
+}
+ScriptableObject <|-- ScriptableRendererFeature
+IDisposable <|-- ScriptableRendererFeature
+@enduml

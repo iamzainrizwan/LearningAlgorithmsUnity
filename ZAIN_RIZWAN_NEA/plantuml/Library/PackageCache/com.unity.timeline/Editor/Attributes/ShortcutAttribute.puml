@@ -1,0 +1,15 @@
+@startuml
+class ShortcutAttribute {
+    + ShortcutAttribute(identifier:string)
+    + ShortcutAttribute(identifier:string, commandName:string)
+    + ShortcutAttribute(key:KeyCode, modifiers:ShortcutModifiers)
+    + GetMenuShortcut() : string
+    + MatchesEvent(evt:Event) : bool
+}
+class ShortcutPlatformOverrideAttribute {
+    + ShortcutPlatformOverrideAttribute(platform:RuntimePlatform, key:KeyCode, modifiers:ShortcutModifiers)
+    + MatchesCurrentPlatform() : bool
+}
+Attribute <|-- ShortcutAttribute
+ShortcutAttribute <|-- ShortcutPlatformOverrideAttribute
+@enduml

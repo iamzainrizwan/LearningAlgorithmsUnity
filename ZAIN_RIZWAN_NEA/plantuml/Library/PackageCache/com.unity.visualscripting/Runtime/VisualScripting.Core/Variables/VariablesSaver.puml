@@ -1,0 +1,8 @@
+@startuml
+class VariablesSaver {
+    + {static} Instantiate() : void
+}
+MonoBehaviour <|-- VariablesSaver
+ISingleton <|-- VariablesSaver
+VariablesSaver --> "instance" VariablesSaver
+@enduml

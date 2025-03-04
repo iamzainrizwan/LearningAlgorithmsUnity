@@ -1,0 +1,6 @@
+@startuml
+class IgnoreTest {
+    + test : string <<get>> <<set>>
+    + ignoreComment : string <<get>> <<set>>
+}
+@enduml

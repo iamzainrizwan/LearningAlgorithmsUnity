@@ -1,0 +1,6 @@
+@startuml
+class DropdownEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+SelectableEditor <|-- DropdownEditor
+@enduml

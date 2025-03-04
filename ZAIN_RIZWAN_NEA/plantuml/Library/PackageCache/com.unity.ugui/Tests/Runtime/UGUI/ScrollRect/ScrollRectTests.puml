@@ -1,0 +1,26 @@
+@startuml
+class ScrollRectTests {
+    + Setup() : void
+    + TestSetup() : void
+    + TearDown() : void
+    + OneTimeTearDown() : void
+    + OnEnableShouldAddListeners(isHorizontal:bool) : IEnumerator
+    + OnDisableShouldRemoveListeners(isHorizontal:bool) : IEnumerator
+    + SettingScrollbarShouldRemoveThenAddListeners(testHorizontal:bool) : void
+    + PotentialDragNeedsLeftClick(button:PointerEventData.InputButton, expectedEqualsZero:bool) : void
+    + LeftClickShouldStartDrag(button:PointerEventData.InputButton, active:bool, expectedIsDragging:bool) : void
+    + LeftClickUpShouldEndDrag(button:PointerEventData.InputButton, active:bool, expectedIsDragging:bool) : void
+    + LateUpdateWithoutInertiaOrElasticShouldZeroVelocity() : IEnumerator
+    + LateUpdateWithInertiaShouldDecelerate() : IEnumerator
+    + LateUpdateWithElasticShouldDecelerate() : IEnumerator
+    + LateUpdateWithElasticNoOffsetShouldZeroVelocity() : IEnumerator
+    + SetNormalizedPositionShouldSetContentLocalPosition() : void
+    + OnScrollClampedShouldMoveContentAnchoredPosition(scrollDeltaX:int, scrollDeltaY:int, horizontal:bool, vertical:bool, expectedPosX:int, expectedPosY:int) : void
+    + OnScrollClampedShouldClampContentAnchoredPosition(movementType:ScrollRect.MovementType, anchoredPosX:float, anchoredPosY:float) : void
+    + GetBoundsShouldEncapsulateAllCorners() : void
+    + UpdateBoundsShouldPad() : void
+    + CalculateOffsetShouldClamp(horizontal:bool, vertical:bool, viewX:int, viewY:float, resX:float, resY:float) : void
+    + CalculateOffsetUnrestrictedShouldNotClamp(horizontal:bool, vertical:bool, viewX:int, viewY:float, resX:float, resY:float) : void
+}
+IPrebuildSetup <|-- ScrollRectTests
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+abstract class MaskableGraphic {
+    + maskable : bool <<get>> <<set>>
+    + isMaskingGraphic : bool <<get>> <<set>>
+    + <<virtual>> GetModifiedMaterial(baseMaterial:Material) : Material
+    + <<virtual>> Cull(clipRect:Rect, validRect:bool) : void
+    + <<virtual>> SetClipRect(clipRect:Rect, validRect:bool) : void
+    + <<virtual>> SetClipSoftness(clipSoftness:Vector2) : void
+    + <<virtual>> ParentMaskStateChanged() : void
+    + <<virtual>> RecalculateClipping() : void
+    + <<virtual>> RecalculateMasking() : void
+}
+class CullStateChangedEvent {
+}
+class "UnityEvent`1"<T> {
+}
+Graphic <|-- MaskableGraphic
+IClippable <|-- MaskableGraphic
+IMaskable <|-- MaskableGraphic
+IMaterialModifier <|-- MaskableGraphic
+MaskableGraphic --> "onCullStateChanged" CullStateChangedEvent
+MaskableGraphic +-- CullStateChangedEvent
+"UnityEvent`1" "<bool>" <|-- CullStateChangedEvent
+@enduml

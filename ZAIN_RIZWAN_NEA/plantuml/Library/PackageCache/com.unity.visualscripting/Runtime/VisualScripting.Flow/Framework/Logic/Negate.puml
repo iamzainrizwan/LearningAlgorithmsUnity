@@ -1,0 +1,8 @@
+@startuml
+class Negate <<sealed>> {
+    + Operation(flow:Flow) : bool
+}
+Unit <|-- Negate
+Negate --> "input" ValueInput
+Negate --> "output" ValueOutput
+@enduml

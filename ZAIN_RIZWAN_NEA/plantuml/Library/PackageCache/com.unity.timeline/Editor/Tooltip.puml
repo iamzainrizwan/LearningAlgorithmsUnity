@@ -1,0 +1,13 @@
+@startuml
+class Tooltip {
+    + text : string <<get>> <<set>>
+    + pad : float <<get>> <<set>>
+    + Tooltip(theStyle:GUIStyle, font:GUIStyle)
+    + Tooltip()
+    + Draw() : void
+}
+Tooltip --> "style" GUIStyle
+Tooltip --> "font" GUIStyle
+Tooltip --> "foreColor" Color
+Tooltip --> "bounds" Rect
+@enduml

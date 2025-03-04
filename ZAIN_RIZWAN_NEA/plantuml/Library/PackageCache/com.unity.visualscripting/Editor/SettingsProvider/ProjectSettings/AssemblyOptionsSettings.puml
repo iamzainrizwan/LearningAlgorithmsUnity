@@ -1,0 +1,12 @@
+@startuml
+class AssemblyOptionsSettings {
+    + AssemblyOptionsSettings(coreConfig:BoltCoreConfiguration)
+    + OnGUI() : void
+}
+class Styles <<static>> {
+    + <<const>> OptionsWidth : float = 250
+}
+AssemblyOptionsSettings +-- Styles
+Styles --> "background" GUIStyle
+Styles --> "defaultsButton" GUIStyle
+@enduml

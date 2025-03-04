@@ -1,0 +1,83 @@
+@startuml
+struct double2 {
+    + x : double
+    + y : double
+    + double2(x:double, y:double)
+    + double2(xy:double2)
+    + double2(v:double)
+    + double2(v:bool)
+    + double2(v:bool2)
+    + double2(v:int)
+    + double2(v:int2)
+    + double2(v:uint)
+    + double2(v:uint2)
+    + double2(v:half)
+    + double2(v:half2)
+    + double2(v:float)
+    + double2(v:float2)
+    + Equals(rhs:double2) : bool
+    + <<override>> Equals(o:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+    + ToString(format:string, formatProvider:IFormatProvider) : string
+}
+class math <<static>> <<partial>> {
+    + {static} double2(x:double, y:double) : double2
+    + {static} double2(xy:double2) : double2
+    + {static} double2(v:double) : double2
+    + {static} double2(v:bool) : double2
+    + {static} double2(v:bool2) : double2
+    + {static} double2(v:int) : double2
+    + {static} double2(v:int2) : double2
+    + {static} double2(v:uint) : double2
+    + {static} double2(v:uint2) : double2
+    + {static} double2(v:half) : double2
+    + {static} double2(v:half2) : double2
+    + {static} double2(v:float) : double2
+    + {static} double2(v:float2) : double2
+    + {static} hash(v:double2) : uint
+    + {static} hashwide(v:double2) : uint2
+    + {static} shuffle(left:double2, right:double2, x:ShuffleComponent) : double
+    + {static} shuffle(left:double2, right:double2, x:ShuffleComponent, y:ShuffleComponent) : double2
+    + {static} shuffle(left:double2, right:double2, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent) : double3
+    + {static} shuffle(left:double2, right:double2, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent, w:ShuffleComponent) : double4
+}
+class "IEquatable`1"<T> {
+}
+class DebuggerProxy <<sealed>> {
+    + x : double
+    + y : double
+    + DebuggerProxy(v:double2)
+}
+IFormattable <|-- double2
+double2 --> "zero" double2
+double2 --> "xxxx" double4
+double2 --> "xxxy" double4
+double2 --> "xxyx" double4
+double2 --> "xxyy" double4
+double2 --> "xyxx" double4
+double2 --> "xyxy" double4
+double2 --> "xyyx" double4
+double2 --> "xyyy" double4
+double2 --> "yxxx" double4
+double2 --> "yxxy" double4
+double2 --> "yxyx" double4
+double2 --> "yxyy" double4
+double2 --> "yyxx" double4
+double2 --> "yyxy" double4
+double2 --> "yyyx" double4
+double2 --> "yyyy" double4
+double2 --> "xxx" double3
+double2 --> "xxy" double3
+double2 --> "xyx" double3
+double2 --> "xyy" double3
+double2 --> "yxx" double3
+double2 --> "yxy" double3
+double2 --> "yyx" double3
+double2 --> "yyy" double3
+double2 --> "xx" double2
+double2 --> "xy" double2
+double2 --> "yx" double2
+double2 --> "yy" double2
+double2 +-- DebuggerProxy
+@enduml

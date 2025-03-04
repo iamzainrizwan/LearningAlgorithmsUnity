@@ -1,0 +1,7 @@
+@startuml
+class FormerNameAttribute {
+    + fullName : string <<get>>
+    + FormerNameAttribute(fullName:string)
+}
+Attribute <|-- FormerNameAttribute
+@enduml

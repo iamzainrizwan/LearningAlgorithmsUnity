@@ -1,0 +1,11 @@
+@startuml
+class NavigationOverlay {
+    + <<override>> OnCreated() : void
+    + <<override>> OnWillBeDestroyed() : void
+    + <<override>> CreatePanelContent() : VisualElement
+}
+class Style <<static>> {
+}
+Overlay <|-- NavigationOverlay
+NavigationOverlay +-- Style
+@enduml

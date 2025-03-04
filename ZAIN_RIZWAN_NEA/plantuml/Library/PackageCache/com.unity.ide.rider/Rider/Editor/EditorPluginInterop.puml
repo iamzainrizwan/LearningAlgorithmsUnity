@@ -1,0 +1,10 @@
+@startuml
+class EditorPluginInterop <<static>> {
+    + {static} <<readonly>> EditorPluginAssemblyName : string
+    + {static} <<readonly>> EditorPluginAssemblyNameFallback : string
+    + {static} LogPath : string <<get>>
+    + {static} OpenFileDllImplementation(path:string, line:int, column:int) : bool
+    + {static} EditorPluginIsLoadedFromAssets(assembly:Assembly) : bool
+}
+EditorPluginInterop --> "EditorPluginAssembly" Assembly
+@enduml

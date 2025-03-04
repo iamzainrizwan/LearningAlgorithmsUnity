@@ -1,0 +1,9 @@
+@startuml
+class WorkspaceWindow {
+}
+IWorkspaceWindow <|-- WorkspaceWindow
+IRefreshView <|-- WorkspaceWindow
+IUpdateReport <|-- WorkspaceWindow
+IGluonUpdateReport <|-- WorkspaceWindow
+IGluonWorkspaceStatusChangeListener <|-- WorkspaceWindow
+@enduml

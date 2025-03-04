@@ -1,0 +1,10 @@
+@startuml
+struct DeviceConfigurationEvent {
+    + <<const>> Type : int = 0x44434647
+    + <<unsafe>> ToEventPtr() : InputEventPtr
+    + {static} Create(deviceId:int, time:double) : DeviceConfigurationEvent
+}
+IInputEventTypeInfo <|-- DeviceConfigurationEvent
+DeviceConfigurationEvent --> "baseEvent" InputEvent
+DeviceConfigurationEvent --> "typeStatic" FourCC
+@enduml

@@ -1,0 +1,45 @@
+@startuml
+class AccelStructAdapterTests {
+    + AccelStructAdapterTests(backendAsString:string)
+    + SetUp() : void
+    + TearDown() : void
+    + GeometryPool_MeshWithTwoWideUVs_UVsAreFetchedCorrectly(uvChannel:int) : void
+    + GeometryPool_MeshWithThreeWideUVs_UVsAreFetchedCorrectly(uvChannel:int) : void
+    + GeometryPool_MeshWithFourWideUVs_UVsAreFetchedCorrectly(uvChannel:int) : void
+    + GeometryPool_MeshWithLargeUVValues_UVsAreFetchedCorrectly(uvChannel:int) : void
+    + GeometryPool_MeshWithDifferentVertexUVs_UVsAreInterpolatedCorrectly(uvChannel:int) : void
+}
+struct RayWithFlags {
+    + minT : float
+    + maxT : float
+    + culling : uint
+    + instanceMask : uint
+    + RayWithFlags(origin:float3, direction:float3)
+}
+enum RayCulling {
+    None= 0,
+    CullFrontFace= 0x10,
+    CullBackFace= 0x20,
+}
+struct Hit {
+    + instanceID : uint
+    + primitiveIndex : uint
+    + hitDistance : float
+    + isFrontFace : uint
+    + Valid() : bool
+}
+struct HitGeomAttributes {
+}
+AccelStructAdapterTests +-- RayWithFlags
+RayWithFlags --> "origin" float3
+RayWithFlags --> "direction" float3
+AccelStructAdapterTests +-- RayCulling
+AccelStructAdapterTests +-- Hit
+Hit --> "uvBarycentrics" float2
+AccelStructAdapterTests +-- HitGeomAttributes
+HitGeomAttributes --> "position" float3
+HitGeomAttributes --> "normal" float3
+HitGeomAttributes --> "faceNormal" float3
+HitGeomAttributes --> "uv0" float2
+HitGeomAttributes --> "uv1" float2
+@enduml

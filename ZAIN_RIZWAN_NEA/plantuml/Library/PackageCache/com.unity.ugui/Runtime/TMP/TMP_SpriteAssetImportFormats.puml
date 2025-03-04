@@ -1,0 +1,49 @@
+@startuml
+enum SpriteAssetImportFormats {
+    None= 0,
+    TexturePackerJsonArray= 0x1,
+}
+class TexturePacker_JsonArray {
+}
+struct SpriteFrame {
+    + x : float
+    + y : float
+    + w : float
+    + h : float
+    + <<override>> ToString() : string
+}
+struct SpriteSize {
+    + w : float
+    + h : float
+    + <<override>> ToString() : string
+}
+struct Frame {
+    + filename : string
+    + rotated : bool
+    + trimmed : bool
+}
+struct Meta {
+    + app : string
+    + version : string
+    + image : string
+    + format : string
+    + scale : float
+    + smartupdate : string
+}
+class SpriteDataObject {
+}
+class "List`1"<T> {
+}
+TexturePacker_JsonArray +-- SpriteFrame
+TexturePacker_JsonArray +-- SpriteSize
+TexturePacker_JsonArray +-- Frame
+Frame --> "frame" SpriteFrame
+Frame --> "spriteSourceSize" SpriteFrame
+Frame --> "sourceSize" SpriteSize
+Frame --> "pivot" Vector2
+TexturePacker_JsonArray +-- Meta
+Meta --> "size" SpriteSize
+TexturePacker_JsonArray +-- SpriteDataObject
+SpriteDataObject --> "frames<Frame>" "List`1"
+SpriteDataObject --> "meta" Meta
+@enduml

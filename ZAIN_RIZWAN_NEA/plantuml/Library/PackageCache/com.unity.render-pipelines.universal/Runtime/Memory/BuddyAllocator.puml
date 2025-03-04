@@ -1,0 +1,23 @@
+@startuml
+struct BuddyAllocation {
+    + level : int
+    + index : int
+    + BuddyAllocation(level:int, index:int)
+}
+struct BuddyAllocator {
+    + levelCount : int <<get>>
+    + BuddyAllocator(levelCount:int, branchingOrder:int, allocator:Allocator)
+    + TryAllocate(requestedLevel:int, allocation:BuddyAllocation) : bool
+    + Free(allocation:BuddyAllocation) : void
+    + Dispose() : void
+}
+struct Header {
+    + branchingOrder : int
+    + levelCount : int
+    + allocationCount : int
+    + freeAllocationIdsCount : int
+}
+BuddyAllocation --> "index2D" uint2
+IDisposable <|-- BuddyAllocator
+BuddyAllocator +-- Header
+@enduml

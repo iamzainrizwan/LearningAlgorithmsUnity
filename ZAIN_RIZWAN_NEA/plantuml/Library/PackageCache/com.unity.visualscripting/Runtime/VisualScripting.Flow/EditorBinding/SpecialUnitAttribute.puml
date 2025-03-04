@@ -1,0 +1,5 @@
+@startuml
+class SpecialUnitAttribute <<sealed>> {
+}
+Attribute <|-- SpecialUnitAttribute
+@enduml

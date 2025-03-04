@@ -1,0 +1,16 @@
+@startuml
+class UnitPreservation <<sealed>> {
+    + {static} Preserve(unit:IUnit) : UnitPreservation
+    + RestoreTo(unit:IUnit) : void
+}
+struct UnitPortPreservation {
+    + <<readonly>> key : string
+    + UnitPortPreservation(port:IUnitPort)
+    + UnitPortPreservation(unit:IUnit, key:string)
+    + GetOrCreateInput(newInvalidInput:InvalidInput) : IUnitPort
+    + GetOrCreateOutput(newInvalidOutput:InvalidOutput) : IUnitPort
+}
+IPoolable <|-- UnitPreservation
+UnitPreservation +-- UnitPortPreservation
+UnitPortPreservation --> "unit" IUnit
+@enduml

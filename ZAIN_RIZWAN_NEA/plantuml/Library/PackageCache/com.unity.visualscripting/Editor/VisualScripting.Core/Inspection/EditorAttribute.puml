@@ -1,0 +1,8 @@
+@startuml
+class EditorAttribute {
+    + EditorAttribute(type:Type)
+}
+Attribute <|-- EditorAttribute
+IDecoratorAttribute <|-- EditorAttribute
+EditorAttribute --> "type" Type
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+class AdditionalCommandCollection {
+    + AdditionalCommandCollection()
+    + Add(fields:AdditionalCommandCollection) : AdditionalCommandCollection
+    + Add(field:AdditionalCommandDescriptor) : AdditionalCommandCollection
+    + GetEnumerator() : IEnumerator<AdditionalCommandCollection.Item>
+}
+class "IEnumerable`1"<T> {
+}
+class Item {
+    + Item(field:AdditionalCommandDescriptor)
+}
+"IEnumerable`1" "<AdditionalCommandCollection.Item>" <|-- AdditionalCommandCollection
+AdditionalCommandCollection +-- Item
+Item --> "field" AdditionalCommandDescriptor
+@enduml

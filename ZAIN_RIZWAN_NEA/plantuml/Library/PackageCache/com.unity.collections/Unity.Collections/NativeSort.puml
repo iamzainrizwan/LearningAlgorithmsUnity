@@ -1,0 +1,79 @@
+@startuml
+class NativeSortExtension <<static>> {
+    + <<unsafe>> {static} Sort(array:T*, length:int) : void
+    + <<unsafe>> {static} Sort(array:T*, length:int, comp:U) : void
+    + <<unsafe>> {static} SortJob(array:T*, length:int) : SortJob<T, DefaultComparer<T>>
+    + <<unsafe>> {static} SortJob(array:T*, length:int, comp:U) : SortJob<T, U>
+    + <<unsafe>> {static} BinarySearch(ptr:T*, length:int, value:T) : int
+    + <<unsafe>> {static} BinarySearch(ptr:T*, length:int, value:T, comp:U) : int
+    + <<unsafe>> {static} Sort(array:NativeArray<T>) : void
+    + <<unsafe>> {static} Sort(array:NativeArray<T>, comp:U) : void
+    + <<unsafe>> {static} SortJob(array:NativeArray<T>) : SortJob<T, DefaultComparer<T>>
+    + <<unsafe>> {static} SortJob(array:NativeArray<T>, comp:U) : SortJob<T, U>
+    + {static} BinarySearch(array:NativeArray<T>, value:T) : int
+    + <<unsafe>> {static} BinarySearch(array:NativeArray<T>, value:T, comp:U) : int
+    + {static} BinarySearch(array:NativeArray<T>.ReadOnly, value:T) : int
+    + <<unsafe>> {static} BinarySearch(array:NativeArray<T>.ReadOnly, value:T, comp:U) : int
+    + <<unsafe>> {static} Sort(list:NativeList<T>) : void
+    + <<unsafe>> {static} Sort(list:NativeList<T>, comp:U) : void
+    + <<unsafe>> {static} SortJob(list:NativeList<T>) : SortJob<T, DefaultComparer<T>>
+    + <<unsafe>> {static} SortJob(list:NativeList<T>, comp:U) : SortJob<T, U>
+    + <<unsafe>> {static} SortJobDefer(list:NativeList<T>) : SortJobDefer<T, DefaultComparer<T>>
+    + <<unsafe>> {static} SortJobDefer(list:NativeList<T>, comp:U) : SortJobDefer<T, U>
+    + {static} BinarySearch(list:NativeList<T>, value:T) : int
+    + <<unsafe>> {static} BinarySearch(list:NativeList<T>, value:T, comp:U) : int
+    + <<unsafe>> {static} Sort(list:UnsafeList<T>) : void
+    + <<unsafe>> {static} Sort(list:UnsafeList<T>, comp:U) : void
+    + <<unsafe>> {static} SortJob(list:UnsafeList<T>) : SortJob<T, DefaultComparer<T>>
+    + <<unsafe>> {static} SortJob(list:UnsafeList<T>, comp:U) : SortJob<T, U>
+    + {static} BinarySearch(list:UnsafeList<T>, value:T) : int
+    + <<unsafe>> {static} BinarySearch(list:UnsafeList<T>, value:T, comp:U) : int
+    + <<unsafe>> {static} Sort(slice:NativeSlice<T>) : void
+    + <<unsafe>> {static} Sort(slice:NativeSlice<T>, comp:U) : void
+    + <<unsafe>> {static} SortJob(slice:NativeSlice<T>) : SortJob<T, DefaultComparer<T>>
+    + <<unsafe>> {static} SortJob(slice:NativeSlice<T>, comp:U) : SortJob<T, U>
+    + {static} BinarySearch(slice:NativeSlice<T>, value:T) : int
+    + <<unsafe>> {static} BinarySearch(slice:NativeSlice<T>, value:T, comp:U) : int
+}
+struct "SortJob`2"<T,U> {
+    + Comp : U
+    + Length : int
+    + Schedule(inputDeps:JobHandle) : JobHandle
+}
+struct "SortJobDefer`2"<T,U> {
+    + Comp : U
+    + Schedule(inputDeps:JobHandle) : JobHandle
+}
+struct "DefaultComparer`1"<T> {
+    + Compare(x:T, y:T) : int
+}
+class "IComparer`1"<T> {
+}
+struct SegmentSort {
+    + Execute(index:int) : void
+}
+struct SegmentSortMerge {
+    + Execute() : void
+}
+class "NativeList`1"<T> {
+}
+struct SegmentSort {
+    + Execute(index:int) : void
+}
+struct SegmentSortMerge {
+    + Execute() : void
+}
+class "IComparable`1"<T> {
+}
+"SortJobDefer`2" --> "Data<T>" "NativeList`1"
+NativeSortExtension +-- "DefaultComparer`1"
+"IComparer`1" "<T>" <|-- "DefaultComparer`1"
+"SortJob`2" +-- SegmentSort
+IJobParallelFor <|-- SegmentSort
+"SortJob`2" +-- SegmentSortMerge
+IJob <|-- SegmentSortMerge
+"SortJobDefer`2" +-- SegmentSort
+IJobParallelForDefer <|-- SegmentSort
+"SortJobDefer`2" +-- SegmentSortMerge
+IJob <|-- SegmentSortMerge
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+class "GraphConnectionCollection`3"<TConnection,TSource,TDestination> {
+    + GraphConnectionCollection(graph:IGraph)
+    + TryGetValue(key:Guid, value:TConnection) : bool
+    + Contains(key:Guid) : bool
+    + Remove(key:Guid) : bool
+}
+class "ConnectionCollectionBase`4"<T1,T2,T3,T4> {
+}
+class "IGraphElementCollection`1"<T> {
+}
+class "IConnection`2"<T1,T2> {
+}
+class "IKeyedCollection`2"<T1,T2> {
+}
+class "Action`1"<T> {
+}
+"ConnectionCollectionBase`4" "<TConnection,TSource,TDestination,GraphElementCollection<TConnection>>" <|-- "GraphConnectionCollection`3"
+"IGraphElementCollection`1" "<TConnection>" <|-- "GraphConnectionCollection`3"
+@enduml

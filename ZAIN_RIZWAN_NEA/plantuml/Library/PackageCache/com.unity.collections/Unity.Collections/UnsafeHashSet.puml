@@ -1,0 +1,52 @@
+@startuml
+struct "UnsafeHashSet`1"<T> {
+    + UnsafeHashSet(initialCapacity:int, allocator:AllocatorManager.AllocatorHandle)
+    + <<readonly>> IsEmpty : bool <<get>>
+    + <<readonly>> Count : int <<get>>
+    + Capacity : int <<readonly get>> <<set>>
+    + <<readonly>> IsCreated : bool <<get>>
+    + Dispose() : void
+    + Dispose(inputDeps:JobHandle) : JobHandle
+    + Clear() : void
+    + Add(item:T) : bool
+    + Remove(item:T) : bool
+    + Contains(item:T) : bool
+    + TrimExcess() : void
+    + ToNativeArray(allocator:AllocatorManager.AllocatorHandle) : NativeArray<T>
+    + GetEnumerator() : Enumerator
+    + AsReadOnly() : ReadOnly
+}
+class "UnsafeHashSetDebuggerTypeProxy`1"<T> <<sealed>> {
+    + UnsafeHashSetDebuggerTypeProxy(data:UnsafeHashSet<T>)
+}
+class "IEnumerable`1"<T> {
+}
+class "IEquatable`1"<T> {
+}
+struct Enumerator {
+    + Dispose() : void
+    + MoveNext() : bool
+    + Reset() : void
+}
+struct ReadOnly {
+    + <<readonly>> IsCreated : bool <<get>>
+    + <<readonly>> IsEmpty : bool <<get>>
+    + <<readonly>> Count : int <<get>>
+    + <<readonly>> Capacity : int <<get>>
+    + <<readonly>> Contains(item:T) : bool
+    + <<readonly>> ToNativeArray(allocator:AllocatorManager.AllocatorHandle) : NativeArray<T>
+    + <<readonly>> GetEnumerator() : Enumerator
+}
+class "List`1"<T> {
+}
+class "IEnumerator`1"<T> {
+}
+INativeDisposable <|-- "UnsafeHashSet`1"
+"IEnumerable`1" "<T>" <|-- "UnsafeHashSet`1"
+"UnsafeHashSetDebuggerTypeProxy`1" --> "Items<T>" "List`1"
+"UnsafeHashSet`1" +-- Enumerator
+"IEnumerator`1" "<T>" <|-- Enumerator
+Enumerator --> "Current" T
+"UnsafeHashSet`1" +-- ReadOnly
+"IEnumerable`1" "<T>" <|-- ReadOnly
+@enduml

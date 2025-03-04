@@ -1,0 +1,50 @@
+@startuml
+class ShaderGraphRequirementsPerKeyword <<sealed>> {
+    + UnionWith(other:ShaderGraphRequirementsPerKeyword) : void
+}
+class "KeywordDependentCollection`7"<T1,T2,T3,T4,T5,T6,T7> {
+}
+interface IRequirements {
+}
+interface IRequirementsSet {
+}
+struct ForPermutationIndex {
+    + instanceCount : int <<get>>
+    + permutationIndex : int <<get>>
+    + SetRequirements(value:ShaderGraphRequirements) : void
+}
+struct Base {
+    + instanceCount : int <<get>>
+    + permutationIndex : int <<get>>
+    + SetRequirements(value:ShaderGraphRequirements) : void
+}
+struct All {
+    + instanceCount : int <<get>>
+}
+struct AllPermutations {
+    + instanceCount : int <<get>>
+}
+class "ISet`1"<T> {
+}
+class "IEnumerable`1"<T> {
+}
+"KeywordDependentCollection`7" "<ShaderGraphRequirements,ShaderGraphRequirementsPerKeyword.All,ShaderGraphRequirementsPerKeyword.AllPermutations,ShaderGraphRequirementsPerKeyword.ForPermutationIndex,ShaderGraphRequirementsPerKeyword.Base,ShaderGraphRequirementsPerKeyword.IRequirements,ShaderGraphRequirementsPerKeyword.IRequirementsSet>" <|-- ShaderGraphRequirementsPerKeyword
+ShaderGraphRequirementsPerKeyword +-- IRequirements
+ShaderGraphRequirementsPerKeyword +-- IRequirementsSet
+ShaderGraphRequirementsPerKeyword +-- ForPermutationIndex
+IRequirements <|-- ForPermutationIndex
+IRequirementsSet <|-- ForPermutationIndex
+ForPermutationIndex --> "instances<IRequirements>" "IEnumerable`1"
+ForPermutationIndex --> "requirements" ShaderGraphRequirements
+ShaderGraphRequirementsPerKeyword +-- Base
+IRequirements <|-- Base
+IRequirementsSet <|-- Base
+Base --> "instances<IRequirements>" "IEnumerable`1"
+Base --> "requirements" ShaderGraphRequirements
+ShaderGraphRequirementsPerKeyword +-- All
+IRequirementsSet <|-- All
+All --> "instances<IRequirements>" "IEnumerable`1"
+ShaderGraphRequirementsPerKeyword +-- AllPermutations
+IRequirementsSet <|-- AllPermutations
+AllPermutations --> "instances<IRequirements>" "IEnumerable`1"
+@enduml

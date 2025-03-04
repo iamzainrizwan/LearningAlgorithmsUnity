@@ -1,0 +1,9 @@
+@startuml
+class RawImageTest {
+    + Setup() : void
+    + TestSetup() : void
+    + Sprite_Material() : IEnumerator
+    + TearDown() : void
+}
+IPrebuildSetup <|-- RawImageTest
+@enduml

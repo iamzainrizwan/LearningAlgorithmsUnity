@@ -1,0 +1,23 @@
+@startuml
+struct LayerBatch {
+    + startLayerID : int
+    + endLayerValue : int
+    + useNormals : bool
+    + InitRTIds(index:int) : void
+    + GetRTId(cmd:CommandBuffer, desc:RenderTextureDescriptor, index:int) : RenderTargetIdentifier
+    + ReleaseRT(cmd:CommandBuffer) : void
+}
+class LayerUtility <<static>> {
+    + {static} maxTextureCount : uint <<get>>
+    + {static} InitializeBudget(maxTextureCount:uint) : void
+    + {static} CalculateBatches(lightCullResult:ILight2DCullResult, batchCount:int) : LayerBatch[]
+    + {static} GetFilterSettings(rendererData:Renderer2DData, layerBatch:LayerBatch, cameraSortingLayerBoundsIndex:short, filterSettings:FilteringSettings) : void
+}
+class "List`1"<T> {
+}
+LayerBatch --> "layerRange" SortingLayerRange
+LayerBatch --> "lightStats" LightStats
+LayerBatch --> "lights<Light2D>" "List`1"
+LayerBatch --> "shadowIndices<int>" "List`1"
+LayerBatch --> "shadowCasters<ShadowCasterGroup2D>" "List`1"
+@enduml

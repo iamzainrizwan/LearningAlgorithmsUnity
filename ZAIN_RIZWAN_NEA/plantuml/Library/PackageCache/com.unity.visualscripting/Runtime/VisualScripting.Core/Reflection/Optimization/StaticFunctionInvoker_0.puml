@@ -1,0 +1,11 @@
+@startuml
+class "StaticFunctionInvoker`1"<TResult> <<sealed>> {
+    + StaticFunctionInvoker(methodInfo:MethodInfo)
+    + <<override>> Invoke(target:object, args:object[]) : object
+    + <<override>> Invoke(target:object) : object
+    + InvokeUnsafe(target:object) : object
+}
+class "StaticFunctionInvokerBase`1"<T> {
+}
+"StaticFunctionInvokerBase`1" "<TResult>" <|-- "StaticFunctionInvoker`1"
+@enduml

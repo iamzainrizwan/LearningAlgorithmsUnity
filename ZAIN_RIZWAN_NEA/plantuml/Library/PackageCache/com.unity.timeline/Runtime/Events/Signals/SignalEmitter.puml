@@ -1,0 +1,10 @@
+@startuml
+class SignalEmitter {
+    + retroactive : bool <<get>> <<set>>
+    + emitOnce : bool <<get>> <<set>>
+}
+Marker <|-- SignalEmitter
+INotification <|-- SignalEmitter
+INotificationOptionProvider <|-- SignalEmitter
+SignalEmitter --> "asset" SignalAsset
+@enduml

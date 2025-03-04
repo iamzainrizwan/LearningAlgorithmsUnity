@@ -1,0 +1,6 @@
+@startuml
+class SquareWaveNode {
+    + SquareWaveNode()
+}
+CodeFunctionNode <|-- SquareWaveNode
+@enduml

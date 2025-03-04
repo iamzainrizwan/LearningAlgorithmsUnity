@@ -1,0 +1,11 @@
+@startuml
+class AbstractMaterialNode0 {
+    + m_GuidSerialized : string
+    + m_PropertyGuidSerialized : string
+    + m_KeywordGuidSerialized : string
+    + m_GroupGuidSerialized : string
+}
+class "List`1"<T> {
+}
+AbstractMaterialNode0 --> "m_SerializableSlots<SerializationHelper.JSONSerializedElement>" "List`1"
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class NavigationPreferencesProvider {
+    + <<override>> OnGUI(searchContext:string) : void
+}
+class Styles {
+}
+SettingsProvider <|-- NavigationPreferencesProvider
+NavigationPreferencesProvider +-- Styles
+@enduml

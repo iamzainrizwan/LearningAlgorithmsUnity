@@ -1,0 +1,7 @@
+@startuml
+class ChannelMixerEditor <<sealed>> {
+    + <<override>> OnEnable() : void
+    + <<override>> OnInspectorGUI() : void
+}
+VolumeComponentEditor <|-- ChannelMixerEditor
+@enduml

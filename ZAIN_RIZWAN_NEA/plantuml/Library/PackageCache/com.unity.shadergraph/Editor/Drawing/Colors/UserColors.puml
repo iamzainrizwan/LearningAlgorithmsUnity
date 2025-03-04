@@ -1,0 +1,8 @@
+@startuml
+class UserColors {
+    + <<override>> GetTitle() : string
+    + <<override>> AllowCustom() : bool
+    + <<override>> ClearOnDirty() : bool
+}
+ColorProviderFromCode <|-- UserColors
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class AnimationPlayableAssetEditor {
+    + {static} <<readonly>> k_NoClipAssignedError : string
+    + {static} <<readonly>> k_LegacyClipError : string
+    + <<override>> GetClipOptions(clip:TimelineClip) : ClipDrawOptions
+    + <<override>> OnCreate(clip:TimelineClip, track:TrackAsset, clonedFrom:TimelineClip) : void
+}
+ClipEditor <|-- AnimationPlayableAssetEditor
+@enduml

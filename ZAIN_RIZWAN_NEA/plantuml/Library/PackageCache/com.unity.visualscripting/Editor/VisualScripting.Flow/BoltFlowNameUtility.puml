@@ -1,0 +1,7 @@
+@startuml
+class BoltFlowNameUtility <<static>> {
+    + {static} UnitTitle(unitType:Type, @short:bool) : string
+    + {static} UnitTitle(unitType:Type, @short:bool, includeStatus:bool) : string
+    + {static} UnitPreviousTitle(unitType:Type) : string
+}
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class EditorMaterialQualityUtilities <<static>> {
+    + {static} GetMaterialQuality(keywordSet:ShaderKeywordSet) : MaterialQuality
+}
+@enduml

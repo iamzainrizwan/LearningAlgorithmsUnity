@@ -1,0 +1,16 @@
+@startuml
+class NavMeshAssetManager {
+    + StartBakingSurfaces(surfaces:Object[]) : void
+    + IsSurfaceBaking(surface:NavMeshSurface) : bool
+    + ClearSurfaces(surfaces:Object[]) : void
+}
+class "ScriptableSingleton`1"<T> {
+}
+struct AsyncBakeOperation {
+}
+struct SavedPrefabNavMeshData {
+}
+"ScriptableSingleton`1" "<NavMeshAssetManager>" <|-- NavMeshAssetManager
+NavMeshAssetManager +-- AsyncBakeOperation
+NavMeshAssetManager +-- SavedPrefabNavMeshData
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+class MultiInputUnitNumericDescriptor {
+    + MultiInputUnitNumericDescriptor(unit:IMultiInputUnit)
+}
+class MultiInputUnitNumericOption {
+    + MultiInputUnitNumericOption()
+    + MultiInputUnitNumericOption(unit:IMultiInputUnit)
+}
+class "UnitDescriptor`1"<T> {
+}
+class "UnitOption`1"<T> {
+}
+"UnitDescriptor`1" "<IMultiInputUnit>" <|-- MultiInputUnitNumericDescriptor
+"UnitOption`1" "<IMultiInputUnit>" <|-- MultiInputUnitNumericOption
+@enduml

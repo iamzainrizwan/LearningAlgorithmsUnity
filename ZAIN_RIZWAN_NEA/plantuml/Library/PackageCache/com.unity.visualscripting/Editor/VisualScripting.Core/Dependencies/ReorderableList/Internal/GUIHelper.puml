@@ -1,0 +1,15 @@
+@startuml
+class GUIHelper <<static>> {
+    + {static} DrawTexture(position:Rect, texture:Texture2D) : void
+    + {static} IconButton(position:Rect, visible:bool, iconNormal:Texture2D, iconActive:Texture2D, style:GUIStyle) : bool
+    + {static} IconButton(position:Rect, iconNormal:Texture2D, iconActive:Texture2D, style:GUIStyle) : bool
+    + {static} Separator(position:Rect, color:Color) : void
+    + {static} Separator(position:Rect) : void
+}
+class "Func`1"<T> {
+}
+class "Action`1"<T> {
+}
+GUIHelper --> "VisibleRect<Rect>" "Func`1"
+GUIHelper --> "FocusTextInControl<string>" "Action`1"
+@enduml

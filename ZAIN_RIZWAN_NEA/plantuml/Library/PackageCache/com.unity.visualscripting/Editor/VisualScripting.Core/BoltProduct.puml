@@ -1,0 +1,21 @@
+@startuml
+class BoltProduct <<sealed>> {
+    + BoltProduct()
+    + <<override>> Initialize() : void
+    + <<override>> configurationPanelLabel : string <<get>>
+    + <<override>> name : string <<get>>
+    + <<override>> description : string <<get>>
+    + <<override>> authorLabel : string <<get>>
+    + <<override>> author : string <<get>>
+    + <<override>> copyrightHolder : string <<get>>
+    + <<override>> publisherUrl : string <<get>>
+    + <<override>> websiteUrl : string <<get>>
+    + <<override>> supportUrl : string <<get>>
+    + <<override>> manualUrl : string <<get>>
+    + <<override>> assetStoreUrl : string <<get>>
+    + <<const>> ID : string = "Bolt"
+}
+Product <|-- BoltProduct
+BoltProduct --> "version" SemanticVersion
+BoltProduct --> "instance" BoltProduct
+@enduml

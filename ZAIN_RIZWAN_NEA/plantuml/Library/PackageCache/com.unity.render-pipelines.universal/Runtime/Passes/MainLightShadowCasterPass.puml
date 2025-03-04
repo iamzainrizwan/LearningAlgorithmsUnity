@@ -1,0 +1,28 @@
+@startuml
+class MainLightShadowCasterPass {
+    + MainLightShadowCasterPass(evt:RenderPassEvent)
+    + Dispose() : void
+    + Setup(renderingData:RenderingData) : bool
+    + Setup(renderingData:UniversalRenderingData, cameraData:UniversalCameraData, lightData:UniversalLightData, shadowData:UniversalShadowData) : bool
+    + <<override>> Configure(cmd:CommandBuffer, cameraTextureDescriptor:RenderTextureDescriptor) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+}
+class MainLightShadowConstantBuffer <<static>> {
+    + {static} <<readonly>> _WorldToShadow : int
+    + {static} <<readonly>> _ShadowParams : int
+    + {static} <<readonly>> _CascadeShadowSplitSpheres0 : int
+    + {static} <<readonly>> _CascadeShadowSplitSpheres1 : int
+    + {static} <<readonly>> _CascadeShadowSplitSpheres2 : int
+    + {static} <<readonly>> _CascadeShadowSplitSpheres3 : int
+    + {static} <<readonly>> _CascadeShadowSplitSphereRadii : int
+    + {static} <<readonly>> _ShadowOffset0 : int
+    + {static} <<readonly>> _ShadowOffset1 : int
+    + {static} <<readonly>> _ShadowmapSize : int
+    + {static} <<readonly>> _MainLightShadowmapID : int
+}
+class PassData {
+}
+ScriptableRenderPass <|-- MainLightShadowCasterPass
+MainLightShadowCasterPass +-- MainLightShadowConstantBuffer
+MainLightShadowCasterPass +-- PassData
+@enduml

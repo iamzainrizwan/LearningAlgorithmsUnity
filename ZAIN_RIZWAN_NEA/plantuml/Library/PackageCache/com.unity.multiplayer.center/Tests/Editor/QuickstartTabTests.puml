@@ -1,0 +1,7 @@
+@startuml
+class QuickstartTabTests {
+    + OneTimeSetup() : void
+    + Setup() : void
+    + QuickstartTab_QuickstartPackageMissingHelpboxExists() : void
+}
+@enduml

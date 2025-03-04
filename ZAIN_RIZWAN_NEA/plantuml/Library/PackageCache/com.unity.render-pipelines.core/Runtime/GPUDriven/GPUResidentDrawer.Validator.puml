@@ -1,0 +1,13 @@
+@startuml
+class GPUResidentDrawer <<partial>> {
+}
+class Strings <<static>> {
+    + {static} <<readonly>> drawerModeDisabled : string
+    + {static} <<readonly>> allowInEditModeDisabled : string
+    + {static} <<readonly>> notGPUResidentRenderPipeline : string
+    + {static} <<readonly>> rawBufferNotSupportedByPlatform : string
+    + {static} <<readonly>> kernelNotPresent : string
+    + {static} <<readonly>> batchRendererGroupShaderStrippingModeInvalid : string
+}
+GPUResidentDrawer +-- Strings
+@enduml

@@ -1,0 +1,257 @@
+@startuml
+class NCalcParser {
+    + NCalcParser(input:ITokenStream)
+    + NCalcParser(input:ITokenStream, state:RecognizerSharedState)
+    <<override>> + GrammarFileName : string <<get>>
+    + <<override>> DisplayRecognitionError(tokenNames:String[], e:RecognitionException) : void
+    + ncalcExpression() : ncalcExpression_return
+    + logicalExpression() : logicalExpression_return
+    + conditionalExpression() : conditionalExpression_return
+    + booleanAndExpression() : booleanAndExpression_return
+    + bitwiseOrExpression() : bitwiseOrExpression_return
+    + bitwiseXOrExpression() : bitwiseXOrExpression_return
+    + bitwiseAndExpression() : bitwiseAndExpression_return
+    + equalityExpression() : equalityExpression_return
+    + relationalExpression() : relationalExpression_return
+    + shiftExpression() : shiftExpression_return
+    + additiveExpression() : additiveExpression_return
+    + multiplicativeExpression() : multiplicativeExpression_return
+    + unaryExpression() : unaryExpression_return
+    + primaryExpression() : primaryExpression_return
+    + value() : value_return
+    + identifier() : identifier_return
+    + expressionList() : expressionList_return
+    + arguments() : arguments_return
+    + <<const>> T__29 : int = 29
+    + <<const>> T__28 : int = 28
+    + <<const>> T__27 : int = 27
+    + <<const>> T__26 : int = 26
+    + <<const>> T__25 : int = 25
+    + <<const>> T__24 : int = 24
+    + <<const>> T__23 : int = 23
+    + <<const>> LETTER : int = 12
+    + <<const>> T__22 : int = 22
+    + <<const>> T__21 : int = 21
+    + <<const>> T__20 : int = 20
+    + <<const>> FLOAT : int = 5
+    + <<const>> ID : int = 10
+    + <<const>> EOF : int
+    + <<const>> HexDigit : int = 17
+    + <<const>> T__19 : int = 19
+    + <<const>> NAME : int = 11
+    + <<const>> DIGIT : int = 13
+    + <<const>> T__42 : int = 42
+    + <<const>> INTEGER : int = 4
+    + <<const>> E : int = 14
+    + <<const>> T__43 : int = 43
+    + <<const>> T__40 : int = 40
+    + <<const>> T__41 : int = 41
+    + <<const>> T__46 : int = 46
+    + <<const>> T__47 : int = 47
+    + <<const>> T__44 : int = 44
+    + <<const>> T__45 : int = 45
+    + <<const>> T__48 : int = 48
+    + <<const>> DATETIME : int = 7
+    + <<const>> TRUE : int = 8
+    + <<const>> T__30 : int = 30
+    + <<const>> T__31 : int = 31
+    + <<const>> T__32 : int = 32
+    + <<const>> WS : int = 18
+    + <<const>> T__33 : int = 33
+    + <<const>> T__34 : int = 34
+    + <<const>> T__35 : int = 35
+    + <<const>> T__36 : int = 36
+    + <<const>> T__37 : int = 37
+    + <<const>> T__38 : int = 38
+    + <<const>> T__39 : int = 39
+    + <<const>> UnicodeEscape : int = 16
+    + <<const>> FALSE : int = 9
+    + <<const>> EscapeSequence : int = 15
+    + <<const>> STRING : int = 6
+}
+class "List`1"<T> {
+}
+class ncalcExpression_return {
+    <<override>> + Tree : object <<get>> <<set>>
+}
+class logicalExpression_return {
+    <<override>> + Tree : object <<get>> <<set>>
+}
+class conditionalExpression_return {
+    <<override>> + Tree : object <<get>> <<set>>
+}
+class booleanAndExpression_return {
+    <<override>> + Tree : object <<get>> <<set>>
+}
+class bitwiseOrExpression_return {
+    <<override>> + Tree : object <<get>> <<set>>
+}
+class bitwiseXOrExpression_return {
+    <<override>> + Tree : object <<get>> <<set>>
+}
+class bitwiseAndExpression_return {
+    <<override>> + Tree : object <<get>> <<set>>
+}
+class equalityExpression_return {
+    <<override>> + Tree : object <<get>> <<set>>
+}
+class relationalExpression_return {
+    <<override>> + Tree : object <<get>> <<set>>
+}
+class shiftExpression_return {
+    <<override>> + Tree : object <<get>> <<set>>
+}
+class additiveExpression_return {
+    <<override>> + Tree : object <<get>> <<set>>
+}
+class multiplicativeExpression_return {
+    <<override>> + Tree : object <<get>> <<set>>
+}
+class unaryExpression_return {
+    <<override>> + Tree : object <<get>> <<set>>
+}
+class primaryExpression_return {
+    <<override>> + Tree : object <<get>> <<set>>
+}
+class value_return {
+    <<override>> + Tree : object <<get>> <<set>>
+}
+class identifier_return {
+    <<override>> + Tree : object <<get>> <<set>>
+}
+class expressionList_return {
+    <<override>> + Tree : object <<get>> <<set>>
+}
+class arguments_return {
+    <<override>> + Tree : object <<get>> <<set>>
+}
+Parser <|-- NCalcParser
+NCalcParser --> "TreeAdaptor" ITreeAdaptor
+NCalcParser --> "Errors<string>" "List`1"
+NCalcParser o-> "FOLLOW_logicalExpression_in_ncalcExpression56" BitSet
+NCalcParser o-> "FOLLOW_EOF_in_ncalcExpression58" BitSet
+NCalcParser o-> "FOLLOW_conditionalExpression_in_logicalExpression78" BitSet
+NCalcParser o-> "FOLLOW_19_in_logicalExpression84" BitSet
+NCalcParser o-> "FOLLOW_conditionalExpression_in_logicalExpression88" BitSet
+NCalcParser o-> "FOLLOW_20_in_logicalExpression90" BitSet
+NCalcParser o-> "FOLLOW_conditionalExpression_in_logicalExpression94" BitSet
+NCalcParser o-> "FOLLOW_booleanAndExpression_in_conditionalExpression121" BitSet
+NCalcParser o-> "FOLLOW_set_in_conditionalExpression130" BitSet
+NCalcParser o-> "FOLLOW_conditionalExpression_in_conditionalExpression146" BitSet
+NCalcParser o-> "FOLLOW_bitwiseOrExpression_in_booleanAndExpression180" BitSet
+NCalcParser o-> "FOLLOW_set_in_booleanAndExpression189" BitSet
+NCalcParser o-> "FOLLOW_bitwiseOrExpression_in_booleanAndExpression205" BitSet
+NCalcParser o-> "FOLLOW_bitwiseXOrExpression_in_bitwiseOrExpression237" BitSet
+NCalcParser o-> "FOLLOW_25_in_bitwiseOrExpression246" BitSet
+NCalcParser o-> "FOLLOW_bitwiseOrExpression_in_bitwiseOrExpression256" BitSet
+NCalcParser o-> "FOLLOW_bitwiseAndExpression_in_bitwiseXOrExpression290" BitSet
+NCalcParser o-> "FOLLOW_26_in_bitwiseXOrExpression299" BitSet
+NCalcParser o-> "FOLLOW_bitwiseAndExpression_in_bitwiseXOrExpression309" BitSet
+NCalcParser o-> "FOLLOW_equalityExpression_in_bitwiseAndExpression341" BitSet
+NCalcParser o-> "FOLLOW_27_in_bitwiseAndExpression350" BitSet
+NCalcParser o-> "FOLLOW_equalityExpression_in_bitwiseAndExpression360" BitSet
+NCalcParser o-> "FOLLOW_relationalExpression_in_equalityExpression394" BitSet
+NCalcParser o-> "FOLLOW_set_in_equalityExpression405" BitSet
+NCalcParser o-> "FOLLOW_set_in_equalityExpression422" BitSet
+NCalcParser o-> "FOLLOW_relationalExpression_in_equalityExpression441" BitSet
+NCalcParser o-> "FOLLOW_shiftExpression_in_relationalExpression474" BitSet
+NCalcParser o-> "FOLLOW_32_in_relationalExpression485" BitSet
+NCalcParser o-> "FOLLOW_33_in_relationalExpression495" BitSet
+NCalcParser o-> "FOLLOW_34_in_relationalExpression506" BitSet
+NCalcParser o-> "FOLLOW_35_in_relationalExpression516" BitSet
+NCalcParser o-> "FOLLOW_shiftExpression_in_relationalExpression528" BitSet
+NCalcParser o-> "FOLLOW_additiveExpression_in_shiftExpression560" BitSet
+NCalcParser o-> "FOLLOW_36_in_shiftExpression571" BitSet
+NCalcParser o-> "FOLLOW_37_in_shiftExpression581" BitSet
+NCalcParser o-> "FOLLOW_additiveExpression_in_shiftExpression593" BitSet
+NCalcParser o-> "FOLLOW_multiplicativeExpression_in_additiveExpression625" BitSet
+NCalcParser o-> "FOLLOW_38_in_additiveExpression636" BitSet
+NCalcParser o-> "FOLLOW_39_in_additiveExpression646" BitSet
+NCalcParser o-> "FOLLOW_multiplicativeExpression_in_additiveExpression658" BitSet
+NCalcParser o-> "FOLLOW_unaryExpression_in_multiplicativeExpression690" BitSet
+NCalcParser o-> "FOLLOW_40_in_multiplicativeExpression701" BitSet
+NCalcParser o-> "FOLLOW_41_in_multiplicativeExpression711" BitSet
+NCalcParser o-> "FOLLOW_42_in_multiplicativeExpression721" BitSet
+NCalcParser o-> "FOLLOW_unaryExpression_in_multiplicativeExpression733" BitSet
+NCalcParser o-> "FOLLOW_primaryExpression_in_unaryExpression760" BitSet
+NCalcParser o-> "FOLLOW_set_in_unaryExpression771" BitSet
+NCalcParser o-> "FOLLOW_primaryExpression_in_unaryExpression779" BitSet
+NCalcParser o-> "FOLLOW_45_in_unaryExpression791" BitSet
+NCalcParser o-> "FOLLOW_primaryExpression_in_unaryExpression794" BitSet
+NCalcParser o-> "FOLLOW_39_in_unaryExpression805" BitSet
+NCalcParser o-> "FOLLOW_primaryExpression_in_unaryExpression807" BitSet
+NCalcParser o-> "FOLLOW_46_in_primaryExpression829" BitSet
+NCalcParser o-> "FOLLOW_logicalExpression_in_primaryExpression831" BitSet
+NCalcParser o-> "FOLLOW_47_in_primaryExpression833" BitSet
+NCalcParser o-> "FOLLOW_value_in_primaryExpression843" BitSet
+NCalcParser o-> "FOLLOW_identifier_in_primaryExpression851" BitSet
+NCalcParser o-> "FOLLOW_arguments_in_primaryExpression856" BitSet
+NCalcParser o-> "FOLLOW_INTEGER_in_value876" BitSet
+NCalcParser o-> "FOLLOW_FLOAT_in_value884" BitSet
+NCalcParser o-> "FOLLOW_STRING_in_value892" BitSet
+NCalcParser o-> "FOLLOW_DATETIME_in_value901" BitSet
+NCalcParser o-> "FOLLOW_TRUE_in_value908" BitSet
+NCalcParser o-> "FOLLOW_FALSE_in_value916" BitSet
+NCalcParser o-> "FOLLOW_ID_in_identifier934" BitSet
+NCalcParser o-> "FOLLOW_NAME_in_identifier942" BitSet
+NCalcParser o-> "FOLLOW_logicalExpression_in_expressionList966" BitSet
+NCalcParser o-> "FOLLOW_48_in_expressionList973" BitSet
+NCalcParser o-> "FOLLOW_logicalExpression_in_expressionList977" BitSet
+NCalcParser o-> "FOLLOW_46_in_arguments1006" BitSet
+NCalcParser o-> "FOLLOW_expressionList_in_arguments1010" BitSet
+NCalcParser o-> "FOLLOW_47_in_arguments1017" BitSet
+NCalcParser +-- ncalcExpression_return
+ParserRuleReturnScope <|-- ncalcExpression_return
+ncalcExpression_return --> "value" LogicalExpression
+NCalcParser +-- logicalExpression_return
+ParserRuleReturnScope <|-- logicalExpression_return
+logicalExpression_return --> "value" LogicalExpression
+NCalcParser +-- conditionalExpression_return
+ParserRuleReturnScope <|-- conditionalExpression_return
+conditionalExpression_return --> "value" LogicalExpression
+NCalcParser +-- booleanAndExpression_return
+ParserRuleReturnScope <|-- booleanAndExpression_return
+booleanAndExpression_return --> "value" LogicalExpression
+NCalcParser +-- bitwiseOrExpression_return
+ParserRuleReturnScope <|-- bitwiseOrExpression_return
+bitwiseOrExpression_return --> "value" LogicalExpression
+NCalcParser +-- bitwiseXOrExpression_return
+ParserRuleReturnScope <|-- bitwiseXOrExpression_return
+bitwiseXOrExpression_return --> "value" LogicalExpression
+NCalcParser +-- bitwiseAndExpression_return
+ParserRuleReturnScope <|-- bitwiseAndExpression_return
+bitwiseAndExpression_return --> "value" LogicalExpression
+NCalcParser +-- equalityExpression_return
+ParserRuleReturnScope <|-- equalityExpression_return
+equalityExpression_return --> "value" LogicalExpression
+NCalcParser +-- relationalExpression_return
+ParserRuleReturnScope <|-- relationalExpression_return
+relationalExpression_return --> "value" LogicalExpression
+NCalcParser +-- shiftExpression_return
+ParserRuleReturnScope <|-- shiftExpression_return
+shiftExpression_return --> "value" LogicalExpression
+NCalcParser +-- additiveExpression_return
+ParserRuleReturnScope <|-- additiveExpression_return
+additiveExpression_return --> "value" LogicalExpression
+NCalcParser +-- multiplicativeExpression_return
+ParserRuleReturnScope <|-- multiplicativeExpression_return
+multiplicativeExpression_return --> "value" LogicalExpression
+NCalcParser +-- unaryExpression_return
+ParserRuleReturnScope <|-- unaryExpression_return
+unaryExpression_return --> "value" LogicalExpression
+NCalcParser +-- primaryExpression_return
+ParserRuleReturnScope <|-- primaryExpression_return
+primaryExpression_return --> "value" LogicalExpression
+NCalcParser +-- value_return
+ParserRuleReturnScope <|-- value_return
+value_return --> "value" ValueExpression
+NCalcParser +-- identifier_return
+ParserRuleReturnScope <|-- identifier_return
+identifier_return --> "value" IdentifierExpression
+NCalcParser +-- expressionList_return
+ParserRuleReturnScope <|-- expressionList_return
+expressionList_return --> "value<LogicalExpression>" "List`1"
+NCalcParser +-- arguments_return
+ParserRuleReturnScope <|-- arguments_return
+arguments_return --> "value<LogicalExpression>" "List`1"
+@enduml

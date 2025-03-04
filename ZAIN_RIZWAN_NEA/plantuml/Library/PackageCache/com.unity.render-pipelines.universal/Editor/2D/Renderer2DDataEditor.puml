@@ -1,0 +1,39 @@
+@startuml
+class Renderer2DDataEditor {
+    + <<override>> OnInspectorGUI() : void
+    + DrawCameraSortingLayerTexture() : void
+}
+class Styles {
+}
+struct LightBlendStyleProps {
+}
+ScriptableRendererDataEditor <|-- Renderer2DDataEditor
+Renderer2DDataEditor +-- Styles
+Styles o-> "generalHeader" GUIContent
+Styles o-> "lightRenderTexturesHeader" GUIContent
+Styles o-> "lightBlendStylesHeader" GUIContent
+Styles o-> "postProcessHeader" GUIContent
+Styles o-> "transparencySortMode" GUIContent
+Styles o-> "transparencySortAxis" GUIContent
+Styles o-> "hdrEmulationScale" GUIContent
+Styles o-> "lightRTScale" GUIContent
+Styles o-> "maxLightRTCount" GUIContent
+Styles o-> "maxShadowRTCount" GUIContent
+Styles o-> "defaultMaterialType" GUIContent
+Styles o-> "defaultCustomMaterial" GUIContent
+Styles o-> "name" GUIContent
+Styles o-> "maskTextureChannel" GUIContent
+Styles o-> "blendMode" GUIContent
+Styles o-> "useDepthStencilBuffer" GUIContent
+Styles o-> "postProcessIncluded" GUIContent
+Styles o-> "postProcessData" GUIContent
+Styles o-> "cameraSortingLayerTextureHeader" GUIContent
+Styles o-> "cameraSortingLayerTextureBound" GUIContent
+Styles o-> "cameraSortingLayerDownsampling" GUIContent
+Renderer2DDataEditor +-- LightBlendStyleProps
+LightBlendStyleProps --> "name" SerializedProperty
+LightBlendStyleProps --> "maskTextureChannel" SerializedProperty
+LightBlendStyleProps --> "blendMode" SerializedProperty
+LightBlendStyleProps --> "blendFactorMultiplicative" SerializedProperty
+LightBlendStyleProps --> "blendFactorAdditive" SerializedProperty
+@enduml

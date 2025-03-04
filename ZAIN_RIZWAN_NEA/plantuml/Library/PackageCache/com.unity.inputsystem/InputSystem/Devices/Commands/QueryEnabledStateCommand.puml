@@ -1,0 +1,10 @@
+@startuml
+struct QueryEnabledStateCommand {
+    + isEnabled : bool
+    + {static} Create() : QueryEnabledStateCommand
+}
+IInputDeviceCommandInfo <|-- QueryEnabledStateCommand
+QueryEnabledStateCommand --> "Type" FourCC
+QueryEnabledStateCommand --> "baseCommand" InputDeviceCommand
+QueryEnabledStateCommand --> "typeStatic" FourCC
+@enduml

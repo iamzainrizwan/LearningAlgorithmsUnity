@@ -1,0 +1,8 @@
+@startuml
+enum InteractionDataType {
+    CallToAction= 0,
+    Link= 1,
+}
+interface IOnboardingSectionAnalyticsProvider {
+}
+@enduml

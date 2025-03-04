@@ -1,0 +1,10 @@
+@startuml
+class "HashSetPool`1"<T> <<static>> {
+    + {static} New() : HashSet<T>
+    + {static} Free(hashSet:HashSet<T>) : void
+}
+class XHashSetPool <<static>> {
+    + {static} ToHashSetPooled(source:IEnumerable<T>) : HashSet<T>
+    + {static} Free(hashSet:HashSet<T>) : void
+}
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class SwitchOnIntegerDescriptor {
+    + SwitchOnIntegerDescriptor(unit:SwitchOnInteger)
+}
+class "SwitchUnitDescriptor`1"<T> {
+}
+"SwitchUnitDescriptor`1" "<int>" <|-- SwitchOnIntegerDescriptor
+@enduml

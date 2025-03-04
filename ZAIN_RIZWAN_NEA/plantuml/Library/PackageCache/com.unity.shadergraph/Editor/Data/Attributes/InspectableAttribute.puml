@@ -1,0 +1,9 @@
+@startuml
+class InspectableAttribute {
+    + labelName : string <<get>>
+    + defaultValue : object <<get>>
+    + customStyleName : string <<get>>
+    + InspectableAttribute(labelName:string, defaultValue:object, customStyleName:string)
+}
+Attribute <|-- InspectableAttribute
+@enduml

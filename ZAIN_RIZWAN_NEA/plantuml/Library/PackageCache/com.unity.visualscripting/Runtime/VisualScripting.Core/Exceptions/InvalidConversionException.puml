@@ -1,0 +1,8 @@
+@startuml
+class InvalidConversionException {
+    + InvalidConversionException()
+    + InvalidConversionException(message:string)
+    + InvalidConversionException(message:string, innerException:Exception)
+}
+InvalidCastException <|-- InvalidConversionException
+@enduml

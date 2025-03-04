@@ -1,0 +1,9 @@
+@startuml
+class ReorderableSlotListView {
+}
+class "Func`2"<T1,T2> {
+}
+VisualElement <|-- ReorderableSlotListView
+ReorderableSlotListView --> "OnListRecreatedCallback" ListRecreatedDelegate
+ReorderableSlotListView --> "AllowedTypeCallback<ConcreteSlotValueTypePopupName,bool>" "Func`2"
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class FixedBufferStringQueueTests <<unsafe>> {
+    + PushAndPopInBufferRange() : void
+    + PushAndPopOutOfBufferRange() : void
+    + PushAndPopAndClear() : void
+}
+@enduml

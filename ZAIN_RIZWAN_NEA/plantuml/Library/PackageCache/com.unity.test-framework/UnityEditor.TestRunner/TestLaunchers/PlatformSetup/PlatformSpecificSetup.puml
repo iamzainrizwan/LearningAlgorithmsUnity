@@ -1,0 +1,11 @@
+@startuml
+class PlatformSpecificSetup {
+    + PlatformSpecificSetup()
+    + PlatformSpecificSetup(target:BuildTarget)
+    + Setup() : void
+    + PostBuildAction() : void
+    + PostSuccessfulBuildAction() : void
+    + PostSuccessfulLaunchAction() : void
+    + CleanUp() : void
+}
+@enduml

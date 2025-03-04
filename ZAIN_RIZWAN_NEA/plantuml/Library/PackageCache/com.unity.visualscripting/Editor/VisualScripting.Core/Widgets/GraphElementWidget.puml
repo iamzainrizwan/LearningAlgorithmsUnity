@@ -1,0 +1,37 @@
+@startuml
+abstract class "GraphElementWidget`2"<TCanvas,TElement> {
+    + <<override>> ToString() : string
+    + <<override>> Dispose() : void
+    + element : TElement <<get>>
+    + <<override>> FetchMetadata() : Metadata
+    + <<override>> BeforeFrame() : void
+    + <<override>> HandleCapture() : void
+    + <<override>> HandleInput() : void
+    + <<virtual>> canAlignAndDistribute : bool <<get>>
+    + <<override>> zIndex : float <<get>> <<set>>
+    + <<virtual>> canSelect : bool <<get>>
+    + isSelected : bool <<get>>
+    + <<virtual>> canResizeHorizontal : bool <<get>>
+    + <<virtual>> canResizeVertical : bool <<get>>
+    + canResize : bool <<get>>
+    + isResizing : bool <<get>>
+    + AddCursorRect(rect:Rect, cursor:MouseCursor) : void
+    + <<virtual>> canDrag : bool <<get>>
+    + isDragging : bool <<get>>
+    + BeginDrag() : void
+    + Drag(delta:Vector2, constraint:Vector2) : void
+    + EndDrag() : void
+    + LockDragOrigin() : void
+    + <<virtual>> ExpandDragGroup(dragGroup:HashSet<IGraphElement>) : void
+    + <<virtual>> canDelete : bool <<get>>
+    + Delete() : void
+    + <<virtual>> ExpandDeleteGroup(deleteGroup:HashSet<IGraphElement>) : void
+    + <<override>> DrawOverlay() : void
+    + <<virtual>> canCopy : bool <<get>>
+    + <<virtual>> ExpandCopyGroup(copyGroup:HashSet<IGraphElement>) : void
+}
+class "Widget`2"<T1,T2> {
+}
+"Widget`2" "<TCanvas,TElement>" <|-- "GraphElementWidget`2"
+IGraphElementWidget <|-- "GraphElementWidget`2"
+@enduml

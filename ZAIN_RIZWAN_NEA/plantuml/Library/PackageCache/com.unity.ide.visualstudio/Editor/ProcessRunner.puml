@@ -1,0 +1,15 @@
+@startuml
+class ProcessRunnerResult {
+    + Success : bool <<get>> <<set>>
+    + Output : string <<get>> <<set>>
+    + Error : string <<get>> <<set>>
+}
+class ProcessRunner <<static>> {
+    + <<const>> DefaultTimeoutInMilliseconds : int = 300000
+    + {static} ProcessStartInfoFor(filename:string, arguments:string, redirect:bool, shell:bool) : ProcessStartInfo
+    + {static} Start(filename:string, arguments:string) : void
+    + {static} Start(processStartInfo:ProcessStartInfo) : void
+    + {static} StartAndWaitForExit(filename:string, arguments:string, timeoutms:int, onOutputReceived:Action<string>) : ProcessRunnerResult
+    + {static} StartAndWaitForExit(processStartInfo:ProcessStartInfo, timeoutms:int, onOutputReceived:Action<string>) : ProcessRunnerResult
+}
+@enduml

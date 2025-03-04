@@ -1,0 +1,8 @@
+@startuml
+class FontCreatedByScript {
+    + {static} GetCharacterInfo_FindsCharacterInfoThatIsInSet() : void
+    + {static} GetCharacterInfo_DoesNotFindCharacterInfoThatIsNotInSet() : void
+    + {static} HasCharacterReturns8BitChars() : void
+    + {static} HasCharacterReturns16BitChars() : void
+}
+@enduml

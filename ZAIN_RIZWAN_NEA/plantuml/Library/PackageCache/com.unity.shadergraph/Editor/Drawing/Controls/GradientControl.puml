@@ -1,0 +1,16 @@
+@startuml
+class GradientControlAttribute {
+    + GradientControlAttribute(label:string)
+    + InstantiateControl(node:AbstractMaterialNode, propertyInfo:PropertyInfo) : VisualElement
+}
+class GradientObject {
+}
+class GradientControlView {
+    + GradientControlView(label:string, node:AbstractMaterialNode, propertyInfo:PropertyInfo)
+}
+Attribute <|-- GradientControlAttribute
+IControlAttribute <|-- GradientControlAttribute
+ScriptableObject <|-- GradientObject
+GradientObject o-> "gradient" Gradient
+VisualElement <|-- GradientControlView
+@enduml

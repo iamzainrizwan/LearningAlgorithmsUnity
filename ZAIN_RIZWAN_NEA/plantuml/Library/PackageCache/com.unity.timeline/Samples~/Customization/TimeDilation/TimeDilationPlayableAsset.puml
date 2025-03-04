@@ -1,0 +1,9 @@
+@startuml
+class TimeDilationPlayableAsset {
+    + <<override>> CreatePlayable(graph:PlayableGraph, owner:GameObject) : Playable
+}
+PlayableAsset <|-- TimeDilationPlayableAsset
+ITimelineClipAsset <|-- TimeDilationPlayableAsset
+TimeDilationPlayableAsset o-> "template" TimeDilationBehaviour
+TimeDilationPlayableAsset --> "clipCaps" ClipCaps
+@enduml

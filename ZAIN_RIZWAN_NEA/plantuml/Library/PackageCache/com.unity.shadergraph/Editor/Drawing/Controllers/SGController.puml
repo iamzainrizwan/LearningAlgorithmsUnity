@@ -1,0 +1,38 @@
+@startuml
+class DummyChangeAction {
+}
+struct SGControllerChangedEvent {
+    + isPropagationStopped : bool <<get>>
+}
+class SGControllerEvent {
+}
+abstract class SGController {
+    + m_DisableCalled : bool = false
+    + <<virtual>> OnDisable() : void
+    + SendEvent(e:SGControllerEvent) : void
+    + {abstract} ApplyChanges() : void
+}
+abstract class "SGController`1"<T> {
+    + Model : T <<get>>
+    + Cleanup() : void
+}
+abstract class "SGViewController`2"<ModelType,ViewModelType> {
+    + ViewModel : ViewModelType <<get>>
+    + <<override>> ApplyChanges() : void
+    + <<virtual>> Dispose() : void
+}
+class "DataStore`1"<T> {
+}
+class "Action`1"<T> {
+}
+class "IEnumerable`1"<T> {
+}
+IGraphDataAction <|-- DummyChangeAction
+DummyChangeAction --> "modifyGraphDataAction<GraphData>" "Action`1"
+SGControllerChangedEvent --> "target" ISGControlledElement
+SGControllerChangedEvent --> "controller" SGController
+SGControllerChangedEvent --> "change" IGraphDataAction
+SGController --> "allChildren<SGController>" "IEnumerable`1"
+SGController <|-- "SGController`1"
+"SGController`1" "<ModelType>" <|-- "SGViewController`2"
+@enduml

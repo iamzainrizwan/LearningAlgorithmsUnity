@@ -1,0 +1,6 @@
+@startuml
+class RandomRangeNode {
+    + RandomRangeNode()
+}
+CodeFunctionNode <|-- RandomRangeNode
+@enduml

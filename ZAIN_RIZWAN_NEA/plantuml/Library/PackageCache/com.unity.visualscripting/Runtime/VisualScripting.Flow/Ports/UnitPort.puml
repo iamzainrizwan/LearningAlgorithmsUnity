@@ -1,0 +1,32 @@
+@startuml
+abstract class "UnitPort`3"<TValidOther,TInvalidOther,TExternalConnection> {
+    + key : string <<get>>
+    + hasAnyConnection : bool <<get>>
+    + <<virtual>> hasValidConnection : bool <<get>>
+    + <<virtual>> hasInvalidConnection : bool <<get>>
+    + CanValidlyConnectTo(port:IUnitPort) : bool
+    + CanInvalidlyConnectTo(port:IUnitPort) : bool
+    + ValidlyConnectTo(port:IUnitPort) : void
+    + InvalidlyConnectTo(port:IUnitPort) : void
+    + Disconnect() : void
+    + {abstract} CanConnectToValid(port:TValidOther) : bool
+    + CanConnectToInvalid(port:TInvalidOther) : bool
+    + {abstract} ConnectToValid(port:TValidOther) : void
+    + {abstract} ConnectToInvalid(port:TInvalidOther) : void
+    + {abstract} DisconnectFromValid(port:TValidOther) : void
+    + {abstract} DisconnectFromInvalid(port:TInvalidOther) : void
+    + {abstract} CompatiblePort(unit:IUnit) : IUnitPort
+}
+class "IEnumerable`1"<T> {
+}
+IUnitPort <|-- "UnitPort`3"
+"UnitPort`3" --> "unit" IUnit
+"UnitPort`3" --> "graph" IGraph
+"UnitPort`3" --> "relations<IUnitRelation>" "IEnumerable`1"
+"UnitPort`3" --> "validConnections<TExternalConnection>" "IEnumerable`1"
+"UnitPort`3" --> "invalidConnections<InvalidConnection>" "IEnumerable`1"
+"UnitPort`3" --> "validConnectedPorts<TValidOther>" "IEnumerable`1"
+"UnitPort`3" --> "invalidConnectedPorts<TInvalidOther>" "IEnumerable`1"
+"UnitPort`3" --> "connections<IUnitConnection>" "IEnumerable`1"
+"UnitPort`3" --> "connectedPorts<IUnitPort>" "IEnumerable`1"
+@enduml

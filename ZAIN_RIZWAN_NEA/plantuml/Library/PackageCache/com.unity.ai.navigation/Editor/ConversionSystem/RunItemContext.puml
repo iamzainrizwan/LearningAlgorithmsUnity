@@ -1,0 +1,8 @@
+@startuml
+struct RunItemContext {
+    + didFail : bool <<get>> <<set>>
+    + info : string <<get>> <<set>>
+    + RunItemContext(item:ConverterItemInfo)
+}
+RunItemContext --> "item" ConverterItemInfo
+@enduml

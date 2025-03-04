@@ -1,0 +1,9 @@
+@startuml
+class GetListItem <<sealed>> {
+    + Get(flow:Flow) : object
+}
+Unit <|-- GetListItem
+GetListItem --> "list" ValueInput
+GetListItem --> "index" ValueInput
+GetListItem --> "item" ValueOutput
+@enduml

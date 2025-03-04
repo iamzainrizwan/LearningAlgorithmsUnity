@@ -1,0 +1,128 @@
+@startuml
+class InputActionMap <<sealed>> {
+    + name : string <<get>>
+    + enabled : bool <<get>>
+    + InputActionMap()
+    + InputActionMap(name:string)
+    + Dispose() : void
+    + FindAction(actionNameOrId:string, throwIfNotFound:bool) : InputAction
+    + FindAction(id:Guid) : InputAction
+    + IsUsableWithDevice(device:InputDevice) : bool
+    + Enable() : void
+    + Disable() : void
+    + Clone() : InputActionMap
+    + Contains(action:InputAction) : bool
+    + <<override>> ToString() : string
+    + GetEnumerator() : IEnumerator<InputAction>
+    + FindBinding(mask:InputBinding, action:InputAction) : int
+    + {static} FromJson(json:string) : InputActionMap[]
+    + {static} ToJson(maps:IEnumerable<InputActionMap>) : string
+    + ToJson() : string
+    + OnBeforeSerialize() : void
+    + OnAfterDeserialize() : void
+}
+class "ReadOnlyArray`1"<T> {
+}
+class "Action`1"<T> {
+}
+enum Flags {
+    NeedToResolveBindings= 1 << 0,
+    BindingResolutionNeedsFullReResolve= 1 << 1,
+    ControlsForEachActionInitialized= 1 << 2,
+    BindingsForEachActionInitialized= 1 << 3,
+}
+struct DeviceArray {
+    + IndexOf(device:InputDevice) : int
+    + Remove(device:InputDevice) : bool
+    + Get() : ReadOnlyArray<InputDevice>?
+    + Set(devices:ReadOnlyArray<InputDevice>?) : bool
+}
+struct BindingOverrideListJson {
+}
+struct BindingOverrideJson {
+    + action : string
+    + id : string
+    + path : string
+    + interactions : string
+    + processors : string
+    + {static} FromBinding(binding:InputBinding, actionName:string) : BindingOverrideJson
+    + {static} FromBinding(binding:InputBinding) : BindingOverrideJson
+    + {static} ToBinding(bindingOverride:BindingOverrideJson) : InputBinding
+}
+struct BindingJson {
+    + name : string
+    + id : string
+    + path : string
+    + interactions : string
+    + processors : string
+    + groups : string
+    + action : string
+    + isComposite : bool
+    + isPartOfComposite : bool
+    + ToBinding() : InputBinding
+    + {static} FromBinding(binding:InputBinding) : BindingJson
+}
+struct ReadActionJson {
+    + name : string
+    + type : string
+    + id : string
+    + expectedControlType : string
+    + expectedControlLayout : string
+    + processors : string
+    + interactions : string
+    + passThrough : bool
+    + initialStateCheck : bool
+    + ToAction(actionName:string) : InputAction
+}
+struct WriteActionJson {
+    + name : string
+    + type : string
+    + id : string
+    + expectedControlType : string
+    + processors : string
+    + interactions : string
+    + initialStateCheck : bool
+    + {static} FromAction(action:InputAction) : WriteActionJson
+}
+struct ReadMapJson {
+    + name : string
+    + id : string
+}
+struct WriteMapJson {
+    + name : string
+    + id : string
+    + {static} FromMap(map:InputActionMap) : WriteMapJson
+}
+struct WriteFileJson {
+    + {static} FromMap(map:InputActionMap) : WriteFileJson
+    + {static} FromMaps(maps:IEnumerable<InputActionMap>) : WriteFileJson
+}
+struct ReadFileJson {
+    + ToMaps() : InputActionMap[]
+}
+class "List`1"<T> {
+}
+ICloneable <|-- InputActionMap
+ISerializationCallbackReceiver <|-- InputActionMap
+IInputActionCollection2 <|-- InputActionMap
+IDisposable <|-- InputActionMap
+InputActionMap --> "asset" InputActionAsset
+InputActionMap --> "id" Guid
+InputActionMap --> "actions<InputAction>" "ReadOnlyArray`1"
+InputActionMap --> "bindings<InputBinding>" "ReadOnlyArray`1"
+InputActionMap --> "controlSchemes<InputControlScheme>" "ReadOnlyArray`1"
+InputActionMap --> "bindingMask" InputBinding
+InputActionMap --> "devices<InputDevice>" "ReadOnlyArray`1"
+InputActionMap +-- Flags
+InputActionMap +-- DeviceArray
+InputActionMap +-- BindingOverrideListJson
+BindingOverrideListJson --> "bindings<BindingOverrideJson>" "List`1"
+InputActionMap +-- BindingOverrideJson
+InputActionMap +-- BindingJson
+InputActionMap +-- ReadActionJson
+InputActionMap +-- WriteActionJson
+InputActionMap +-- ReadMapJson
+InputActionMap +-- WriteMapJson
+InputActionMap +-- WriteFileJson
+InputActionMap +-- ReadFileJson
+@enduml

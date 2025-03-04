@@ -1,0 +1,11 @@
+@startuml
+class UniversalRenderPipelineDebugDisplayStats {
+    + <<override>> EnableProfilingRecorders() : void
+    + <<override>> DisableProfilingRecorders() : void
+    + <<override>> RegisterDebugUI(list:List<DebugUI.Widget>) : void
+    + <<override>> Update() : void
+}
+class "DebugDisplayStats`1"<T> {
+}
+"DebugDisplayStats`1" "<URPProfileId>" <|-- UniversalRenderPipelineDebugDisplayStats
+@enduml

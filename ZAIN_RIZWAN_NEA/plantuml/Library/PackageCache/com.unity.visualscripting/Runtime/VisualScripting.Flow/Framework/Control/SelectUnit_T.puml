@@ -1,0 +1,15 @@
+@startuml
+abstract class "SelectUnit`1"<T> {
+    + <<override>> canDefine : bool <<get>>
+    + Result(flow:Flow) : object
+}
+class "List`1"<T> {
+}
+Unit <|-- "SelectUnit`1"
+ISelectUnit <|-- "SelectUnit`1"
+"SelectUnit`1" --> "branches<KeyValuePair<T, ValueInput>>" "List`1"
+"SelectUnit`1" o-> "options<T>" "List`1"
+"SelectUnit`1" --> "selector" ValueInput
+"SelectUnit`1" --> "@default" ValueInput
+"SelectUnit`1" --> "selection" ValueOutput
+@enduml

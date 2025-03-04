@@ -1,0 +1,93 @@
+@startuml
+interface IComputeCommandBuffer {
+    + SetComputeFloatParam(computeShader:ComputeShader, nameID:int, val:float) : void
+    + SetComputeIntParam(computeShader:ComputeShader, nameID:int, val:int) : void
+    + SetComputeVectorParam(computeShader:ComputeShader, nameID:int, val:Vector4) : void
+    + SetComputeVectorArrayParam(computeShader:ComputeShader, nameID:int, values:Vector4[]) : void
+    + SetComputeMatrixParam(computeShader:ComputeShader, nameID:int, val:Matrix4x4) : void
+    + SetComputeMatrixArrayParam(computeShader:ComputeShader, nameID:int, values:Matrix4x4[]) : void
+    + SetBufferData(buffer:ComputeBuffer, data:Array) : void
+    + SetBufferData(buffer:ComputeBuffer, data:List<T>) : void
+    + SetBufferData(buffer:ComputeBuffer, data:NativeArray<T>) : void
+    + SetBufferData(buffer:ComputeBuffer, data:Array, managedBufferStartIndex:int, graphicsBufferStartIndex:int, count:int) : void
+    + SetBufferData(buffer:ComputeBuffer, data:List<T>, managedBufferStartIndex:int, graphicsBufferStartIndex:int, count:int) : void
+    + SetBufferData(buffer:ComputeBuffer, data:NativeArray<T>, nativeBufferStartIndex:int, graphicsBufferStartIndex:int, count:int) : void
+    + SetBufferCounterValue(buffer:ComputeBuffer, counterValue:uint) : void
+    + SetBufferData(buffer:GraphicsBuffer, data:Array) : void
+    + SetBufferData(buffer:GraphicsBuffer, data:List<T>) : void
+    + SetBufferData(buffer:GraphicsBuffer, data:NativeArray<T>) : void
+    + SetBufferData(buffer:GraphicsBuffer, data:Array, managedBufferStartIndex:int, graphicsBufferStartIndex:int, count:int) : void
+    + SetBufferData(buffer:GraphicsBuffer, data:List<T>, managedBufferStartIndex:int, graphicsBufferStartIndex:int, count:int) : void
+    + SetBufferData(buffer:GraphicsBuffer, data:NativeArray<T>, nativeBufferStartIndex:int, graphicsBufferStartIndex:int, count:int) : void
+    + SetBufferCounterValue(buffer:GraphicsBuffer, counterValue:uint) : void
+    + SetComputeFloatParam(computeShader:ComputeShader, name:string, val:float) : void
+    + SetComputeIntParam(computeShader:ComputeShader, name:string, val:int) : void
+    + SetComputeVectorParam(computeShader:ComputeShader, name:string, val:Vector4) : void
+    + SetComputeVectorArrayParam(computeShader:ComputeShader, name:string, values:Vector4[]) : void
+    + SetComputeMatrixParam(computeShader:ComputeShader, name:string, val:Matrix4x4) : void
+    + SetComputeMatrixArrayParam(computeShader:ComputeShader, name:string, values:Matrix4x4[]) : void
+    + SetComputeFloatParams(computeShader:ComputeShader, name:string, values:float[]) : void
+    + SetComputeFloatParams(computeShader:ComputeShader, nameID:int, values:float[]) : void
+    + SetComputeIntParams(computeShader:ComputeShader, name:string, values:int[]) : void
+    + SetComputeIntParams(computeShader:ComputeShader, nameID:int, values:int[]) : void
+    + SetComputeTextureParam(computeShader:ComputeShader, kernelIndex:int, name:string, rt:TextureHandle) : void
+    + SetComputeTextureParam(computeShader:ComputeShader, kernelIndex:int, nameID:int, rt:TextureHandle) : void
+    + SetComputeTextureParam(computeShader:ComputeShader, kernelIndex:int, name:string, rt:TextureHandle, mipLevel:int) : void
+    + SetComputeTextureParam(computeShader:ComputeShader, kernelIndex:int, nameID:int, rt:TextureHandle, mipLevel:int) : void
+    + SetComputeTextureParam(computeShader:ComputeShader, kernelIndex:int, name:string, rt:TextureHandle, mipLevel:int, element:RenderTextureSubElement) : void
+    + SetComputeTextureParam(computeShader:ComputeShader, kernelIndex:int, nameID:int, rt:TextureHandle, mipLevel:int, element:RenderTextureSubElement) : void
+    + SetComputeBufferParam(computeShader:ComputeShader, kernelIndex:int, nameID:int, buffer:ComputeBuffer) : void
+    + SetComputeBufferParam(computeShader:ComputeShader, kernelIndex:int, name:string, buffer:ComputeBuffer) : void
+    + SetComputeBufferParam(computeShader:ComputeShader, kernelIndex:int, nameID:int, bufferHandle:GraphicsBufferHandle) : void
+    + SetComputeBufferParam(computeShader:ComputeShader, kernelIndex:int, name:string, bufferHandle:GraphicsBufferHandle) : void
+    + SetComputeBufferParam(computeShader:ComputeShader, kernelIndex:int, nameID:int, buffer:GraphicsBuffer) : void
+    + SetComputeBufferParam(computeShader:ComputeShader, kernelIndex:int, name:string, buffer:GraphicsBuffer) : void
+    + SetComputeConstantBufferParam(computeShader:ComputeShader, nameID:int, buffer:ComputeBuffer, offset:int, size:int) : void
+    + SetComputeConstantBufferParam(computeShader:ComputeShader, name:string, buffer:ComputeBuffer, offset:int, size:int) : void
+    + SetComputeConstantBufferParam(computeShader:ComputeShader, nameID:int, buffer:GraphicsBuffer, offset:int, size:int) : void
+    + SetComputeConstantBufferParam(computeShader:ComputeShader, name:string, buffer:GraphicsBuffer, offset:int, size:int) : void
+    + DispatchCompute(computeShader:ComputeShader, kernelIndex:int, threadGroupsX:int, threadGroupsY:int, threadGroupsZ:int) : void
+    + DispatchCompute(computeShader:ComputeShader, kernelIndex:int, indirectBuffer:ComputeBuffer, argsOffset:uint) : void
+    + DispatchCompute(computeShader:ComputeShader, kernelIndex:int, indirectBuffer:GraphicsBuffer, argsOffset:uint) : void
+    + BuildRayTracingAccelerationStructure(accelerationStructure:RayTracingAccelerationStructure) : void
+    + BuildRayTracingAccelerationStructure(accelerationStructure:RayTracingAccelerationStructure, relativeOrigin:Vector3) : void
+    + SetRayTracingAccelerationStructure(rayTracingShader:RayTracingShader, name:string, rayTracingAccelerationStructure:RayTracingAccelerationStructure) : void
+    + SetRayTracingAccelerationStructure(rayTracingShader:RayTracingShader, nameID:int, rayTracingAccelerationStructure:RayTracingAccelerationStructure) : void
+    + SetRayTracingAccelerationStructure(computeShader:ComputeShader, kernelIndex:int, name:string, rayTracingAccelerationStructure:RayTracingAccelerationStructure) : void
+    + SetRayTracingAccelerationStructure(computeShader:ComputeShader, kernelIndex:int, nameID:int, rayTracingAccelerationStructure:RayTracingAccelerationStructure) : void
+    + SetRayTracingBufferParam(rayTracingShader:RayTracingShader, name:string, buffer:ComputeBuffer) : void
+    + SetRayTracingBufferParam(rayTracingShader:RayTracingShader, nameID:int, buffer:ComputeBuffer) : void
+    + SetRayTracingBufferParam(rayTracingShader:RayTracingShader, name:string, buffer:GraphicsBuffer) : void
+    + SetRayTracingBufferParam(rayTracingShader:RayTracingShader, nameID:int, buffer:GraphicsBuffer) : void
+    + SetRayTracingBufferParam(rayTracingShader:RayTracingShader, name:string, bufferHandle:GraphicsBufferHandle) : void
+    + SetRayTracingBufferParam(rayTracingShader:RayTracingShader, nameID:int, bufferHandle:GraphicsBufferHandle) : void
+    + SetRayTracingConstantBufferParam(rayTracingShader:RayTracingShader, nameID:int, buffer:ComputeBuffer, offset:int, size:int) : void
+    + SetRayTracingConstantBufferParam(rayTracingShader:RayTracingShader, name:string, buffer:ComputeBuffer, offset:int, size:int) : void
+    + SetRayTracingConstantBufferParam(rayTracingShader:RayTracingShader, nameID:int, buffer:GraphicsBuffer, offset:int, size:int) : void
+    + SetRayTracingConstantBufferParam(rayTracingShader:RayTracingShader, name:string, buffer:GraphicsBuffer, offset:int, size:int) : void
+    + SetRayTracingTextureParam(rayTracingShader:RayTracingShader, name:string, rt:TextureHandle) : void
+    + SetRayTracingTextureParam(rayTracingShader:RayTracingShader, nameID:int, rt:TextureHandle) : void
+    + SetRayTracingFloatParam(rayTracingShader:RayTracingShader, name:string, val:float) : void
+    + SetRayTracingFloatParam(rayTracingShader:RayTracingShader, nameID:int, val:float) : void
+    + SetRayTracingFloatParams(rayTracingShader:RayTracingShader, name:string, values:float[]) : void
+    + SetRayTracingFloatParams(rayTracingShader:RayTracingShader, nameID:int, values:float[]) : void
+    + SetRayTracingIntParam(rayTracingShader:RayTracingShader, name:string, val:int) : void
+    + SetRayTracingIntParam(rayTracingShader:RayTracingShader, nameID:int, val:int) : void
+    + SetRayTracingIntParams(rayTracingShader:RayTracingShader, name:string, values:int[]) : void
+    + SetRayTracingIntParams(rayTracingShader:RayTracingShader, nameID:int, values:int[]) : void
+    + SetRayTracingVectorParam(rayTracingShader:RayTracingShader, name:string, val:Vector4) : void
+    + SetRayTracingVectorParam(rayTracingShader:RayTracingShader, nameID:int, val:Vector4) : void
+    + SetRayTracingVectorArrayParam(rayTracingShader:RayTracingShader, name:string, values:Vector4[]) : void
+    + SetRayTracingVectorArrayParam(rayTracingShader:RayTracingShader, nameID:int, values:Vector4[]) : void
+    + SetRayTracingMatrixParam(rayTracingShader:RayTracingShader, name:string, val:Matrix4x4) : void
+    + SetRayTracingMatrixParam(rayTracingShader:RayTracingShader, nameID:int, val:Matrix4x4) : void
+    + SetRayTracingMatrixArrayParam(rayTracingShader:RayTracingShader, name:string, values:Matrix4x4[]) : void
+    + SetRayTracingMatrixArrayParam(rayTracingShader:RayTracingShader, nameID:int, values:Matrix4x4[]) : void
+    + DispatchRays(rayTracingShader:RayTracingShader, rayGenName:string, width:uint, height:uint, depth:uint, camera:Camera) : void
+    + CopyCounterValue(src:ComputeBuffer, dst:ComputeBuffer, dstOffsetBytes:uint) : void
+    + CopyCounterValue(src:GraphicsBuffer, dst:ComputeBuffer, dstOffsetBytes:uint) : void
+    + CopyCounterValue(src:ComputeBuffer, dst:GraphicsBuffer, dstOffsetBytes:uint) : void
+    + CopyCounterValue(src:GraphicsBuffer, dst:GraphicsBuffer, dstOffsetBytes:uint) : void
+}
+IBaseCommandBuffer <|-- IComputeCommandBuffer
+@enduml

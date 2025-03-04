@@ -1,0 +1,22 @@
+@startuml
+class TMP_SpriteAsset {
+    + UpdateLookupTables() : void
+    + GetSpriteIndexFromHashcode(hashCode:int) : int
+    + GetSpriteIndexFromUnicode(unicode:uint) : int
+    + GetSpriteIndexFromName(name:string) : int
+    + {static} SearchForSpriteByUnicode(spriteAsset:TMP_SpriteAsset, unicode:uint, includeFallbacks:bool, spriteIndex:int) : TMP_SpriteAsset
+    + {static} SearchForSpriteByHashCode(spriteAsset:TMP_SpriteAsset, hashCode:int, includeFallbacks:bool, spriteIndex:int) : TMP_SpriteAsset
+    + SortGlyphTable() : void
+}
+class "List`1"<T> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+TMP_Asset <|-- TMP_SpriteAsset
+TMP_SpriteAsset --> "spriteSheet" Texture
+TMP_SpriteAsset --> "spriteCharacterTable<TMP_SpriteCharacter>" "List`1"
+TMP_SpriteAsset --> "spriteCharacterLookupTable<uint,TMP_SpriteCharacter>" "Dictionary`2"
+TMP_SpriteAsset --> "spriteGlyphTable<TMP_SpriteGlyph>" "List`1"
+TMP_SpriteAsset --> "spriteInfoList<TMP_Sprite>" "List`1"
+TMP_SpriteAsset --> "fallbackSpriteAssets<TMP_SpriteAsset>" "List`1"
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class NavigationSampleProjectSettingsGenerator <<static>> {
+    + {static} GenerateAllProjectSettings(settingsState:NavigationSampleSettingsState) : void
+}
+@enduml

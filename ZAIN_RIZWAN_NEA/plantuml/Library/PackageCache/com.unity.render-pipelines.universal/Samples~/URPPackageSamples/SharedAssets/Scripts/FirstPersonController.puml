@@ -1,0 +1,5 @@
+@startuml
+class FirstPersonController {
+}
+MonoBehaviour <|-- FirstPersonController
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class ShapeProviderUtility {
+    {static} + CallOnBeforeRender(shapeProvider:ShadowShape2DProvider, component:Component, shadowMesh:ShadowMesh2D, bounds:Bounds) : void
+    {static} + PersistantDataCreated(shapeProvider:ShadowShape2DProvider, component:Component, shadowMesh:ShadowMesh2D) : void
+}
+@enduml

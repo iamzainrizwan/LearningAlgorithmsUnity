@@ -1,0 +1,8 @@
+@startuml
+class BezierUtility <<static>> {
+    + {static} BezierPoint(startPosition:Vector3, startTangent:Vector3, endTangent:Vector3, endPosition:Vector3, t:float) : Vector3
+    + {static} ClosestPointOnCurve(point:Vector3, startPosition:Vector3, endPosition:Vector3, startTangent:Vector3, endTangent:Vector3, t:float) : Vector3
+    + {static} ClosestPointOnCurveFast(point:Vector3, startPosition:Vector3, endPosition:Vector3, startTangent:Vector3, endTangent:Vector3, t:float) : Vector3
+    + {static} SplitBezier(t:float, startPosition:Vector3, endPosition:Vector3, startRightTangent:Vector3, endLeftTangent:Vector3, leftStartPosition:Vector3, leftEndPosition:Vector3, leftStartTangent:Vector3, leftEndTangent:Vector3, rightStartPosition:Vector3, rightEndPosition:Vector3, rightStartTangent:Vector3, rightEndTangent:Vector3) : void
+}
+@enduml

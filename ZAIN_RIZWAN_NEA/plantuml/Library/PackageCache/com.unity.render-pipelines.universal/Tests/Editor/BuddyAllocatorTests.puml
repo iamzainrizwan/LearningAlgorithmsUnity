@@ -1,0 +1,12 @@
+@startuml
+class BuddyAllocatorTests {
+    + Empty1D(levelCount:int) : void
+    + Empty2D(levelCount:int) : void
+    + Empty3D(levelCount:int) : void
+    + Allocate1() : void
+    + Allocate6() : void
+    + Allocate6Recycle2() : void
+    + Allocate6Recycle4() : void
+    + CubemapScenario1() : void
+}
+@enduml

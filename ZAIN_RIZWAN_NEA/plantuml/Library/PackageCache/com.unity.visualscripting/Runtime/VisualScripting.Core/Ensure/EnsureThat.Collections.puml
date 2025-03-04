@@ -1,0 +1,24 @@
+@startuml
+class EnsureThat <<partial>> {
+    + HasItems(value:T) : void
+    + HasItems(value:ICollection<T>) : void
+    + HasItems(value:T[]) : void
+    + HasNoNullItem(value:T) : void
+    + HasItems(value:IList<T>) : void
+    + HasItems(value:IDictionary<TKey, TValue>) : void
+    + SizeIs(value:T[], expected:int) : void
+    + SizeIs(value:T[], expected:long) : void
+    + SizeIs(value:T, expected:int) : void
+    + SizeIs(value:T, expected:long) : void
+    + SizeIs(value:ICollection<T>, expected:int) : void
+    + SizeIs(value:ICollection<T>, expected:long) : void
+    + SizeIs(value:IList<T>, expected:int) : void
+    + SizeIs(value:IList<T>, expected:long) : void
+    + SizeIs(value:IDictionary<TKey, TValue>, expected:int) : void
+    + SizeIs(value:IDictionary<TKey, TValue>, expected:long) : void
+    + IsKeyOf(value:IDictionary<TKey, TValue>, expectedKey:TKey, keyLabel:string) : void
+    + Any(value:IList<T>, predicate:Func<T, bool>) : void
+    + Any(value:ICollection<T>, predicate:Func<T, bool>) : void
+    + Any(value:T[], predicate:Func<T, bool>) : void
+}
+@enduml

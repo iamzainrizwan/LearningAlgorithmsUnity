@@ -1,0 +1,6 @@
+@startuml
+class CoreRenderPipelinePreferencesTests {
+    + RegisterInvalidPreferenceColorName() : void
+    + RegisterPreferenceColor() : void
+}
+@enduml

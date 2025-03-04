@@ -1,0 +1,38 @@
+@startuml
+class FixedStringTestUtils <<static>> {
+}
+class FixedStringTests {
+    + FixedStringFormat() : void
+    + FixedStringNFormatExtension1Params() : void
+    + FixedStringNFormatExtension2Params() : void
+    + FixedStringNFormatExtension3Params() : void
+    + FixedStringNFormatExtension4Params() : void
+    + FixedStringNFormatExtension5Params() : void
+    + FixedStringNFormatExtension6Params() : void
+    + FixedStringNFormatExtension7Params() : void
+    + FixedStringNFormatExtension8Params() : void
+    + FixedStringNFormatExtension9Params() : void
+    + FixedStringNFormatExtension10Params() : void
+    + FixedStringNFormatBadFormat() : void
+    + FixedStringNFormatOverflow() : void
+    + FixedStringNFormatBraces() : void
+    + FixedStringNAppendString() : void
+    + FixedStringRuneWorks() : void
+    + FixedStringNCopyFromBytesWorks(a:String) : void
+    + FixedStringNToStringWorks(a:String) : void
+    + FixedStringNEqualsWorks(a:String, b:String) : void
+    + FixedStringNForEach() : void
+    + FixedStringNSubstring() : void
+    + FixedStringNIndexOf() : void
+    + FixedStringNLastIndexOf() : void
+    + FixedStringNContains() : void
+    + FixedStringNComparisons() : void
+    + FixedStringNSizeOf() : void
+    <<unsafe>> + FixedStringNLayout(a:String, expected:byte[]) : void
+    + FixedStringStartsEndsWithChar(a:String, starts:char, ends:char) : void
+    + FixedStringStartsEndsWithString(a:String, starts:String, ends:String) : void
+    + FixedStringTrimStart(a:String, trim:char, expectedStart:String, expectedEnd:String, expected:String) : void
+    + FixedStringTrimStartWithRunes(a:String, expectedStart:String, expectedEnd:String, expected:String) : void
+    + FixedStringToLowerUpperAscii(a:String, expectedLower:String, expectedUpped:String) : void
+}
+@enduml

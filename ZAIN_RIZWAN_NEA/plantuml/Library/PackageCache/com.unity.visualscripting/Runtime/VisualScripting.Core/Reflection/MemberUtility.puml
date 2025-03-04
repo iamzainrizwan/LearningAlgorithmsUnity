@@ -1,0 +1,56 @@
+@startuml
+class MemberUtility <<static>> {
+    + {static} IsOperator(method:MethodInfo) : bool
+    + {static} IsUserDefinedConversion(method:MethodInfo) : bool
+    + {static} MakeGenericMethodVia(openConstructedMethod:MethodInfo, closedConstructedParameterTypes:Type[]) : MethodInfo
+    + {static} IsGenericExtension(methodInfo:MethodInfo) : bool
+    + {static} GetExtensionMethods(thisArgumentType:Type, inherited:bool) : IEnumerable<MethodInfo>
+    + {static} IsExtension(methodInfo:MethodInfo) : bool
+    + {static} IsExtensionMethod(memberInfo:MemberInfo) : bool
+    + {static} CreateDelegate(methodInfo:MethodInfo, delegateType:Type) : Delegate
+    + {static} IsAccessor(memberInfo:MemberInfo) : bool
+    + {static} GetAccessorType(memberInfo:MemberInfo) : Type
+    + {static} IsPubliclyGettable(memberInfo:MemberInfo) : bool
+    + {static} ExtendedDeclaringType(memberInfo:MemberInfo, invokeAsExtension:bool) : Type
+    + {static} IsStatic(propertyInfo:PropertyInfo) : bool
+    + {static} IsStatic(memberInfo:MemberInfo) : bool
+    + {static} IsInvokedAsExtension(methodBase:MethodBase, targetType:Type) : bool
+    + {static} GetInvocationParameters(methodBase:MethodBase, invokeAsExtension:bool) : IEnumerable<ParameterInfo>
+    + {static} GetInvocationParameters(methodBase:MethodBase, targetType:Type) : IEnumerable<ParameterInfo>
+    + {static} UnderlyingParameterType(parameterInfo:ParameterInfo) : Type
+    + {static} HasDefaultValue(parameterInfo:ParameterInfo) : bool
+    + {static} DefaultValue(parameterInfo:ParameterInfo) : object
+    + {static} PseudoDefaultValue(parameterInfo:ParameterInfo) : object
+    + {static} AllowsNull(parameterInfo:ParameterInfo) : bool
+    + {static} HasOutModifier(parameterInfo:ParameterInfo) : bool
+    + {static} CanWrite(fieldInfo:FieldInfo) : bool
+    + {static} ToManipulator(memberInfo:MemberInfo) : Member
+    + {static} ToManipulator(memberInfo:MemberInfo, targetType:Type) : Member
+    + {static} ToManipulator(fieldInfo:FieldInfo, targetType:Type) : Member
+    + {static} ToManipulator(propertyInfo:PropertyInfo, targetType:Type) : Member
+    + {static} ToManipulator(methodInfo:MethodInfo, targetType:Type) : Member
+    + {static} ToManipulator(constructorInfo:ConstructorInfo, targetType:Type) : Member
+    + {static} GetConstructorAccepting(type:Type, paramTypes:Type[], nonPublic:bool) : ConstructorInfo
+    + {static} GetConstructorAccepting(type:Type, paramTypes:Type[]) : ConstructorInfo
+    + {static} GetPublicConstructorAccepting(type:Type, paramTypes:Type[]) : ConstructorInfo
+    + {static} GetDefaultConstructor(type:Type) : ConstructorInfo
+    + {static} GetPublicDefaultConstructor(type:Type) : ConstructorInfo
+    + {static} GetExtendedMember(type:Type, name:string, types:MemberTypes, flags:BindingFlags) : MemberInfo[]
+    + {static} GetExtendedMembers(type:Type, flags:BindingFlags) : MemberInfo[]
+    + {static} SignatureMatches(field:FieldInfo, name:string) : bool
+    + {static} SignatureMatches(property:PropertyInfo, name:string) : bool
+    + {static} SignatureMatches(constructor:ConstructorInfo, name:string, parameterTypes:IEnumerable<Type>) : bool
+    + {static} SignatureMatches(method:MethodInfo, name:string, parameterTypes:IEnumerable<Type>, invokeAsExtension:bool) : bool
+    + {static} SignatureMatches(method:MethodInfo, name:string, parameterTypes:IEnumerable<Type>, genericArgumentTypes:IEnumerable<Type>, invokeAsExtension:bool) : bool
+    + {static} GetFieldUnambiguous(type:Type, name:string, flags:BindingFlags) : FieldInfo
+    + {static} GetPropertyUnambiguous(type:Type, name:string, flags:BindingFlags) : PropertyInfo
+    + {static} GetMethodUnambiguous(type:Type, name:string, flags:BindingFlags) : MethodInfo
+    + {static} Disambiguate(fields:IEnumerable<FieldInfo>, type:Type) : FieldInfo
+    + {static} Disambiguate(properties:IEnumerable<PropertyInfo>, type:Type) : PropertyInfo
+    + {static} Disambiguate(constructors:IEnumerable<ConstructorInfo>, type:Type, parameterTypes:IEnumerable<Type>) : ConstructorInfo
+    + {static} Disambiguate(methods:IEnumerable<MethodInfo>, type:Type, parameterTypes:IEnumerable<Type>) : MethodInfo
+    + {static} Disambiguate(methods:IEnumerable<MethodInfo>, type:Type, parameterTypes:IEnumerable<Type>, genericArgumentTypes:IEnumerable<Type>) : MethodInfo
+}
+class ExtensionMethodCache {
+}
+@enduml

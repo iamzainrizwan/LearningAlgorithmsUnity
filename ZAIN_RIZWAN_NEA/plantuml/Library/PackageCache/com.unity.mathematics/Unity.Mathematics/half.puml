@@ -1,0 +1,27 @@
+@startuml
+struct half {
+    + value : ushort
+    + {static} MaxValue : float <<get>>
+    + {static} MinValue : float <<get>>
+    + half(x:half)
+    + half(v:float)
+    + half(v:double)
+    + Equals(rhs:half) : bool
+    + <<override>> Equals(o:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+    + ToString(format:string, formatProvider:IFormatProvider) : string
+}
+class math <<static>> <<partial>> {
+    + {static} half(x:half) : half
+    + {static} half(v:float) : half
+    + {static} half(v:double) : half
+    + {static} hash(v:half) : uint
+}
+class "IEquatable`1"<T> {
+}
+IFormattable <|-- half
+half o-> "zero" half
+half --> "MaxValueAsHalf" half
+half --> "MinValueAsHalf" half
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+abstract class RuntimeClipBase {
+    + {abstract} start : double <<get>>
+    + {abstract} duration : double <<get>>
+}
+RuntimeElement <|-- RuntimeClipBase
+RuntimeClipBase --> "intervalStart" Int64
+RuntimeClipBase --> "intervalEnd" Int64
+@enduml

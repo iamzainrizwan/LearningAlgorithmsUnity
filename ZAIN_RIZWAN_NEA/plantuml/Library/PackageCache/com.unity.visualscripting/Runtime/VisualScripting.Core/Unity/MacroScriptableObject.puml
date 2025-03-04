@@ -1,0 +1,5 @@
+@startuml
+class MacroScriptableObject {
+}
+LudiqScriptableObject <|-- MacroScriptableObject
+@enduml

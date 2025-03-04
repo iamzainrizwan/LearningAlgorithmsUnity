@@ -1,0 +1,7 @@
+@startuml
+struct "Observable`1"<T> {
+    +  <<event>> onValueChanged : Action<T> 
+    + value : T <<get>> <<set>>
+    + Observable(newValue:T)
+}
+@enduml

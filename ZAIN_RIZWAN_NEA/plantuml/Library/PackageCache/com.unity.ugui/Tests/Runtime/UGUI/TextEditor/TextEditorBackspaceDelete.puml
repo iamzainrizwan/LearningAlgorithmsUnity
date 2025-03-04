@@ -1,0 +1,21 @@
+@startuml
+class TextEditorBackspaceDelete {
+    + TextEditorWithUTF16_MiddleCursorOnBackspace_RemovesCharacter() : void
+    + TextEditorWithUTF16_MiddleCursorOnDelete_RemovesCharacter() : void
+    + TextEditorWithUTF16_MiddleCursorOnBackspaceAndLeftSurrogate_RemovesBothSurrogates() : void
+    + TextEditorWithUTF16_MiddleCursorOnDeleteAndLeftSurrogate_RemovesBothSurrogates() : void
+    + TextEditorWithUTF16_MiddleCursorOnBackspaceAndRightSurrogate_RemovesBothSurrogates() : void
+    + TextEditorWithUTF16_LeftCursorOnBackspace_DoesNotRemoveCharacter() : void
+    + TextEditorWithUTF16_LeftCursorOnDelete_RemovesCharacter() : void
+    + TextEditorWithUTF16_LeftCursorOnBackspaceAndLeftSurrogate_RemovesBothSurrogates() : void
+    + TextEditorWithUTF16_LeftCursorOnDeleteAndLeftSurrogate_RemovesBothSurrogates() : void
+    + TextEditorWithUTF16_LeftCursorOnBackspaceAndRightSurrogate_RemovesBothSurrogates() : void
+    + TextEditorWithUTF16_RightCursorOnBackspace_RemovesCharacters() : void
+    + TextEditorWithUTF16_RightCursorOnDelete_DoesNotRemoveCharacter() : void
+    + TextEditorWithUTF16_RightCursorOnBackspaceAndLeftSurrogate_RemovesBothSurrogates() : void
+    + TextEditorWithUTF16_RightCursorOnDeleteAndLeftSurrogate_RemovesBothSurrogates() : void
+    + TextEditorWithUTF16_RightCursorOnBackspaceAndRightSurrogate_RemovesBothSurrogates() : void
+    + TextEditorWithUTF16_MiddleCursorOnBackspace_RemovesBothSurrogatesInSuccession() : void
+    + TextEditorWithUTF16_MiddleCursorOnDelete_RemovesBothSurrogatesInSuccession() : void
+}
+@enduml

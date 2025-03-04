@@ -1,0 +1,14 @@
+@startuml
+class WindowDockingLayout {
+    + dockingLeft : bool <<get>> <<set>>
+    + dockingTop : bool <<get>> <<set>>
+    + verticalOffset : float <<get>> <<set>>
+    + horizontalOffset : float <<get>> <<set>>
+    + CalculateDockingCornerAndOffset(layout:Rect, parentLayout:Rect) : void
+    + ClampToParentWindow() : void
+    + ApplyPosition(target:VisualElement) : void
+    + ApplySize(target:VisualElement) : void
+    + GetLayout(parentLayout:Rect) : Rect
+}
+WindowDockingLayout --> "size" Vector2
+@enduml

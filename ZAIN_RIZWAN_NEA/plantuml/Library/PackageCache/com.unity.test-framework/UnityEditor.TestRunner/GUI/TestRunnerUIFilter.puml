@@ -1,0 +1,22 @@
+@startuml
+class TestRunnerUIFilter {
+    + PassedCount : int <<get>>
+    + FailedCount : int <<get>>
+    + NotRunCount : int <<get>>
+    + PassedHidden : bool
+    + FailedHidden : bool
+    + NotRunHidden : bool
+    + m_SearchString : string
+    + IsFiltering : bool <<get>>
+    + UpdateCounters(resultList:List<TestRunnerResult>, filteredTree:Dictionary<string, TestTreeViewItem>) : void
+    + Draw() : void
+    + OnModeGUI() : void
+    + Clear() : void
+}
+class "Action`1"<T> {
+}
+TestRunnerUIFilter --> "RebuildTestList" Action
+TestRunnerUIFilter --> "UpdateTestTreeRoots" Action
+TestRunnerUIFilter --> "SearchStringChanged<string>" "Action`1"
+TestRunnerUIFilter --> "SearchStringCleared" Action
+@enduml

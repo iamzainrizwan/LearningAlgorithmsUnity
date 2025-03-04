@@ -1,0 +1,129 @@
+@startuml
+class Arm <<unsafe>> <<static>> <<partial>> {
+}
+class Neon <<unsafe>> <<partial>> {
+    + {static} vcreate_s8(a0:UInt64) : v64
+    + {static} vcreate_s16(a0:UInt64) : v64
+    + {static} vcreate_s32(a0:UInt64) : v64
+    + {static} vcreate_s64(a0:UInt64) : v64
+    + {static} vcreate_u8(a0:UInt64) : v64
+    + {static} vcreate_u16(a0:UInt64) : v64
+    + {static} vcreate_u32(a0:UInt64) : v64
+    + {static} vcreate_u64(a0:UInt64) : v64
+    + {static} vcreate_f16(a0:UInt64) : v64
+    + {static} vcreate_f32(a0:UInt64) : v64
+    + {static} vcreate_f64(a0:UInt64) : v64
+    + {static} vdup_n_s8(a0:SByte) : v64
+    + {static} vdupq_n_s8(a0:SByte) : v128
+    + {static} vdup_n_s16(a0:Int16) : v64
+    + {static} vdupq_n_s16(a0:Int16) : v128
+    + {static} vdup_n_s32(a0:Int32) : v64
+    + {static} vdupq_n_s32(a0:Int32) : v128
+    + {static} vdup_n_s64(a0:Int64) : v64
+    + {static} vdupq_n_s64(a0:Int64) : v128
+    + {static} vdup_n_u8(a0:Byte) : v64
+    + {static} vdupq_n_u8(a0:Byte) : v128
+    + {static} vdup_n_u16(a0:UInt16) : v64
+    + {static} vdupq_n_u16(a0:UInt16) : v128
+    + {static} vdup_n_u32(a0:UInt32) : v64
+    + {static} vdupq_n_u32(a0:UInt32) : v128
+    + {static} vdup_n_u64(a0:UInt64) : v64
+    + {static} vdupq_n_u64(a0:UInt64) : v128
+    + {static} vdup_n_f32(a0:Single) : v64
+    + {static} vdupq_n_f32(a0:Single) : v128
+    + {static} vdup_n_f64(a0:Double) : v64
+    + {static} vdupq_n_f64(a0:Double) : v128
+    + {static} vmov_n_s8(a0:SByte) : v64
+    + {static} vmovq_n_s8(a0:SByte) : v128
+    + {static} vmov_n_s16(a0:Int16) : v64
+    + {static} vmovq_n_s16(a0:Int16) : v128
+    + {static} vmov_n_s32(a0:Int32) : v64
+    + {static} vmovq_n_s32(a0:Int32) : v128
+    + {static} vmov_n_s64(a0:Int64) : v64
+    + {static} vmovq_n_s64(a0:Int64) : v128
+    + {static} vmov_n_u8(a0:Byte) : v64
+    + {static} vmovq_n_u8(a0:Byte) : v128
+    + {static} vmov_n_u16(a0:UInt16) : v64
+    + {static} vmovq_n_u16(a0:UInt16) : v128
+    + {static} vmov_n_u32(a0:UInt32) : v64
+    + {static} vmovq_n_u32(a0:UInt32) : v128
+    + {static} vmov_n_u64(a0:UInt64) : v64
+    + {static} vmovq_n_u64(a0:UInt64) : v128
+    + {static} vmov_n_f32(a0:Single) : v64
+    + {static} vmovq_n_f32(a0:Single) : v128
+    + {static} vmov_n_f64(a0:Double) : v64
+    + {static} vmovq_n_f64(a0:Double) : v128
+    + {static} vcombine_s8(a0:v64, a1:v64) : v128
+    + {static} vcombine_s16(a0:v64, a1:v64) : v128
+    + {static} vcombine_s32(a0:v64, a1:v64) : v128
+    + {static} vcombine_s64(a0:v64, a1:v64) : v128
+    + {static} vcombine_u8(a0:v64, a1:v64) : v128
+    + {static} vcombine_u16(a0:v64, a1:v64) : v128
+    + {static} vcombine_u32(a0:v64, a1:v64) : v128
+    + {static} vcombine_u64(a0:v64, a1:v64) : v128
+    + {static} vcombine_f16(a0:v64, a1:v64) : v128
+    + {static} vcombine_f32(a0:v64, a1:v64) : v128
+    + {static} vcombine_f64(a0:v64, a1:v64) : v128
+    + {static} vget_high_s8(a0:v128) : v64
+    + {static} vget_high_s16(a0:v128) : v64
+    + {static} vget_high_s32(a0:v128) : v64
+    + {static} vget_high_s64(a0:v128) : v64
+    + {static} vget_high_u8(a0:v128) : v64
+    + {static} vget_high_u16(a0:v128) : v64
+    + {static} vget_high_u32(a0:v128) : v64
+    + {static} vget_high_u64(a0:v128) : v64
+    + {static} vget_high_f32(a0:v128) : v64
+    + {static} vget_high_f64(a0:v128) : v64
+    + {static} vget_low_s8(a0:v128) : v64
+    + {static} vget_low_s16(a0:v128) : v64
+    + {static} vget_low_s32(a0:v128) : v64
+    + {static} vget_low_s64(a0:v128) : v64
+    + {static} vget_low_u8(a0:v128) : v64
+    + {static} vget_low_u16(a0:v128) : v64
+    + {static} vget_low_u32(a0:v128) : v64
+    + {static} vget_low_u64(a0:v128) : v64
+    + {static} vget_low_f32(a0:v128) : v64
+    + {static} vget_low_f64(a0:v128) : v64
+    + {static} vld1_s8(a0:SByte*) : v64
+    + {static} vld1q_s8(a0:SByte*) : v128
+    + {static} vld1_s16(a0:Int16*) : v64
+    + {static} vld1q_s16(a0:Int16*) : v128
+    + {static} vld1_s32(a0:Int32*) : v64
+    + {static} vld1q_s32(a0:Int32*) : v128
+    + {static} vld1_s64(a0:Int64*) : v64
+    + {static} vld1q_s64(a0:Int64*) : v128
+    + {static} vld1_u8(a0:Byte*) : v64
+    + {static} vld1q_u8(a0:Byte*) : v128
+    + {static} vld1_u16(a0:UInt16*) : v64
+    + {static} vld1q_u16(a0:UInt16*) : v128
+    + {static} vld1_u32(a0:UInt32*) : v64
+    + {static} vld1q_u32(a0:UInt32*) : v128
+    + {static} vld1_u64(a0:UInt64*) : v64
+    + {static} vld1q_u64(a0:UInt64*) : v128
+    + {static} vld1_f32(a0:Single*) : v64
+    + {static} vld1q_f32(a0:Single*) : v128
+    + {static} vld1_f64(a0:Double*) : v64
+    + {static} vld1q_f64(a0:Double*) : v128
+    + {static} vst1_s8(a0:SByte*, a1:v64) : void
+    + {static} vst1q_s8(a0:SByte*, a1:v128) : void
+    + {static} vst1_s16(a0:Int16*, a1:v64) : void
+    + {static} vst1q_s16(a0:Int16*, a1:v128) : void
+    + {static} vst1_s32(a0:Int32*, a1:v64) : void
+    + {static} vst1q_s32(a0:Int32*, a1:v128) : void
+    + {static} vst1_s64(a0:Int64*, a1:v64) : void
+    + {static} vst1q_s64(a0:Int64*, a1:v128) : void
+    + {static} vst1_u8(a0:Byte*, a1:v64) : void
+    + {static} vst1q_u8(a0:Byte*, a1:v128) : void
+    + {static} vst1_u16(a0:UInt16*, a1:v64) : void
+    + {static} vst1q_u16(a0:UInt16*, a1:v128) : void
+    + {static} vst1_u32(a0:UInt32*, a1:v64) : void
+    + {static} vst1q_u32(a0:UInt32*, a1:v128) : void
+    + {static} vst1_u64(a0:UInt64*, a1:v64) : void
+    + {static} vst1q_u64(a0:UInt64*, a1:v128) : void
+    + {static} vst1_f32(a0:Single*, a1:v64) : void
+    + {static} vst1q_f32(a0:Single*, a1:v128) : void
+    + {static} vst1_f64(a0:Double*, a1:v64) : void
+    + {static} vst1q_f64(a0:Double*, a1:v128) : void
+}
+Arm +-- Neon
+@enduml

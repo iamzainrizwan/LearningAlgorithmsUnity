@@ -1,0 +1,15 @@
+@startuml
+class LayoutRebuilder {
+    + IsDestroyed() : bool
+    + {static} ForceRebuildLayoutImmediate(layoutRoot:RectTransform) : void
+    + Rebuild(executing:CanvasUpdate) : void
+    + {static} MarkLayoutForRebuild(rect:RectTransform) : void
+    + LayoutComplete() : void
+    + GraphicUpdateComplete() : void
+    + <<override>> GetHashCode() : int
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> ToString() : string
+}
+ICanvasElement <|-- LayoutRebuilder
+LayoutRebuilder --> "transform" Transform
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+struct ScopeMeasurement {
+    + ScopeMeasurement(sampleGroup:SampleGroup)
+    + ScopeMeasurement(name:string)
+    + Dispose() : void
+}
+IDisposable <|-- ScopeMeasurement
+@enduml

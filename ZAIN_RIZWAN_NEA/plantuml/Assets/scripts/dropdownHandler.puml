@@ -1,0 +1,7 @@
+@startuml
+class DropdownHandler {
+}
+MonoBehaviour <|-- DropdownHandler
+DropdownHandler --> "dropdown" TMP_Dropdown
+DropdownHandler --> "chosenValidator" TakeFieldsInput
+@enduml

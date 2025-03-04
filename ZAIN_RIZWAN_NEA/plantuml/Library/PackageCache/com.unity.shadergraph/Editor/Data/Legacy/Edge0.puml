@@ -1,0 +1,6 @@
+@startuml
+class Edge0 {
+}
+Edge0 --> "m_OutputSlot" SlotReference0
+Edge0 --> "m_InputSlot" SlotReference0
+@enduml

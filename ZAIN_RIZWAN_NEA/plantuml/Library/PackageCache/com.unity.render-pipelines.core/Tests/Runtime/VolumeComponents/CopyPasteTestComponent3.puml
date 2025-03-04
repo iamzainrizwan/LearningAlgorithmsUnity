@@ -1,0 +1,8 @@
+@startuml
+class CopyPasteTestComponent3 {
+    + <<new>> WithModifiedValues() : CopyPasteTestComponent3
+    + AssertEquality(other:CopyPasteTestComponent3, assertionFunction:Action<object, object>) : void
+}
+CopyPasteTestComponent1 <|-- CopyPasteTestComponent3
+CopyPasteTestComponent3 o-> "p31" ColorParameter
+@enduml

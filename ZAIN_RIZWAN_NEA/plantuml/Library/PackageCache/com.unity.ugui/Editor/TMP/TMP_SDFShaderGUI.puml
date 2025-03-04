@@ -1,0 +1,5 @@
+@startuml
+class TMP_SDFShaderGUI {
+}
+TMP_BaseShaderGUI <|-- TMP_SDFShaderGUI
+@enduml

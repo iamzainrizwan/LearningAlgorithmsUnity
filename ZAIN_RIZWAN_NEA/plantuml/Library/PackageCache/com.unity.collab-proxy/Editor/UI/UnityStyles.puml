@@ -1,0 +1,54 @@
+@startuml
+class UnityStyles <<static>> {
+}
+class Colors <<static>> {
+}
+class Dialog <<static>> {
+}
+class Tree <<static>> {
+}
+class Inspector <<static>> {
+}
+class ProjectSettings <<static>> {
+}
+class PlasticWindow <<static>> {
+}
+class StatusBar <<static>> {
+}
+class DiffPanel <<static>> {
+}
+class PendingChangesTab <<static>> {
+}
+class MergeTab <<static>> {
+}
+class ChangesetsTab <<static>> {
+}
+class HistoryTab <<static>> {
+}
+class DirectoryConflictResolution <<static>> {
+}
+class Notification <<static>> {
+}
+class DirectoryConflicts <<static>> {
+}
+class LazyStyle {
+}
+UnityStyles +-- Colors
+UnityStyles +-- Dialog
+UnityStyles +-- Tree
+UnityStyles +-- Inspector
+Inspector o-> "HeaderBackgroundStyle" LazyStyle
+Inspector o-> "DisabledHeaderBackgroundStyle" LazyStyle
+UnityStyles +-- ProjectSettings
+UnityStyles +-- PlasticWindow
+UnityStyles +-- StatusBar
+UnityStyles +-- DiffPanel
+UnityStyles +-- PendingChangesTab
+UnityStyles +-- MergeTab
+UnityStyles +-- ChangesetsTab
+UnityStyles +-- HistoryTab
+UnityStyles +-- DirectoryConflictResolution
+UnityStyles +-- Notification
+UnityStyles +-- DirectoryConflicts
+UnityStyles +-- LazyStyle
+@enduml

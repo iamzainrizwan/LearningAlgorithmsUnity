@@ -1,0 +1,8 @@
+@startuml
+class SwitchOnStringDescriptor {
+    + SwitchOnStringDescriptor(unit:SwitchOnString)
+}
+class "SwitchUnitDescriptor`1"<T> {
+}
+"SwitchUnitDescriptor`1" "<string>" <|-- SwitchOnStringDescriptor
+@enduml

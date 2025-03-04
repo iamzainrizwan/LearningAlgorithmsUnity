@@ -1,0 +1,13 @@
+@startuml
+class ColorShaderProperty <<sealed>> {
+    + <<override>> latestVersion : int <<get>>
+    + <<const>> deprecatedVersion : int = 2
+    + <<override>> GetOldDefaultReferenceName() : string
+    + <<override>> OnAfterDeserialize(json:string) : void
+}
+class "AbstractShaderProperty`1"<T> {
+}
+"AbstractShaderProperty`1" "<Color>" <|-- ColorShaderProperty
+ColorShaderProperty --> "propertyType" PropertyType
+ColorShaderProperty --> "colorMode" ColorMode
+@enduml

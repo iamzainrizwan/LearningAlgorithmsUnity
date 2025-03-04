@@ -1,0 +1,28 @@
+@startuml
+enum SerializedShaderPropertyUsage {
+    Unknown= 0,
+    NoShaderProperties= 1,
+    UsedByUpgraded= 2,
+    UsedByNonUpgraded= 4,
+    UsedByAmbiguouslyUpgraded= 8,
+}
+class UpgradeUtility <<static>> {
+    + {static} GetAllUpgradePathsToShaders(upgraders:IEnumerable<MaterialUpgrader>) : Dictionary<string, IReadOnlyList<MaterialUpgrader>>
+    + {static} GetNewPropertyName(shaderPropertyName:string, material:IMaterial, materialPropertyType:MaterialUpgrader.MaterialPropertyType, allUpgradePathsToNewShaders:IReadOnlyDictionary<string, IReadOnlyList<MaterialUpgrader>>, upgradePathsUsedByMaterials:IReadOnlyDictionary<UID, MaterialUpgrader>, newPropertyName:string) : SerializedShaderPropertyUsage
+}
+struct UID {
+    + Value : string
+}
+interface IMaterial {
+}
+struct MaterialProxy {
+    + MaterialProxy(material:Material, allAssetsAtPath:UnityObject[])
+    + ShaderName : string <<get>>
+    + <<override>> ToString() : string
+}
+UpgradeUtility +-- UID
+UpgradeUtility +-- IMaterial
+UpgradeUtility +-- MaterialProxy
+IMaterial <|-- MaterialProxy
+MaterialProxy --> "ID" UID
+@enduml

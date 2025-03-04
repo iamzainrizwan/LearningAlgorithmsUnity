@@ -1,0 +1,16 @@
+@startuml
+class UniversalFields <<static>> {
+    + <<const>> kFeatures : string = "features"
+    + <<const>> kSurfaceType : string = "SurfaceType"
+    + <<const>> kBlendMode : string = "BlendMode"
+}
+UniversalFields o-> "SurfaceOpaque" FieldDescriptor
+UniversalFields o-> "SurfaceTransparent" FieldDescriptor
+UniversalFields o-> "BlendAdd" FieldDescriptor
+UniversalFields o-> "BlendPremultiply" FieldDescriptor
+UniversalFields o-> "BlendMultiply" FieldDescriptor
+UniversalFields o-> "Normal" FieldDescriptor
+UniversalFields o-> "NormalDropOffTS" FieldDescriptor
+UniversalFields o-> "NormalDropOffOS" FieldDescriptor
+UniversalFields o-> "NormalDropOffWS" FieldDescriptor
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+class ShaderUtils <<static>> {
+}
+enum ShaderID {
+    Unknown= -1,
+    Lit= ShaderPathID.Lit,
+    SimpleLit= ShaderPathID.SimpleLit,
+    Unlit= ShaderPathID.Unlit,
+    TerrainLit= ShaderPathID.TerrainLit,
+    ParticlesLit= ShaderPathID.ParticlesLit,
+    ParticlesSimpleLit= ShaderPathID.ParticlesSimpleLit,
+    ParticlesUnlit= ShaderPathID.ParticlesUnlit,
+    BakedLit= ShaderPathID.BakedLit,
+    SpeedTree7= ShaderPathID.SpeedTree7,
+    SpeedTree7Billboard= ShaderPathID.SpeedTree7Billboard,
+    SpeedTree8= ShaderPathID.SpeedTree8,
+    SpeedTree9= ShaderPathID.SpeedTree9,
+    ComplexLit= ShaderPathID.ComplexLit,
+    SG_Unlit= 1000,
+    SG_Lit,
+    SG_Decal,
+    SG_SpriteUnlit,
+    SG_SpriteLit,
+    SG_SpriteCustomLit,
+    SG_SixWaySmokeLit,
+}
+enum MaterialUpdateType {
+    CreatedNewMaterial,
+    ChangedAssignedShader,
+    ModifiedShader,
+    ModifiedMaterial,
+}
+ShaderUtils +-- ShaderID
+ShaderUtils +-- MaterialUpdateType
+@enduml

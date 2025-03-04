@@ -1,0 +1,7 @@
+@startuml
+class SiblingOrderChangesLayout {
+    + TestSetup() : void
+    + ReorderingSiblingChangesLayout() : IEnumerator
+    + TearDown() : void
+}
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+enum InstancingOptions {
+    RenderingLayer,
+    NoLightProbe,
+    NoLodFade,
+}
+class InstancingOptionsExtensions <<static>> {
+    + {static} ToShaderString(options:InstancingOptions) : string
+}
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+class UniversalStructFields <<static>> {
+}
+struct Varyings {
+    + {static} name : string = "Varyings"
+}
+UniversalStructFields +-- Varyings
+Varyings o-> "staticLightmapUV" FieldDescriptor
+Varyings o-> "dynamicLightmapUV" FieldDescriptor
+Varyings o-> "sh" FieldDescriptor
+Varyings o-> "fogFactorAndVertexLight" FieldDescriptor
+Varyings o-> "shadowCoord" FieldDescriptor
+Varyings o-> "probeOcclusion" FieldDescriptor
+Varyings o-> "stereoTargetEyeIndexAsRTArrayIdx" FieldDescriptor
+Varyings o-> "stereoTargetEyeIndexAsBlendIdx0" FieldDescriptor
+@enduml

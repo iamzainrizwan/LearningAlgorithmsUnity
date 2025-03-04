@@ -1,0 +1,19 @@
+@startuml
+class ScriptReferenceResolver <<static>> {
+    + {static} canRun : bool <<get>>
+    + {static} RegisterReplacement(previousReference:ScriptReference, newReference:ScriptReference) : void
+    + {static} RegisterReplacement(replacement:ScriptReferenceReplacement) : void
+    + {static} RegisterReplacements(replacements:IEnumerable<ScriptReferenceReplacement>) : void
+    + {static} Run(path:string, mode:Mode) : void
+    + {static} Run(paths:IEnumerable<string>, mode:Mode) : void
+    + {static} Run() : void
+    + {static} Run(mode:Mode) : void
+    + {static} Run(paths:IEnumerable<string>, replacements:IEnumerable<ScriptReferenceReplacement>, mode:Mode) : void
+}
+enum Mode {
+    Dialog,
+    Console,
+    Silent,
+}
+ScriptReferenceResolver +-- Mode
+@enduml

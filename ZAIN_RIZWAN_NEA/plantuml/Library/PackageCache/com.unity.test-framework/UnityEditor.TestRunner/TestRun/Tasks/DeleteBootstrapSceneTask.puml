@@ -1,0 +1,7 @@
+@startuml
+class DeleteBootstrapSceneTask {
+    + DeleteBootstrapSceneTask()
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- DeleteBootstrapSceneTask
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class FlowStateDescriptor {
+    + FlowStateDescriptor(state:FlowState)
+}
+class "NesterStateDescriptor`1"<T> {
+}
+"NesterStateDescriptor`1" "<FlowState>" <|-- FlowStateDescriptor
+@enduml

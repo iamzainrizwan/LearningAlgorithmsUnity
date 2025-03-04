@@ -1,0 +1,39 @@
+@startuml
+class UnitOptionTree {
+    + UnitOptionTree(label:GUIContent)
+    + <<override>> Option(item:object) : IFuzzyOption
+    + <<override>> Prewarm() : void
+    + includeNone : bool <<get>> <<set>>
+    + surfaceCommonTypeLiterals : bool <<get>> <<set>>
+    + <<override>> Root() : IEnumerable<object>
+    + <<override>> Children(parent:object) : IEnumerable<object>
+    + <<override>> searchable : bool <<get>> = true
+    + <<override>> SearchResults(query:string, cancellation:CancellationToken) : IEnumerable<ISearchResult>
+    + <<override>> SearchResultLabel(item:object, query:string) : string
+    + <<override>> CanFavorite(item:object) : bool
+    + <<override>> FavoritesLabel(item:object) : string
+    + <<override>> OnFavoritesChange() : void
+}
+class "ICollection`1"<T> {
+}
+class Favorites {
+    + Favorites(tree:UnitOptionTree)
+    + IsReadOnly : bool <<get>>
+    + Count : int <<get>>
+    + GetEnumerator() : IEnumerator<object>
+    + Contains(item:object) : bool
+    + Add(item:object) : void
+    + Remove(item:object) : bool
+    + Clear() : void
+    + CopyTo(array:object[], arrayIndex:int) : void
+}
+ExtensibleFuzzyOptionTree <|-- UnitOptionTree
+UnitOptionTree --> "filter" UnitOptionFilter
+UnitOptionTree --> "reference" GraphReference
+UnitOptionTree --> "graph" FlowGraph
+UnitOptionTree --> "self" GameObject
+UnitOptionTree o-> "direction" ActionDirection
+UnitOptionTree --> "favorites<object>" "ICollection`1"
+UnitOptionTree +-- Favorites
+"ICollection`1" "<object>" <|-- Favorites
+@enduml

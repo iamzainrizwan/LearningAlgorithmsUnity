@@ -1,0 +1,9 @@
+@startuml
+class GenericSum <<sealed>> {
+    + <<override>> Operation(a:object, b:object) : object
+    + <<override>> Operation(values:IEnumerable<object>) : object
+}
+class "Sum`1"<T> {
+}
+"Sum`1" "<object>" <|-- GenericSum
+@enduml

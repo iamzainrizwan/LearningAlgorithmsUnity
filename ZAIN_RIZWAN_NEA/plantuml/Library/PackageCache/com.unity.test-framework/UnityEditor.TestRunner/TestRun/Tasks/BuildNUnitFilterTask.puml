@@ -1,0 +1,7 @@
+@startuml
+class BuildNUnitFilterTask {
+    + BuildNUnitFilterTask()
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- BuildNUnitFilterTask
+@enduml

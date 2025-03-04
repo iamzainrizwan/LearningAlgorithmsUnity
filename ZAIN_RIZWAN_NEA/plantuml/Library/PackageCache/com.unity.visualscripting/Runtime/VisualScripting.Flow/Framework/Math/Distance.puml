@@ -1,0 +1,9 @@
+@startuml
+abstract class "Distance`1"<T> {
+    + {abstract} Operation(a:T, b:T) : float
+}
+Unit <|-- "Distance`1"
+"Distance`1" --> "a" ValueInput
+"Distance`1" --> "b" ValueInput
+"Distance`1" --> "distance" ValueOutput
+@enduml

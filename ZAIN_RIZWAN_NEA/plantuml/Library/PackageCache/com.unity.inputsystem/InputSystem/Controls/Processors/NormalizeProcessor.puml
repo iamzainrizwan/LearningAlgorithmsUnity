@@ -1,0 +1,13 @@
+@startuml
+class NormalizeProcessor {
+    + min : float
+    + max : float
+    + zero : float
+    + <<override>> Process(value:float, control:InputControl) : float
+    + {static} Normalize(value:float, min:float, max:float, zero:float) : float
+    + <<override>> ToString() : string
+}
+class "InputProcessor`1"<T> {
+}
+"InputProcessor`1" "<float>" <|-- NormalizeProcessor
+@enduml

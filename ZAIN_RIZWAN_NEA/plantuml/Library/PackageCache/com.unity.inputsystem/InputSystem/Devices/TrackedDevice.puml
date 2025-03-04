@@ -1,0 +1,9 @@
+@startuml
+class TrackedDevice {
+}
+InputDevice <|-- TrackedDevice
+TrackedDevice --> "trackingState" IntegerControl
+TrackedDevice --> "isTracked" ButtonControl
+TrackedDevice --> "devicePosition" Vector3Control
+TrackedDevice --> "deviceRotation" QuaternionControl
+@enduml

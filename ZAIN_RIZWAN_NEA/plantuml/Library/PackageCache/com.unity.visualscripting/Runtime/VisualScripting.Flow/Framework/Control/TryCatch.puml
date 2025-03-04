@@ -1,0 +1,13 @@
+@startuml
+class TryCatch <<sealed>> {
+    + <<override>> canDefine : bool <<get>>
+    + Enter(flow:Flow) : ControlOutput
+}
+Unit <|-- TryCatch
+TryCatch --> "enter" ControlInput
+TryCatch --> "@try" ControlOutput
+TryCatch --> "@catch" ControlOutput
+TryCatch --> "@finally" ControlOutput
+TryCatch --> "exception" ValueOutput
+TryCatch o-> "exceptionType" Type
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+class BufferedRTHandleSystem {
+    + maxWidth : int <<get>>
+    + maxHeight : int <<get>>
+    + GetFrameRT(bufferId:int, frameIndex:int) : RTHandle
+    + ClearBuffers(cmd:CommandBuffer) : void
+    + AllocBuffer(bufferId:int, allocator:Func<RTHandleSystem, int, RTHandle>, bufferCount:int) : void
+    + AllocBuffer(bufferId:int, bufferCount:int, descriptor:RenderTextureDescriptor, filterMode:FilterMode, wrapMode:TextureWrapMode, isShadowMap:bool, anisoLevel:int, mipMapBias:float, name:string) : void
+    + ReleaseBuffer(bufferId:int) : void
+    + SwapAndSetReferenceSize(width:int, height:int) : void
+    + ResetReferenceSize(width:int, height:int) : void
+    + GetNumFramesAllocated(bufferId:int) : int
+    + CalculateRatioAgainstMaxSize(width:int, height:int) : Vector2
+    + Dispose() : void
+    + ReleaseAll() : void
+}
+IDisposable <|-- BufferedRTHandleSystem
+BufferedRTHandleSystem --> "rtHandleProperties" RTHandleProperties
+@enduml

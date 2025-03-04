@@ -1,0 +1,5 @@
+@startuml
+class Clipping <<static>> {
+    + {static} FindCullAndClipWorldRect(rectMaskParents:List<RectMask2D>, validRect:bool) : Rect
+}
+@enduml

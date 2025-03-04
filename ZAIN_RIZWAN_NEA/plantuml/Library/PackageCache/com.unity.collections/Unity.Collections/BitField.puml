@@ -1,0 +1,40 @@
+@startuml
+struct Bitwise {
+}
+struct BitField32 {
+    + Value : uint
+    + BitField32(initialValue:uint)
+    + Clear() : void
+    + SetBits(pos:int, value:bool) : void
+    + SetBits(pos:int, value:bool, numBits:int) : void
+    + GetBits(pos:int, numBits:int) : uint
+    + IsSet(pos:int) : bool
+    + TestNone(pos:int, numBits:int) : bool
+    + TestAny(pos:int, numBits:int) : bool
+    + TestAll(pos:int, numBits:int) : bool
+    + CountBits() : int
+    + CountLeadingZeros() : int
+    + CountTrailingZeros() : int
+}
+class BitField32DebugView <<sealed>> {
+    + BitField32DebugView(bitfield:BitField32)
+}
+struct BitField64 {
+    + Value : ulong
+    + BitField64(initialValue:ulong)
+    + Clear() : void
+    + SetBits(pos:int, value:bool) : void
+    + SetBits(pos:int, value:bool, numBits:int) : void
+    + GetBits(pos:int, numBits:int) : ulong
+    + IsSet(pos:int) : bool
+    + TestNone(pos:int, numBits:int) : bool
+    + TestAny(pos:int, numBits:int) : bool
+    + TestAll(pos:int, numBits:int) : bool
+    + CountBits() : int
+    + CountLeadingZeros() : int
+    + CountTrailingZeros() : int
+}
+class BitField64DebugView <<sealed>> {
+    + BitField64DebugView(data:BitField64)
+}
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class EditorStyles <<static>> {
+}
+EditorStyles --> "iconHelp" Texture
+EditorStyles --> "iconPending" Texture2D
+EditorStyles --> "iconWarn" Texture2D
+EditorStyles --> "iconFail" Texture2D
+EditorStyles --> "iconSuccess" Texture2D
+@enduml

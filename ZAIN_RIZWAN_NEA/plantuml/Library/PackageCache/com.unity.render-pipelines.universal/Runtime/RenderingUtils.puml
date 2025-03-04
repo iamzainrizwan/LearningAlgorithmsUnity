@@ -1,0 +1,19 @@
+@startuml
+class RenderingUtils <<static>> {
+    + {static} SetViewAndProjectionMatrices(cmd:CommandBuffer, viewMatrix:Matrix4x4, projectionMatrix:Matrix4x4, setInverseMatrices:bool) : void
+    + {static} SupportsRenderTextureFormat(format:RenderTextureFormat) : bool
+    + {static} SupportsGraphicsFormat(format:GraphicsFormat, usage:FormatUsage) : bool
+    + {static} ReAllocateIfNeeded(handle:RTHandle, descriptor:RenderTextureDescriptor, filterMode:FilterMode, wrapMode:TextureWrapMode, isShadowMap:bool, anisoLevel:int, mipMapBias:float, name:string) : bool
+    + {static} ReAllocateIfNeeded(handle:RTHandle, scaleFactor:Vector2, descriptor:RenderTextureDescriptor, filterMode:FilterMode, wrapMode:TextureWrapMode, isShadowMap:bool, anisoLevel:int, mipMapBias:float, name:string) : bool
+    + {static} ReAllocateIfNeeded(handle:RTHandle, scaleFunc:ScaleFunc, descriptor:RenderTextureDescriptor, filterMode:FilterMode, wrapMode:TextureWrapMode, isShadowMap:bool, anisoLevel:int, mipMapBias:float, name:string) : bool
+    + {static} ReAllocateHandleIfNeeded(handle:RTHandle, descriptor:RenderTextureDescriptor, filterMode:FilterMode, wrapMode:TextureWrapMode, anisoLevel:int, mipMapBias:float, name:string) : bool
+    + {static} ReAllocateHandleIfNeeded(handle:RTHandle, scaleFactor:Vector2, descriptor:RenderTextureDescriptor, filterMode:FilterMode, wrapMode:TextureWrapMode, anisoLevel:int, mipMapBias:float, name:string) : bool
+    + {static} ReAllocateHandleIfNeeded(handle:RTHandle, scaleFunc:ScaleFunc, descriptor:RenderTextureDescriptor, filterMode:FilterMode, wrapMode:TextureWrapMode, anisoLevel:int, mipMapBias:float, name:string) : bool
+    + {static} SetMaxRTHandlePoolCapacity(capacity:int) : bool
+    {static} + CreateDrawingSettings(shaderTagId:ShaderTagId, renderingData:RenderingData, sortingCriteria:SortingCriteria) : DrawingSettings
+    {static} + CreateDrawingSettings(shaderTagId:ShaderTagId, renderingData:UniversalRenderingData, cameraData:UniversalCameraData, lightData:UniversalLightData, sortingCriteria:SortingCriteria) : DrawingSettings
+    {static} + CreateDrawingSettings(shaderTagIdList:List<ShaderTagId>, renderingData:RenderingData, sortingCriteria:SortingCriteria) : DrawingSettings
+    {static} + CreateDrawingSettings(shaderTagIdList:List<ShaderTagId>, renderingData:UniversalRenderingData, cameraData:UniversalCameraData, lightData:UniversalLightData, sortingCriteria:SortingCriteria) : DrawingSettings
+}
+RenderingUtils --> "fullscreenMesh" Mesh
+@enduml

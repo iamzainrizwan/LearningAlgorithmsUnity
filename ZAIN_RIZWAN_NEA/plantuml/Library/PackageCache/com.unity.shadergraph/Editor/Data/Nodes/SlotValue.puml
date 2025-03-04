@@ -1,0 +1,73 @@
+@startuml
+enum SlotValueType {
+    SamplerState,
+    DynamicMatrix,
+    Matrix4,
+    Matrix3,
+    Matrix2,
+    Texture2D,
+    Texture2DArray,
+    Texture3D,
+    Cubemap,
+    Gradient,
+    DynamicVector,
+    Vector4,
+    Vector3,
+    Vector2,
+    Vector1,
+    Dynamic,
+    Boolean,
+    VirtualTexture,
+    PropertyConnectionState,
+}
+enum ConcreteSlotValueType {
+    SamplerState,
+    Matrix4,
+    Matrix3,
+    Matrix2,
+    Texture2D,
+    Texture2DArray,
+    Texture3D,
+    Cubemap,
+    Gradient,
+    Vector4,
+    Vector3,
+    Vector2,
+    Vector1,
+    Boolean,
+    VirtualTexture,
+    PropertyConnectionState,
+}
+enum ConcreteSlotValueTypePopupName {
+    SamplerState= ConcreteSlotValueType.SamplerState,
+    Matrix4= ConcreteSlotValueType.Matrix4,
+    Matrix3= ConcreteSlotValueType.Matrix3,
+    Matrix2= ConcreteSlotValueType.Matrix2,
+    Texture2D= ConcreteSlotValueType.Texture2D,
+    Texture2DArray= ConcreteSlotValueType.Texture2DArray,
+    Texture3D= ConcreteSlotValueType.Texture3D,
+    Cubemap= ConcreteSlotValueType.Cubemap,
+    Gradient= ConcreteSlotValueType.Gradient,
+    Vector4= ConcreteSlotValueType.Vector4,
+    Vector3= ConcreteSlotValueType.Vector3,
+    Vector2= ConcreteSlotValueType.Vector2,
+    Float= ConcreteSlotValueType.Vector1,
+    Boolean= ConcreteSlotValueType.Boolean,
+    VirtualTexture= ConcreteSlotValueType.VirtualTexture,
+    PropertyConnectionState= ConcreteSlotValueType.PropertyConnectionState,
+    BareSamplerState= 1000 + ConcreteSlotValueType.SamplerState,
+    BareTexture2D= 1000 + ConcreteSlotValueType.Texture2D,
+    BareTexture2DArray= 1000 + ConcreteSlotValueType.Texture2DArray,
+    BareTexture3D= 1000 + ConcreteSlotValueType.Texture3D,
+    BareCubemap= 1000 + ConcreteSlotValueType.Cubemap,
+}
+class SlotValueHelper <<static>> {
+    + {static} ToConcreteSlotValueTypePopupName(slotType:ConcreteSlotValueType, isBareResource:bool) : ConcreteSlotValueTypePopupName
+    + {static} ToConcreteSlotValueType(popup:ConcreteSlotValueTypePopupName, isBareResource:bool) : ConcreteSlotValueType
+    + {static} AllowedAsSubgraphOutput(type:ConcreteSlotValueTypePopupName) : bool
+    + {static} GetChannelCount(type:ConcreteSlotValueType) : int
+    + {static} GetMatrixDimension(type:ConcreteSlotValueType) : int
+    + {static} ConvertMatrixToVectorType(matrixType:ConcreteSlotValueType) : ConcreteSlotValueType
+    + {static} AreCompatible(inputType:SlotValueType, outputType:ConcreteSlotValueType, outputTypeIsConnectionTestable:bool) : bool
+}
+@enduml

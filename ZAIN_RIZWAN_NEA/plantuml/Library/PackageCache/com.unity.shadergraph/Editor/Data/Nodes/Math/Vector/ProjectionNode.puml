@@ -1,0 +1,6 @@
+@startuml
+class ProjectionNode {
+    + ProjectionNode()
+}
+CodeFunctionNode <|-- ProjectionNode
+@enduml

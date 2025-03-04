@@ -1,0 +1,11 @@
+@startuml
+class RemoveListItem <<sealed>> {
+    + Remove(flow:Flow) : ControlOutput
+}
+Unit <|-- RemoveListItem
+RemoveListItem --> "enter" ControlInput
+RemoveListItem --> "listInput" ValueInput
+RemoveListItem --> "listOutput" ValueOutput
+RemoveListItem --> "item" ValueInput
+RemoveListItem --> "exit" ControlOutput
+@enduml

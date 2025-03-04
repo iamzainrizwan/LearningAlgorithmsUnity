@@ -1,0 +1,31 @@
+@startuml
+struct BufferHandle {
+    + IsValid() : bool
+}
+struct BufferDesc {
+    + count : int
+    + stride : int
+    + name : string
+    + BufferDesc(count:int, stride:int)
+    + BufferDesc(count:int, stride:int, target:GraphicsBuffer.Target)
+    + <<override>> GetHashCode() : int
+}
+class BufferResource {
+    + <<override>> GetName() : string
+    + <<override>> GetDescHashCode() : int
+    + <<override>> CreateGraphicsResource() : void
+    + <<override>> UpdateGraphicsResource() : void
+    + <<override>> ReleaseGraphicsResource() : void
+    + <<override>> LogCreation(logger:RenderGraphLogger) : void
+    + <<override>> LogRelease(logger:RenderGraphLogger) : void
+}
+class BufferPool {
+}
+class "RenderGraphResource`2"<T1,T2> {
+}
+class "RenderGraphResourcePool`1"<T> {
+}
+BufferHandle --> "nullHandle" BufferHandle
+"RenderGraphResource`2" "<BufferDesc,GraphicsBuffer>" <|-- BufferResource
+"RenderGraphResourcePool`1" "<GraphicsBuffer>" <|-- BufferPool
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class AnalyticsUtils <<static>> {
+    + {static} GetSerializableFields(type:Type, removeObsolete:bool) : IEnumerable<FieldInfo>
+    + {static} ToNestedColumn(current:T, compareAndSimplifyWithDefault:bool) : string[]
+    + {static} ToNestedColumn(current:T, defaultInstance:T) : string[]
+    + {static} ToNestedColumnWithDefault(current:T, defaultObject:T, compareAndSimplifyWithDefault:bool) : string[]
+}
+@enduml

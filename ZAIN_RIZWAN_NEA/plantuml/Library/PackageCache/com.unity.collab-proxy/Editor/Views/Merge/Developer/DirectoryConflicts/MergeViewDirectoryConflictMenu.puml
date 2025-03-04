@@ -1,0 +1,7 @@
+@startuml
+class MergeViewDirectoryConflictMenu {
+}
+interface IDirectoryConflictMenu {
+}
+MergeViewDirectoryConflictMenu +-- IDirectoryConflictMenu
+@enduml

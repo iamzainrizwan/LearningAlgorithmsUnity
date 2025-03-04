@@ -1,0 +1,14 @@
+@startuml
+class UnsafeListPerformanceTests {
+    + <<unsafe>> UnsafeUtility_ReadArrayElement_Performance() : void
+    + <<unsafe>> UnsafeUtility_ReadArrayElementBoundsChecked_Performance() : void
+    + <<unsafe>> UnsafeUtility_WriteArrayElement_Performance() : void
+    + <<unsafe>> UnsafeUtility_WriteArrayElementBoundsChecked_Performance() : void
+}
+struct TestStruct {
+    + x : int
+    + y : short
+    + z : bool
+}
+UnsafeListPerformanceTests +-- TestStruct
+@enduml

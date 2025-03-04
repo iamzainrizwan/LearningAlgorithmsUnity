@@ -1,0 +1,5 @@
+@startuml
+class MultiplayerCenterAnalyticsFactory <<static>> {
+    + {static} Create() : IMultiplayerCenterAnalytics
+}
+@enduml

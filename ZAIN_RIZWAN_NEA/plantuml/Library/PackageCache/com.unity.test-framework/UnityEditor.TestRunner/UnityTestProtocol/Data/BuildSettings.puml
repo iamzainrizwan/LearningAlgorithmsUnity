@@ -1,0 +1,9 @@
+@startuml
+class BuildSettings {
+    + BuildSettings(platform:string, buildTarget:string, developmentPlayer:bool, androidBuildSystem:string)
+    + Platform : string
+    + BuildTarget : string
+    + DevelopmentPlayer : bool
+    + AndroidBuildSystem : string
+}
+@enduml

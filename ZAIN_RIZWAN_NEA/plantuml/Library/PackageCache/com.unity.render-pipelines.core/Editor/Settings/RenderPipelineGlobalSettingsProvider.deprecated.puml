@@ -1,0 +1,18 @@
+@startuml
+abstract class "RenderPipelineGlobalSettingsProvider`2"<TRenderPipeline,TGlobalSettings> {
+    + RenderPipelineGlobalSettingsProvider(v:string)
+    + <<override>> OnTitleBarGUI() : void
+    + <<override>> OnActivate(searchContext:string, rootElement:VisualElement) : void
+    + <<override>> OnDeactivate() : void
+    + <<override>> OnGUI(searchContext:string) : void
+}
+class Styles <<static>> {
+    + {static} <<readonly>> warningGlobalSettingsMissing : string = "Select a valid {0&#125; asset."
+    + {static} <<readonly>> warningSRPNotActive : string = "Current Render Pipeline is {0&#125;. Check the settings: Graphics > Scriptable Render Pipeline Settings, Quality > Render Pipeline Asset."
+    + {static} <<readonly>> settingNullRPSettings : string = "Invalid Global Settings asset. Rollback to the previous value"
+}
+SettingsProvider <|-- "RenderPipelineGlobalSettingsProvider`2"
+"RenderPipelineGlobalSettingsProvider`2" +-- Styles
+Styles o-> "newAssetButtonLabel" GUIContent
+Styles o-> "cloneAssetButtonLabel" GUIContent
+@enduml

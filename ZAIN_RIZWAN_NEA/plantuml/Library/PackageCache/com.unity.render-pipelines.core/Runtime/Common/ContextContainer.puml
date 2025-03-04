@@ -1,0 +1,22 @@
+@startuml
+class ContextContainer {
+    + Get() : T
+    + Create() : T
+    + GetOrCreate() : T
+    + Contains() : bool
+    + Dispose() : void
+}
+abstract class ContextItem {
+    + {abstract} Reset() : void
+}
+class "TypeId`1"<T> <<static>> {
+    + {static} value : uint
+}
+struct Item {
+    + isSet : bool
+}
+IDisposable <|-- ContextContainer
+ContextContainer +-- "TypeId`1"
+ContextContainer +-- Item
+Item --> "storage" ContextItem
+@enduml

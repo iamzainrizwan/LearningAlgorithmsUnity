@@ -1,0 +1,33 @@
+@startuml
+class "MergedKeyedCollection`2"<TKey,TItem> {
+    + MergedKeyedCollection()
+    + Count : int <<get>>
+    + IsReadOnly : bool <<get>>
+    + Includes() : bool
+    + Includes(elementType:Type) : bool
+    + ForType() : IKeyedCollection<TKey, TSubItem>
+    + <<virtual>> Include(collection:IKeyedCollection<TKey, TSubItem>) : void
+    + TryGetValue(key:TKey, value:TItem) : bool
+    + <<virtual>> Add(item:TItem) : void
+    + Clear() : void
+    + Contains(item:TItem) : bool
+    + Remove(item:TItem) : bool
+    + CopyTo(array:TItem[], arrayIndex:int) : void
+    + Contains(key:TKey) : bool
+    + Remove(key:TKey) : bool
+    + GetEnumerator() : Enumerator
+}
+class "IMergedCollection`1"<T> {
+}
+struct Enumerator {
+    + Enumerator(merged:MergedKeyedCollection<TKey, TItem>)
+    + Dispose() : void
+    + MoveNext() : bool
+}
+class "IEnumerator`1"<T> {
+}
+"IMergedCollection`1" "<TItem>" <|-- "MergedKeyedCollection`2"
+"MergedKeyedCollection`2" +-- Enumerator
+"IEnumerator`1" "<TItem>" <|-- Enumerator
+Enumerator --> "Current" TItem
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+struct "ArraySlice`1"<T> {
+    + ArraySlice(array:NativeArray<T>, start:int, length:int)
+    + Equals(other:ArraySlice<T>) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + {static} <<unsafe>> ConvertExistingDataToArraySlice(dataPointer:void*, stride:int, length:int) : ArraySlice<T>
+    + Stride : int <<get>>
+    + Length : int <<get>>
+}
+class "ArraySliceDebugView`1"<T> <<sealed>> {
+    + ArraySliceDebugView(slice:ArraySlice<T>)
+}
+class "IEquatable`1"<T> {
+}
+class "ReadArrayElementWithStride`1"<T> {
+}
+@enduml

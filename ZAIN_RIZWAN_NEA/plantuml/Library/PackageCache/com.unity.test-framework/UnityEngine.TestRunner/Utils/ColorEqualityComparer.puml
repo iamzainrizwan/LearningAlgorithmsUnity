@@ -1,0 +1,11 @@
+@startuml
+class ColorEqualityComparer {
+    + ColorEqualityComparer(error:float)
+    + Equals(expected:Color, actual:Color) : bool
+    + GetHashCode(color:Color) : int
+}
+class "IEqualityComparer`1"<T> {
+}
+"IEqualityComparer`1" "<Color>" <|-- ColorEqualityComparer
+ColorEqualityComparer --> "Instance" ColorEqualityComparer
+@enduml

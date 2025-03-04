@@ -1,0 +1,7 @@
+@startuml
+class StateTransitionDescription <<sealed>> {
+    + label : string <<get>> <<set>>
+    + tooltip : string <<get>> <<set>>
+}
+GraphElementDescription <|-- StateTransitionDescription
+@enduml

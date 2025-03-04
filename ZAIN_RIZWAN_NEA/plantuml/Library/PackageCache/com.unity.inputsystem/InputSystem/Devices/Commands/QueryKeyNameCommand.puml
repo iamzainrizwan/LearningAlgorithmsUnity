@@ -1,0 +1,12 @@
+@startuml
+struct QueryKeyNameCommand {
+    + scanOrKeyCode : int
+    + <<fixed>> nameBuffer : byte
+    + ReadKeyName() : string
+    + {static} Create(key:Key) : QueryKeyNameCommand
+}
+IInputDeviceCommandInfo <|-- QueryKeyNameCommand
+QueryKeyNameCommand --> "Type" FourCC
+QueryKeyNameCommand --> "baseCommand" InputDeviceCommand
+QueryKeyNameCommand --> "typeStatic" FourCC
+@enduml

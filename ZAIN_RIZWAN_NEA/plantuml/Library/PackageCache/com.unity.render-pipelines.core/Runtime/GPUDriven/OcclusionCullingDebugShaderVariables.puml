@@ -1,0 +1,10 @@
+@startuml
+struct OcclusionCullingDebugShaderVariables {
+    + <<fixed>> _OccluderMipBounds : uint
+    + _OccluderMipLayoutSizeX : uint
+    + _OccluderMipLayoutSizeY : uint
+    + _OcclusionCullingDebugPad0 : uint
+    + _OcclusionCullingDebugPad1 : uint
+}
+OcclusionCullingDebugShaderVariables --> "_DepthSizeInOccluderPixels" Vector4
+@enduml

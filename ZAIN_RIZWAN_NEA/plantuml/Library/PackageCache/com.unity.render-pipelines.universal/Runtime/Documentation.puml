@@ -1,0 +1,11 @@
+@startuml
+class URPHelpURLAttribute {
+    + URPHelpURLAttribute(pageName:string, pageHash:string)
+}
+class Documentation {
+    + <<const>> packageName : string = "com.unity.render-pipelines.universal"
+    + {static} GetPageLink(pageName:string) : string
+}
+CoreRPHelpURLAttribute <|-- URPHelpURLAttribute
+DocumentationInfo <|-- Documentation
+@enduml

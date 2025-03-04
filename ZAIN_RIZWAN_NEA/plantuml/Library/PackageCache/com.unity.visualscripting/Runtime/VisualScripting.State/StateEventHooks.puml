@@ -1,0 +1,6 @@
+@startuml
+class StateEventHooks <<static>> {
+    + <<const>> OnEnterState : string
+    + <<const>> OnExitState : string
+}
+@enduml

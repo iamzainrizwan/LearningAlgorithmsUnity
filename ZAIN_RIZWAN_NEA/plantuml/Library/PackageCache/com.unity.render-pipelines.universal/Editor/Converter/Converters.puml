@@ -1,0 +1,23 @@
+@startuml
+enum ConverterFilter {
+    Inclusive,
+    Exclusive,
+}
+enum ConverterContainerId {
+    BuiltInToURP,
+    BuiltInToURP2D,
+    UpgradeURP2DAssets,
+}
+enum ConverterId {
+    Material,
+    RenderSettings,
+    AnimationClip,
+    ReadonlyMaterial,
+    PPv2,
+    ParametricToFreeformLight,
+}
+class Converters <<static>> {
+    + {static} RunInBatchMode(containerName:ConverterContainerId) : void
+    + {static} RunInBatchMode(containerName:ConverterContainerId, converterList:List<ConverterId>, converterFilter:ConverterFilter) : void
+}
+@enduml

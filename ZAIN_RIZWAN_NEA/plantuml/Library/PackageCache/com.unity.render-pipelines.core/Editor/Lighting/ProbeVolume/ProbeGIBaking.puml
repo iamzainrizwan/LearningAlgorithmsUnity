@@ -1,0 +1,127 @@
+@startuml
+struct BakingCell {
+    + index : int
+    + minSubdiv : int
+    + indexChunkCount : int
+    + shChunkCount : int
+}
+class BakingBatch {
+    + BakingBatch(cellCount:Vector3Int)
+    + GetProbePositionHash(position:Vector3) : int
+    + GetBrickPositionHash(brickPosition:Vector3Int) : int
+    + GetSubdivLevelAt(position:Vector3) : int
+}
+class AdaptiveProbeVolumes <<partial>> {
+    + {static} BakeAsync() : bool
+    + {static} isRunning : bool <<get>>
+    + {static} Cancel() : bool
+    + {static} BakeAdditionalRequests(probeInstanceIDs:int[]) : void
+    + {static} BakeAdditionalRequest(probeInstanceID:int) : void
+    + {static} SetVirtualOffsetBakerOverride(baker:VirtualOffsetBaker) : void
+    + {static} SetLightingBakerOverride(baker:LightingBaker) : void
+    + {static} SetSkyOcclusionBakerOverride(baker:SkyOcclusionBaker) : void
+    + {static} GetVirtualOffsetBakerOverride() : VirtualOffsetBaker
+    + {static} GetLightingBakerOverride() : LightingBaker
+    + {static} GetSkyOcclusionBakerOverride() : SkyOcclusionBaker
+}
+class "List`1"<T> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+abstract class "BakingProfiling`1"<T> {
+    + GetProgress(stage:T) : float
+    + {abstract} GetLastStep() : T
+    + BakingProfiling(stage:T, currentStage:T)
+    + OnDispose(currentStage:T) : void
+}
+class BakingSetupProfiling {
+    + BakingSetupProfiling(stage:Stages)
+    + <<override>> GetLastStep() : Stages
+    + {static} GetProgressRange(progress0:float, progress1:float) : void
+    + Dispose() : void
+}
+class BakingCompleteProfiling {
+    + BakingCompleteProfiling(stage:Stages)
+    + <<override>> GetLastStep() : Stages
+    + {static} GetProgressRange(progress0:float, progress1:float) : void
+    + Dispose() : void
+}
+struct BakeData {
+    + probeCount : int
+    + reflectionProbeCount : int
+    + cellIndex : int
+    + stepCount : ulong
+    + failed : bool
+    + Init(bakingSet:ProbeVolumeBakingSet, probePositions:NativeList<Vector3>, requests:List<Vector3>) : void
+    + ExecuteLightingAsync() : void
+    + SortPositions(probePositions:NativeList<Vector3>, additionalRequests:List<Vector3>) : void
+    + ApplyVirtualOffset() : void
+    + Done() : bool
+    + Dispose() : void
+}
+enum BakingStep {
+    VirtualOffset,
+    LaunchThread,
+    SkyOcclusion,
+    RenderingLayerMask,
+    Integration,
+    FinalizeCells,
+    Last= FinalizeCells + 1,
+}
+class VoxelToBrickCache {
+    + GetMap(cell:BakingCell) : Dictionary<int, Brick>
+}
+enum Stages {
+    OnBakeStarted,
+    PrepareWorldSubdivision,
+    EnsurePerSceneDataInOpenScenes,
+    FindWorldBounds,
+    PlaceProbes,
+    BakeBricks,
+    ApplySubdivisionResults,
+    None,
+}
+enum Stages {
+    FinalizingBake,
+    WriteBakedData,
+    PerformDilation,
+    None,
+}
+class "NativeArray`1"<T> {
+}
+class CacheEntry {
+    + access : int
+}
+BakingCell --> "position" Vector3Int
+BakingCell --> "bounds" Bounds
+BakingBatch o-> "cellIndex2SceneReferences<int,HashSet<string>>" "Dictionary`2"
+BakingBatch o-> "cells<BakingCell>" "List`1"
+BakingBatch o-> "positionToIndex<int,int>" "Dictionary`2"
+BakingBatch o-> "uniqueBrickSubdiv<int,int>" "Dictionary`2"
+BakingBatch o-> "invalidatedPositions<Vector3,bool>" "Dictionary`2"
+BakingBatch o-> "customDilationThresh<(int, int),float>" "Dictionary`2"
+BakingBatch o-> "forceInvalidatedProbesAndTouchupVols<Vector3,Bounds>" "Dictionary`2"
+BakingBatch --> "contributors" GIContributors
+AdaptiveProbeVolumes +-- "BakingProfiling`1"
+AdaptiveProbeVolumes +-- BakingSetupProfiling
+"BakingProfiling`1" "<BakingSetupProfiling.Stages>" <|-- BakingSetupProfiling
+IDisposable <|-- BakingSetupProfiling
+AdaptiveProbeVolumes +-- BakingCompleteProfiling
+"BakingProfiling`1" "<BakingCompleteProfiling.Stages>" <|-- BakingCompleteProfiling
+IDisposable <|-- BakingCompleteProfiling
+AdaptiveProbeVolumes +-- BakeData
+BakeData --> "positionRemap<int>" "NativeArray`1"
+BakeData --> "sortedPositions<Vector3>" "NativeArray`1"
+BakeData --> "bakingThread" Thread
+BakeData --> "virtualOffsetJob" VirtualOffsetBaker
+BakeData --> "skyOcclusionJob" SkyOcclusionBaker
+BakeData --> "lightingJob" LightingBaker
+BakeData --> "layerMaskJob" RenderingLayerBaker
+BakeData --> "step" BakingStep
+AdaptiveProbeVolumes +-- BakingStep
+AdaptiveProbeVolumes +-- VoxelToBrickCache
+BakingSetupProfiling +-- Stages
+BakingCompleteProfiling +-- Stages
+VoxelToBrickCache +-- CacheEntry
+CacheEntry o-> "map<int,Brick>" "Dictionary`2"
+@enduml

@@ -1,0 +1,4 @@
+@startuml
+class "EnumPopupSetting`1"<E> <<static>> {
+}
+@enduml

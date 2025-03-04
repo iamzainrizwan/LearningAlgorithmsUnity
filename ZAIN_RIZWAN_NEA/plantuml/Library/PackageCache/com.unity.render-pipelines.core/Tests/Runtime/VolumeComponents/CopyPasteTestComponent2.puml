@@ -1,0 +1,8 @@
+@startuml
+class CopyPasteTestComponent2 {
+    + <<new>> WithModifiedValues() : CopyPasteTestComponent2
+    + AssertEquality(other:CopyPasteTestComponent2, assertionFunction:Action<object, object>) : void
+}
+CopyPasteTestComponent1 <|-- CopyPasteTestComponent2
+CopyPasteTestComponent2 o-> "p21" BoolParameter
+@enduml

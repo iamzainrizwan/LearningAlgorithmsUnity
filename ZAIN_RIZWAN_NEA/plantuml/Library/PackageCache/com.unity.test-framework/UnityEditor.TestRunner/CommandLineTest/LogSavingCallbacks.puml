@@ -1,0 +1,10 @@
+@startuml
+class LogSavingCallbacks {
+    + RunStarted(testsToRun:ITestAdaptor) : void
+    + <<virtual>> RunFinished(testResults:ITestResultAdaptor) : void
+    + TestStarted(test:ITestAdaptor) : void
+    + TestFinished(result:ITestResultAdaptor) : void
+}
+ScriptableObject <|-- LogSavingCallbacks
+ICallbacks <|-- LogSavingCallbacks
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+abstract class "RendererStripper`2"<T,S> {
+    + active : bool <<get>>
+    + CanRemoveSettings(settings:T) : bool
+}
+class UniversalRendererResourcesStripper {
+}
+class Renderer2DResourcesStripper {
+}
+class "IRenderPipelineGraphicsSettingsStripper`1"<T> {
+}
+"IRenderPipelineGraphicsSettingsStripper`1" "<T>" <|-- "RendererStripper`2"
+"RendererStripper`2" "<UniversalRendererResources,UniversalRendererData>" <|-- UniversalRendererResourcesStripper
+"RendererStripper`2" "<Renderer2DResources,Renderer2DData>" <|-- Renderer2DResourcesStripper
+@enduml

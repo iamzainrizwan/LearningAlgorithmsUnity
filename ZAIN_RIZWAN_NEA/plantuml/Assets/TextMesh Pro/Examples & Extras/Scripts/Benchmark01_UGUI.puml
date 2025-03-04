@@ -1,0 +1,9 @@
+@startuml
+class Benchmark01_UGUI {
+    + BenchmarkType : int = 0
+}
+MonoBehaviour <|-- Benchmark01_UGUI
+Benchmark01_UGUI --> "canvas" Canvas
+Benchmark01_UGUI --> "TMProFont" TMP_FontAsset
+Benchmark01_UGUI --> "TextMeshFont" Font
+@enduml

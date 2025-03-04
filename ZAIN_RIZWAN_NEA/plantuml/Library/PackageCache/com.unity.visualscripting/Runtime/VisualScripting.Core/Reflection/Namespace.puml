@@ -1,0 +1,29 @@
+@startuml
+class Namespace <<sealed>> {
+    + FullName : string <<get>>
+    + Name : string <<get>>
+    + IsRoot : bool <<get>>
+    + IsGlobal : bool <<get>>
+    + AndAncestors() : IEnumerable<Namespace>
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+    + {static} FromFullName(fullName:string) : Namespace
+    + <<override>> Equals(obj:object) : bool
+}
+class "IEnumerable`1"<T> {
+}
+class Collection {
+    + <<new>> TryGetValue(key:string, value:Namespace) : bool
+}
+class "KeyedCollection`2"<T1,T2> {
+}
+class "IKeyedCollection`2"<T1,T2> {
+}
+Namespace --> "Root" Namespace
+Namespace --> "Parent" Namespace
+Namespace --> "Ancestors<Namespace>" "IEnumerable`1"
+Namespace o-> "Global" Namespace
+Namespace +-- Collection
+"KeyedCollection`2" "<string,Namespace>" <|-- Collection
+"IKeyedCollection`2" "<string,Namespace>" <|-- Collection
+@enduml

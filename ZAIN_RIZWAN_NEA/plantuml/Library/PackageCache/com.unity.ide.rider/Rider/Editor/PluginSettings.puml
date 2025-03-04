@@ -1,0 +1,7 @@
+@startuml
+class PluginSettings <<static>> {
+    + {static} LogEventsCollectorEnabled : bool <<get>>
+    + {static} LinkButton(url:string) : bool
+}
+PluginSettings --> "SelectedLoggingLevel" LoggingLevel
+@enduml

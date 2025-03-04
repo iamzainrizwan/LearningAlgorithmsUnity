@@ -1,0 +1,6 @@
+@startuml
+class OneMinusNode {
+    + OneMinusNode()
+}
+CodeFunctionNode <|-- OneMinusNode
+@enduml

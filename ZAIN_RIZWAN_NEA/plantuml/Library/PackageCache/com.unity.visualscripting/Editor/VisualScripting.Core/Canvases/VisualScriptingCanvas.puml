@@ -1,0 +1,63 @@
+@startuml
+abstract class "VisualScriptingCanvas`1"<TGraph> {
+    + graph : TGraph <<get>>
+    + <<virtual>> Dispose() : void
+    + Cache() : void
+    + CacheWidgetItems() : void
+    + Recollect() : void
+    + CacheWidgetCollections() : void
+    + <<virtual>> Open() : void
+    + <<virtual>> Close() : void
+    + RegisterControls() : void
+    + Update() : void
+    + BeforeFrame() : void
+    + OnGUI() : void
+    + zoom : float <<get>>
+    + isMouseOver : bool <<get>>
+    + isMouseOverBackground : bool <<get>>
+    + UpdateViewport() : void
+    + TweenViewport(pan:Vector2, zoom:float, duration:float) : void
+    + CacheWidgetVisibility() : void
+    + ViewElements(elements:IEnumerable<IGraphElement>) : void
+    + IsVisible(widget:IWidget) : bool
+    + CacheWidgetPositions() : void
+    + isLassoing : bool <<get>>
+    + isSelecting : bool <<get>>
+    + isGrouping : bool <<get>>
+    + isDragging : bool <<get>>
+    + BeginDrag(e:EventWrapper) : void
+    + Drag(e:EventWrapper) : void
+    + EndDrag(e:EventWrapper) : void
+    + DeleteSelection() : void
+    + <<virtual>> ShrinkCopyGroup(copyGroup:HashSet<IGraphElement>) : void
+    + Align(operation:AlignOperation) : void
+    + Distribute(operation:DistributeOperation) : void
+    + <<virtual>> AcceptsDragAndDrop() : bool
+    + <<virtual>> PerformDragAndDrop() : void
+    + <<virtual>> UpdateDragAndDrop() : void
+    + <<virtual>> DrawDragAndDropPreview() : void
+    + <<virtual>> ExitDragAndDrop() : void
+    + frameDeltaTime : float <<get>>
+    + eventDeltaTime : float <<get>>
+    + repaintDeltaTime : float <<get>>
+    + <<virtual>> OnToolbarGUI() : void
+}
+class "IEnumerable`1"<T> {
+}
+class "Queue`1"<T> {
+}
+ICanvas <|-- "VisualScriptingCanvas`1"
+"VisualScriptingCanvas`1" --> "widgetProvider" WidgetProvider
+"VisualScriptingCanvas`1" --> "selection" GraphSelection
+"VisualScriptingCanvas`1" --> "window" ICanvasWindow
+"VisualScriptingCanvas`1" --> "pan" Vector2
+"VisualScriptingCanvas`1" --> "viewport" Rect
+"VisualScriptingCanvas`1" --> "mousePosition" Vector2
+"VisualScriptingCanvas`1" --> "hoveredWidget" IWidget
+"VisualScriptingCanvas`1" --> "lassoArea" Rect
+"VisualScriptingCanvas`1" --> "selectionArea" Rect
+"VisualScriptingCanvas`1" --> "groupArea" Rect
+"VisualScriptingCanvas`1" --> "alignableAndDistributable<IGraphElementWidget>" "IEnumerable`1"
+"VisualScriptingCanvas`1" --> "dragAndDropVisualMode" DragAndDropVisualMode
+"VisualScriptingCanvas`1" o-> "delayedCalls<Action>" "Queue`1"
+@enduml

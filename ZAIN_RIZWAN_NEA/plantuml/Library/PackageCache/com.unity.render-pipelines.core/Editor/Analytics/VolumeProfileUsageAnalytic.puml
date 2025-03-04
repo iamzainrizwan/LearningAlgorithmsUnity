@@ -1,0 +1,17 @@
+@startuml
+class VolumeProfileUsageAnalytic {
+    + {static} Send(volume:Volume, volumeProfile:VolumeProfile) : void
+}
+class Analytic {
+    + Analytic(volume:Volume, volumeProfile:VolumeProfile)
+    + TryGatherData(data:IAnalytic.IData, error:Exception) : bool
+}
+class Data {
+    + volume_name : string
+    + scene_name : string
+    + volume_profile_asset_guid : string
+}
+VolumeProfileUsageAnalytic +-- Analytic
+IAnalytic <|-- Analytic
+Analytic +-- Data
+@enduml

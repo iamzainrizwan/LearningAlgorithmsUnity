@@ -1,0 +1,6 @@
+@startuml
+class LogicalNegationHandler <<sealed>> {
+    + LogicalNegationHandler()
+}
+UnaryOperatorHandler <|-- LogicalNegationHandler
+@enduml

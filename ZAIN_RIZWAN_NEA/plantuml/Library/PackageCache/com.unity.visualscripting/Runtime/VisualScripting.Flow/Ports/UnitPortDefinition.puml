@@ -1,0 +1,10 @@
+@startuml
+abstract class UnitPortDefinition {
+    + key : string <<get>> <<set>>
+    + label : string <<get>> <<set>>
+    + summary : string <<get>> <<set>>
+    + hideLabel : bool <<get>> <<set>>
+    + <<virtual>> isValid : bool <<get>>
+}
+IUnitPortDefinition <|-- UnitPortDefinition
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+struct FourCC {
+    + FourCC(code:int)
+    + FourCC(a:char, b:char, c:char, d:char)
+    + FourCC(str:string)
+    + <<override>> ToString() : string
+    + Equals(other:FourCC) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + {static} FromInt32(i:int) : FourCC
+    + {static} ToInt32(fourCC:FourCC) : int
+}
+class "IEquatable`1"<T> {
+}
+"IEquatable`1" "<FourCC>" <|-- FourCC
+@enduml

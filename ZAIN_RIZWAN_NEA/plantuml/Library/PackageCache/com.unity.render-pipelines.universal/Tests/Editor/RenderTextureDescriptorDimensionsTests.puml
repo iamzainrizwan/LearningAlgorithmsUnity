@@ -1,0 +1,23 @@
+@startuml
+class RenderTextureDescriptorDimensionsTests {
+    + GlobalSetup() : void
+    + GlobalCleanup() : void
+    + CreateRenderTextureDescriptor() : RenderTextureDescriptor
+    + CheckDimensions(desc:RenderTextureDescriptor, testCase:RenderScaleTestCase) : void
+    + {static} TestCasesTextureDimension() : IEnumerable<RenderScaleTestCase>
+    + TextureDescriptor_FromCameraData(testCase:RenderScaleTestCase) : void
+    + TextureDescriptor_FromNativeRenderPass(testCase:RenderScaleTestCase) : void
+}
+class RenderScaleTestCase {
+    + renderScale : float <<get>>
+    + cameraTargetIsRenderTexture : bool <<get>>
+    + RenderScaleTestCase(renderScale:float, cameraTargetIsRenderTexture:bool)
+    + <<override>> ToString() : string
+}
+class TestRTDimensionNativeRenderPass {
+}
+RenderTextureDescriptorDimensionsTests --> "m_RT" RenderTexture
+RenderTextureDescriptorDimensionsTests +-- RenderScaleTestCase
+RenderTextureDescriptorDimensionsTests +-- TestRTDimensionNativeRenderPass
+ScriptableRenderPass <|-- TestRTDimensionNativeRenderPass
+@enduml

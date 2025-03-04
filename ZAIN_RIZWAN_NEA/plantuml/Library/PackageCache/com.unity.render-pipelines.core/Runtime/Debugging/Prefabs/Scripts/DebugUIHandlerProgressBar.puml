@@ -1,0 +1,10 @@
+@startuml
+class DebugUIHandlerProgressBar {
+    + <<override>> OnSelection(fromNext:bool, previous:DebugUIHandlerWidget) : bool
+    + <<override>> OnDeselection() : void
+}
+DebugUIHandlerWidget <|-- DebugUIHandlerProgressBar
+DebugUIHandlerProgressBar --> "nameLabel" Text
+DebugUIHandlerProgressBar --> "valueLabel" Text
+DebugUIHandlerProgressBar --> "progressBarRect" RectTransform
+@enduml

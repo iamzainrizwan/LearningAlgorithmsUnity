@@ -1,0 +1,10 @@
+@startuml
+abstract class SearcherDatabaseBase {
+    + DatabaseDirectory : string <<get>> <<set>>
+    + <<virtual>> BuildIndex() : void
+    + {abstract} Search(query:string, localMaxScore:float) : List<SearcherItem>
+}
+class "IList`1"<T> {
+}
+SearcherDatabaseBase --> "ItemList<SearcherItem>" "IList`1"
+@enduml

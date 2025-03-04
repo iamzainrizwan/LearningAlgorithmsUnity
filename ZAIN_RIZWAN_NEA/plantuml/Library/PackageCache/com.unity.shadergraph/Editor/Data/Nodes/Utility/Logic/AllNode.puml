@@ -1,0 +1,7 @@
+@startuml
+class AllNode {
+    + AllNode()
+    + <<override>> hasPreview : bool <<get>>
+}
+CodeFunctionNode <|-- AllNode
+@enduml

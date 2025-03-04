@@ -1,0 +1,17 @@
+@startuml
+abstract class "GameObjectEventUnit`1"<TArgs> {
+    + <<override>> CreateData() : IGraphElementData
+    + <<override>> GetHook(reference:GraphReference) : EventHook
+    + <<override>> StartListening(stack:GraphStack) : void
+}
+class "EventUnit`1"<T> {
+}
+class Data <<new>> {
+}
+"EventUnit`1" "<TArgs>" <|-- "GameObjectEventUnit`1"
+IGameObjectEventUnit <|-- "GameObjectEventUnit`1"
+"GameObjectEventUnit`1" --> "MessageListenerType" Type
+"GameObjectEventUnit`1" --> "target" ValueInput
+"GameObjectEventUnit`1" +-- Data
+Data --> "target" GameObject
+@enduml

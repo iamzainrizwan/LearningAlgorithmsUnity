@@ -1,0 +1,23 @@
+@startuml
+class SidebarPanel <<sealed>> {
+    + SidebarPanel(content:ISidebarPanelContent)
+    + enabled : bool <<get>>
+    + height : float <<get>> <<set>>
+    + order : int <<get>> <<set>>
+    + TryAssociate(content:ISidebarPanelContent) : bool
+    + Disable() : void
+    + OnGUI(position:Rect, y:float, heightOverride:float?) : void
+}
+class Styles <<static>> {
+    + {static} <<readonly>> resizeGrip : float = 14f
+    + {static} <<readonly>> orderSpinnerWidth : float
+    + {static} <<readonly>> anchorButtonWidth : float = 22
+}
+SidebarPanel --> "sidebars" Sidebars
+SidebarPanel --> "sidebar" Sidebar
+SidebarPanel --> "anchor" SidebarAnchor
+SidebarPanel --> "content" ISidebarPanelContent
+SidebarPanel +-- Styles
+Styles --> "background" GUIStyle
+Styles --> "title" GUIStyle
+@enduml

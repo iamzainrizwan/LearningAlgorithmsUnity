@@ -1,0 +1,15 @@
+@startuml
+enum MergeTreeColumn {
+    Path,
+    Size,
+    Author,
+    Details,
+    Resolution,
+    DateModified,
+    Comment,
+}
+class MergeTreeHeaderState {
+}
+MultiColumnHeaderState <|-- MergeTreeHeaderState
+ISerializationCallbackReceiver <|-- MergeTreeHeaderState
+@enduml

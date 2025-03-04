@@ -1,0 +1,40 @@
+@startuml
+class ConstantBuffer {
+    + {static} PushGlobal(cmd:CommandBuffer, data:CBType, shaderId:int) : void
+    + {static} PushGlobal(data:CBType, shaderId:int) : void
+    + {static} Push(cmd:CommandBuffer, data:CBType, cs:ComputeShader, shaderId:int) : void
+    + {static} Push(data:CBType, cs:ComputeShader, shaderId:int) : void
+    + {static} Push(cmd:CommandBuffer, data:CBType, mat:Material, shaderId:int) : void
+    + {static} Push(data:CBType, mat:Material, shaderId:int) : void
+    + {static} UpdateData(cmd:CommandBuffer, data:CBType) : void
+    + {static} UpdateData(data:CBType) : void
+    + {static} SetGlobal(cmd:CommandBuffer, shaderId:int) : void
+    + {static} SetGlobal(shaderId:int) : void
+    + {static} Set(cmd:CommandBuffer, cs:ComputeShader, shaderId:int) : void
+    + {static} Set(cs:ComputeShader, shaderId:int) : void
+    + {static} Set(mat:Material, shaderId:int) : void
+    + {static} ReleaseAll() : void
+}
+abstract class ConstantBufferBase {
+    + {abstract} Release() : void
+}
+class "ConstantBuffer`1"<CBType> {
+    + ConstantBuffer()
+    + UpdateData(cmd:CommandBuffer, data:CBType) : void
+    + UpdateData(data:CBType) : void
+    + SetGlobal(cmd:CommandBuffer, shaderId:int) : void
+    + SetGlobal(shaderId:int) : void
+    + Set(cmd:CommandBuffer, cs:ComputeShader, shaderId:int) : void
+    + Set(cs:ComputeShader, shaderId:int) : void
+    + Set(mat:Material, shaderId:int) : void
+    + Set(mpb:MaterialPropertyBlock, shaderId:int) : void
+    + PushGlobal(cmd:CommandBuffer, data:CBType, shaderId:int) : void
+    + PushGlobal(data:CBType, shaderId:int) : void
+    + <<override>> Release() : void
+}
+class "ConstantBufferSingleton`1"<CBType> {
+    + <<override>> Release() : void
+}
+ConstantBufferBase <|-- "ConstantBuffer`1"
+"ConstantBuffer`1" "<CBType>" <|-- "ConstantBufferSingleton`1"
+@enduml

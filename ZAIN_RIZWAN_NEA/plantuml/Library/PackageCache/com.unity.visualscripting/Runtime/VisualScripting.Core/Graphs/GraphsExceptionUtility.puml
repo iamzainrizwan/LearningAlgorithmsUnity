@@ -1,0 +1,7 @@
+@startuml
+class GraphsExceptionUtility <<static>> {
+    + {static} GetException(element:IGraphElementWithDebugData, pointer:GraphPointer) : Exception
+    + {static} SetException(element:IGraphElementWithDebugData, pointer:GraphPointer, ex:Exception) : void
+    + {static} HandleException(element:IGraphElementWithDebugData, pointer:GraphPointer, ex:Exception) : void
+}
+@enduml

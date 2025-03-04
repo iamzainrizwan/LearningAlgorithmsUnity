@@ -1,0 +1,7 @@
+@startuml
+enum InputActionType {
+    Value,
+    Button,
+    PassThrough,
+}
+@enduml

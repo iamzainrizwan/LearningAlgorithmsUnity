@@ -1,0 +1,11 @@
+@startuml
+abstract class "Maximum`1"<T> {
+    + {abstract} Operation(a:T, b:T) : T
+    + {abstract} Operation(values:IEnumerable<T>) : T
+    + Operation(flow:Flow) : T
+}
+class "MultiInputUnit`1"<T> {
+}
+"MultiInputUnit`1" "<T>" <|-- "Maximum`1"
+"Maximum`1" --> "maximum" ValueOutput
+@enduml

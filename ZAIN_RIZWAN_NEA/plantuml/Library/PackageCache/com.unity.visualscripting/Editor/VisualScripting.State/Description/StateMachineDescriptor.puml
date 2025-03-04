@@ -1,0 +1,8 @@
+@startuml
+class StateMachineDescriptor <<sealed>> {
+    + StateMachineDescriptor(target:StateMachine)
+}
+class "MachineDescriptor`2"<T1,T2> {
+}
+"MachineDescriptor`2" "<StateMachine,MachineDescription>" <|-- StateMachineDescriptor
+@enduml

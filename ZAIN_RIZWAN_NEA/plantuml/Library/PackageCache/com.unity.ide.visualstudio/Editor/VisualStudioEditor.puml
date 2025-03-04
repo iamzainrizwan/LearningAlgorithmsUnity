@@ -1,0 +1,12 @@
+@startuml
+class VisualStudioEditor {
+    + CreateIfDoesntExist() : void
+    + Initialize(editorInstallationPath:string) : void
+    + <<virtual>> TryGetInstallationForPath(editorPath:string, installation:CodeEditor.Installation) : bool
+    + OnGUI() : void
+    + SyncIfNeeded(addedFiles:string[], deletedFiles:string[], movedFiles:string[], movedFromFiles:string[], importedFiles:string[]) : void
+    + SyncAll() : void
+    + OpenProject(path:string, line:int, column:int) : bool
+}
+IExternalCodeEditor <|-- VisualStudioEditor
+@enduml

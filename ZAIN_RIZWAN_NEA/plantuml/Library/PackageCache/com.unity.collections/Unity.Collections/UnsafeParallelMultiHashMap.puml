@@ -1,0 +1,84 @@
+@startuml
+struct "UnsafeParallelMultiHashMap`2"<TKey,TValue> {
+    + UnsafeParallelMultiHashMap(capacity:int, allocator:AllocatorManager.AllocatorHandle)
+    + <<readonly>> IsEmpty : bool <<get>>
+    + <<readonly>> Count() : int
+    + Capacity : int <<readonly get>> <<set>>
+    + Clear() : void
+    + Add(key:TKey, item:TValue) : void
+    + Remove(key:TKey) : int
+    + Remove(key:TKey, value:TValueEQ) : void
+    + Remove(it:NativeParallelMultiHashMapIterator<TKey>) : void
+    + <<readonly>> TryGetFirstValue(key:TKey, item:TValue, it:NativeParallelMultiHashMapIterator<TKey>) : bool
+    + <<readonly>> TryGetNextValue(item:TValue, it:NativeParallelMultiHashMapIterator<TKey>) : bool
+    + <<readonly>> ContainsKey(key:TKey) : bool
+    + <<readonly>> CountValuesForKey(key:TKey) : int
+    + SetValue(item:TValue, it:NativeParallelMultiHashMapIterator<TKey>) : bool
+    + <<readonly>> IsCreated : bool <<get>>
+    + Dispose() : void
+    + Dispose(inputDeps:JobHandle) : JobHandle
+    + <<readonly>> GetKeyArray(allocator:AllocatorManager.AllocatorHandle) : NativeArray<TKey>
+    + <<readonly>> GetValueArray(allocator:AllocatorManager.AllocatorHandle) : NativeArray<TValue>
+    + <<readonly>> GetKeyValueArrays(allocator:AllocatorManager.AllocatorHandle) : NativeKeyValueArrays<TKey, TValue>
+    + GetValuesForKey(key:TKey) : Enumerator
+    + AsParallelWriter() : ParallelWriter
+    + GetEnumerator() : KeyValueEnumerator
+    + AsReadOnly() : ReadOnly
+}
+class "UnsafeParallelMultiHashMapDebuggerTypeProxy`2"<TKey,TValue> <<sealed>> {
+    + UnsafeParallelMultiHashMapDebuggerTypeProxy(target:UnsafeParallelMultiHashMap<TKey, TValue>)
+    + {static} GetUniqueKeyArray(hashMap:UnsafeParallelMultiHashMap<TKey, TValue>, allocator:AllocatorManager.AllocatorHandle) : (NativeArray<TKey>, int)
+}
+class "IEnumerable`1"<T> {
+}
+class "IEquatable`1"<T> {
+}
+struct Enumerator {
+    + Dispose() : void
+    + MoveNext() : bool
+    + Reset() : void
+    + GetEnumerator() : Enumerator
+}
+struct ParallelWriter {
+    + <<readonly>> Capacity : int <<get>>
+    + Add(key:TKey, item:TValue) : void
+}
+struct KeyValueEnumerator {
+    + Dispose() : void
+    + MoveNext() : bool
+    + Reset() : void
+}
+struct ReadOnly {
+    + <<readonly>> IsCreated : bool <<get>>
+    + <<readonly>> IsEmpty : bool <<get>>
+    + <<readonly>> Count() : int
+    + <<readonly>> Capacity : int <<get>>
+    + <<readonly>> TryGetFirstValue(key:TKey, item:TValue, it:NativeParallelMultiHashMapIterator<TKey>) : bool
+    + <<readonly>> TryGetNextValue(item:TValue, it:NativeParallelMultiHashMapIterator<TKey>) : bool
+    + <<readonly>> ContainsKey(key:TKey) : bool
+    + <<readonly>> GetKeyArray(allocator:AllocatorManager.AllocatorHandle) : NativeArray<TKey>
+    + <<readonly>> GetValueArray(allocator:AllocatorManager.AllocatorHandle) : NativeArray<TValue>
+    + <<readonly>> GetKeyValueArrays(allocator:AllocatorManager.AllocatorHandle) : NativeKeyValueArrays<TKey, TValue>
+    + GetEnumerator() : KeyValueEnumerator
+}
+class "IComparable`1"<T> {
+}
+class "List`1"<T> {
+}
+class "IEnumerator`1"<T> {
+}
+class "KeyValue`2"<T1,T2> {
+}
+INativeDisposable <|-- "UnsafeParallelMultiHashMap`2"
+"IEnumerable`1" "<KeyValue<TKey, TValue>>" <|-- "UnsafeParallelMultiHashMap`2"
+"UnsafeParallelMultiHashMapDebuggerTypeProxy`2" --> "Items<ListPair<TKey, List<TValue>>>" "List`1"
+"UnsafeParallelMultiHashMap`2" +-- Enumerator
+"IEnumerator`1" "<TValue>" <|-- Enumerator
+Enumerator --> "Current" TValue
+"UnsafeParallelMultiHashMap`2" +-- ParallelWriter
+"UnsafeParallelMultiHashMap`2" +-- KeyValueEnumerator
+"IEnumerator`1" "<KeyValue<TKey, TValue>>" <|-- KeyValueEnumerator
+KeyValueEnumerator --> "Current<TKey,TValue>" "KeyValue`2"
+"UnsafeParallelMultiHashMap`2" +-- ReadOnly
+"IEnumerable`1" "<KeyValue<TKey, TValue>>" <|-- ReadOnly
+@enduml

@@ -1,0 +1,95 @@
+@startuml
+struct GPUInstanceDataBufferBuilder {
+    + AddComponent(propertyID:int, isOverriden:bool, isPerInstance:bool, instanceType:InstanceType, componentGroup:InstanceComponentGroup) : void
+    + AddComponent(propertyID:int, isOverriden:bool, byteSize:int, isPerInstance:bool, instanceType:InstanceType, componentGroup:InstanceComponentGroup) : void
+    + <<unsafe>> Build(instanceNumInfo:InstanceNumInfo) : GPUInstanceDataBuffer
+    + Dispose() : void
+}
+struct GPUInstanceDataBufferUploader {
+    + GPUInstanceDataBufferUploader(descriptions:NativeArray<GPUInstanceComponentDesc>, capacity:int, instanceType:InstanceType)
+    + <<unsafe>> GetUploadBufferPtr() : IntPtr
+    + GetUIntPerInstance() : int
+    + GetParamUIntOffset(parameterIndex:int) : int
+    + PrepareParamWrite(parameterIndex:int) : int
+    + <<unsafe>> AllocateUploadHandles(handlesLength:int) : void
+    + <<unsafe>> WriteInstanceDataJob(parameterIndex:int, instanceData:NativeArray<T>) : JobHandle
+    + <<unsafe>> WriteInstanceDataJob(parameterIndex:int, instanceData:NativeArray<T>, gatherIndices:NativeArray<int>) : JobHandle
+    + SubmitToGpu(instanceDataBuffer:GPUInstanceDataBuffer, gpuInstanceIndices:NativeArray<GPUInstanceIndex>, gpuResources:GPUResources, submitOnlyWrittenParams:bool) : void
+    + SubmitToGpu(instanceDataBuffer:GPUInstanceDataBuffer, instances:NativeArray<InstanceHandle>, gpuResources:GPUResources, submitOnlyWrittenParams:bool) : void
+    + Dispose() : void
+}
+struct GPUInstanceDataBufferGrower {
+    + <<unsafe>> GPUInstanceDataBufferGrower(sourceBuffer:GPUInstanceDataBuffer, instanceNumInfo:InstanceNumInfo)
+    + SubmitToGpu(gpuResources:GPUResources) : GPUInstanceDataBuffer
+    + Dispose() : void
+}
+class UploadKernelIDs <<static>> {
+    + {static} <<readonly>> _InputValidComponentCounts : int
+    + {static} <<readonly>> _InputInstanceCounts : int
+    + {static} <<readonly>> _InputInstanceByteSize : int
+    + {static} <<readonly>> _InputComponentOffsets : int
+    + {static} <<readonly>> _InputInstanceData : int
+    + {static} <<readonly>> _InputInstanceIndices : int
+    + {static} <<readonly>> _InputValidComponentIndices : int
+    + {static} <<readonly>> _InputComponentAddresses : int
+    + {static} <<readonly>> _InputComponentByteCounts : int
+    + {static} <<readonly>> _InputComponentInstanceIndexRanges : int
+    + {static} <<readonly>> _OutputBuffer : int
+}
+struct GPUResources {
+    + kernelId : int
+    + LoadShaders(resources:GPUResidentDrawerResources) : void
+    + CreateResources(newInstanceCount:int, sizePerInstance:int, newComponentCounts:int, validComponentIndicesCount:int) : void
+    + Dispose() : void
+}
+struct WriteInstanceDataParameterJob {
+    + <<const>> k_BatchSize : int = 512
+    + gatherData : bool
+    + parameterIndex : int
+    + uintPerParameter : int
+    + uintPerInstance : int
+    + <<unsafe>> Execute(index:int) : void
+}
+class CopyInstancesKernelIDs <<static>> {
+    + {static} <<readonly>> _InputValidComponentCounts : int
+    + {static} <<readonly>> _InstanceCounts : int
+    + {static} <<readonly>> _InstanceOffset : int
+    + {static} <<readonly>> _OutputInstanceOffset : int
+    + {static} <<readonly>> _ValidComponentIndices : int
+    + {static} <<readonly>> _ComponentByteCounts : int
+    + {static} <<readonly>> _InputComponentAddresses : int
+    + {static} <<readonly>> _OutputComponentAddresses : int
+    + {static} <<readonly>> _InputComponentInstanceIndexRanges : int
+    + {static} <<readonly>> _InputBuffer : int
+    + {static} <<readonly>> _OutputBuffer : int
+}
+struct GPUResources {
+    + kernelId : int
+    + LoadShaders(resources:GPUResidentDrawerResources) : void
+    + CreateResources() : void
+    + Dispose() : void
+}
+class "NativeArray`1"<T> {
+}
+IDisposable <|-- GPUInstanceDataBufferBuilder
+IDisposable <|-- GPUInstanceDataBufferUploader
+IDisposable <|-- GPUInstanceDataBufferGrower
+GPUInstanceDataBufferUploader +-- UploadKernelIDs
+GPUInstanceDataBufferUploader +-- GPUResources
+IDisposable <|-- GPUResources
+GPUResources --> "instanceData" ComputeBuffer
+GPUResources --> "instanceIndices" ComputeBuffer
+GPUResources --> "inputComponentOffsets" ComputeBuffer
+GPUResources --> "validComponentIndices" ComputeBuffer
+GPUResources --> "cs" ComputeShader
+GPUInstanceDataBufferUploader +-- WriteInstanceDataParameterJob
+IJobParallelFor <|-- WriteInstanceDataParameterJob
+WriteInstanceDataParameterJob --> "componentDataIndex<int>" "NativeArray`1"
+WriteInstanceDataParameterJob --> "gatherIndices<int>" "NativeArray`1"
+WriteInstanceDataParameterJob --> "instanceData<uint>" "NativeArray`1"
+WriteInstanceDataParameterJob --> "tmpDataBuffer<uint>" "NativeArray`1"
+GPUInstanceDataBufferGrower +-- CopyInstancesKernelIDs
+GPUInstanceDataBufferGrower +-- GPUResources
+IDisposable <|-- GPUResources
+GPUResources --> "cs" ComputeShader
+@enduml

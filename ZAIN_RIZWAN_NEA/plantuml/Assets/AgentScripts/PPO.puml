@@ -1,0 +1,52 @@
+@startuml
+class PPOHyperparameters {
+    + timestepsPerBatch : int = 4800
+    + maxTimestepsPerEpisode : int
+    + nUpdatesPerIteration : int = 5
+    + lr : float = 0.0005f
+    + gamma : float = 0.95f
+    + lam : float = 0.98f
+    + clip : float = 0.2f
+    + numMinibatches : int = 6
+    + entCoef : float = 0
+    + maxGradNorm : float = 0.5f
+    + totalTimesteps : int = 0
+    + maxEpsisodesInBatch : int = 5
+}
+class PPO {
+    + inputs : int <<get>> <<set>>
+    + outputs : int <<get>> <<set>>
+    + covMatDet : float
+    + PPO(input_hyperparameters:PPOHyperparameters)
+    + Forward(state:NDArray, device:Device) : (NDArray, NDArray)
+    + CalculateGAE() : List<float>
+    + AddEpisodeToBatch(ep:Epsiode) : void
+    + CriticForward(state:NDArray) : float
+    + Learn(currentT:int) : void
+    + FindEpsiodeInstanceFromIndex(index:int) : (Epsiode, int)
+    + Evaluate(miniObs:List<NDArray>, miniActs:List<NDArray>) : (List<float>, List<float>, List<float>)
+}
+class Epsiode {
+    + epLen : int
+    + Epsiode()
+}
+class "List`1"<T> {
+}
+Hyperparameters <|-- PPOHyperparameters
+PPO --> "hyperparameters" PPOHyperparameters
+PPO --> "actor" PPOModel
+PPO --> "critic" PPOModel
+PPO --> "actorTF" TFPPOModel
+PPO --> "criticTF" TFPPOModel
+PPO --> "actorOptim" Adam
+PPO --> "criticOptim" Adam
+PPO --> "batch<Epsiode>" "List`1"
+PPO +-- Epsiode
+Epsiode --> "epObs<NDArray>" "List`1"
+Epsiode --> "epActs<NDArray>" "List`1"
+Epsiode --> "epNextObs<NDArray>" "List`1"
+Epsiode --> "epLogProbs<float>" "List`1"
+Epsiode --> "epRewards<float>" "List`1"
+Epsiode --> "epVals<float>" "List`1"
+Epsiode --> "epDones<float>" "List`1"
+@enduml

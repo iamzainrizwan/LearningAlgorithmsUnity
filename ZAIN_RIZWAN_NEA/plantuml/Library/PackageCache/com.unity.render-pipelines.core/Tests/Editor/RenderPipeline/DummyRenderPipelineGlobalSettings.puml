@@ -1,0 +1,9 @@
+@startuml
+class DummyRenderPipelineGlobalSettings {
+    + initializedCalled : bool = false
+    + <<override>> Initialize(source:RenderPipelineGlobalSettings) : void
+}
+class "RenderPipelineGlobalSettings`2"<T1,T2> {
+}
+"RenderPipelineGlobalSettings`2" "<DummyRenderPipelineGlobalSettings,DummyRenderPipeline>" <|-- DummyRenderPipelineGlobalSettings
+@enduml

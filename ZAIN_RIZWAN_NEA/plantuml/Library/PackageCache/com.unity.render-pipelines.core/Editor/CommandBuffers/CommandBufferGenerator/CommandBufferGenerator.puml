@@ -1,0 +1,12 @@
+@startuml
+class CommandBufferGenerator {
+}
+struct FunctionInfo {
+    + FunctionInfo(name:string, textureArg:string, modifiesGlobalState:bool, triggersRasterization:bool)
+    + name : string
+    + textureArgs : string
+    + modifiesGlobalState : bool
+    + triggersRasterization : bool
+}
+CommandBufferGenerator +-- FunctionInfo
+@enduml

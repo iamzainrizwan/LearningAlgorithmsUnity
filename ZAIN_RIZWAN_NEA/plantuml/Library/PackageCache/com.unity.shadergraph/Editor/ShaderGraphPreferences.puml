@@ -1,0 +1,7 @@
+@startuml
+class ShaderGraphPreferences <<static>> {
+}
+class Keys <<static>> {
+}
+ShaderGraphPreferences +-- Keys
+@enduml

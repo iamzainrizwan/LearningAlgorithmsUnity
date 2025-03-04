@@ -1,0 +1,7 @@
+@startuml
+class OnDrawGizmos <<sealed>> {
+}
+class "ManualEventUnit`1"<T> {
+}
+"ManualEventUnit`1" "<EmptyEventArgs>" <|-- OnDrawGizmos
+@enduml

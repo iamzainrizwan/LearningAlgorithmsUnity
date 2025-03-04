@@ -1,0 +1,9 @@
+@startuml
+class FailCommand {
+    + FailCommand(test:Test, resultState:ResultState, message:string)
+    + <<override>> Execute(context:ITestExecutionContext) : TestResult
+    + ExecuteEnumerable(context:ITestExecutionContext) : IEnumerable
+}
+TestCommand <|-- FailCommand
+IEnumerableTestMethodCommand <|-- FailCommand
+@enduml

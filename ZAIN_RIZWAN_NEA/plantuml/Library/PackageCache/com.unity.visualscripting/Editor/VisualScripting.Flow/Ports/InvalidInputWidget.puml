@@ -1,0 +1,8 @@
+@startuml
+class InvalidInputWidget {
+    + InvalidInputWidget(canvas:FlowCanvas, port:InvalidInput)
+}
+class "UnitInputPortWidget`1"<T> {
+}
+"UnitInputPortWidget`1" "<InvalidInput>" <|-- InvalidInputWidget
+@enduml

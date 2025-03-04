@@ -1,0 +1,53 @@
+@startuml
+class X86 <<unsafe>> <<static>> <<partial>> {
+}
+class Sse4_2 <<static>> {
+    + {static} IsSse42Supported : bool <<get>>
+    + {static} cmpistrm(a:v128, b:v128, imm8:int) : v128
+    + {static} cmpistri(a:v128, b:v128, imm8:int) : int
+    + {static} cmpestrm(a:v128, la:int, b:v128, lb:int, imm8:int) : v128
+    + {static} cmpestri(a:v128, la:int, b:v128, lb:int, imm8:int) : int
+    + {static} cmpistrz(a:v128, b:v128, imm8:int) : int
+    + {static} cmpistrc(a:v128, b:v128, imm8:int) : int
+    + {static} cmpistrs(a:v128, b:v128, imm8:int) : int
+    + {static} cmpistro(a:v128, b:v128, imm8:int) : int
+    + {static} cmpistra(a:v128, b:v128, imm8:int) : int
+    + {static} cmpestrz(a:v128, la:int, b:v128, lb:int, imm8:int) : int
+    + {static} cmpestrc(a:v128, la:int, b:v128, lb:int, imm8:int) : int
+    + {static} cmpestrs(a:v128, la:int, b:v128, lb:int, imm8:int) : int
+    + {static} cmpestro(a:v128, la:int, b:v128, lb:int, imm8:int) : int
+    + {static} cmpestra(a:v128, la:int, b:v128, lb:int, imm8:int) : int
+    + {static} cmpgt_epi64(val1:v128, val2:v128) : v128
+    + {static} crc32_u32(crc:uint, v:uint) : uint
+    + {static} crc32_u8(crc:uint, v:byte) : uint
+    + {static} crc32_u16(crc:uint, v:ushort) : uint
+    + {static} crc32_u64(crc_ul:ulong, v:long) : ulong
+    + {static} crc32_u64(crc_ul:ulong, v:ulong) : ulong
+}
+enum SIDD {
+    UBYTE_OPS= 0x00,
+    UWORD_OPS= 0x01,
+    SBYTE_OPS= 0x02,
+    SWORD_OPS= 0x03,
+    CMP_EQUAL_ANY= 0x00,
+    CMP_RANGES= 0x04,
+    CMP_EQUAL_EACH= 0x08,
+    CMP_EQUAL_ORDERED= 0x0C,
+    POSITIVE_POLARITY= 0x00,
+    NEGATIVE_POLARITY= 0x10,
+    MASKED_POSITIVE_POLARITY= 0x20,
+    MASKED_NEGATIVE_POLARITY= 0x30,
+    LEAST_SIGNIFICANT= 0x00,
+    MOST_SIGNIFICANT= 0x40,
+    BIT_MASK= 0x00,
+    UNIT_MASK= 0x40,
+}
+struct StrBoolArray {
+    + <<fixed>> Bits : ushort
+    + SetBit(aindex:int, bindex:int, val:bool) : void
+    + GetBit(aindex:int, bindex:int) : bool
+}
+X86 +-- Sse4_2
+Sse4_2 +-- SIDD
+Sse4_2 +-- StrBoolArray
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+struct RTHandleStaticHelpers {
+    + {static} SetRTHandleStaticWrapper(rtId:RenderTargetIdentifier) : void
+    + {static} SetRTHandleUserManagedWrapper(rtWrapper:RTHandle, rtId:RenderTargetIdentifier) : void
+}
+class RTHandle {
+    + SetCustomHandleProperties(properties:RTHandleProperties) : void
+    + ClearCustomHandleProperties() : void
+    + useScaling : bool <<get>> <<internal set>>
+    + name : string <<get>>
+    + isMSAAEnabled : bool <<get>>
+    + GetInstanceID() : int
+    + Release() : void
+    + GetScaledSize(refSize:Vector2Int) : Vector2Int
+    + GetScaledSize() : Vector2Int
+}
+RTHandleStaticHelpers --> "s_RTHandleWrapper" RTHandle
+RTHandle --> "scaleFactor" Vector2
+RTHandle --> "referenceSize" Vector2Int
+RTHandle --> "rtHandleProperties" RTHandleProperties
+RTHandle --> "rt" RenderTexture
+RTHandle --> "externalTexture" Texture
+RTHandle --> "nameID" RenderTargetIdentifier
+@enduml

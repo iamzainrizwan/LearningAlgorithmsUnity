@@ -1,0 +1,7 @@
+@startuml
+class RestoreSceneSetupTask {
+    + RestoreSceneSetupTask()
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- RestoreSceneSetupTask
+@enduml

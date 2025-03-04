@@ -1,0 +1,6 @@
+@startuml
+class ProgressUtility <<static>> {
+    + {static} DisplayProgressBar(title:string, info:string, progress:float) : void
+    + {static} ClearProgressBar() : void
+}
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+interface IStateTransitionWidget {
+}
+INodeWidget <|-- IStateTransitionWidget
+@enduml

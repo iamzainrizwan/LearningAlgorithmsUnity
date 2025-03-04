@@ -1,0 +1,12 @@
+@startuml
+enum DistributeOperation {
+    DistributeLeftEdges,
+    DistributeCenters,
+    DistributeRightEdges,
+    DistributeHorizontalGaps,
+    DistributeTopEdges,
+    DistributeMiddles,
+    DistributeBottomEdges,
+    DistributeVerticalGaps,
+}
+@enduml

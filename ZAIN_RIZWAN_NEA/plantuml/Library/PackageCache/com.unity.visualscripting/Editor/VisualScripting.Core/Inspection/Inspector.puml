@@ -1,0 +1,29 @@
+@startuml
+abstract class Inspector {
+    + {static} OnOpenVFX(instanceID:int, line:int) : bool
+    + <<virtual>> Initialize() : void
+    + <<virtual>> Dispose() : void
+    + Draw(position:Rect, label:GUIContent) : void
+    + isHeightDirty : bool <<get>>
+    + SetHeightDirty() : void
+    + GetCachedHeight(width:float, label:GUIContent, parentInspector:Inspector) : float
+    + GetLayoutPosition(label:GUIContent, scrollbarTrigger:float, offset:RectOffset) : Rect
+    + DrawLayout(label:GUIContent, scrollbarTrigger:float, offset:RectOffset) : void
+    + {static} ProcessLabel(metadata:Metadata, label:GUIContent) : GUIContent
+    + {static} ProcessLabelStyle(metadata:Metadata, labelStyle:GUIStyle) : GUIStyle
+    + {static} WidthWithoutLabel(metadata:Metadata, width:float, label:GUIContent) : float
+    + {static} HeightWithLabel(metadata:Metadata, width:float, height:float, label:GUIContent, labelStyle:GUIStyle) : float
+    + {static} PrefixLabel(metadata:Metadata, position:Rect, label:GUIContent, style:GUIStyle) : Rect
+    + {static} BeginBlock(metadata:Metadata, position:Rect) : void
+    + {static} BeginLabeledBlock(metadata:Metadata, position:Rect, label:GUIContent, labelStyle:GUIStyle) : Rect
+    + {static} EndBlock(metadata:Metadata) : bool
+    + <<virtual>> GetAdaptiveWidth() : float
+}
+class "OverrideStack`1"<T> {
+}
+IDisposable <|-- Inspector
+Inspector --> "metadata" Metadata
+Inspector o-> "expandTooltip<bool>" "OverrideStack`1"
+Inspector o-> "adaptiveWidth<bool>" "OverrideStack`1"
+Inspector o-> "defaultLabelStyle<GUIStyle>" "OverrideStack`1"
+@enduml

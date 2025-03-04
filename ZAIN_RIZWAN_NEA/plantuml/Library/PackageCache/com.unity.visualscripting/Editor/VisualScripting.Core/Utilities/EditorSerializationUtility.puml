@@ -1,0 +1,7 @@
+@startuml
+class EditorSerializationUtility <<static>> {
+    + {static} LogStuckDependers() : void
+    + {static} DeserializeYamlAsset(asset:UnityObject, topNodeKey:string, dataNodeKey:string) : void
+    + {static} DeserializeYamlAsset(asset:string, topNodeKey:string, dataNodeKey:string) : SerializationData
+}
+@enduml

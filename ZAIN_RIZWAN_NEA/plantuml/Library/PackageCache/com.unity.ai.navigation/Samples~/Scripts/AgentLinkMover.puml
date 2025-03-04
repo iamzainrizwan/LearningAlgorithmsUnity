@@ -1,0 +1,13 @@
+@startuml
+enum OffMeshLinkMoveMethod {
+    Teleport,
+    NormalSpeed,
+    Parabola,
+    Curve,
+}
+class AgentLinkMover {
+}
+MonoBehaviour <|-- AgentLinkMover
+AgentLinkMover o-> "m_Method" OffMeshLinkMoveMethod
+AgentLinkMover o-> "m_Curve" AnimationCurve
+@enduml

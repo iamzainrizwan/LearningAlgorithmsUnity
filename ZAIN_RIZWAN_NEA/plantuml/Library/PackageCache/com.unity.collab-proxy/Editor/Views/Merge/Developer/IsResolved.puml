@@ -1,0 +1,4 @@
+@startuml
+class IsSolved <<static>> {
+}
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+class UnsafeRingQueueTests {
+    + UnsafeRingQueue_Enqueue_Dequeue() : void
+    + <<unsafe>> UnsafeRingQueue_Enqueue_Dequeue_View() : void
+    + UnsafeRingQueue_Throws() : void
+    + UnsafeRingQueue_CustomAllocatorTest() : void
+    + <<unsafe>> UnsafeRingQueue_BurstedCustomAllocatorTest() : void
+}
+struct BurstedCustomAllocatorJob {
+    + Execute() : void
+}
+UnsafeRingQueueTests +-- BurstedCustomAllocatorJob
+IJob <|-- BurstedCustomAllocatorJob
+@enduml

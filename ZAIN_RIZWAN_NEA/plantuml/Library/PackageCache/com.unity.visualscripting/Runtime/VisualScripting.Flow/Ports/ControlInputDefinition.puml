@@ -1,0 +1,6 @@
+@startuml
+class ControlInputDefinition <<sealed>> {
+}
+ControlPortDefinition <|-- ControlInputDefinition
+IUnitInputPortDefinition <|-- ControlInputDefinition
+@enduml

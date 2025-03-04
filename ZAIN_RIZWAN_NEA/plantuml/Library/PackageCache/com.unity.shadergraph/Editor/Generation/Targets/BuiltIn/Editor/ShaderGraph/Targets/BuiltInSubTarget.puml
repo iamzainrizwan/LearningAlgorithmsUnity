@@ -1,0 +1,14 @@
+@startuml
+abstract class BuiltInSubTarget {
+    + <<override>> Setup(context:TargetSetupContext) : void
+    + <<virtual>> identifier : string <<get>>
+    + <<virtual>> GetMetadataObject(graph:GraphDataReadOnly) : ScriptableObject
+    + <<override>> saveContext : object <<get>>
+}
+class SubShaderUtils <<static>> {
+}
+class "SubTarget`1"<T> {
+}
+"SubTarget`1" "<BuiltInTarget>" <|-- BuiltInSubTarget
+IHasMetadata <|-- BuiltInSubTarget
+@enduml

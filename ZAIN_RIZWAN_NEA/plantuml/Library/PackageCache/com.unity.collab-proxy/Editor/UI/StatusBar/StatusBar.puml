@@ -1,0 +1,9 @@
+@startuml
+interface IIncomingChangesNotifier {
+}
+class StatusBar {
+}
+class Notification {
+}
+StatusBar +-- Notification
+@enduml

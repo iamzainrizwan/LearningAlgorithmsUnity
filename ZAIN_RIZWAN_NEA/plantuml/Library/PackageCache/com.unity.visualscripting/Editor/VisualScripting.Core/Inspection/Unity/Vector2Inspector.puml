@@ -1,0 +1,7 @@
+@startuml
+class Vector2Inspector {
+    + Vector2Inspector(metadata:Metadata)
+    + <<override>> GetAdaptiveWidth() : float
+}
+VectorInspector <|-- Vector2Inspector
+@enduml

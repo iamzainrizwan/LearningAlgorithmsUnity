@@ -1,0 +1,6 @@
+@startuml
+class UnifiedRTShaderImporter {
+    + <<override>> OnImportAsset(ctx:AssetImportContext) : void
+}
+ScriptedImporter <|-- UnifiedRTShaderImporter
+@enduml

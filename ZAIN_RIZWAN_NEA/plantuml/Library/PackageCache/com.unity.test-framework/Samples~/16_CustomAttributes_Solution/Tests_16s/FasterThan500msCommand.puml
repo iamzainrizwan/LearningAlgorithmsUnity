@@ -1,0 +1,7 @@
+@startuml
+class FasterThan500msCommand {
+    + FasterThan500msCommand(command:TestCommand)
+    + <<override>> Execute(context:ITestExecutionContext) : TestResult
+}
+TestCommand <|-- FasterThan500msCommand
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class Scan {
+    + Scan(shaders:RadeonRaysShaders)
+    + Execute(cmd:CommandBuffer, buffer:GraphicsBuffer, inputKeysOffset:uint, outputKeysOffset:uint, scratchDataOffset:uint, size:uint) : void
+    {static} + GetScratchDataSizeInDwords(size:uint) : ulong
+}
+@enduml

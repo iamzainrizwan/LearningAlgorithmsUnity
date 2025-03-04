@@ -1,0 +1,7 @@
+@startuml
+abstract class "RenderPipelineGlobalSettings`2"<TGlobalRenderPipelineSettings,TRenderPipeline> {
+    + {static} instance : TGlobalRenderPipelineSettings <<get>>
+    + <<virtual>> Reset() : void
+}
+RenderPipelineGlobalSettings <|-- "RenderPipelineGlobalSettings`2"
+@enduml

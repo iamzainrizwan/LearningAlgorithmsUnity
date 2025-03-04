@@ -1,0 +1,7 @@
+@startuml
+abstract class SpaceMaterialSlot {
+    + <<override>> CopyValuesFrom(foundSlot:MaterialSlot) : void
+}
+Vector3MaterialSlot <|-- SpaceMaterialSlot
+SpaceMaterialSlot --> "space" CoordinateSpace
+@enduml

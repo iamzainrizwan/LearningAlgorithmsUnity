@@ -1,0 +1,142 @@
+@startuml
+struct NativeText {
+    + NativeText(source:String, allocator:Allocator)
+    + NativeText(source:String, allocator:AllocatorManager.AllocatorHandle)
+    + NativeText(capacity:int, allocator:Allocator)
+    + NativeText(capacity:int, allocator:AllocatorManager.AllocatorHandle)
+    + NativeText(allocator:Allocator)
+    + NativeText(allocator:AllocatorManager.AllocatorHandle)
+    + NativeText(source:FixedString32Bytes, allocator:AllocatorManager.AllocatorHandle)
+    + NativeText(source:FixedString32Bytes, allocator:Allocator)
+    + NativeText(source:FixedString64Bytes, allocator:AllocatorManager.AllocatorHandle)
+    + NativeText(source:FixedString64Bytes, allocator:Allocator)
+    + NativeText(source:FixedString128Bytes, allocator:AllocatorManager.AllocatorHandle)
+    + NativeText(source:FixedString128Bytes, allocator:Allocator)
+    + NativeText(source:FixedString512Bytes, allocator:AllocatorManager.AllocatorHandle)
+    + NativeText(source:FixedString512Bytes, allocator:Allocator)
+    + NativeText(source:FixedString4096Bytes, allocator:AllocatorManager.AllocatorHandle)
+    + NativeText(source:FixedString4096Bytes, allocator:Allocator)
+    + Length : int <<readonly get>> <<set>>
+    + Capacity : int <<readonly get>> <<set>>
+    + TryResize(newLength:int, clearOptions:NativeArrayOptions) : bool
+    + <<readonly>> IsEmpty : bool <<get>>
+    + <<readonly>> IsCreated : bool <<get>>
+    + <<unsafe>> GetUnsafePtr() : byte*
+    + ElementAt(index:int) : ref byte
+    + Clear() : void
+    + Add(value:byte) : void
+    + CompareTo(other:NativeText) : int
+    + Equals(other:NativeText) : bool
+    + CompareTo(other:NativeText.ReadOnly) : int
+    + Equals(other:NativeText.ReadOnly) : bool
+    + Dispose() : void
+    + Dispose(inputDeps:JobHandle) : JobHandle
+    + Value : string <<get>>
+    + GetEnumerator() : Enumerator
+    + CompareTo(other:String) : int
+    + Equals(other:String) : bool
+    + CompareTo(other:FixedString32Bytes) : int
+    + Equals(other:FixedString32Bytes) : bool
+    + CompareTo(other:FixedString64Bytes) : int
+    + Equals(other:FixedString64Bytes) : bool
+    + CompareTo(other:FixedString128Bytes) : int
+    + Equals(other:FixedString128Bytes) : bool
+    + CompareTo(other:FixedString512Bytes) : int
+    + Equals(other:FixedString512Bytes) : bool
+    + CompareTo(other:FixedString4096Bytes) : int
+    + Equals(other:FixedString4096Bytes) : bool
+    + <<override>> ToString() : String
+    + <<override>> GetHashCode() : int
+    + <<override>> Equals(other:object) : bool
+    + AsReadOnly() : ReadOnly
+}
+struct NativeTextDispose {
+    + Dispose() : void
+}
+struct NativeTextDisposeJob {
+    + Execute() : void
+}
+class "INativeList`1"<T> {
+}
+class "IComparable`1"<T> {
+}
+class "IEquatable`1"<T> {
+}
+struct Enumerator {
+    + Enumerator(source:NativeText)
+    + Enumerator(source:NativeText.ReadOnly)
+    + Dispose() : void
+    + MoveNext() : bool
+    + Reset() : void
+}
+struct ReadOnly {
+    + Capacity : int <<readonly get>> <<set>>
+    + IsEmpty : bool <<readonly get>> <<set>>
+    + Length : int <<readonly get>> <<set>>
+    + Clear() : void
+    + ElementAt(index:int) : ref byte
+    + GetUnsafePtr() : byte*
+    + TryResize(newLength:int, clearOptions:NativeArrayOptions) : bool
+    + CompareTo(other:String) : int
+    + Equals(other:String) : bool
+    + CompareTo(other:ReadOnly) : int
+    + Equals(other:ReadOnly) : bool
+    + CompareTo(other:NativeText) : int
+    + Equals(other:NativeText) : bool
+    + CompareTo(other:FixedString32Bytes) : int
+    + Equals(other:FixedString32Bytes) : bool
+    + CompareTo(other:FixedString64Bytes) : int
+    + Equals(other:FixedString64Bytes) : bool
+    + CompareTo(other:FixedString128Bytes) : int
+    + Equals(other:FixedString128Bytes) : bool
+    + CompareTo(other:FixedString512Bytes) : int
+    + Equals(other:FixedString512Bytes) : bool
+    + CompareTo(other:FixedString4096Bytes) : int
+    + Equals(other:FixedString4096Bytes) : bool
+    + <<override>> ToString() : String
+    + <<override>> GetHashCode() : int
+    + <<override>> Equals(other:object) : bool
+    + Value : string <<get>>
+    + GetEnumerator() : Enumerator
+}
+class "IEnumerator`1"<T> {
+}
+"INativeList`1" "<byte>" <|-- NativeText
+INativeDisposable <|-- NativeText
+IUTF8Bytes <|-- NativeText
+"IComparable`1" "<String>" <|-- NativeText
+"IEquatable`1" "<String>" <|-- NativeText
+"IComparable`1" "<NativeText>" <|-- NativeText
+"IEquatable`1" "<NativeText>" <|-- NativeText
+"IComparable`1" "<FixedString32Bytes>" <|-- NativeText
+"IEquatable`1" "<FixedString32Bytes>" <|-- NativeText
+"IComparable`1" "<FixedString64Bytes>" <|-- NativeText
+"IEquatable`1" "<FixedString64Bytes>" <|-- NativeText
+"IComparable`1" "<FixedString128Bytes>" <|-- NativeText
+"IEquatable`1" "<FixedString128Bytes>" <|-- NativeText
+"IComparable`1" "<FixedString512Bytes>" <|-- NativeText
+"IEquatable`1" "<FixedString512Bytes>" <|-- NativeText
+"IComparable`1" "<FixedString4096Bytes>" <|-- NativeText
+"IEquatable`1" "<FixedString4096Bytes>" <|-- NativeText
+IJob <|-- NativeTextDisposeJob
+NativeTextDisposeJob --> "Data" NativeTextDispose
+NativeText +-- Enumerator
+"IEnumerator`1" "<Unicode.Rune>" <|-- Enumerator
+NativeText +-- ReadOnly
+"INativeList`1" "<byte>" <|-- ReadOnly
+IUTF8Bytes <|-- ReadOnly
+"IComparable`1" "<String>" <|-- ReadOnly
+"IEquatable`1" "<String>" <|-- ReadOnly
+"IComparable`1" "<NativeText>" <|-- ReadOnly
+"IEquatable`1" "<NativeText>" <|-- ReadOnly
+"IComparable`1" "<FixedString32Bytes>" <|-- ReadOnly
+"IEquatable`1" "<FixedString32Bytes>" <|-- ReadOnly
+"IComparable`1" "<FixedString64Bytes>" <|-- ReadOnly
+"IEquatable`1" "<FixedString64Bytes>" <|-- ReadOnly
+"IComparable`1" "<FixedString128Bytes>" <|-- ReadOnly
+"IEquatable`1" "<FixedString128Bytes>" <|-- ReadOnly
+"IComparable`1" "<FixedString512Bytes>" <|-- ReadOnly
+"IEquatable`1" "<FixedString512Bytes>" <|-- ReadOnly
+"IComparable`1" "<FixedString4096Bytes>" <|-- ReadOnly
+"IEquatable`1" "<FixedString4096Bytes>" <|-- ReadOnly
+@enduml

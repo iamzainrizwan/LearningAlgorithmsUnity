@@ -1,0 +1,10 @@
+@startuml
+class SerializedDataParameter <<sealed>> {
+    + displayName : string <<get>>
+    + GetAttribute() : T
+    + GetObjectRef() : T
+}
+SerializedDataParameter --> "overrideState" SerializedProperty
+SerializedDataParameter --> "value" SerializedProperty
+SerializedDataParameter --> "referenceType" Type
+@enduml

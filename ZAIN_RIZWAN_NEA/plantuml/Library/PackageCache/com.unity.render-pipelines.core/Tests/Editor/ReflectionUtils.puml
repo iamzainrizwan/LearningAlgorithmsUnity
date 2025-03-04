@@ -1,0 +1,10 @@
+@startuml
+class ReflectionUtils <<static>> {
+    + {static} FindTypeByName(name:string) : Type
+    + {static} InvokeStatic(targetType:Type, methodName:string, args:object[]) : object
+    + {static} Invoke(target:object, methodName:string, args:object[]) : object
+    + {static} SetField(target:object, fieldName:string, value:object) : void
+    + {static} GetField(target:object, fieldName:string) : object
+    + {static} GetFields(target:object) : IEnumerable<FieldInfo>
+}
+@enduml

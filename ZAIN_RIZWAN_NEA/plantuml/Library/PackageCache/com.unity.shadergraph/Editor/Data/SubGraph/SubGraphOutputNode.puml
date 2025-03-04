@@ -1,0 +1,12 @@
+@startuml
+class SubGraphOutputNode {
+    + IsFirstSlotValid : bool = true
+    + SubGraphOutputNode()
+    + <<override>> documentationURL : string <<get>>
+    + <<override>> ValidateNode() : void
+    + AddSlot(concreteValueType:ConcreteSlotValueType) : int
+    + <<override>> canDeleteNode : bool <<get>>
+    + <<override>> canCopyNode : bool <<get>>
+}
+AbstractMaterialNode <|-- SubGraphOutputNode
+@enduml

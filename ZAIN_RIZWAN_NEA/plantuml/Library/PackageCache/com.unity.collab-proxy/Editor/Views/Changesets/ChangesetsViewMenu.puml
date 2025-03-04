@@ -1,0 +1,7 @@
+@startuml
+class ChangesetsViewMenu {
+}
+interface IMenuOperations {
+}
+ChangesetsViewMenu +-- IMenuOperations
+@enduml

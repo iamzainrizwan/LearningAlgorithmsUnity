@@ -1,0 +1,22 @@
+@startuml
+class "PropertyFetcher`1"<T> <<sealed>> {
+    + PropertyFetcher(obj:SerializedObject)
+    + Find(str:string) : SerializedProperty
+    + Find(expr:Expression<Func<T, TValue>>) : SerializedProperty
+    + Dispose() : void
+}
+class "RelativePropertyFetcher`1"<T> <<sealed>> {
+    + RelativePropertyFetcher(obj:SerializedProperty)
+    + Find(str:string) : SerializedProperty
+    + Find(expr:Expression<Func<T, TValue>>) : SerializedProperty
+    + Dispose() : void
+}
+class PropertyFetcherExtensions <<static>> {
+    + {static} Find(obj:SerializedObject, expr:Expression<Func<TSource, TValue>>) : SerializedProperty
+    + {static} Find(obj:SerializedProperty, expr:Expression<Func<TSource, TValue>>) : SerializedProperty
+}
+IDisposable <|-- "PropertyFetcher`1"
+"PropertyFetcher`1" --> "obj" SerializedObject
+IDisposable <|-- "RelativePropertyFetcher`1"
+"RelativePropertyFetcher`1" --> "obj" SerializedProperty
+@enduml

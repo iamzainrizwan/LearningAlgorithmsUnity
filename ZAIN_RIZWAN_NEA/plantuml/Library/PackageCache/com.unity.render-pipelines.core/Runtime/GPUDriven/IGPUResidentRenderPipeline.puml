@@ -1,0 +1,17 @@
+@startuml
+enum GPUResidentDrawerMode {
+    Disabled,
+    InstancedDrawing,
+}
+struct GPUResidentDrawerSettings {
+    + supportDitheringCrossFade : bool
+    + enableOcclusionCulling : bool
+    + allowInEditMode : bool
+    + smallMeshScreenPercentage : float
+}
+interface IGPUResidentRenderPipeline {
+}
+GPUResidentDrawerSettings --> "mode" GPUResidentDrawerMode
+GPUResidentDrawerSettings --> "errorShader" Shader
+GPUResidentDrawerSettings --> "loadingShader" Shader
+@enduml

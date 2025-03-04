@@ -1,0 +1,10 @@
+@startuml
+class DataStreamExtensions <<static>> {
+    + {static} <<unsafe>> Create(data:byte*, length:int) : DataStreamWriter
+    + {static} <<unsafe>> WriteBytesUnsafe(writer:DataStreamWriter, data:byte*, bytes:int) : bool
+    + {static} <<unsafe>> ReadBytesUnsafe(reader:DataStreamReader, data:byte*, length:int) : void
+    + {static} <<unsafe>> ReadFixedStringUnsafe(reader:DataStreamReader, data:byte*, maxLength:int) : ushort
+    + {static} <<unsafe>> ReadPackedFixedStringDeltaUnsafe(reader:DataStreamReader, data:byte*, maxLength:int, baseData:byte*, baseLength:ushort, model:StreamCompressionModel) : ushort
+    + {static} <<unsafe>> GetUnsafeReadOnlyPtr(reader:DataStreamReader) : void*
+}
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class ConcreteGraphic {
+    + <<override>> ToString() : string
+}
+Graphic <|-- ConcreteGraphic
+@enduml

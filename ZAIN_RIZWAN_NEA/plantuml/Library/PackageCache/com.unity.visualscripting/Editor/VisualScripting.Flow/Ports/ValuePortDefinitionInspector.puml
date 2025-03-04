@@ -1,0 +1,6 @@
+@startuml
+class ValuePortDefinitionInspector {
+    + ValuePortDefinitionInspector(metadata:Metadata)
+}
+UnitPortDefinitionInspector <|-- ValuePortDefinitionInspector
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+class AdvancedProperties <<static>> {
+    + {static}  <<event>> advancedPreferenceChanged : Action<bool> 
+    + {static} enabled : bool <<get>> <<set>>
+    + {static} AddAdvancedPropertiesBoolMenuItem(menu:GenericMenu, hasMoreOptions:Func<bool>, toggleMoreOptions:Action) : void
+    + {static} AddAdvancedPropertiesBoolMenuItem(menu:GenericMenu) : void
+    + {static} BeginGroup(animation:AnimFloat) : bool
+    + {static} EndGroup() : void
+}
+class Keys <<static>> {
+}
+AdvancedProperties +-- Keys
+@enduml

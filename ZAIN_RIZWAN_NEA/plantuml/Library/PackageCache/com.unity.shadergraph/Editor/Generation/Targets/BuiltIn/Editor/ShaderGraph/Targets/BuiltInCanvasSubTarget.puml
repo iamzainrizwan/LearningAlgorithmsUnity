@@ -1,0 +1,18 @@
+@startuml
+class BuiltInCanvasSubTarget {
+    + BuiltInCanvasSubTarget()
+    + <<override>> saveContext : object <<get>>
+    + <<override>> IsActive() : bool
+    + <<override>> Setup(context:TargetSetupContext) : void
+    + <<override>> GetActiveBlocks(context:TargetActiveBlockContext) : void
+    + <<override>> GetFields(context:TargetFieldContext) : void
+    + <<override>> GetPropertiesGUI(context:TargetPropertyGUIContext, onChange:Action, registerUndo:Action<string>) : void
+}
+class "CanvasSubTarget`1"<T> {
+}
+class "IRequiresData`1"<T> {
+}
+"CanvasSubTarget`1" "<BuiltInTarget>" <|-- BuiltInCanvasSubTarget
+"IRequiresData`1" "<CanvasData>" <|-- BuiltInCanvasSubTarget
+IHasMetadata <|-- BuiltInCanvasSubTarget
+@enduml

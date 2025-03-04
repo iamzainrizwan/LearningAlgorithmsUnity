@@ -1,0 +1,14 @@
+@startuml
+class DecalSettings {
+    + <<override>> OnInspectorGUI() : void
+}
+struct Styles {
+}
+Editor <|-- DecalSettings
+DecalSettings +-- Styles
+Styles o-> "Technique" GUIContent
+Styles o-> "MaxDrawDistance" GUIContent
+Styles o-> "UseRenderingLayers" GUIContent
+Styles o-> "SurfaceData" GUIContent
+Styles o-> "NormalBlend" GUIContent
+@enduml

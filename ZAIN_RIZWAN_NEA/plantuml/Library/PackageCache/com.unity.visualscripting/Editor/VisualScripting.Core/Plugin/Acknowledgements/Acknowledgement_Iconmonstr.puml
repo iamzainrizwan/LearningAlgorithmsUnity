@@ -1,0 +1,10 @@
+@startuml
+class Acknowledgement_Iconmonstr {
+    + Acknowledgement_Iconmonstr(plugin:Plugin)
+    + <<override>> title : string <<get>>
+    + <<override>> author : string <<get>>
+    + <<override>> url : string <<get>>
+    + <<override>> licenseText : string <<get>>
+}
+PluginAcknowledgement <|-- Acknowledgement_Iconmonstr
+@enduml

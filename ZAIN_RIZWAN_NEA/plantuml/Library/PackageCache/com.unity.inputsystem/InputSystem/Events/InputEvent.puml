@@ -1,0 +1,14 @@
+@startuml
+struct InputEvent {
+    + <<const>> InvalidEventId : int = 0
+    + sizeInBytes : uint <<get>> <<set>>
+    + eventId : int <<get>> <<set>>
+    + deviceId : int <<get>> <<set>>
+    + time : double <<get>> <<set>>
+    + InputEvent(type:FourCC, sizeInBytes:int, deviceId:int, time:double)
+    + handled : bool <<get>> <<set>>
+    + <<override>> ToString() : string
+    + {static} <<unsafe>> Equals(first:InputEvent*, second:InputEvent*) : bool
+}
+InputEvent --> "type" FourCC
+@enduml

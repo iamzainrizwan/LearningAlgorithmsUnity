@@ -1,0 +1,9 @@
+@startuml
+class LookDev <<static>> {
+    + {static} open : bool <<get>>
+    + {static} supported : bool <<get>>
+    + {static} ResetConfig() : void
+    + {static} Open() : void
+    + {static} Close() : void
+}
+@enduml

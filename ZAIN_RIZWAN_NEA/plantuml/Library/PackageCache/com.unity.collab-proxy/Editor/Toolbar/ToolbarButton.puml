@@ -1,0 +1,8 @@
+@startuml
+class ToolbarBootstrap <<static>> {
+}
+class ToolbarButton {
+    + <<override>> OnGUI(rect:Rect) : void
+}
+SubToolbar <|-- ToolbarButton
+@enduml

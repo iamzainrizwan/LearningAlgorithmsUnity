@@ -1,0 +1,16 @@
+@startuml
+class SetMember <<sealed>> {
+    + SetMember()
+    + SetMember(member:Member)
+    + chainable : bool <<get>> <<set>>
+    + supportsChaining : bool <<get>>
+    + <<override>> GetAnalyticsIdentifier() : AnalyticsIdentifier
+}
+MemberUnit <|-- SetMember
+SetMember --> "setter" Member
+SetMember --> "assign" ControlInput
+SetMember --> "input" ValueInput
+SetMember --> "output" ValueOutput
+SetMember --> "targetOutput" ValueOutput
+SetMember --> "assigned" ControlOutput
+@enduml

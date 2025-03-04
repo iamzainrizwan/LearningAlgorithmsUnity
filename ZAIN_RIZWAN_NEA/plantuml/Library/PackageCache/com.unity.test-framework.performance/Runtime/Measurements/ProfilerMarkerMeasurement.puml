@@ -1,0 +1,8 @@
+@startuml
+class ProfilerMarkerMeasurement {
+    + AddProfilerSampleGroup(sampleGroups:IEnumerable<SampleGroup>) : void
+    + StopAndSampleRecorders() : void
+    + Update() : void
+}
+MonoBehaviour <|-- ProfilerMarkerMeasurement
+@enduml

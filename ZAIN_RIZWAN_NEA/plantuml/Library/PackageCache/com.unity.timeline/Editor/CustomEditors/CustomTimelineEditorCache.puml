@@ -1,0 +1,18 @@
+@startuml
+class CustomTimelineEditorCache {
+    + {static} GetEditorForType(type:Type) : TEditorClass
+    + {static} ClearCache() : void
+    + {static} GetClipEditor(clip:TimelineClip) : ClipEditor
+    + {static} GetDefaultClipEditor() : ClipEditor
+    + {static} GetTrackEditor(track:TrackAsset) : TrackEditor
+    + {static} GetDefaultTrackEditor() : TrackEditor
+    + {static} GetMarkerEditor(marker:IMarker) : MarkerEditor
+    + {static} GetDefaultMarkerEditor() : MarkerEditor
+}
+class "SubClassCache`1"<TEditorClass> <<static>> {
+    + {static} DefaultInstance : TEditorClass <<get>>
+    + {static} GetEditorForType(type:Type) : TEditorClass
+    + {static} Clear() : void
+}
+CustomTimelineEditorCache +-- "SubClassCache`1"
+@enduml

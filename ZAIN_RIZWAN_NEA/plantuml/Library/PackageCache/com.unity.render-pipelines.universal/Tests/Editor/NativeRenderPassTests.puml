@@ -1,0 +1,20 @@
+@startuml
+class NativeRenderPassTests {
+    + OneTimeSetup() : void
+    + Setup() : void
+    + TearDown() : void
+    + OneTimeTearDown() : void
+    + InitializeRenderPassQueue(renderer:ScriptableRenderer, count:int) : void
+    + UnderLimitRenderPassInNRP() : void
+    + OverLimitRenderPassInNRP() : void
+}
+class TestHelper {
+    + TestHelper()
+}
+class TestRenderPassUseNRP {
+    + TestRenderPassUseNRP()
+}
+NativeRenderPassTests +-- TestHelper
+NativeRenderPassTests +-- TestRenderPassUseNRP
+ScriptableRenderPass <|-- TestRenderPassUseNRP
+@enduml

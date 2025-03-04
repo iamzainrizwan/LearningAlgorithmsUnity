@@ -1,0 +1,7 @@
+@startuml
+class InvalidOperatorException <<sealed>> {
+    + InvalidOperatorException(symbol:string, type:Type)
+    + InvalidOperatorException(symbol:string, leftType:Type, rightType:Type)
+}
+OperatorException <|-- InvalidOperatorException
+@enduml

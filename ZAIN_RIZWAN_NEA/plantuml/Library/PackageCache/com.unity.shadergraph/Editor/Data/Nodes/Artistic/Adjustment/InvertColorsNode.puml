@@ -1,0 +1,18 @@
+@startuml
+class InvertColorsNode {
+    + InvertColorsNode()
+    + <<override>> hasPreview : bool <<get>>
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + <<override>> CollectPreviewMaterialProperties(properties:List<PreviewProperty>) : void
+    + <<override>> CollectShaderProperties(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + GenerateNodeFunction(registry:FunctionRegistry, generationMode:GenerationMode) : void
+}
+AbstractMaterialNode <|-- InvertColorsNode
+IGeneratesBodyCode <|-- InvertColorsNode
+IGeneratesFunction <|-- InvertColorsNode
+InvertColorsNode --> "redChannel" ToggleData
+InvertColorsNode --> "greenChannel" ToggleData
+InvertColorsNode --> "blueChannel" ToggleData
+InvertColorsNode --> "alphaChannel" ToggleData
+@enduml

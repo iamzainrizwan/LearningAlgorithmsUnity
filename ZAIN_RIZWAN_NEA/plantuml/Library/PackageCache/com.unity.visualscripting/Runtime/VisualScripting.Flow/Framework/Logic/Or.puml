@@ -1,0 +1,9 @@
+@startuml
+class Or <<sealed>> {
+    + Operation(flow:Flow) : bool
+}
+Unit <|-- Or
+Or --> "a" ValueInput
+Or --> "b" ValueInput
+Or --> "result" ValueOutput
+@enduml

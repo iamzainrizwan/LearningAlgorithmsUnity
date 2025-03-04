@@ -1,0 +1,38 @@
+@startuml
+class FontDataDrawer {
+    + <<override>> GetPropertyHeight(property:SerializedProperty, label:GUIContent) : float
+    + <<override>> OnGUI(position:Rect, property:SerializedProperty, label:GUIContent) : void
+}
+class Styles <<static>> {
+}
+enum VerticalTextAligment {
+    Top,
+    Middle,
+    Bottom,
+}
+enum HorizontalTextAligment {
+    Left,
+    Center,
+    Right,
+}
+PropertyDrawer <|-- FontDataDrawer
+FontDataDrawer +-- Styles
+Styles o-> "alignmentButtonLeft" GUIStyle
+Styles o-> "alignmentButtonMid" GUIStyle
+Styles o-> "alignmentButtonRight" GUIStyle
+Styles --> "m_EncodingContent" GUIContent
+Styles --> "m_LeftAlignText" GUIContent
+Styles --> "m_CenterAlignText" GUIContent
+Styles --> "m_RightAlignText" GUIContent
+Styles --> "m_TopAlignText" GUIContent
+Styles --> "m_MiddleAlignText" GUIContent
+Styles --> "m_BottomAlignText" GUIContent
+Styles --> "m_LeftAlignTextActive" GUIContent
+Styles --> "m_CenterAlignTextActive" GUIContent
+Styles --> "m_RightAlignTextActive" GUIContent
+Styles --> "m_TopAlignTextActive" GUIContent
+Styles --> "m_MiddleAlignTextActive" GUIContent
+Styles --> "m_BottomAlignTextActive" GUIContent
+FontDataDrawer +-- VerticalTextAligment
+FontDataDrawer +-- HorizontalTextAligment
+@enduml

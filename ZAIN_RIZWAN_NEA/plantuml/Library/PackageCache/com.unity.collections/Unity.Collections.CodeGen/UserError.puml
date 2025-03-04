@@ -1,0 +1,9 @@
+@startuml
+class InternalCompilerError <<static>> {
+    + {static} DCICE300(producerReference:TypeReference, jobStructType:TypeReference, ex:Exception) : DiagnosticMessage
+}
+class UserError <<static>> {
+    + {static} DC3001(type:TypeReference) : DiagnosticMessage
+    + {static} MakeError(errorCode:string, messageData:string) : DiagnosticMessage
+}
+@enduml

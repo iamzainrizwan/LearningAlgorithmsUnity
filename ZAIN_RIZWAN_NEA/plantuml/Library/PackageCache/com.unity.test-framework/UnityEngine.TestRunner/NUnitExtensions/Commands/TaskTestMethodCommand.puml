@@ -1,0 +1,9 @@
+@startuml
+class TaskTestMethodCommand {
+    + TaskTestMethodCommand(testMethod:TestMethod)
+    + ExecuteEnumerable(context:ITestExecutionContext) : IEnumerable
+    + <<override>> Execute(context:ITestExecutionContext) : TestResult
+}
+TestCommand <|-- TaskTestMethodCommand
+IEnumerableTestMethodCommand <|-- TaskTestMethodCommand
+@enduml

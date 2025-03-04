@@ -1,0 +1,6 @@
+@startuml
+enum StateGraphContainerType {
+    GameObject,
+    StateMachine,
+}
+@enduml

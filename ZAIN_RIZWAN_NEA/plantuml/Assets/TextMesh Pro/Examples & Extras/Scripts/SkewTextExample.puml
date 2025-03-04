@@ -1,0 +1,8 @@
+@startuml
+class SkewTextExample {
+    + CurveScale : float = 1.0f
+    + ShearAmount : float = 1.0f
+}
+MonoBehaviour <|-- SkewTextExample
+SkewTextExample o-> "VertexCurve" AnimationCurve
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class GraphOutputInspector {
+    + GraphOutputInspector(metadata:Metadata)
+}
+Inspector <|-- GraphOutputInspector
+@enduml

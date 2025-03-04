@@ -1,0 +1,7 @@
+@startuml
+class FileUtilities <<static>> {
+    + {static} WriteShaderGraphToDisk(path:string, data:GraphData) : string
+    + {static} WriteToDisk(path:string, text:string) : bool
+    + {static} SafeReadAllText(assetPath:string) : string
+}
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+class TestResultSerializer {
+    + id : string
+    + fullName : string
+    + uniqueName : string
+    + {static} MakeFromTestResult(result:ITestResult) : TestResultSerializer
+    + RestoreTestResult(result:TestResult) : void
+    + IsPassed() : bool
+}
+@enduml

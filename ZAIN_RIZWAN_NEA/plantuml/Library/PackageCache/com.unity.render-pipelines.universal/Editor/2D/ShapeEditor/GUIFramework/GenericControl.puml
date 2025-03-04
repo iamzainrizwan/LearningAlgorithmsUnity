@@ -1,0 +1,26 @@
+@startuml
+class GenericControl {
+    + GenericControl(name:string)
+}
+class "Func`2"<T1,T2> {
+}
+class "Action`1"<T> {
+}
+class "Action`3"<T1,T2,T3> {
+}
+class "Func`1"<T> {
+}
+class "Func`3"<T1,T2,T3> {
+}
+Control <|-- GenericControl
+GenericControl o-> "onBeginLayout<IGUIState,LayoutData>" "Func`2"
+GenericControl o-> "onEndLayout<IGUIState>" "Action`1"
+GenericControl --> "onRepaint<IGUIState,Control,int>" "Action`3"
+GenericControl --> "count<int>" "Func`1"
+GenericControl --> "position<int,Vector3>" "Func`2"
+GenericControl --> "distance<IGUIState,int,float>" "Func`3"
+GenericControl --> "forward<int,Vector3>" "Func`2"
+GenericControl --> "up<int,Vector3>" "Func`2"
+GenericControl --> "right<int,Vector3>" "Func`2"
+GenericControl o-> "userData<int,object>" "Func`2"
+@enduml

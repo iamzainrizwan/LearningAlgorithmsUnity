@@ -1,0 +1,4 @@
+@startuml
+interface "IConnection`2"<out TSource,out TDestination> {
+}
+@enduml

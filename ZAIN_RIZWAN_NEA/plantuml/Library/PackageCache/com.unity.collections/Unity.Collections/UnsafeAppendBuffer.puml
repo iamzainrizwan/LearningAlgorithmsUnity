@@ -1,0 +1,37 @@
+@startuml
+struct UnsafeAppendBuffer {
+    + Length : int
+    + Capacity : int
+    + <<readonly>> Alignment : int
+    + UnsafeAppendBuffer(initialCapacity:int, alignment:int, allocator:AllocatorManager.AllocatorHandle)
+    + UnsafeAppendBuffer(ptr:void*, length:int)
+    + <<readonly>> IsEmpty : bool <<get>>
+    + <<readonly>> IsCreated : bool <<get>>
+    + Dispose() : void
+    + Dispose(inputDeps:JobHandle) : JobHandle
+    + Reset() : void
+    + SetCapacity(capacity:int) : void
+    + ResizeUninitialized(length:int) : void
+    + Add(value:T) : void
+    + Add(ptr:void*, structSize:int) : void
+    + AddArray(ptr:void*, length:int) : void
+    + Add(value:NativeArray<T>) : void
+    + Pop() : T
+    + Pop(ptr:void*, structSize:int) : void
+    + AsReader() : Reader
+}
+struct Reader {
+    + <<readonly>> Size : int
+    + Offset : int
+    + Reader(buffer:UnsafeAppendBuffer)
+    + Reader(ptr:void*, length:int)
+    + EndOfBuffer : bool <<get>>
+    + ReadNext(value:T) : void
+    + ReadNext() : T
+    + ReadNext(structSize:int) : void*
+    + ReadNext(value:NativeArray<T>, allocator:AllocatorManager.AllocatorHandle) : void
+    + ReadNextArray(length:int) : void*
+}
+INativeDisposable <|-- UnsafeAppendBuffer
+UnsafeAppendBuffer +-- Reader
+@enduml

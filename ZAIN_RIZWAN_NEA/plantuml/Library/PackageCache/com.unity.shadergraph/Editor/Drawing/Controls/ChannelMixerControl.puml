@@ -1,0 +1,12 @@
+@startuml
+class ChannelMixerControlAttribute {
+    + ChannelMixerControlAttribute(label:string, minimum:float, maximum:float)
+    + InstantiateControl(node:AbstractMaterialNode, propertyInfo:PropertyInfo) : VisualElement
+}
+class ChannelMixerControlView {
+    + ChannelMixerControlView(label:string, minimum:float, maximum:float, node:AbstractMaterialNode, propertyInfo:PropertyInfo)
+}
+Attribute <|-- ChannelMixerControlAttribute
+IControlAttribute <|-- ChannelMixerControlAttribute
+VisualElement <|-- ChannelMixerControlView
+@enduml

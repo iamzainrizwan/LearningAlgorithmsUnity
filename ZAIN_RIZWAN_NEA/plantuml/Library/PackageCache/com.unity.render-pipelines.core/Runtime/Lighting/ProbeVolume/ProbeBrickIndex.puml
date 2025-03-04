@@ -1,0 +1,31 @@
+@startuml
+class ProbeBrickIndex {
+    + GetRemainingChunkCount() : int
+    + AddBricks(cellInfo:CellIndexInfo, bricks:NativeArray<Brick>, allocations:List<Chunk>, allocationSize:int, poolWidth:int, poolHeight:int) : void
+    + RemoveBricks(cellInfo:CellIndexInfo) : void
+}
+struct Brick {
+    + subdivisionLevel : int
+    + Equals(other:Brick) : bool
+    + IntersectArea(boundInBricksToCheck:Bounds) : bool
+}
+struct IndirectionEntryUpdateInfo {
+    + firstChunkIndex : int
+    + numberOfChunks : int
+    + minSubdivInCell : int
+    + hasOnlyBiggerBricks : bool
+}
+struct CellIndexUpdateInfo {
+    + GetNumberOfChunks() : int
+}
+class "IEquatable`1"<T> {
+}
+ProbeBrickIndex +-- Brick
+"IEquatable`1" "<Brick>" <|-- Brick
+Brick --> "position" Vector3Int
+ProbeBrickIndex +-- IndirectionEntryUpdateInfo
+IndirectionEntryUpdateInfo --> "minValidBrickIndexForCellAtMaxRes" Vector3Int
+IndirectionEntryUpdateInfo --> "maxValidBrickIndexForCellAtMaxResPlusOne" Vector3Int
+IndirectionEntryUpdateInfo --> "entryPositionInBricksAtMaxRes" Vector3Int
+ProbeBrickIndex +-- CellIndexUpdateInfo
+@enduml

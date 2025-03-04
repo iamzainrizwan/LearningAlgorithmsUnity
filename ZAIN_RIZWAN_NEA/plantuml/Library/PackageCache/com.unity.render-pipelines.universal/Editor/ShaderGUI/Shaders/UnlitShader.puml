@@ -1,0 +1,9 @@
+@startuml
+class UnlitShader {
+    + <<override>> ValidateMaterial(material:Material) : void
+    + <<override>> DrawSurfaceOptions(material:Material) : void
+    + <<override>> DrawSurfaceInputs(material:Material) : void
+    + <<override>> AssignNewShaderToMaterial(material:Material, oldShader:Shader, newShader:Shader) : void
+}
+BaseShaderGUI <|-- UnlitShader
+@enduml

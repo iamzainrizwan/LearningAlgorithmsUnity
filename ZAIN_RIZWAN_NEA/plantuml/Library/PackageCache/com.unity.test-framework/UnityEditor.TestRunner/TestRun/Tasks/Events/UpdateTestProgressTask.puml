@@ -1,0 +1,7 @@
+@startuml
+class UpdateTestProgressTask {
+    + UpdateTestProgressTask()
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- UpdateTestProgressTask
+@enduml

@@ -1,0 +1,68 @@
+@startuml
+class Activation {
+    + <<virtual>> DoActivation(x:float) : float
+    + <<virtual>> DoActivationArray(x:NDArray) : NDArray
+    + <<virtual>> DerivativeActivationArray(x:NDArray, outputs:NDArray) : NDArray
+}
+class ReLU {
+    + <<override>> DoActivation(x:float) : float
+    + <<override>> DoActivationArray(x:NDArray) : NDArray
+    + <<override>> DerivativeActivationArray(x:NDArray, outputs:NDArray) : NDArray
+}
+class Softmax {
+    + <<override>> DoActivationArray(x:NDArray) : NDArray
+    + <<override>> DerivativeActivationArray(x:NDArray, outputs:NDArray) : NDArray
+}
+class LReLU {
+    + <<override>> DoActivation(x:float) : float
+    + <<override>> DerivativeActivationArray(x:NDArray, outputs:NDArray) : NDArray
+    + <<override>> DoActivationArray(x:NDArray) : NDArray
+}
+class Sigmoid {
+    + <<override>> DoActivation(x:float) : float
+}
+class Tanh {
+    + <<override>> DoActivation(x:float) : float
+}
+class FCLayer {
+    + FCLayer(inputSizeInput:int, outputSizeInput:int, activationInput:Activation)
+    + inputSize : int <<get>>
+    + outputSize : int <<get>>
+    + Forward(X:NDArray) : NDArray
+    + Backward(dValues:NDArray, lr:float, t:int) : NDArray
+}
+class CreateModel {
+    + inputSize : int <<get>> <<set>>
+    + outputSize : int <<get>> <<set>>
+    + CreateModel(inputSizeInput:int, outputSizeInput:int, hiddenSizesInput:int[])
+    + Forward(inputs:NDArray) : NDArray
+    + Train(inputs:NDArray, targets:NDArray, nEpochs:int, initialLr:float, decay:float) : void
+}
+class PPOModel {
+    + PPOModel(inputSize:int, outputSize:int, hiddenSizes:int[])
+}
+class DQNModel {
+    + DQNModel(inputSize:int, outputSize:int, hiddenSizes:int[])
+}
+class TFPPOModel {
+    + inDim : int
+    + outDim : int
+    + TFPPOModel(inDimInputs:int, outDimInputs:int, hiddenDimInputs:int[])
+    + forward(inputs:NDArray) : NDArray
+}
+Activation <|-- ReLU
+Activation <|-- Softmax
+Activation <|-- LReLU
+Activation <|-- Sigmoid
+Activation <|-- Tanh
+FCLayer --> "activation" Activation
+FCLayer --> "weights" NDArray
+FCLayer --> "dWeights" NDArray
+FCLayer --> "output" NDArray
+CreateModel --> "layer1" FCLayer
+CreateModel --> "layer2" FCLayer
+CreateModel --> "layer3" FCLayer
+CreateModel <|-- PPOModel
+CreateModel <|-- DQNModel
+Module <|-- TFPPOModel
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class BoltUnityEvent <<sealed>> {
+}
+class "MachineEventUnit`1"<T> {
+}
+"MachineEventUnit`1" "<string>" <|-- BoltUnityEvent
+BoltUnityEvent --> "name" ValueInput
+@enduml

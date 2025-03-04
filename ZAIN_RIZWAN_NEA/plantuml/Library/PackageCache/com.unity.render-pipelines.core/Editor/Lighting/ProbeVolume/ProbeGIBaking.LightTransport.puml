@@ -1,0 +1,116 @@
+@startuml
+class AdaptiveProbeVolumes <<partial>> {
+}
+class "List`1"<T> {
+}
+abstract class LightingBaker {
+    + <<virtual>> isThreadSafe : bool <<get>>
+    + {static} cancel : bool <<get>> <<internal set>>
+    + {abstract} currentStep : ulong <<get>>
+    + {abstract} stepCount : ulong <<get>>
+    + {abstract} Initialize(bakeProbeOcclusion:bool, probePositions:NativeArray<Vector3>) : void
+    + {abstract} Initialize(bakeProbeOcclusion:bool, probePositions:NativeArray<Vector3>, bakedRenderingLayerMasks:NativeArray<uint>) : void
+    + {abstract} Step() : bool
+    + {abstract} Dispose() : void
+}
+class DefaultLightTransport {
+    + <<override>> isThreadSafe : bool <<get>>
+    + <<override>> currentStep : ulong <<get>>
+    + <<override>> stepCount : ulong <<get>>
+    + <<override>> Initialize(bakeProbeOcclusion:bool, probePositions:NativeArray<Vector3>) : void
+    + <<override>> Initialize(bakeProbeOcclusion:bool, probePositions:NativeArray<Vector3>, bakedRenderingLayerMasks:NativeArray<uint>) : void
+    + <<override>> Step() : bool
+    + <<override>> Dispose() : void
+}
+struct BakeJob {
+    + startOffset : int
+    + probeCount : int
+    + directSampleCount : int
+    + indirectSampleCount : int
+    + validitySampleCount : int
+    + occlusionSampleCount : int
+    + maxBounces : int
+    + skyOcclusionBakingSamples : int
+    + skyOcclusionBakingBounces : int
+    + indirectScale : float
+    + ignoreEnvironement : bool
+    + currentStep : ulong <<get>>
+    + stepCount : ulong <<get>>
+    + Create(bakingSet:ProbeVolumeBakingSet, lightingSettings:LightingSettings, ignoreEnvironement:bool) : void
+    + Contains(point:Vector3) : bool
+    + Dispose() : void
+}
+struct BakeContext {
+    + allocatedBuffers : bool
+    + isCreated : bool <<get>>
+    + {static} New(input:InputExtraction.BakeInput, probePositions:NativeArray<Vector3>, bakeProbeOcclusion:bool) : BakeContext
+    + Bake(job:BakeJob, irradianceResults:NativeArray<SphericalHarmonicsL2>, validityResults:NativeArray<float>, occlusionResults:NativeArray<Vector4>) : bool
+    + Dispose() : void
+}
+struct APVRTContext {
+    + BindSamplingTextures(cmd:CommandBuffer) : void
+    + TryGetMeshForAccelerationStructure(renderer:Renderer, mesh:Mesh) : bool
+    + Dispose() : void
+}
+class "NativeArray`1"<T> {
+}
+class LightTransportBakingProfiling {
+    + LightTransportBakingProfiling(stage:Stages)
+    + <<override>> GetLastStep() : Stages
+    + {static} GetProgressRange(progress0:float, progress1:float) : void
+    + Dispose() : void
+}
+class "BakingProfiling`1"<T> {
+}
+enum Stages {
+    BakeGI,
+    IntegrateDirectRadiance,
+    IntegrateIndirectRadiance,
+    IntegrateValidity,
+    IntegrateOcclusion,
+    Postprocess,
+    ReadBack,
+    None,
+}
+AdaptiveProbeVolumes +-- LightingBaker
+IDisposable <|-- LightingBaker
+LightingBaker --> "irradiance<SphericalHarmonicsL2>" "NativeArray`1"
+LightingBaker --> "validity<float>" "NativeArray`1"
+LightingBaker --> "occlusion<Vector4>" "NativeArray`1"
+AdaptiveProbeVolumes +-- DefaultLightTransport
+LightingBaker <|-- DefaultLightTransport
+DefaultLightTransport --> "irradianceResults<SphericalHarmonicsL2>" "NativeArray`1"
+DefaultLightTransport --> "validityResults<float>" "NativeArray`1"
+DefaultLightTransport --> "occlusionResults<Vector4>" "NativeArray`1"
+DefaultLightTransport --> "irradiance<SphericalHarmonicsL2>" "NativeArray`1"
+DefaultLightTransport --> "validity<float>" "NativeArray`1"
+DefaultLightTransport --> "occlusion<Vector4>" "NativeArray`1"
+AdaptiveProbeVolumes +-- BakeJob
+BakeJob --> "aabb" Bounds
+BakeJob --> "touchup" ProbeAdjustmentVolume
+BakeJob --> "progress" BakeProgressState
+AdaptiveProbeVolumes +-- BakeContext
+BakeContext --> "ctx" IDeviceContext
+BakeContext --> "integrator" IProbeIntegrator
+BakeContext --> "world" IWorld
+BakeContext --> "postProcessor" IProbePostProcessor
+BakeContext --> "positionsBufferID" BufferID
+BakeContext --> "directRadianceBufferId" BufferID
+BakeContext --> "indirectRadianceBufferId" BufferID
+BakeContext --> "validityBufferId" BufferID
+BakeContext --> "perProbeLightIndicesId" BufferID
+BakeContext --> "occlusionBufferId" BufferID
+BakeContext --> "windowedDirectSHBufferId" BufferID
+BakeContext --> "boostedIndirectSHBufferId" BufferID
+BakeContext --> "combinedSHBufferId" BufferID
+BakeContext --> "irradianceBufferId" BufferID
+AdaptiveProbeVolumes +-- APVRTContext
+APVRTContext --> "context" RayTracingContext
+APVRTContext --> "shaderVO" IRayTracingShader
+APVRTContext --> "shaderSO" IRayTracingShader
+APVRTContext --> "shaderRL" IRayTracingShader
+BakeContext +-- LightTransportBakingProfiling
+"BakingProfiling`1" "<LightTransportBakingProfiling.Stages>" <|-- LightTransportBakingProfiling
+IDisposable <|-- LightTransportBakingProfiling
+LightTransportBakingProfiling +-- Stages
+@enduml

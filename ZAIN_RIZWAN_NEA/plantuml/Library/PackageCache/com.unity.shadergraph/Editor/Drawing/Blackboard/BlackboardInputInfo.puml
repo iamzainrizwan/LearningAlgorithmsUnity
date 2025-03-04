@@ -1,0 +1,8 @@
+@startuml
+class BlackboardInputInfo {
+    + priority : float
+    + name : string
+    + BlackboardInputInfo(priority:float, name:string)
+}
+Attribute <|-- BlackboardInputInfo
+@enduml

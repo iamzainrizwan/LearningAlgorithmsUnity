@@ -1,0 +1,39 @@
+@startuml
+enum ScreenSpaceLensFlareResolution {
+    Half= 2,
+    Quarter= 4,
+    Eighth= 8,
+}
+class ScreenSpaceLensFlare {
+    + ScreenSpaceLensFlare()
+    + IsActive() : bool
+    + IsStreaksActive() : bool
+    + IsTileCompatible() : bool
+}
+class ScreenSpaceLensFlareResolutionParameter <<sealed>> {
+    + ScreenSpaceLensFlareResolutionParameter(value:ScreenSpaceLensFlareResolution, overrideState:bool)
+}
+class "VolumeParameter`1"<T> {
+}
+VolumeComponent <|-- ScreenSpaceLensFlare
+IPostProcessComponent <|-- ScreenSpaceLensFlare
+ScreenSpaceLensFlare o-> "intensity" MinFloatParameter
+ScreenSpaceLensFlare o-> "tintColor" ColorParameter
+ScreenSpaceLensFlare o-> "bloomMip" ClampedIntParameter
+ScreenSpaceLensFlare o-> "firstFlareIntensity" MinFloatParameter
+ScreenSpaceLensFlare o-> "secondaryFlareIntensity" MinFloatParameter
+ScreenSpaceLensFlare o-> "warpedFlareIntensity" MinFloatParameter
+ScreenSpaceLensFlare o-> "warpedFlareScale" Vector2Parameter
+ScreenSpaceLensFlare o-> "samples" ClampedIntParameter
+ScreenSpaceLensFlare o-> "sampleDimmer" ClampedFloatParameter
+ScreenSpaceLensFlare o-> "vignetteEffect" ClampedFloatParameter
+ScreenSpaceLensFlare o-> "startingPosition" ClampedFloatParameter
+ScreenSpaceLensFlare o-> "scale" ClampedFloatParameter
+ScreenSpaceLensFlare o-> "streaksIntensity" MinFloatParameter
+ScreenSpaceLensFlare o-> "streaksLength" ClampedFloatParameter
+ScreenSpaceLensFlare o-> "streaksOrientation" FloatParameter
+ScreenSpaceLensFlare o-> "streaksThreshold" ClampedFloatParameter
+ScreenSpaceLensFlare o-> "resolution" ScreenSpaceLensFlareResolutionParameter
+ScreenSpaceLensFlare o-> "chromaticAbberationIntensity" ClampedFloatParameter
+"VolumeParameter`1" "<ScreenSpaceLensFlareResolution>" <|-- ScreenSpaceLensFlareResolutionParameter
+@enduml

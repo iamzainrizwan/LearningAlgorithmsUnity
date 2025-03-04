@@ -1,0 +1,9 @@
+@startuml
+class SerializationExtensions <<static>> {
+    + {static} SelectValue(list:List<JsonRef<T>>) : RefValueEnumerable<T>
+    + {static} SelectValue(list:List<JsonData<T>>) : DataValueEnumerable<T>
+    + {static} AddRange(list:List<JsonRef<T>>, enumerable:IEnumerable<T>) : void
+    + {static} AddRange(list:List<JsonRef<T>>, enumerable:List<T>) : void
+    + {static} AddRange(list:List<T>, enumerable:List<JsonRef<T>>) : void
+}
+@enduml

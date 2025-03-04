@@ -1,0 +1,10 @@
+@startuml
+class LogAssert <<static>> {
+    + {static} Expect(type:LogType, message:string) : void
+    + {static} Expect(type:LogType, message:Regex) : void
+    + {static} Expect(message:string) : void
+    + {static} Expect(message:Regex) : void
+    + {static} NoUnexpectedReceived() : void
+    + {static} ignoreFailingMessages : bool <<get>> <<set>>
+}
+@enduml

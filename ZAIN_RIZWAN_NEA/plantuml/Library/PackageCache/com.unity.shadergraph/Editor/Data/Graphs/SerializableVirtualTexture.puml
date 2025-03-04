@@ -1,0 +1,23 @@
+@startuml
+enum LayerTextureType {
+    Default,
+    NormalTangentSpace,
+    NormalObjectSpace,
+}
+class SerializableVirtualTextureLayer {
+    + layerName : string
+    + layerRefName : string
+    + SerializableVirtualTextureLayer(name:string, refName:string, texture:SerializableTexture)
+    + SerializableVirtualTextureLayer(name:string, texture:SerializableTexture)
+    + SerializableVirtualTextureLayer(other:SerializableVirtualTextureLayer)
+}
+class SerializableVirtualTexture <<sealed>> {
+    + procedural : bool
+}
+class "List`1"<T> {
+}
+SerializableVirtualTextureLayer --> "layerTexture" SerializableTexture
+SerializableVirtualTextureLayer --> "layerTextureType" LayerTextureType
+SerializableVirtualTexture o-> "layers<SerializableVirtualTextureLayer>" "List`1"
+SerializableVirtualTexture --> "shaderDeclaration" HLSLDeclaration
+@enduml

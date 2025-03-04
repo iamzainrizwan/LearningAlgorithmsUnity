@@ -1,0 +1,27 @@
+@startuml
+enum ManipulateEdges {
+    Left,
+    Right,
+    Both,
+}
+class SnapEngine {
+    + {static} displayDebugLayout : bool
+    + SnapEngine(attractable:IAttractable, attractionHandler:IAttractionHandler, manipulateEdges:ManipulateEdges, state:WindowState, mousePosition:Vector2, snappables:IEnumerable<ISnappable>)
+    + {static} GetVisibleSnappables(state:WindowState) : IEnumerable<ISnappable>
+    + Snap(currentMousePosition:Vector2, modifiers:EventModifiers) : void
+    + OnGUI(showLeft:bool, showRight:bool) : void
+}
+class SnapInfo {
+    + time : double <<get>> <<set>>
+    + showSnapHint : bool <<get>> <<set>>
+    + IsInInfluenceZone(currentTime:double, state:WindowState) : bool
+}
+struct TimeBoundaries {
+    + TimeBoundaries(l:double, r:double)
+    + <<readonly>> left : double
+    + <<readonly>> right : double
+    + Translate(d:double) : TimeBoundaries
+}
+SnapEngine +-- SnapInfo
+SnapEngine +-- TimeBoundaries
+@enduml

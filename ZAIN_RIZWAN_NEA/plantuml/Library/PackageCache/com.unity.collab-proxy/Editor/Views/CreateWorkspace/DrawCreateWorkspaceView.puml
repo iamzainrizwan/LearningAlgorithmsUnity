@@ -1,0 +1,7 @@
+@startuml
+class DrawCreateWorkspace <<static>> {
+}
+class ValidationResult {
+}
+DrawCreateWorkspace +-- ValidationResult
+@enduml

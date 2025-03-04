@@ -1,0 +1,6 @@
+@startuml
+class PrefabStageAutoSavingUtil <<static>> {
+    + {static} GetPrefabStageAutoSave() : bool
+    + {static} SetPrefabStageAutoSave(value:bool) : void
+}
+@enduml

@@ -1,0 +1,83 @@
+@startuml
+struct LightUnitSliderUIDescriptor {
+    + LightUnitSliderUIDescriptor(valueRanges:LightUnitSliderUIRange[], sliderDistribution:float[], cautionTooltip:string, unitName:string, hasMarkers:bool, clampValue:bool)
+    + LightUnitSliderUIDescriptor(valueRanges:LightUnitSliderUIRange[], sliderDistribution:float[], belowRangeTooltip:string, aboveRangeTooltip:string, unitName:string, hasMarkers:bool, clampValue:bool)
+    + <<readonly>> belowRangeTooltip : string
+    + <<readonly>> aboveRangeTooltip : string
+    + <<readonly>> unitName : string
+    + <<readonly>> hasMarkers : bool
+    + <<readonly>> clampValue : bool
+}
+struct LightUnitSliderUIRange {
+    + LightUnitSliderUIRange(icon:Texture2D, tooltip:string, value:Vector2)
+    + LightUnitSliderUIRange(icon:Texture2D, tooltip:string, value:Vector2, presetValue:float)
+    + {static} CautionRange(tooltip:string, value:float) : LightUnitSliderUIRange
+    + presetValue : float
+}
+class LightUnitSliderDescriptors <<static>> {
+}
+class LightUnitValueRanges <<static>> {
+}
+class LightUnitSliderDistributions <<static>> {
+}
+class LightUnitIcon <<static>> {
+}
+class LightUnitTooltips <<static>> {
+    + <<const>> k_SunCaution : string = "Higher than Sunlight"
+    + <<const>> k_PunctualCaution : string = "Very high intensity light"
+    + <<const>> k_ExposureBelowCaution : string = "Lower than a moonless scene"
+    + <<const>> k_ExposureAboveCaution : string = "Higher than a sunlit scene"
+    + <<const>> k_TemperatureCaution : string = ""
+    + <<const>> k_LuxBrightSky : string = "High Sun"
+    + <<const>> k_LuxOvercastSky : string = "Cloudy"
+    + <<const>> k_LuxSunriseSunset : string = "Low Sun"
+    + <<const>> k_LuxMoonlight : string = "Moon"
+    + <<const>> k_PunctualExterior : string = "Exterior"
+    + <<const>> k_PunctualInterior : string = "Interior"
+    + <<const>> k_PunctualDecorative : string = "Decorative"
+    + <<const>> k_PunctualCandle : string = "Candle"
+    + <<const>> k_ExposureBrightSky : string = "Sunlit Scene"
+    + <<const>> k_ExposureOvercastSky : string = "Cloudy Scene"
+    + <<const>> k_ExposureSunriseSunset : string = "Low Sun Scene"
+    + <<const>> k_ExposureInterior : string = "Interior Scene"
+    + <<const>> k_ExposureMoonlitSky : string = "Moonlit Scene"
+    + <<const>> k_ExposureMoonlessNight : string = "Moonless Scene"
+    + <<const>> k_TemperatureBlueSky : string = "Blue Sky"
+    + <<const>> k_TemperatureShade : string = "Shade (Clear Sky)"
+    + <<const>> k_TemperatureCloudySky : string = "Cloudy Skylight"
+    + <<const>> k_TemperatureDirectSunlight : string = "Direct Sunlight"
+    + <<const>> k_TemperatureFluorescent : string = "Fluorescent Light"
+    + <<const>> k_TemperatureIncandescent : string = "Incandescent Light"
+    + <<const>> k_TemperatureCandle : string = "Candlelight"
+}
+LightUnitSliderUIDescriptor --> "sliderRange" Vector2
+LightUnitSliderUIRange --> "content" GUIContent
+LightUnitSliderUIRange --> "value" Vector2
+LightUnitSliderDescriptors o-> "LuxDescriptor" LightUnitSliderUIDescriptor
+LightUnitSliderDescriptors o-> "LumenDescriptor" LightUnitSliderUIDescriptor
+LightUnitSliderDescriptors o-> "ExposureDescriptor" LightUnitSliderUIDescriptor
+LightUnitSliderDescriptors o-> "TemperatureDescriptor" LightUnitSliderUIDescriptor
+LightUnitSliderDescriptors +-- LightUnitValueRanges
+LightUnitSliderDescriptors +-- LightUnitSliderDistributions
+LightUnitSliderDescriptors +-- LightUnitIcon
+LightUnitIcon o-> "BlueSky" Texture2D
+LightUnitIcon o-> "ClearSky" Texture2D
+LightUnitIcon o-> "Candlelight" Texture2D
+LightUnitIcon o-> "DecorativeLight" Texture2D
+LightUnitIcon o-> "DirectSunlight" Texture2D
+LightUnitIcon o-> "ExteriorLight" Texture2D
+LightUnitIcon o-> "IntenseAreaLight" Texture2D
+LightUnitIcon o-> "InteriorLight" Texture2D
+LightUnitIcon o-> "MediumAreaLight" Texture2D
+LightUnitIcon o-> "MoonlessNight" Texture2D
+LightUnitIcon o-> "Moonlight" Texture2D
+LightUnitIcon o-> "Overcast" Texture2D
+LightUnitIcon o-> "CloudySky" Texture2D
+LightUnitIcon o-> "SoftAreaLight" Texture2D
+LightUnitIcon o-> "SunriseSunset" Texture2D
+LightUnitIcon o-> "VeryBrightSun" Texture2D
+LightUnitIcon o-> "BrightSky" Texture2D
+LightUnitIcon o-> "Shade" Texture2D
+LightUnitIcon o-> "Fluorescent" Texture2D
+LightUnitSliderDescriptors +-- LightUnitTooltips
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+class TimelineClip <<partial>> {
+}
+enum Versions {
+    Initial= 0,
+    ClipInFromGlobalToLocal= 1,
+}
+class TimelineClipUpgrade <<static>> {
+    + {static} UpgradeClipInFromGlobalToLocal(clip:TimelineClip) : void
+}
+TimelineClip +-- Versions
+TimelineClip +-- TimelineClipUpgrade
+@enduml

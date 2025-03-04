@@ -1,0 +1,21 @@
+@startuml
+class BetterUIController {
+    + screenIndex : int = 0
+    + GraphOverview() : void
+}
+MonoBehaviour <|-- BetterUIController
+BetterUIController --> "nextButton" Button
+BetterUIController --> "backButton" Button
+BetterUIController --> "startButton" Button
+BetterUIController --> "gameManager" GameManager
+BetterUIController --> "panelManager" PanelManager
+BetterUIController --> "statsDrawer" StatsDrawer
+BetterUIController --> "runnerDropdownHandler" dropdownHandler
+BetterUIController --> "taggerDropdownHandler" dropdownHandler
+BetterUIController --> "errorText" TMP_Text
+BetterUIController --> "configControl" GameObject
+BetterUIController --> "statsButton" Button
+BetterUIController --> "pauseButton" Button
+BetterUIController --> "resumeButton" Button
+BetterUIController --> "statsToggleButton" Button
+@enduml

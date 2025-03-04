@@ -1,0 +1,10 @@
+@startuml
+class QuestionViewFactory <<static>> {
+    + {static} CreateOverview(questionnaire:QuestionnaireData, currentQuestionIndex:int) : VisualElement
+    + {static} StandardQuestionHeader(question:Question, inputContainer:VisualElement) : VisualElement
+    + {static} CreateQuestionViewInput(question:Question, answer:AnsweredQuestion, onAnswerChanged:Action<AnsweredQuestion>) : VisualElement
+    + {static} CreateCheckboxes(question:Question, answeredQuestion:AnsweredQuestion, onAnswerChanged:Action<AnsweredQuestion>) : VisualElement
+    + {static} CreateRadio(question:Question, answeredQuestion:AnsweredQuestion, onAnswerChanged:Action<AnsweredQuestion>) : RadioButtonGroup
+    + {static} CreateToggle(question:Question, answeredQuestion:AnsweredQuestion, onAnswerChanged:Action<AnsweredQuestion>) : VisualElement
+}
+@enduml

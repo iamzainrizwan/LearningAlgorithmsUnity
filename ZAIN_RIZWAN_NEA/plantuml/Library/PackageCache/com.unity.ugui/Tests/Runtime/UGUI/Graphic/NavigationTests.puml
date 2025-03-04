@@ -1,0 +1,14 @@
+@startuml
+class NavigationTests {
+    + TestSetup() : void
+    + TearDown() : void
+    + FindSelectableOnRight_ReturnsNextSelectableRightOfTarget() : void
+    + FindSelectableOnLeft_ReturnsNextSelectableLeftOfTarget() : void
+    + FindSelectableOnRDown_ReturnsNextSelectableBelowTarget() : void
+    + FindSelectableOnUp_ReturnsNextSelectableAboveTarget() : void
+    + FindSelectableOnRight__WrappingEnabled_ReturnsFurthestSelectableOnLeft() : void
+    + FindSelectableOnLeft_WrappingEnabled_ReturnsFurthestSelectableOnRight() : void
+    + FindSelectableOnDown_WrappingEnabled_ReturnsFurthestSelectableAbove() : void
+    + FindSelectableOnUp_WrappingEnabled_ReturnsFurthestSelectableBelow() : void
+}
+@enduml

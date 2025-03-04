@@ -1,0 +1,47 @@
+@startuml
+class Shortcuts <<static>> {
+}
+class Clip <<static>> {
+    + <<const>> split : string = "Timeline/Editing/Split"
+    + <<const>> trimStart : string = "Timeline/Editing/TrimStart"
+    + <<const>> trimEnd : string = "Timeline/Editing/TrimEnd"
+}
+class Timeline <<static>> {
+    + <<const>> play : string = "Timeline/Play"
+    + <<const>> previousFrame : string = "Timeline/PrevFrame"
+    + <<const>> nextFrame : string = "Timeline/NextFrame"
+    + <<const>> frameAll : string = "Timeline/FrameAll"
+    + <<const>> previousKey : string = "Timeline/PrevKey"
+    + <<const>> nextKey : string = "Timeline/NextKey"
+    + <<const>> goToStart : string = "Timeline/GotoStart"
+    + <<const>> goToEnd : string = "Timeline/GotoEnd"
+    + <<const>> zoomIn : string = "Timeline/ZoomIn"
+    + <<const>> zoomOut : string = "Timeline/ZoomOut"
+    + <<const>> navigateLeft : string = "Timeline/NavigateLeft"
+    + <<const>> navigateRight : string = "Timeline/NavigateRight"
+    + <<const>> toggleCollapseTrack : string = "Timeline/Toggle Collapse Track"
+    + <<const>> selectLeftItem : string = "Timeline/SelectLeftItem"
+    + <<const>> selectRightItem : string = "Timeline/SelectRightItem"
+    + <<const>> selectUpItem : string = "Timeline/SelectUpItem"
+    + <<const>> selectUpTrack : string = "Timeline/SelectUpTrack"
+    + <<const>> selectDownItem : string = "Timeline/SelectDownItem"
+    + <<const>> selectDownTrack : string = "Timeline/SelectDownTrack"
+    + <<const>> multiSelectLeft : string = "Timeline/SelectLeft"
+    + <<const>> multiSelectRight : string = "Timeline/SelectRight"
+    + <<const>> multiSelectUp : string = "Timeline/SelectUp"
+    + <<const>> multiSelectDown : string = "Timeline/SelectDown"
+    + <<const>> toggleClipTrackArea : string = "Timeline/ToggleClipTrackArea"
+    + <<const>> matchContent : string = "Timeline/MatchContent"
+    + <<const>> toggleLock : string = "Timeline/ToggleLock"
+    + <<const>> toggleMute : string = "Timeline/ToggleMute"
+    + <<const>> collapseTrack : string = "Timeline/Collapse Track"
+    + <<const>> expandTrack : string = "Timeline/Expand Track"
+    + <<const>> moveLeft : string = "Timeline/MoveLeft"
+    + <<const>> moveRight : string = "Timeline/MoveRight"
+    + <<const>> moveUp : string = "Timeline/MoveUp"
+    + <<const>> moveDown : string = "Timeline/MoveDown"
+    + <<const>> keyAllAnimated : string = "Timeline/KeyAllAnimated"
+}
+Shortcuts +-- Clip
+Shortcuts +-- Timeline
+@enduml

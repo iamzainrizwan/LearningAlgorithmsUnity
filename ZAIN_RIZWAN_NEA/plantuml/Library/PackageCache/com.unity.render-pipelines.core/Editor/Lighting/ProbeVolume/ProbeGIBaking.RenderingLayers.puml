@@ -1,0 +1,26 @@
+@startuml
+class AdaptiveProbeVolumes <<partial>> {
+}
+abstract class RenderingLayerBaker {
+    + {abstract} currentStep : ulong <<get>>
+    + {abstract} stepCount : ulong <<get>>
+    + {abstract} Initialize(bakingSet:ProbeVolumeBakingSet, probePositions:NativeArray<Vector3>) : void
+    + {abstract} Step() : bool
+    + {abstract} Dispose() : void
+}
+class DefaultRenderingLayer {
+    + <<override>> currentStep : ulong <<get>>
+    + <<override>> stepCount : ulong <<get>>
+    + <<override>> Initialize(bakingSet:ProbeVolumeBakingSet, positions:NativeArray<Vector3>) : void
+    + <<override>> Step() : bool
+    + <<override>> Dispose() : void
+}
+class "NativeArray`1"<T> {
+}
+AdaptiveProbeVolumes +-- RenderingLayerBaker
+IDisposable <|-- RenderingLayerBaker
+RenderingLayerBaker --> "renderingLayerMasks<uint>" "NativeArray`1"
+AdaptiveProbeVolumes +-- DefaultRenderingLayer
+RenderingLayerBaker <|-- DefaultRenderingLayer
+DefaultRenderingLayer --> "renderingLayerMasks<uint>" "NativeArray`1"
+@enduml

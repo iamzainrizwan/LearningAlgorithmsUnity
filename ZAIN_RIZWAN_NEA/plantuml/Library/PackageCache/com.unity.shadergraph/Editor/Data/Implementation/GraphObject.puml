@@ -1,0 +1,25 @@
+@startuml
+class HandleUndoRedoAction {
+}
+class GraphObject {
+    + isDirty : bool <<get>> <<set>>
+    + <<virtual>> RegisterCompleteObjectUndo(actionName:string) : void
+    + OnBeforeSerialize() : void
+    + OnAfterDeserialize() : void
+    + wasUndoRedoPerformed : bool <<get>>
+    + HandleUndoRedo() : void
+    + Validate() : void
+}
+class "Action`1"<T> {
+}
+class "DataStore`1"<T> {
+}
+IGraphDataAction <|-- HandleUndoRedoAction
+HandleUndoRedoAction --> "modifyGraphDataAction<GraphData>" "Action`1"
+HandleUndoRedoAction --> "newGraphData" GraphData
+ScriptableObject <|-- GraphObject
+ISerializationCallbackReceiver <|-- GraphObject
+GraphObject --> "graphDataStore<GraphData>" "DataStore`1"
+GraphObject --> "graph" GraphData
+GraphObject --> "materialArtifact" Material
+@enduml

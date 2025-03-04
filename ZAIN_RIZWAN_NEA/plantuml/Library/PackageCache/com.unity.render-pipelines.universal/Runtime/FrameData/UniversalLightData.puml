@@ -1,0 +1,18 @@
+@startuml
+class UniversalLightData {
+    + mainLightIndex : int
+    + additionalLightsCount : int
+    + maxPerObjectAdditionalLightsCount : int
+    + shadeAdditionalLightsPerVertex : bool
+    + supportsMixedLighting : bool
+    + reflectionProbeBoxProjection : bool
+    + reflectionProbeBlending : bool
+    + supportsLightLayers : bool
+    + supportsAdditionalLights : bool
+    + <<override>> Reset() : void
+}
+class "NativeArray`1"<T> {
+}
+ContextItem <|-- UniversalLightData
+UniversalLightData --> "visibleLights<VisibleLight>" "NativeArray`1"
+@enduml

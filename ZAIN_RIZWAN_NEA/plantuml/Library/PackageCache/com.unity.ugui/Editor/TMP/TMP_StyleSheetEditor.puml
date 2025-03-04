@@ -1,0 +1,12 @@
+@startuml
+class StyleDrawer {
+    + {static} <<readonly>> height : float = 95f
+    + <<override>> GetPropertyHeight(property:SerializedProperty, label:GUIContent) : float
+    + <<override>> OnGUI(position:Rect, property:SerializedProperty, label:GUIContent) : void
+}
+class TMP_StyleEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+PropertyDrawer <|-- StyleDrawer
+Editor <|-- TMP_StyleEditor
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+class DrawObjectsPass {
+    + m_IsActiveTargetBackBuffer : bool
+    + m_ShouldTransparentsReceiveShadows : bool
+    + DrawObjectsPass(profilerTag:string, shaderTagIds:ShaderTagId[], opaque:bool, evt:RenderPassEvent, renderQueueRange:RenderQueueRange, layerMask:LayerMask, stencilState:StencilState, stencilReference:int)
+    + DrawObjectsPass(profilerTag:string, opaque:bool, evt:RenderPassEvent, renderQueueRange:RenderQueueRange, layerMask:LayerMask, stencilState:StencilState, stencilReference:int)
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+}
+class DrawObjectsWithRenderingLayersPass {
+    + DrawObjectsWithRenderingLayersPass(profilerTag:URPProfileId, opaque:bool, evt:RenderPassEvent, renderQueueRange:RenderQueueRange, layerMask:LayerMask, stencilState:StencilState, stencilReference:int)
+    + Setup(colorAttachment:RTHandle, renderingLayersTexture:RTHandle, depthAttachment:RTHandle) : void
+    + <<override>> Configure(cmd:CommandBuffer, cameraTextureDescriptor:RenderTextureDescriptor) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+}
+class PassData {
+}
+class RenderingLayersPassData {
+    + RenderingLayersPassData()
+}
+ScriptableRenderPass <|-- DrawObjectsPass
+DrawObjectsPass <|-- DrawObjectsWithRenderingLayersPass
+DrawObjectsPass +-- PassData
+DrawObjectsWithRenderingLayersPass +-- RenderingLayersPassData
+@enduml

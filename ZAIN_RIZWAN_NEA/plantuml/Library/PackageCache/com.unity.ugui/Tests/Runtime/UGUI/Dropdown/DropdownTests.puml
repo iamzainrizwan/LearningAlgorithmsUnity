@@ -1,0 +1,13 @@
+@startuml
+class DropdownTests {
+    + Setup() : void
+    + TestSetup() : void
+    + Dropdown_Canvas() : IEnumerator
+    + Dropdown_Canvas_Already_Exists() : IEnumerator
+    + Dropdown_Disable() : IEnumerator
+    + Dropdown_ResetAndClear() : IEnumerator
+    + TearDown() : void
+    + OneTimeTearDown() : void
+}
+IPrebuildSetup <|-- DropdownTests
+@enduml

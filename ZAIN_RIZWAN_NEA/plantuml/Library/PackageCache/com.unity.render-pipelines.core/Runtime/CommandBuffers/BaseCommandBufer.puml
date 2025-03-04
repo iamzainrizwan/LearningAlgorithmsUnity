@@ -1,0 +1,6 @@
+@startuml
+class BaseCommandBuffer {
+    + name : string <<get>>
+    + sizeInBytes : int <<get>>
+}
+@enduml

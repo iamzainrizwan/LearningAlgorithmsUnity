@@ -1,0 +1,17 @@
+@startuml
+class QuickstartCategory {
+}
+class GettingStartedTabView {
+    + Name : string <<get>>
+    + IsEnabled : bool <<get>>
+    + ToolTip : string <<get>>
+    + GettingStartedTabView(name:string)
+    + Refresh() : void
+    + Clear() : void
+    + SetVisible(visible:bool) : void
+}
+QuickstartCategory --> "Category" OnboardingSectionCategory
+ITabView <|-- GettingStartedTabView
+GettingStartedTabView --> "RootVisualElement" VisualElement
+GettingStartedTabView --> "MultiplayerCenterAnalytics" IMultiplayerCenterAnalytics
+@enduml

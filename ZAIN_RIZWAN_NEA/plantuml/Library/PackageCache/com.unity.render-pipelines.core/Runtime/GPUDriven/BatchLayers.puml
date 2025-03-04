@@ -1,0 +1,9 @@
+@startuml
+class BatchLayer {
+    + <<const>> InstanceCullingDirect : byte = 29
+    + <<const>> InstanceCullingIndirect : byte = 28
+    + <<const>> InstanceCullingDirectMask : uint
+    + <<const>> InstanceCullingIndirectMask : uint
+    + <<const>> InstanceCullingMask : uint
+}
+@enduml

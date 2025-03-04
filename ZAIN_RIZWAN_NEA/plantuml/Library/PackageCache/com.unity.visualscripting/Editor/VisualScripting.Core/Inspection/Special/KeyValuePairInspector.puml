@@ -1,0 +1,15 @@
+@startuml
+class KeyValuePairInspector <<sealed>> {
+    + KeyValuePairInspector(metadata:Metadata)
+    + OnKeyGUI(keyPosition:Rect) : void
+    + OnValueGUI(valuePosition:Rect) : void
+}
+class "KeyValuePair`2"<T1,T2> {
+}
+class Styles <<static>> {
+    + {static} <<readonly>> topPadding : float = 2
+    + {static} <<readonly>> spacing : float = 5
+}
+Inspector <|-- KeyValuePairInspector
+KeyValuePairInspector +-- Styles
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+abstract class "DebugDisplayStats`1"<TProfileId> {
+    + {abstract} EnableProfilingRecorders() : void
+    + {abstract} DisableProfilingRecorders() : void
+    + {abstract} RegisterDebugUI(list:List<DebugUI.Widget>) : void
+    + {abstract} Update() : void
+}
+class AccumulatedTiming {
+    + accumulatedValue : float = 0
+    + lastAverage : float = 0
+}
+enum DebugProfilingType {
+    CPU,
+    InlineCPU,
+    GPU,
+}
+"DebugDisplayStats`1" +-- AccumulatedTiming
+"DebugDisplayStats`1" +-- DebugProfilingType
+@enduml

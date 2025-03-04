@@ -1,0 +1,20 @@
+@startuml
+class TabbedPage {
+    + TabbedPage()
+    + UpdateOptions() : void
+    + <<override>> Update() : void
+}
+class "List`1"<T> {
+}
+class Styles <<static>> {
+}
+Page <|-- TabbedPage
+TabbedPage --> "pages<Page>" "List`1"
+TabbedPage --> "currentPage" Page
+TabbedPage +-- Styles
+Styles --> "emptyBackground" GUIStyle
+Styles --> "tabLeft" GUIStyle
+Styles --> "tabMid" GUIStyle
+Styles --> "tabRight" GUIStyle
+Styles --> "tabSingle" GUIStyle
+@enduml

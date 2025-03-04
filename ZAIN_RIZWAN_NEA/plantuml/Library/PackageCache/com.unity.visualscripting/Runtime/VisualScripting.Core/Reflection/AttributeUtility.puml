@@ -1,0 +1,43 @@
+@startuml
+class AttributeUtility <<static>> {
+    + {static} CacheAttributes(element:MemberInfo) : void
+    + {static} HasAttribute(element:MemberInfo, attributeType:Type, inherit:bool) : bool
+    + {static} GetAttribute(element:MemberInfo, attributeType:Type, inherit:bool) : Attribute
+    + {static} GetAttributes(element:MemberInfo, attributeType:Type, inherit:bool) : IEnumerable<Attribute>
+    + {static} HasAttribute(element:MemberInfo, inherit:bool) : bool
+    + {static} GetAttribute(element:MemberInfo, inherit:bool) : TAttribute
+    + {static} GetAttributes(element:MemberInfo, inherit:bool) : IEnumerable<TAttribute>
+    + {static} CacheAttributes(element:ParameterInfo) : void
+    + {static} HasAttribute(element:ParameterInfo, attributeType:Type, inherit:bool) : bool
+    + {static} GetAttribute(element:ParameterInfo, attributeType:Type, inherit:bool) : Attribute
+    + {static} GetAttributes(element:ParameterInfo, attributeType:Type, inherit:bool) : IEnumerable<Attribute>
+    + {static} HasAttribute(element:ParameterInfo, inherit:bool) : bool
+    + {static} GetAttribute(element:ParameterInfo, inherit:bool) : TAttribute
+    + {static} GetAttributes(element:ParameterInfo, inherit:bool) : IEnumerable<TAttribute>
+    + {static} CacheAttributes(element:IAttributeProvider) : void
+    + {static} HasAttribute(element:IAttributeProvider, attributeType:Type, inherit:bool) : bool
+    + {static} GetAttribute(element:IAttributeProvider, attributeType:Type, inherit:bool) : Attribute
+    + {static} GetAttributes(element:IAttributeProvider, attributeType:Type, inherit:bool) : IEnumerable<Attribute>
+    + {static} HasAttribute(element:IAttributeProvider, inherit:bool) : bool
+    + {static} GetAttribute(element:IAttributeProvider, inherit:bool) : TAttribute
+    + {static} GetAttributes(element:IAttributeProvider, inherit:bool) : IEnumerable<TAttribute>
+    + {static} CheckCondition(type:Type, target:object, conditionMemberName:string, fallback:bool) : bool
+    + {static} CheckCondition(target:T, conditionMemberName:string, fallback:bool) : bool
+}
+class AttributeCache {
+    + AttributeCache(element:MemberInfo)
+    + AttributeCache(element:ParameterInfo)
+    + AttributeCache(element:IAttributeProvider)
+    + HasAttribute(attributeType:Type, inherit:bool) : bool
+    + GetAttribute(attributeType:Type, inherit:bool) : Attribute
+    + GetAttributes(attributeType:Type, inherit:bool) : IEnumerable<Attribute>
+    + HasAttribute(inherit:bool) : bool
+    + GetAttribute(inherit:bool) : TAttribute
+    + GetAttributes(inherit:bool) : IEnumerable<TAttribute>
+}
+class "List`1"<T> {
+}
+AttributeUtility +-- AttributeCache
+AttributeCache o-> "inheritedAttributes<Attribute>" "List`1"
+AttributeCache o-> "definedAttributes<Attribute>" "List`1"
+@enduml

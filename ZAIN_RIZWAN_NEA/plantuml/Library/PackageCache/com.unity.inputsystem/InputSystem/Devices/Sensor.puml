@@ -1,0 +1,114 @@
+@startuml
+struct AccelerometerState {
+}
+struct GyroscopeState {
+}
+struct GravityState {
+}
+struct AttitudeState {
+}
+struct LinearAccelerationState {
+}
+class Sensor {
+    + samplingFrequency : float <<get>> <<set>>
+}
+class Accelerometer {
+    + <<override>> MakeCurrent() : void
+}
+class Gyroscope {
+    + <<override>> MakeCurrent() : void
+}
+class GravitySensor {
+    + <<override>> MakeCurrent() : void
+}
+class AttitudeSensor {
+    + <<override>> MakeCurrent() : void
+}
+class LinearAccelerationSensor {
+    + <<override>> MakeCurrent() : void
+}
+class MagneticFieldSensor {
+    + <<override>> MakeCurrent() : void
+}
+class LightSensor {
+    + <<override>> MakeCurrent() : void
+}
+class PressureSensor {
+    + <<override>> MakeCurrent() : void
+}
+class ProximitySensor {
+    + <<override>> MakeCurrent() : void
+}
+class HumiditySensor {
+    + <<override>> MakeCurrent() : void
+}
+class AmbientTemperatureSensor {
+    + <<override>> MakeCurrent() : void
+}
+class StepCounter {
+    + <<override>> MakeCurrent() : void
+}
+class HingeAngle {
+    + <<override>> MakeCurrent() : void
+}
+IInputStateTypeInfo <|-- AccelerometerState
+AccelerometerState --> "kFormat" FourCC
+AccelerometerState --> "acceleration" Vector3
+AccelerometerState --> "format" FourCC
+IInputStateTypeInfo <|-- GyroscopeState
+GyroscopeState --> "kFormat" FourCC
+GyroscopeState --> "angularVelocity" Vector3
+GyroscopeState --> "format" FourCC
+IInputStateTypeInfo <|-- GravityState
+GravityState --> "kFormat" FourCC
+GravityState --> "gravity" Vector3
+GravityState --> "format" FourCC
+IInputStateTypeInfo <|-- AttitudeState
+AttitudeState --> "kFormat" FourCC
+AttitudeState --> "attitude" Quaternion
+AttitudeState --> "format" FourCC
+IInputStateTypeInfo <|-- LinearAccelerationState
+LinearAccelerationState --> "kFormat" FourCC
+LinearAccelerationState --> "acceleration" Vector3
+LinearAccelerationState --> "format" FourCC
+InputDevice <|-- Sensor
+Sensor <|-- Accelerometer
+Accelerometer --> "acceleration" Vector3Control
+Accelerometer --> "current" Accelerometer
+Sensor <|-- Gyroscope
+Gyroscope --> "angularVelocity" Vector3Control
+Gyroscope --> "current" Gyroscope
+Sensor <|-- GravitySensor
+GravitySensor --> "gravity" Vector3Control
+GravitySensor --> "current" GravitySensor
+Sensor <|-- AttitudeSensor
+AttitudeSensor --> "attitude" QuaternionControl
+AttitudeSensor --> "current" AttitudeSensor
+Sensor <|-- LinearAccelerationSensor
+LinearAccelerationSensor --> "acceleration" Vector3Control
+LinearAccelerationSensor --> "current" LinearAccelerationSensor
+Sensor <|-- MagneticFieldSensor
+MagneticFieldSensor --> "magneticField" Vector3Control
+MagneticFieldSensor --> "current" MagneticFieldSensor
+Sensor <|-- LightSensor
+LightSensor --> "lightLevel" AxisControl
+LightSensor --> "current" LightSensor
+Sensor <|-- PressureSensor
+PressureSensor --> "atmosphericPressure" AxisControl
+PressureSensor --> "current" PressureSensor
+Sensor <|-- ProximitySensor
+ProximitySensor --> "distance" AxisControl
+ProximitySensor --> "current" ProximitySensor
+Sensor <|-- HumiditySensor
+HumiditySensor --> "relativeHumidity" AxisControl
+HumiditySensor --> "current" HumiditySensor
+Sensor <|-- AmbientTemperatureSensor
+AmbientTemperatureSensor --> "ambientTemperature" AxisControl
+AmbientTemperatureSensor --> "current" AmbientTemperatureSensor
+Sensor <|-- StepCounter
+StepCounter --> "stepCounter" IntegerControl
+StepCounter --> "current" StepCounter
+Sensor <|-- HingeAngle
+HingeAngle --> "angle" AxisControl
+HingeAngle --> "current" HingeAngle
+@enduml

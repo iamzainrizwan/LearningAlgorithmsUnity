@@ -1,0 +1,7 @@
+@startuml
+class RestoreProjectSettingsTask {
+    + RestoreProjectSettingsTask()
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- RestoreProjectSettingsTask
+@enduml

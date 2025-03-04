@@ -1,0 +1,6 @@
+@startuml
+class TriggerStateTransition <<sealed>> {
+}
+Unit <|-- TriggerStateTransition
+TriggerStateTransition --> "trigger" ControlInput
+@enduml

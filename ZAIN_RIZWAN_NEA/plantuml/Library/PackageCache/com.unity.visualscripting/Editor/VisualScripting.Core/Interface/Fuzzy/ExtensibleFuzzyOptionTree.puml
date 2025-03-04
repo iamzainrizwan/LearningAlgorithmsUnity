@@ -1,0 +1,15 @@
+@startuml
+abstract class ExtensibleFuzzyOptionTree {
+    + <<override>> Prewarm() : void
+    + <<override>> Option(item:object) : IFuzzyOption
+    + <<override>> Root() : IEnumerable<object>
+    + <<override>> Children(parent:object) : IEnumerable<object>
+    + <<override>> OrderedSearchResults(query:string, cancellation:CancellationToken) : IEnumerable<object>
+    + <<override>> SearchResults(query:string, cancellation:CancellationToken) : IEnumerable<ISearchResult>
+    + <<override>> SearchResultLabel(item:object, query:string) : string
+}
+class "IList`1"<T> {
+}
+FuzzyOptionTree <|-- ExtensibleFuzzyOptionTree
+ExtensibleFuzzyOptionTree --> "extensions<IFuzzyOptionTree>" "IList`1"
+@enduml

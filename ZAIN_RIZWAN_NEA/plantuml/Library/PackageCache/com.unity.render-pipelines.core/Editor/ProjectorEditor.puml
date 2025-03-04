@@ -1,0 +1,6 @@
+@startuml
+class ProjectorEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+Editor <|-- ProjectorEditor
+@enduml

@@ -1,0 +1,41 @@
+@startuml
+struct RewindableAllocationInfo {
+    + CreateAllocator(builtinOverride:Allocator) : void
+    + DestroyAllocator() : void
+    + Setup(workers:int, baseSize:int, growthRate:int, allocations:int) : void
+    + Teardown() : void
+    <<unsafe>> + Allocate(workerI:int) : void
+}
+struct Rewindable_FixedSize {
+    + CreateAllocator(builtinOverride:Allocator) : void
+    + DestroyAllocator() : void
+    + Setup(workers:int, size:int, allocations:int) : void
+    + Teardown() : void
+    + Measure(workerI:int) : void
+}
+struct Rewindable_IncSize {
+    + CreateAllocator(builtinOverride:Allocator) : void
+    + DestroyAllocator() : void
+    + Setup(workers:int, size:int, allocations:int) : void
+    + Teardown() : void
+    + Measure(workerI:int) : void
+}
+struct Rewindable_DecSize {
+    + CreateAllocator(builtinOverride:Allocator) : void
+    + DestroyAllocator() : void
+    + Setup(workers:int, size:int, allocations:int) : void
+    + Teardown() : void
+    + Measure(workerI:int) : void
+}
+class RewindableAllocatorBenchmark {
+    + FixedSize(workerThreads:int, allocSize:int, type:BenchmarkAllocatorType) : void
+    + IncSize(workerThreads:int, allocSize:int, type:BenchmarkAllocatorType) : void
+    + DecSize(workerThreads:int, allocSize:int, type:BenchmarkAllocatorType) : void
+}
+class "AllocatorHelper`1"<T> {
+}
+RewindableAllocationInfo --> "customAllocator<RewindableAllocator>" "AllocatorHelper`1"
+IBenchmarkAllocator <|-- Rewindable_FixedSize
+IBenchmarkAllocator <|-- Rewindable_IncSize
+IBenchmarkAllocator <|-- Rewindable_DecSize
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class GeneratorDerivativeUtils {
+}
+GeneratorDerivativeUtils o-> "uv0Ddx" FieldDescriptor
+GeneratorDerivativeUtils o-> "uv0Ddy" FieldDescriptor
+GeneratorDerivativeUtils o-> "uv1Ddx" FieldDescriptor
+GeneratorDerivativeUtils o-> "uv1Ddy" FieldDescriptor
+GeneratorDerivativeUtils o-> "uv2Ddx" FieldDescriptor
+GeneratorDerivativeUtils o-> "uv2Ddy" FieldDescriptor
+GeneratorDerivativeUtils o-> "uv3Ddx" FieldDescriptor
+GeneratorDerivativeUtils o-> "uv3Ddy" FieldDescriptor
+@enduml

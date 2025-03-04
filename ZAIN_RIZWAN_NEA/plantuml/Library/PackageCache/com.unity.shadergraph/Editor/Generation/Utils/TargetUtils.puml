@@ -1,0 +1,6 @@
+@startuml
+class TargetUtils <<static>> {
+    + {static} ProcessSubTargetList(activeSubTarget:JsonData<SubTarget>, subTargets:List<SubTarget>) : void
+    + {static} GetSubTargets(target:T) : List<SubTarget>
+}
+@enduml

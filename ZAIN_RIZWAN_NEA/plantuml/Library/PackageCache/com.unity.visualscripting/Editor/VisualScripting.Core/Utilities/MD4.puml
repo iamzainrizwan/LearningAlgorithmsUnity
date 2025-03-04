@@ -1,0 +1,7 @@
+@startuml
+class MD4 <<sealed>> {
+    + MD4()
+    + <<override>> Initialize() : void
+}
+HashAlgorithm <|-- MD4
+@enduml

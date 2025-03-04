@@ -1,0 +1,6 @@
+@startuml
+class EditorVersionMessage {
+    + EditorVersionMessage()
+}
+Message <|-- EditorVersionMessage
+@enduml

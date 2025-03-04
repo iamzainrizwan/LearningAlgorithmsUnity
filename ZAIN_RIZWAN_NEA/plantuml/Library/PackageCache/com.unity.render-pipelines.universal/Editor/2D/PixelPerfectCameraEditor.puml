@@ -1,0 +1,26 @@
+@startuml
+class PixelPerfectCameraEditor {
+    + OnEnable() : void
+    + <<override>> RequiresConstantRepaint() : bool
+    + <<override>> OnInspectorGUI() : void
+}
+class Style {
+    + <<const>> cameraStackingWarning : string = "Pixel Perfect Camera won't function properly if stacked with another camera."
+    + <<const>> nonRenderer2DWarning : string = "URP Pixel Perfect Camera requires a camera using a 2D Renderer. Some features, such as Upscale Render Texture, are not supported with other Renderers."
+    + <<const>> nonRenderer2DError : string = "URP Pixel Perfect Camera requires a camera using a 2D Renderer."
+    + Style()
+}
+Editor <|-- PixelPerfectCameraEditor
+PixelPerfectCameraEditor +-- Style
+Style o-> "x" GUIContent
+Style o-> "y" GUIContent
+Style o-> "assetsPPU" GUIContent
+Style o-> "refRes" GUIContent
+Style o-> "gridSnapping" GUIContent
+Style o-> "cropFrame" GUIContent
+Style o-> "filterMode" GUIContent
+Style o-> "stretchFill" GUIContent
+Style o-> "currentPixelRatio" GUIContent
+Style o-> "runInEditMode" GUIContent
+Style --> "centeredLabel" GUIStyle
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class ProbeVolumeSceneData {
+    + ProbeVolumeSceneData(parentAsset:Object)
+    + SetParentObject(parent:Object) : void
+}
+@enduml

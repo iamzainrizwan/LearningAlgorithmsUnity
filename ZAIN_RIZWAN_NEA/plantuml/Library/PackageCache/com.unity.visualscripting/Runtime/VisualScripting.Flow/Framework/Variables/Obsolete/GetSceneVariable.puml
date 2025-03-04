@@ -1,0 +1,8 @@
+@startuml
+class GetSceneVariable <<sealed>> {
+    + GetSceneVariable()
+    + GetSceneVariable(defaultName:string)
+}
+GetVariableUnit <|-- GetSceneVariable
+ISceneVariableUnit <|-- GetSceneVariable
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class NormalizeVector2Processor {
+    + <<override>> Process(value:Vector2, control:InputControl) : Vector2
+    + <<override>> ToString() : string
+}
+class "InputProcessor`1"<T> {
+}
+"InputProcessor`1" "<Vector2>" <|-- NormalizeVector2Processor
+@enduml

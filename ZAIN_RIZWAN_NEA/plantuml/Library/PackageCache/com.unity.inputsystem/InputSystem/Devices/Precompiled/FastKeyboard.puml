@@ -1,0 +1,6 @@
+@startuml
+class FastKeyboard <<partial>> {
+    + <<const>> metadata : string = ";AnyKey;Button;Axis;Key;DiscreteButton;Keyboard"
+    + FastKeyboard()
+}
+@enduml

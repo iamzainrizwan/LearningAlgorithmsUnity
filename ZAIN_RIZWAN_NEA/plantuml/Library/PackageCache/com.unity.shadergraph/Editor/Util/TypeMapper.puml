@@ -1,0 +1,12 @@
+@startuml
+class TypeMapper {
+    + TypeMapper(fromBaseType:Type, toBaseType:Type, fallbackType:Type)
+    + Add(mapping:TypeMapping) : void
+    + Add(fromType:Type, toType:Type) : void
+    + MapType(fromType:Type) : Type
+    + GetEnumerator() : IEnumerator<TypeMapping>
+}
+class "IEnumerable`1"<T> {
+}
+"IEnumerable`1" "<TypeMapping>" <|-- TypeMapper
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class EdgeConnectorListener {
+    + EdgeConnectorListener(graph:GraphData, searchWindowProvider:SearchWindowProvider, editorWindow:EditorWindow)
+    + OnDropOutsidePort(edge:Edge, position:Vector2) : void
+    + OnDrop(graphView:GraphView, edge:Edge) : void
+}
+IEdgeConnectorListener <|-- EdgeConnectorListener
+@enduml

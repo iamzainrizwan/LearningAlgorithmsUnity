@@ -1,0 +1,8 @@
+@startuml
+class LiteralDescriptor {
+    + LiteralDescriptor(unit:Literal)
+}
+class "UnitDescriptor`1"<T> {
+}
+"UnitDescriptor`1" "<Literal>" <|-- LiteralDescriptor
+@enduml

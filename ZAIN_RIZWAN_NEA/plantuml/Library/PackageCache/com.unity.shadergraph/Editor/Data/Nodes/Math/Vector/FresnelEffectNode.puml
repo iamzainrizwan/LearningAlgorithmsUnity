@@ -1,0 +1,6 @@
+@startuml
+class FresnelNode {
+    + FresnelNode()
+}
+CodeFunctionNode <|-- FresnelNode
+@enduml

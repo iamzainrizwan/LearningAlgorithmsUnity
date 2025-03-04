@@ -1,0 +1,12 @@
+@startuml
+class AnswerData {
+    + Clone() : AnswerData
+}
+class AnsweredQuestion {
+    + QuestionId : string
+}
+class "List`1"<T> {
+}
+AnswerData o-> "Answers<AnsweredQuestion>" "List`1"
+AnsweredQuestion --> "Answers<string>" "List`1"
+@enduml

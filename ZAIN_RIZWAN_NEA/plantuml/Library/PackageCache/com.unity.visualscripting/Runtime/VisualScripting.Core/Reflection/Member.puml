@@ -1,0 +1,90 @@
+@startuml
+class Member <<sealed>> {
+    + Member()
+    + Member(targetType:Type, name:string, parameterTypes:Type[])
+    + Member(targetType:Type, fieldInfo:FieldInfo)
+    + Member(targetType:Type, propertyInfo:PropertyInfo)
+    + Member(targetType:Type, methodInfo:MethodInfo)
+    + Member(targetType:Type, constructorInfo:ConstructorInfo)
+    + targetTypeName : string <<get>>
+    + name : string <<get>>
+    + isReflected : bool <<get>>
+    + isExtension : bool <<get>>
+    + isInvokedAsExtension : bool <<get>>
+    + isCoroutine : bool <<get>>
+    + isYieldInstruction : bool <<get>>
+    + isGettable : bool <<get>>
+    + isPubliclyGettable : bool <<get>>
+    + isSettable : bool <<get>>
+    + isPubliclySettable : bool <<get>>
+    + isInvocable : bool <<get>>
+    + isPubliclyInvocable : bool <<get>>
+    + isAccessor : bool <<get>>
+    + isField : bool <<get>>
+    + isProperty : bool <<get>>
+    + isMethod : bool <<get>>
+    + isConstructor : bool <<get>>
+    + requiresTarget : bool <<get>>
+    + isOperator : bool <<get>>
+    + isConversion : bool <<get>>
+    + order : int <<get>>
+    + isInherited : bool <<get>>
+    + isPseudoInherited : bool <<get>>
+    + isIndexer : bool <<get>>
+    + isPredictable : bool <<get>>
+    + allowsNull : bool <<get>>
+    + IsGettable(nonPublic:bool) : bool
+    + IsSettable(nonPublic:bool) : bool
+    + IsInvocable(nonPublic:bool) : bool
+    + Reflect() : void
+    + Prewarm() : void
+    + EnsureReflected() : void
+    + EnsureReady(target:object) : void
+    + Get(target:object) : object
+    + Get(target:object) : T
+    + Set(target:object, value:object) : object
+    + GetParameterInfos() : IEnumerable<ParameterInfo>
+    + Invoke(target:object) : object
+    + Invoke(target:object, arg0:object) : object
+    + Invoke(target:object, arg0:object, arg1:object) : object
+    + Invoke(target:object, arg0:object, arg1:object, arg2:object) : object
+    + Invoke(target:object, arg0:object, arg1:object, arg2:object, arg3:object) : object
+    + Invoke(target:object, arg0:object, arg1:object, arg2:object, arg3:object, arg4:object) : object
+    + Invoke(target:object, arguments:object[]) : object
+    + Invoke(target:object) : T
+    + Invoke(target:object, arg0:object) : T
+    + Invoke(target:object, arg0:object, arg1:object) : T
+    + Invoke(target:object, arg0:object, arg1:object, arg2:object) : T
+    + Invoke(target:object, arg0:object, arg1:object, arg2:object, arg3:object) : T
+    + Invoke(target:object, arg0:object, arg1:object, arg2:object, arg3:object, arg4:object) : T
+    + Invoke(target:object, arguments:object[]) : T
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + ToUniqueString() : string
+    + <<override>> ToString() : string
+    + ToDeclarer() : Member
+    + ToPseudoDeclarer() : Member
+}
+enum Source {
+    Unknown,
+    Field,
+    Property,
+    Method,
+    Constructor,
+}
+ISerializationCallbackReceiver <|-- Member
+Member --> "targetType" Type
+Member --> "source" Source
+Member --> "fieldInfo" FieldInfo
+Member --> "propertyInfo" PropertyInfo
+Member --> "methodInfo" MethodInfo
+Member --> "constructorInfo" ConstructorInfo
+Member --> "methodBase" MethodBase
+Member --> "info" MemberInfo
+Member --> "type" Type
+Member --> "declaringType" Type
+Member --> "pseudoDeclaringType" Type
+Member o-> "SupportedMemberTypes" MemberTypes
+Member o-> "SupportedBindingFlags" BindingFlags
+Member +-- Source
+@enduml

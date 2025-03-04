@@ -1,0 +1,4 @@
+@startuml
+class TMP_SpriteAssetMenu <<static>> {
+}
+@enduml

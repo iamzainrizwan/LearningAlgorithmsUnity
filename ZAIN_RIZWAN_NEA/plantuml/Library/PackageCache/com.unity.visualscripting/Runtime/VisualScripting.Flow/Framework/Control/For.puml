@@ -1,0 +1,10 @@
+@startuml
+class For <<sealed>> {
+    + IsStepValueZero() : bool
+}
+LoopUnit <|-- For
+For --> "firstIndex" ValueInput
+For --> "lastIndex" ValueInput
+For --> "step" ValueInput
+For --> "currentIndex" ValueOutput
+@enduml

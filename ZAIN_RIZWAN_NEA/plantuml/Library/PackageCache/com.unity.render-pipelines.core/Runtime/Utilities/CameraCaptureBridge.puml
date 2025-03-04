@@ -1,0 +1,11 @@
+@startuml
+class CameraCaptureBridge <<static>> {
+    + {static} enabled : bool <<get>> <<set>>
+    + {static} GetCaptureActions(camera:Camera) : IEnumerator<Action<RenderTargetIdentifier, CommandBuffer>>
+    + {static} AddCaptureAction(camera:Camera, action:Action<RenderTargetIdentifier, CommandBuffer>) : void
+    + {static} RemoveCaptureAction(camera:Camera, action:Action<RenderTargetIdentifier, CommandBuffer>) : void
+}
+class CameraEntry {
+}
+CameraCaptureBridge +-- CameraEntry
+@enduml

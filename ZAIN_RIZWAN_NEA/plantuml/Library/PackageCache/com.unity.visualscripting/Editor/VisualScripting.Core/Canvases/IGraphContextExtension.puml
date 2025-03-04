@@ -1,0 +1,5 @@
+@startuml
+interface IGraphContextExtension {
+}
+IDragAndDropHandler <|-- IGraphContextExtension
+@enduml

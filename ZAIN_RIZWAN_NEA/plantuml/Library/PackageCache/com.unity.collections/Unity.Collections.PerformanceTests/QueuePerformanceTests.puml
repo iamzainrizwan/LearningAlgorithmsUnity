@@ -1,0 +1,91 @@
+@startuml
+class QueueUtil <<static>> {
+    {static} + AllocInt(container:NativeQueue<int>, capacity:int, addValues:bool) : void
+    {static} + AllocInt(container:UnsafeQueue<int>, capacity:int, addValues:bool) : void
+    {static} + AllocBclContainer(capacity:int, addValues:bool) : object
+    {static} + CreateRandomValues(capacity:int, values:UnsafeList<int>) : void
+}
+struct QueueIsEmpty100k {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct QueueCount100k {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct QueueToNativeArray {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct QueueEnqueueGrow {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct QueueEnqueue {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct QueueDequeue {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct QueuePeek {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct QueueForEach {
+    + total : int
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+class Queue {
+    + <<unsafe>> IsEmpty_x_100k(capacity:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Count_x_100k(capacity:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> ToNativeArray(capacity:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> EnqueueGrow(insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Enqueue(insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Dequeue(insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Peek(insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Foreach(insertions:int, type:BenchmarkContainerType) : void
+}
+IBenchmarkContainer <|-- QueueIsEmpty100k
+IBenchmarkContainer <|-- QueueCount100k
+IBenchmarkContainer <|-- QueueToNativeArray
+IBenchmarkContainer <|-- QueueEnqueueGrow
+IBenchmarkContainer <|-- QueueEnqueue
+IBenchmarkContainer <|-- QueueDequeue
+IBenchmarkContainer <|-- QueuePeek
+IBenchmarkContainer <|-- QueueForEach
+@enduml

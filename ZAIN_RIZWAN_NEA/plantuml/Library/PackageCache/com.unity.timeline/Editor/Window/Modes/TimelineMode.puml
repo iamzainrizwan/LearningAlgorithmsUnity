@@ -1,0 +1,39 @@
+@startuml
+enum TimelineModeGUIState {
+    Disabled,
+    Hidden,
+    Enabled,
+}
+abstract class TimelineMode {
+    + {abstract} ShouldShowPlayRange(state:WindowState) : bool
+    + {abstract} ShouldShowTimeCursor(state:WindowState) : bool
+    + <<virtual>> ShouldShowTrackBindings(state:WindowState) : bool
+    + <<virtual>> ShouldShowTimeArea(state:WindowState) : bool
+    + {abstract} TrackState(state:WindowState) : TimelineModeGUIState
+    + {abstract} ToolbarState(state:WindowState) : TimelineModeGUIState
+    + <<virtual>> PreviewState(state:WindowState) : TimelineModeGUIState
+    + <<virtual>> EditModeButtonsState(state:WindowState) : TimelineModeGUIState
+}
+enum TimelineModes {
+    Active= 1,
+    ReadOnly= 2,
+    Inactive= 4,
+    Disabled= 8,
+    AssetEdition= 16,
+    Default= Active | AssetEdition,
+}
+struct HeaderState {
+}
+struct TrackOptionsState {
+}
+TimelineMode --> "headerState" HeaderState
+TimelineMode --> "trackOptionsState" TrackOptionsState
+TimelineMode --> "mode" TimelineModes
+TimelineMode +-- HeaderState
+HeaderState --> "breadCrumb" TimelineModeGUIState
+HeaderState --> "sequenceSelector" TimelineModeGUIState
+HeaderState --> "options" TimelineModeGUIState
+TimelineMode +-- TrackOptionsState
+TrackOptionsState --> "newButton" TimelineModeGUIState
+TrackOptionsState --> "editAsAssetButton" TimelineModeGUIState
+@enduml

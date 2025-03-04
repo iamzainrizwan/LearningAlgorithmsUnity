@@ -1,0 +1,11 @@
+@startuml
+abstract class "EventMachine`2"<TGraph,TMacro> {
+    + <<override>> TriggerUnityEvent(name:string) : void
+}
+class "Machine`2"<T1,T2> {
+}
+class "Macro`1"<T> {
+}
+"Machine`2" "<TGraph,TMacro>" <|-- "EventMachine`2"
+IEventMachine <|-- "EventMachine`2"
+@enduml

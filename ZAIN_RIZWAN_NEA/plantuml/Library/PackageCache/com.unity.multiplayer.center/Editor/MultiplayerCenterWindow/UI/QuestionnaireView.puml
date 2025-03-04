@@ -1,0 +1,10 @@
+@startuml
+class QuestionnaireView {
+    +  <<event>> OnQuestionnaireDataChanged : Action 
+    +  <<event>> OnPresetSelected : Action<Preset> 
+    + QuestionnaireView(questions:QuestionnaireData)
+    + Refresh() : void
+    + Clear() : void
+}
+QuestionnaireView --> "Root" VisualElement
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class ApplicationPlayingTests {
+    + VerifyApplicationPlaying() : void
+}
+@enduml

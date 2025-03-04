@@ -1,0 +1,16 @@
+@startuml
+class Edge {
+    + Edge()
+    + Edge(outputSlot:SlotReference, inputSlot:SlotReference)
+    + Equals(other:IEdge) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + CompareTo(other:Edge) : int
+}
+class "IComparable`1"<T> {
+}
+IEdge <|-- Edge
+"IComparable`1" "<Edge>" <|-- Edge
+Edge --> "outputSlot" SlotReference
+Edge --> "inputSlot" SlotReference
+@enduml

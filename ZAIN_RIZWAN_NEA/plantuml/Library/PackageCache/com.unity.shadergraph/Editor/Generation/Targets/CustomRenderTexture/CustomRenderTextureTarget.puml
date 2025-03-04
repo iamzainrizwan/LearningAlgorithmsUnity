@@ -1,0 +1,26 @@
+@startuml
+struct FullScreenBlocks {
+}
+class CustomRenderTextureTarget <<sealed>> {
+    + CustomRenderTextureTarget()
+    + {static} ProcessSubTargetList(activeSubTarget:JsonData<SubTarget>, subTargets:List<SubTarget>) : void
+    + {static} GetSubTargets(target:T) : List<SubTarget>
+    + customEditorGUI : string <<get>> <<set>>
+    + <<override>> IsActive() : bool
+    + <<override>> Setup(context:TargetSetupContext) : void
+    + <<override>> GetFields(context:TargetFieldContext) : void
+    + <<override>> GetActiveBlocks(context:TargetActiveBlockContext) : void
+    + <<override>> GetPropertiesGUI(context:TargetPropertyGUIContext, onChange:Action, registerUndo:Action<String>) : void
+    + TrySetActiveSubTarget(subTargetType:Type) : bool
+    + <<override>> WorksWithSRP(scriptableRenderPipeline:RenderPipelineAsset) : bool
+    + <<override>> IsNodeAllowedByTarget(nodeType:System.Type) : bool
+}
+class FullscreePasses <<static>> {
+}
+class "ListPool`1"<T> {
+}
+FullScreenBlocks o-> "colorBlock" BlockFieldDescriptor
+Target <|-- CustomRenderTextureTarget
+CustomRenderTextureTarget --> "activeSubTarget" SubTarget
+FullscreePasses o-> "CustomRenderTexture" PassDescriptor
+@enduml

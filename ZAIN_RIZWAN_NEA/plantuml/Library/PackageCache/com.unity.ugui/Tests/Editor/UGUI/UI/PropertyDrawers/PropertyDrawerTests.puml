@@ -1,0 +1,20 @@
+@startuml
+class PropertyDrawerTests {
+    + {static} SetUp() : IEnumerator
+    + TearDown() : void
+    + NavigationDrawer_IsVisible() : IEnumerator
+    + SpriteStateDrawer_IsVisible() : IEnumerator
+    + DropdownOptionDataListDrawer_IsVisible() : IEnumerator
+    + SearchContextDrawer_IsVisible() : IEnumerator
+    + {static} NavigationDrawer_ShowsCorrectAdditionalControlCount(mode:Enum, expectedCount:int) : IEnumerator
+}
+class PropertyDrawerTestsWindow {
+    + Property(propertyName:string) : SerializedProperty
+    + Rebuild() : void
+}
+PropertyDrawerTests +-- PropertyDrawerTestsWindow
+EditorWindow <|-- PropertyDrawerTestsWindow
+PropertyDrawerTestsWindow --> "navigation" Navigation
+PropertyDrawerTestsWindow --> "spriteState" SpriteState
+PropertyDrawerTestsWindow --> "searchContext" GameObject
+@enduml

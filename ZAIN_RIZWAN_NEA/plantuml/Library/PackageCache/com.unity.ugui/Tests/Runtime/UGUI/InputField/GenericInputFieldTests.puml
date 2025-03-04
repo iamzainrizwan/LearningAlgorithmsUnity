@@ -1,0 +1,24 @@
+@startuml
+class GenericInputFieldTests {
+    + Setup() : void
+    + <<virtual>> TestSetup() : void
+    + <<virtual>> TearDown() : void
+    + OnetimeTearDown() : void
+    + CannotFocusIfNotTextComponent() : IEnumerator
+    + CannotFocusIfNullFont() : IEnumerator
+    + CannotFocusIfNotActive() : IEnumerator
+    + CannotFocusWithoutEventSystem() : IEnumerator
+    + FocusesOnSelect() : IEnumerator
+    + DoesNotFocusesOnSelectWhenShouldActivateOnSelect_IsFalse() : void
+    + InputFieldSetTextWithoutNotifyWillNotNotify() : void
+    + ContentTypeSetsValues() : void
+    + SettingLineTypeDoesNotChangesContentTypeToCustom(type:InputField.ContentType) : void
+    + SettingLineTypeChangesContentTypeToCustom() : void
+    + SettingInputChangesContentTypeToCustom() : void
+    + SettingCharacterValidationChangesContentTypeToCustom() : void
+    + SettingKeyboardTypeChangesContentTypeToCustom() : void
+    + CaretRectSameSizeAsTextRect() : IEnumerator
+}
+BaseInputFieldTests <|-- GenericInputFieldTests
+IPrebuildSetup <|-- GenericInputFieldTests
+@enduml

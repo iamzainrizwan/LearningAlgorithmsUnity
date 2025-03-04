@@ -1,0 +1,7 @@
+@startuml
+class RotateAboutAxisNode {
+    + RotateAboutAxisNode()
+}
+CodeFunctionNode <|-- RotateAboutAxisNode
+RotateAboutAxisNode --> "unit" RotationUnit
+@enduml

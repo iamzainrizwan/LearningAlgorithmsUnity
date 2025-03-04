@@ -1,0 +1,44 @@
+@startuml
+class TestListGUI {
+    + TestListGUI()
+    + PrintHeadPanel() : void
+    + PrintProgressBar(rect:Rect) : void
+    + PrintBottomPanel() : void
+    + HasTreeData() : bool
+    + RenderTestList() : void
+    + RenderDetails(width:float) : void
+    + Reload() : void
+    + Repaint() : void
+    + Init(window:TestRunnerWindow, rootTest:ITestAdaptor) : void
+    + UpdateResult(result:TestRunnerResult) : void
+    + RunFinished(results:ITestResultAdaptor) : void
+    + UpdateTestTree(tests:ITestAdaptor[]) : void
+    + RebuildUIFilter() : void
+    + GetExecutionSettings() : ExecutionSettings
+}
+class "Dictionary`2"<T1,T2> {
+}
+class "List`1"<T> {
+}
+struct PlayerMenuItem {
+    + filterSelectedTestsOnly : bool
+}
+enum RunFilterType {
+    RunAll,
+    RunSelected,
+    RunFailed,
+    RunSpecific,
+    BuildAll,
+    BuildSelected,
+}
+struct FilterConstructionStep {
+    + Id : int
+}
+TestListGUI --> "filteredTree<string,TestTreeViewItem>" "Dictionary`2"
+TestListGUI --> "newResultList<TestRunnerResult>" "List`1"
+TestListGUI +-- PlayerMenuItem
+PlayerMenuItem --> "name" GUIContent
+TestListGUI +-- RunFilterType
+TestListGUI +-- FilterConstructionStep
+FilterConstructionStep --> "Item" TreeViewItem
+@enduml

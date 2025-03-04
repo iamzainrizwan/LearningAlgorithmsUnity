@@ -1,0 +1,10 @@
+@startuml
+abstract class "Lerp`1"<T> {
+    + {abstract} Operation(a:T, b:T, t:float) : T
+}
+Unit <|-- "Lerp`1"
+"Lerp`1" --> "a" ValueInput
+"Lerp`1" --> "b" ValueInput
+"Lerp`1" --> "t" ValueInput
+"Lerp`1" --> "interpolation" ValueOutput
+@enduml

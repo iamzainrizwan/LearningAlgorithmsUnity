@@ -1,0 +1,9 @@
+@startuml
+abstract class "Add`1"<T> {
+    + {abstract} Operation(a:T, b:T) : T
+}
+Unit <|-- "Add`1"
+"Add`1" --> "a" ValueInput
+"Add`1" --> "b" ValueInput
+"Add`1" --> "sum" ValueOutput
+@enduml

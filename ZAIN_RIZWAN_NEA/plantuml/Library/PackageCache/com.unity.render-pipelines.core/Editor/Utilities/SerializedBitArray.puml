@@ -1,0 +1,19 @@
+@startuml
+class SerializedBitArrayUtilities <<static>> <<partial>> {
+    + {static} ToSerializedBitArray(serializedProperty:SerializedProperty, targetSerializedObjects:SerializedObject[]) : SerializedBitArrayAny
+    + {static} ToSerializedBitArray(serializedProperty:SerializedProperty) : SerializedBitArrayAny
+    + {static} TryGetSerializedBitArray(serializedProperty:SerializedProperty, targetSerializedObjects:SerializedObject[], serializedBitArray:SerializedBitArrayAny) : bool
+    + {static} TryGetSerializedBitArray(serializedProperty:SerializedProperty, serializedBitArray:SerializedBitArrayAny) : bool
+}
+interface ISerializedBitArray {
+}
+class SerializedBitArrayAny <<sealed>> {
+    + capacity : uint <<get>>
+    + HasBitMultipleDifferentValue(bitIndex:uint) : bool
+    + GetBitAt(bitIndex:uint) : bool
+    + SetBitAt(bitIndex:uint, value:bool) : void
+    + Update() : void
+    + ApplyModifiedProperties() : void
+}
+ISerializedBitArray <|-- SerializedBitArrayAny
+@enduml

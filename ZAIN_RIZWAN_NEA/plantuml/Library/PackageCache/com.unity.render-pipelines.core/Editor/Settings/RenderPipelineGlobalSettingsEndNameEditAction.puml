@@ -1,0 +1,6 @@
+@startuml
+class RenderPipelineGlobalSettingsEndNameEditAction {
+    + <<override>> Action(instanceId:int, pathName:string, resourceFile:string) : void
+    + {static} CreateNew(usePathFromCurrentSettings:bool, updateAssetOnGraphicsSettings:bool) : void
+}
+@enduml

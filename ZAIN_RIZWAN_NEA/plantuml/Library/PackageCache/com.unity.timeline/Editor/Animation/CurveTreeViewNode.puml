@@ -1,0 +1,8 @@
+@startuml
+class CurveTreeViewNode {
+    + forceGroup : bool <<get>>
+    + CurveTreeViewNode(id:int, parent:TreeViewItem, displayName:string, bindings:EditorCurveBinding[], _forceGroup:bool)
+}
+TreeViewItem <|-- CurveTreeViewNode
+CurveTreeViewNode --> "iconOverlay" GUIContent
+@enduml

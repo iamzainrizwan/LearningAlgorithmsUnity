@@ -1,0 +1,6 @@
+@startuml
+class PredictableAttribute <<sealed>> {
+    + PredictableAttribute()
+}
+Attribute <|-- PredictableAttribute
+@enduml

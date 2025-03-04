@@ -1,0 +1,57 @@
+@startuml
+class ConversionUtility <<static>> {
+    + {static} HasImplicitNumericConversion(source:Type, destination:Type) : bool
+    + {static} HasExplicitNumericConversion(source:Type, destination:Type) : bool
+    + {static} HasNumericConversion(source:Type, destination:Type) : bool
+    + {static} CanConvert(value:object, type:Type, guaranteed:bool) : bool
+    + {static} CanConvert(source:Type, destination:Type, guaranteed:bool) : bool
+    + {static} Convert(value:object, type:Type) : object
+    + {static} Convert(value:object) : T
+    + {static} TryConvert(value:object, type:Type, result:object, guaranteed:bool) : bool
+    + {static} TryConvert(value:object, result:T, guaranteed:bool) : bool
+    + {static} IsConvertibleTo(source:Type, destination:Type, guaranteed:bool) : bool
+    + {static} IsConvertibleTo(source:object, type:Type, guaranteed:bool) : bool
+    + {static} IsConvertibleTo(source:object, guaranteed:bool) : bool
+    + {static} ConvertTo(source:object, type:Type) : object
+    + {static} ConvertTo(source:object) : T
+    + {static} GetRequiredConversion(source:Type, destination:Type) : ConversionType
+    + {static} GetRequiredConversion(value:object, type:Type) : ConversionType
+}
+enum ConversionType {
+    Impossible,
+    Identity,
+    Upcast,
+    Downcast,
+    NumericImplicit,
+    NumericExplicit,
+    UserDefinedImplicit,
+    UserDefinedExplicit,
+    UserDefinedThenNumericImplicit,
+    UserDefinedThenNumericExplicit,
+    UnityHierarchy,
+    EnumerableToArray,
+    EnumerableToList,
+    ToString,
+}
+struct ConversionQuery {
+    + ConversionQuery(source:Type, destination:Type)
+    + Equals(other:ConversionQuery) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+struct ConversionQueryComparer {
+    + Equals(x:ConversionQuery, y:ConversionQuery) : bool
+    + GetHashCode(obj:ConversionQuery) : int
+}
+class "IEquatable`1"<T> {
+}
+class "IEqualityComparer`1"<T> {
+}
+ConversionUtility +-- ConversionType
+ConversionUtility +-- ConversionQuery
+"IEquatable`1" "<ConversionQuery>" <|-- ConversionQuery
+ConversionQuery --> "source" Type
+ConversionQuery --> "destination" Type
+ConversionUtility +-- ConversionQueryComparer
+"IEqualityComparer`1" "<ConversionQuery>" <|-- ConversionQueryComparer
+@enduml

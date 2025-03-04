@@ -1,0 +1,7 @@
+@startuml
+class MiscHelpers <<static>> {
+    + {static} GetValueOrDefault(dictionary:Dictionary<TKey, TValue>, key:TKey) : TValue
+    + {static} EveryNth(enumerable:IEnumerable<TValue>, n:int, start:int) : IEnumerable<TValue>
+    + {static} IndexOf(enumerable:IEnumerable<TValue>, value:TValue) : int
+}
+@enduml

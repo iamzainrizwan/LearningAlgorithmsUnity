@@ -1,0 +1,49 @@
+@startuml
+struct "InlinedArray`1"<TValue> {
+    + length : int
+    + firstValue : TValue
+    + Capacity : int <<get>>
+    + InlinedArray(value:TValue)
+    + InlinedArray(firstValue:TValue, additionalValues:TValue[])
+    + InlinedArray(values:IEnumerable<TValue>)
+    + Clear() : void
+    + ClearWithCapacity() : void
+    + Clone() : InlinedArray<TValue>
+    + SetLength(size:int) : void
+    + ToArray() : TValue[]
+    + ToArray(mapFunction:Func<TValue, TOther>) : TOther[]
+    + IndexOf(value:TValue) : int
+    + Append(value:TValue) : int
+    + AppendWithCapacity(value:TValue, capacityIncrement:int) : int
+    + AssignWithCapacity(values:InlinedArray<TValue>) : void
+    + Append(values:IEnumerable<TValue>) : void
+    + Remove(value:TValue) : void
+    + RemoveAtWithCapacity(index:int) : void
+    + RemoveAt(index:int) : void
+    + RemoveAtByMovingTailWithCapacity(index:int) : void
+    + RemoveByMovingTailWithCapacity(value:TValue) : bool
+    + Contains(value:TValue, comparer:IEqualityComparer<TValue>) : bool
+    + Merge(other:InlinedArray<TValue>) : void
+    + GetEnumerator() : IEnumerator<TValue>
+}
+class InputArrayExtensions <<static>> {
+    + {static} IndexOfReference(array:InlinedArray<TValue>, value:TValue) : int
+    + {static} Contains(array:InlinedArray<TValue>, value:TValue) : bool
+    + {static} ContainsReference(array:InlinedArray<TValue>, value:TValue) : bool
+}
+class "IEnumerable`1"<T> {
+}
+struct Enumerator {
+    + index : int
+    + MoveNext() : bool
+    + Reset() : void
+    + Dispose() : void
+}
+class "IEnumerator`1"<T> {
+}
+"IEnumerable`1" "<TValue>" <|-- "InlinedArray`1"
+"InlinedArray`1" +-- Enumerator
+"IEnumerator`1" "<TValue>" <|-- Enumerator
+Enumerator --> "array<TValue>" "InlinedArray`1"
+Enumerator --> "Current" TValue
+@enduml

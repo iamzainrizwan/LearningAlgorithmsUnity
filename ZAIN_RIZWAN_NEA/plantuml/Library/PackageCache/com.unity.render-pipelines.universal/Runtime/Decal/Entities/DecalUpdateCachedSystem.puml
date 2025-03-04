@@ -1,0 +1,52 @@
+@startuml
+class DecalCachedChunk {
+    + passIndexDBuffer : int
+    + passIndexEmissive : int
+    + passIndexScreenSpace : int
+    + passIndexGBuffer : int
+    + drawOrder : int
+    + isCreated : bool
+    + <<override>> RemoveAtSwapBack(entityIndex:int) : void
+    + <<override>> SetCapacity(newCapacity:int) : void
+    + <<override>> Dispose() : void
+}
+class DecalUpdateCachedSystem {
+    + DecalUpdateCachedSystem(entityManager:DecalEntityManager)
+    + Execute() : void
+}
+class "NativeArray`1"<T> {
+}
+struct UpdateTransformsJob {
+    + minDistance : float
+    + Execute(index:int, transform:TransformAccess) : void
+}
+DecalChunk <|-- DecalCachedChunk
+DecalCachedChunk --> "propertyBlock" MaterialPropertyBlock
+DecalCachedChunk --> "decalToWorlds<float4x4>" "NativeArray`1"
+DecalCachedChunk --> "normalToWorlds<float4x4>" "NativeArray`1"
+DecalCachedChunk --> "sizeOffsets<float4x4>" "NativeArray`1"
+DecalCachedChunk --> "drawDistances<float2>" "NativeArray`1"
+DecalCachedChunk --> "angleFades<float2>" "NativeArray`1"
+DecalCachedChunk --> "uvScaleBias<float4>" "NativeArray`1"
+DecalCachedChunk --> "layerMasks<int>" "NativeArray`1"
+DecalCachedChunk --> "sceneLayerMasks<ulong>" "NativeArray`1"
+DecalCachedChunk --> "fadeFactors<float>" "NativeArray`1"
+DecalCachedChunk --> "boundingSpheres<BoundingSphere>" "NativeArray`1"
+DecalCachedChunk --> "scaleModes<DecalScaleMode>" "NativeArray`1"
+DecalCachedChunk --> "renderingLayerMasks<uint>" "NativeArray`1"
+DecalCachedChunk --> "positions<float3>" "NativeArray`1"
+DecalCachedChunk --> "rotation<quaternion>" "NativeArray`1"
+DecalCachedChunk --> "scales<float3>" "NativeArray`1"
+DecalCachedChunk --> "dirty<bool>" "NativeArray`1"
+DecalUpdateCachedSystem +-- UpdateTransformsJob
+IJobParallelForTransform <|-- UpdateTransformsJob
+UpdateTransformsJob --> "positions<float3>" "NativeArray`1"
+UpdateTransformsJob --> "rotations<quaternion>" "NativeArray`1"
+UpdateTransformsJob --> "scales<float3>" "NativeArray`1"
+UpdateTransformsJob --> "dirty<bool>" "NativeArray`1"
+UpdateTransformsJob --> "scaleModes<DecalScaleMode>" "NativeArray`1"
+UpdateTransformsJob --> "sizeOffsets<float4x4>" "NativeArray`1"
+UpdateTransformsJob --> "decalToWorlds<float4x4>" "NativeArray`1"
+UpdateTransformsJob --> "normalToWorlds<float4x4>" "NativeArray`1"
+UpdateTransformsJob --> "boundingSpheres<BoundingSphere>" "NativeArray`1"
+@enduml

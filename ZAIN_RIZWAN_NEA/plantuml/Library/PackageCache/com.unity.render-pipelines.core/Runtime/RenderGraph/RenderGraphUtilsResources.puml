@@ -1,0 +1,12 @@
+@startuml
+class RenderGraphUtilsResources {
+}
+enum Version {
+    Initial,
+    Count,
+    Latest= Count - 1,
+}
+IRenderPipelineResources <|-- RenderGraphUtilsResources
+RenderGraphUtilsResources --> "coreCopyPS" Shader
+RenderGraphUtilsResources +-- Version
+@enduml

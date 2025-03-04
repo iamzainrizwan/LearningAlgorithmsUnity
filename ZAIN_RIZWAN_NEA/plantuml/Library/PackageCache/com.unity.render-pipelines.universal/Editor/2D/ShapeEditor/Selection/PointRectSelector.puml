@@ -1,0 +1,7 @@
+@startuml
+class PointRectSelector {
+}
+class "RectSelector`1"<T> {
+}
+"RectSelector`1" "<Vector3>" <|-- PointRectSelector
+@enduml

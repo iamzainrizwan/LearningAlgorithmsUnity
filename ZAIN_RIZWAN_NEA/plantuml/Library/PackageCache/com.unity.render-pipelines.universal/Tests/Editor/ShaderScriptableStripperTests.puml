@@ -1,0 +1,97 @@
+@startuml
+class ShaderScriptableStripperTests {
+    + TestStripUnusedShaders(shaderName:string, expectedNoFeatures:bool, expectedWithDeferredShading:bool) : void
+    + TestStripUnusedShaders_Deferred(shader:Shader, expectedNoFeatures:bool, expectedWithDeferredShading:bool) : void
+    + TestStripUnusedPass(shaderName:string) : void
+    + TestStripUnusedPass_2D(shader:Shader) : void
+    + TestStripUnusedPass_XR(shader:Shader) : void
+    + TestStripUnusedPass_ShadowCaster(shader:Shader) : void
+    + TestStripUnusedPass_Decals(shader:Shader) : void
+    + TestStripInvalidVariants(shaderName:string, expectedTerrainHoles:bool, expectedTerrainHolesWithAlphaTestOn:bool, expectedSoftShadows:bool) : void
+    + TestStripInvalidVariants_HDR(shader:Shader) : void
+    + StripInvalidVariants_TerrainHoles(shader:Shader, expectedTerrainHoles:bool, expectedTerrainHolesWithAlphaTestOn:bool) : void
+    + TestStripInvalidVariants_Shadows(shader:Shader, expectedSoftShadows:bool) : void
+    + TestStripUnsupportedVariants(shaderName:string, expectedDirLightmap:bool, expectedLightmapProbes:bool, expectedEditorVizualization:bool) : void
+    + StripUnsupportedVariants_DirectionalLightmap(shader:Shader, expectedDirLightmap:bool) : void
+    + StripUnsupportedVariants_EditorVisualization(shader:Shader, expectedEditorVizualization:bool) : void
+    + TestStripUnusedFeatures(shaderName:string) : void
+    + TestStripUnusedFeatures_DebugDisplay(shader:Shader) : void
+    + TestStripUnusedFeatures_ScreenCoordOverride(shader:Shader) : void
+    + TestStripUnusedFeatures_PunctualLightShadows(shader:Shader) : void
+    + TestStripUnusedFeatures_FoveatedRendering(shader:Shader) : void
+    + TestStripUnusedFeatures_SHAuto(shader:Shader) : void
+    + TestStripUnusedFeatures_ScreenSpaceLensFlare(shader:Shader) : void
+    + TestStripUnusedFeatures_DataDrivenLensFlare(shader:Shader) : void
+    + TestStripUnusedFeatures_XR(shader:Shader) : void
+    + TestStripUnusedFeatures_DeferredRendering(shader:Shader) : void
+    + TestStripUnusedFeatures_MainLightShadows(shader:Shader) : void
+    + TestStripUnusedFeatures_AdditionalLightShadows(shader:Shader) : void
+    + TestStripUnusedFeatures_MixedLighting(shader:Shader) : void
+    + TestStripUnusedFeatures_SoftShadows(shader:Shader) : void
+    + TestStripUnusedFeatures_HDRGrading(shader:Shader) : void
+    + TestStripUnusedFeatures_UseFastSRGBLinearConversion(shader:Shader) : void
+    + TestStripUnusedFeatures_LightLayers(shader:Shader) : void
+    + TestStripUnusedFeatures_RenderPassEnabled(shader:Shader) : void
+    + TestStripUnusedFeatures_ReflectionProbes(shader:Shader) : void
+    + TestStripUnusedFeatures_ForwardPlus(shader:Shader) : void
+    + TestStripUnusedFeatures_AdditionalLights(shader:Shader) : void
+    + TestStripUnusedFeatures_ScreenSpaceOcclusion(shader:Shader) : void
+    + TestStripUnusedFeatures_DecalsDbuffer(shader:Shader) : void
+    + TestStripUnusedFeatures_DecalsNormalBlend(shader:Shader) : void
+    + TestStripUnusedFeatures_DecalLayers(shader:Shader) : void
+    + TestStripUnusedFeatures_WriteRenderingLayers(shader:Shader) : void
+    + TestStripUnusedFeatures_AccurateGbufferNormals(shader:Shader) : void
+    + TestStripUnusedFeatures_LightCookies(shader:Shader) : void
+    + TestStripUnusedFeatures_ProbesVolumes(shader:Shader) : void
+    + TestStripVolumeFeatures(shaderName:string) : void
+    + TestStripVolumeFeatures_UberPostShader(shader:Shader) : void
+    + TestStripVolumeFeatures_BokehDepthOfFieldShader(shader:Shader) : void
+    + TestStripVolumeFeatures_GaussianDepthOfFieldShader(shader:Shader) : void
+    + TestStripVolumeFeatures_CameraMotionBlurShader(shader:Shader) : void
+    + TestStripVolumeFeatures_PaniniProjectionShader(shader:Shader) : void
+    + TestStripVolumeFeatures_BloomShader(shader:Shader) : void
+}
+struct TestStrippingData {
+    + isGLDevice : bool <<get>> <<set>>
+    + stripSoftShadowQualityLevels : bool <<get>> <<set>>
+    + strip2DPasses : bool <<get>> <<set>>
+    + stripDebugDisplayShaders : bool <<get>> <<set>>
+    + stripScreenCoordOverrideVariants : bool <<get>> <<set>>
+    + stripUnusedVariants : bool <<get>> <<set>>
+    + stripUnusedPostProcessingVariants : bool <<get>> <<set>>
+    + stripUnusedXRVariants : bool <<get>> <<set>>
+    + IsHDRDisplaySupportEnabled : bool <<get>> <<set>>
+    + passName : string <<get>> <<set>>
+    + IsHDRShaderVariantValid : bool <<get>> <<set>>
+    + IsKeywordEnabled(keyword:LocalKeyword) : bool
+    + IsShaderFeatureEnabled(feature:ShaderFeatures) : bool
+    + IsVolumeFeatureEnabled(feature:VolumeFeatures) : bool
+    + PassHasKeyword(keyword:LocalKeyword) : bool
+}
+class TestHelper {
+    + TestHelper(shader:Shader, shaderFeatures:ShaderFeatures, volumeFeatures:VolumeFeatures, stripUnusedVariants:bool, stripUnusedXRVariants:bool)
+    + AreEqual(expected:bool, actual:bool) : void
+    + IsTrue(actual:bool) : void
+    + IsFalse(actual:bool) : void
+}
+class "List`1"<T> {
+}
+class "ShaderStripTool`1"<T> {
+}
+ShaderScriptableStripperTests +-- TestStrippingData
+IShaderScriptableStrippingData <|-- TestStrippingData
+TestStrippingData --> "shaderFeatures" ShaderFeatures
+TestStrippingData --> "volumeFeatures" VolumeFeatures
+TestStrippingData --> "shader" Shader
+TestStrippingData --> "shaderType" ShaderType
+TestStrippingData --> "shaderCompilerPlatform" ShaderCompilerPlatform
+TestStrippingData --> "passType" PassType
+TestStrippingData --> "passIdentifier" PassIdentifier
+ShaderScriptableStripperTests +-- TestHelper
+TestHelper --> "s_EnabledKeywords<string>" "List`1"
+TestHelper --> "s_PassKeywords<string>" "List`1"
+TestHelper --> "stripper" ShaderScriptableStripper
+TestHelper --> "data" IShaderScriptableStrippingData
+TestHelper --> "featureStripTool<ShaderFeatures>" "ShaderStripTool`1"
+TestHelper o-> "s_AllBloomFeatures" VolumeFeatures
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class FolderPathTestCompilationContextProvider {
+    + FolderPathBelongsToCustomTestAssembly(folderPath:string) : bool
+    + TestScriptWillCompileInFolderPath(folderPath:string) : bool
+}
+IFolderPathTestCompilationContextProvider <|-- FolderPathTestCompilationContextProvider
+@enduml

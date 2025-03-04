@@ -1,0 +1,15 @@
+@startuml
+class AcknowledgementPage {
+    + AcknowledgementPage(acknowledgement:PluginAcknowledgement)
+}
+class Styles <<static>> {
+}
+Page <|-- AcknowledgementPage
+AcknowledgementPage +-- Styles
+Styles --> "title" GUIStyle
+Styles --> "property" GUIStyle
+Styles --> "url" GUIStyle
+Styles --> "background" GUIStyle
+Styles --> "licenseBackground" GUIStyle
+Styles --> "licenseText" GUIStyle
+@enduml

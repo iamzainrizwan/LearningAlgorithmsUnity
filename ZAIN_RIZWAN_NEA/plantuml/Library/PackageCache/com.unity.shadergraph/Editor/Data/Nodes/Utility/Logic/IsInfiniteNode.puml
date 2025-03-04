@@ -1,0 +1,7 @@
+@startuml
+class IsInfiniteNode {
+    + IsInfiniteNode()
+    + <<override>> hasPreview : bool <<get>>
+}
+CodeFunctionNode <|-- IsInfiniteNode
+@enduml

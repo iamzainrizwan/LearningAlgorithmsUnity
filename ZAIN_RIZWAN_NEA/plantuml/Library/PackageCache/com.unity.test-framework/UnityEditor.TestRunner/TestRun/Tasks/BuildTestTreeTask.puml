@@ -1,0 +1,7 @@
+@startuml
+class BuildTestTreeTask {
+    + BuildTestTreeTask(testPlatform:TestPlatform)
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- BuildTestTreeTask
+@enduml

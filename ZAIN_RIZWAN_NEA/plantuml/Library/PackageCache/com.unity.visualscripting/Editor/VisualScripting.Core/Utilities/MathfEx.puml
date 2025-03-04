@@ -1,0 +1,13 @@
+@startuml
+class MathfEx <<static>> {
+    + {static} Wrap(x:float, m:float) : float
+    + {static} NearestMultiple(x:float, f:float) : float
+    + {static} HigherMultiple(x:float, f:float) : float
+    + {static} Bezier(s:Vector2, e:Vector2, st:Vector2, et:Vector2, t:float) : Vector2
+    + {static} Bezier(s:Vector3, e:Vector3, st:Vector3, et:Vector3, t:float) : Vector3
+    + {static} ScaleAroundPivot(pivot:Vector3, scale:Vector3) : Matrix4x4
+    + {static} GetT(trs:Matrix4x4) : Vector3
+    + {static} GetR(trs:Matrix4x4) : Quaternion
+    + {static} GetS(trs:Matrix4x4) : Vector3
+}
+@enduml

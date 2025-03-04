@@ -1,0 +1,20 @@
+@startuml
+class MaterialGraphEditWindow {
+    + selectedGuid : string <<get>>
+    + assetName : string <<get>>
+    + ReloadSubGraphsOnNextUpdate(changedFileGUIDs:List<string>) : void
+    + CheckForChanges() : void
+    + AssetWasDeleted() : void
+    + UpdateTitle() : void
+    + PingAsset() : void
+    + IsGraphAssetCheckedOut() : bool
+    + CheckoutAsset() : void
+    + SaveAsset() : bool
+    + SaveAs() : void
+    + ToSubGraph() : void
+    + Initialize(other:MaterialGraphEditWindow) : void
+    + Initialize(assetGuid:string) : void
+    + <<override>> SaveChanges() : void
+}
+EditorWindow <|-- MaterialGraphEditWindow
+@enduml

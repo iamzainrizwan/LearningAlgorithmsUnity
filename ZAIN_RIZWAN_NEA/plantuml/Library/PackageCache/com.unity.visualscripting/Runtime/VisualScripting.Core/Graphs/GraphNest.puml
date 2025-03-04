@@ -1,0 +1,21 @@
+@startuml
+class "GraphNest`2"<TGraph,TMacro> <<sealed>> {
+    + macro : TMacro <<get>> <<set>>
+    + embed : TGraph <<get>> <<set>>
+    + graph : TGraph <<get>>
+    + SwitchToEmbed(embed:TGraph) : void
+    + SwitchToMacro(macro:TMacro) : void
+    +  <<event>> beforeGraphChange : Action 
+    +  <<event>> afterGraphChange : Action 
+    + GetAotStubs(visited:HashSet<object>) : IEnumerable<object>
+    + hasBackgroundEmbed : bool <<get>>
+}
+class "Macro`1"<T> {
+}
+class "IEnumerable`1"<T> {
+}
+IGraphNest <|-- "GraphNest`2"
+"GraphNest`2" --> "nester" IGraphNester
+"GraphNest`2" --> "source" GraphSource
+"GraphNest`2" --> "deserializationDependencies<ISerializationDependency>" "IEnumerable`1"
+@enduml

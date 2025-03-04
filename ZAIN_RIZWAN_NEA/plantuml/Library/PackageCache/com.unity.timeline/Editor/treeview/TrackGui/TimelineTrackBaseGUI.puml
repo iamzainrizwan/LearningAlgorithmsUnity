@@ -1,0 +1,37 @@
+@startuml
+abstract class TimelineTrackBaseGUI {
+    + isExpanded : bool <<get>> <<set>>
+    + isDropTarget : bool <<protected get>> <<set>>
+    + <<virtual>> GetVerticalSpacingBetweenTracks() : float
+    + visibleRow : bool <<get>> <<set>>
+    + visibleExpanded : bool <<get>> <<set>>
+    + drawInsertionMarkerBefore : bool <<get>> <<set>>
+    + drawInsertionMarkerAfter : bool <<get>> <<set>>
+    + {abstract} expandable : bool <<get>>
+    + {abstract} Draw(headerRect:Rect, contentRect:Rect, state:WindowState) : void
+    + {abstract} OnGraphRebuilt() : void
+    + {static} FindGUITrack(track:TrackAsset) : TimelineTrackBaseGUI
+    + DrawInsertionMarkers(rowRectWithIndent:Rect) : void
+    + ClearDrawFlags() : void
+}
+class Styles <<static>> {
+}
+TreeViewItem <|-- TimelineTrackBaseGUI
+IBounds <|-- TimelineTrackBaseGUI
+TimelineTrackBaseGUI --> "treeViewToWindowTransformation" Vector2
+TimelineTrackBaseGUI --> "track" TrackAsset
+TimelineTrackBaseGUI --> "TimelineWindow" TimelineWindow
+TimelineTrackBaseGUI --> "drawer" TrackDrawer
+TimelineTrackBaseGUI --> "boundingRect" Rect
+TimelineTrackBaseGUI +-- Styles
+Styles o-> "s_LockedAndMuted" GUIContent
+Styles o-> "s_LockedAndPartiallyMuted" GUIContent
+Styles o-> "s_Locked" GUIContent
+Styles o-> "s_Muted" GUIContent
+Styles o-> "s_PartiallyMuted" GUIContent
+Styles o-> "trackMuteBtnOnTooltip" GUIContent
+Styles o-> "trackMuteBtnOffTooltip" GUIContent
+Styles o-> "trackLockBtnOnTooltip" GUIContent
+Styles o-> "trackLockBtnOffTooltip" GUIContent
+Styles o-> "lockBg" Texture2D
+@enduml

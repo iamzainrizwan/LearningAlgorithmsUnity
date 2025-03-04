@@ -1,0 +1,6 @@
+@startuml
+class ProgressOperationHandler {
+}
+IUpdateProgress <|-- ProgressOperationHandler
+ICheckinProgress <|-- ProgressOperationHandler
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class ClickAction {
+    + ClickAction(control:Control, button:int, useEvent:bool)
+}
+class "Action`2"<T1,T2> {
+}
+HoveredControlAction <|-- ClickAction
+ClickAction --> "onClick<IGUIState,Control>" "Action`2"
+@enduml

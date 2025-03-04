@@ -1,0 +1,10 @@
+@startuml
+abstract class fsObjectProcessor {
+    + <<virtual>> CanProcess(type:Type) : bool
+    + <<virtual>> OnBeforeSerialize(storageType:Type, instance:object) : void
+    + <<virtual>> OnAfterSerialize(storageType:Type, instance:object, data:fsData) : void
+    + <<virtual>> OnBeforeDeserialize(storageType:Type, data:fsData) : void
+    + <<virtual>> OnBeforeDeserializeAfterInstanceCreation(storageType:Type, instance:object, data:fsData) : void
+    + <<virtual>> OnAfterDeserialize(storageType:Type, instance:object) : void
+}
+@enduml

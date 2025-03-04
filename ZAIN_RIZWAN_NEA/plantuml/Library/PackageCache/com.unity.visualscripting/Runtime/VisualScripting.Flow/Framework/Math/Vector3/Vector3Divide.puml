@@ -1,0 +1,8 @@
+@startuml
+class Vector3Divide <<sealed>> {
+    + <<override>> Operation(a:Vector3, b:Vector3) : Vector3
+}
+class "Divide`1"<T> {
+}
+"Divide`1" "<Vector3>" <|-- Vector3Divide
+@enduml

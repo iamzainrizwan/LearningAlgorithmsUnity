@@ -1,0 +1,12 @@
+@startuml
+class SamplerStateShaderProperty {
+    + SamplerStateShaderProperty()
+    + <<override>> referenceNameForEditing : string <<get>>
+    + <<override>> latestVersion : int <<get>>
+    + <<override>> OnAfterDeserialize(json:string) : void
+}
+class "AbstractShaderProperty`1"<T> {
+}
+"AbstractShaderProperty`1" "<TextureSamplerState>" <|-- SamplerStateShaderProperty
+SamplerStateShaderProperty --> "propertyType" PropertyType
+@enduml

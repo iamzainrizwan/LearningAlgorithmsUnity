@@ -1,0 +1,16 @@
+@startuml
+struct InputBindingResolver {
+    + totalProcessorCount : int
+    + totalCompositeCount : int
+    + totalInteractionCount : int
+    + totalMapCount : int <<get>>
+    + totalActionCount : int <<get>>
+    + totalBindingCount : int <<get>>
+    + totalControlCount : int <<get>>
+    + bindingMask : InputBinding?
+    + Dispose() : void
+    + StartWithPreviousResolve(state:InputActionState, isFullResolve:bool) : void
+    + <<unsafe>> AddActionMap(actionMap:InputActionMap) : void
+}
+IDisposable <|-- InputBindingResolver
+@enduml

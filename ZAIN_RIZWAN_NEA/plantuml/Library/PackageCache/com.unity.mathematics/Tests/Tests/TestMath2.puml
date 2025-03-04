@@ -1,0 +1,6 @@
+@startuml
+class TestMath <<partial>> {
+    + <<unsafe>> hash_blob() : void
+    + <<unsafe>> hash_blob_unaligned() : void
+}
+@enduml

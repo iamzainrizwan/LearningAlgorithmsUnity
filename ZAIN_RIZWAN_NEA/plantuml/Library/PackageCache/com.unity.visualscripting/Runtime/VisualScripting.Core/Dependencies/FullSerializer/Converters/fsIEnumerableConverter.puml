@@ -1,0 +1,9 @@
+@startuml
+class fsIEnumerableConverter {
+    + <<override>> CanProcess(type:Type) : bool
+    + <<override>> CreateInstance(data:fsData, storageType:Type) : object
+    + <<override>> TrySerialize(instance_:object, serialized:fsData, storageType:Type) : fsResult
+    + <<override>> TryDeserialize(data:fsData, instance_:object, storageType:Type) : fsResult
+}
+fsConverter <|-- fsIEnumerableConverter
+@enduml

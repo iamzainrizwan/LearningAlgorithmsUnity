@@ -1,0 +1,24 @@
+@startuml
+class TouchControl {
+    + isInProgress : bool <<get>>
+    + TouchControl()
+    + <<override>> <<unsafe>> ReadUnprocessedValueFromState(statePtr:void*) : TouchState
+    + <<override>> <<unsafe>> WriteValueIntoState(value:TouchState, statePtr:void*) : void
+}
+class "InputControl`1"<T> {
+}
+"InputControl`1" "<TouchState>" <|-- TouchControl
+TouchControl --> "press" TouchPressControl
+TouchControl --> "displayIndex" IntegerControl
+TouchControl --> "touchId" IntegerControl
+TouchControl --> "position" Vector2Control
+TouchControl --> "delta" DeltaControl
+TouchControl --> "pressure" AxisControl
+TouchControl --> "radius" Vector2Control
+TouchControl --> "phase" TouchPhaseControl
+TouchControl --> "indirectTouch" ButtonControl
+TouchControl --> "tap" ButtonControl
+TouchControl --> "tapCount" IntegerControl
+TouchControl --> "startTime" DoubleControl
+TouchControl --> "startPosition" Vector2Control
+@enduml

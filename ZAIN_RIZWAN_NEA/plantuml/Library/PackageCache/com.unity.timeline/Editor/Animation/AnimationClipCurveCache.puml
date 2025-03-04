@@ -1,0 +1,44 @@
+@startuml
+struct CurveBindingPair {
+}
+class CurveBindingGroup {
+    + isFloatCurve : bool <<get>>
+    + isObjectCurve : bool <<get>>
+    + count : int <<get>>
+}
+class AnimationClipCurveInfo {
+    + dirty : bool <<get>> <<set>>
+    + version : int <<get>>
+    + GetCurveTimes(curve:EditorCurveBinding) : float[]
+    + GetCurveTimes(curves:EditorCurveBinding[]) : float[]
+    + Update(clip:AnimationClip) : void
+    + GetBindingForCurve(curve:AnimationCurve, binding:EditorCurveBinding) : bool
+    + GetCurveForBinding(binding:EditorCurveBinding) : AnimationCurve
+    + GetObjectCurveForBinding(binding:EditorCurveBinding) : ObjectReferenceKeyframe[]
+    + GetGroupBinding(groupID:string) : CurveBindingGroup
+}
+class AnimationClipCurveCache {
+    + OnEnable() : void
+    + OnDisable() : void
+    + GetCurveInfo(clip:AnimationClip) : AnimationClipCurveInfo
+    + ClearCachedProxyClips() : void
+    + Clear() : void
+}
+class EditorCurveBindingExtension <<static>> {
+    + {static} GetGroupID(binding:EditorCurveBinding) : string
+}
+class CurveBindingGroupExtensions <<static>> {
+    + {static} IsEnableGroup(curves:CurveBindingGroup) : bool
+    + {static} IsVectorGroup(curves:CurveBindingGroup) : bool
+    + {static} IsColorGroup(curves:CurveBindingGroup) : bool
+    + {static} GetDescription(group:CurveBindingGroup, t:float) : string
+}
+class "List`1"<T> {
+}
+CurveBindingPair --> "binding" EditorCurveBinding
+CurveBindingPair --> "curve" AnimationCurve
+CurveBindingGroup --> "timeRange" Vector2
+CurveBindingGroup --> "valueRange" Vector2
+AnimationClipCurveInfo --> "objectCurves<ObjectReferenceKeyframe[]>" "List`1"
+AnimationClipCurveCache --> "Instance" AnimationClipCurveCache
+@enduml

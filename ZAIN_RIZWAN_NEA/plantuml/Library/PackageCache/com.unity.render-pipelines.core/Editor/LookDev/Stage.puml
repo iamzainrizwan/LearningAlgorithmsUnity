@@ -1,0 +1,27 @@
+@startuml
+class Stage {
+    + Stage(sceneName:string)
+    + MoveIntoStage(gameObject:GameObject, persistent:bool) : void
+    + MoveIntoStage(gameObject:GameObject, position:Vector3, rotation:Quaternion, persistent:bool) : void
+    + InstantiateIntoStage(prefabOrSceneObject:GameObject, persistent:bool) : GameObject
+    + InstantiateIntoStage(prefabOrSceneObject:GameObject, position:Vector3, rotation:Quaternion, persistent:bool) : GameObject
+    + CreateGameObjectIntoStage(persistent:bool) : GameObject
+    + Clear(persistent:bool) : void
+    + OnBeginRendering(dataProvider:IDataProvider) : void
+    + OnEndRendering(dataProvider:IDataProvider) : void
+    + Dispose() : void
+}
+class StageCache {
+    + initialized : bool <<get>>
+    + StageCache(dataProvider:IDataProvider)
+    + UpdateSceneObjects(index:ViewIndex) : void
+    + UpdateSceneLighting(index:ViewIndex, provider:IDataProvider) : void
+    + Dispose() : void
+}
+IDisposable <|-- Stage
+Stage --> "camera" Camera
+Stage --> "sunLight" Light
+Stage --> "scene" Scene
+Stage --> "runtimeInterface" StageRuntimeInterface
+IDisposable <|-- StageCache
+@enduml

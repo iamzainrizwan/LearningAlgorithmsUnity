@@ -1,0 +1,35 @@
+@startuml
+abstract class Hyperparameters {
+    + obsDim : int
+    + actDim : int
+    + activationThreshold : float
+}
+abstract class LearningAlgorithm {
+    + algorithmID : string
+    + {abstract} GetOutput(state:float[], done:bool, reward:float) : bool[]
+    + {abstract} Learn(currentRound:int) : void
+}
+class DQNAlgorithm {
+    + DQNAlgorithm(inputHyperparameters:DQNHyperparameters)
+    + <<override>> GetOutput(state:float[], done:bool, reward:float) : bool[]
+    + <<override>> Learn(currentRound:int) : void
+}
+class NEATAlgorithm {
+    + NEATAlgorithm(inputHyperparameters:NEATHyperparameters)
+    + <<override>> GetOutput(state:float[], done:bool, reward:float) : bool[]
+    + <<override>> Learn(currentRound:int) : void
+    + IncrementAgents() : void
+}
+class PPOAlgorithm {
+    + PPOAlgorithm(inputHyperparameters:PPOHyperparameters)
+    + <<override>> GetOutput(state:float[], done:bool, reward:float) : bool[]
+    + <<override>> Learn(currentRound:int) : void
+}
+LearningAlgorithm --> "algorithmParam" Hyperparameters
+LearningAlgorithm <|-- DQNAlgorithm
+DQNAlgorithm --> "DQNAgent" DQN
+LearningAlgorithm <|-- NEATAlgorithm
+NEATAlgorithm --> "NEATBrain" Brain
+LearningAlgorithm <|-- PPOAlgorithm
+PPOAlgorithm --> "PPOAgent" PPO
+@enduml

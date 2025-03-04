@@ -1,0 +1,5 @@
+@startuml
+class UndoUtility <<static>> {
+    + {static} RecordEditedObject(name:string) : void
+}
+@enduml

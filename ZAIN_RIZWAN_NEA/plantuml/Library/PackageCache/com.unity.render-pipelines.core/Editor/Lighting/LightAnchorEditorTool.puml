@@ -1,0 +1,8 @@
+@startuml
+class LightAnchorEditorTool {
+    + <<override>> IsAvailable() : bool
+    + <<override>> OnToolGUI(window:EditorWindow) : void
+}
+EditorTool <|-- LightAnchorEditorTool
+LightAnchorEditorTool --> "toolbarIcon" GUIContent
+@enduml

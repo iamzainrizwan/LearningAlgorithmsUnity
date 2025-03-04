@@ -1,0 +1,12 @@
+@startuml
+class TcpClient {
+    + {static} Queue(address:IPAddress, port:int, bufferSize:int, onBufferAvailable:Action<byte[]>) : void
+}
+class State {
+}
+class "Action`1"<T> {
+}
+TcpClient +-- State
+State --> "NetworkStream" NetworkStream
+State --> "OnBufferAvailable<byte[]>" "Action`1"
+@enduml

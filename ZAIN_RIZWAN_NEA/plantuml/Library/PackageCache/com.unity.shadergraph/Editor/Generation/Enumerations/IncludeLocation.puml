@@ -1,0 +1,7 @@
+@startuml
+enum IncludeLocation {
+    Pregraph,
+    Graph,
+    Postgraph,
+}
+@enduml

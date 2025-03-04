@@ -1,0 +1,13 @@
+@startuml
+class TriggerCustomEvent <<sealed>> {
+    + argumentCount : int <<get>> <<set>>
+}
+class "List`1"<T> {
+}
+Unit <|-- TriggerCustomEvent
+TriggerCustomEvent --> "arguments<ValueInput>" "List`1"
+TriggerCustomEvent --> "enter" ControlInput
+TriggerCustomEvent --> "name" ValueInput
+TriggerCustomEvent --> "target" ValueInput
+TriggerCustomEvent --> "exit" ControlOutput
+@enduml

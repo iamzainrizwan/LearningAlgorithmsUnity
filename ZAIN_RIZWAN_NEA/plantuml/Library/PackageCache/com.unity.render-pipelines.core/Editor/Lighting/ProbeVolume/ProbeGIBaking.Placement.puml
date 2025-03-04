@@ -1,0 +1,14 @@
+@startuml
+class ProbeVolumeProfileInfo {
+    + simplificationLevels : int
+    + minDistanceBetweenProbes : float
+    + maxSubdivision : int <<get>>
+    + minBrickSize : float <<get>>
+    + cellSizeInBricks : int <<get>>
+    + cellSizeInMeters : float <<get>>
+    + PositionToCell(position:Vector3) : Vector3Int
+}
+class AdaptiveProbeVolumes <<partial>> {
+}
+ProbeVolumeProfileInfo --> "probeOffset" Vector3
+@enduml

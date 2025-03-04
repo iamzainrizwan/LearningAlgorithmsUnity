@@ -1,0 +1,9 @@
+@startuml
+class OnAnimatorIK <<sealed>> {
+}
+class "GameObjectEventUnit`1"<T> {
+}
+"GameObjectEventUnit`1" "<int>" <|-- OnAnimatorIK
+OnAnimatorIK --> "MessageListenerType" Type
+OnAnimatorIK --> "layerIndex" ValueOutput
+@enduml

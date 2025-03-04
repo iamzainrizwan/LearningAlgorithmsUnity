@@ -1,0 +1,6 @@
+@startuml
+class ExecutionSettings {
+    + TestResultsFile : string
+    + DeviceLogsDirectory : string
+}
+@enduml

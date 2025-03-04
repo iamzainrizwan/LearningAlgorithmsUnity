@@ -1,0 +1,11 @@
+@startuml
+class CustomComposite {
+    + multiplier : int
+    + stick : int
+    + scaleFactor : float = 1
+    + <<override>> ReadValue(context:InputBindingCompositeContext) : Vector2
+}
+class "InputBindingComposite`1"<T> {
+}
+"InputBindingComposite`1" "<Vector2>" <|-- CustomComposite
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class LightPlacementTool {
+    + <<override>> OnActivated() : void
+    + <<override>> OnWillBeDeactivated() : void
+    + <<override>> OnToolGUI(window:EditorWindow) : void
+}
+EditorTool <|-- LightPlacementTool
+LightPlacementTool --> "toolbarIcon" GUIContent
+@enduml

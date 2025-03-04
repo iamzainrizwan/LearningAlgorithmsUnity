@@ -1,0 +1,27 @@
+@startuml
+class Clipboard {
+    + Clipboard()
+    + CopyItems(items:IEnumerable<ITimelineItem>) : void
+    + CopyTracks(tracks:IEnumerable<TrackAsset>) : void
+    + GetTracks() : IEnumerable<ClipboardTrackEntry>
+    + GetCopiedItems() : IEnumerable<ItemsPerTrack>
+    + Clear() : void
+}
+class ExposedReferenceTable {
+    + SetReferenceValue(id:PropertyName, value:Object) : void
+    + GetReferenceValue(id:PropertyName, idValid:bool) : Object
+    + ClearReferenceValue(id:PropertyName) : void
+    + Clear() : void
+}
+struct ClipboardTrackEntry {
+}
+class "List`1"<T> {
+}
+Clipboard o-> "exposedPropertyTable" IExposedPropertyTable
+Clipboard +-- ExposedReferenceTable
+IExposedPropertyTable <|-- ExposedReferenceTable
+Clipboard +-- ClipboardTrackEntry
+ClipboardTrackEntry --> "item" TrackAsset
+ClipboardTrackEntry --> "parent" TrackAsset
+ClipboardTrackEntry --> "bindings<Object>" "List`1"
+@enduml

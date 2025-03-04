@@ -1,0 +1,10 @@
+@startuml
+class ScreenSpaceShadowsEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+struct Styles {
+}
+Editor <|-- ScreenSpaceShadowsEditor
+ScreenSpaceShadowsEditor +-- Styles
+Styles o-> "Description" GUIContent
+@enduml

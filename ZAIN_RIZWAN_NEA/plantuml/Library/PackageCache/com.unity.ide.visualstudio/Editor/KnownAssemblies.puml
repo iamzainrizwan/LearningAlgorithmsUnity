@@ -1,0 +1,7 @@
+@startuml
+class KnownAssemblies <<static>> {
+    + <<const>> Bridge : string = "SyntaxTree.VisualStudio.Unity.Bridge"
+    + <<const>> Messaging : string = "SyntaxTree.VisualStudio.Unity.Messaging"
+    + <<const>> UnityVS : string = "UnityVS.VersionSpecific"
+}
+@enduml

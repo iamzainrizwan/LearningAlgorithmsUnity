@@ -1,0 +1,15 @@
+@startuml
+class DistortTunnelRendererFeature {
+    + <<override>> Create() : void
+    + <<override>> AddRenderPasses(renderer:ScriptableRenderer, renderingData:RenderingData) : void
+}
+class TexRefData {
+    + <<override>> Reset() : void
+}
+ScriptableRendererFeature <|-- DistortTunnelRendererFeature
+DistortTunnelRendererFeature o-> "passEvent" RenderPassEvent
+DistortTunnelRendererFeature --> "distortShader" Shader
+DistortTunnelRendererFeature +-- TexRefData
+ContextItem <|-- TexRefData
+TexRefData o-> "distortTunnelTexHandle" TextureHandle
+@enduml

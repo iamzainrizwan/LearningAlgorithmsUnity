@@ -1,0 +1,5 @@
+@startuml
+class NormalDistributionHelper <<static>> {
+    + {static} Gauss(x:double) : double
+}
+@enduml

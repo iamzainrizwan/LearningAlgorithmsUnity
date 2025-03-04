@@ -1,0 +1,22 @@
+@startuml
+class RemoteTestRunController {
+    + Init(buildTarget:BuildTarget, heartbeatTimeout:int) : void
+    + PostSuccessfulBuildAction() : void
+}
+class "ScriptableSingleton`1"<T> {
+}
+enum MessageType {
+    TestStarted,
+    TestFinished,
+    RunStarted,
+    RunFinished,
+}
+struct Message {
+    + Message(messageArgs:MessageEventArgs, type:MessageType)
+}
+"ScriptableSingleton`1" "<RemoteTestRunController>" <|-- RemoteTestRunController
+RemoteTestRunController +-- MessageType
+RemoteTestRunController +-- Message
+Message --> "MessageArgs" MessageEventArgs
+Message --> "Type" MessageType
+@enduml

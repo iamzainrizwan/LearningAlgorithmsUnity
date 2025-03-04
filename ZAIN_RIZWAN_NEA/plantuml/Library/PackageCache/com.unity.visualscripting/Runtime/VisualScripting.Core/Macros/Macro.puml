@@ -1,0 +1,11 @@
+@startuml
+abstract class "Macro`1"<TGraph> {
+    + graph : TGraph <<get>> <<set>>
+    + GetAotStubs(visited:HashSet<object>) : IEnumerable<object>
+    + isDescriptionValid : bool <<get>> <<set>>
+    + {abstract} DefaultGraph() : TGraph
+    + GetReference() : GraphPointer
+}
+MacroScriptableObject <|-- "Macro`1"
+IMacro <|-- "Macro`1"
+@enduml

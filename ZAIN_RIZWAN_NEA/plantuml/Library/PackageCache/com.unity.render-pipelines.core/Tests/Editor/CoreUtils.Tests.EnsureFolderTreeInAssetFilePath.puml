@@ -1,0 +1,7 @@
+@startuml
+class CoreUtilsTests <<partial>> {
+    + EnsureFolderTreeInAssetFilePath(path:string) : void
+    + EnsureFolderTreeInAssetFilePathThrows(folderPath:string) : void
+    + TearDown() : void
+}
+@enduml

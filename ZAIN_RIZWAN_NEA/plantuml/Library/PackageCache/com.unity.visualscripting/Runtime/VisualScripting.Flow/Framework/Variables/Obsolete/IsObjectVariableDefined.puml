@@ -1,0 +1,9 @@
+@startuml
+class IsObjectVariableDefined <<sealed>> {
+    + IsObjectVariableDefined()
+    + IsObjectVariableDefined(name:string)
+}
+IsVariableDefinedUnit <|-- IsObjectVariableDefined
+IObjectVariableUnit <|-- IsObjectVariableDefined
+IsObjectVariableDefined --> "source" ValueInput
+@enduml

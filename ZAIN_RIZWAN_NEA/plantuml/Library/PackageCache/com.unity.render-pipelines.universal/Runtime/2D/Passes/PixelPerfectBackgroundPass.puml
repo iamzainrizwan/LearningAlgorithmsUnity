@@ -1,0 +1,7 @@
+@startuml
+class PixelPerfectBackgroundPass {
+    + PixelPerfectBackgroundPass(evt:RenderPassEvent)
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+}
+ScriptableRenderPass <|-- PixelPerfectBackgroundPass
+@enduml

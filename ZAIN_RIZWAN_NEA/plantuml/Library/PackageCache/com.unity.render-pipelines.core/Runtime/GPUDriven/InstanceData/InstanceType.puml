@@ -1,0 +1,24 @@
+@startuml
+enum InstanceType {
+    MeshRenderer= 0,
+    SpeedTree= 1,
+    Count,
+    LODGroup= 0,
+}
+class InstanceTypeInfo <<static>> {
+    + <<const>> kInstanceTypeBitCount : int = 1
+    + <<const>> kMaxInstanceTypesCount : int
+    + <<const>> kInstanceTypeMask : uint
+    + {static} GetParentType(type:InstanceType) : InstanceType
+    + {static} GetChildTypes(type:InstanceType) : List<InstanceType>
+}
+struct InstanceNumInfo {
+    + <<fixed>> InstanceNums : int
+    + InitDefault() : void
+    + InstanceNumInfo(type:InstanceType, instanceNum:int)
+    + InstanceNumInfo(meshRendererNum:int, speedTreeNum:int)
+    + GetInstanceNum(type:InstanceType) : int
+    + GetInstanceNumIncludingChildren(type:InstanceType) : int
+    + GetTotalInstanceNum() : int
+}
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class ApproximatelyEqual <<sealed>> {
+    + Comparison(flow:Flow) : bool
+}
+Unit <|-- ApproximatelyEqual
+ApproximatelyEqual --> "a" ValueInput
+ApproximatelyEqual --> "b" ValueInput
+ApproximatelyEqual --> "equal" ValueOutput
+@enduml

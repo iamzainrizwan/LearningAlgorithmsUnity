@@ -1,0 +1,7 @@
+@startuml
+class UniversalRenderer <<sealed>> <<partial>> {
+}
+class CopyToDebugTexturePassData {
+}
+UniversalRenderer +-- CopyToDebugTexturePassData
+@enduml

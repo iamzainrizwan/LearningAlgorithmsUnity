@@ -1,0 +1,6 @@
+@startuml
+class InputRegisteringTests {
+    + GetEntriesWithoutDuplicates(entries:List<InputManagerEntry>) : string[]
+    + GetEntriesWithoutAlreadyRegistered(entries:List<InputManagerEntry>, cachedEntries:List<(string, InputManagerEntry.Kind)>) : string[]
+}
+@enduml

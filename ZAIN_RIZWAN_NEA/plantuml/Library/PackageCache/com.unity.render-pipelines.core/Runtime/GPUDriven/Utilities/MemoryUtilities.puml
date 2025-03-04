@@ -1,0 +1,6 @@
+@startuml
+class MemoryUtilities <<static>> {
+    + <<unsafe>> {static} Malloc(count:int, allocator:Allocator) : T*
+    + <<unsafe>> {static} Free(p:T*, allocator:Allocator) : void
+}
+@enduml

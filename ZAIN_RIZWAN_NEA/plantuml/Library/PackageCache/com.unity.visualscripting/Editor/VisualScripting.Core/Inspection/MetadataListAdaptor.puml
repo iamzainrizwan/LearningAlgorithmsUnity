@@ -1,0 +1,30 @@
+@startuml
+class MetadataListAdaptor {
+    + MetadataListAdaptor(metadata:Metadata, parentInspector:Inspector)
+    +  <<event>> itemAdded : Action<object> 
+    + <<override>> Count : int <<get>>
+    + <<override>> Add() : void
+    + <<override>> Clear() : void
+    + <<override>> Insert(index:int) : void
+    + <<override>> Remove(index:int) : void
+    + <<override>> Move(sourceIndex:int, destinationIndex:int) : void
+    + <<override>> Duplicate(index:int) : void
+    + <<override>> CanDrag(index:int) : bool
+    + <<override>> CanRemove(index:int) : bool
+    + CanDropInsert(insertionIndex:int) : bool
+    + ProcessDropInsertion(insertionIndex:int) : void
+    + <<override>> GetItemAdaptiveWidth(index:int) : float
+    + <<override>> GetItemHeight(width:float, index:int) : float
+    + alwaysDragAndDrop : bool <<get>> <<set>> = false
+    + <<override>> DrawItem(position:Rect, index:int) : void
+    + <<override>> DrawItemBackground(position:Rect, index:int) : void
+}
+class ProjectAssemblyOptionsListAdaptor {
+    + ProjectAssemblyOptionsListAdaptor(metadata:Metadata, parentInspector:Inspector)
+    + <<override>> DrawItem(position:Rect, index:int) : void
+}
+MetadataCollectionAdaptor <|-- MetadataListAdaptor
+IReorderableListDropTarget <|-- MetadataListAdaptor
+MetadataListAdaptor --> "metadata" Metadata
+MetadataListAdaptor <|-- ProjectAssemblyOptionsListAdaptor
+@enduml

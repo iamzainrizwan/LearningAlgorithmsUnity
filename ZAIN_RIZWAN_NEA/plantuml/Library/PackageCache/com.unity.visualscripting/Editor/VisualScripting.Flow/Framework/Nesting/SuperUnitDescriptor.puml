@@ -1,0 +1,8 @@
+@startuml
+class SuperUnitDescriptor {
+    + SuperUnitDescriptor(unit:SubgraphUnit)
+}
+class "NesterUnitDescriptor`1"<T> {
+}
+"NesterUnitDescriptor`1" "<SubgraphUnit>" <|-- SuperUnitDescriptor
+@enduml

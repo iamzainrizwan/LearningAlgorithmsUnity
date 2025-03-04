@@ -1,0 +1,11 @@
+@startuml
+class fsConverterRegistrar <<partial>> {
+}
+class AnimationCurve_DirectConverter {
+    + <<override>> CreateInstance(data:fsData, storageType:Type) : object
+}
+class "fsDirectConverter`1"<T> {
+}
+fsConverterRegistrar --> "Register_AnimationCurve_DirectConverter" AnimationCurve_DirectConverter
+"fsDirectConverter`1" "<AnimationCurve>" <|-- AnimationCurve_DirectConverter
+@enduml

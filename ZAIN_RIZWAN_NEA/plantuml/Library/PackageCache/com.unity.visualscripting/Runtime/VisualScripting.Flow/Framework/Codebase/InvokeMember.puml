@@ -1,0 +1,20 @@
+@startuml
+class InvokeMember <<sealed>> {
+    + InvokeMember()
+    + InvokeMember(member:Member)
+    + chainable : bool <<get>> <<set>>
+    + supportsChaining : bool <<get>>
+    + <<override>> HandleDependencies() : bool
+    + <<override>> GetAnalyticsIdentifier() : AnalyticsIdentifier
+}
+class "Dictionary`2"<T1,T2> {
+}
+MemberUnit <|-- InvokeMember
+InvokeMember --> "invocation" Member
+InvokeMember --> "enter" ControlInput
+InvokeMember --> "inputParameters<int,ValueInput>" "Dictionary`2"
+InvokeMember --> "targetOutput" ValueOutput
+InvokeMember --> "result" ValueOutput
+InvokeMember --> "outputParameters<int,ValueOutput>" "Dictionary`2"
+InvokeMember --> "exit" ControlOutput
+@enduml

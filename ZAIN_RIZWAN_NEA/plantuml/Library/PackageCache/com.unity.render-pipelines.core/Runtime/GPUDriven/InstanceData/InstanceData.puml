@@ -1,0 +1,166 @@
+@startuml
+struct CPUInstanceData {
+    + instancesLength : int <<get>> <<set>>
+    + instancesCapacity : int <<get>> <<set>>
+    + handlesLength : int <<get>>
+    + Initialize(initCapacity:int) : void
+    + Dispose() : void
+    + InstanceToIndex(instance:InstanceHandle) : int
+    + IndexToInstance(index:int) : InstanceHandle
+    + IsValidInstance(instance:InstanceHandle) : bool
+    + IsFreeInstanceHandle(instance:InstanceHandle) : bool
+    + IsValidIndex(index:int) : bool
+    + GetFreeInstancesCount() : int
+    + EnsureFreeInstances(instancesCount:int) : void
+    + AddNoGrow(instance:InstanceHandle) : void
+    + Add(instance:InstanceHandle) : void
+    + Remove(instance:InstanceHandle) : void
+    + Set(instance:InstanceHandle, sharedInstance:SharedInstanceHandle, localToWorldIsFlipped:bool, worldAABB:AABB, tetrahedronCacheIndex:int, movedInCurrentFrame:bool, movedInPreviousFrame:bool, visibleInPreviousFrame:bool) : void
+    + SetDefault(instance:InstanceHandle) : void
+    + Get_SharedInstance(instance:InstanceHandle) : SharedInstanceHandle
+    + Get_LocalToWorldIsFlipped(instance:InstanceHandle) : bool
+    + Get_WorldAABB(instance:InstanceHandle) : AABB
+    + Get_TetrahedronCacheIndex(instance:InstanceHandle) : int
+    + <<unsafe>> Get_WorldBounds(instance:InstanceHandle) : ref AABB
+    + Get_MovedInCurrentFrame(instance:InstanceHandle) : bool
+    + Get_MovedInPreviousFrame(instance:InstanceHandle) : bool
+    + Get_VisibleInPreviousFrame(instance:InstanceHandle) : bool
+    + Set_SharedInstance(instance:InstanceHandle, sharedInstance:SharedInstanceHandle) : void
+    + Set_LocalToWorldIsFlipped(instance:InstanceHandle, isFlipped:bool) : void
+    + Set_WorldAABB(instance:InstanceHandle, worldBounds:AABB) : void
+    + Set_TetrahedronCacheIndex(instance:InstanceHandle, tetrahedronCacheIndex:int) : void
+    + Set_MovedInCurrentFrame(instance:InstanceHandle, movedInCurrentFrame:bool) : void
+    + Set_MovedInPreviousFrame(instance:InstanceHandle, movedInPreviousFrame:bool) : void
+    + Set_VisibleInPreviousFrame(instance:InstanceHandle, visibleInPreviousFrame:bool) : void
+    + AsReadOnly() : ReadOnly
+}
+struct CPUSharedInstanceData {
+    + instancesLength : int <<get>> <<set>>
+    + instancesCapacity : int <<get>> <<set>>
+    + handlesLength : int <<get>>
+    + Initialize(initCapacity:int) : void
+    + Dispose() : void
+    + SharedInstanceToIndex(instance:SharedInstanceHandle) : int
+    + IndexToSharedInstance(index:int) : SharedInstanceHandle
+    + InstanceToIndex(instanceData:CPUInstanceData, instance:InstanceHandle) : int
+    + IsValidInstance(instance:SharedInstanceHandle) : bool
+    + IsFreeInstanceHandle(instance:SharedInstanceHandle) : bool
+    + IsValidIndex(index:int) : bool
+    + GetFreeInstancesCount() : int
+    + EnsureFreeInstances(instancesCount:int) : void
+    + AddNoGrow(instance:SharedInstanceHandle) : void
+    + Add(instance:SharedInstanceHandle) : void
+    + Remove(instance:SharedInstanceHandle) : void
+    + Get_RendererGroupID(instance:SharedInstanceHandle) : int
+    + Get_MeshID(instance:SharedInstanceHandle) : int
+    + <<unsafe>> Get_LocalAABB(instance:SharedInstanceHandle) : ref AABB
+    + Get_Flags(instance:SharedInstanceHandle) : CPUSharedInstanceFlags
+    + Get_LODGroupAndMask(instance:SharedInstanceHandle) : uint
+    + Get_GameObjectLayer(instance:SharedInstanceHandle) : int
+    + Get_RefCount(instance:SharedInstanceHandle) : int
+    + <<unsafe>> Get_MaterialIDs(instance:SharedInstanceHandle) : ref SmallIntegerArray
+    + Set_RendererGroupID(instance:SharedInstanceHandle, rendererGroupID:int) : void
+    + Set_MeshID(instance:SharedInstanceHandle, meshID:int) : void
+    + Set_LocalAABB(instance:SharedInstanceHandle, localAABB:AABB) : void
+    + Set_Flags(instance:SharedInstanceHandle, instanceFlags:CPUSharedInstanceFlags) : void
+    + Set_LODGroupAndMask(instance:SharedInstanceHandle, lodGroupAndMask:uint) : void
+    + Set_GameObjectLayer(instance:SharedInstanceHandle, gameObjectLayer:int) : void
+    + Set_RefCount(instance:SharedInstanceHandle, refCount:int) : void
+    + Set_MaterialIDs(instance:SharedInstanceHandle, materialIDs:SmallIntegerArray) : void
+    + Set(instance:SharedInstanceHandle, rendererGroupID:int, materialIDs:SmallIntegerArray, meshID:int, localAABB:AABB, transformUpdateFlags:TransformUpdateFlags, instanceFlags:InstanceFlags, lodGroupAndMask:uint, gameObjectLayer:int, refCount:int) : void
+    + SetDefault(instance:SharedInstanceHandle) : void
+    + AsReadOnly() : ReadOnly
+}
+struct SmallIntegerArray {
+    + Valid : bool <<get>>
+    + <<readonly>> Length : int
+    + SmallIntegerArray(length:int, allocator:Allocator)
+    + <<unsafe>> Dispose() : void
+}
+interface IDataArrays {
+}
+struct EditorInstanceDataArrays {
+    + Initialize(initCapacity:int) : void
+    + Dispose() : void
+    + Grow(newCapacity:int) : void
+    + Remove(index:int, lastIndex:int) : void
+    + SetDefault(index:int) : void
+}
+enum TransformUpdateFlags {
+    None= 0,
+    HasLightProbeCombined= 1 << 0,
+    IsPartOfStaticBatch= 1 << 1,
+}
+enum InstanceFlags {
+    None= 0,
+    AffectsLightmaps= 1 << 0,
+    IsShadowsOff= 1 << 1,
+    IsShadowsOnly= 1 << 2,
+    HasProgressiveLod= 1 << 3,
+    SmallMeshCulling= 1 << 4,
+}
+struct CPUSharedInstanceFlags {
+}
+struct PackedMatrix {
+    + {static} FromMatrix4x4(m:Matrix4x4) : PackedMatrix
+    + {static} FromFloat4x4(m:float4x4) : PackedMatrix
+}
+class "NativeArray`1"<T> {
+}
+struct ReadOnly {
+    + <<readonly>> handlesLength : int <<get>>
+    + <<readonly>> instancesLength : int <<get>>
+    + ReadOnly(instanceData:CPUInstanceData)
+    + InstanceToIndex(instance:InstanceHandle) : int
+    + IndexToInstance(index:int) : InstanceHandle
+    + IsValidInstance(instance:InstanceHandle) : bool
+    + IsValidIndex(index:int) : bool
+}
+struct ReadOnly {
+    + <<readonly>> handlesLength : int <<get>>
+    + <<readonly>> instancesLength : int <<get>>
+    + ReadOnly(instanceData:CPUSharedInstanceData)
+    + SharedInstanceToIndex(instance:SharedInstanceHandle) : int
+    + IndexToSharedInstance(index:int) : SharedInstanceHandle
+    + IsValidSharedInstance(instance:SharedInstanceHandle) : bool
+    + IsValidIndex(index:int) : bool
+    + InstanceToIndex(instanceData:CPUInstanceData.ReadOnly, instance:InstanceHandle) : int
+}
+struct ReadOnly {
+    + ReadOnly(instanceData:CPUInstanceData)
+}
+IDisposable <|-- CPUInstanceData
+CPUInstanceData --> "instances<InstanceHandle>" "NativeArray`1"
+CPUInstanceData --> "sharedInstances<SharedInstanceHandle>" "NativeArray`1"
+CPUInstanceData --> "localToWorldIsFlippedBits" ParallelBitArray
+CPUInstanceData --> "worldAABBs<AABB>" "NativeArray`1"
+CPUInstanceData --> "tetrahedronCacheIndices<int>" "NativeArray`1"
+CPUInstanceData --> "movedInCurrentFrameBits" ParallelBitArray
+CPUInstanceData --> "movedInPreviousFrameBits" ParallelBitArray
+CPUInstanceData --> "visibleInPreviousFrameBits" ParallelBitArray
+CPUInstanceData --> "editorData" EditorInstanceDataArrays
+IDisposable <|-- CPUSharedInstanceData
+CPUSharedInstanceData --> "instances<SharedInstanceHandle>" "NativeArray`1"
+CPUSharedInstanceData --> "rendererGroupIDs<int>" "NativeArray`1"
+CPUSharedInstanceData --> "materialIDArrays<SmallIntegerArray>" "NativeArray`1"
+CPUSharedInstanceData --> "meshIDs<int>" "NativeArray`1"
+CPUSharedInstanceData --> "localAABBs<AABB>" "NativeArray`1"
+CPUSharedInstanceData --> "flags<CPUSharedInstanceFlags>" "NativeArray`1"
+CPUSharedInstanceData --> "lodGroupAndMasks<uint>" "NativeArray`1"
+CPUSharedInstanceData --> "gameObjectLayers<int>" "NativeArray`1"
+CPUSharedInstanceData --> "refCounts<int>" "NativeArray`1"
+IDisposable <|-- SmallIntegerArray
+IDataArrays <|-- EditorInstanceDataArrays
+CPUSharedInstanceFlags --> "transformUpdateFlags" TransformUpdateFlags
+CPUSharedInstanceFlags --> "instanceFlags" InstanceFlags
+PackedMatrix --> "packed0" float4
+PackedMatrix --> "packed1" float4
+PackedMatrix --> "packed2" float4
+CPUInstanceData +-- ReadOnly
+ReadOnly --> "localToWorldIsFlippedBits" ParallelBitArray
+ReadOnly --> "movedInCurrentFrameBits" ParallelBitArray
+ReadOnly --> "movedInPreviousFrameBits" ParallelBitArray
+ReadOnly --> "visibleInPreviousFrameBits" ParallelBitArray
+CPUSharedInstanceData +-- ReadOnly
+EditorInstanceDataArrays +-- ReadOnly
+@enduml

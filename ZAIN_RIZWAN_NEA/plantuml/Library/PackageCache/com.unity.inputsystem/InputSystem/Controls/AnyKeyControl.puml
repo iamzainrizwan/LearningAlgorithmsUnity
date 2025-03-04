@@ -1,0 +1,7 @@
+@startuml
+class AnyKeyControl {
+    + AnyKeyControl()
+    + <<override>> <<unsafe>> ReadUnprocessedValueFromState(statePtr:void*) : float
+}
+ButtonControl <|-- AnyKeyControl
+@enduml

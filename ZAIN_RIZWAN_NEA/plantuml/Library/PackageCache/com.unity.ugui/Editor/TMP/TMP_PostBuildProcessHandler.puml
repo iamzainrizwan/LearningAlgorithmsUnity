@@ -1,0 +1,5 @@
+@startuml
+class TMP_PostBuildProcessHandler {
+    + {static} OnPostprocessBuild(target:BuildTarget, pathToBuiltProject:string) : void
+}
+@enduml

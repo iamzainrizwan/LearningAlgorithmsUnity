@@ -1,0 +1,8 @@
+@startuml
+class ForAnalyser {
+    + ForAnalyser(reference:GraphReference, target:For)
+}
+class "UnitAnalyser`1"<T> {
+}
+"UnitAnalyser`1" "<For>" <|-- ForAnalyser
+@enduml

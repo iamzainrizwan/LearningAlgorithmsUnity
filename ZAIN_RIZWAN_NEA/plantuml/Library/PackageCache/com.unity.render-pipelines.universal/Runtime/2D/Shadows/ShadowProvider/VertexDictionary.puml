@@ -1,0 +1,5 @@
+@startuml
+struct VertexDictionary {
+    + GetIndexRemap(vertices:NativeArray<Vector3>, indices:NativeArray<int>) : NativeArray<int>
+}
+@enduml

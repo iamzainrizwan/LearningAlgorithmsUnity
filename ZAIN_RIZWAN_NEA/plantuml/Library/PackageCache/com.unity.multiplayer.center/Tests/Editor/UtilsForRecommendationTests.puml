@@ -1,0 +1,14 @@
+@startuml
+class UtilsForRecommendationTests <<static>> {
+    + {static} GetProjectQuestionnaire() : QuestionnaireData
+    + {static} BuildAnswerMatching(questionnaireData:QuestionnaireData) : AnswerData
+    + {static} GetSomeRecommendation() : RecommendationViewData
+    + {static} AssertRecommendedSolutionNotNull(solution:RecommendedSolutionViewData, checkMainPackage:bool) : void
+    + {static} AssertAllRecommendedPackageNotNull(allPackages:SolutionsToRecommendedPackageViewData) : void
+    + {static} AssertSamePackagesWithDifferentRecommendations(reco1:RecommendedPackageViewData[], reco2:RecommendedPackageViewData[], msg:string) : void
+    + {static} Clone(obj:T) : T
+    + {static} ComputeRecommendationForPreset(preset:Preset, playerCount:string) : RecommendationViewData
+    + {static} GetAnswerDataForPreset(questionnaireData:QuestionnaireData, preset:Preset, playerCount:string) : AnswerData
+    + {static} SimulateSelectionChange(newSelectedSolution:PossibleSolution, solutionViewDatas:RecommendedSolutionViewData[]) : void
+}
+@enduml

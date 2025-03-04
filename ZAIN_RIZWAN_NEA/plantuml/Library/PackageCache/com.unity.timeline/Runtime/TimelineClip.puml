@@ -1,0 +1,77 @@
+@startuml
+interface ITimelineClipAsset {
+}
+class TimelineClip <<partial>> {
+    + {static} <<readonly>> kDefaultClipDurationInSeconds : float = 5
+    + {static} <<readonly>> kTimeScaleMin : double
+    + {static} <<readonly>> kTimeScaleMax : double = 1000
+    + hasPreExtrapolation : bool <<get>>
+    + hasPostExtrapolation : bool <<get>>
+    + timeScale : double <<get>> <<set>>
+    + start : double <<get>> <<set>>
+    + duration : double <<get>> <<set>>
+    + end : double <<get>>
+    + clipIn : double <<get>> <<set>>
+    + displayName : string <<get>> <<set>>
+    + clipAssetDuration : double <<get>>
+    + hasCurves : bool <<get>>
+    + GetParentTrack() : TrackAsset
+    + easeInDuration : double <<get>> <<set>>
+    + easeOutDuration : double <<get>> <<set>>
+    + eastOutTime : double <<get>>
+    + easeOutTime : double <<get>>
+    + blendInDuration : double <<get>> <<set>>
+    + blendOutDuration : double <<get>> <<set>>
+    + hasBlendIn : bool <<get>>
+    + hasBlendOut : bool <<get>>
+    + mixInPercentage : float <<get>>
+    + mixInDuration : double <<get>>
+    + mixOutTime : double <<get>>
+    + mixOutDuration : double <<get>>
+    + mixOutPercentage : float <<get>>
+    + recordable : bool <<get>> <<internal set>>
+    + EvaluateMixOut(time:double) : float
+    + EvaluateMixIn(time:double) : float
+    + ToLocalTime(time:double) : double
+    + ToLocalTimeUnbound(time:double) : double
+    + IsExtrapolatedTime(sequenceTime:double) : bool
+    + IsPreExtrapolatedTime(sequenceTime:double) : bool
+    + IsPostExtrapolatedTime(sequenceTime:double) : bool
+    + extrapolatedStart : double <<get>>
+    + extrapolatedDuration : double <<get>>
+    + CreateCurves(curvesClipName:string) : void
+    + <<override>> ToString() : string
+    + ConformEaseValues() : void
+}
+enum ClipExtrapolation {
+    None,
+    Hold,
+    Loop,
+    PingPong,
+    Continue,
+}
+enum BlendCurveMode {
+    Auto,
+    Manual,
+}
+class "List`1"<T> {
+}
+ICurvesOwner <|-- TimelineClip
+ISerializationCallbackReceiver <|-- TimelineClip
+TimelineClip o-> "kDefaultClipCaps" ClipCaps
+TimelineClip --> "curves" AnimationClip
+TimelineClip --> "asset" Object
+TimelineClip --> "underlyingAsset" Object
+TimelineClip --> "parentTrack" TrackAsset
+TimelineClip --> "blendInCurveMode" BlendCurveMode
+TimelineClip --> "blendOutCurveMode" BlendCurveMode
+TimelineClip --> "mixInCurve" AnimationCurve
+TimelineClip --> "mixOutCurve" AnimationCurve
+TimelineClip --> "exposedParameters<string>" "List`1"
+TimelineClip --> "clipCaps" ClipCaps
+TimelineClip --> "animationClip" AnimationClip
+TimelineClip --> "postExtrapolationMode" ClipExtrapolation
+TimelineClip --> "preExtrapolationMode" ClipExtrapolation
+TimelineClip +-- ClipExtrapolation
+TimelineClip +-- BlendCurveMode
+@enduml

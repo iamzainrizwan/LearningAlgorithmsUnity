@@ -1,0 +1,11 @@
+@startuml
+class AboutablePage {
+    + AboutablePage(aboutable:IAboutable)
+}
+class Styles <<static>> {
+    + {static} <<readonly>> authorLogoHeight : float = 50
+}
+Page <|-- AboutablePage
+AboutablePage +-- Styles
+Styles --> "background" GUIStyle
+@enduml

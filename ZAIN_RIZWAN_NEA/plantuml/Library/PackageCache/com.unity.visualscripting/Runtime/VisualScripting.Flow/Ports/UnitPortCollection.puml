@@ -1,0 +1,14 @@
+@startuml
+class "UnitPortCollection`1"<TPort> <<sealed>> {
+    + UnitPortCollection(unit:IUnit)
+    + Single() : TPort
+    + <<new>> TryGetValue(key:string, value:TPort) : bool
+}
+class "KeyedCollection`2"<T1,T2> {
+}
+class "IUnitPortCollection`1"<T> {
+}
+"KeyedCollection`2" "<string,TPort>" <|-- "UnitPortCollection`1"
+"IUnitPortCollection`1" "<TPort>" <|-- "UnitPortCollection`1"
+"UnitPortCollection`1" --> "unit" IUnit
+@enduml

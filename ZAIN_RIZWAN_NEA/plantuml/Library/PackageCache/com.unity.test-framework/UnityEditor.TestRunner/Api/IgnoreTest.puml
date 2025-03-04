@@ -1,0 +1,8 @@
+@startuml
+class IgnoreTest {
+    + test : string <<get>> <<set>>
+    + ignoreComment : string <<get>> <<set>>
+    + ParseToEngine() : UnityEngine.TestTools.IgnoreTest
+    + <<override>> ToString() : string
+}
+@enduml

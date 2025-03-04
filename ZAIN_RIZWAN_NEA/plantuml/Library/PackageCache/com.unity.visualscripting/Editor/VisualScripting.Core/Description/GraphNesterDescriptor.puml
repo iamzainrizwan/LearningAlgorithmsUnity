@@ -1,0 +1,7 @@
+@startuml
+class GraphNesterDescriptor <<static>> {
+    + {static} Title(nester:IGraphNester) : string
+    + {static} Title(nester:IGraphNester, defaultName:string) : string
+    + {static} Summary(nester:IGraphNester) : string
+}
+@enduml

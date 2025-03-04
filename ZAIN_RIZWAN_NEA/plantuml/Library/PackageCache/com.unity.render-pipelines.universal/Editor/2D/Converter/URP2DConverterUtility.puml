@@ -1,0 +1,14 @@
+@startuml
+class URP2DConverterUtility <<static>> {
+    + {static} IsPSB(path:string) : bool
+    + {static} IsMaterialPath(path:string, id:string) : bool
+    + {static} IsPrefabOrScenePath(path:string, ids:string[]) : bool
+    + {static} IsPrefabOrScenePath(path:string, id:string) : bool
+    + {static} DoesFileContainString(path:string, strs:string[]) : bool
+    + {static} UpgradePSB(path:string) : string
+    + {static} UpgradePrefab(path:string, objectUpgrader:Action<GameObject>) : string
+    + {static} UpgradeScene(path:string, objectUpgrader:Action<GameObject>) : void
+    + {static} UpgradeMaterial(path:string, oldShader:Shader, newShader:Shader) : void
+    + {static} GetObjectIDString(obj:UnityEngine.Object) : string
+}
+@enduml

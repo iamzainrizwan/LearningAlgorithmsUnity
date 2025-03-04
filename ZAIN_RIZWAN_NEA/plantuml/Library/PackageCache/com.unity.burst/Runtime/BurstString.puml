@@ -1,0 +1,55 @@
+@startuml
+class BurstString <<static>> <<partial>> {
+    + {static} <<unsafe>> CopyFixedString(dest:byte*, destLength:int, src:byte*, srcLength:int) : void
+    + {static} <<unsafe>> Format(dest:byte*, destIndex:int, destLength:int, src:byte*, srcLength:int, formatOptionsRaw:int) : void
+    + {static} <<unsafe>> Format(dest:byte*, destIndex:int, destLength:int, value:float, formatOptionsRaw:int) : void
+    + {static} <<unsafe>> Format(dest:byte*, destIndex:int, destLength:int, value:double, formatOptionsRaw:int) : void
+    + {static} <<unsafe>> Format(dest:byte*, destIndex:int, destLength:int, value:bool, formatOptionsRaw:int) : void
+    + {static} <<unsafe>> Format(dest:byte*, destIndex:int, destLength:int, value:char, formatOptionsRaw:int) : void
+    + {static} <<unsafe>> Format(dest:byte*, destIndex:int, destLength:int, value:byte, formatOptionsRaw:int) : void
+    + {static} <<unsafe>> Format(dest:byte*, destIndex:int, destLength:int, value:ushort, formatOptionsRaw:int) : void
+    + {static} <<unsafe>> Format(dest:byte*, destIndex:int, destLength:int, value:uint, formatOptionsRaw:int) : void
+    + {static} <<unsafe>> Format(dest:byte*, destIndex:int, destLength:int, value:ulong, formatOptionsRaw:int) : void
+    + {static} <<unsafe>> Format(dest:byte*, destIndex:int, destLength:int, value:sbyte, formatOptionsRaw:int) : void
+    + {static} <<unsafe>> Format(dest:byte*, destIndex:int, destLength:int, value:short, formatOptionsRaw:int) : void
+    + {static} <<unsafe>> Format(dest:byte*, destIndex:int, destLength:int, value:int, formatOptionsRaw:int) : void
+    + {static} <<unsafe>> Format(dest:byte*, destIndex:int, destLength:int, value:long, formatOptionsRaw:int) : void
+    + {static} ParseFormatToFormatOptions(fullFormat:string) : FormatOptions
+}
+class PreserveAttribute {
+}
+enum NumberBufferKind {
+    Integer,
+    Float,
+}
+struct NumberBuffer {
+    + NumberBuffer(kind:NumberBufferKind, buffer:byte*, digitsCount:int, scale:int, isNegative:bool)
+    + DigitsCount : int
+    + Scale : int
+    + <<readonly>> IsNegative : bool
+    + GetDigitsPointer() : byte*
+}
+enum NumberFormatKind {
+    General,
+    Decimal,
+    DecimalForceSigned,
+    Hexadecimal,
+}
+struct FormatOptions {
+    + FormatOptions(kind:NumberFormatKind, alignAndSize:sbyte, specifier:byte, lowercase:bool)
+    + AlignAndSize : sbyte
+    + Specifier : byte
+    + Lowercase : bool
+    + Uppercase : bool <<get>>
+    + <<unsafe>> EncodeToRaw() : int
+    + GetBase() : int
+    + <<override>> ToString() : string
+}
+BurstString +-- PreserveAttribute
+BurstString +-- NumberBufferKind
+BurstString +-- NumberBuffer
+NumberBuffer --> "Kind" NumberBufferKind
+BurstString +-- NumberFormatKind
+BurstString +-- FormatOptions
+FormatOptions --> "Kind" NumberFormatKind
+@enduml

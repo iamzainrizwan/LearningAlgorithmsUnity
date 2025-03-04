@@ -1,0 +1,19 @@
+@startuml
+class ViewSwitcher {
+}
+enum SelectedTab {
+    None= 0,
+    PendingChanges= 1,
+    IncomingChanges= 2,
+    Changesets= 3,
+    Branches= 4,
+    Locks= 5,
+    Merge= 6,
+    History= 7,
+}
+IViewSwitcher <|-- ViewSwitcher
+IMergeViewLauncher <|-- ViewSwitcher
+IGluonViewSwitcher <|-- ViewSwitcher
+IHistoryViewLauncher <|-- ViewSwitcher
+ViewSwitcher +-- SelectedTab
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class DecalPreferences {
+    + PreferenceGUI() : void
+}
+class "List`1"<T> {
+}
+ICoreRenderPipelinePreferencesProvider <|-- DecalPreferences
+DecalPreferences --> "decalGizmoColor" Color
+DecalPreferences --> "keywords<string>" "List`1"
+DecalPreferences --> "header" GUIContent
+@enduml

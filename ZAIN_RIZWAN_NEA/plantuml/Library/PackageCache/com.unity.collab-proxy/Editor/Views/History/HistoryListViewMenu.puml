@@ -1,0 +1,7 @@
+@startuml
+class HistoryListViewMenu {
+}
+interface IMenuOperations {
+}
+HistoryListViewMenu +-- IMenuOperations
+@enduml

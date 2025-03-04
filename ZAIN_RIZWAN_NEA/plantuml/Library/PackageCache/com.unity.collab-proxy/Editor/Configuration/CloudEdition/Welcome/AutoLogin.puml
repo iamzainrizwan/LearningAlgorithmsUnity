@@ -1,0 +1,21 @@
+@startuml
+class AutoLogin {
+}
+enum State {
+    Off= 0,
+    Started= 1,
+    Running= 2,
+    ResponseInit= 3,
+    ResponseEnd= 6,
+    ResponseSuccess= 7,
+    OrganizationChoosed= 8,
+    InitializingPlastic= 9,
+    ErrorNoToken= 20,
+    ErrorTokenException= 21,
+    ErrorResponseNull= 22,
+    ErrorResponseError= 23,
+    ErrorTokenEmpty= 24,
+    ErrorResponseCancel= 25,
+}
+AutoLogin +-- State
+@enduml

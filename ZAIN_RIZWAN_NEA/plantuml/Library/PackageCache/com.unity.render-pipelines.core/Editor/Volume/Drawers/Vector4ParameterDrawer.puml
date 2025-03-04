@@ -1,0 +1,6 @@
+@startuml
+class Vector4ParametrDrawer <<sealed>> {
+    + <<override>> OnGUI(parameter:SerializedDataParameter, title:GUIContent) : bool
+}
+VolumeParameterDrawer <|-- Vector4ParametrDrawer
+@enduml

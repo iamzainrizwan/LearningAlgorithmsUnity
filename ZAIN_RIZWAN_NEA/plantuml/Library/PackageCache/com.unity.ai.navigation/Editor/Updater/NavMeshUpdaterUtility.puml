@@ -1,0 +1,5 @@
+@startuml
+class NavMeshUpdaterUtility <<static>> {
+    + {static} ConvertScene(path:string) : bool
+}
+@enduml

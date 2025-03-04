@@ -1,0 +1,40 @@
+@startuml
+enum IESLightType {
+    Point,
+    Spot,
+}
+enum IESResolution {
+    IESResolution16= 16,
+    IESResolution32= 32,
+    IESResolution64= 64,
+    IESResolution128= 128,
+    IESResolution256= 256,
+    IESResolution512= 512,
+    IESResolution1024= 1024,
+    IESResolution2048= 2048,
+    IESResolution4096= 4096,
+}
+class IESMetaData {
+    + FileFormatVersion : string
+    + IESPhotometricType : string
+    + IESMaximumIntensity : float
+    + IESMaximumIntensityUnit : string
+    + Manufacturer : string
+    + LuminaireCatalogNumber : string
+    + LuminaireDescription : string
+    + LampCatalogNumber : string
+    + LampDescription : string
+    + SpotAngle : float = 120f
+    + ApplyLightAttenuation : bool = true
+    + UseIESMaximumIntensity : bool = true
+    + LightAimAxisRotation : float
+    + <<override>> GetHashCode() : int
+}
+class IESObject {
+}
+IESMetaData o-> "PrefabLightType" IESLightType
+IESMetaData o-> "iesSize" IESResolution
+IESMetaData o-> "CookieCompression" TextureImporterCompression
+ScriptableObject <|-- IESObject
+IESObject o-> "iesMetaData" IESMetaData
+@enduml

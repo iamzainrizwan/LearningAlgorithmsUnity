@@ -1,0 +1,21 @@
+@startuml
+class KeywordDependentCollection <<static>> {
+}
+abstract class "KeywordDependentCollection`7"<TStorage,TAll,TAllPermutations,TForPermutation,TBase,TIInstance,TISet> {
+    + permutationCount : int <<get>>
+    + all : TAll <<get>>
+    + allPermutations : TAllPermutations <<get>>
+    + baseInstance : TBase <<get>>
+}
+enum KeywordPermutationInstanceType {
+    Base,
+    Permutation,
+}
+interface "ISet`1"<IInstance> {
+}
+interface IInstance {
+}
+KeywordDependentCollection +-- KeywordPermutationInstanceType
+KeywordDependentCollection +-- "ISet`1"
+KeywordDependentCollection +-- IInstance
+@enduml

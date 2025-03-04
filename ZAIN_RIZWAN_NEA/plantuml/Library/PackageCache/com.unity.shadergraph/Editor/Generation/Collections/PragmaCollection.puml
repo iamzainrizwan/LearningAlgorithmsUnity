@@ -1,0 +1,20 @@
+@startuml
+class PragmaCollection {
+    + PragmaCollection()
+    + Add(pragmas:PragmaCollection) : PragmaCollection
+    + Add(descriptor:PragmaDescriptor) : PragmaCollection
+    + Add(descriptor:PragmaDescriptor, fieldCondition:FieldCondition) : PragmaCollection
+    + Add(descriptor:PragmaDescriptor, fieldConditions:FieldCondition[]) : PragmaCollection
+    + GetEnumerator() : IEnumerator<Item>
+}
+class "IEnumerable`1"<T> {
+}
+class Item {
+    + value : string <<get>>
+    + Item(descriptor:PragmaDescriptor, fieldConditions:FieldCondition[])
+}
+"IEnumerable`1" "<PragmaCollection.Item>" <|-- PragmaCollection
+PragmaCollection +-- Item
+IConditional <|-- Item
+Item --> "descriptor" PragmaDescriptor
+@enduml

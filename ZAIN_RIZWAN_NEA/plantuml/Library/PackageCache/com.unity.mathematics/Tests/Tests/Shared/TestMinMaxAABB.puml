@@ -1,0 +1,49 @@
+@startuml
+class TestMinMaxAABB {
+    + {static} Encapsulate_float3_trivial() : void
+    + {static} Encapsulate_float3_new_max() : void
+    + {static} Encapsulate_float3_new_min() : void
+    + {static} Encapsulate_float3_new_minx_maxyz() : void
+    + {static} Encapsulate_float3_new_minxy_maxz() : void
+    + {static} Encapsulate_float3_new_minxz_maxy() : void
+    + {static} Encapsulate_float3_new_minz_maxxy() : void
+    + {static} Encapsulate_float3_new_miny_maxxz() : void
+    + {static} Encapsulate_MinMaxAABB_trivial() : void
+    + {static} Encapsulate_MinMaxAABB_new_max() : void
+    + {static} Encapsulate_MinMaxAABB_new_min() : void
+    + {static} Encapsulate_MinMaxAABB_new_minx_maxyz() : void
+    + {static} Encapsulate_MinMaxAABB_new_minxy_maxz() : void
+    + {static} Encapsulate_MinMaxAABB_new_minxz_maxy() : void
+    + {static} Encapsulate_MinMaxAABB_new_minz_maxxy() : void
+    + {static} Encapsulate_MinMaxAABB_new_miny_maxxz() : void
+    + {static} Equals_trivial() : void
+    + {static} Equals() : void
+    + {static} Equals_diff_minx() : void
+    + {static} Equals_diff_miny() : void
+    + {static} Equals_diff_minz() : void
+    + {static} Equals_diff_maxx() : void
+    + {static} Equals_diff_maxy() : void
+    + {static} Equals_diff_maxz() : void
+    + {static} SurfaceArea() : void
+    + {static} Extents() : void
+    + {static} Center() : void
+    + {static} HalfExtents() : void
+    + {static} Constructor() : void
+    + {static} ContainsPoint() : void
+    + {static} ContainsAabb_Trivial() : void
+    + {static} ContainsAabb() : void
+    + {static} ContainsAabb_BarelyNotContained() : void
+    + {static} Overlap_Trivial() : void
+    + {static} Overlap_Corner() : void
+    + {static} NoOverlap_Corner() : void
+    + {static} Expand_PositiveDistance() : void
+    + {static} Expand_NegativeDistance() : void
+    + {static} CreateFromCenterAndExtents() : void
+    + {static} CreateFromCenterAndHalfExtents() : void
+    + {static} IsValid_Trivial() : void
+    + {static} IsValid_OneComponentInvalid() : void
+    + {static} Transform_RigidTransform() : void
+    + {static} Transform_float4x4() : void
+    + {static} Transform_float3x3() : void
+}
+@enduml

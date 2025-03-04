@@ -1,0 +1,15 @@
+@startuml
+enum InputDeviceChange {
+    Added,
+    Removed,
+    Disconnected,
+    Reconnected,
+    Enabled,
+    Disabled,
+    UsageChanged,
+    ConfigurationChanged,
+    SoftReset,
+    HardReset,
+    Destroyed,
+}
+@enduml

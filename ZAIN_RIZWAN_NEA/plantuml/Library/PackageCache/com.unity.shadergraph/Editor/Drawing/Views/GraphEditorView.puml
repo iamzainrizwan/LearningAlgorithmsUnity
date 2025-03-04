@@ -1,0 +1,30 @@
+@startuml
+class FloatingWindowsLayout {
+}
+class UserViewSettings {
+    + isBlackboardVisible : bool = true
+    + isPreviewVisible : bool = true
+    + isInspectorVisible : bool = true
+    + colorProvider : string
+}
+class GraphEditorView {
+    + assetName : string <<get>> <<set>>
+    + GraphEditorView(editorWindow:EditorWindow, graph:GraphData, messageManager:MessageManager, graphName:string)
+    + HandleGraphChanges(wasUndoRedoPerformed:bool) : void
+    + Dispose() : void
+}
+class "Func`1"<T> {
+}
+FloatingWindowsLayout o-> "previewLayout" WindowDockingLayout
+VisualElement <|-- GraphEditorView
+IDisposable <|-- GraphEditorView
+GraphEditorView --> "saveRequested" Action
+GraphEditorView --> "saveAsRequested" Action
+GraphEditorView --> "isCheckedOut<bool>" "Func`1"
+GraphEditorView --> "checkOut" Action
+GraphEditorView --> "convertToSubgraphRequested" Action
+GraphEditorView --> "showInProjectRequested" Action
+GraphEditorView --> "graphView" MaterialGraphView
+GraphEditorView --> "inspectorView" InspectorView
+GraphEditorView --> "colorManager" ColorManager
+@enduml

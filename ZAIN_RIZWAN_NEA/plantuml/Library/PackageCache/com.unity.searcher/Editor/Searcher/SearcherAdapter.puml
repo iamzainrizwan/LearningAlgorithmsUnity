@@ -1,0 +1,23 @@
+@startuml
+enum ItemExpanderState {
+    Hidden,
+    Collapsed,
+    Expanded,
+}
+interface ISearcherAdapter {
+}
+class SearcherAdapter {
+    + <<virtual>> Title : string <<get>>
+    + <<virtual>> HasDetailsPanel : bool <<get>>
+    + <<virtual>> AddAllChildResults : bool <<get>>
+    + <<virtual>> MultiSelectEnabled : bool <<get>>
+    + <<virtual>> InitialSplitterDetailRatio : float <<get>>
+    + SearcherAdapter(title:string)
+    + <<virtual>> MakeItem() : VisualElement
+    + <<virtual>> Bind(element:VisualElement, item:SearcherItem, expanderState:ItemExpanderState, query:string) : VisualElement
+    + <<virtual>> InitDetailsPanel(detailsPanel:VisualElement) : void
+    + <<virtual>> OnSelectionChanged(items:IEnumerable<SearcherItem>) : void
+    + <<virtual>> OnSearchResultsFilter(searchResults:IEnumerable<SearcherItem>, searchQuery:string) : SearcherItem
+}
+ISearcherAdapter <|-- SearcherAdapter
+@enduml

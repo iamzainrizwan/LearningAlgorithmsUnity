@@ -1,0 +1,8 @@
+@startuml
+class EnumInspector {
+    + EnumInspector(metadata:Metadata)
+    + <<override>> Initialize() : void
+    + <<override>> GetAdaptiveWidth() : float
+}
+Inspector <|-- EnumInspector
+@enduml

@@ -1,0 +1,38 @@
+@startuml
+class TabGroupTests {
+    + SetUp() : void
+    + TabGroup_CreateTabs_4TabViews() : void
+    + TabGroup_CreateTabs_SelectsTabFromUserPreferences() : void
+    + TabGroup_SelectDeactivatedTab_SelectsFirstTab() : void
+    + TabGroup_AnalyticsIsPropagatedToAllViews() : void
+    + TearDown() : void
+}
+class AnalyticsMock {
+    + SendInstallationEvent(data:AnswerData, preset:Preset, packages:Package[]) : void
+    + SendRecommendationEvent(data:AnswerData, preset:Preset) : void
+    + SendGettingStartedInteractionEvent(targetPackageId:string, sectionId:string, type:InteractionDataType, displayName:string) : void
+}
+class MockTabEnabled {
+    + Name : string <<get>>
+    + SetVisible(visible:bool) : void
+    + Refresh() : void
+    + Clear() : void
+}
+class MockTabDisabled {
+    + Name : string <<get>>
+    + SetVisible(visible:bool) : void
+    + IsEnabled : bool <<get>>
+    + Refresh() : void
+    + Clear() : void
+}
+TabGroupTests +-- AnalyticsMock
+IMultiplayerCenterAnalytics <|-- AnalyticsMock
+TabGroupTests +-- MockTabEnabled
+ITabView <|-- MockTabEnabled
+MockTabEnabled --> "RootVisualElement" VisualElement
+MockTabEnabled --> "MultiplayerCenterAnalytics" IMultiplayerCenterAnalytics
+TabGroupTests +-- MockTabDisabled
+ITabView <|-- MockTabDisabled
+MockTabDisabled --> "RootVisualElement" VisualElement
+MockTabDisabled --> "MultiplayerCenterAnalytics" IMultiplayerCenterAnalytics
+@enduml

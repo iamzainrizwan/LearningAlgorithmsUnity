@@ -1,0 +1,11 @@
+@startuml
+class Common <<static>> {
+    + {static} Pause() : void
+    + {static} umul128(x:ulong, y:ulong, high:ulong) : ulong
+}
+class BurstTargetCpuAttribute <<sealed>> {
+    + BurstTargetCpuAttribute(TargetCpu:BurstTargetCpu)
+}
+Attribute <|-- BurstTargetCpuAttribute
+BurstTargetCpuAttribute --> "TargetCpu" BurstTargetCpu
+@enduml

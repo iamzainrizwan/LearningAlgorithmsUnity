@@ -1,0 +1,8 @@
+@startuml
+class ActivationMixerPlayable {
+    + {static} Create(graph:PlayableGraph, inputCount:int) : ScriptPlayable<ActivationMixerPlayable>
+    + <<override>> OnPlayableDestroy(playable:Playable) : void
+    + <<override>> ProcessFrame(playable:Playable, info:FrameData, playerData:object) : void
+}
+PlayableBehaviour <|-- ActivationMixerPlayable
+@enduml

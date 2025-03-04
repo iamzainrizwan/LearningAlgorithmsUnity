@@ -1,0 +1,5 @@
+@startuml
+class CSharpToHLSL {
+    + {static} <<async>> GenerateAll() : Task
+}
+@enduml

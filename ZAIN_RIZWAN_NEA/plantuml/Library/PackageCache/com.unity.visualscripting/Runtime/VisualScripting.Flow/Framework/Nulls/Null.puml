@@ -1,0 +1,6 @@
+@startuml
+class Null <<sealed>> {
+}
+Unit <|-- Null
+Null --> "@null" ValueOutput
+@enduml

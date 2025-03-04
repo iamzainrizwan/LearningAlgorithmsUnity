@@ -1,0 +1,22 @@
+@startuml
+class EditablePathController {
+    + enableSnapping : bool <<get>> <<set>>
+    + RegisterUndo(name:string) : void
+    + ClearSelection() : void
+    + SelectPoint(index:int, select:bool) : void
+    + CreatePoint(index:int, position:Vector3) : void
+    + RemoveSelectedPoints() : void
+    + MoveSelectedPoints(delta:Vector3) : void
+    + MoveEdge(index:int, delta:Vector3) : void
+    + SetLeftTangent(index:int, position:Vector3, setToLinear:bool, mirror:bool, cachedRightTangent:Vector3) : void
+    + SetRightTangent(index:int, position:Vector3, setToLinear:bool, mirror:bool, cachedLeftTangent:Vector3) : void
+    + ClearClosestPath() : void
+    + AddClosestPath(distance:float) : void
+}
+class "ISnapping`1"<T> {
+}
+IEditablePathController <|-- EditablePathController
+EditablePathController --> "editablePath" IEditablePath
+EditablePathController --> "closestEditablePath" IEditablePath
+EditablePathController --> "snapping<Vector3>" "ISnapping`1"
+@enduml

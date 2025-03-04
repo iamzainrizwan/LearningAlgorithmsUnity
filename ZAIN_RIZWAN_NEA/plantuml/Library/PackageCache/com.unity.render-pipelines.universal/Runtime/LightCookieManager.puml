@@ -1,0 +1,80 @@
+@startuml
+class LightCookieManager {
+    + LightCookieManager(settings:Settings)
+    + isInitialized() : bool
+    + Dispose() : void
+    + GetLightCookieShaderDataIndex(visibleLightIndex:int) : int
+    + Setup(cmd:CommandBuffer, lightData:UniversalLightData) : void
+}
+class ShaderProperty <<static>> {
+    + {static} <<readonly>> mainLightTexture : int
+    + {static} <<readonly>> mainLightWorldToLight : int
+    + {static} <<readonly>> mainLightCookieTextureFormat : int
+    + {static} <<readonly>> additionalLightsCookieAtlasTexture : int
+    + {static} <<readonly>> additionalLightsCookieAtlasTextureFormat : int
+    + {static} <<readonly>> additionalLightsCookieEnableBits : int
+    + {static} <<readonly>> additionalLightsCookieAtlasUVRectBuffer : int
+    + {static} <<readonly>> additionalLightsCookieAtlasUVRects : int
+    + {static} <<readonly>> additionalLightsWorldToLightBuffer : int
+    + {static} <<readonly>> additionalLightsLightTypeBuffer : int
+    + {static} <<readonly>> additionalLightsWorldToLights : int
+    + {static} <<readonly>> additionalLightsLightTypes : int
+}
+enum LightCookieShaderFormat {
+    None= -1,
+    RGB= 0,
+    Alpha= 1,
+    Red= 2,
+}
+struct Settings {
+    + maxAdditionalLights : int
+    + cubeOctahedralSizeScale : float
+    + useStructuredBuffer : bool
+    + {static} Create() : Settings
+}
+struct LightCookieMapping {
+    + visibleLightIndex : ushort
+    + lightBufferIndex : ushort
+}
+struct "WorkSlice`1"<T> {
+    + WorkSlice(src:T[], srcLen:int)
+    + WorkSlice(src:T[], srcStart:int, srcLen:int)
+    + length : int <<get>>
+    + capacity : int <<get>>
+    + Sort(compare:Func<T, T, int>) : void
+}
+class WorkMemory {
+    + Resize(size:int) : void
+}
+class LightCookieShaderData {
+    + isUploaded : bool <<get>> <<set>>
+    + LightCookieShaderData(size:int, useStructuredBuffer:bool)
+    + Dispose() : void
+    + Resize(size:int) : void
+    + Upload(cmd:CommandBuffer) : void
+    + Clear(cmd:CommandBuffer) : void
+}
+struct AtlasSettings {
+    + isPow2 : bool <<get>>
+    + isSquare : bool <<get>>
+}
+class "Func`3"<T1,T2,T3> {
+}
+IDisposable <|-- LightCookieManager
+LightCookieManager +-- ShaderProperty
+LightCookieManager +-- LightCookieShaderFormat
+LightCookieManager +-- Settings
+Settings --> "atlas" AtlasSettings
+LightCookieManager +-- LightCookieMapping
+LightCookieMapping --> "light" Light
+LightCookieMapping o-> "s_CompareByCookieSize<LightCookieMapping,LightCookieMapping,int>" "Func`3"
+LightCookieMapping o-> "s_CompareByBufferIndex<LightCookieMapping,LightCookieMapping,int>" "Func`3"
+LightCookieManager +-- "WorkSlice`1"
+LightCookieManager +-- WorkMemory
+LightCookieManager +-- LightCookieShaderData
+IDisposable <|-- LightCookieShaderData
+LightCookieShaderData --> "cookieEnableBits" ShaderBitArray
+Settings +-- AtlasSettings
+AtlasSettings --> "resolution" Vector2Int
+AtlasSettings --> "format" GraphicsFormat
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class TimeReferenceUtility <<static>> {
+    + {static} PixelToTime(mousePos:Vector2) : float
+    + {static} PixelToTime(pixelX:float) : float
+    + {static} GetSnappedTimeAtMousePosition(mousePos:Vector2) : double
+    + {static} SnapToFrameIfRequired(currentTime:double) : double
+    + {static} SnapToFrame(time:double) : double
+    + {static} ToTimeString(time:double, format:string) : string
+    + {static} FromTimeString(timeString:string) : double
+}
+@enduml

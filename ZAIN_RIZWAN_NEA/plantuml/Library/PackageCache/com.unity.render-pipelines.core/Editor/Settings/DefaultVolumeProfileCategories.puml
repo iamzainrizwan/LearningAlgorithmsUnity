@@ -1,0 +1,9 @@
+@startuml
+class DefaultVolumeProfileCategories {
+    + DefaultVolumeProfileCategories(profile:VolumeProfile)
+    + Destroy() : void
+}
+class "Dictionary`2"<T1,T2> {
+}
+DefaultVolumeProfileCategories o-> "categories<string,List<VolumeComponentEditor>>" "Dictionary`2"
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class TMP_FontAssetUtilities {
+    + {static} GetCharacterFromFontAsset(unicode:uint, sourceFontAsset:TMP_FontAsset, includeFallbacks:bool, fontStyle:FontStyles, fontWeight:FontWeight, isAlternativeTypeface:bool) : TMP_Character
+    + {static} GetCharacterFromFontAssets(unicode:uint, sourceFontAsset:TMP_FontAsset, fontAssets:List<TMP_FontAsset>, includeFallbacks:bool, fontStyle:FontStyles, fontWeight:FontWeight, isAlternativeTypeface:bool) : TMP_Character
+    + {static} GetSpriteCharacterFromSpriteAsset(unicode:uint, spriteAsset:TMP_SpriteAsset, includeFallbacks:bool) : TMP_SpriteCharacter
+}
+TMP_FontAssetUtilities --> "instance" TMP_FontAssetUtilities
+@enduml

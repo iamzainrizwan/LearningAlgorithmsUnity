@@ -1,0 +1,23 @@
+@startuml
+class SinglepassKeywords <<static>> {
+}
+class XRSystem <<static>> {
+    {static} + displayActive : bool <<get>>
+    {static} + isHDRDisplayOutputActive : bool <<get>>
+    {static} + singlePassAllowed : bool <<get>> <<set>> = true
+    {static} + dumpDebugInfo : bool <<get>> <<set>> = false
+    + {static} Initialize(passAllocator:Func<XRPassCreateInfo, XRPass>, occlusionMeshPS:Shader, mirrorViewPS:Shader) : void
+    + {static} SetDisplayMSAASamples(msaaSamples:MSAASamples) : void
+    + {static} GetDisplayMSAASamples() : MSAASamples
+    + {static} SetRenderScale(renderScale:float) : void
+    + {static} GetRenderViewportScale() : float
+    + {static} NewLayout() : XRLayout
+    + {static} EndLayout() : void
+    + {static} RenderMirrorView(cmd:CommandBuffer, camera:Camera) : void
+    + {static} Dispose() : void
+}
+SinglepassKeywords --> "STEREO_MULTIVIEW_ON" GlobalKeyword
+SinglepassKeywords --> "STEREO_INSTANCING_ON" GlobalKeyword
+XRSystem o-> "emptyPass" XRPass
+XRSystem --> "foveatedRenderingCaps" FoveatedRenderingCaps
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class "GraphItemDescriptor`2"<TItem,TDescription> {
+}
+class "Descriptor`2"<T1,T2> {
+}
+"Descriptor`2" "<TItem,TDescription>" <|-- "GraphItemDescriptor`2"
+@enduml

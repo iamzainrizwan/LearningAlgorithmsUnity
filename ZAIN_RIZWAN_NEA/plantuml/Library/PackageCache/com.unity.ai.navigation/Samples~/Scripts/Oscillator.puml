@@ -1,0 +1,8 @@
+@startuml
+class Oscillator {
+    + m_Amplitude : float = 1.0f
+    + m_Period : float = 1.0f
+}
+MonoBehaviour <|-- Oscillator
+Oscillator o-> "m_Direction" Vector3
+@enduml

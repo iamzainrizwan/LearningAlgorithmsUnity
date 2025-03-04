@@ -1,0 +1,33 @@
+@startuml
+class BenchmarkAttribute {
+    + BenchmarkAttribute(benchmarkComparisonEnum:Type, ignoreInSuite:bool)
+}
+class BenchmarkComparisonAttribute {
+    + BenchmarkComparisonAttribute(baselineEnumValue:int)
+    + BenchmarkComparisonAttribute(externalBaselineValue:int, externalBaselineFormat:string)
+}
+class BenchmarkComparisonExternalAttribute {
+    + BenchmarkComparisonExternalAttribute(externalValue:int, externalFormat:string)
+}
+class BenchmarkComparisonDisplayAttribute {
+    + BenchmarkComparisonDisplayAttribute(unit:SampleUnit, decimalPlaces:int, rankingStatistic:BenchmarkRankingStatistic)
+}
+class BenchmarkNameAttribute {
+    + BenchmarkNameAttribute(name:string)
+}
+class BenchmarkNameOverrideAttribute {
+    + BenchmarkNameOverrideAttribute(name:string)
+    + BenchmarkNameOverrideAttribute(benchmarkComparisonValue:int, name:string)
+}
+class BenchmarkTestFootnoteAttribute {
+    + BenchmarkTestFootnoteAttribute()
+    + BenchmarkTestFootnoteAttribute(description:string)
+}
+Attribute <|-- BenchmarkAttribute
+Attribute <|-- BenchmarkComparisonAttribute
+Attribute <|-- BenchmarkComparisonExternalAttribute
+Attribute <|-- BenchmarkComparisonDisplayAttribute
+Attribute <|-- BenchmarkNameAttribute
+Attribute <|-- BenchmarkNameOverrideAttribute
+Attribute <|-- BenchmarkTestFootnoteAttribute
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class ArrayExtensions <<static>> {
+    + {static} ResizeArray(array:NativeArray<T>, capacity:int) : void
+    + {static} ResizeArray(array:TransformAccessArray, capacity:int) : void
+    + {static} ResizeArray(array:T[], capacity:int) : void
+    + {static} FillArray(array:NativeArray<T>, value:T, startIndex:int, length:int) : void
+}
+@enduml

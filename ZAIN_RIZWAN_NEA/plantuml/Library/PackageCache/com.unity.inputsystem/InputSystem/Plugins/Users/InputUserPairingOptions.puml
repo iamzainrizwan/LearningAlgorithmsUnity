@@ -1,0 +1,8 @@
+@startuml
+enum InputUserPairingOptions {
+    None= 0,
+    ForcePlatformUserAccountSelection= 1 << 0,
+    ForceNoPlatformUserAccountSelection= 1 << 1,
+    UnpairCurrentDevicesFromUser= 1 << 3,
+}
+@enduml

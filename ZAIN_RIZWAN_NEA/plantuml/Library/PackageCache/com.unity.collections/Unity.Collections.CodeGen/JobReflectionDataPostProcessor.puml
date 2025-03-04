@@ -1,0 +1,6 @@
+@startuml
+class JobsILPostProcessor <<partial>> {
+    + {static} AttributeConstructorReferenceFor(attributeType:Type, module:ModuleDefinition) : MethodReference
+}
+ILPostProcessor <|-- JobsILPostProcessor
+@enduml

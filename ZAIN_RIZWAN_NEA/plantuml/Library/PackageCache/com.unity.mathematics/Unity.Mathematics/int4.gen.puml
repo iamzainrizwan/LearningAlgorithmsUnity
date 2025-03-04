@@ -1,0 +1,403 @@
+@startuml
+struct int4 {
+    + x : int
+    + y : int
+    + z : int
+    + w : int
+    + int4(x:int, y:int, z:int, w:int)
+    + int4(x:int, y:int, zw:int2)
+    + int4(x:int, yz:int2, w:int)
+    + int4(x:int, yzw:int3)
+    + int4(xy:int2, z:int, w:int)
+    + int4(xy:int2, zw:int2)
+    + int4(xyz:int3, w:int)
+    + int4(xyzw:int4)
+    + int4(v:int)
+    + int4(v:bool)
+    + int4(v:bool4)
+    + int4(v:uint)
+    + int4(v:uint4)
+    + int4(v:float)
+    + int4(v:float4)
+    + int4(v:double)
+    + int4(v:double4)
+    + Equals(rhs:int4) : bool
+    + <<override>> Equals(o:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+    + ToString(format:string, formatProvider:IFormatProvider) : string
+}
+class math <<static>> <<partial>> {
+    + {static} int4(x:int, y:int, z:int, w:int) : int4
+    + {static} int4(x:int, y:int, zw:int2) : int4
+    + {static} int4(x:int, yz:int2, w:int) : int4
+    + {static} int4(x:int, yzw:int3) : int4
+    + {static} int4(xy:int2, z:int, w:int) : int4
+    + {static} int4(xy:int2, zw:int2) : int4
+    + {static} int4(xyz:int3, w:int) : int4
+    + {static} int4(xyzw:int4) : int4
+    + {static} int4(v:int) : int4
+    + {static} int4(v:bool) : int4
+    + {static} int4(v:bool4) : int4
+    + {static} int4(v:uint) : int4
+    + {static} int4(v:uint4) : int4
+    + {static} int4(v:float) : int4
+    + {static} int4(v:float4) : int4
+    + {static} int4(v:double) : int4
+    + {static} int4(v:double4) : int4
+    + {static} hash(v:int4) : uint
+    + {static} hashwide(v:int4) : uint4
+    + {static} shuffle(left:int4, right:int4, x:ShuffleComponent) : int
+    + {static} shuffle(left:int4, right:int4, x:ShuffleComponent, y:ShuffleComponent) : int2
+    + {static} shuffle(left:int4, right:int4, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent) : int3
+    + {static} shuffle(left:int4, right:int4, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent, w:ShuffleComponent) : int4
+}
+class "IEquatable`1"<T> {
+}
+class DebuggerProxy <<sealed>> {
+    + x : int
+    + y : int
+    + z : int
+    + w : int
+    + DebuggerProxy(v:int4)
+}
+IFormattable <|-- int4
+int4 --> "zero" int4
+int4 --> "xxxx" int4
+int4 --> "xxxy" int4
+int4 --> "xxxz" int4
+int4 --> "xxxw" int4
+int4 --> "xxyx" int4
+int4 --> "xxyy" int4
+int4 --> "xxyz" int4
+int4 --> "xxyw" int4
+int4 --> "xxzx" int4
+int4 --> "xxzy" int4
+int4 --> "xxzz" int4
+int4 --> "xxzw" int4
+int4 --> "xxwx" int4
+int4 --> "xxwy" int4
+int4 --> "xxwz" int4
+int4 --> "xxww" int4
+int4 --> "xyxx" int4
+int4 --> "xyxy" int4
+int4 --> "xyxz" int4
+int4 --> "xyxw" int4
+int4 --> "xyyx" int4
+int4 --> "xyyy" int4
+int4 --> "xyyz" int4
+int4 --> "xyyw" int4
+int4 --> "xyzx" int4
+int4 --> "xyzy" int4
+int4 --> "xyzz" int4
+int4 --> "xyzw" int4
+int4 --> "xywx" int4
+int4 --> "xywy" int4
+int4 --> "xywz" int4
+int4 --> "xyww" int4
+int4 --> "xzxx" int4
+int4 --> "xzxy" int4
+int4 --> "xzxz" int4
+int4 --> "xzxw" int4
+int4 --> "xzyx" int4
+int4 --> "xzyy" int4
+int4 --> "xzyz" int4
+int4 --> "xzyw" int4
+int4 --> "xzzx" int4
+int4 --> "xzzy" int4
+int4 --> "xzzz" int4
+int4 --> "xzzw" int4
+int4 --> "xzwx" int4
+int4 --> "xzwy" int4
+int4 --> "xzwz" int4
+int4 --> "xzww" int4
+int4 --> "xwxx" int4
+int4 --> "xwxy" int4
+int4 --> "xwxz" int4
+int4 --> "xwxw" int4
+int4 --> "xwyx" int4
+int4 --> "xwyy" int4
+int4 --> "xwyz" int4
+int4 --> "xwyw" int4
+int4 --> "xwzx" int4
+int4 --> "xwzy" int4
+int4 --> "xwzz" int4
+int4 --> "xwzw" int4
+int4 --> "xwwx" int4
+int4 --> "xwwy" int4
+int4 --> "xwwz" int4
+int4 --> "xwww" int4
+int4 --> "yxxx" int4
+int4 --> "yxxy" int4
+int4 --> "yxxz" int4
+int4 --> "yxxw" int4
+int4 --> "yxyx" int4
+int4 --> "yxyy" int4
+int4 --> "yxyz" int4
+int4 --> "yxyw" int4
+int4 --> "yxzx" int4
+int4 --> "yxzy" int4
+int4 --> "yxzz" int4
+int4 --> "yxzw" int4
+int4 --> "yxwx" int4
+int4 --> "yxwy" int4
+int4 --> "yxwz" int4
+int4 --> "yxww" int4
+int4 --> "yyxx" int4
+int4 --> "yyxy" int4
+int4 --> "yyxz" int4
+int4 --> "yyxw" int4
+int4 --> "yyyx" int4
+int4 --> "yyyy" int4
+int4 --> "yyyz" int4
+int4 --> "yyyw" int4
+int4 --> "yyzx" int4
+int4 --> "yyzy" int4
+int4 --> "yyzz" int4
+int4 --> "yyzw" int4
+int4 --> "yywx" int4
+int4 --> "yywy" int4
+int4 --> "yywz" int4
+int4 --> "yyww" int4
+int4 --> "yzxx" int4
+int4 --> "yzxy" int4
+int4 --> "yzxz" int4
+int4 --> "yzxw" int4
+int4 --> "yzyx" int4
+int4 --> "yzyy" int4
+int4 --> "yzyz" int4
+int4 --> "yzyw" int4
+int4 --> "yzzx" int4
+int4 --> "yzzy" int4
+int4 --> "yzzz" int4
+int4 --> "yzzw" int4
+int4 --> "yzwx" int4
+int4 --> "yzwy" int4
+int4 --> "yzwz" int4
+int4 --> "yzww" int4
+int4 --> "ywxx" int4
+int4 --> "ywxy" int4
+int4 --> "ywxz" int4
+int4 --> "ywxw" int4
+int4 --> "ywyx" int4
+int4 --> "ywyy" int4
+int4 --> "ywyz" int4
+int4 --> "ywyw" int4
+int4 --> "ywzx" int4
+int4 --> "ywzy" int4
+int4 --> "ywzz" int4
+int4 --> "ywzw" int4
+int4 --> "ywwx" int4
+int4 --> "ywwy" int4
+int4 --> "ywwz" int4
+int4 --> "ywww" int4
+int4 --> "zxxx" int4
+int4 --> "zxxy" int4
+int4 --> "zxxz" int4
+int4 --> "zxxw" int4
+int4 --> "zxyx" int4
+int4 --> "zxyy" int4
+int4 --> "zxyz" int4
+int4 --> "zxyw" int4
+int4 --> "zxzx" int4
+int4 --> "zxzy" int4
+int4 --> "zxzz" int4
+int4 --> "zxzw" int4
+int4 --> "zxwx" int4
+int4 --> "zxwy" int4
+int4 --> "zxwz" int4
+int4 --> "zxww" int4
+int4 --> "zyxx" int4
+int4 --> "zyxy" int4
+int4 --> "zyxz" int4
+int4 --> "zyxw" int4
+int4 --> "zyyx" int4
+int4 --> "zyyy" int4
+int4 --> "zyyz" int4
+int4 --> "zyyw" int4
+int4 --> "zyzx" int4
+int4 --> "zyzy" int4
+int4 --> "zyzz" int4
+int4 --> "zyzw" int4
+int4 --> "zywx" int4
+int4 --> "zywy" int4
+int4 --> "zywz" int4
+int4 --> "zyww" int4
+int4 --> "zzxx" int4
+int4 --> "zzxy" int4
+int4 --> "zzxz" int4
+int4 --> "zzxw" int4
+int4 --> "zzyx" int4
+int4 --> "zzyy" int4
+int4 --> "zzyz" int4
+int4 --> "zzyw" int4
+int4 --> "zzzx" int4
+int4 --> "zzzy" int4
+int4 --> "zzzz" int4
+int4 --> "zzzw" int4
+int4 --> "zzwx" int4
+int4 --> "zzwy" int4
+int4 --> "zzwz" int4
+int4 --> "zzww" int4
+int4 --> "zwxx" int4
+int4 --> "zwxy" int4
+int4 --> "zwxz" int4
+int4 --> "zwxw" int4
+int4 --> "zwyx" int4
+int4 --> "zwyy" int4
+int4 --> "zwyz" int4
+int4 --> "zwyw" int4
+int4 --> "zwzx" int4
+int4 --> "zwzy" int4
+int4 --> "zwzz" int4
+int4 --> "zwzw" int4
+int4 --> "zwwx" int4
+int4 --> "zwwy" int4
+int4 --> "zwwz" int4
+int4 --> "zwww" int4
+int4 --> "wxxx" int4
+int4 --> "wxxy" int4
+int4 --> "wxxz" int4
+int4 --> "wxxw" int4
+int4 --> "wxyx" int4
+int4 --> "wxyy" int4
+int4 --> "wxyz" int4
+int4 --> "wxyw" int4
+int4 --> "wxzx" int4
+int4 --> "wxzy" int4
+int4 --> "wxzz" int4
+int4 --> "wxzw" int4
+int4 --> "wxwx" int4
+int4 --> "wxwy" int4
+int4 --> "wxwz" int4
+int4 --> "wxww" int4
+int4 --> "wyxx" int4
+int4 --> "wyxy" int4
+int4 --> "wyxz" int4
+int4 --> "wyxw" int4
+int4 --> "wyyx" int4
+int4 --> "wyyy" int4
+int4 --> "wyyz" int4
+int4 --> "wyyw" int4
+int4 --> "wyzx" int4
+int4 --> "wyzy" int4
+int4 --> "wyzz" int4
+int4 --> "wyzw" int4
+int4 --> "wywx" int4
+int4 --> "wywy" int4
+int4 --> "wywz" int4
+int4 --> "wyww" int4
+int4 --> "wzxx" int4
+int4 --> "wzxy" int4
+int4 --> "wzxz" int4
+int4 --> "wzxw" int4
+int4 --> "wzyx" int4
+int4 --> "wzyy" int4
+int4 --> "wzyz" int4
+int4 --> "wzyw" int4
+int4 --> "wzzx" int4
+int4 --> "wzzy" int4
+int4 --> "wzzz" int4
+int4 --> "wzzw" int4
+int4 --> "wzwx" int4
+int4 --> "wzwy" int4
+int4 --> "wzwz" int4
+int4 --> "wzww" int4
+int4 --> "wwxx" int4
+int4 --> "wwxy" int4
+int4 --> "wwxz" int4
+int4 --> "wwxw" int4
+int4 --> "wwyx" int4
+int4 --> "wwyy" int4
+int4 --> "wwyz" int4
+int4 --> "wwyw" int4
+int4 --> "wwzx" int4
+int4 --> "wwzy" int4
+int4 --> "wwzz" int4
+int4 --> "wwzw" int4
+int4 --> "wwwx" int4
+int4 --> "wwwy" int4
+int4 --> "wwwz" int4
+int4 --> "wwww" int4
+int4 --> "xxx" int3
+int4 --> "xxy" int3
+int4 --> "xxz" int3
+int4 --> "xxw" int3
+int4 --> "xyx" int3
+int4 --> "xyy" int3
+int4 --> "xyz" int3
+int4 --> "xyw" int3
+int4 --> "xzx" int3
+int4 --> "xzy" int3
+int4 --> "xzz" int3
+int4 --> "xzw" int3
+int4 --> "xwx" int3
+int4 --> "xwy" int3
+int4 --> "xwz" int3
+int4 --> "xww" int3
+int4 --> "yxx" int3
+int4 --> "yxy" int3
+int4 --> "yxz" int3
+int4 --> "yxw" int3
+int4 --> "yyx" int3
+int4 --> "yyy" int3
+int4 --> "yyz" int3
+int4 --> "yyw" int3
+int4 --> "yzx" int3
+int4 --> "yzy" int3
+int4 --> "yzz" int3
+int4 --> "yzw" int3
+int4 --> "ywx" int3
+int4 --> "ywy" int3
+int4 --> "ywz" int3
+int4 --> "yww" int3
+int4 --> "zxx" int3
+int4 --> "zxy" int3
+int4 --> "zxz" int3
+int4 --> "zxw" int3
+int4 --> "zyx" int3
+int4 --> "zyy" int3
+int4 --> "zyz" int3
+int4 --> "zyw" int3
+int4 --> "zzx" int3
+int4 --> "zzy" int3
+int4 --> "zzz" int3
+int4 --> "zzw" int3
+int4 --> "zwx" int3
+int4 --> "zwy" int3
+int4 --> "zwz" int3
+int4 --> "zww" int3
+int4 --> "wxx" int3
+int4 --> "wxy" int3
+int4 --> "wxz" int3
+int4 --> "wxw" int3
+int4 --> "wyx" int3
+int4 --> "wyy" int3
+int4 --> "wyz" int3
+int4 --> "wyw" int3
+int4 --> "wzx" int3
+int4 --> "wzy" int3
+int4 --> "wzz" int3
+int4 --> "wzw" int3
+int4 --> "wwx" int3
+int4 --> "wwy" int3
+int4 --> "wwz" int3
+int4 --> "www" int3
+int4 --> "xx" int2
+int4 --> "xy" int2
+int4 --> "xz" int2
+int4 --> "xw" int2
+int4 --> "yx" int2
+int4 --> "yy" int2
+int4 --> "yz" int2
+int4 --> "yw" int2
+int4 --> "zx" int2
+int4 --> "zy" int2
+int4 --> "zz" int2
+int4 --> "zw" int2
+int4 --> "wx" int2
+int4 --> "wy" int2
+int4 --> "wz" int2
+int4 --> "ww" int2
+int4 +-- DebuggerProxy
+@enduml

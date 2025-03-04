@@ -1,0 +1,13 @@
+@startuml
+interface IInputInteraction {
+}
+interface "IInputInteraction`1"<TValue> {
+}
+class InputInteraction <<static>> {
+    + {static} GetValueType(interactionType:Type) : Type
+    + {static} GetDisplayName(interaction:string) : string
+    + {static} GetDisplayName(interactionType:Type) : string
+}
+IInputInteraction <|-- "IInputInteraction`1"
+InputInteraction --> "s_Interactions" TypeTable
+@enduml

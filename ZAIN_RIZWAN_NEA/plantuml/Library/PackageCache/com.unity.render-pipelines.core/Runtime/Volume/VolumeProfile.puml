@@ -1,0 +1,22 @@
+@startuml
+class VolumeProfile <<sealed>> {
+    + isDirty : bool = true
+    + Reset() : void
+    + Add(overrides:bool) : T
+    + Add(type:Type, overrides:bool) : VolumeComponent
+    + Remove() : void
+    + Remove(type:Type) : void
+    + Has() : bool
+    + Has(type:Type) : bool
+    + HasSubclassOf(type:Type) : bool
+    + TryGet(component:T) : bool
+    + TryGet(type:Type, component:T) : bool
+    + TryGetSubclassOf(type:Type, component:T) : bool
+    + TryGetAllSubclassOf(type:Type, result:List<T>) : bool
+    + <<override>> GetHashCode() : int
+}
+class "List`1"<T> {
+}
+ScriptableObject <|-- VolumeProfile
+VolumeProfile o-> "components<VolumeComponent>" "List`1"
+@enduml

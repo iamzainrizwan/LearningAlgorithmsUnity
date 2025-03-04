@@ -1,0 +1,27 @@
+@startuml
+class CustomInterpolatorUtils <<static>> {
+}
+class CustomInterpSubGen {
+}
+class Splice <<static>> {
+}
+struct Descriptor {
+}
+class Collection {
+    + Collection()
+    + Add(structs:Collection) : Collection
+    + Add(descriptor:Descriptor) : Collection
+    + GetEnumerator() : IEnumerator<Item>
+}
+class "IEnumerable`1"<T> {
+}
+class Item {
+    + Item(descriptor:Descriptor)
+}
+CustomInterpSubGen +-- Splice
+CustomInterpSubGen +-- Descriptor
+CustomInterpSubGen +-- Collection
+"IEnumerable`1" "<Collection.Item>" <|-- Collection
+Collection +-- Item
+Item --> "descriptor" Descriptor
+@enduml

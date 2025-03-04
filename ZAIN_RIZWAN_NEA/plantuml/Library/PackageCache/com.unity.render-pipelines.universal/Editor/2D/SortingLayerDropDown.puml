@@ -1,0 +1,18 @@
+@startuml
+class SortingLayerDropDown {
+    + OnEnable(serializedObject:SerializedObject, propertyName:string) : void
+    + OnTargetSortingLayers(serializedObject:SerializedObject, targets:Object[], labelContent:GUIContent, selectionChangedCallback:System.Action<SerializedObject>) : void
+}
+class LayerSelectionData {
+    + layerID : int
+    + LayerSelectionData(so:SerializedObject, lid:int, tgts:Object[], selectionChangedCallback:System.Action<SerializedObject>)
+}
+class Styles <<static>> {
+}
+SortingLayerDropDown +-- LayerSelectionData
+LayerSelectionData --> "serializedObject" SerializedObject
+SortingLayerDropDown +-- Styles
+Styles o-> "sortingLayerAll" GUIContent
+Styles o-> "sortingLayerNone" GUIContent
+Styles o-> "sortingLayerMixed" GUIContent
+@enduml

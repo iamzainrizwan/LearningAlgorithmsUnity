@@ -1,0 +1,5 @@
+@startuml
+class SceneTests {
+    + YourTestGoesHere() : void
+}
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class RightShiftHandler {
+    + RightShiftHandler()
+}
+BinaryOperatorHandler <|-- RightShiftHandler
+@enduml

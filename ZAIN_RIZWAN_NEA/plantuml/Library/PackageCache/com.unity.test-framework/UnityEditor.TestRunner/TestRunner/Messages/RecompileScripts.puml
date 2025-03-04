@@ -1,0 +1,14 @@
+@startuml
+class RecompileScripts {
+    + RecompileScripts()
+    + RecompileScripts(expectScriptCompilation:bool)
+    + RecompileScripts(expectScriptCompilation:bool, expectScriptCompilationSuccess:bool)
+    + ExpectDomainReload : bool <<get>>
+    + ExpectedPlaymodeState : bool <<get>>
+    + ExpectScriptCompilation : bool <<get>>
+    + ExpectScriptCompilationSuccess : bool <<get>>
+    + Perform() : IEnumerator
+}
+IEditModeTestYieldInstruction <|-- RecompileScripts
+RecompileScripts --> "Current" RecompileScripts
+@enduml

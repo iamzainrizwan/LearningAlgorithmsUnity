@@ -1,0 +1,70 @@
+@startuml
+abstract class InputControl {
+    + name : string <<get>>
+    + displayName : string <<get>> <<protected set>>
+    + shortDisplayName : string <<get>> <<protected set>>
+    + path : string <<get>>
+    + layout : string <<get>>
+    + variants : string <<get>>
+    + noisy : bool <<get>> <<internal set>>
+    + synthetic : bool <<get>> <<internal set>>
+    + {abstract} valueSizeInBytes : int <<get>>
+    + magnitude : float <<get>>
+    + <<override>> ToString() : string
+    + <<unsafe>> EvaluateMagnitude() : float
+    + <<virtual>> <<unsafe>> EvaluateMagnitude(statePtr:void*) : float
+    + {abstract} <<unsafe>> ReadValueFromBufferAsObject(buffer:void*, bufferSize:int) : object
+    + {abstract} <<unsafe>> ReadValueFromStateAsObject(statePtr:void*) : object
+    + {abstract} <<unsafe>> ReadValueFromStateIntoBuffer(statePtr:void*, bufferPtr:void*, bufferSize:int) : void
+    + <<virtual>> <<unsafe>> WriteValueFromBufferIntoState(bufferPtr:void*, bufferSize:int, statePtr:void*) : void
+    + <<virtual>> <<unsafe>> WriteValueFromObjectIntoState(value:object, statePtr:void*) : void
+    + {abstract} <<unsafe>> CompareValue(firstStatePtr:void*, secondStatePtr:void*) : bool
+    + TryGetChildControl(path:string) : InputControl
+    + TryGetChildControl(path:string) : TControl
+    + GetChildControl(path:string) : InputControl
+    + GetChildControl(path:string) : TControl
+    + ApplyParameterChanges() : void
+}
+abstract class "InputControl`1"<TValue> {
+    + <<override>> valueSizeInBytes : int <<get>>
+    + ReadValue() : TValue
+    + ReadValueFromPreviousFrame() : TValue
+    + ReadDefaultValue() : TValue
+    + <<unsafe>> ReadValueFromState(statePtr:void*) : TValue
+    + <<unsafe>> ReadValueFromStateWithCaching(statePtr:void*) : TValue
+    + <<unsafe>> ReadUnprocessedValueFromStateWithCaching(statePtr:void*) : TValue
+    + ReadUnprocessedValue() : TValue
+    + {abstract} <<unsafe>> ReadUnprocessedValueFromState(statePtr:void*) : TValue
+    + <<override>> <<unsafe>> ReadValueFromStateAsObject(statePtr:void*) : object
+    + <<override>> <<unsafe>> ReadValueFromStateIntoBuffer(statePtr:void*, bufferPtr:void*, bufferSize:int) : void
+    + <<override>> <<unsafe>> WriteValueFromBufferIntoState(bufferPtr:void*, bufferSize:int, statePtr:void*) : void
+    + <<override>> <<unsafe>> WriteValueFromObjectIntoState(value:object, statePtr:void*) : void
+    + <<virtual>> <<unsafe>> WriteValueIntoState(value:TValue, statePtr:void*) : void
+    + <<override>> <<unsafe>> ReadValueFromBufferAsObject(buffer:void*, bufferSize:int) : object
+    + <<override>> <<unsafe>> CompareValue(firstStatePtr:void*, secondStatePtr:void*) : bool
+    + ProcessValue(value:TValue) : TValue
+    + ProcessValue(value:TValue) : void
+}
+class "ReadOnlyArray`1"<T> {
+}
+enum ControlFlags {
+    ConfigUpToDate= 1 << 0,
+    IsNoisy= 1 << 1,
+    IsSynthetic= 1 << 2,
+    IsButton= 1 << 3,
+    DontReset= 1 << 4,
+    SetupFinished= 1 << 5,
+    UsesStateFromOtherControl= 1 << 6,
+}
+InputControl --> "device" InputDevice
+InputControl --> "parent" InputControl
+InputControl --> "children<InputControl>" "ReadOnlyArray`1"
+InputControl --> "usages<InternedString>" "ReadOnlyArray`1"
+InputControl --> "aliases<InternedString>" "ReadOnlyArray`1"
+InputControl --> "stateBlock" InputStateBlock
+InputControl --> "valueType" Type
+InputControl --> "optimizedControlDataType" FourCC
+InputControl <|-- "InputControl`1"
+"InputControl`1" --> "valueType" Type
+InputControl +-- ControlFlags
+@enduml

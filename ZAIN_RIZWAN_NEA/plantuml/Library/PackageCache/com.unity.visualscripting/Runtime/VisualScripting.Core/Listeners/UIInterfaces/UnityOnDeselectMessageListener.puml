@@ -1,0 +1,7 @@
+@startuml
+class UnityOnDeselectMessageListener <<sealed>> {
+    + OnDeselect(eventData:BaseEventData) : void
+}
+MessageListener <|-- UnityOnDeselectMessageListener
+IDeselectHandler <|-- UnityOnDeselectMessageListener
+@enduml

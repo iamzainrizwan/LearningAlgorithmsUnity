@@ -1,0 +1,37 @@
+@startuml
+class ScreenSpaceAmbientOcclusionSettings {
+}
+class ScreenSpaceAmbientOcclusion {
+    + <<override>> Create() : void
+    + <<override>> AddRenderPasses(renderer:ScriptableRenderer, renderingData:RenderingData) : void
+}
+enum DepthSource {
+    Depth= 0,
+    DepthNormals= 1,
+}
+enum NormalQuality {
+    Low,
+    Medium,
+    High,
+}
+enum AOSampleOption {
+    High,
+    Medium,
+    Low,
+}
+enum AOMethodOptions {
+    BlueNoise,
+    InterleavedGradient,
+}
+enum BlurQualityOptions {
+    High,
+    Medium,
+    Low,
+}
+ScriptableRendererFeature <|-- ScreenSpaceAmbientOcclusion
+ScreenSpaceAmbientOcclusionSettings +-- DepthSource
+ScreenSpaceAmbientOcclusionSettings +-- NormalQuality
+ScreenSpaceAmbientOcclusionSettings +-- AOSampleOption
+ScreenSpaceAmbientOcclusionSettings +-- AOMethodOptions
+ScreenSpaceAmbientOcclusionSettings +-- BlurQualityOptions
+@enduml

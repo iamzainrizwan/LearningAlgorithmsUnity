@@ -1,0 +1,12 @@
+@startuml
+struct SpriteState {
+    + Equals(other:SpriteState) : bool
+}
+class "IEquatable`1"<T> {
+}
+"IEquatable`1" "<SpriteState>" <|-- SpriteState
+SpriteState --> "highlightedSprite" Sprite
+SpriteState --> "pressedSprite" Sprite
+SpriteState --> "selectedSprite" Sprite
+SpriteState --> "disabledSprite" Sprite
+@enduml

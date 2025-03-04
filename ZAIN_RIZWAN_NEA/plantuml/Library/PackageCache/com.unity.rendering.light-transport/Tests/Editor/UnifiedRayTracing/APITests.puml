@@ -1,0 +1,8 @@
+@startuml
+class IRayTracingBackendTests {
+    + IRayTracingBackendTests(backendAsString:string)
+    + SetUp() : void
+    + IRayTracingBackend_QueryScratchBufferStride_ShouldGenerateCorrectResult() : void
+    + IRayTracingBackend_QueryScratchBufferSize_ShouldGenerateCorrectResult() : void
+}
+@enduml

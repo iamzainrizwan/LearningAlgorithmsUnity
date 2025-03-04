@@ -1,0 +1,4 @@
+@startuml
+struct XRView {
+}
+@enduml

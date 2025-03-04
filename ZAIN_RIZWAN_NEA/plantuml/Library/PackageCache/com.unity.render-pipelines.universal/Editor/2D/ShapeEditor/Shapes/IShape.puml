@@ -1,0 +1,8 @@
+@startuml
+enum ShapeType {
+    Polygon,
+    Spline,
+}
+interface IShape {
+}
+@enduml

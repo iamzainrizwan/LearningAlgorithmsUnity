@@ -1,0 +1,5 @@
+@startuml
+class TaskList <<static>> {
+    + {static} GetTaskList(settings:ExecutionSettings) : IEnumerable<TestTaskBase>
+}
+@enduml

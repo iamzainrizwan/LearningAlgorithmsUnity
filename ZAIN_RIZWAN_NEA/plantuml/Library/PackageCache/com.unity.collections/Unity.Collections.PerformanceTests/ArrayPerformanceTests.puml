@@ -1,0 +1,50 @@
+@startuml
+class ArrayUtil <<static>> {
+    {static} + AllocInt(container:NativeArray<int>, capacity:int, addValues:bool) : void
+    {static} + AllocBclContainer(capacity:int, addValues:bool) : object
+    {static} + CreateRandomValues(capacity:int, values:UnsafeList<int>) : void
+}
+struct ArrayLength100k {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct ArrayIndexedRead {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct ArrayIndexedWrite {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct ArrayForEach {
+    + total : int
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+class Array {
+    + <<unsafe>> Length_x_100k(capacity:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> IndexedRead(insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> IndexedWrite(insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Foreach(insertions:int, type:BenchmarkContainerType) : void
+}
+IBenchmarkContainer <|-- ArrayLength100k
+IBenchmarkContainer <|-- ArrayIndexedRead
+IBenchmarkContainer <|-- ArrayIndexedWrite
+IBenchmarkContainer <|-- ArrayForEach
+@enduml

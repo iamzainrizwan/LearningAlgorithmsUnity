@@ -1,0 +1,8 @@
+@startuml
+class MissingTypeUnitWidget {
+    + MissingTypeUnitWidget(canvas:FlowCanvas, unit:MissingType)
+}
+class "UnitWidget`1"<T> {
+}
+"UnitWidget`1" "<MissingType>" <|-- MissingTypeUnitWidget
+@enduml

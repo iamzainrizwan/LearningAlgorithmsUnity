@@ -1,0 +1,5 @@
+@startuml
+interface ISceneVariableUnit {
+}
+IVariableUnit <|-- ISceneVariableUnit
+@enduml

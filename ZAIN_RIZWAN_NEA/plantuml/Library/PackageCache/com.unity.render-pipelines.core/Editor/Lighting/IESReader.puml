@@ -1,0 +1,9 @@
+@startuml
+class IESReader {
+    + FileFormatVersion : string <<get>>
+    + TotalLumens : float <<get>>
+    + MaxCandelas : float <<get>>
+    + PhotometricType : int <<get>>
+    + ReadFile(iesFilePath:string) : string
+}
+@enduml

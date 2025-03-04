@@ -1,0 +1,8 @@
+@startuml
+class "SwitchUnitDescriptor`1"<T> {
+    + SwitchUnitDescriptor(unit:SwitchUnit<T>)
+}
+class "UnitDescriptor`1"<T> {
+}
+"UnitDescriptor`1" "<SwitchUnit<T>>" <|-- "SwitchUnitDescriptor`1"
+@enduml

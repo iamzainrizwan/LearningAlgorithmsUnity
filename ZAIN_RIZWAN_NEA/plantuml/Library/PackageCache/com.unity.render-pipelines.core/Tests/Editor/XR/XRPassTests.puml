@@ -1,0 +1,5 @@
+@startuml
+class XRPassTests {
+    + EmptyPass_IsFirstAndLastPass() : void
+}
+@enduml

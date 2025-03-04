@@ -1,0 +1,12 @@
+@startuml
+class PerformanceTestResult {
+    + Name : string
+    + ClassName : string
+    + MethodName : string
+    + Version : string
+}
+class "List`1"<T> {
+}
+PerformanceTestResult o-> "Categories<string>" "List`1"
+PerformanceTestResult o-> "SampleGroups<SampleGroup>" "List`1"
+@enduml

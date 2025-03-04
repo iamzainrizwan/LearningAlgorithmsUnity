@@ -1,0 +1,5 @@
+@startuml
+class CreateCanvasShadergraph <<static>> {
+    + {static} CreateUnlitGraph() : void
+}
+@enduml

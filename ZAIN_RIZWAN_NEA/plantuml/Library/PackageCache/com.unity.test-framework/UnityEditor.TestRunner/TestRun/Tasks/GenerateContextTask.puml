@@ -1,0 +1,7 @@
+@startuml
+class GenerateContextTask {
+    + GenerateContextTask()
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- GenerateContextTask
+@enduml

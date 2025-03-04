@@ -1,0 +1,8 @@
+@startuml
+class ScalarMoveTowards <<sealed>> {
+    + <<override>> Operation(current:float, target:float, maxDelta:float) : float
+}
+class "MoveTowards`1"<T> {
+}
+"MoveTowards`1" "<float>" <|-- ScalarMoveTowards
+@enduml

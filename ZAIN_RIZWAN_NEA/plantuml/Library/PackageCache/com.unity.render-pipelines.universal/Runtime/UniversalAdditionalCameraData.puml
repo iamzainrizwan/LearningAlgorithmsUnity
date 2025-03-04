@@ -1,0 +1,77 @@
+@startuml
+enum CameraOverrideOption {
+    Off,
+    On,
+    UsePipelineSettings,
+}
+enum RendererOverrideOption {
+    Custom,
+    UsePipelineSettings,
+}
+enum AntialiasingMode {
+    None,
+    FastApproximateAntialiasing,
+    SubpixelMorphologicalAntiAliasing,
+    TemporalAntiAliasing,
+}
+enum CameraRenderType {
+    Base,
+    Overlay,
+}
+enum AntialiasingQuality {
+    Low,
+    Medium,
+    High,
+}
+class CameraExtensions <<static>> {
+    + {static} GetUniversalAdditionalCameraData(camera:Camera) : UniversalAdditionalCameraData
+    + {static} GetVolumeFrameworkUpdateMode(camera:Camera) : VolumeFrameworkUpdateMode
+    + {static} SetVolumeFrameworkUpdateMode(camera:Camera, mode:VolumeFrameworkUpdateMode) : void
+    + {static} UpdateVolumeStack(camera:Camera) : void
+    + {static} UpdateVolumeStack(camera:Camera, cameraData:UniversalAdditionalCameraData) : void
+    + {static} DestroyVolumeStack(camera:Camera) : void
+    + {static} DestroyVolumeStack(camera:Camera, cameraData:UniversalAdditionalCameraData) : void
+}
+class CameraTypeUtility <<static>> {
+    + {static} GetName(type:CameraRenderType) : string
+}
+class UniversalAdditionalCameraData {
+    + version : float <<get>>
+    + renderShadows : bool <<get>> <<set>>
+    + clearDepth : bool <<get>>
+    + requiresDepthTexture : bool <<get>> <<set>>
+    + requiresColorTexture : bool <<get>> <<set>>
+    + SetRenderer(index:int) : void
+    + requiresVolumeFrameworkUpdate : bool <<get>>
+    + renderPostProcessing : bool <<get>> <<set>>
+    + resetHistory : bool <<get>> <<set>>
+    + stopNaN : bool <<get>> <<set>>
+    + dithering : bool <<get>> <<set>>
+    + allowXRRendering : bool <<get>> <<set>>
+    + useScreenCoordOverride : bool <<get>> <<set>>
+    + allowHDROutput : bool <<get>> <<set>>
+    + OnBeforeSerialize() : void
+    + OnAfterDeserialize() : void
+    + OnValidate() : void
+    + OnDrawGizmos() : void
+    + OnDestroy() : void
+}
+class "List`1"<T> {
+}
+MonoBehaviour <|-- UniversalAdditionalCameraData
+ISerializationCallbackReceiver <|-- UniversalAdditionalCameraData
+IAdditionalData <|-- UniversalAdditionalCameraData
+UniversalAdditionalCameraData --> "requiresDepthOption" CameraOverrideOption
+UniversalAdditionalCameraData --> "requiresColorOption" CameraOverrideOption
+UniversalAdditionalCameraData --> "renderType" CameraRenderType
+UniversalAdditionalCameraData --> "cameraStack<Camera>" "List`1"
+UniversalAdditionalCameraData --> "scriptableRenderer" ScriptableRenderer
+UniversalAdditionalCameraData --> "volumeLayerMask" LayerMask
+UniversalAdditionalCameraData --> "volumeTrigger" Transform
+UniversalAdditionalCameraData --> "volumeStack" VolumeStack
+UniversalAdditionalCameraData --> "antialiasing" AntialiasingMode
+UniversalAdditionalCameraData --> "antialiasingQuality" AntialiasingQuality
+UniversalAdditionalCameraData --> "history" ICameraHistoryReadAccess
+UniversalAdditionalCameraData --> "screenSizeOverride" Vector4
+UniversalAdditionalCameraData --> "screenCoordScaleBias" Vector4
+@enduml

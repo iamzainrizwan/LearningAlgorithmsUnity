@@ -1,0 +1,42 @@
+@startuml
+abstract class State {
+    + CreateData() : IGraphElementData
+    + CreateDebugData() : IGraphElementDebugData
+    + isStart : bool <<get>> <<set>>
+    + <<virtual>> canBeSource : bool <<get>>
+    + <<virtual>> canBeDestination : bool <<get>>
+    + <<override>> BeforeRemove() : void
+    + <<override>> Instantiate(instance:GraphReference) : void
+    + <<override>> Uninstantiate(instance:GraphReference) : void
+    + Disconnect() : void
+    + <<virtual>> OnEnter(flow:Flow, reason:StateEnterReason) : void
+    + <<virtual>> OnExit(flow:Flow, reason:StateExitReason) : void
+    + <<virtual>> OnBranchTo(flow:Flow, destination:IState) : void
+    + <<const>> DefaultWidth : float = 170
+    + width : float <<get>> <<set>>
+    + <<override>> GetAnalyticsIdentifier() : AnalyticsIdentifier
+}
+class "GraphElement`1"<T> {
+}
+class Data {
+    + isActive : bool
+    + hasEntered : bool
+}
+class DebugData {
+    + lastEnterFrame : int <<get>> <<set>>
+    + lastExitTime : float <<get>> <<set>>
+}
+class "IEnumerable`1"<T> {
+}
+"GraphElement`1" "<StateGraph>" <|-- State
+IState <|-- State
+State --> "outgoingTransitions<IStateTransition>" "IEnumerable`1"
+State --> "incomingTransitions<IStateTransition>" "IEnumerable`1"
+State --> "transitions<IStateTransition>" "IEnumerable`1"
+State --> "position" Vector2
+State +-- Data
+IGraphElementData <|-- Data
+State +-- DebugData
+IStateDebugData <|-- DebugData
+DebugData --> "runtimeException" Exception
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class EmptyCheckinMessageDialog {
+}
+PlasticDialog <|-- EmptyCheckinMessageDialog
+@enduml

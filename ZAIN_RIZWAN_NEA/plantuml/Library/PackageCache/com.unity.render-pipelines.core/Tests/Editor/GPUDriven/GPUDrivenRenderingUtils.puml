@@ -1,0 +1,43 @@
+@startuml
+struct GPUDrivenTestHelper {
+    {static} + UnpackUintTo4x8Bit(val:uint) : uint4
+}
+struct MeshTestData {
+    + Initialize() : void
+    + {static} Create16BitIndexMesh(input:Mesh) : Mesh
+    + {static} MergeMeshes(a:Mesh, b:Mesh) : Mesh
+    + Dispose() : void
+}
+struct InstanceDataBufferCPUReadbackData {
+    + Load(instanceDataBuffer:GPUInstanceDataBuffer) : bool
+    + LoadData(instance:InstanceHandle, propertyID:int) : T
+    + LoadData(gpuInstanceIndex:GPUInstanceIndex, propertyID:int) : T
+    + Dispose() : void
+}
+class RenderPassTest {
+}
+class RenderPassTestCullInstance {
+    + RenderPassTestCullInstance(owner:RenderPassTest)
+}
+class RenderPassGlobalSettings {
+}
+class "NativeArray`1"<T> {
+}
+class "RenderPipelineAsset`1"<T> {
+}
+class "RenderPipelineGlobalSettings`2"<T1,T2> {
+}
+IDisposable <|-- MeshTestData
+MeshTestData --> "cube" Mesh
+MeshTestData --> "sphere" Mesh
+MeshTestData --> "capsule" Mesh
+MeshTestData --> "cube16bit" Mesh
+MeshTestData --> "capsule16bit" Mesh
+MeshTestData --> "mergedCubeSphere" Mesh
+MeshTestData --> "mergedSphereCube" Mesh
+IDisposable <|-- InstanceDataBufferCPUReadbackData
+InstanceDataBufferCPUReadbackData --> "data<uint>" "NativeArray`1"
+"RenderPipelineAsset`1" "<RenderPassTestCullInstance>" <|-- RenderPassTest
+RenderPipeline <|-- RenderPassTestCullInstance
+"RenderPipelineGlobalSettings`2" "<RenderPassGlobalSettings,RenderPassTestCullInstance>" <|-- RenderPassGlobalSettings
+@enduml

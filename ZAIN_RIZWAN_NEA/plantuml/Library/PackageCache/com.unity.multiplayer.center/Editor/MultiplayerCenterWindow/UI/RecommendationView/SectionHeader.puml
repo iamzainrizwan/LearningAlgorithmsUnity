@@ -1,0 +1,8 @@
+@startuml
+class SectionHeader {
+    +  <<event>> OnSolutionSelected : Action 
+    + SectionHeader(headlineLabel:string)
+    + UpdateData(availableSolutions:RecommendedSolutionViewData[]) : void
+}
+VisualElement <|-- SectionHeader
+@enduml

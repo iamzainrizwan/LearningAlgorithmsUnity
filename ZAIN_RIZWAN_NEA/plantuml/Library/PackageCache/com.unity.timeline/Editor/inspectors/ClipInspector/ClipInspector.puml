@@ -1,0 +1,64 @@
+@startuml
+class ClipInspector {
+    + <<override>> CreateInspectorGUI() : VisualElement
+    + <<override>> RequiresConstantRepaint() : bool
+    + OnEnable() : void
+    + <<override>> GetPreviewTitle() : GUIContent
+    + <<override>> HasPreviewGUI() : bool
+    + <<override>> OnInteractivePreviewGUI(r:Rect, background:GUIStyle) : void
+}
+class Styles <<static>> {
+    + <<const>> stylesheetPath : string
+}
+class EditorClipSelection {
+    + lastCurveVersion : int <<get>> <<set>>
+    + lastEvalTime : double <<get>> <<set>>
+    + EditorClipSelection(anEditorClip:EditorClip)
+    + ToLocalTime(time:double) : double
+}
+class CustomPropertiesElement {
+    +  <<event>> OnPropertyChanged : Action 
+    + CustomPropertiesElement(editor:Editor, title:string)
+    + UpdateLockState(locked:bool) : void
+}
+enum PreviewCurveState {
+    None= 0,
+    MixIn= 1,
+    MixOut= 2,
+}
+Editor <|-- ClipInspector
+ClipInspector +-- Styles
+Styles o-> "StartName" GUIContent
+Styles o-> "DurationName" GUIContent
+Styles o-> "EndName" GUIContent
+Styles o-> "EaseInDurationName" GUIContent
+Styles o-> "BlendInDurationName" GUIContent
+Styles o-> "EaseOutDurationName" GUIContent
+Styles o-> "BlendOutDurationName" GUIContent
+Styles o-> "ClipInName" GUIContent
+Styles o-> "TimeScaleName" GUIContent
+Styles o-> "PreExtrapolateLabel" GUIContent
+Styles o-> "PostExtrapolateLabel" GUIContent
+Styles o-> "BlendInCurveName" GUIContent
+Styles o-> "BlendOutCurveName" GUIContent
+Styles o-> "PreviewTitle" GUIContent
+Styles o-> "ClipTimingTitle" GUIContent
+Styles o-> "AnimationExtrapolationTitle" GUIContent
+Styles o-> "BlendCurvesTitle" GUIContent
+Styles o-> "GroupTimingTitle" GUIContent
+Styles o-> "MultipleClipsSelectedIncompatibleCapabilitiesWarning" GUIContent
+Styles o-> "MultipleSelectionTitle" GUIContent
+Styles o-> "MultipleClipStartName" GUIContent
+Styles o-> "MultipleClipEndName" GUIContent
+Styles o-> "TimelineClipFG" GUIContent
+Styles o-> "TimelineClipBG" GUIContent
+ClipInspector +-- EditorClipSelection
+ICurvesOwnerInspectorWrapper <|-- EditorClipSelection
+EditorClipSelection --> "editorClip" EditorClip
+EditorClipSelection --> "clip" TimelineClip
+EditorClipSelection --> "serializedPlayableAsset" SerializedObject
+EditorClipSelection --> "curvesOwner" ICurvesOwner
+ClipInspector +-- CustomPropertiesElement
+VisualElement <|-- CustomPropertiesElement
+ClipInspector +-- PreviewCurveState
+@enduml

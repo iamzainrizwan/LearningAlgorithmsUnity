@@ -1,0 +1,12 @@
+@startuml
+class SignalReceiverTreeView {
+    + dirty : bool <<set>>
+    + SignalReceiverTreeView(state:TreeViewState, multiColumnHeader:MultiColumnHeader, receiver:SignalReceiver, serializedObject:SerializedObject)
+    + readonlySignals : bool <<get>> <<set>>
+    + SetSignalContext(assetContext:SignalAsset) : void
+    + Draw() : void
+    + RefreshIfDirty() : void
+    + {static} GetColumns() : MultiColumnHeaderState.Column[]
+}
+TreeView <|-- SignalReceiverTreeView
+@enduml

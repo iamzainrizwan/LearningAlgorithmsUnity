@@ -1,0 +1,12 @@
+@startuml
+class CustomScriptAssemblyMappingFinder {
+    + FindCustomScriptAssemblyFromFolderPath(folderPath:string) : ICustomScriptAssembly
+}
+class CustomScriptAssemblyWrapper {
+    + HasPrecompiledReference(libraryFilename:string) : bool
+    + HasAssemblyFlag(flag:AssemblyFlags) : bool
+}
+ICustomScriptAssemblyMappingFinder <|-- CustomScriptAssemblyMappingFinder
+CustomScriptAssemblyMappingFinder +-- CustomScriptAssemblyWrapper
+ICustomScriptAssembly <|-- CustomScriptAssemblyWrapper
+@enduml

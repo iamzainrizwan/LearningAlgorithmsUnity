@@ -1,0 +1,17 @@
+@startuml
+abstract class PluginMigration {
+    + order : int <<get>> <<protected set>> = 1
+    + {abstract} Run() : void
+    + CompareTo(other:PluginMigration) : int
+}
+class "IComparable`1"<T> {
+}
+class "ReadOnlyCollection`1"<T> {
+}
+IPluginLinked <|-- PluginMigration
+"IComparable`1" "<PluginMigration>" <|-- PluginMigration
+PluginMigration --> "plugin" Plugin
+PluginMigration --> "from" SemanticVersion
+PluginMigration --> "to" SemanticVersion
+PluginMigration --> "requiredActions<string>" "ReadOnlyCollection`1"
+@enduml

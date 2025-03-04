@@ -1,0 +1,11 @@
+@startuml
+struct EventHook {
+    + <<readonly>> name : string
+    + <<readonly>> target : object
+    + <<readonly>> tag : object
+    + EventHook(name:string, target:object, tag:object)
+    + <<override>> Equals(obj:object) : bool
+    + Equals(other:EventHook) : bool
+    + <<override>> GetHashCode() : int
+}
+@enduml

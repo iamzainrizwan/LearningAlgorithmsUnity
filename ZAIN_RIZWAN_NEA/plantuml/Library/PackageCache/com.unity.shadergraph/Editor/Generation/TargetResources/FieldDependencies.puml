@@ -1,0 +1,8 @@
+@startuml
+class FieldDependencies <<static>> {
+}
+FieldDependencies o-> "Varyings" DependencyCollection
+FieldDependencies o-> "VertexDescription" DependencyCollection
+FieldDependencies o-> "SurfaceDescription" DependencyCollection
+FieldDependencies o-> "Default" DependencyCollection
+@enduml

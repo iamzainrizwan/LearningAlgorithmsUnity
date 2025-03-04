@@ -1,0 +1,16 @@
+@startuml
+class TMP_ResourceManager {
+    + {static} AddFontAsset(fontAsset:TMP_FontAsset) : void
+    + {static} RemoveFontAsset(fontAsset:TMP_FontAsset) : void
+    + {static} ClearFontAssetGlyphCache() : void
+}
+struct FontAssetRef {
+    + nameHashCode : int
+    + familyNameHashCode : int
+    + styleNameHashCode : int
+    + familyNameAndStyleHashCode : long
+    + FontAssetRef(nameHashCode:int, familyNameHashCode:int, styleNameHashCode:int, fontAsset:TMP_FontAsset)
+}
+TMP_ResourceManager +-- FontAssetRef
+FontAssetRef --> "fontAsset" TMP_FontAsset
+@enduml

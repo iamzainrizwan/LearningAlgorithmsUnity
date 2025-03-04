@@ -1,0 +1,15 @@
+@startuml
+class NavMeshModifier {
+    + overrideArea : bool <<get>> <<set>>
+    + area : int <<get>> <<set>>
+    + overrideGenerateLinks : bool <<get>> <<set>>
+    + generateLinks : bool <<get>> <<set>>
+    + ignoreFromBuild : bool <<get>> <<set>>
+    + applyToChildren : bool <<get>> <<set>>
+    + AffectsAgentType(agentTypeID:int) : bool
+}
+class "List`1"<T> {
+}
+MonoBehaviour <|-- NavMeshModifier
+NavMeshModifier --> "activeModifiers<NavMeshModifier>" "List`1"
+@enduml

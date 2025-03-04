@@ -1,0 +1,27 @@
+@startuml
+class LightAnchor {
+    + yaw : float <<get>> <<set>>
+    + pitch : float <<get>> <<set>>
+    + roll : float <<get>> <<set>>
+    + distance : float <<get>> <<set>>
+    + {static} NormalizeAngleDegree(angle:float) : float
+    + SynchronizeOnTransform(camera:Camera) : void
+    + UpdateTransform(camera:Camera, anchor:Vector3) : void
+}
+enum UpDirection {
+    World= Space.World,
+    Local= Space.Self,
+}
+struct Axes {
+}
+MonoBehaviour <|-- LightAnchor
+LightAnchor --> "frameSpace" UpDirection
+LightAnchor --> "anchorPosition" Vector3
+LightAnchor --> "anchorPositionOverride" Transform
+LightAnchor --> "anchorPositionOffset" Vector3
+LightAnchor +-- UpDirection
+LightAnchor +-- Axes
+Axes --> "up" Vector3
+Axes --> "right" Vector3
+Axes --> "forward" Vector3
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+class PluginConfiguration {
+    + <<virtual>> Initialize() : void
+    + <<virtual>> LateInitialize() : void
+    + <<virtual>> header : string <<get>>
+    + Reset() : void
+    + Save() : void
+    + GetEnumerator() : IEnumerator<PluginConfigurationItemMetadata>
+    + GetMetadata(memberName:string) : PluginConfigurationItemMetadata
+    + SaveProjectSettingsAsset(immediately:bool) : void
+    + projectSetupCompleted : bool <<get>> <<internal set>>
+    + editorSetupCompleted : bool <<get>> <<internal set>>
+    + {static} DeleteAllProjectSettings() : void
+    + {static} DeleteAllEditorPrefs() : void
+    + {static} DeleteAllPlayerPrefs() : void
+}
+class "IEnumerable`1"<T> {
+}
+class "ReadOnlyCollection`1"<T> {
+}
+class "List`1"<T> {
+}
+IPluginModule <|-- PluginConfiguration
+"IEnumerable`1" "<PluginConfigurationItemMetadata>" <|-- PluginConfiguration
+PluginConfiguration --> "plugin" Plugin
+PluginConfiguration --> "deprecatedSavedVersionLoaders<PluginDeprecatedSavedVersionLoader>" "ReadOnlyCollection`1"
+PluginConfiguration --> "projectSettings<ProjectSettingMetadata>" "List`1"
+PluginConfiguration --> "savedVersion" SemanticVersion
+@enduml

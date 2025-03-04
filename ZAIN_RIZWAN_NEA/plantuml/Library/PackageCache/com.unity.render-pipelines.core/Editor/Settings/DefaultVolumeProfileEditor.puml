@@ -1,0 +1,11 @@
+@startuml
+class DefaultVolumeProfileEditor <<sealed>> <<partial>> {
+    + DefaultVolumeProfileEditor(profile:VolumeProfile, targetSerializedObject:SerializedObject)
+    + Create() : VisualElement
+    + Destroy() : void
+    + RebuildListViews() : void
+}
+class "List`1"<T> {
+}
+DefaultVolumeProfileEditor --> "allEditors<VolumeComponentEditor>" "List`1"
+@enduml

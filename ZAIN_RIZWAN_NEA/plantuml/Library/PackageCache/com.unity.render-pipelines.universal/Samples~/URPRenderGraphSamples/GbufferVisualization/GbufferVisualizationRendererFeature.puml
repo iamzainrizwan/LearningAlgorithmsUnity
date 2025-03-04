@@ -1,0 +1,18 @@
+@startuml
+class GbufferVisualizationRendererFeature {
+    + <<override>> Create() : void
+    + <<override>> AddRenderPasses(renderer:ScriptableRenderer, renderingData:RenderingData) : void
+}
+class GBufferVisualizationRenderPass {
+    + Setup(material:Material) : void
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+class PassData {
+}
+ScriptableRendererFeature <|-- GbufferVisualizationRendererFeature
+GbufferVisualizationRendererFeature --> "m_Material" Material
+GbufferVisualizationRendererFeature +-- GBufferVisualizationRenderPass
+ScriptableRenderPass <|-- GBufferVisualizationRenderPass
+GBufferVisualizationRenderPass +-- PassData
+PassData --> "material" Material
+@enduml

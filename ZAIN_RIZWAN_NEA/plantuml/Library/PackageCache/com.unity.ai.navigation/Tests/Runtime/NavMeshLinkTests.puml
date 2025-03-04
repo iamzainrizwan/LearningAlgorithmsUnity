@@ -1,0 +1,10 @@
+@startuml
+class NavMeshLinkTests {
+    + OneTimeSetUp() : void
+    + SetUp() : void
+    + OneTimeTearDown() : void
+    + GetWorldPositions_ReturnsExpectedResults(transformPosition:Vector3, transformRotation:Quaternion, transformScale:Vector3, useStartTransform:bool, useEndTransform:bool) : (Vector3 start, Vector3 end)
+    + GetWorldPositionsForPoints_WhenLinkParentHasUnevenScale_ReturnsEndpointsNonSkewed(transformPosition:Vector3, transformRotation:Quaternion, transformScale:Vector3, expectedStart:Vector3, expectedEnd:Vector3) : void
+    + GetLocalPositions_ReturnsExpectedResults(useStartTransform:bool, useEndTransform:bool, expectedStart:Vector3, expectedEnd:Vector3) : void
+}
+@enduml

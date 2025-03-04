@@ -1,0 +1,83 @@
+@startuml
+struct InputUser {
+    + <<const>> InvalidId : uint = 0
+    + valid : bool <<get>>
+    + index : int <<get>>
+    + id : uint <<get>>
+    + platformUserAccountName : string <<get>>
+    + platformUserAccountId : string <<get>>
+    + hasMissingRequiredDevices : bool <<get>>
+    + {static} listenForUnpairedDeviceActivity : int <<get>> <<set>>
+    + <<override>> ToString() : string
+    + AssociateActionsWithUser(actions:IInputActionCollection) : void
+    + ActivateControlScheme(schemeName:string) : ControlSchemeChangeSyntax
+    + ActivateControlScheme(scheme:InputControlScheme) : ControlSchemeChangeSyntax
+    + UnpairDevice(device:InputDevice) : void
+    + UnpairDevices() : void
+    + UnpairDevicesAndRemoveUser() : void
+    + {static} GetUnpairedInputDevices() : InputControlList<InputDevice>
+    + {static} GetUnpairedInputDevices(list:InputControlList<InputDevice>) : int
+    + {static} FindUserPairedToDevice(device:InputDevice) : InputUser?
+    + {static} FindUserByAccount(platformUserAccountHandle:InputUserAccountHandle) : InputUser?
+    + {static} CreateUserWithoutPairedDevices() : InputUser
+    + {static} PerformPairingWithDevice(device:InputDevice, user:InputUser, options:InputUserPairingOptions) : InputUser
+    + Equals(other:InputUser) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+class "IEquatable`1"<T> {
+}
+class "ReadOnlyArray`1"<T> {
+}
+class "Action`3"<T1,T2,T3> {
+}
+class "Action`2"<T1,T2> {
+}
+class "Func`3"<T1,T2,T3> {
+}
+struct ControlSchemeChangeSyntax {
+    + AndPairRemainingDevices() : ControlSchemeChangeSyntax
+}
+enum UserFlags {
+    BindToAllDevices= 1 << 0,
+    UserAccountSelectionInProgress= 1 << 1,
+}
+struct UserData {
+    + platformUserAccountHandle : InputUserAccountHandle?
+    + platformUserAccountName : string
+    + platformUserAccountId : string
+    + deviceCount : int
+    + deviceStartIndex : int
+    + controlScheme : InputControlScheme?
+    + lostDeviceCount : int
+    + lostDeviceStartIndex : int
+}
+struct CompareDevicesByUserAccount {
+    + Compare(x:InputDevice, y:InputDevice) : int
+}
+struct OngoingAccountSelection {
+    + userId : uint
+}
+struct GlobalState {
+}
+class "IComparer`1"<T> {
+}
+"IEquatable`1" "<InputUser>" <|-- InputUser
+InputUser --> "platformUserAccountHandle" InputUserAccountHandle
+InputUser --> "pairedDevices<InputDevice>" "ReadOnlyArray`1"
+InputUser --> "lostDevices<InputDevice>" "ReadOnlyArray`1"
+InputUser --> "actions" IInputActionCollection
+InputUser --> "controlScheme" InputControlScheme
+InputUser --> "all<InputUser>" "ReadOnlyArray`1"
+InputUser +-- ControlSchemeChangeSyntax
+InputUser +-- UserFlags
+InputUser +-- UserData
+UserData --> "actions" IInputActionCollection
+UserData --> "flags" UserFlags
+InputUser +-- CompareDevicesByUserAccount
+"IComparer`1" "<InputDevice>" <|-- CompareDevicesByUserAccount
+CompareDevicesByUserAccount --> "platformUserAccountHandle" InputUserAccountHandle
+InputUser +-- OngoingAccountSelection
+OngoingAccountSelection --> "device" InputDevice
+InputUser +-- GlobalState
+@enduml

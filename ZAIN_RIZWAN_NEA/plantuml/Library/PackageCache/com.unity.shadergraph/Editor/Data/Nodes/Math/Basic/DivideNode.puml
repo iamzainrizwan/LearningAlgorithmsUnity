@@ -1,0 +1,6 @@
+@startuml
+class DivideNode {
+    + DivideNode()
+}
+CodeFunctionNode <|-- DivideNode
+@enduml

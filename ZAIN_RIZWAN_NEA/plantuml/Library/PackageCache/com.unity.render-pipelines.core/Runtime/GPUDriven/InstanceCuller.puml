@@ -1,0 +1,226 @@
+@startuml
+struct RangeKey {
+    + layer : byte
+    + renderingLayerMask : uint
+    + staticShadowCaster : bool
+    + rendererPriority : int
+    + supportsIndirect : bool
+    + Equals(other:RangeKey) : bool
+    + <<override>> GetHashCode() : int
+}
+struct DrawRange {
+    + drawCount : int
+    + drawOffset : int
+}
+struct DrawKey {
+    + submeshIndex : int
+    + transparentInstanceId : int
+    + overridenComponents : uint
+    + lightmapIndex : int
+    + Equals(other:DrawKey) : bool
+    + <<override>> GetHashCode() : int
+}
+struct DrawBatch {
+    + instanceCount : int
+    + instanceOffset : int
+}
+struct DrawInstance {
+    + instanceIndex : int
+}
+struct BinningConfig {
+    + viewCount : int
+    + supportsCrossFade : bool
+    + supportsMotionCheck : bool
+    + visibilityConfigCount : int <<get>>
+}
+struct CullingJob {
+    + <<const>> k_BatchSize : int = 32
+    + sqrScreenRelativeMetric : float
+    + minScreenRelativeHeight : float
+    + isOrtho : bool
+    + cullLightmappedShadowCasters : bool
+    + maxLOD : int
+    + cullingLayerMask : uint
+    + sceneCullingMask : ulong
+    + Execute(instanceIndex:int) : void
+}
+struct AllocateBinsPerBatch {
+    + debugCounterIndexBase : int
+    <<unsafe>> + Execute(batchIndex:int) : void
+}
+struct PrefixSumDrawsAndInstances {
+    <<unsafe>> + Execute() : void
+}
+struct DrawCommandOutputPerBatch {
+    <<unsafe>> + Execute(batchIndex:int) : void
+}
+struct CompactVisibilityMasksJob {
+    + <<const>> k_BatchSize : int = 64
+    <<unsafe>> + Execute(startIndex:int, count:int) : void
+}
+enum InstanceCullerSplitDebugCounter {
+    VisibleInstances,
+    DrawCommands,
+    Count,
+}
+struct InstanceCullerSplitDebugArray {
+    + Init() : void
+    + Dispose() : void
+    + TryAddSplits(viewType:BatchCullingViewType, viewInstanceID:int, splitCount:int) : int
+    + AddSync(baseIndex:int, jobHandle:JobHandle) : void
+    + MoveToDebugStatsAndClear(debugStats:DebugRendererBatcherStats) : void
+}
+struct InstanceOcclusionEventDebugArray {
+    + Init() : void
+    + Dispose() : void
+    + TryAdd(viewInstanceID:int, eventType:InstanceOcclusionEventType, occluderVersion:int, subviewMask:int, occlusionTest:OcclusionTest) : int
+    + MoveToDebugStatsAndClear(debugStats:DebugRendererBatcherStats) : void
+}
+struct InstanceCuller {
+    + <<unsafe>> CreateCullJobTree(cc:BatchCullingContext, cullingOutput:BatchCullingOutput, instanceData:CPUInstanceData.ReadOnly, sharedInstanceData:CPUSharedInstanceData.ReadOnly, instanceDataBuffer:GPUInstanceDataBuffer.ReadOnly, lodGroupCullingData:NativeList<LODGroupCullingData>, drawInstanceData:CPUDrawInstanceData, batchIDs:NativeParallelHashMap<uint, BatchID>, crossFadedRendererCount:int, smallMeshScreenPercentage:float, occlusionCullingCommon:OcclusionCullingCommon) : JobHandle
+    + InstanceOccludersUpdated(viewInstanceID:int, subviewMask:int, batchersContext:RenderersBatchersContext) : void
+    + GetCompactedVisibilityMasks(syncCullingJobs:bool) : ParallelBitArray
+    + InstanceOcclusionTest(renderGraph:RenderGraph, settings:OcclusionCullingSettings, subviewOcclusionTests:ReadOnlySpan<SubviewOcclusionTest>, batchersContext:RenderersBatchersContext) : void
+    + UpdateFrame() : void
+    + OnBeginCameraRendering(camera:Camera) : void
+    + OnEndCameraRendering(camera:Camera) : void
+    + Dispose() : void
+}
+class "IEquatable`1"<T> {
+}
+enum CrossFadeType {
+    kDisabled,
+    kCrossFadeOut,
+    kCrossFadeIn,
+    kVisible,
+}
+class "NativeArray`1"<T> {
+}
+class "NativeList`1"<T> {
+}
+class "NativeParallelHashMap`2"<T1,T2> {
+}
+struct Info {
+    + viewInstanceID : int
+    + splitIndex : int
+}
+struct Info {
+    + viewInstanceID : int
+    + occluderVersion : int
+    + subviewMask : int
+    + HasVersion() : bool
+}
+struct Request {
+}
+class ShaderIDs <<static>> {
+    + {static} <<readonly>> InstanceOcclusionCullerShaderVariables : int
+    + {static} <<readonly>> _DrawInfo : int
+    + {static} <<readonly>> _InstanceInfo : int
+    + {static} <<readonly>> _DrawArgs : int
+    + {static} <<readonly>> _InstanceIndices : int
+    + {static} <<readonly>> _InstanceDataBuffer : int
+    + {static} <<readonly>> _OccluderDepthPyramid : int
+    + {static} <<readonly>> _OcclusionDebugCounters : int
+}
+struct SetupCullingJobInput {
+    + lodBias : float
+    + Execute() : void
+}
+class InstanceOcclusionTestPassData {
+}
+class "UnsafeList`1"<T> {
+}
+"IEquatable`1" "<RangeKey>" <|-- RangeKey
+RangeKey --> "motionMode" MotionVectorGenerationMode
+RangeKey --> "shadowCastingMode" ShadowCastingMode
+DrawRange --> "key" RangeKey
+"IEquatable`1" "<DrawKey>" <|-- DrawKey
+DrawKey --> "meshID" BatchMeshID
+DrawKey --> "materialID" BatchMaterialID
+DrawKey --> "flags" BatchDrawCommandFlags
+DrawKey --> "range" RangeKey
+DrawBatch --> "key" DrawKey
+DrawBatch --> "procInfo" MeshProceduralInfo
+DrawInstance --> "key" DrawKey
+IJobParallelFor <|-- CullingJob
+CullingJob --> "binningConfig" BinningConfig
+CullingJob --> "viewType" BatchCullingViewType
+CullingJob --> "cameraPosition" float3
+CullingJob --> "frustumPlanePackets<FrustumPlaneCuller.PlanePacket4>" "NativeArray`1"
+CullingJob --> "frustumSplitInfos<FrustumPlaneCuller.SplitInfo>" "NativeArray`1"
+CullingJob --> "lightFacingFrustumPlanes<Plane>" "NativeArray`1"
+CullingJob --> "receiverSplitInfos<ReceiverSphereCuller.SplitInfo>" "NativeArray`1"
+CullingJob --> "worldToLightSpaceRotation" float3x3
+CullingJob --> "lodGroupCullingData<LODGroupCullingData>" "NativeList`1"
+CullingJob --> "occlusionBuffer" IntPtr
+CullingJob --> "rendererVisibilityMasks<byte>" "NativeArray`1"
+CullingJob --> "rendererCrossFadeValues<byte>" "NativeArray`1"
+IJobParallelFor <|-- AllocateBinsPerBatch
+AllocateBinsPerBatch --> "binningConfig" BinningConfig
+AllocateBinsPerBatch --> "drawBatches<DrawBatch>" "NativeList`1"
+AllocateBinsPerBatch --> "drawInstanceIndices<int>" "NativeArray`1"
+AllocateBinsPerBatch --> "rendererVisibilityMasks<byte>" "NativeArray`1"
+AllocateBinsPerBatch --> "batchBinAllocOffsets<int>" "NativeArray`1"
+AllocateBinsPerBatch --> "batchBinCounts<int>" "NativeArray`1"
+AllocateBinsPerBatch --> "binAllocCounter<int>" "NativeArray`1"
+AllocateBinsPerBatch --> "binConfigIndices<short>" "NativeArray`1"
+AllocateBinsPerBatch --> "binVisibleInstanceCounts<int>" "NativeArray`1"
+AllocateBinsPerBatch --> "splitDebugCounters<int>" "NativeArray`1"
+IJob <|-- PrefixSumDrawsAndInstances
+PrefixSumDrawsAndInstances --> "drawRanges<DrawRange>" "NativeList`1"
+PrefixSumDrawsAndInstances --> "drawBatchIndices<int>" "NativeArray`1"
+PrefixSumDrawsAndInstances --> "batchBinAllocOffsets<int>" "NativeArray`1"
+PrefixSumDrawsAndInstances --> "batchBinCounts<int>" "NativeArray`1"
+PrefixSumDrawsAndInstances --> "binVisibleInstanceCounts<int>" "NativeArray`1"
+PrefixSumDrawsAndInstances --> "batchDrawCommandOffsets<int>" "NativeArray`1"
+PrefixSumDrawsAndInstances --> "binVisibleInstanceOffsets<int>" "NativeArray`1"
+PrefixSumDrawsAndInstances --> "cullingOutput<BatchCullingOutputDrawCommands>" "NativeArray`1"
+PrefixSumDrawsAndInstances --> "indirectBufferLimits" IndirectBufferLimits
+PrefixSumDrawsAndInstances --> "indirectBufferAllocInfo<IndirectBufferAllocInfo>" "NativeArray`1"
+PrefixSumDrawsAndInstances --> "indirectAllocationCounters<int>" "NativeArray`1"
+IJobParallelFor <|-- DrawCommandOutputPerBatch
+DrawCommandOutputPerBatch --> "binningConfig" BinningConfig
+DrawCommandOutputPerBatch --> "batchIDs<uint,BatchID>" "NativeParallelHashMap`2"
+DrawCommandOutputPerBatch --> "drawBatches<DrawBatch>" "NativeList`1"
+DrawCommandOutputPerBatch --> "drawInstanceIndices<int>" "NativeArray`1"
+DrawCommandOutputPerBatch --> "rendererVisibilityMasks<byte>" "NativeArray`1"
+DrawCommandOutputPerBatch --> "rendererCrossFadeValues<byte>" "NativeArray`1"
+DrawCommandOutputPerBatch --> "batchBinAllocOffsets<int>" "NativeArray`1"
+DrawCommandOutputPerBatch --> "batchBinCounts<int>" "NativeArray`1"
+DrawCommandOutputPerBatch --> "batchDrawCommandOffsets<int>" "NativeArray`1"
+DrawCommandOutputPerBatch --> "binConfigIndices<short>" "NativeArray`1"
+DrawCommandOutputPerBatch --> "binVisibleInstanceOffsets<int>" "NativeArray`1"
+DrawCommandOutputPerBatch --> "binVisibleInstanceCounts<int>" "NativeArray`1"
+DrawCommandOutputPerBatch --> "cullingOutput<BatchCullingOutputDrawCommands>" "NativeArray`1"
+DrawCommandOutputPerBatch --> "indirectBufferLimits" IndirectBufferLimits
+DrawCommandOutputPerBatch --> "visibleInstancesBufferHandle" GraphicsBufferHandle
+DrawCommandOutputPerBatch --> "indirectArgsBufferHandle" GraphicsBufferHandle
+DrawCommandOutputPerBatch --> "indirectBufferAllocInfo<IndirectBufferAllocInfo>" "NativeArray`1"
+DrawCommandOutputPerBatch --> "indirectDrawInfoGlobalArray<IndirectDrawInfo>" "NativeArray`1"
+DrawCommandOutputPerBatch --> "indirectInstanceInfoGlobalArray<IndirectInstanceInfo>" "NativeArray`1"
+IJobParallelForBatch <|-- CompactVisibilityMasksJob
+CompactVisibilityMasksJob --> "rendererVisibilityMasks<byte>" "NativeArray`1"
+CompactVisibilityMasksJob --> "compactedVisibilityMasks" ParallelBitArray
+IDisposable <|-- InstanceCullerSplitDebugArray
+InstanceCullerSplitDebugArray --> "Counters<int>" "NativeArray`1"
+IDisposable <|-- InstanceOcclusionEventDebugArray
+InstanceOcclusionEventDebugArray --> "CounterBuffer" GraphicsBuffer
+IDisposable <|-- InstanceCuller
+CullingJob +-- CrossFadeType
+InstanceCullerSplitDebugArray +-- Info
+Info --> "viewType" BatchCullingViewType
+InstanceOcclusionEventDebugArray +-- Info
+Info --> "eventType" InstanceOcclusionEventType
+Info --> "occlusionTest" OcclusionTest
+InstanceOcclusionEventDebugArray +-- Request
+Request --> "info<Info>" "UnsafeList`1"
+Request --> "readback" AsyncGPUReadbackRequest
+InstanceCuller +-- ShaderIDs
+InstanceCuller +-- SetupCullingJobInput
+IJob <|-- SetupCullingJobInput
+InstanceCuller +-- InstanceOcclusionTestPassData
+InstanceOcclusionTestPassData --> "settings" OcclusionCullingSettings
+InstanceOcclusionTestPassData --> "subviewSettings" InstanceOcclusionTestSubviewSettings
+InstanceOcclusionTestPassData --> "occluderHandles" OccluderHandles
+InstanceOcclusionTestPassData --> "bufferHandles" IndirectBufferContextHandles
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class AddDictionaryItem <<sealed>> {
+}
+Unit <|-- AddDictionaryItem
+AddDictionaryItem --> "enter" ControlInput
+AddDictionaryItem --> "dictionaryInput" ValueInput
+AddDictionaryItem --> "dictionaryOutput" ValueOutput
+AddDictionaryItem --> "key" ValueInput
+AddDictionaryItem --> "value" ValueInput
+AddDictionaryItem --> "exit" ControlOutput
+@enduml

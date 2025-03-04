@@ -1,0 +1,10 @@
+@startuml
+class QuestionnaireObject {
+    + ForceReload() : void
+    + ForceSave() : void
+}
+class "ScriptableSingleton`1"<T> {
+}
+"ScriptableSingleton`1" "<QuestionnaireObject>" <|-- QuestionnaireObject
+QuestionnaireObject --> "Questionnaire" QuestionnaireData
+@enduml

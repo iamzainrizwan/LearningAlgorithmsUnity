@@ -1,0 +1,11 @@
+@startuml
+enum StateRevealCondition {
+    Never,
+    Always,
+    OnHover,
+    OnHoverWithAlt,
+    WhenSelected,
+    OnHoverOrSelected,
+    OnHoverWithAltOrSelected,
+}
+@enduml

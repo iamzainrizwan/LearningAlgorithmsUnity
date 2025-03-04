@@ -1,0 +1,9 @@
+@startuml
+class ValueInputDefinition <<sealed>> {
+    + hasDefaultValue : bool <<get>> <<set>>
+    + defaultValue : object <<get>> <<set>>
+}
+ValuePortDefinition <|-- ValueInputDefinition
+IUnitInputPortDefinition <|-- ValueInputDefinition
+ValueInputDefinition --> "type" Type
+@enduml

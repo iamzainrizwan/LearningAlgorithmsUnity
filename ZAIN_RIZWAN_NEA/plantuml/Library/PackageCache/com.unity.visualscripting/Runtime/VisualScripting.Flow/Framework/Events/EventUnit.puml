@@ -1,0 +1,29 @@
+@startuml
+abstract class "EventUnit`1"<TArgs> {
+    + <<virtual>> CreateData() : IGraphElementData
+    + coroutine : bool <<get>> <<set>> = false
+    + <<virtual>> GetHook(reference:GraphReference) : EventHook
+    + <<virtual>> StartListening(stack:GraphStack) : void
+    + <<virtual>> StopListening(stack:GraphStack) : void
+    + <<override>> Uninstantiate(instance:GraphReference) : void
+    + IsListening(pointer:GraphPointer) : bool
+    + Trigger(reference:GraphReference, args:TArgs) : void
+}
+class "IGraphEventHandler`1"<T> {
+}
+class Data {
+    + isListening : bool
+}
+class "HashSet`1"<T> {
+}
+Unit <|-- "EventUnit`1"
+IEventUnit <|-- "EventUnit`1"
+IGraphElementWithData <|-- "EventUnit`1"
+"IGraphEventHandler`1" "<TArgs>" <|-- "EventUnit`1"
+"EventUnit`1" --> "trigger" ControlOutput
+"EventUnit`1" +-- Data
+IGraphElementData <|-- Data
+Data --> "hook" EventHook
+Data --> "handler" Delegate
+Data o-> "activeCoroutines<Flow>" "HashSet`1"
+@enduml

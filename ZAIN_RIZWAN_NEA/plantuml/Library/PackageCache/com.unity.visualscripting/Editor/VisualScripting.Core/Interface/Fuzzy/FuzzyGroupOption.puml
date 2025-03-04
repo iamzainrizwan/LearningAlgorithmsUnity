@@ -1,0 +1,8 @@
+@startuml
+class FuzzyGroupOption {
+    + FuzzyGroupOption(group:FuzzyGroup)
+}
+class "FuzzyOption`1"<T> {
+}
+"FuzzyOption`1" "<object>" <|-- FuzzyGroupOption
+@enduml

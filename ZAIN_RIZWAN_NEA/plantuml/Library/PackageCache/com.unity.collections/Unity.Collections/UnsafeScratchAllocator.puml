@@ -1,0 +1,7 @@
+@startuml
+struct UnsafeScratchAllocator {
+    + UnsafeScratchAllocator(ptr:void*, capacityInBytes:int)
+    + Allocate(sizeInBytes:int, alignmentInBytes:int) : void*
+    + Allocate(count:int) : void*
+}
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+class VSMigrationUtility {
+    + VSMigrationUtility()
+    + OnUpdate() : void
+}
+class MigrationStep {
+    + MigrationStep(plugin:Plugin, migration:PluginMigration)
+    + Run() : void
+    + Reset() : void
+}
+enum State {
+    Idle,
+    Migrating,
+    Success,
+    Failure,
+}
+VSMigrationUtility +-- MigrationStep
+MigrationStep --> "state" State
+MigrationStep +-- State
+@enduml

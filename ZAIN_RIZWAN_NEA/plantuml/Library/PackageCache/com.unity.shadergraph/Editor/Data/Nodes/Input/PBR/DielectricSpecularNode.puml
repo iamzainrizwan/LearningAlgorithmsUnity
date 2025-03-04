@@ -1,0 +1,28 @@
+@startuml
+enum DielectricMaterialType {
+    Common,
+    RustedMetal,
+    Water,
+    Ice,
+    Glass,
+    Custom,
+}
+class DielectricSpecularNode {
+    + DielectricSpecularNode()
+    + <<override>> hasPreview : bool <<get>>
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + <<override>> CollectPreviewMaterialProperties(properties:List<PreviewProperty>) : void
+    + <<override>> CollectShaderProperties(properties:PropertyCollector, generationMode:GenerationMode) : void
+}
+struct DielectricMaterial {
+    + range : float
+    + indexOfRefraction : float
+    + DielectricMaterial(type:DielectricMaterialType, range:float, indexOfRefraction:float)
+}
+AbstractMaterialNode <|-- DielectricSpecularNode
+IGeneratesBodyCode <|-- DielectricSpecularNode
+DielectricSpecularNode --> "material" DielectricMaterial
+DielectricSpecularNode +-- DielectricMaterial
+DielectricMaterial --> "type" DielectricMaterialType
+@enduml

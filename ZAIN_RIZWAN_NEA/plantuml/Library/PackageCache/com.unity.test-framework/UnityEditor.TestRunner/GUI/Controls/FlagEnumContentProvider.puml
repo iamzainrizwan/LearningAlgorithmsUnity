@@ -1,0 +1,11 @@
+@startuml
+class "FlagEnumContentProvider`1"<T> {
+    + FlagEnumContentProvider(initialValue:T, valueChangedCallback:Action<T>)
+    + Count : int <<get>>
+    + IsMultiSelection : bool <<get>>
+    + GetName(index:int) : string
+    + IsSelected(index:int) : bool
+    + SelectItem(index:int) : void
+}
+ISelectionDropDownContentProvider <|-- "FlagEnumContentProvider`1"
+@enduml

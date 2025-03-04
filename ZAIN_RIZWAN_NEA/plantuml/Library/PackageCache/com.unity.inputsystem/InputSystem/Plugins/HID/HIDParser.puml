@@ -1,0 +1,76 @@
+@startuml
+class HIDParser <<static>> {
+    + {static} <<unsafe>> ParseReportDescriptor(buffer:byte[], deviceDescriptor:HID.HIDDeviceDescriptor) : bool
+    + <<unsafe>> {static} ParseReportDescriptor(bufferPtr:byte*, bufferLength:int, deviceDescriptor:HID.HIDDeviceDescriptor) : bool
+}
+struct HIDReportData {
+    + reportId : int
+    + currentBitOffset : int
+    + {static} FindOrAddReport(reportId:int?, reportType:HID.HIDReportType, reports:List<HIDReportData>) : int
+}
+enum HIDItemTypeAndTag {
+    Input= 0x80,
+    Output= 0x90,
+    Feature= 0xB0,
+    Collection= 0xA0,
+    EndCollection= 0xC0,
+    UsagePage= 0x04,
+    LogicalMinimum= 0x14,
+    LogicalMaximum= 0x24,
+    PhysicalMinimum= 0x34,
+    PhysicalMaximum= 0x44,
+    UnitExponent= 0x54,
+    Unit= 0x64,
+    ReportSize= 0x74,
+    ReportID= 0x84,
+    ReportCount= 0x94,
+    Push= 0xA4,
+    Pop= 0xB4,
+    Usage= 0x08,
+    UsageMinimum= 0x18,
+    UsageMaximum= 0x28,
+    DesignatorIndex= 0x38,
+    DesignatorMinimum= 0x48,
+    DesignatorMaximum= 0x58,
+    StringIndex= 0x78,
+    StringMinimum= 0x88,
+    StringMaximum= 0x98,
+    Delimiter= 0xA8,
+}
+struct HIDItemStateLocal {
+    + usage : int?
+    + usageMinimum : int?
+    + usageMaximum : int?
+    + designatorIndex : int?
+    + designatorMinimum : int?
+    + designatorMaximum : int?
+    + stringIndex : int?
+    + stringMinimum : int?
+    + stringMaximum : int?
+    + {static} Reset(state:HIDItemStateLocal) : void
+    + SetUsage(value:int) : void
+    + GetUsage(index:int) : int
+}
+struct HIDItemStateGlobal {
+    + usagePage : int?
+    + logicalMinimum : int?
+    + logicalMaximum : int?
+    + physicalMinimum : int?
+    + physicalMaximum : int?
+    + unitExponent : int?
+    + unit : int?
+    + reportSize : int?
+    + reportCount : int?
+    + reportId : int?
+    + GetUsagePage(index:int, localItemState:HIDItemStateLocal) : HID.UsagePage
+    + GetPhysicalMin() : int
+    + GetPhysicalMax() : int
+}
+class "List`1"<T> {
+}
+HIDParser +-- HIDReportData
+HIDParser +-- HIDItemTypeAndTag
+HIDParser +-- HIDItemStateLocal
+HIDItemStateLocal --> "usageList<int>" "List`1"
+HIDParser +-- HIDItemStateGlobal
+@enduml

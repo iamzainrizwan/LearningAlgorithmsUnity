@@ -1,0 +1,51 @@
+@startuml
+class TestListTableItem {
+    + deviation : double
+    + standardDeviation : double
+    + median : double
+    + min : double
+    + max : double
+    + TestListTableItem(id:int, depth:int, displayName:string, performanceTest:PerformanceTestResult)
+}
+class TestListTable {
+    + TestListTable(state:TreeViewState, multicolumnHeader:MultiColumnHeader, testReportWindow:TestReportWindow)
+    + {static} CreateDefaultMultiColumnHeaderState(treeViewWidth:float) : MultiColumnHeaderState
+}
+class MyExtensionMethods <<static>> {
+    + {static} Order(source:IEnumerable<T>, selector:Func<T, TKey>, ascending:bool) : IOrderedEnumerable<T>
+    + {static} ThenBy(source:IOrderedEnumerable<T>, selector:Func<T, TKey>, ascending:bool) : IOrderedEnumerable<T>
+}
+enum MyColumns {
+    Name,
+    SampleCount,
+    StandardDeviation,
+    Deviation,
+    Median,
+    Min,
+    Max,
+}
+enum SortOption {
+    Name,
+    SampleCount,
+    StandardDeviation,
+    Deviation,
+    Median,
+    Min,
+    Max,
+}
+struct HeaderData {
+    + <<readonly>> width : float
+    + <<readonly>> minWidth : float
+    + <<readonly>> autoResize : bool
+    + <<readonly>> allowToggleVisibility : bool
+    + <<readonly>> ascending : bool
+    + HeaderData(name:string, tooltip:string, width:float, minWidth:float, autoResize:bool, allowToggleVisibility:bool, ascending:bool)
+}
+TreeViewItem <|-- TestListTableItem
+TestListTableItem --> "performanceTest" PerformanceTestResult
+TreeView <|-- TestListTable
+TestListTable +-- MyColumns
+TestListTable +-- SortOption
+TestListTable +-- HeaderData
+HeaderData --> "content" GUIContent
+@enduml

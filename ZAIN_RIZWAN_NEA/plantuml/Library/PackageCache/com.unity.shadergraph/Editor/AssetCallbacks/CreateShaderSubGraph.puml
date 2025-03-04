@@ -1,0 +1,7 @@
+@startuml
+class CreateShaderSubGraph {
+    + {static} CreateMaterialSubGraph() : void
+    + <<override>> Action(instanceId:int, pathName:string, resourceFile:string) : void
+}
+EndNameEditAction <|-- CreateShaderSubGraph
+@enduml

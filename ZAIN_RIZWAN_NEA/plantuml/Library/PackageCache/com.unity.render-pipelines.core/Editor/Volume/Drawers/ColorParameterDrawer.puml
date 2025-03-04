@@ -1,0 +1,6 @@
+@startuml
+class ColorParameterDrawer <<sealed>> {
+    + <<override>> OnGUI(parameter:SerializedDataParameter, title:GUIContent) : bool
+}
+VolumeParameterDrawer <|-- ColorParameterDrawer
+@enduml

@@ -1,0 +1,27 @@
+@startuml
+struct InputInteractionContext {
+    + time : double <<get>>
+    + startTime : double <<get>>
+    + timerHasExpired : bool <<get>> <<internal set>>
+    + isWaiting : bool <<get>>
+    + isStarted : bool <<get>>
+    + ComputeMagnitude() : float
+    + ControlIsActuated(threshold:float) : bool
+    + Started() : void
+    + Performed() : void
+    + PerformedAndStayStarted() : void
+    + PerformedAndStayPerformed() : void
+    + Canceled() : void
+    + Waiting() : void
+    + SetTimeout(seconds:float) : void
+    + SetTotalTimeoutCompletionTime(seconds:float) : void
+    + ReadValue() : TValue
+}
+enum Flags {
+    TimerHasExpired= 1 << 1,
+}
+InputInteractionContext --> "action" InputAction
+InputInteractionContext --> "control" InputControl
+InputInteractionContext --> "phase" InputActionPhase
+InputInteractionContext +-- Flags
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class SelectOnIntegerDescriptor {
+    + SelectOnIntegerDescriptor(unit:SelectOnInteger)
+}
+class "SelectUnitDescriptor`1"<T> {
+}
+"SelectUnitDescriptor`1" "<int>" <|-- SelectOnIntegerDescriptor
+@enduml

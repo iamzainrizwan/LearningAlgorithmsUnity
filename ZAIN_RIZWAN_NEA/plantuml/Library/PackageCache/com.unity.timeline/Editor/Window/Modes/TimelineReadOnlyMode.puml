@@ -1,0 +1,12 @@
+@startuml
+class TimelineReadOnlyMode {
+    + TimelineReadOnlyMode()
+    + <<override>> ShouldShowPlayRange(state:WindowState) : bool
+    + <<override>> ShouldShowTimeCursor(state:WindowState) : bool
+    + <<override>> TrackState(state:WindowState) : TimelineModeGUIState
+    + <<override>> ToolbarState(state:WindowState) : TimelineModeGUIState
+    + <<override>> PreviewState(state:WindowState) : TimelineModeGUIState
+    + <<override>> EditModeButtonsState(state:WindowState) : TimelineModeGUIState
+}
+TimelineMode <|-- TimelineReadOnlyMode
+@enduml

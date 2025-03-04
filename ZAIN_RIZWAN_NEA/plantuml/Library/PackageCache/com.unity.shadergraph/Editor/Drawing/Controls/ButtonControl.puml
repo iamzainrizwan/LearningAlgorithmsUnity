@@ -1,0 +1,16 @@
+@startuml
+class ButtonControlAttribute {
+    + ButtonControlAttribute()
+    + InstantiateControl(node:AbstractMaterialNode, propertyInfo:PropertyInfo) : VisualElement
+}
+struct ButtonConfig {
+    + text : string
+}
+class ButtonControlView {
+    + ButtonControlView(node:AbstractMaterialNode, propertyInfo:PropertyInfo)
+}
+Attribute <|-- ButtonControlAttribute
+IControlAttribute <|-- ButtonControlAttribute
+ButtonConfig --> "action" Action
+VisualElement <|-- ButtonControlView
+@enduml

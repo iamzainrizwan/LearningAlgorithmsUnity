@@ -1,0 +1,53 @@
+@startuml
+class TestHalf <<partial>> {
+    + {static} half_zero() : void
+    + {static} half2_zero() : void
+    + {static} half3_zero() : void
+    + {static} half4_zero() : void
+    + {static} half_from_float_construction() : void
+    + {static} half_from_float_construction_signed_zero() : void
+    + {static} half2_from_float2_construction() : void
+    + {static} half2_from_float2_construction_signed_zero() : void
+    + {static} half3_from_float3_construction() : void
+    + {static} half3_from_float3_construction_signed_zero() : void
+    + {static} half4_from_float4_construction() : void
+    + {static} half4_from_float4_construction_signed_zero() : void
+    + {static} half_from_double_construction() : void
+    + {static} half_from_double_construction_signed_zero() : void
+    + {static} half2_from_double2_construction() : void
+    + {static} half2_from_double2_construction_signed_zero() : void
+    + {static} half3_from_double3_construction() : void
+    + {static} half3_from_double3_construction_signed_zero() : void
+    + {static} half4_from_double4_construction() : void
+    + {static} half4_from_double4_construction_signed_zero() : void
+    + {static} half_to_float() : void
+    + {static} half2_to_float2() : void
+    + {static} half3_to_float3() : void
+    + {static} half4_to_float4() : void
+    + {static} half_to_double() : void
+    + {static} half_from_float_explicit_conversion() : void
+    + {static} half2_from_float2_explicit_conversion() : void
+    + {static} half3_from_float3_explicit_conversion() : void
+    + {static} half4_from_float4_explicit_conversion() : void
+    + {static} half_from_double_explicit_conversion() : void
+    + {static} half_to_float_implicit_conversion() : void
+    + {static} half2_to_float2_implicit_conversion() : void
+    + {static} half3_to_float3_implicit_conversion() : void
+    + {static} half4_to_float4_implicit_conversion() : void
+    + {static} half_to_double_implicit_conversion() : void
+    + {static} half_minvalue() : void
+    + {static} half_maxvalue() : void
+    + {static} half_minvalueashalf() : void
+    + {static} half_maxvalueashalf() : void
+    + {static} half2_minvalue() : void
+    + {static} half2_maxvalue() : void
+    + {static} half3_minvalue() : void
+    + {static} half3_maxvalue() : void
+    + {static} half4_minvalue() : void
+    + {static} half4_maxvalue() : void
+    + {static} half_EqualsObjectOverride() : void
+    + {static} half2_EqualsObjectOverride() : void
+    + {static} half3_EqualsObjectOverride() : void
+    + {static} half4_EqualsObjectOverride() : void
+}
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+interface IMayRequireBitangent {
+}
+class MayRequireBitangentExtensions <<static>> {
+    + {static} RequiresBitangent(slot:MaterialSlot) : NeededCoordinateSpace
+}
+@enduml

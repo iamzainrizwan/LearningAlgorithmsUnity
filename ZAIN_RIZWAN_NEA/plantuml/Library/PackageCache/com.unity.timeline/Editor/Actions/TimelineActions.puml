@@ -1,0 +1,166 @@
+@startuml
+class CopyAction {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(context:ActionContext) : bool
+}
+class PasteAction {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(context:ActionContext) : bool
+}
+class DuplicateAction {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + Execute(gapBetweenItems:Func<ITimelineItem, ITimelineItem, double>) : bool
+    + <<override>> Execute(context:ActionContext) : bool
+}
+class DeleteAction {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(context:ActionContext) : bool
+}
+class MatchContent {
+    + <<override>> Validate(actionContext:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class PlayTimelineAction {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class SelectAllAction {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class PreviousFrameAction {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class NextFrameAction {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class FrameAllAction {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class FrameSelectedAction {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + {static} FrameRange(startTime:float, endTime:float) : void
+    + <<override>> Execute(actionContext:ActionContext) : bool
+    + {static} ShouldHandleInlineCurve(curveEditorOwner:IClipCurveEditorOwner) : bool
+    + {static} FrameInlineCurves(curveEditorOwner:IClipCurveEditorOwner, selectionOnly:bool) : void
+}
+class PrevKeyAction {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class NextKeyAction {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class GotoStartAction {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class GotoEndAction {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class ZoomIn {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class ZoomOut {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class NavigateLeft {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class NavigateRight {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class ToggleCollapseGroup {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class SelectLeftClip {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class SelectRightClip {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class SelectUpClip {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class SelectUpTrack {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class SelectDownClip {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class SelectDownTrack {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class MultiselectLeftClip {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class MultiselectRightClip {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class MultiselectUpTrack {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class MultiselectDownTrack {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class ToggleClipTrackArea {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class KeyAllAnimated {
+    + <<override>> Validate(actionContext:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+TimelineAction <|-- CopyAction
+TimelineAction <|-- PasteAction
+TimelineAction <|-- DuplicateAction
+TimelineAction <|-- DeleteAction
+TimelineAction <|-- MatchContent
+TimelineAction <|-- PlayTimelineAction
+TimelineAction <|-- SelectAllAction
+TimelineAction <|-- PreviousFrameAction
+TimelineAction <|-- NextFrameAction
+TimelineAction <|-- FrameAllAction
+TimelineAction <|-- FrameSelectedAction
+TimelineAction <|-- PrevKeyAction
+TimelineAction <|-- NextKeyAction
+TimelineAction <|-- GotoStartAction
+TimelineAction <|-- GotoEndAction
+TimelineAction <|-- ZoomIn
+TimelineAction <|-- ZoomOut
+TimelineAction <|-- NavigateLeft
+TimelineAction <|-- NavigateRight
+TimelineAction <|-- ToggleCollapseGroup
+TimelineAction <|-- SelectLeftClip
+TimelineAction <|-- SelectRightClip
+TimelineAction <|-- SelectUpClip
+TimelineAction <|-- SelectUpTrack
+TimelineAction <|-- SelectDownClip
+TimelineAction <|-- SelectDownTrack
+TimelineAction <|-- MultiselectLeftClip
+TimelineAction <|-- MultiselectRightClip
+TimelineAction <|-- MultiselectUpTrack
+TimelineAction <|-- MultiselectDownTrack
+TimelineAction <|-- ToggleClipTrackArea
+TimelineAction <|-- KeyAllAnimated
+@enduml

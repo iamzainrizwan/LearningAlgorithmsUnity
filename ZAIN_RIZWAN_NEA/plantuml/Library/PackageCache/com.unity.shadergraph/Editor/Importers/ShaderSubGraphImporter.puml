@@ -1,0 +1,7 @@
+@startuml
+class ShaderSubGraphImporter {
+    + <<const>> Extension : string = "shadersubgraph"
+    + <<override>> OnImportAsset(ctx:AssetImportContext) : void
+}
+ScriptedImporter <|-- ShaderSubGraphImporter
+@enduml

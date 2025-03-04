@@ -1,0 +1,45 @@
+@startuml
+struct AffineTransform {
+    + AffineTransform(translation:float3, rotation:quaternion)
+    + AffineTransform(translation:float3, rotation:quaternion, scale:float3)
+    + AffineTransform(translation:float3, rotationScale:float3x3)
+    + AffineTransform(rotationScale:float3x3)
+    + AffineTransform(rigid:RigidTransform)
+    + AffineTransform(m:float3x4)
+    + AffineTransform(m:float4x4)
+    + Equals(rhs:AffineTransform) : bool
+    + <<override>> Equals(o:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+    + ToString(format:string, formatProvider:IFormatProvider) : string
+}
+class math <<static>> <<partial>> {
+    + {static} AffineTransform(translation:float3, rotation:quaternion) : AffineTransform
+    + {static} AffineTransform(translation:float3, rotation:quaternion, scale:float3) : AffineTransform
+    + {static} AffineTransform(translation:float3, rotationScale:float3x3) : AffineTransform
+    + {static} AffineTransform(rotationScale:float3x3) : AffineTransform
+    + {static} AffineTransform(m:float4x4) : AffineTransform
+    + {static} AffineTransform(m:float3x4) : AffineTransform
+    + {static} AffineTransform(rigid:RigidTransform) : AffineTransform
+    + {static} float4x4(transform:AffineTransform) : float4x4
+    + {static} float3x4(transform:AffineTransform) : float3x4
+    + {static} mul(a:AffineTransform, b:AffineTransform) : AffineTransform
+    + {static} mul(a:float3x3, b:AffineTransform) : AffineTransform
+    + {static} mul(a:AffineTransform, b:float3x3) : AffineTransform
+    + {static} mul(a:AffineTransform, pos:float4) : float4
+    + {static} rotate(a:AffineTransform, dir:float3) : float3
+    + {static} transform(a:AffineTransform, pos:float3) : float3
+    + {static} inverse(a:AffineTransform) : AffineTransform
+    + {static} decompose(a:AffineTransform, translation:float3, rotation:quaternion, scale:float3) : void
+    + {static} hash(a:AffineTransform) : uint
+    + {static} hashwide(a:AffineTransform) : uint4
+}
+class "IEquatable`1"<T> {
+}
+"IEquatable`1" "<AffineTransform>" <|-- AffineTransform
+IFormattable <|-- AffineTransform
+AffineTransform --> "rs" float3x3
+AffineTransform --> "t" float3
+AffineTransform o-> "identity" AffineTransform
+AffineTransform --> "zero" AffineTransform
+@enduml

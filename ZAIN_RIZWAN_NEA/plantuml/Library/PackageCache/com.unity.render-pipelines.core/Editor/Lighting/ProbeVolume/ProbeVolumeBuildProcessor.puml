@@ -1,0 +1,9 @@
+@startuml
+class ProbeVolumeBuildProcessor {
+    + <<override>> PrepareForBuild(buildPlayerContext:BuildPlayerContext) : void
+    + <<override>> callbackOrder : int <<get>>
+    + OnProcessScene(scene:Scene, report:BuildReport) : void
+}
+BuildPlayerProcessor <|-- ProbeVolumeBuildProcessor
+IProcessSceneWithReport <|-- ProbeVolumeBuildProcessor
+@enduml

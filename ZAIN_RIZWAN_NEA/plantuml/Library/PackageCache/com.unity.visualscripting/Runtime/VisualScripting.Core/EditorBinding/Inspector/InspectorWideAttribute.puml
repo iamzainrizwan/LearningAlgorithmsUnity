@@ -1,0 +1,8 @@
+@startuml
+class InspectorWideAttribute <<sealed>> {
+    + InspectorWideAttribute()
+    + InspectorWideAttribute(toEdge:bool)
+    + toEdge : bool <<get>>
+}
+Attribute <|-- InspectorWideAttribute
+@enduml

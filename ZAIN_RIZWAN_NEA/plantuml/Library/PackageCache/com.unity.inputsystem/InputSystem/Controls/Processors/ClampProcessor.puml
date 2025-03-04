@@ -1,0 +1,11 @@
+@startuml
+class ClampProcessor {
+    + min : float
+    + max : float
+    + <<override>> Process(value:float, control:InputControl) : float
+    + <<override>> ToString() : string
+}
+class "InputProcessor`1"<T> {
+}
+"InputProcessor`1" "<float>" <|-- ClampProcessor
+@enduml

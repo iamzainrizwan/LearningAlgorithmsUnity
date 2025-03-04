@@ -1,0 +1,13 @@
+@startuml
+class Texture3DMaterialSlot {
+    + Texture3DMaterialSlot()
+    + Texture3DMaterialSlot(slotId:int, displayName:string, shaderOutputName:string, slotType:SlotType, shaderStageCapability:ShaderStageCapability, hidden:bool)
+    + <<override>> AppendHLSLParameterDeclaration(sb:ShaderStringBuilder, paramName:string) : void
+    + <<override>> isDefaultValue : bool <<get>>
+    + <<override>> AddDefaultProperty(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + <<override>> CopyValuesFrom(foundSlot:MaterialSlot) : void
+}
+MaterialSlot <|-- Texture3DMaterialSlot
+Texture3DMaterialSlot --> "valueType" SlotValueType
+Texture3DMaterialSlot --> "concreteValueType" ConcreteSlotValueType
+@enduml

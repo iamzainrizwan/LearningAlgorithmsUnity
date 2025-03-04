@@ -1,0 +1,12 @@
+@startuml
+class Aliasing <<static>> {
+    + {static} <<unsafe>> ExpectAliased(a:void*, b:void*) : void
+    + {static} ExpectAliased(a:A, b:B) : void
+    + {static} <<unsafe>> ExpectAliased(a:void*, b:B) : void
+    + {static} <<unsafe>> ExpectAliased(a:A, b:void*) : void
+    + {static} <<unsafe>> ExpectNotAliased(a:void*, b:void*) : void
+    + {static} ExpectNotAliased(a:A, b:B) : void
+    + {static} <<unsafe>> ExpectNotAliased(a:void*, b:B) : void
+    + {static} <<unsafe>> ExpectNotAliased(a:A, b:void*) : void
+}
+@enduml

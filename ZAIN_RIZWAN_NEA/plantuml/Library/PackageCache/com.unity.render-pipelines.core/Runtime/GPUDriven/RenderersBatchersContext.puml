@@ -1,0 +1,61 @@
+@startuml
+struct RenderersBatchersContextDesc {
+    + supportDitheringCrossFade : bool
+    + enableBoundingSpheresInstanceData : bool
+    + smallMeshScreenPercentage : float
+    + enableCullerDebugStats : bool
+    + {static} NewDefault() : RenderersBatchersContextDesc
+}
+class RenderersBatchersContext {
+    + activeLodGroupCount : int <<get>>
+    + instanceDataBufferVersion : int <<get>>
+    + instanceDataBufferLayoutVersion : int <<get>>
+    + crossfadedRendererCount : int <<get>>
+    + hasBoundingSpheres : bool <<get>>
+    + smallMeshScreenPercentage : float <<get>>
+    + RenderersBatchersContext(desc:RenderersBatchersContextDesc, gpuDrivenProcessor:GPUDrivenProcessor, resources:GPUResidentDrawerResources)
+    + Dispose() : void
+    + GetMaxInstancesOfType(instanceType:InstanceType) : int
+    + GetAliveInstancesOfType(instanceType:InstanceType) : int
+    + GrowInstanceBuffer(instanceNumInfo:InstanceNumInfo) : void
+    + DestroyLODGroups(destroyed:NativeArray<int>) : void
+    + UpdateLODGroups(changedID:NativeArray<int>) : void
+    + ReallocateAndGetInstances(rendererData:GPUDrivenRendererGroupData, instances:NativeArray<InstanceHandle>) : void
+    + ScheduleUpdateInstanceDataJob(instances:NativeArray<InstanceHandle>, rendererData:GPUDrivenRendererGroupData) : JobHandle
+    + FreeRendererGroupInstances(rendererGroupsID:NativeArray<int>) : void
+    + FreeInstances(instances:NativeArray<InstanceHandle>) : void
+    + ScheduleQueryRendererGroupInstancesJob(rendererGroupIDs:NativeArray<int>, instances:NativeArray<InstanceHandle>) : JobHandle
+    + ScheduleQueryRendererGroupInstancesJob(rendererGroupIDs:NativeArray<int>, instances:NativeList<InstanceHandle>) : JobHandle
+    + ScheduleQueryRendererGroupInstancesJob(rendererGroupIDs:NativeArray<int>, instancesOffset:NativeArray<int>, instancesCount:NativeArray<int>, instances:NativeList<InstanceHandle>) : JobHandle
+    + ScheduleQueryMeshInstancesJob(sortedMeshIDs:NativeArray<int>, instances:NativeList<InstanceHandle>) : JobHandle
+    + ChangeInstanceBufferVersion() : void
+    + CreateDataBufferUploader(capacity:int, instanceType:InstanceType) : GPUInstanceDataBufferUploader
+    + SubmitToGpu(instances:NativeArray<InstanceHandle>, uploader:GPUInstanceDataBufferUploader, submitOnlyWrittenParams:bool) : void
+    + SubmitToGpu(gpuInstanceIndices:NativeArray<GPUInstanceIndex>, uploader:GPUInstanceDataBufferUploader, submitOnlyWrittenParams:bool) : void
+    + InitializeInstanceTransforms(instances:NativeArray<InstanceHandle>, localToWorldMatrices:NativeArray<Matrix4x4>, prevLocalToWorldMatrices:NativeArray<Matrix4x4>) : void
+    + UpdateInstanceTransforms(instances:NativeArray<InstanceHandle>, localToWorldMatrices:NativeArray<Matrix4x4>) : void
+    + UpdateAmbientProbeAndGpuBuffer(forceUpdate:bool) : void
+    + UpdateInstanceWindDataHistory(gpuInstanceIndices:NativeArray<GPUInstanceIndex>) : void
+    + UpdateInstanceMotions() : void
+    + TransformLODGroups(lodGroupsID:NativeArray<int>) : void
+    + UpdatePerFrameInstanceVisibility(compactedVisibilityMasks:ParallelBitArray) : void
+    + ScheduleCollectInstancesLODGroupAndMasksJob(instances:NativeArray<InstanceHandle>, lodGroupAndMasks:NativeArray<uint>) : JobHandle
+    + GetRendererInstanceHandle(rendererID:int) : InstanceHandle
+    + GetVisibleTreeInstances(compactedVisibilityMasks:ParallelBitArray, processedBits:ParallelBitArray, visibeTreeRendererIDs:NativeList<int>, visibeTreeInstances:NativeList<InstanceHandle>, becomeVisibleOnly:bool, becomeVisibeTreeInstancesCount:int) : void
+    + GetInstanceDataBuffer() : GPUInstanceDataBuffer
+    + UpdateFrame() : void
+}
+class "NativeArray`1"<T> {
+}
+class "NativeList`1"<T> {
+}
+RenderersBatchersContextDesc --> "instanceNumInfo" InstanceNumInfo
+IDisposable <|-- RenderersBatchersContext
+RenderersBatchersContext --> "renderersParameters" RenderersParameters
+RenderersBatchersContext --> "gpuInstanceDataBuffer" GraphicsBuffer
+RenderersBatchersContext --> "defaultMetadata<MetadataValue>" "NativeArray`1"
+RenderersBatchersContext --> "lodGroupCullingData<LODGroupCullingData>" "NativeList`1"
+RenderersBatchersContext --> "cachedAmbientProbe" SphericalHarmonicsL2
+RenderersBatchersContext --> "aliveInstances<InstanceHandle>" "NativeArray`1"
+RenderersBatchersContext --> "resources" GPUResidentDrawerResources
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+class DependencyCollection {
+    + DependencyCollection()
+    + Add(dependencies:DependencyCollection) : DependencyCollection
+    + Add(dependency:FieldDependency) : DependencyCollection
+    + GetEnumerator() : IEnumerator<DependencyCollection.Item>
+}
+class "IEnumerable`1"<T> {
+}
+class Item {
+    + Item(dependency:FieldDependency)
+}
+"IEnumerable`1" "<DependencyCollection.Item>" <|-- DependencyCollection
+DependencyCollection +-- Item
+Item --> "dependency" FieldDependency
+@enduml

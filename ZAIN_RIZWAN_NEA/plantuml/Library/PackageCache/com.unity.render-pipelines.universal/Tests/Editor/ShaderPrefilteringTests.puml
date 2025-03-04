@@ -1,0 +1,17 @@
+@startuml
+class ShaderPrefilteringTests {
+    + TestCreatePrefilteringSettings_NoFeatures() : void
+    + TestCreatePrefilteringSettings_RenderingModes() : void
+    + TestCreatePrefilteringSettings_AdditionalLights() : void
+    + TestCreatePrefilteringSettings_Shadows() : void
+    + TestCreatePrefilteringSettings_GlobalSettings() : void
+    + TestCreatePrefilteringSettings_RenderingLayers() : void
+    + TestCreatePrefilteringSettings_Decals() : void
+    + TestCreatePrefilteringSettings_NativeRenderPass() : void
+    + TestCreatePrefilteringSettings_ScreenSpaceOcclusion() : void
+}
+class TestHelper {
+    + TestHelper()
+}
+ShaderPrefilteringTests +-- TestHelper
+@enduml

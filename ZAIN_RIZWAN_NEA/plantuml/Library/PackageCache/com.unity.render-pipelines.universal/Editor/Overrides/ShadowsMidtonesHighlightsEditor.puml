@@ -1,0 +1,13 @@
+@startuml
+class ShadowsMidtonesHighlightsEditor <<sealed>> {
+    + <<override>> OnEnable() : void
+    + <<override>> OnInspectorGUI() : void
+}
+class Styles <<static>> {
+}
+VolumeComponentEditor <|-- ShadowsMidtonesHighlightsEditor
+ShadowsMidtonesHighlightsEditor +-- Styles
+Styles o-> "shadowsLabel" GUIContent
+Styles o-> "midtonesLabel" GUIContent
+Styles o-> "highlightsLabel" GUIContent
+@enduml

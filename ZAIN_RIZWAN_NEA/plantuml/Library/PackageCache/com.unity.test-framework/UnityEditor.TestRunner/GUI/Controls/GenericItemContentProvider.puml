@@ -1,0 +1,13 @@
+@startuml
+class "GenericItemContentProvider`1"<T> {
+    + GenericItemContentProvider(initialValue:T, items:ISelectableItem<T>[], separatorIndices:int[], valueChangedCallback:Action<T>)
+    + Count : int <<get>>
+    + IsMultiSelection : bool <<get>>
+    + GetName(index:int) : string
+    + SelectItem(index:int) : void
+    + IsSelected(index:int) : bool
+}
+class "IEquatable`1"<T> {
+}
+ISelectionDropDownContentProvider <|-- "GenericItemContentProvider`1"
+@enduml

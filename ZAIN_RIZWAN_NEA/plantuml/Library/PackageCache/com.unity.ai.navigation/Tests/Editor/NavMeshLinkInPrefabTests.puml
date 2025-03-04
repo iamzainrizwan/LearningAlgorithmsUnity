@@ -1,0 +1,5 @@
+@startuml
+class NavMeshLinkInPrefabTests {
+    + NavMeshLink_DifferentGOActiveState_PromotedToPrefab_InstanceHasNoOverrides(isActive:bool) : void
+}
+@enduml

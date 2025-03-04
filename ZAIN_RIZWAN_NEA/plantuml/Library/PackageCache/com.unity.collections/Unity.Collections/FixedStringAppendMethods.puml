@@ -1,0 +1,20 @@
+@startuml
+class FixedStringMethods <<unsafe>> <<static>> <<partial>> {
+    + {static} Append(fs:T, rune:Unicode.Rune) : FormatError
+    + {static} Append(fs:T, ch:char) : FormatError
+    + {static} AppendRawByte(fs:T, a:byte) : FormatError
+    + {static} Append(fs:T, rune:Unicode.Rune, count:int) : FormatError
+    + {static} Append(fs:T, input:long) : FormatError
+    + {static} Append(fs:T, input:int) : FormatError
+    + {static} Append(fs:T, input:ulong) : FormatError
+    + {static} Append(fs:T, input:uint) : FormatError
+    + {static} Append(fs:T, input:float, decimalSeparator:char) : FormatError
+    + {static} Append(fs:T, input:T2) : FormatError
+    + {static} CopyFrom(fs:T, input:T2) : CopyError
+    + <<unsafe>> {static} Append(fs:T, utf8Bytes:byte*, utf8BytesLength:int) : FormatError
+    + <<unsafe>> {static} Append(fs:T, s:string) : FormatError
+    + {static} CopyFrom(fs:T, s:string) : CopyError
+    + {static} CopyFromTruncated(fs:T, s:string) : CopyError
+    + {static} CopyFromTruncated(fs:T, input:T2) : CopyError
+}
+@enduml

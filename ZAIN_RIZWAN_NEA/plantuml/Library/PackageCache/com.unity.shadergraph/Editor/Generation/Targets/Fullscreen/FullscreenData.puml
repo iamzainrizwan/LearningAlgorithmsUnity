@@ -1,0 +1,30 @@
+@startuml
+class FullscreenData {
+    + enableStencil : bool <<get>> <<set>>
+    + stencilReference : int <<get>> <<set>>
+    + stencilReadMask : int <<get>> <<set>>
+    + stencilWriteMask : int <<get>> <<set>>
+    + depthWrite : bool <<get>> <<set>>
+    + allowMaterialOverride : bool <<get>> <<set>>
+}
+enum Version {
+    Initial,
+}
+JsonObject <|-- FullscreenData
+FullscreenData --> "version" Version
+FullscreenData --> "fullscreenMode" FullscreenMode
+FullscreenData --> "blendMode" FullscreenBlendMode
+FullscreenData --> "srcColorBlendMode" BlendMode
+FullscreenData --> "dstColorBlendMode" BlendMode
+FullscreenData --> "colorBlendOperation" BlendOp
+FullscreenData --> "srcAlphaBlendMode" BlendMode
+FullscreenData --> "dstAlphaBlendMode" BlendMode
+FullscreenData --> "alphaBlendOperation" BlendOp
+FullscreenData --> "stencilCompareFunction" CompareFunction
+FullscreenData --> "stencilPassOperation" StencilOp
+FullscreenData --> "stencilFailOperation" StencilOp
+FullscreenData --> "stencilDepthTestFailOperation" StencilOp
+FullscreenData --> "depthWriteMode" FullscreenDepthWriteMode
+FullscreenData --> "depthTestMode" CompareFunction
+FullscreenData +-- Version
+@enduml

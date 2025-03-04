@@ -1,0 +1,13 @@
+@startuml
+class Run {
+    + TestSuite : string
+    + Date : long
+}
+class "List`1"<T> {
+}
+Run --> "Player" Player
+Run --> "Hardware" Hardware
+Run --> "Editor" Editor
+Run o-> "Dependencies<string>" "List`1"
+Run o-> "Results<PerformanceTestResult>" "List`1"
+@enduml

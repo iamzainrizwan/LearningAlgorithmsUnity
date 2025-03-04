@@ -1,0 +1,12 @@
+@startuml
+struct MatrixNames {
+    + <<const>> Model : string = "UNITY_MATRIX_M"
+    + <<const>> ModelInverse : string = "UNITY_MATRIX_I_M"
+    + <<const>> View : string = "UNITY_MATRIX_V"
+    + <<const>> ViewInverse : string = "UNITY_MATRIX_I_V"
+    + <<const>> Projection : string = "UNITY_MATRIX_P"
+    + <<const>> ProjectionInverse : string = "UNITY_MATRIX_I_P"
+    + <<const>> ViewProjection : string = "UNITY_MATRIX_VP"
+    + <<const>> ViewProjectionInverse : string = "UNITY_MATRIX_I_VP"
+}
+@enduml

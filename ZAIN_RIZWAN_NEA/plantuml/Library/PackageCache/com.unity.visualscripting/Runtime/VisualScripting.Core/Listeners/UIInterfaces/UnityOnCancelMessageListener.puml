@@ -1,0 +1,7 @@
+@startuml
+class UnityOnCancelMessageListener <<sealed>> {
+    + OnCancel(eventData:BaseEventData) : void
+}
+MessageListener <|-- UnityOnCancelMessageListener
+ICancelHandler <|-- UnityOnCancelMessageListener
+@enduml

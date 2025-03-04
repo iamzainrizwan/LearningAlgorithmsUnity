@@ -1,0 +1,12 @@
+@startuml
+class ResultsSavingCallbacks {
+    + m_ResultFilePath : string
+    + ResultsSavingCallbacks()
+    + RunStarted(testsToRun:ITestAdaptor) : void
+    + <<virtual>> RunFinished(testResults:ITestResultAdaptor) : void
+    + TestStarted(test:ITestAdaptor) : void
+    + TestFinished(result:ITestResultAdaptor) : void
+}
+ScriptableObject <|-- ResultsSavingCallbacks
+ICallbacks <|-- ResultsSavingCallbacks
+@enduml

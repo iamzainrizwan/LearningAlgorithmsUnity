@@ -1,0 +1,8 @@
+@startuml
+class "DataStore`1"<T> {
+    + Dispatch(action:ActionType) : void
+}
+class "Action`2"<T1,T2> {
+}
+"DataStore`1" --> "Subscribe<T,ActionType>" "Action`2"
+@enduml

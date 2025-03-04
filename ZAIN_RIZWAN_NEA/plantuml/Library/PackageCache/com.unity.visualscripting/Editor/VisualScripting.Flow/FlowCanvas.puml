@@ -1,0 +1,22 @@
+@startuml
+class FlowCanvas <<sealed>> {
+    + FlowCanvas(graph:FlowGraph)
+    + <<override>> ShrinkCopyGroup(copyGroup:HashSet<IGraphElement>) : void
+    + <<override>> OnToolbarGUI() : void
+    + <<const>> inspectorZoomThreshold : float = 0.7f
+    + <<override>> Close() : void
+    + NewUnitContextual() : void
+    + AddUnit(unit:IUnit, position:Vector2) : void
+    + <<override>> AcceptsDragAndDrop() : bool
+    + <<override>> PerformDragAndDrop() : void
+    + <<override>> DrawDragAndDropPreview() : void
+    + showRelations : bool <<get>> <<set>>
+    + isCreatingConnection : bool <<get>>
+    + CancelConnection() : void
+}
+class "VisualScriptingCanvas`1"<T> {
+}
+"VisualScriptingCanvas`1" "<FlowGraph>" <|-- FlowCanvas
+FlowCanvas --> "connectionSource" IUnitPort
+FlowCanvas --> "connectionEnd" Vector2
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class RemoveRangeExtensions <<static>> {
+    + {static} TryRemoveElementsInRange(list:IList<TValue>, index:int, count:int, error:Exception) : bool
+}
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+enum TestStatus {
+    Inconclusive,
+    Skipped,
+    Passed,
+    Failed,
+}
+@enduml

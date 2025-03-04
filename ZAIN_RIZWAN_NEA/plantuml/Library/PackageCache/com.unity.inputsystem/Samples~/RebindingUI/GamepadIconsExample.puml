@@ -1,0 +1,30 @@
+@startuml
+class GamepadIconsExample {
+}
+struct GamepadIcons {
+    + GetSprite(controlPath:string) : Sprite
+}
+MonoBehaviour <|-- GamepadIconsExample
+GamepadIconsExample --> "xbox" GamepadIcons
+GamepadIconsExample --> "ps4" GamepadIcons
+GamepadIconsExample +-- GamepadIcons
+GamepadIcons --> "buttonSouth" Sprite
+GamepadIcons --> "buttonNorth" Sprite
+GamepadIcons --> "buttonEast" Sprite
+GamepadIcons --> "buttonWest" Sprite
+GamepadIcons --> "startButton" Sprite
+GamepadIcons --> "selectButton" Sprite
+GamepadIcons --> "leftTrigger" Sprite
+GamepadIcons --> "rightTrigger" Sprite
+GamepadIcons --> "leftShoulder" Sprite
+GamepadIcons --> "rightShoulder" Sprite
+GamepadIcons --> "dpad" Sprite
+GamepadIcons --> "dpadUp" Sprite
+GamepadIcons --> "dpadDown" Sprite
+GamepadIcons --> "dpadLeft" Sprite
+GamepadIcons --> "dpadRight" Sprite
+GamepadIcons --> "leftStick" Sprite
+GamepadIcons --> "rightStick" Sprite
+GamepadIcons --> "leftStickPress" Sprite
+GamepadIcons --> "rightStickPress" Sprite
+@enduml

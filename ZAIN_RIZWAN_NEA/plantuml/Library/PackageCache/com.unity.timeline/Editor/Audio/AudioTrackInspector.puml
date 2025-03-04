@@ -1,0 +1,15 @@
+@startuml
+class AudioTrackInspector {
+    + <<override>> OnEnable() : void
+}
+class Styles <<static>> {
+    + <<const>> VolumeControl : string = "AudioTrackInspector.volume"
+    + <<const>> StereoPanControl : string = "AudioTrackInspector.stereoPan"
+    + <<const>> SpatialBlendControl : string = "AudioTrackInspector.spatialBlend"
+    + <<const>> valuesFormatter : string = "0.###"
+    + <<const>> mixInfoSectionSeparator : string = "\n\n"
+    + {static} mixedPropertiesInfo : string
+}
+TrackAssetInspector <|-- AudioTrackInspector
+AudioTrackInspector +-- Styles
+@enduml

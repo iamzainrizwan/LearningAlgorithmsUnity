@@ -1,0 +1,16 @@
+@startuml
+class MotionVectorRenderPass <<sealed>> {
+    + <<const>> k_MotionVectorsLightModeTag : string = "MotionVectors"
+    + <<override>> Configure(cmd:CommandBuffer, cameraTextureDescriptor:RenderTextureDescriptor) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+}
+class PassData {
+}
+class MotionMatrixPassData {
+}
+ScriptableRenderPass <|-- MotionVectorRenderPass
+MotionVectorRenderPass +-- PassData
+MotionVectorRenderPass +-- MotionMatrixPassData
+MotionMatrixPassData --> "motionData" MotionVectorsPersistentData
+MotionMatrixPassData --> "xr" XRPass
+@enduml

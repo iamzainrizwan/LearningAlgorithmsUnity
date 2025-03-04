@@ -1,0 +1,8 @@
+@startuml
+abstract class RelativePropertiesDrawer {
+    + <<override>> CreatePropertyGUI(property:SerializedProperty) : VisualElement
+    + <<override>> OnGUI(position:Rect, property:SerializedProperty, label:GUIContent) : void
+    + <<override>> GetPropertyHeight(property:SerializedProperty, label:GUIContent) : float
+}
+PropertyDrawer <|-- RelativePropertiesDrawer
+@enduml

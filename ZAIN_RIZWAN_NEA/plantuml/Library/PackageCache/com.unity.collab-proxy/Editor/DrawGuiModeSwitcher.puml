@@ -1,0 +1,9 @@
+@startuml
+class DrawGuiModeSwitcher <<static>> {
+}
+enum GuiMode {
+    DeveloperMode,
+    GluonMode,
+}
+DrawGuiModeSwitcher +-- GuiMode
+@enduml

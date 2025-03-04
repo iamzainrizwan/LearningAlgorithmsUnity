@@ -1,0 +1,17 @@
+@startuml
+class RenderingDebuggerTests <<partial>> {
+    + PerformUndoRedo(debugStateType:Type, widgetType:Type, innerType:Type, defaultValue:object, changeValue:object) : void
+}
+class "BitFieldTests`1"<T> {
+    + BitFieldTests()
+}
+class AutoEnumFieldTest {
+    + AutoEnumFieldTest()
+}
+class PathEnumFieldTest {
+    + PathEnumFieldTest()
+}
+RenderingDebuggerTests +-- "BitFieldTests`1"
+RenderingDebuggerTests +-- AutoEnumFieldTest
+RenderingDebuggerTests +-- PathEnumFieldTest
+@enduml

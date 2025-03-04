@@ -1,0 +1,7 @@
+@startuml
+class PluginDependencyAttribute {
+    + PluginDependencyAttribute(id:string)
+    + id : string <<get>>
+}
+Attribute <|-- PluginDependencyAttribute
+@enduml

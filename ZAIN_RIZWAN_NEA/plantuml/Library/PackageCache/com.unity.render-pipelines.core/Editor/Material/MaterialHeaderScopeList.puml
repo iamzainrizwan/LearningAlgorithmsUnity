@@ -1,0 +1,7 @@
+@startuml
+class MaterialHeaderScopeList {
+    + MaterialHeaderScopeList(defaultExpandedState:uint)
+    + RegisterHeaderScope(title:GUIContent, expandable:TEnum, action:Action<Material>) : void
+    + DrawHeaders(materialEditor:MaterialEditor, material:Material) : void
+}
+@enduml

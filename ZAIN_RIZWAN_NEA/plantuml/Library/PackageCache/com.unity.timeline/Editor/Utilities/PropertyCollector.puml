@@ -1,0 +1,20 @@
+@startuml
+class PropertyCollector {
+    + Reset() : void
+    + Clear() : void
+    + PushActiveGameObject(gameObject:GameObject) : void
+    + PopActiveGameObject() : void
+    + AddFromClip(clip:AnimationClip) : void
+    + AddFromClips(clips:IEnumerable<AnimationClip>) : void
+    + AddFromName(name:string) : void
+    + AddFromName(name:string) : void
+    + AddFromClip(obj:GameObject, clip:AnimationClip) : void
+    + AddFromClips(animatorRoot:GameObject, clips:IEnumerable<AnimationClip>) : void
+    + AddFromName(obj:GameObject, name:string) : void
+    + AddFromName(obj:GameObject, name:string) : void
+    + AddFromName(component:Component, name:string) : void
+    + AddFromComponent(obj:GameObject, component:Component) : void
+    + AddObjectProperties(obj:Object, clip:AnimationClip) : void
+}
+IPropertyCollector <|-- PropertyCollector
+@enduml

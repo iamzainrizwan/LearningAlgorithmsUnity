@@ -1,0 +1,7 @@
+@startuml
+class DictionaryKeyAtIndexMetadata <<sealed>> {
+    + DictionaryKeyAtIndexMetadata(index:int, parent:Metadata)
+    + <<const>> SubpathPrefix : string = "__keyAt."
+}
+DictionaryIndexMetadata <|-- DictionaryKeyAtIndexMetadata
+@enduml

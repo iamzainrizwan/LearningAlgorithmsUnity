@@ -1,0 +1,17 @@
+@startuml
+class DecalShaderPassNames <<static>> {
+    + <<const>> DecalPreview : string = "DecalPreview"
+    + <<const>> DBufferProjector : string = "DBufferProjector"
+    + <<const>> DecalProjectorForwardEmissive : string = "DecalProjectorForwardEmissive"
+    + <<const>> DecalScreenSpaceProjector : string = "DecalScreenSpaceProjector"
+    + <<const>> DecalGBufferProjector : string = "DecalGBufferProjector"
+    + <<const>> DBufferMesh : string = "DBufferMesh"
+    + <<const>> DecalMeshForwardEmissive : string = "DecalMeshForwardEmissive"
+    + <<const>> DecalScreenSpaceMesh : string = "DecalScreenSpaceMesh"
+    + <<const>> DecalGBufferMesh : string = "DecalGBufferMesh"
+    + <<const>> DBufferProjectorVFX : string = "DBufferProjectorVFX"
+    + <<const>> DecalProjectorForwardEmissiveVFX : string = "DecalProjectorForwardEmissiveVFX"
+    + <<const>> DecalScreenSpaceProjectorVFX : string = "DecalScreenSpaceProjectorVFX"
+    + <<const>> DecalGBufferProjectorVFX : string = "DecalGBufferProjectorVFX"
+}
+@enduml

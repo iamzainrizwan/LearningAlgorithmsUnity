@@ -1,0 +1,112 @@
+@startuml
+class CoreUtils <<static>> {
+    + <<const>> editMenuPriority1 : int = 320
+    + <<const>> editMenuPriority2 : int = 331
+    + <<const>> editMenuPriority3 : int = 342
+    + <<const>> editMenuPriority4 : int = 353
+    + <<const>> assetCreateMenuPriority1 : int = 230
+    + <<const>> assetCreateMenuPriority2 : int = 241
+    + <<const>> assetCreateMenuPriority3 : int = 300
+    + <<const>> gameObjectMenuPriority : int = 10
+    + {static} ClearRenderTarget(cmd:CommandBuffer, clearFlag:ClearFlag, clearColor:Color) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, buffer:RenderTargetIdentifier, clearFlag:ClearFlag, clearColor:Color, miplevel:int, cubemapFace:CubemapFace, depthSlice:int) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, buffer:RenderTargetIdentifier, clearFlag:ClearFlag, miplevel:int, cubemapFace:CubemapFace, depthSlice:int) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, colorBuffer:RenderTargetIdentifier, depthBuffer:RenderTargetIdentifier, miplevel:int, cubemapFace:CubemapFace, depthSlice:int) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, colorBuffer:RenderTargetIdentifier, depthBuffer:RenderTargetIdentifier, clearFlag:ClearFlag, miplevel:int, cubemapFace:CubemapFace, depthSlice:int) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, colorBuffer:RenderTargetIdentifier, depthBuffer:RenderTargetIdentifier, clearFlag:ClearFlag, clearColor:Color, miplevel:int, cubemapFace:CubemapFace, depthSlice:int) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, colorBuffers:RenderTargetIdentifier[], depthBuffer:RenderTargetIdentifier) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, colorBuffers:RenderTargetIdentifier[], depthBuffer:RenderTargetIdentifier, clearFlag:ClearFlag) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, colorBuffers:RenderTargetIdentifier[], depthBuffer:RenderTargetIdentifier, clearFlag:ClearFlag, clearColor:Color) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, buffer:RenderTargetIdentifier, loadAction:RenderBufferLoadAction, storeAction:RenderBufferStoreAction, clearFlag:ClearFlag, clearColor:Color) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, buffer:RenderTargetIdentifier, loadAction:RenderBufferLoadAction, storeAction:RenderBufferStoreAction, miplevel:int, cubemapFace:CubemapFace, depthSlice:int) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, buffer:RenderTargetIdentifier, loadAction:RenderBufferLoadAction, storeAction:RenderBufferStoreAction, clearFlag:ClearFlag, clearColor:Color, miplevel:int, cubemapFace:CubemapFace, depthSlice:int) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, buffer:RenderTargetIdentifier, loadAction:RenderBufferLoadAction, storeAction:RenderBufferStoreAction, clearFlag:ClearFlag) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, colorBuffer:RenderTargetIdentifier, colorLoadAction:RenderBufferLoadAction, colorStoreAction:RenderBufferStoreAction, depthBuffer:RenderTargetIdentifier, depthLoadAction:RenderBufferLoadAction, depthStoreAction:RenderBufferStoreAction, clearFlag:ClearFlag, clearColor:Color) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, colorBuffer:RenderTargetIdentifier, colorLoadAction:RenderBufferLoadAction, colorStoreAction:RenderBufferStoreAction, depthBuffer:RenderTargetIdentifier, depthLoadAction:RenderBufferLoadAction, depthStoreAction:RenderBufferStoreAction, miplevel:int, cubemapFace:CubemapFace, depthSlice:int) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, colorBuffer:RenderTargetIdentifier, colorLoadAction:RenderBufferLoadAction, colorStoreAction:RenderBufferStoreAction, depthBuffer:RenderTargetIdentifier, depthLoadAction:RenderBufferLoadAction, depthStoreAction:RenderBufferStoreAction, clearFlag:ClearFlag, clearColor:Color, miplevel:int, cubemapFace:CubemapFace, depthSlice:int) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, buffer:RenderTargetIdentifier, colorLoadAction:RenderBufferLoadAction, colorStoreAction:RenderBufferStoreAction, depthLoadAction:RenderBufferLoadAction, depthStoreAction:RenderBufferStoreAction, clearFlag:ClearFlag, clearColor:Color) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, colorBuffer:RenderTargetIdentifier, colorLoadAction:RenderBufferLoadAction, colorStoreAction:RenderBufferStoreAction, depthBuffer:RenderTargetIdentifier, depthLoadAction:RenderBufferLoadAction, depthStoreAction:RenderBufferStoreAction, clearFlag:ClearFlag) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, buffer:RTHandle, clearFlag:ClearFlag, clearColor:Color, miplevel:int, cubemapFace:CubemapFace, depthSlice:int) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, buffer:RTHandle, clearFlag:ClearFlag, miplevel:int, cubemapFace:CubemapFace, depthSlice:int) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, colorBuffer:RTHandle, depthBuffer:RTHandle, miplevel:int, cubemapFace:CubemapFace, depthSlice:int) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, colorBuffer:RTHandle, depthBuffer:RTHandle, clearFlag:ClearFlag, miplevel:int, cubemapFace:CubemapFace, depthSlice:int) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, colorBuffer:RTHandle, depthBuffer:RTHandle, clearFlag:ClearFlag, clearColor:Color, miplevel:int, cubemapFace:CubemapFace, depthSlice:int) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, buffer:RTHandle, loadAction:RenderBufferLoadAction, storeAction:RenderBufferStoreAction, clearFlag:ClearFlag, clearColor:Color, miplevel:int, cubemapFace:CubemapFace, depthSlice:int) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, colorBuffer:RTHandle, colorLoadAction:RenderBufferLoadAction, colorStoreAction:RenderBufferStoreAction, depthBuffer:RTHandle, depthLoadAction:RenderBufferLoadAction, depthStoreAction:RenderBufferStoreAction, clearFlag:ClearFlag, clearColor:Color, miplevel:int, cubemapFace:CubemapFace, depthSlice:int) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, colorBuffers:RenderTargetIdentifier[], depthBuffer:RTHandle) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, colorBuffers:RenderTargetIdentifier[], depthBuffer:RTHandle, clearFlag:ClearFlag) : void
+    + {static} SetRenderTarget(cmd:CommandBuffer, colorBuffers:RenderTargetIdentifier[], depthBuffer:RTHandle, clearFlag:ClearFlag, clearColor:Color) : void
+    + {static} SetViewport(cmd:CommandBuffer, target:RTHandle) : void
+    + {static} GetRenderTargetAutoName(width:int, height:int, depth:int, format:RenderTextureFormat, name:string, mips:bool, enableMSAA:bool, msaaSamples:MSAASamples) : string
+    + {static} GetRenderTargetAutoName(width:int, height:int, depth:int, format:GraphicsFormat, name:string, mips:bool, enableMSAA:bool, msaaSamples:MSAASamples) : string
+    + {static} GetRenderTargetAutoName(width:int, height:int, depth:int, format:GraphicsFormat, dim:TextureDimension, name:string, mips:bool, enableMSAA:bool, msaaSamples:MSAASamples, dynamicRes:bool, dynamicResExplicit:bool) : string
+    + {static} GetTextureAutoName(width:int, height:int, format:TextureFormat, dim:TextureDimension, name:string, mips:bool, depth:int) : string
+    + {static} GetTextureAutoName(width:int, height:int, format:GraphicsFormat, dim:TextureDimension, name:string, mips:bool, depth:int) : string
+    + {static} ClearCubemap(cmd:CommandBuffer, renderTexture:RenderTexture, clearColor:Color, clearMips:bool) : void
+    + {static} DrawFullScreen(commandBuffer:CommandBuffer, material:Material, properties:MaterialPropertyBlock, shaderPassId:int) : void
+    + {static} DrawFullScreen(commandBuffer:RasterCommandBuffer, material:Material, properties:MaterialPropertyBlock, shaderPassId:int) : void
+    + {static} DrawFullScreen(commandBuffer:CommandBuffer, material:Material, colorBuffer:RenderTargetIdentifier, properties:MaterialPropertyBlock, shaderPassId:int) : void
+    + {static} DrawFullScreen(commandBuffer:CommandBuffer, material:Material, colorBuffer:RenderTargetIdentifier, depthStencilBuffer:RenderTargetIdentifier, properties:MaterialPropertyBlock, shaderPassId:int) : void
+    + {static} DrawFullScreen(commandBuffer:CommandBuffer, material:Material, colorBuffers:RenderTargetIdentifier[], depthStencilBuffer:RenderTargetIdentifier, properties:MaterialPropertyBlock, shaderPassId:int) : void
+    + {static} DrawFullScreen(commandBuffer:CommandBuffer, material:Material, colorBuffers:RenderTargetIdentifier[], properties:MaterialPropertyBlock, shaderPassId:int) : void
+    + {static} ConvertSRGBToActiveColorSpace(color:Color) : Color
+    + {static} ConvertLinearToActiveColorSpace(color:Color) : Color
+    + {static} CreateEngineMaterial(shaderPath:string) : Material
+    + {static} CreateEngineMaterial(shader:Shader) : Material
+    + {static} HasFlag(mask:T, flag:T) : bool
+    + {static} Swap(a:T, b:T) : void
+    + {static} SetKeyword(cmd:CommandBuffer, keyword:string, state:bool) : void
+    + {static} SetKeyword(cmd:CommandBuffer, cs:ComputeShader, keyword:string, state:bool) : void
+    + {static} SetKeyword(cmd:BaseCommandBuffer, keyword:string, state:bool) : void
+    + {static} SetKeyword(material:Material, keyword:string, state:bool) : void
+    + {static} SetKeyword(material:Material, keyword:LocalKeyword, state:bool) : void
+    + {static} SetKeyword(cs:ComputeShader, keyword:string, state:bool) : void
+    + {static} Destroy(obj:UnityObject) : void
+    + {static} GetAllAssemblyTypes() : IEnumerable<Type>
+    + {static} GetAllTypesDerivedFrom() : IEnumerable<Type>
+    + {static} SafeRelease(buffer:GraphicsBuffer) : void
+    + {static} SafeRelease(buffer:ComputeBuffer) : void
+    + {static} CreateCubeMesh(min:Vector3, max:Vector3) : Mesh
+    + {static} ArePostProcessesEnabled(camera:Camera) : bool
+    + {static} AreAnimatedMaterialsEnabled(camera:Camera) : bool
+    + {static} IsSceneLightingDisabled(camera:Camera) : bool
+    + {static} IsLightOverlapDebugEnabled(camera:Camera) : bool
+    + {static} IsSceneViewFogEnabled(camera:Camera) : bool
+    + {static} IsSceneFilteringEnabled() : bool
+    + {static} IsSceneViewPrefabStageContextHidden() : bool
+    + {static} DrawRendererList(renderContext:ScriptableRenderContext, cmd:CommandBuffer, rendererList:UnityEngine.Rendering.RendererList) : void
+    + {static} GetTextureHash(texture:Texture) : int
+    + {static} PreviousPowerOfTwo(size:int) : int
+    + {static} GetMipCount(size:int) : int
+    + {static} GetMipCount(size:float) : int
+    + {static} DivRoundUp(value:int, divisor:int) : int
+    + {static} GetLastEnumValue() : T
+    + {static} CalculateViewSpaceCorners(proj:Matrix4x4, z:float) : Vector3[]
+}
+class Sections <<static>> {
+    + <<const>> section1 : int = 10000
+    + <<const>> section2 : int = 20000
+    + <<const>> section3 : int = 30000
+    + <<const>> section4 : int = 40000
+    + <<const>> section5 : int = 50000
+    + <<const>> section6 : int = 60000
+    + <<const>> section7 : int = 70000
+    + <<const>> section8 : int = 80000
+}
+class Priorities <<static>> {
+    + <<const>> assetsCreateShaderMenuPriority : int = 83
+    + <<const>> assetsCreateRenderingMenuPriority : int = 308
+    + <<const>> editMenuPriority : int = 320
+    + <<const>> gameObjectMenuPriority : int = 10
+    + <<const>> srpLensFlareMenuPriority : int = 303
+}
+CoreUtils --> "blackCubeTexture" Cubemap
+CoreUtils --> "magentaCubeTexture" Cubemap
+CoreUtils --> "magentaCubeTextureArray" CubemapArray
+CoreUtils --> "whiteCubeTexture" Cubemap
+CoreUtils --> "emptyUAV" RenderTexture
+CoreUtils --> "emptyBuffer" GraphicsBuffer
+CoreUtils --> "blackVolumeTexture" Texture3D
+CoreUtils +-- Sections
+CoreUtils +-- Priorities
+@enduml

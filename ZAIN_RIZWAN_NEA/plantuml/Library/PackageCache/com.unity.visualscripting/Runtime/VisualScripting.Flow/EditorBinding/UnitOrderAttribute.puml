@@ -1,0 +1,7 @@
+@startuml
+class UnitOrderAttribute <<sealed>> {
+    + UnitOrderAttribute(order:int)
+    + order : int <<get>>
+}
+Attribute <|-- UnitOrderAttribute
+@enduml

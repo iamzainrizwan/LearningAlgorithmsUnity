@@ -1,0 +1,28 @@
+@startuml
+class ShadowUtility {
+    {static} + GenerateShadowMesh(mesh:Mesh, inVertices:NativeArray<Vector3>, inEdges:NativeArray<ShadowEdge>, inShapeStartingEdge:NativeArray<int>, inShapeIsClosedArray:NativeArray<bool>, allowContraction:bool, fill:bool, topology:ShadowShape2D.OutlineTopology) : Bounds
+    {static} + CalculateEdgesFromLines(indices:NativeArray<int>, outEdges:NativeArray<ShadowEdge>, outShapeStartingEdge:NativeArray<int>, outShapeIsClosedArray:NativeArray<bool>) : void
+    {static} + IsTriangleReversed(vertices:NativeArray<Vector3>, idx0:int, idx1:int, idx2:int) : bool
+    {static} + CalculateEdgesFromTriangles(vertices:NativeArray<Vector3>, indices:NativeArray<int>, duplicatesVertices:bool, newVertices:NativeArray<Vector3>, outEdges:NativeArray<ShadowEdge>, outShapeStartingEdge:NativeArray<int>, outShapeIsClosedArray:NativeArray<bool>) : void
+    {static} + ReverseWindingOrder(inShapeStartingEdge:NativeArray<int>, inOutSortedEdges:NativeArray<ShadowEdge>) : void
+    {static} + ClipEdges(inVertices:NativeArray<Vector3>, inEdges:NativeArray<ShadowEdge>, inShapeStartingEdge:NativeArray<int>, inShapeIsClosedArray:NativeArray<bool>, contractEdge:float, outVertices:NativeArray<Vector3>, outEdges:NativeArray<ShadowEdge>, outShapeStartingEdge:NativeArray<int>) : void
+}
+enum ProjectionType {
+    ProjectionNone= -1,
+    ProjectionHard=  0,
+    ProjectionSoftLeft=  1,
+    ProjectionSoftRight=  3,
+}
+struct ShadowMeshVertex {
+}
+struct RemappingInfo {
+    + count : int
+    + index : int
+    + v0Offset : int
+    + v1Offset : int
+    + Initialize() : void
+}
+ShadowUtility +-- ProjectionType
+ShadowUtility +-- ShadowMeshVertex
+ShadowUtility +-- RemappingInfo
+@enduml

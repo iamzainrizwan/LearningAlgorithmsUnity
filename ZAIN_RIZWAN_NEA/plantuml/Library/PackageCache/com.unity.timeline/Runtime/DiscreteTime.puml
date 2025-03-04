@@ -1,0 +1,26 @@
+@startuml
+struct DiscreteTime {
+    + {static} tickValue : double <<get>>
+    + DiscreteTime(time:DiscreteTime)
+    + DiscreteTime(time:double)
+    + DiscreteTime(time:float)
+    + DiscreteTime(time:int)
+    + DiscreteTime(frame:int, fps:double)
+    + OneTickBefore() : DiscreteTime
+    + OneTickAfter() : DiscreteTime
+    + GetTick() : Int64
+    + {static} FromTicks(ticks:Int64) : DiscreteTime
+    + CompareTo(obj:object) : int
+    + Equals(other:DiscreteTime) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> ToString() : string
+    + <<override>> GetHashCode() : int
+    + {static} Min(lhs:DiscreteTime, rhs:DiscreteTime) : DiscreteTime
+    + {static} Max(lhs:DiscreteTime, rhs:DiscreteTime) : DiscreteTime
+    + {static} SnapToNearestTick(time:double) : double
+    + {static} SnapToNearestTick(time:float) : float
+    + {static} GetNearestTick(time:double) : Int64
+}
+IComparable <|-- DiscreteTime
+DiscreteTime o-> "kMaxTime" DiscreteTime
+@enduml

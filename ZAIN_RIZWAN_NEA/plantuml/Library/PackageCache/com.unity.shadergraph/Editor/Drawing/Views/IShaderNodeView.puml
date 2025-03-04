@@ -1,0 +1,5 @@
+@startuml
+interface IShaderNodeView {
+}
+IDisposable <|-- IShaderNodeView
+@enduml

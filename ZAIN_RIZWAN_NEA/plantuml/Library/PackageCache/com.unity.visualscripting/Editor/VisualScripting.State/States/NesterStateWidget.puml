@@ -1,0 +1,7 @@
+@startuml
+abstract class "NesterStateWidget`1"<TNesterState> {
+}
+class "StateWidget`1"<T> {
+}
+"StateWidget`1" "<TNesterState>" <|-- "NesterStateWidget`1"
+@enduml

@@ -1,0 +1,33 @@
+@startuml
+class TypeName {
+    + AssemblyDescription : string <<get>>
+    + AssemblyName : string <<get>>
+    + AssemblyVersion : string <<get>>
+    + AssemblyCulture : string <<get>>
+    + AssemblyPublicKeyToken : string <<get>>
+    + Name : string <<get>>
+    + IsArray : bool <<get>>
+    + LastName : string <<get>>
+    + {static} Parse(s:string) : TypeName
+    + ReplaceNamespace(oldNamespace:string, newNamespace:string) : void
+    + ReplaceAssembly(oldAssembly:string, newAssembly:string) : void
+    + ReplaceName(oldTypeName:string, newType:Type) : void
+    + ReplaceName(oldTypeName:string, newTypeName:string, newAssemblyName:AssemblyName) : void
+    + SetAssemblyName(newAssemblyName:AssemblyName) : void
+    + ToString(specification:TypeNameDetail, genericsSpecification:TypeNameDetail) : string
+    + <<override>> ToString() : string
+    + ToLooseString() : string
+    + {static} Simplify(typeName:string) : string
+    + {static} SimplifyFast(typeName:string) : string
+}
+class "List`1"<T> {
+}
+enum ParseState {
+    Name,
+    Array,
+    Generics,
+    Assembly,
+}
+TypeName o-> "GenericParameters<TypeName>" "List`1"
+TypeName +-- ParseState
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class UIUtilities <<static>> {
+    + {static} ItemsReferenceEquals(first:IList<T>, second:IList<T>) : bool
+    + {static} GetHashCode(objects:object[]) : int
+    + {static} GetHashCode(objects:IEnumerable<T>) : int
+    + {static} ToEnumerable(item:T) : IEnumerable<T>
+    + {static} Add(visualElement:VisualElement, elementToAdd:T, action:Action<T>) : void
+    + {static} GetTypesOrNothing(assembly:Assembly) : IEnumerable<Type>
+    + {static} CalculateCentroid(nodePositions:IEnumerable<Vector2>) : Vector2
+}
+@enduml

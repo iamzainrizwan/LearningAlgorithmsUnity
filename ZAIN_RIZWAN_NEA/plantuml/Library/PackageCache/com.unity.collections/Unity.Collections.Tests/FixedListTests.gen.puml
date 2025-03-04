@@ -1,0 +1,468 @@
+@startuml
+class FixedListTests {
+    + FixedList32BytesDebugView() : void
+    + FixedList64BytesDebugView() : void
+    + FixedList128BytesDebugView() : void
+    + <<unsafe>> FixedList32Byte_ReadonlyWorks() : void
+    + <<unsafe>> FixedList32Byte_FixedBytes32Align8IsAlignedGeneric() : void
+    + FixedList32Byte_FixedBytes32Align8ToNativeArrayWorksGeneric() : void
+    + FixedList32Byte_ToNativeArrayWorks() : void
+    + FixedList32Byte_GenericHasExpectedLayout() : void
+    + FixedList32Byte_GenericHasExpectedCapacity() : void
+    + <<unsafe>> FixedList32Byte_GenericAdd() : void
+    + <<unsafe>> FixedList32Byte_GenericAddRange() : void
+    + <<unsafe>> FixedList32Byte_GenericAddNoResize() : void
+    + <<unsafe>> FixedList32Byte_GenericAddRangeNoResize() : void
+    + FixedList32Byte_GenericAddReplicate() : void
+    + FixedList32Byte_GenericInsertRangeWithBeginEnd() : void
+    + FixedList32Byte_GenericInsertRange() : void
+    + FixedList32Byte_GenericRemoveRange() : void
+    + FixedList32Byte_GenericInsert() : void
+    + FixedList32Byte_GenericRemoveAt() : void
+    + FixedList32Byte_GenericRemove() : void
+    + FixedList32Byte_GenericRemoveSwapBack() : void
+    + FixedList32Byte_GenericSort() : void
+    + FixedList32Byte_GenericSortCustomComparer() : void
+    + <<unsafe>> FixedList32Byte_IndexOf() : void
+    + <<unsafe>> FixedList64Byte_ReadonlyWorks() : void
+    + <<unsafe>> FixedList64Byte_FixedBytes64Align8IsAlignedGeneric() : void
+    + FixedList64Byte_FixedBytes64Align8ToNativeArrayWorksGeneric() : void
+    + FixedList64Byte_ToNativeArrayWorks() : void
+    + FixedList64Byte_GenericHasExpectedLayout() : void
+    + FixedList64Byte_GenericHasExpectedCapacity() : void
+    + <<unsafe>> FixedList64Byte_GenericAdd() : void
+    + <<unsafe>> FixedList64Byte_GenericAddRange() : void
+    + <<unsafe>> FixedList64Byte_GenericAddNoResize() : void
+    + <<unsafe>> FixedList64Byte_GenericAddRangeNoResize() : void
+    + FixedList64Byte_GenericAddReplicate() : void
+    + FixedList64Byte_GenericInsertRangeWithBeginEnd() : void
+    + FixedList64Byte_GenericInsertRange() : void
+    + FixedList64Byte_GenericRemoveRange() : void
+    + FixedList64Byte_GenericInsert() : void
+    + FixedList64Byte_GenericRemoveAt() : void
+    + FixedList64Byte_GenericRemove() : void
+    + FixedList64Byte_GenericRemoveSwapBack() : void
+    + FixedList64Byte_GenericSort() : void
+    + FixedList64Byte_GenericSortCustomComparer() : void
+    + <<unsafe>> FixedList64Byte_IndexOf() : void
+    + <<unsafe>> FixedList128Byte_ReadonlyWorks() : void
+    + <<unsafe>> FixedList128Byte_FixedBytes128Align8IsAlignedGeneric() : void
+    + FixedList128Byte_FixedBytes128Align8ToNativeArrayWorksGeneric() : void
+    + FixedList128Byte_ToNativeArrayWorks() : void
+    + FixedList128Byte_GenericHasExpectedLayout() : void
+    + FixedList128Byte_GenericHasExpectedCapacity() : void
+    + <<unsafe>> FixedList128Byte_GenericAdd() : void
+    + <<unsafe>> FixedList128Byte_GenericAddRange() : void
+    + <<unsafe>> FixedList128Byte_GenericAddNoResize() : void
+    + <<unsafe>> FixedList128Byte_GenericAddRangeNoResize() : void
+    + FixedList128Byte_GenericAddReplicate() : void
+    + FixedList128Byte_GenericInsertRangeWithBeginEnd() : void
+    + FixedList128Byte_GenericInsertRange() : void
+    + FixedList128Byte_GenericRemoveRange() : void
+    + FixedList128Byte_GenericInsert() : void
+    + FixedList128Byte_GenericRemoveAt() : void
+    + FixedList128Byte_GenericRemove() : void
+    + FixedList128Byte_GenericRemoveSwapBack() : void
+    + FixedList128Byte_GenericSort() : void
+    + FixedList128Byte_GenericSortCustomComparer() : void
+    + <<unsafe>> FixedList128Byte_IndexOf() : void
+    + FixedList32Byte_HasExpectedLayout() : void
+    + FixedList32Byte_HasExpectedCapacity() : void
+    + FixedList32Byte_Serializes() : void
+    + <<unsafe>> FixedList32Byte_Add() : void
+    + <<unsafe>> FixedList32Byte_AddRange() : void
+    + <<unsafe>> FixedList32Byte_AddNoResize() : void
+    + <<unsafe>> FixedList32Byte_AddRangeNoResize() : void
+    + FixedList32Byte_AddReplicate() : void
+    + FixedList32Byte_InsertRangeWithBeginEnd() : void
+    + FixedList32Byte_InsertRange() : void
+    + FixedList32Byte_RemoveAt() : void
+    + FixedList32Byte_Remove() : void
+    + FixedList32Byte_RemoveSwapBack() : void
+    + FixedList32Byte_RemoveRange() : void
+    + FixedList32Byte_RemoveAtSwapBack() : void
+    + FixedList32Byte_RemoveRangeSwapBack() : void
+    + FixedList32Byte_Insert() : void
+    + FixedList32Byte_Sort() : void
+    + FixedList32Byte_To_FixedList64Byte() : void
+    + FixedList32Byte_To_FixedList128Byte() : void
+    + FixedList64Byte_HasExpectedLayout() : void
+    + FixedList64Byte_HasExpectedCapacity() : void
+    + FixedList64Byte_Serializes() : void
+    + <<unsafe>> FixedList64Byte_Add() : void
+    + <<unsafe>> FixedList64Byte_AddRange() : void
+    + <<unsafe>> FixedList64Byte_AddNoResize() : void
+    + <<unsafe>> FixedList64Byte_AddRangeNoResize() : void
+    + FixedList64Byte_AddReplicate() : void
+    + FixedList64Byte_InsertRangeWithBeginEnd() : void
+    + FixedList64Byte_InsertRange() : void
+    + FixedList64Byte_RemoveAt() : void
+    + FixedList64Byte_Remove() : void
+    + FixedList64Byte_RemoveSwapBack() : void
+    + FixedList64Byte_RemoveRange() : void
+    + FixedList64Byte_RemoveAtSwapBack() : void
+    + FixedList64Byte_RemoveRangeSwapBack() : void
+    + FixedList64Byte_Insert() : void
+    + FixedList64Byte_Sort() : void
+    + FixedList64Byte_To_FixedList32Byte() : void
+    + FixedList64Byte_To_FixedList128Byte() : void
+    + FixedList128Byte_HasExpectedLayout() : void
+    + FixedList128Byte_HasExpectedCapacity() : void
+    + FixedList128Byte_Serializes() : void
+    + <<unsafe>> FixedList128Byte_Add() : void
+    + <<unsafe>> FixedList128Byte_AddRange() : void
+    + <<unsafe>> FixedList128Byte_AddNoResize() : void
+    + <<unsafe>> FixedList128Byte_AddRangeNoResize() : void
+    + FixedList128Byte_AddReplicate() : void
+    + FixedList128Byte_InsertRangeWithBeginEnd() : void
+    + FixedList128Byte_InsertRange() : void
+    + FixedList128Byte_RemoveAt() : void
+    + FixedList128Byte_Remove() : void
+    + FixedList128Byte_RemoveSwapBack() : void
+    + FixedList128Byte_RemoveRange() : void
+    + FixedList128Byte_RemoveAtSwapBack() : void
+    + FixedList128Byte_RemoveRangeSwapBack() : void
+    + FixedList128Byte_Insert() : void
+    + FixedList128Byte_Sort() : void
+    + FixedList128Byte_To_FixedList32Byte() : void
+    + FixedList128Byte_To_FixedList64Byte() : void
+    + <<unsafe>> FixedList32Int_ReadonlyWorks() : void
+    + <<unsafe>> FixedList32Int_FixedBytes32Align8IsAlignedGeneric() : void
+    + FixedList32Int_FixedBytes32Align8ToNativeArrayWorksGeneric() : void
+    + FixedList32Int_ToNativeArrayWorks() : void
+    + FixedList32Int_GenericHasExpectedLayout() : void
+    + FixedList32Int_GenericHasExpectedCapacity() : void
+    + <<unsafe>> FixedList32Int_GenericAdd() : void
+    + <<unsafe>> FixedList32Int_GenericAddRange() : void
+    + <<unsafe>> FixedList32Int_GenericAddNoResize() : void
+    + <<unsafe>> FixedList32Int_GenericAddRangeNoResize() : void
+    + FixedList32Int_GenericAddReplicate() : void
+    + FixedList32Int_GenericInsertRangeWithBeginEnd() : void
+    + FixedList32Int_GenericInsertRange() : void
+    + FixedList32Int_GenericRemoveRange() : void
+    + FixedList32Int_GenericInsert() : void
+    + FixedList32Int_GenericRemoveAt() : void
+    + FixedList32Int_GenericRemove() : void
+    + FixedList32Int_GenericRemoveSwapBack() : void
+    + FixedList32Int_GenericSort() : void
+    + FixedList32Int_GenericSortCustomComparer() : void
+    + <<unsafe>> FixedList32Int_IndexOf() : void
+    + <<unsafe>> FixedList64Int_ReadonlyWorks() : void
+    + <<unsafe>> FixedList64Int_FixedBytes64Align8IsAlignedGeneric() : void
+    + FixedList64Int_FixedBytes64Align8ToNativeArrayWorksGeneric() : void
+    + FixedList64Int_ToNativeArrayWorks() : void
+    + FixedList64Int_GenericHasExpectedLayout() : void
+    + FixedList64Int_GenericHasExpectedCapacity() : void
+    + <<unsafe>> FixedList64Int_GenericAdd() : void
+    + <<unsafe>> FixedList64Int_GenericAddRange() : void
+    + <<unsafe>> FixedList64Int_GenericAddNoResize() : void
+    + <<unsafe>> FixedList64Int_GenericAddRangeNoResize() : void
+    + FixedList64Int_GenericAddReplicate() : void
+    + FixedList64Int_GenericInsertRangeWithBeginEnd() : void
+    + FixedList64Int_GenericInsertRange() : void
+    + FixedList64Int_GenericRemoveRange() : void
+    + FixedList64Int_GenericInsert() : void
+    + FixedList64Int_GenericRemoveAt() : void
+    + FixedList64Int_GenericRemove() : void
+    + FixedList64Int_GenericRemoveSwapBack() : void
+    + FixedList64Int_GenericSort() : void
+    + FixedList64Int_GenericSortCustomComparer() : void
+    + <<unsafe>> FixedList64Int_IndexOf() : void
+    + <<unsafe>> FixedList128Int_ReadonlyWorks() : void
+    + <<unsafe>> FixedList128Int_FixedBytes128Align8IsAlignedGeneric() : void
+    + FixedList128Int_FixedBytes128Align8ToNativeArrayWorksGeneric() : void
+    + FixedList128Int_ToNativeArrayWorks() : void
+    + FixedList128Int_GenericHasExpectedLayout() : void
+    + FixedList128Int_GenericHasExpectedCapacity() : void
+    + <<unsafe>> FixedList128Int_GenericAdd() : void
+    + <<unsafe>> FixedList128Int_GenericAddRange() : void
+    + <<unsafe>> FixedList128Int_GenericAddNoResize() : void
+    + <<unsafe>> FixedList128Int_GenericAddRangeNoResize() : void
+    + FixedList128Int_GenericAddReplicate() : void
+    + FixedList128Int_GenericInsertRangeWithBeginEnd() : void
+    + FixedList128Int_GenericInsertRange() : void
+    + FixedList128Int_GenericRemoveRange() : void
+    + FixedList128Int_GenericInsert() : void
+    + FixedList128Int_GenericRemoveAt() : void
+    + FixedList128Int_GenericRemove() : void
+    + FixedList128Int_GenericRemoveSwapBack() : void
+    + FixedList128Int_GenericSort() : void
+    + FixedList128Int_GenericSortCustomComparer() : void
+    + <<unsafe>> FixedList128Int_IndexOf() : void
+    + FixedList32Int_HasExpectedLayout() : void
+    + FixedList32Int_HasExpectedCapacity() : void
+    + FixedList32Int_Serializes() : void
+    + <<unsafe>> FixedList32Int_Add() : void
+    + <<unsafe>> FixedList32Int_AddRange() : void
+    + <<unsafe>> FixedList32Int_AddNoResize() : void
+    + <<unsafe>> FixedList32Int_AddRangeNoResize() : void
+    + FixedList32Int_AddReplicate() : void
+    + FixedList32Int_InsertRangeWithBeginEnd() : void
+    + FixedList32Int_InsertRange() : void
+    + FixedList32Int_RemoveAt() : void
+    + FixedList32Int_Remove() : void
+    + FixedList32Int_RemoveSwapBack() : void
+    + FixedList32Int_RemoveRange() : void
+    + FixedList32Int_RemoveAtSwapBack() : void
+    + FixedList32Int_RemoveRangeSwapBack() : void
+    + FixedList32Int_Insert() : void
+    + FixedList32Int_Sort() : void
+    + FixedList32Int_To_FixedList64Int() : void
+    + FixedList32Int_To_FixedList128Int() : void
+    + FixedList64Int_HasExpectedLayout() : void
+    + FixedList64Int_HasExpectedCapacity() : void
+    + FixedList64Int_Serializes() : void
+    + <<unsafe>> FixedList64Int_Add() : void
+    + <<unsafe>> FixedList64Int_AddRange() : void
+    + <<unsafe>> FixedList64Int_AddNoResize() : void
+    + <<unsafe>> FixedList64Int_AddRangeNoResize() : void
+    + FixedList64Int_AddReplicate() : void
+    + FixedList64Int_InsertRangeWithBeginEnd() : void
+    + FixedList64Int_InsertRange() : void
+    + FixedList64Int_RemoveAt() : void
+    + FixedList64Int_Remove() : void
+    + FixedList64Int_RemoveSwapBack() : void
+    + FixedList64Int_RemoveRange() : void
+    + FixedList64Int_RemoveAtSwapBack() : void
+    + FixedList64Int_RemoveRangeSwapBack() : void
+    + FixedList64Int_Insert() : void
+    + FixedList64Int_Sort() : void
+    + FixedList64Int_To_FixedList32Int() : void
+    + FixedList64Int_To_FixedList128Int() : void
+    + FixedList128Int_HasExpectedLayout() : void
+    + FixedList128Int_HasExpectedCapacity() : void
+    + FixedList128Int_Serializes() : void
+    + <<unsafe>> FixedList128Int_Add() : void
+    + <<unsafe>> FixedList128Int_AddRange() : void
+    + <<unsafe>> FixedList128Int_AddNoResize() : void
+    + <<unsafe>> FixedList128Int_AddRangeNoResize() : void
+    + FixedList128Int_AddReplicate() : void
+    + FixedList128Int_InsertRangeWithBeginEnd() : void
+    + FixedList128Int_InsertRange() : void
+    + FixedList128Int_RemoveAt() : void
+    + FixedList128Int_Remove() : void
+    + FixedList128Int_RemoveSwapBack() : void
+    + FixedList128Int_RemoveRange() : void
+    + FixedList128Int_RemoveAtSwapBack() : void
+    + FixedList128Int_RemoveRangeSwapBack() : void
+    + FixedList128Int_Insert() : void
+    + FixedList128Int_Sort() : void
+    + FixedList128Int_To_FixedList32Int() : void
+    + FixedList128Int_To_FixedList64Int() : void
+    + <<unsafe>> FixedList32Float_ReadonlyWorks() : void
+    + <<unsafe>> FixedList32Float_FixedBytes32Align8IsAlignedGeneric() : void
+    + FixedList32Float_FixedBytes32Align8ToNativeArrayWorksGeneric() : void
+    + FixedList32Float_ToNativeArrayWorks() : void
+    + FixedList32Float_GenericHasExpectedLayout() : void
+    + FixedList32Float_GenericHasExpectedCapacity() : void
+    + <<unsafe>> FixedList32Float_GenericAdd() : void
+    + <<unsafe>> FixedList32Float_GenericAddRange() : void
+    + <<unsafe>> FixedList32Float_GenericAddNoResize() : void
+    + <<unsafe>> FixedList32Float_GenericAddRangeNoResize() : void
+    + FixedList32Float_GenericAddReplicate() : void
+    + FixedList32Float_GenericInsertRangeWithBeginEnd() : void
+    + FixedList32Float_GenericInsertRange() : void
+    + FixedList32Float_GenericRemoveRange() : void
+    + FixedList32Float_GenericInsert() : void
+    + FixedList32Float_GenericRemoveAt() : void
+    + FixedList32Float_GenericRemove() : void
+    + FixedList32Float_GenericRemoveSwapBack() : void
+    + FixedList32Float_GenericSort() : void
+    + FixedList32Float_GenericSortCustomComparer() : void
+    + <<unsafe>> FixedList32Float_IndexOf() : void
+    + <<unsafe>> FixedList64Float_ReadonlyWorks() : void
+    + <<unsafe>> FixedList64Float_FixedBytes64Align8IsAlignedGeneric() : void
+    + FixedList64Float_FixedBytes64Align8ToNativeArrayWorksGeneric() : void
+    + FixedList64Float_ToNativeArrayWorks() : void
+    + FixedList64Float_GenericHasExpectedLayout() : void
+    + FixedList64Float_GenericHasExpectedCapacity() : void
+    + <<unsafe>> FixedList64Float_GenericAdd() : void
+    + <<unsafe>> FixedList64Float_GenericAddRange() : void
+    + <<unsafe>> FixedList64Float_GenericAddNoResize() : void
+    + <<unsafe>> FixedList64Float_GenericAddRangeNoResize() : void
+    + FixedList64Float_GenericAddReplicate() : void
+    + FixedList64Float_GenericInsertRangeWithBeginEnd() : void
+    + FixedList64Float_GenericInsertRange() : void
+    + FixedList64Float_GenericRemoveRange() : void
+    + FixedList64Float_GenericInsert() : void
+    + FixedList64Float_GenericRemoveAt() : void
+    + FixedList64Float_GenericRemove() : void
+    + FixedList64Float_GenericRemoveSwapBack() : void
+    + FixedList64Float_GenericSort() : void
+    + FixedList64Float_GenericSortCustomComparer() : void
+    + <<unsafe>> FixedList64Float_IndexOf() : void
+    + <<unsafe>> FixedList128Float_ReadonlyWorks() : void
+    + <<unsafe>> FixedList128Float_FixedBytes128Align8IsAlignedGeneric() : void
+    + FixedList128Float_FixedBytes128Align8ToNativeArrayWorksGeneric() : void
+    + FixedList128Float_ToNativeArrayWorks() : void
+    + FixedList128Float_GenericHasExpectedLayout() : void
+    + FixedList128Float_GenericHasExpectedCapacity() : void
+    + <<unsafe>> FixedList128Float_GenericAdd() : void
+    + <<unsafe>> FixedList128Float_GenericAddRange() : void
+    + <<unsafe>> FixedList128Float_GenericAddNoResize() : void
+    + <<unsafe>> FixedList128Float_GenericAddRangeNoResize() : void
+    + FixedList128Float_GenericAddReplicate() : void
+    + FixedList128Float_GenericInsertRangeWithBeginEnd() : void
+    + FixedList128Float_GenericInsertRange() : void
+    + FixedList128Float_GenericRemoveRange() : void
+    + FixedList128Float_GenericInsert() : void
+    + FixedList128Float_GenericRemoveAt() : void
+    + FixedList128Float_GenericRemove() : void
+    + FixedList128Float_GenericRemoveSwapBack() : void
+    + FixedList128Float_GenericSort() : void
+    + FixedList128Float_GenericSortCustomComparer() : void
+    + <<unsafe>> FixedList128Float_IndexOf() : void
+    + FixedList32Float_HasExpectedLayout() : void
+    + FixedList32Float_HasExpectedCapacity() : void
+    + FixedList32Float_Serializes() : void
+    + <<unsafe>> FixedList32Float_Add() : void
+    + <<unsafe>> FixedList32Float_AddRange() : void
+    + <<unsafe>> FixedList32Float_AddNoResize() : void
+    + <<unsafe>> FixedList32Float_AddRangeNoResize() : void
+    + FixedList32Float_AddReplicate() : void
+    + FixedList32Float_InsertRangeWithBeginEnd() : void
+    + FixedList32Float_InsertRange() : void
+    + FixedList32Float_RemoveAt() : void
+    + FixedList32Float_Remove() : void
+    + FixedList32Float_RemoveSwapBack() : void
+    + FixedList32Float_RemoveRange() : void
+    + FixedList32Float_RemoveAtSwapBack() : void
+    + FixedList32Float_RemoveRangeSwapBack() : void
+    + FixedList32Float_Insert() : void
+    + FixedList32Float_Sort() : void
+    + FixedList32Float_To_FixedList64Float() : void
+    + FixedList32Float_To_FixedList128Float() : void
+    + FixedList64Float_HasExpectedLayout() : void
+    + FixedList64Float_HasExpectedCapacity() : void
+    + FixedList64Float_Serializes() : void
+    + <<unsafe>> FixedList64Float_Add() : void
+    + <<unsafe>> FixedList64Float_AddRange() : void
+    + <<unsafe>> FixedList64Float_AddNoResize() : void
+    + <<unsafe>> FixedList64Float_AddRangeNoResize() : void
+    + FixedList64Float_AddReplicate() : void
+    + FixedList64Float_InsertRangeWithBeginEnd() : void
+    + FixedList64Float_InsertRange() : void
+    + FixedList64Float_RemoveAt() : void
+    + FixedList64Float_Remove() : void
+    + FixedList64Float_RemoveSwapBack() : void
+    + FixedList64Float_RemoveRange() : void
+    + FixedList64Float_RemoveAtSwapBack() : void
+    + FixedList64Float_RemoveRangeSwapBack() : void
+    + FixedList64Float_Insert() : void
+    + FixedList64Float_Sort() : void
+    + FixedList64Float_To_FixedList32Float() : void
+    + FixedList64Float_To_FixedList128Float() : void
+    + FixedList128Float_HasExpectedLayout() : void
+    + FixedList128Float_HasExpectedCapacity() : void
+    + FixedList128Float_Serializes() : void
+    + <<unsafe>> FixedList128Float_Add() : void
+    + <<unsafe>> FixedList128Float_AddRange() : void
+    + <<unsafe>> FixedList128Float_AddNoResize() : void
+    + <<unsafe>> FixedList128Float_AddRangeNoResize() : void
+    + FixedList128Float_AddReplicate() : void
+    + FixedList128Float_InsertRangeWithBeginEnd() : void
+    + FixedList128Float_InsertRange() : void
+    + FixedList128Float_RemoveAt() : void
+    + FixedList128Float_Remove() : void
+    + FixedList128Float_RemoveSwapBack() : void
+    + FixedList128Float_RemoveRange() : void
+    + FixedList128Float_RemoveAtSwapBack() : void
+    + FixedList128Float_RemoveRangeSwapBack() : void
+    + FixedList128Float_Insert() : void
+    + FixedList128Float_Sort() : void
+    + FixedList128Float_To_FixedList32Float() : void
+    + FixedList128Float_To_FixedList64Float() : void
+}
+struct NonComparableStruct {
+    + a : int
+}
+struct "DescendingComparer`1"<T> {
+    + Compare(x:T, y:T) : int
+}
+struct FixedList32Byte_Wrapper {
+    + FixedList32Byte_Wrapper(x:byte, y:byte)
+}
+struct FixedList64Byte_Wrapper {
+    + FixedList64Byte_Wrapper(x:byte, y:byte)
+}
+struct FixedList128Byte_Wrapper {
+    + FixedList128Byte_Wrapper(x:byte, y:byte)
+}
+class ScriptableObjectFixedList32Byte_ {
+}
+class ScriptableObjectFixedList64Byte_ {
+}
+class ScriptableObjectFixedList128Byte_ {
+}
+struct FixedList32Int_Wrapper {
+    + FixedList32Int_Wrapper(x:int, y:int)
+}
+struct FixedList64Int_Wrapper {
+    + FixedList64Int_Wrapper(x:int, y:int)
+}
+struct FixedList128Int_Wrapper {
+    + FixedList128Int_Wrapper(x:int, y:int)
+}
+class ScriptableObjectFixedList32Int_ {
+}
+class ScriptableObjectFixedList64Int_ {
+}
+class ScriptableObjectFixedList128Int_ {
+}
+struct FixedList32Float_Wrapper {
+    + FixedList32Float_Wrapper(x:float, y:float)
+}
+struct FixedList64Float_Wrapper {
+    + FixedList64Float_Wrapper(x:float, y:float)
+}
+struct FixedList128Float_Wrapper {
+    + FixedList128Float_Wrapper(x:float, y:float)
+}
+class ScriptableObjectFixedList32Float_ {
+}
+class ScriptableObjectFixedList64Float_ {
+}
+class ScriptableObjectFixedList128Float_ {
+}
+class "IComparer`1"<T> {
+}
+class "IComparable`1"<T> {
+}
+class "FixedList32Bytes`1"<T> {
+}
+class "FixedList64Bytes`1"<T> {
+}
+class "FixedList128Bytes`1"<T> {
+}
+CollectionsTestFixture <|-- FixedListTests
+FixedListTests +-- NonComparableStruct
+FixedListTests +-- "DescendingComparer`1"
+"IComparer`1" "<T>" <|-- "DescendingComparer`1"
+FixedListTests +-- FixedList32Byte_Wrapper
+FixedListTests +-- FixedList64Byte_Wrapper
+FixedListTests +-- FixedList128Byte_Wrapper
+FixedListTests +-- ScriptableObjectFixedList32Byte_
+ScriptableObjectFixedList32Byte_ --> "List<byte>" "FixedList32Bytes`1"
+FixedListTests +-- ScriptableObjectFixedList64Byte_
+ScriptableObjectFixedList64Byte_ --> "List<byte>" "FixedList64Bytes`1"
+FixedListTests +-- ScriptableObjectFixedList128Byte_
+ScriptableObjectFixedList128Byte_ --> "List<byte>" "FixedList128Bytes`1"
+FixedListTests +-- FixedList32Int_Wrapper
+FixedListTests +-- FixedList64Int_Wrapper
+FixedListTests +-- FixedList128Int_Wrapper
+FixedListTests +-- ScriptableObjectFixedList32Int_
+ScriptableObjectFixedList32Int_ --> "List<int>" "FixedList32Bytes`1"
+FixedListTests +-- ScriptableObjectFixedList64Int_
+ScriptableObjectFixedList64Int_ --> "List<int>" "FixedList64Bytes`1"
+FixedListTests +-- ScriptableObjectFixedList128Int_
+ScriptableObjectFixedList128Int_ --> "List<int>" "FixedList128Bytes`1"
+FixedListTests +-- FixedList32Float_Wrapper
+FixedListTests +-- FixedList64Float_Wrapper
+FixedListTests +-- FixedList128Float_Wrapper
+FixedListTests +-- ScriptableObjectFixedList32Float_
+ScriptableObjectFixedList32Float_ --> "List<float>" "FixedList32Bytes`1"
+FixedListTests +-- ScriptableObjectFixedList64Float_
+ScriptableObjectFixedList64Float_ --> "List<float>" "FixedList64Bytes`1"
+FixedListTests +-- ScriptableObjectFixedList128Float_
+ScriptableObjectFixedList128Float_ --> "List<float>" "FixedList128Bytes`1"
+@enduml

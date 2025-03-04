@@ -1,0 +1,7 @@
+@startuml
+class PlasticPlugin <<static>> {
+    + {static}  <<event>> OnNotificationUpdated : Action 
+    + {static} OpenPlasticWindowDisablingOfflineModeIfNeeded() : void
+    + {static} GetPluginStatusIcon() : Texture
+}
+@enduml

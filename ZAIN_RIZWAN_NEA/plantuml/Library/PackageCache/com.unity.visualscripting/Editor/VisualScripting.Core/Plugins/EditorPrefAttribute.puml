@@ -1,0 +1,7 @@
+@startuml
+class EditorPrefAttribute <<sealed>> {
+    + EditorPrefAttribute()
+    + EditorPrefAttribute(key:string)
+}
+PluginConfigurationItemAttribute <|-- EditorPrefAttribute
+@enduml

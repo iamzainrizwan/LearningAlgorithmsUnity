@@ -1,0 +1,68 @@
+@startuml
+struct Touch {
+    + valid : bool <<get>>
+    + began : bool <<get>>
+    + inProgress : bool <<get>>
+    + ended : bool <<get>>
+    + touchId : int <<get>>
+    + pressure : float <<get>>
+    + startTime : double <<get>>
+    + time : double <<get>>
+    + tapCount : int <<get>>
+    + isTap : bool <<get>>
+    + displayIndex : int <<get>>
+    + isInProgress : bool <<get>>
+    + {static} maxHistoryLengthPerFinger : int <<get>>
+    + <<override>> ToString() : string
+    + Equals(other:Touch) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+class "IEquatable`1"<T> {
+}
+class "ReadOnlyArray`1"<T> {
+}
+class "IEnumerable`1"<T> {
+}
+class "Action`1"<T> {
+}
+struct GlobalState {
+}
+struct FingerAndTouchState {
+    + activeFingerCount : int
+    + activeTouchCount : int
+    + totalFingerCount : int
+    + lastId : uint
+    + haveBuiltActiveTouches : bool
+    + haveActiveTouchesNeedingRefreshNextUpdate : bool
+    + AddFingers(screen:Touchscreen) : void
+    + RemoveFingers(screen:Touchscreen) : void
+    + Destroy() : void
+    + UpdateActiveFingers() : void
+    + <<unsafe>> UpdateActiveTouches() : void
+}
+struct ExtraDataPerTouchState {
+    + uniqueId : uint
+}
+class "InputStateHistory`1"<T> {
+}
+"IEquatable`1" "<Touch>" <|-- Touch
+Touch --> "finger" Finger
+Touch --> "phase" TouchPhase
+Touch --> "radius" Vector2
+Touch --> "screen" Touchscreen
+Touch --> "screenPosition" Vector2
+Touch --> "startScreenPosition" Vector2
+Touch --> "delta" Vector2
+Touch --> "history" TouchHistory
+Touch --> "activeTouches<Touch>" "ReadOnlyArray`1"
+Touch --> "fingers<Finger>" "ReadOnlyArray`1"
+Touch --> "activeFingers<Finger>" "ReadOnlyArray`1"
+Touch --> "screens<Touchscreen>" "IEnumerable`1"
+Touch +-- GlobalState
+Touch +-- FingerAndTouchState
+FingerAndTouchState --> "updateMask" InputUpdateType
+FingerAndTouchState --> "activeTouchState<TouchState>" "InputStateHistory`1"
+Touch +-- ExtraDataPerTouchState
+ExtraDataPerTouchState --> "accumulatedDelta" Vector2
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+class TestRunProgress {
+    + RunGuid : string
+    + HasFinished : bool
+    + Progress : float
+    + CurrentStepName : string
+    + CurrentStageName : string
+}
+TestRunProgress --> "ExecutionSettings" ExecutionSettings
+@enduml

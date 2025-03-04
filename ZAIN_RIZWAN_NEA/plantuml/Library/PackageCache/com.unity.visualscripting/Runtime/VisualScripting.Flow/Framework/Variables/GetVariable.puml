@@ -1,0 +1,8 @@
+@startuml
+class GetVariable <<sealed>> {
+    + specifyFallback : bool <<get>> <<set>> = false
+}
+UnifiedVariableUnit <|-- GetVariable
+GetVariable --> "value" ValueOutput
+GetVariable --> "fallback" ValueInput
+@enduml

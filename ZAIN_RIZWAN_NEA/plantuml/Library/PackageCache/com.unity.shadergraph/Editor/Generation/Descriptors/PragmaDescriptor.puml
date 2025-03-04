@@ -1,0 +1,31 @@
+@startuml
+struct PragmaDescriptor {
+    + value : string
+}
+class Pragma <<static>> {
+    + {static} Target(value:ShaderModel) : PragmaDescriptor
+    + {static} TargetForKeyword(value:ShaderModel, keyword:string) : PragmaDescriptor
+    + {static} Vertex(value:string) : PragmaDescriptor
+    + {static} Fragment(value:string) : PragmaDescriptor
+    + {static} Geometry(value:string) : PragmaDescriptor
+    + {static} Hull(value:string) : PragmaDescriptor
+    + {static} Domain(value:string) : PragmaDescriptor
+    + {static} Raytracing(value:string) : PragmaDescriptor
+    + {static} Kernel(value:string) : PragmaDescriptor
+    + {static} OnlyRenderers(renderers:Platform[]) : PragmaDescriptor
+    + {static} NeverUseDXC(renderers:Platform[]) : PragmaDescriptor
+    + {static} ExcludeRenderers(renderers:Platform[]) : PragmaDescriptor
+    + {static} PreferHlslCC(renderers:Platform[]) : PragmaDescriptor
+    + {static} InstancingOptions(value:InstancingOptions) : PragmaDescriptor
+    + {static} SkipVariants(variants:string[]) : PragmaDescriptor
+}
+Pragma --> "MultiCompileInstancing" PragmaDescriptor
+Pragma --> "MultiCompileForwardBase" PragmaDescriptor
+Pragma --> "MultiCompileForwardAddFullShadowsBase" PragmaDescriptor
+Pragma --> "MultiCompilePrePassFinal" PragmaDescriptor
+Pragma --> "MultiCompileShadowCaster" PragmaDescriptor
+Pragma --> "DOTSInstancing" PragmaDescriptor
+Pragma --> "MultiCompileFog" PragmaDescriptor
+Pragma --> "EditorSyncCompilation" PragmaDescriptor
+Pragma --> "DebugSymbols" PragmaDescriptor
+@enduml

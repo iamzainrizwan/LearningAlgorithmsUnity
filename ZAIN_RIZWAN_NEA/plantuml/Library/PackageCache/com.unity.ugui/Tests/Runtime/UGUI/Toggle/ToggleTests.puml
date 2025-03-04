@@ -1,0 +1,12 @@
+@startuml
+class ToggleTests {
+    + Setup() : void
+    + <<virtual>> TestSetup() : void
+    + <<virtual>> TearDown() : void
+    + OneTimeTearDown() : void
+    + SetIsOnWithoutNotifyWillNotNotify() : void
+    + NonInteractableCantBeToggled() : void
+    + InactiveCantBeToggled() : void
+}
+IPrebuildSetup <|-- ToggleTests
+@enduml

@@ -1,0 +1,27 @@
+@startuml
+class ShaderInputPropertyDrawer {
+    + ShaderInputPropertyDrawer()
+    + DrawProperty(propertyInfo:PropertyInfo, actualObject:object, attribute:InspectableAttribute) : VisualElement
+    + ResetReferenceName() : void
+    + UpgradeDefaultReferenceName() : void
+    + GetDuplicateSafeEnumDisplayName(id:int, name:string) : string
+    + GetDuplicateSafeReferenceName(id:int, name:string) : string
+    + GetDuplicateSafeDropdownDisplayName(id:int, name:string) : string
+}
+class "DataStore`1"<T> {
+}
+enum FloatTypeForUI {
+    Default= FloatType.Default,
+    Integer= FloatType.Integer,
+    Slider= FloatType.Slider,
+}
+enum KeywordShaderStageDropdownUI {
+    All= KeywordShaderStage.All,
+    Vertex= KeywordShaderStage.Vertex,
+    Fragment= KeywordShaderStage.Fragment,
+}
+IPropertyDrawer <|-- ShaderInputPropertyDrawer
+ShaderInputPropertyDrawer --> "inspectorUpdateDelegate" Action
+ShaderInputPropertyDrawer +-- FloatTypeForUI
+ShaderInputPropertyDrawer +-- KeywordShaderStageDropdownUI
+@enduml

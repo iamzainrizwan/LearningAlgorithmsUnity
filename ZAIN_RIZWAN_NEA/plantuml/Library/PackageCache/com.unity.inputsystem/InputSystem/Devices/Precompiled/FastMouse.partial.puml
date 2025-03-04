@@ -1,0 +1,6 @@
+@startuml
+class FastMouse <<partial>> {
+}
+IInputStateCallbackReceiver <|-- FastMouse
+IEventMerger <|-- FastMouse
+@enduml

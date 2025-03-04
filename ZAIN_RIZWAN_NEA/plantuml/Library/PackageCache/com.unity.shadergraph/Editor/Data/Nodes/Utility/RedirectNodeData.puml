@@ -1,0 +1,12 @@
+@startuml
+class RedirectNodeData {
+    + <<const>> kInputSlotID : int = 0
+    + <<const>> kOutputSlotID : int = 1
+    + RedirectNodeData()
+    + {static} Create(graph:GraphData, edgeType:ConcreteSlotValueType, absolutePosition:Vector2, inputRef:SlotReference, outputRef:SlotReference, group:GroupData) : RedirectNodeData
+    + SetPosition(pos:Vector2) : void
+    + GetOutputAndInputSlots(outputSlotRef:SlotReference, inputSlotRefs:List<SlotReference>) : void
+    + <<override>> ValidateNode() : void
+}
+AbstractMaterialNode <|-- RedirectNodeData
+@enduml

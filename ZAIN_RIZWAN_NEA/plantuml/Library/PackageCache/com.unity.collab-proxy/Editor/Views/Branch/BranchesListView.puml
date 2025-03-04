@@ -1,0 +1,7 @@
+@startuml
+class BranchesListView {
+    + <<override>> GetRows() : IList<TreeViewItem>
+    + <<override>> OnGUI(rect:Rect) : void
+}
+TreeView <|-- BranchesListView
+@enduml

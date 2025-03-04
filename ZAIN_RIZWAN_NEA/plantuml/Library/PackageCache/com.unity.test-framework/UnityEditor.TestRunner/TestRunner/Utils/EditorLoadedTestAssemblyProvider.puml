@@ -1,0 +1,8 @@
+@startuml
+class EditorLoadedTestAssemblyProvider {
+    + EditorLoadedTestAssemblyProvider(compilationInterfaceProxy:IEditorCompilationInterfaceProxy, editorAssembliesProxy:IEditorAssembliesProxy)
+    + GetAssembliesGroupedByType(mode:TestPlatform) : List<IAssemblyWrapper>
+    + GetAssembliesGroupedByTypeAsync(mode:TestPlatform) : IEnumerator<IDictionary<TestPlatform, List<IAssemblyWrapper>>>
+}
+IEditorLoadedTestAssemblyProvider <|-- EditorLoadedTestAssemblyProvider
+@enduml

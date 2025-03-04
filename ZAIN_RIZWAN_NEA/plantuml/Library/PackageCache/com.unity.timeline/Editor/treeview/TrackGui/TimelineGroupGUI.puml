@@ -1,0 +1,16 @@
+@startuml
+class TimelineGroupGUI {
+    + ToWindowSpace(localRect:Rect) : Rect
+    + <<override>> expandable : bool <<get>>
+    + TimelineGroupGUI(treeview:TreeViewController, treeviewGUI:TimelineTreeViewGUI, id:int, depth:int, parent:TreeViewItem, displayName:string, trackAsset:TrackAsset, isRoot:bool)
+    + <<virtual>> GetHeight(state:WindowState) : float
+    + <<override>> OnGraphRebuilt() : void
+    + SetExpanded(expanded:bool) : void
+    + <<override>> Draw(headerRect:Rect, contentRect:Rect, state:WindowState) : void
+}
+TimelineTrackBaseGUI <|-- TimelineGroupGUI
+TimelineGroupGUI --> "boundingRect" Rect
+TimelineGroupGUI --> "expandedRect" Rect
+TimelineGroupGUI --> "rowRect" Rect
+TimelineGroupGUI --> "dropRect" Rect
+@enduml

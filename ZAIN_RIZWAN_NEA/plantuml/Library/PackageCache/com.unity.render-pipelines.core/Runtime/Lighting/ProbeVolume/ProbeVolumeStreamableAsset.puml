@@ -1,0 +1,24 @@
+@startuml
+class ProbeVolumeStreamableAsset {
+    + assetGUID : string <<get>>
+    + elementSize : int <<get>>
+    + ProbeVolumeStreamableAsset(apvStreamingAssetsPath:string, cellDescs:SerializedDictionary<int, StreamableCellDesc>, elementSize:int, bakingSetGUID:string, assetGUID:string)
+    + GetAssetPath() : string
+    <<unsafe>> + FileExists() : bool
+    + GetFileSize() : long
+    + IsOpen() : bool
+    + OpenFile() : FileHandle
+    + CloseFile() : void
+    + IsValid() : bool
+    + Dispose() : void
+}
+struct StreamableCellDesc {
+    + offset : int
+    + elementCount : int
+}
+class "SerializedDictionary`2"<T1,T2> {
+}
+ProbeVolumeStreamableAsset --> "asset" TextAsset
+ProbeVolumeStreamableAsset --> "streamableCellDescs<int,StreamableCellDesc>" "SerializedDictionary`2"
+ProbeVolumeStreamableAsset +-- StreamableCellDesc
+@enduml

@@ -1,0 +1,46 @@
+@startuml
+class BoltCoreConfiguration <<sealed>> {
+    + <<override>> header : string <<get>>
+    + <<override>> LateInitialize() : void
+    + dimInactiveNodes : bool <<get>> <<set>> = true
+    + dimIncompatibleNodes : bool <<get>> <<set>> = true
+    + showVariablesHelp : bool <<get>> <<set>> = true
+    + createSceneVariables : bool <<get>> <<set>> = true
+    + showGrid : bool <<get>> <<set>> = true
+    + snapToGrid : bool <<get>> <<set>> = false
+    + panSpeed : float <<get>> <<set>> = 5
+    + dragPanSpeed : float <<get>> <<set>> = 5
+    + zoomSpeed : float <<get>> <<set>> = 0.025f
+    + overviewSmoothing : float <<get>> <<set>> = 0.25f
+    + carryChildren : bool <<get>> <<set>> = false
+    + disablePlaymodeTint : bool <<get>> <<set>> = true
+    + debug : bool <<get>> <<set>> = false
+    +  <<event>> ControlSchemeChanged : Action 
+    + clearGraphSelection : bool <<get>> <<set>> = false
+    +  <<event>> namingSchemeChanged : Action 
+    + humanNaming : bool <<get>> <<set>>
+    + maxSearchResults : int <<get>> <<set>> = 100
+    + groupInheritedMembers : bool <<get>> <<set>> = true
+    + limitFuzzyFinderHeight : bool <<get>> <<set>> = true
+    + <<new>> developerMode : bool <<get>> <<set>> = false
+    + trackMetadataState : bool <<get>> <<set>> = false
+    + debugInspectorGUI : bool <<get>> <<set>> = false
+    + aotSafeMode : bool <<get>> <<set>> = true
+}
+class "HashSet`1"<T> {
+}
+enum LinkerScanTarget {
+    GraphAssets= 0,
+    EmbeddedSceneGraphs= 1,
+    EmbeddedPrefabGraphs= 2,
+}
+class "List`1"<T> {
+}
+PluginConfiguration <|-- BoltCoreConfiguration
+BoltCoreConfiguration --> "controlScheme" CanvasControlScheme
+BoltCoreConfiguration o-> "favoriteMembers<Member>" "HashSet`1"
+BoltCoreConfiguration o-> "LinkerPropertyProviderSettings<bool>" "List`1"
+BoltCoreConfiguration o-> "assemblyOptions<LooseAssemblyName>" "List`1"
+BoltCoreConfiguration o-> "typeOptions<Type>" "List`1"
+BoltCoreConfiguration +-- LinkerScanTarget
+@enduml

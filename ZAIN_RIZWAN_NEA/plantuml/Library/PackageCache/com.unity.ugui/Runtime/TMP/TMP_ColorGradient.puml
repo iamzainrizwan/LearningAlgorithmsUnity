@@ -1,0 +1,19 @@
+@startuml
+enum ColorMode {
+    Single,
+    HorizontalGradient,
+    VerticalGradient,
+    FourCornersGradient,
+}
+class TMP_ColorGradient {
+    + TMP_ColorGradient()
+    + TMP_ColorGradient(color:Color)
+    + TMP_ColorGradient(color0:Color, color1:Color, color2:Color, color3:Color)
+}
+ScriptableObject <|-- TMP_ColorGradient
+TMP_ColorGradient o-> "colorMode" ColorMode
+TMP_ColorGradient --> "topLeft" Color
+TMP_ColorGradient --> "topRight" Color
+TMP_ColorGradient --> "bottomLeft" Color
+TMP_ColorGradient --> "bottomRight" Color
+@enduml

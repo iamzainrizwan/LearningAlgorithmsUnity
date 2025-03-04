@@ -1,0 +1,6 @@
+@startuml
+class AssertHelpers <<static>> {
+    + {static} IsNotNull(anObject:object, message:string) : void
+    + {static} Fail(message:string) : void
+}
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+enum DecalMeshDepthBiasType {
+    DepthBias= 0,
+    ViewBias= 1,
+}
+@enduml

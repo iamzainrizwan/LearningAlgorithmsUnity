@@ -1,0 +1,6 @@
+@startuml
+class GradientSlotControlView {
+    + GradientSlotControlView(slot:GradientInputMaterialSlot)
+}
+VisualElement <|-- GradientSlotControlView
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+enum ShadowCompositionPass {
+    MainView,
+    ShadowMask,
+}
+enum CompositionFinal {
+    First,
+    Second,
+}
+class RenderTextureCache {
+    + UpdateSize(rect:Rect, index:ViewIndex, pixelPerfect:bool, renderingCamera:Camera) : void
+    + UpdateSize(rect:Rect, index:CompositionFinal, pixelPerfect:bool, renderingCamera:Camera) : void
+    + Dispose() : void
+}
+class Compositer {
+    + pixelPerfect : bool <<get>> <<set>>
+    + Compositer(displayer:IViewDisplayer, dataProvider:IDataProvider, stages:StageCache)
+    + Dispose() : void
+    + Render() : void
+    + GetViewFromComposition(localCoordinate:Vector2) : ViewIndex
+}
+IDisposable <|-- RenderTextureCache
+IDisposable <|-- Compositer
+Compositer o-> "firstViewGizmoColor" Color
+Compositer o-> "secondViewGizmoColor" Color
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+class GenericElementAdderMenu <<sealed>> {
+    + IsEmpty : bool <<get>>
+    + AddItem(content:GUIContent, handler:GenericMenu.MenuFunction) : void
+    + AddDisabledItem(content:GUIContent) : void
+    + AddSeparator(path:string) : void
+    + DropDown(position:Rect) : void
+}
+IElementAdderMenu <|-- GenericElementAdderMenu
+@enduml

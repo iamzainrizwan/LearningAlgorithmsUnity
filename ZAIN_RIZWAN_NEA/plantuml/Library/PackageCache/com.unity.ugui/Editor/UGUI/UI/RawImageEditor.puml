@@ -1,0 +1,9 @@
+@startuml
+class RawImageEditor {
+    + <<override>> OnInspectorGUI() : void
+    + <<override>> HasPreviewGUI() : bool
+    + <<override>> OnPreviewGUI(rect:Rect, background:GUIStyle) : void
+    + <<override>> GetInfoString() : string
+}
+GraphicEditor <|-- RawImageEditor
+@enduml

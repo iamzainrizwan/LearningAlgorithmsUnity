@@ -1,0 +1,6 @@
+@startuml
+class TestRunCallbackAttribute {
+    + TestRunCallbackAttribute(type:Type)
+}
+Attribute <|-- TestRunCallbackAttribute
+@enduml

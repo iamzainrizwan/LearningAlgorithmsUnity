@@ -1,0 +1,41 @@
+@startuml
+struct RenderRequestBatcherContext {
+}
+enum OcclusionTest {
+    None,
+    TestAll,
+    TestCulled,
+}
+class OcclusionTestMethods <<static>> {
+    + {static} GetBatchLayerMask(occlusionTest:OcclusionTest) : uint
+}
+struct SubviewOcclusionTest {
+    + cullingSplitIndex : int
+    + occluderSubviewIndex : int
+}
+struct OcclusionCullingSettings {
+    + viewInstanceID : int
+    + instanceMultiplier : int
+    + OcclusionCullingSettings(viewInstanceID:int, occlusionTest:OcclusionTest)
+}
+struct OccluderSubviewUpdate {
+    + subviewIndex : int
+    + depthSliceIndex : int
+    + OccluderSubviewUpdate(subviewIndex:int)
+}
+struct OccluderParameters {
+    + viewInstanceID : int
+    + subviewCount : int
+    + depthIsArray : bool
+    + OccluderParameters(viewInstanceID:int)
+}
+RenderRequestBatcherContext --> "commandBuffer" CommandBuffer
+OcclusionCullingSettings --> "occlusionTest" OcclusionTest
+OccluderSubviewUpdate --> "depthOffset" Vector2Int
+OccluderSubviewUpdate --> "viewMatrix" Matrix4x4
+OccluderSubviewUpdate --> "invViewMatrix" Matrix4x4
+OccluderSubviewUpdate --> "gpuProjMatrix" Matrix4x4
+OccluderSubviewUpdate --> "viewOffsetWorldSpace" Vector3
+OccluderParameters --> "depthTexture" TextureHandle
+OccluderParameters --> "depthSize" Vector2Int
+@enduml

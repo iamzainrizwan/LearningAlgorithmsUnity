@@ -1,0 +1,6 @@
+@startuml
+class GraphPointerData <<sealed>> {
+    + {static} FromPointer(pointer:GraphPointer) : GraphPointerData
+    + ToReference(ensureValid:bool) : GraphReference
+}
+@enduml

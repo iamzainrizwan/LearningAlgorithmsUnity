@@ -1,0 +1,6 @@
+@startuml
+class IgnoreWarningAttribute {
+    + IgnoreWarningAttribute(warning:int)
+}
+Attribute <|-- IgnoreWarningAttribute
+@enduml

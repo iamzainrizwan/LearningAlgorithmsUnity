@@ -1,0 +1,8 @@
+@startuml
+class TypeReferenceExtensions <<static>> {
+    + {static} CheckedResolve(typeReference:TypeReference) : TypeDefinition
+}
+class MethodReferenceExtensions <<static>> {
+    + {static} MakeGenericInstanceMethod(method:MethodReference, types:TypeReference[]) : MethodReference
+}
+@enduml

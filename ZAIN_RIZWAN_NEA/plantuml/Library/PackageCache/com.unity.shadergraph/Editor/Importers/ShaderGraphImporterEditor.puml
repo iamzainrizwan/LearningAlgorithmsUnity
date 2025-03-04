@@ -1,0 +1,9 @@
+@startuml
+class ShaderGraphImporterEditor {
+    + <<override>> OnInspectorGUI() : void
+    + <<override>> OnEnable() : void
+    + <<override>> OnDisable() : void
+    + {static} OnOpenAsset(instanceID:int, line:int) : bool
+}
+ScriptedImporterEditor <|-- ShaderGraphImporterEditor
+@enduml

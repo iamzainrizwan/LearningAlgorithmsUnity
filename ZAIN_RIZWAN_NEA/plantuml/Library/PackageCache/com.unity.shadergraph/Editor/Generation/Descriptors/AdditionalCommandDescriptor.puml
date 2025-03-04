@@ -1,0 +1,7 @@
+@startuml
+class AdditionalCommandDescriptor {
+    + token : string <<get>>
+    + content : string <<get>>
+    + AdditionalCommandDescriptor(token:string, content:string)
+}
+@enduml

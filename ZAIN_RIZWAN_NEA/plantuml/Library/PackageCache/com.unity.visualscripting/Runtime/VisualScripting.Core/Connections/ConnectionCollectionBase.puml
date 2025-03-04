@@ -1,0 +1,28 @@
+@startuml
+class "ConnectionCollectionBase`4"<TConnection,TSource,TDestination,TCollection> {
+    + ConnectionCollectionBase(collection:TCollection)
+    + Count : int <<get>>
+    + IsReadOnly : bool <<get>>
+    + GetEnumerator() : IEnumerator<TConnection>
+    + WithSource(source:TSource) : IEnumerable<TConnection>
+    + WithSourceNoAlloc(source:TSource) : List<TConnection>
+    + SingleOrDefaultWithSource(source:TSource) : TConnection
+    + WithDestination(destination:TDestination) : IEnumerable<TConnection>
+    + WithDestinationNoAlloc(destination:TDestination) : List<TConnection>
+    + SingleOrDefaultWithDestination(destination:TDestination) : TConnection
+    + Add(item:TConnection) : void
+    + Clear() : void
+    + Contains(item:TConnection) : bool
+    + CopyTo(array:TConnection[], arrayIndex:int) : void
+    + Remove(item:TConnection) : bool
+}
+class "IConnectionCollection`3"<T1,T2,T3> {
+}
+class "IConnection`2"<T1,T2> {
+}
+class "ICollection`1"<T> {
+}
+class "IEnumerable`1"<T> {
+}
+"IConnectionCollection`3" "<TConnection,TSource,TDestination>" <|-- "ConnectionCollectionBase`4"
+@enduml

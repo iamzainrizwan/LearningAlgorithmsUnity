@@ -1,0 +1,7 @@
+@startuml
+class OnApplicationLostFocus <<sealed>> {
+}
+class "GlobalEventUnit`1"<T> {
+}
+"GlobalEventUnit`1" "<EmptyEventArgs>" <|-- OnApplicationLostFocus
+@enduml

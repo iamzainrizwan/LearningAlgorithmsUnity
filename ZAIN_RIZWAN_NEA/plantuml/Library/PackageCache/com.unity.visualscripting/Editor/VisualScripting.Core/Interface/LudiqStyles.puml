@@ -1,0 +1,36 @@
+@startuml
+class LudiqStyles <<static>> {
+    + {static} <<readonly>> compactHorizontalSpacing : float = 2
+    + {static} <<readonly>> spaceBetweenWindowHeaderIconAndTitle : float = 14
+}
+LudiqStyles --> "centeredLabel" GUIStyle
+LudiqStyles --> "horizontalSeparator" GUIStyle
+LudiqStyles --> "verticalSeparator" GUIStyle
+LudiqStyles --> "expandedTooltip" GUIStyle
+LudiqStyles --> "paddedButton" GUIStyle
+LudiqStyles --> "textAreaWordWrapped" GUIStyle
+LudiqStyles --> "spinnerButton" GUIStyle
+LudiqStyles --> "spinnerDownArrow" Texture2D
+LudiqStyles --> "headerBackground" GUIStyle
+LudiqStyles --> "headerIcon" GUIStyle
+LudiqStyles --> "headerTitle" GUIStyle
+LudiqStyles --> "headerTitleField" GUIStyle
+LudiqStyles --> "headerTitleFieldHidable" GUIStyle
+LudiqStyles --> "headerTitlePlaceholder" GUIStyle
+LudiqStyles --> "headerSummary" GUIStyle
+LudiqStyles --> "headerSummaryField" GUIStyle
+LudiqStyles --> "headerSummaryFieldHidable" GUIStyle
+LudiqStyles --> "headerSummaryPlaceholder" GUIStyle
+LudiqStyles --> "listRow" GUIStyle
+LudiqStyles --> "listBackground" GUIStyle
+LudiqStyles --> "toolbarBackground" GUIStyle
+LudiqStyles --> "toolbarButton" GUIStyle
+LudiqStyles --> "toolbarPopup" GUIStyle
+LudiqStyles --> "toolbarBreadcrumbRoot" GUIStyle
+LudiqStyles --> "toolbarBreadcrumb" GUIStyle
+LudiqStyles --> "toolbarLabel" GUIStyle
+LudiqStyles --> "windowHeaderBackground" GUIStyle
+LudiqStyles --> "windowHeaderTitle" GUIStyle
+LudiqStyles --> "windowHeaderIcon" GUIStyle
+LudiqStyles --> "windowBackground" GUIStyle
+@enduml

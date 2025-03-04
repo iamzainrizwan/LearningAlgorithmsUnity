@@ -1,0 +1,7 @@
+@startuml
+class UnityInstallation <<static>> {
+    + {static} IsMainUnityEditorProcess : bool <<get>>
+    + {static} IsInSafeMode : bool <<get>>
+    + {static} LatestLanguageVersionSupported(assembly:Assembly) : Version
+}
+@enduml

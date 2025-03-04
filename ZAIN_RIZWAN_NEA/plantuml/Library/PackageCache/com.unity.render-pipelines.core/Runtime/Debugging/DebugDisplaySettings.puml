@@ -1,0 +1,20 @@
+@startuml
+abstract class "DebugDisplaySettings`1"<T> {
+    + {static} Instance : T <<get>>
+    + <<virtual>> AreAnySettingsActive : bool <<get>>
+    + <<virtual>> IsPostProcessingAllowed : bool <<get>>
+    + <<virtual>> IsLightingActive : bool <<get>>
+    + ForEach(onExecute:Action<IDebugDisplaySettingsData>) : void
+    + <<virtual>> Reset() : void
+    + <<virtual>> TryGetScreenClearColor(color:Color) : bool
+}
+class IDebugDisplaySettingsDataComparer {
+    + Equals(x:IDebugDisplaySettingsData, y:IDebugDisplaySettingsData) : bool
+    + GetHashCode(obj:IDebugDisplaySettingsData) : int
+}
+class "IEqualityComparer`1"<T> {
+}
+IDebugDisplaySettings <|-- "DebugDisplaySettings`1"
+"DebugDisplaySettings`1" +-- IDebugDisplaySettingsDataComparer
+"IEqualityComparer`1" "<IDebugDisplaySettingsData>" <|-- IDebugDisplaySettingsDataComparer
+@enduml

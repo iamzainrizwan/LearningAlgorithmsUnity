@@ -1,0 +1,18 @@
+@startuml
+class RiderScriptEditor {
+    + RiderScriptEditor(discovery:IDiscovery, projectGeneration:IGenerator)
+    + OnGUI() : void
+    + SyncIfNeeded(addedFiles:string[], deletedFiles:string[], movedFiles:string[], movedFromFiles:string[], importedFiles:string[]) : void
+    + SyncAll() : void
+    + {static} SyncSolution() : void
+    + {static} SyncIfNeeded(checkProjectFiles:bool) : void
+    + {static} SyncSolutionAndOpenExternalEditor() : void
+    + Initialize(editorInstallationPath:string) : void
+    + OpenProject(path:string, line:int, column:int) : bool
+    + TryGetInstallationForPath(editorPath:string, installation:CodeEditor.Installation) : bool
+    + {static} IsRiderOrFleetInstallation(path:string) : bool
+    + {static} ExecutableStartsWith(path:string, input:string) : bool
+    + {static} CurrentEditor : string <<get>>
+}
+IExternalCodeEditor <|-- RiderScriptEditor
+@enduml

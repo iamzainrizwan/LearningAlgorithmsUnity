@@ -1,0 +1,9 @@
+@startuml
+class EventHookComparer {
+    + Equals(x:EventHook, y:EventHook) : bool
+    + GetHashCode(obj:EventHook) : int
+}
+class "IEqualityComparer`1"<T> {
+}
+"IEqualityComparer`1" "<EventHook>" <|-- EventHookComparer
+@enduml

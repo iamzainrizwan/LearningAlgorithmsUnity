@@ -1,0 +1,26 @@
+@startuml
+class ForwardRendererData {
+    + shadowTransparentReceive : bool <<get>> <<set>>
+    + accurateGbufferNormals : bool <<get>> <<set>>
+}
+class ShaderResources <<sealed>> {
+}
+ScriptableRendererData <|-- ForwardRendererData
+ForwardRendererData --> "shaders" ShaderResources
+ForwardRendererData --> "postProcessData" PostProcessData
+ForwardRendererData --> "opaqueLayerMask" LayerMask
+ForwardRendererData --> "transparentLayerMask" LayerMask
+ForwardRendererData --> "defaultStencilState" StencilStateData
+ForwardRendererData --> "renderingMode" RenderingMode
+ForwardRendererData +-- ShaderResources
+ShaderResources --> "blitPS" Shader
+ShaderResources --> "copyDepthPS" Shader
+ShaderResources --> "screenSpaceShadowPS" Shader
+ShaderResources --> "samplingPS" Shader
+ShaderResources --> "stencilDeferredPS" Shader
+ShaderResources --> "fallbackErrorPS" Shader
+ShaderResources --> "fallbackLoadingPS" Shader
+ShaderResources --> "materialErrorPS" Shader
+ShaderResources --> "cameraMotionVector" Shader
+ShaderResources --> "objectMotionVector" Shader
+@enduml

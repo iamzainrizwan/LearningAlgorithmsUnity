@@ -1,0 +1,28 @@
+@startuml
+enum BloomDownscaleMode {
+    Half,
+    Quarter,
+}
+class Bloom <<sealed>> <<partial>> {
+    + IsActive() : bool
+    + IsTileCompatible() : bool
+}
+class DownscaleParameter <<sealed>> {
+    + DownscaleParameter(value:BloomDownscaleMode, overrideState:bool)
+}
+class "VolumeParameter`1"<T> {
+}
+VolumeComponent <|-- Bloom
+IPostProcessComponent <|-- Bloom
+Bloom o-> "threshold" MinFloatParameter
+Bloom o-> "intensity" MinFloatParameter
+Bloom o-> "scatter" ClampedFloatParameter
+Bloom o-> "clamp" MinFloatParameter
+Bloom o-> "tint" ColorParameter
+Bloom o-> "highQualityFiltering" BoolParameter
+Bloom o-> "downscale" DownscaleParameter
+Bloom o-> "maxIterations" ClampedIntParameter
+Bloom o-> "dirtTexture" TextureParameter
+Bloom o-> "dirtIntensity" MinFloatParameter
+"VolumeParameter`1" "<BloomDownscaleMode>" <|-- DownscaleParameter
+@enduml

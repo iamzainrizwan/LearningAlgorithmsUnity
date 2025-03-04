@@ -1,0 +1,16 @@
+@startuml
+class EditModeUtils <<static>> {
+    + {static} Delete(items:IEnumerable<ITimelineItem>) : void
+    + {static} SetStart(items:IEnumerable<ITimelineItem>, time:double) : void
+    + {static} SetParentTrack(items:IEnumerable<ITimelineItem>, parentTrack:TrackAsset) : void
+    + {static} GetFirstIntersectedItem(items:IEnumerable<ITimelineItem>, time:double) : ITimelineItem
+    + {static} Overlaps(item:ITimelineItem, from:double, to:double) : bool
+    + {static} IsItemWithinRange(item:ITimelineItem, from:double, to:double) : bool
+    + {static} IsRangeWithinItem(from:double, to:double, item:ITimelineItem) : bool
+    + {static} Contains(from:double, to:double, item:ITimelineItem) : bool
+    + {static} HasBlends(item:ITimelineItem, edge:TrimEdge) : bool
+    + {static} BlendDuration(item:ITimelineItem, edge:TrimEdge) : double
+    + {static} IsInfiniteTrack(track:TrackAsset) : bool
+    + {static} GetInfiniteClipBoundaries(track:TrackAsset, start:double, end:double) : void
+}
+@enduml

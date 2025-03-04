@@ -1,0 +1,19 @@
+@startuml
+class fsGlobalConfig <<static>> {
+    + {static} IsCaseSensitive : bool = true
+    + {static} AllowInternalExceptions : bool = true
+    + {static} InternalFieldPrefix : string = "$"
+}
+class fsConfig {
+    + EnablePropertySerialization : bool = true
+    + SerializeNonAutoProperties : bool = false
+    + SerializeNonPublicSetProperties : bool = true
+    + CustomDateTimeFormatString : string = null
+    + Serialize64BitIntegerAsString : bool = false
+    + SerializeEnumsAsInteger : bool = false
+}
+class "Func`3"<T1,T2,T3> {
+}
+fsConfig o-> "DefaultMemberSerialization" fsMemberSerialization
+fsConfig o-> "GetJsonNameFromMemberName<string,MemberInfo,string>" "Func`3"
+@enduml

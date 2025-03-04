@@ -1,0 +1,55 @@
+@startuml
+class UniversalCameraData {
+    + GetViewMatrix(viewIndex:int) : Matrix4x4
+    + GetProjectionMatrix(viewIndex:int) : Matrix4x4
+    + GetGPUProjectionMatrix(viewIndex:int) : Matrix4x4
+    + GetGPUProjectionMatrixNoJitter(viewIndex:int) : Matrix4x4
+    + scaledWidth : int <<get>>
+    + scaledHeight : int <<get>>
+    + renderScale : float
+    + clearDepth : bool
+    + isDefaultViewport : bool
+    + isHdrEnabled : bool
+    + allowHDROutput : bool
+    + isAlphaOutputEnabled : bool
+    + requiresDepthTexture : bool
+    + requiresOpaqueTexture : bool
+    + postProcessingRequiresDepthTexture : bool
+    + xrRendering : bool
+    + isGameCamera : bool <<get>>
+    + isSceneViewCamera : bool <<get>>
+    + isPreviewCamera : bool <<get>>
+    + isHDROutputActive : bool <<get>>
+    + rendersOverlayUI : bool <<get>>
+    + IsHandleYFlipped(handle:RTHandle) : bool
+    + IsCameraProjectionMatrixFlipped() : bool
+    + IsRenderTargetProjectionMatrixFlipped(color:RTHandle, depth:RTHandle) : bool
+    + maxShadowDistance : float
+    + postProcessEnabled : bool
+    + isStopNaNEnabled : bool
+    + isDitheringEnabled : bool
+    + resolveFinalTarget : bool
+    + <<override>> Reset() : void
+}
+class "IEnumerator`1"<T> {
+}
+ContextItem <|-- UniversalCameraData
+UniversalCameraData --> "camera" Camera
+UniversalCameraData --> "historyManager" UniversalCameraHistory
+UniversalCameraData --> "renderType" CameraRenderType
+UniversalCameraData --> "targetTexture" RenderTexture
+UniversalCameraData --> "cameraTargetDescriptor" RenderTextureDescriptor
+UniversalCameraData --> "cameraType" CameraType
+UniversalCameraData --> "hdrDisplayColorGamut" ColorGamut
+UniversalCameraData --> "defaultOpaqueSortFlags" SortingCriteria
+UniversalCameraData --> "xr" XRPass
+UniversalCameraData --> "captureActions<Action<RenderTargetIdentifier, CommandBuffer>>" "IEnumerator`1"
+UniversalCameraData --> "volumeLayerMask" LayerMask
+UniversalCameraData --> "volumeTrigger" Transform
+UniversalCameraData --> "antialiasing" AntialiasingMode
+UniversalCameraData --> "antialiasingQuality" AntialiasingQuality
+UniversalCameraData --> "renderer" ScriptableRenderer
+UniversalCameraData --> "worldSpaceCameraPos" Vector3
+UniversalCameraData --> "backgroundColor" Color
+UniversalCameraData --> "baseCamera" Camera
+@enduml

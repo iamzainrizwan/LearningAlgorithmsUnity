@@ -1,0 +1,18 @@
+@startuml
+class CalculateLevelOfDetailTexture2DNode {
+    + <<const>> OutputSlotLODId : int = 0
+    + <<const>> TextureInputId : int = 1
+    + <<const>> UVInput : int = 2
+    + <<const>> SamplerInput : int = 3
+    + <<override>> hasPreview : bool <<get>>
+    + CalculateLevelOfDetailTexture2DNode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> Setup() : void
+    + <<virtual>> GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + RequiresMeshUV(channel:UVChannel, stageCapability:ShaderStageCapability) : bool
+}
+AbstractMaterialNode <|-- CalculateLevelOfDetailTexture2DNode
+IGeneratesBodyCode <|-- CalculateLevelOfDetailTexture2DNode
+IMayRequireMeshUV <|-- CalculateLevelOfDetailTexture2DNode
+CalculateLevelOfDetailTexture2DNode --> "clamp" ToggleData
+@enduml

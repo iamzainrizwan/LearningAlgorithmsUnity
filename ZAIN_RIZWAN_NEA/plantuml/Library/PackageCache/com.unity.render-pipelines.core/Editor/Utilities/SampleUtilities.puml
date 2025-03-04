@@ -1,0 +1,6 @@
+@startuml
+class SampleUtilities <<static>> {
+    + {static} CopyFilesInFolder(parentFolderName:string, filesToImport:Dictionary<string, string>) : void
+    + {static} CopyCommonSampleFolders(packages:string[], parentFolderName:string, foldersToRemove:string[]) : void
+}
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+class ParsedAssemblyQualifiedName {
+    + AssemblyDescriptionString : string <<get>>
+    + TypeName : string <<get>>
+    + ShortAssemblyName : string <<get>>
+    + Version : string <<get>>
+    + Culture : string <<get>>
+    + PublicKeyToken : string <<get>>
+    + GenericParameterCount : int <<get>>
+    + ParsedAssemblyQualifiedName(AssemblyQualifiedName:string)
+    + Replace(oldTypeName:string, newTypeName:string) : void
+    + <<override>> ToString() : string
+}
+class "List`1"<T> {
+}
+class Block {
+}
+ParsedAssemblyQualifiedName o-> "GenericParameters<ParsedAssemblyQualifiedName>" "List`1"
+ParsedAssemblyQualifiedName +-- Block
+@enduml

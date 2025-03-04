@@ -1,0 +1,30 @@
+@startuml
+class IdentifierField <<partial>> {
+    + <<new>> {static} <<readonly>> ussClassName : string = "unity-identifierfield-field"
+    + <<new>> {static} <<readonly>> labelUssClassName : string
+    + <<new>> {static} <<readonly>> inputUssClassName : string
+    + IdentifierField()
+    + IdentifierField(label:string)
+    + <<override>> ApplyInputDeviceDelta(delta:Vector3, speed:DeltaSpeed, startValue:string) : void
+}
+class "TextValueField`1"<T> {
+}
+class UxmlFactory <<new>> {
+}
+class UxmlTraits <<new>> {
+}
+class IdentifierInput {
+    + <<override>> ApplyInputDeviceDelta(delta:Vector3, speed:DeltaSpeed, startValue:string) : void
+}
+class "UxmlFactory`2"<T1,T2> {
+}
+class "TextValueFieldTraits`2"<T1,T2> {
+}
+"TextValueField`1" "<string>" <|-- IdentifierField
+IdentifierField +-- UxmlFactory
+"UxmlFactory`2" "<IdentifierField,UxmlTraits>" <|-- UxmlFactory
+IdentifierField +-- UxmlTraits
+"TextValueFieldTraits`2" "<string,UxmlStringAttributeDescription>" <|-- UxmlTraits
+IdentifierField +-- IdentifierInput
+TextValueInput <|-- IdentifierInput
+@enduml

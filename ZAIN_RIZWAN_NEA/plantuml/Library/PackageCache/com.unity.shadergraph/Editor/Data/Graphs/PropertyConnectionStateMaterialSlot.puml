@@ -1,0 +1,18 @@
+@startuml
+class PropertyConnectionStateMaterialSlot {
+    + PropertyConnectionStateMaterialSlot()
+    + PropertyConnectionStateMaterialSlot(slotId:int, displayName:string, shaderOutputName:string, slotType:SlotType, stageCapability:ShaderStageCapability, hidden:bool)
+    + <<override>> InstantiateControl() : VisualElement
+    + defaultValue : bool <<get>>
+    + value : bool <<get>>
+    + <<override>> isDefaultValue : bool <<get>>
+    + <<override>> AddDefaultProperty(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + <<override>> CopyValuesFrom(foundSlot:MaterialSlot) : void
+}
+class "IMaterialSlotHasValue`1"<T> {
+}
+MaterialSlot <|-- PropertyConnectionStateMaterialSlot
+"IMaterialSlotHasValue`1" "<bool>" <|-- PropertyConnectionStateMaterialSlot
+PropertyConnectionStateMaterialSlot --> "valueType" SlotValueType
+PropertyConnectionStateMaterialSlot --> "concreteValueType" ConcreteSlotValueType
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class TestBuildAssemblyFilter {
+    + callbackOrder : int <<get>>
+    + OnFilterAssemblies(buildOptions:BuildOptions, assemblies:string[]) : string[]
+}
+IFilterBuildAssemblies <|-- TestBuildAssemblyFilter
+@enduml

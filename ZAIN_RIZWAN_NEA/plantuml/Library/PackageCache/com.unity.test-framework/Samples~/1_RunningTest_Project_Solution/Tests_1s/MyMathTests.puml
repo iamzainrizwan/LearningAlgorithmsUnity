@@ -1,0 +1,8 @@
+@startuml
+class MyMathTests {
+    + AddsTwoPositiveIntegers() : void
+    + AddAPositiveAndNegativeInteger() : void
+    + SubtractAPositiveInteger() : void
+    + SubtractANegativeInteger() : void
+}
+@enduml

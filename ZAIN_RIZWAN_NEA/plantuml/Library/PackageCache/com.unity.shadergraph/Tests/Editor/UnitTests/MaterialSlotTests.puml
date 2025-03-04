@@ -1,0 +1,23 @@
+@startuml
+class MaterialSlotTests {
+    + RunBeforeAnyTests() : void
+    + TestSetUp() : void
+    + SlotDisplayNameIsCorrect() : void
+    + CanUpdateMaterialSlotDefaultValue() : void
+    + CanUpdateMaterialSlotCurrentValue() : void
+    + MaterialSlotReturnsValidDefaultValue() : void
+}
+class TestNode {
+    + <<const>> V1In : int = 1
+    + <<const>> V2In : int = 2
+    + <<const>> V3In : int = 3
+    + <<const>> V4In : int = 4
+    + TestNode()
+}
+MaterialSlotTests +-- TestNode
+AbstractMaterialNode <|-- TestNode
+TestNode --> "slot1" Vector1MaterialSlot
+TestNode --> "slot2" Vector2MaterialSlot
+TestNode --> "slot3" Vector3MaterialSlot
+TestNode --> "slot4" Vector4MaterialSlot
+@enduml

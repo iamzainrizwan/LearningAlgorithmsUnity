@@ -1,0 +1,7 @@
+@startuml
+class DebugUIHandlerVBox {
+    + <<override>> OnSelection(fromNext:bool, previous:DebugUIHandlerWidget) : bool
+    + <<override>> Next() : DebugUIHandlerWidget
+}
+DebugUIHandlerWidget <|-- DebugUIHandlerVBox
+@enduml

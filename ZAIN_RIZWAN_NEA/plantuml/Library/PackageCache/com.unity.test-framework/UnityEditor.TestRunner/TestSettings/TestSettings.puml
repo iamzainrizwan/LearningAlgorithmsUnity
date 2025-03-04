@@ -1,0 +1,33 @@
+@startuml
+class TestSettings {
+    + Architecture : string <<get>> <<set>>
+    + appleEnableAutomaticSigning : bool? <<get>> <<set>>
+    + appleDeveloperTeamID : string <<get>> <<set>>
+    + iOSManualProvisioningProfileID : string <<get>> <<set>>
+    + iOSTargetSDK : string <<get>> <<set>>
+    + tvOSManualProvisioningProfileID : string <<get>> <<set>>
+    + tvOSTargetSDK : string <<get>> <<set>>
+    + autoGraphicsAPIs : bool <<get>> <<set>>
+    + androidBuildAppBundle : bool? <<get>> <<set>>
+    + Dispose() : void
+    + SetupProjectParameters() : void
+}
+abstract class TestSetting {
+    + {abstract} Setup(settings:TestSettings) : void
+    + {abstract} Cleanup() : void
+}
+class "TestSetting`1"<T> {
+    + TestSetting(getFromSettings:Func<TestSettings, T>, getCurrentValue:Func<T>, setValue:Action<T>)
+    + <<override>> Setup(settings:TestSettings) : void
+    + <<override>> Cleanup() : void
+}
+ITestSettings <|-- TestSettings
+TestSettings --> "scriptingBackend" ScriptingImplementation
+TestSettings --> "apiProfile" ApiCompatibilityLevel
+TestSettings --> "iOSManualProvisioningProfileType" ProvisioningProfileType
+TestSettings --> "tvOSManualProvisioningProfileType" ProvisioningProfileType
+TestSettings o-> "featureFlags" FeatureFlags
+TestSettings +-- TestSetting
+TestSettings +-- "TestSetting`1"
+TestSetting <|-- "TestSetting`1"
+@enduml

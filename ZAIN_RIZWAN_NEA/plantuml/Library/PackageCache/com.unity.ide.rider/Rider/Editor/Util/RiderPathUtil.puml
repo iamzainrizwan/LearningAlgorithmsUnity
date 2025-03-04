@@ -1,0 +1,5 @@
+@startuml
+class RiderPathUtil <<static>> {
+    + {static} IsRiderDevEditor(editorPath:string) : bool
+}
+@enduml

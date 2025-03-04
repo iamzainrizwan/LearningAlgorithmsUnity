@@ -1,0 +1,39 @@
+@startuml
+class WidgetStateDictionary <<sealed>> {
+}
+class DebugWindowSettings <<sealed>> {
+    + currentStateHash : int
+    + selectedPanel : int <<get>> <<set>>
+    + selectedPanelDisplayName : string
+}
+class DebugWindow <<sealed>> {
+    + {static} open : bool <<get>>
+    + DestroyWidgetStates() : void
+    + ReloadWidgetStates() : void
+    + ApplyStates(forceApplyAll:bool) : void
+    + AddItemsToMenu(menu:GenericMenu) : void
+}
+class "SerializedDictionary`2"<T1,T2> {
+}
+class Styles {
+    + {static} s_DefaultLabelWidth : float = 0.5f
+    + {static} singleRowHeight : float
+    + {static} foldoutColumnWidth : int = 70
+    + Styles()
+}
+"SerializedDictionary`2" "<string,DebugState>" <|-- WidgetStateDictionary
+ScriptableObject <|-- DebugWindowSettings
+EditorWindowWithHelpButton <|-- DebugWindow
+IHasCustomMenu <|-- DebugWindow
+DebugWindow +-- Styles
+Styles o-> "windowTitle" GUIContent
+Styles o-> "resetButtonContent" GUIContent
+Styles o-> "foldoutHeaderStyle" GUIStyle
+Styles o-> "labelWithZeroValueStyle" GUIStyle
+Styles o-> "sectionScrollView" GUIStyle
+Styles o-> "sectionElement" GUIStyle
+Styles o-> "selected" GUIStyle
+Styles o-> "sectionHeader" GUIStyle
+Styles --> "skinBackgroundColor" Color
+Styles o-> "centeredLeft" GUIStyle
+@enduml

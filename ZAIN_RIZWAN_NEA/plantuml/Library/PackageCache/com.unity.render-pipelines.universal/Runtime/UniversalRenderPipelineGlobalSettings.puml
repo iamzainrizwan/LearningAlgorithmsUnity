@@ -1,0 +1,17 @@
+@startuml
+class UniversalRenderPipelineGlobalSettings <<partial>> {
+    + <<const>> defaultAssetName : string = "UniversalRenderPipelineGlobalSettings"
+    + <<override>> Reset() : void
+    + lightLayerName0 : string
+    + lightLayerName1 : string
+    + lightLayerName2 : string
+    + lightLayerName3 : string
+    + lightLayerName4 : string
+    + lightLayerName5 : string
+    + lightLayerName6 : string
+    + lightLayerName7 : string
+}
+class "RenderPipelineGlobalSettings`2"<T1,T2> {
+}
+"RenderPipelineGlobalSettings`2" "<UniversalRenderPipelineGlobalSettings,UniversalRenderPipeline>" <|-- UniversalRenderPipelineGlobalSettings
+@enduml

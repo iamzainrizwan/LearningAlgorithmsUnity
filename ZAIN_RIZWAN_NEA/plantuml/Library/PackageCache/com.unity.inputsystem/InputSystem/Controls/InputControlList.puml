@@ -1,0 +1,47 @@
+@startuml
+struct "InputControlList`1"<TControl> {
+    + Count : int <<get>>
+    + Capacity : int <<get>> <<set>>
+    + IsReadOnly : bool <<get>>
+    + InputControlList(allocator:Allocator, initialCapacity:int)
+    + InputControlList(values:IEnumerable<TControl>, allocator:Allocator)
+    + InputControlList(values:TControl[])
+    + Resize(size:int) : void
+    + Add(item:TControl) : void
+    + AddSlice(list:TList, count:int, destinationIndex:int, sourceIndex:int) : void
+    + AddRange(list:IEnumerable<TControl>, count:int, destinationIndex:int) : void
+    + Remove(item:TControl) : bool
+    + RemoveAt(index:int) : void
+    + CopyTo(array:TControl[], arrayIndex:int) : void
+    + IndexOf(item:TControl) : int
+    + IndexOf(item:TControl, startIndex:int, count:int) : int
+    + Insert(index:int, item:TControl) : void
+    + Clear() : void
+    + Contains(item:TControl) : bool
+    + Contains(item:TControl, startIndex:int, count:int) : bool
+    + SwapElements(index1:int, index2:int) : void
+    + Sort(startIndex:int, count:int, comparer:TCompare) : void
+    + ToArray(dispose:bool) : TControl[]
+    + Dispose() : void
+    + GetEnumerator() : IEnumerator<TControl>
+    + <<override>> ToString() : string
+}
+class "IList`1"<T> {
+}
+class "IReadOnlyList`1"<T> {
+}
+struct Enumerator {
+    + Enumerator(list:InputControlList<TControl>)
+    + MoveNext() : bool
+    + Reset() : void
+    + Dispose() : void
+}
+class "IEnumerator`1"<T> {
+}
+"IList`1" "<TControl>" <|-- "InputControlList`1"
+"IReadOnlyList`1" "<TControl>" <|-- "InputControlList`1"
+IDisposable <|-- "InputControlList`1"
+"InputControlList`1" +-- Enumerator
+"IEnumerator`1" "<TControl>" <|-- Enumerator
+Enumerator --> "Current" TControl
+@enduml

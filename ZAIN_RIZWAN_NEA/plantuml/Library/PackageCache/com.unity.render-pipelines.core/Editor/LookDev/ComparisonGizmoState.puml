@@ -1,0 +1,12 @@
+@startuml
+class ComparisonGizmoState {
+    + angle : float <<get>>
+    + length : float <<get>> = 0.2f
+    + blendFactor : float <<get>> <<set>>
+    + Update(point1:Vector2, point2:Vector2) : void
+    + Update(center:Vector2, length:float, angle:float) : void
+}
+ComparisonGizmoState --> "point1" Vector2
+ComparisonGizmoState --> "point2" Vector2
+ComparisonGizmoState o-> "center" Vector2
+@enduml

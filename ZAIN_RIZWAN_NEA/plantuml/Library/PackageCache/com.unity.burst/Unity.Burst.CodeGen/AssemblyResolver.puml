@@ -1,0 +1,34 @@
+@startuml
+class AssemblyResolver {
+    + AssemblyResolver(readingMode:ReadingMode)
+    + LoadDebugSymbols : bool <<get>> <<set>>
+    + LoadFromFile(path:string) : AssemblyDefinition
+    + LoadFromStream(peStream:Stream, pdbStream:Stream, customSymbolReader:ISymbolReaderProvider) : AssemblyDefinition
+    + <<override>> Resolve(name:AssemblyNameReference) : AssemblyDefinition
+    + TryResolve(name:AssemblyNameReference, assembly:AssemblyDefinition) : bool
+    + <<new>> AddSearchDirectory(directory:string) : void
+}
+class CustomMetadataResolver {
+    + CustomMetadataResolver(assemblyResolver:IAssemblyResolver)
+    + <<override>> Resolve(method:MethodReference) : MethodDefinition
+}
+class CustomSymbolReaderProvider {
+    + CustomSymbolReaderProvider(logException:Action<string, Exception>)
+    + GetSymbolReader(module:ModuleDefinition, fileName:string) : ISymbolReader
+    + GetSymbolReader(module:ModuleDefinition, symbolStream:Stream) : ISymbolReader
+}
+class SafeDebugReaderProvider {
+    + SafeDebugReaderProvider(reader:ISymbolReader)
+    + Dispose() : void
+    + GetWriterProvider() : ISymbolWriterProvider
+    + ProcessDebugHeader(header:ImageDebugHeader) : bool
+    + Read(method:MethodDefinition) : MethodDebugInformation
+}
+BaseAssemblyResolver <|-- AssemblyResolver
+AssemblyResolver +-- CustomMetadataResolver
+MetadataResolver <|-- CustomMetadataResolver
+AssemblyResolver +-- CustomSymbolReaderProvider
+ISymbolReaderProvider <|-- CustomSymbolReaderProvider
+CustomSymbolReaderProvider +-- SafeDebugReaderProvider
+ISymbolReader <|-- SafeDebugReaderProvider
+@enduml

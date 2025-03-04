@@ -1,0 +1,6 @@
+@startuml
+class SetInteractionModeTask {
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- SetInteractionModeTask
+@enduml

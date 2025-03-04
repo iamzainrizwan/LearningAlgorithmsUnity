@@ -1,0 +1,5 @@
+@startuml
+class GameObjectCreation <<static>> {
+    {static} + CreateGameObject(name:string, menuCommand:MenuCommand, components:Type[]) : GameObject
+}
+@enduml

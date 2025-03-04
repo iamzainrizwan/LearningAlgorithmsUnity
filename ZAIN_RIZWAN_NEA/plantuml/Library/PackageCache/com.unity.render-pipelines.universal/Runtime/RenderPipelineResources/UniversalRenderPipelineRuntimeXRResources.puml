@@ -1,0 +1,9 @@
+@startuml
+class UniversalRenderPipelineRuntimeXRResources {
+    + version : int <<get>>
+}
+IRenderPipelineResources <|-- UniversalRenderPipelineRuntimeXRResources
+UniversalRenderPipelineRuntimeXRResources --> "xrOcclusionMeshPS" Shader
+UniversalRenderPipelineRuntimeXRResources --> "xrMirrorViewPS" Shader
+UniversalRenderPipelineRuntimeXRResources --> "xrMotionVector" Shader
+@enduml

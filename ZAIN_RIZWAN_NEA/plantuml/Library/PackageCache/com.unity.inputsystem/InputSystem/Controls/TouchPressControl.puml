@@ -1,0 +1,7 @@
+@startuml
+class TouchPressControl {
+    + <<override>> <<unsafe>> ReadUnprocessedValueFromState(statePtr:void*) : float
+    + <<override>> <<unsafe>> WriteValueIntoState(value:float, statePtr:void*) : void
+}
+ButtonControl <|-- TouchPressControl
+@enduml

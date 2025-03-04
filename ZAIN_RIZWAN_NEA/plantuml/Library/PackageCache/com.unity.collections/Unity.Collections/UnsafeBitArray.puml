@@ -1,0 +1,49 @@
+@startuml
+struct UnsafeBitArray {
+    + Length : int
+    + Capacity : int
+    + <<unsafe>> UnsafeBitArray(ptr:void*, sizeInBytes:int, allocator:AllocatorManager.AllocatorHandle)
+    + UnsafeBitArray(numBits:int, allocator:AllocatorManager.AllocatorHandle, options:NativeArrayOptions)
+    + <<readonly>> IsCreated : bool <<get>>
+    + <<readonly>> IsEmpty : bool <<get>>
+    + Resize(numBits:int, options:NativeArrayOptions) : void
+    + SetCapacity(capacityInBits:int) : void
+    + TrimExcess() : void
+    + Dispose() : void
+    + Dispose(inputDeps:JobHandle) : JobHandle
+    + Clear() : void
+    + {static} Set(ptr:ulong*, pos:int, value:bool) : void
+    + Set(pos:int, value:bool) : void
+    + SetBits(pos:int, value:bool, numBits:int) : void
+    + SetBits(pos:int, value:ulong, numBits:int) : void
+    + GetBits(pos:int, numBits:int) : ulong
+    + IsSet(pos:int) : bool
+    + Copy(dstPos:int, srcPos:int, numBits:int) : void
+    + Copy(dstPos:int, srcBitArray:UnsafeBitArray, srcPos:int, numBits:int) : void
+    + Find(pos:int, numBits:int) : int
+    + Find(pos:int, count:int, numBits:int) : int
+    + TestNone(pos:int, numBits:int) : bool
+    + TestAny(pos:int, numBits:int) : bool
+    + TestAll(pos:int, numBits:int) : bool
+    + CountBits(pos:int, numBits:int) : int
+    + AsReadOnly() : ReadOnly
+}
+class UnsafeBitArrayDebugView <<sealed>> {
+    + UnsafeBitArrayDebugView(data:UnsafeBitArray)
+}
+struct ReadOnly {
+    + <<readonly>> Length : int
+    + <<readonly>> IsCreated : bool <<get>>
+    + <<readonly>> IsEmpty : bool <<get>>
+    + <<readonly>> GetBits(pos:int, numBits:int) : ulong
+    + <<readonly>> IsSet(pos:int) : bool
+    + <<readonly>> Find(pos:int, numBits:int) : int
+    + <<readonly>> Find(pos:int, count:int, numBits:int) : int
+    + <<readonly>> TestNone(pos:int, numBits:int) : bool
+    + <<readonly>> TestAny(pos:int, numBits:int) : bool
+    + <<readonly>> TestAll(pos:int, numBits:int) : bool
+    + <<readonly>> CountBits(pos:int, numBits:int) : int
+}
+INativeDisposable <|-- UnsafeBitArray
+UnsafeBitArray +-- ReadOnly
+@enduml

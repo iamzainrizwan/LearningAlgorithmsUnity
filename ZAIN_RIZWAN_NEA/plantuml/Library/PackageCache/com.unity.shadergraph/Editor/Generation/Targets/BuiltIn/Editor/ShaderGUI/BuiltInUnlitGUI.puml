@@ -1,0 +1,6 @@
+@startuml
+class BuiltInUnlitGUI {
+    + {static} UpdateMaterial(material:Material) : void
+}
+BuiltInBaseShaderGUI <|-- BuiltInUnlitGUI
+@enduml

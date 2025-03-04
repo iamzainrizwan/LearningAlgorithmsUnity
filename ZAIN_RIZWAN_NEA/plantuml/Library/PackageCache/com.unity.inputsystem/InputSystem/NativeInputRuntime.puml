@@ -1,0 +1,32 @@
+@startuml
+class NativeInputRuntime {
+    + AllocateDeviceId() : int
+    + Update(updateType:InputUpdateType) : void
+    + <<unsafe>> QueueEvent(ptr:InputEvent*) : void
+    + <<unsafe>> DeviceCommand(deviceId:int, commandPtr:InputDeviceCommand*) : long
+    + isPlayerFocused : bool <<get>>
+    + pollingFrequency : float <<get>> <<set>>
+    + currentTime : double <<get>>
+    + currentTimeForFixedUpdate : double <<get>>
+    + currentTimeOffsetToRealtimeSinceStartup : double <<get>>
+    + unscaledGameTime : float <<get>>
+    + runInBackground : bool <<get>> <<set>>
+    + isInBatchMode : bool <<get>>
+}
+class "Action`1"<T> {
+}
+class "Func`2"<T1,T2> {
+}
+class "Action`2"<T1,T2> {
+}
+IInputRuntime <|-- NativeInputRuntime
+NativeInputRuntime o-> "instance" NativeInputRuntime
+NativeInputRuntime --> "onUpdate" InputUpdateDelegate
+NativeInputRuntime --> "onBeforeUpdate<InputUpdateType>" "Action`1"
+NativeInputRuntime --> "onShouldRunUpdate<InputUpdateType,bool>" "Func`2"
+NativeInputRuntime --> "onDeviceDiscovered<int,string>" "Action`2"
+NativeInputRuntime --> "onShutdown" Action
+NativeInputRuntime --> "onPlayerFocusChanged<bool>" "Action`1"
+NativeInputRuntime --> "screenSize" Vector2
+NativeInputRuntime --> "screenOrientation" ScreenOrientation
+@enduml

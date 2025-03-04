@@ -1,0 +1,35 @@
+@startuml
+class CanvasScaler {
+    + referencePixelsPerUnit : float <<get>> <<set>>
+    + scaleFactor : float <<get>> <<set>>
+    + matchWidthOrHeight : float <<get>> <<set>>
+    + fallbackScreenDPI : float <<get>> <<set>>
+    + defaultSpriteDPI : float <<get>> <<set>>
+    + dynamicPixelsPerUnit : float <<get>> <<set>>
+}
+enum ScaleMode {
+    ConstantPixelSize,
+    ScaleWithScreenSize,
+    ConstantPhysicalSize,
+}
+enum ScreenMatchMode {
+    MatchWidthOrHeight= 0,
+    Expand= 1,
+    Shrink= 2,
+}
+enum Unit {
+    Centimeters,
+    Millimeters,
+    Inches,
+    Points,
+    Picas,
+}
+UIBehaviour <|-- CanvasScaler
+CanvasScaler --> "uiScaleMode" ScaleMode
+CanvasScaler --> "referenceResolution" Vector2
+CanvasScaler --> "screenMatchMode" ScreenMatchMode
+CanvasScaler --> "physicalUnit" Unit
+CanvasScaler +-- ScaleMode
+CanvasScaler +-- ScreenMatchMode
+CanvasScaler +-- Unit
+@enduml

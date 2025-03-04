@@ -1,0 +1,31 @@
+@startuml
+class ClipItem {
+    + ClipItem(clip:TimelineClip)
+    + start : double <<get>> <<set>>
+    + end : double <<get>>
+    + duration : double <<get>>
+    + IsCompatibleWithTrack(track:TrackAsset) : bool
+    + PushUndo(operation:string) : void
+    + supportsBlending : bool <<get>>
+    + hasLeftBlend : bool <<get>>
+    + hasRightBlend : bool <<get>>
+    + leftBlendDuration : double <<get>>
+    + rightBlendDuration : double <<get>>
+    + SetStart(time:double, affectTimeScale:bool) : void
+    + SetEnd(time:double, affectTimeScale:bool) : void
+    + Delete() : void
+    + TrimStart(time:double) : void
+    + TrimEnd(time:double) : void
+    + CloneTo(parent:TrackAsset, time:double) : ITimelineItem
+    + <<override>> ToString() : string
+    + Equals(otherClip:ClipItem) : bool
+    + <<override>> GetHashCode() : int
+    + Equals(other:ITimelineItem) : bool
+    + <<override>> Equals(obj:object) : bool
+}
+IBlendable <|-- ClipItem
+ITrimmable <|-- ClipItem
+ClipItem --> "clip" TimelineClip
+ClipItem --> "parentTrack" TrackAsset
+ClipItem --> "gui" TimelineItemGUI
+@enduml

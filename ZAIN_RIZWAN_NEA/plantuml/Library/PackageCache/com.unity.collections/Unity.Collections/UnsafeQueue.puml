@@ -1,0 +1,69 @@
+@startuml
+struct UnsafeQueueBlockHeader {
+    + m_NumItems : int
+}
+struct UnsafeQueueBlockPoolData {
+    + AllocateBlock() : UnsafeQueueBlockHeader*
+    + FreeBlock(block:UnsafeQueueBlockHeader*) : void
+}
+class UnsafeQueueBlockPool <<unsafe>> {
+}
+struct UnsafeQueueData {
+    + m_MaxItems : int
+    + m_CurrentRead : int
+    + {static} AllocateWriteBlockMT(data:UnsafeQueueData*, pool:UnsafeQueueBlockPoolData*, threadIndex:int) : UnsafeQueueBlockHeader*
+    + <<unsafe>> {static} AllocateQueue(label:AllocatorManager.AllocatorHandle, outBuf:UnsafeQueueData*) : void
+    + <<unsafe>> {static} DeallocateQueue(data:UnsafeQueueData*, pool:UnsafeQueueBlockPoolData*, allocation:AllocatorManager.AllocatorHandle) : void
+}
+struct "UnsafeQueue`1"<T> {
+    + UnsafeQueue(allocator:AllocatorManager.AllocatorHandle)
+    + <<readonly>> IsEmpty() : bool
+    + <<readonly>> Count : int <<get>>
+    + Peek() : T
+    + Enqueue(value:T) : void
+    + Dequeue() : T
+    + TryDequeue(item:T) : bool
+    + ToArray(allocator:AllocatorManager.AllocatorHandle) : NativeArray<T>
+    + Clear() : void
+    + <<readonly>> IsCreated : bool <<get>>
+    + Dispose() : void
+    + Dispose(inputDeps:JobHandle) : JobHandle
+    + AsReadOnly() : ReadOnly
+    + AsParallelWriter() : ParallelWriter
+}
+struct UnsafeQueueDispose {
+    + Dispose() : void
+}
+struct UnsafeQueueDisposeJob {
+    + Execute() : void
+}
+struct Enumerator {
+    + Dispose() : void
+    + MoveNext() : bool
+    + Reset() : void
+}
+struct ReadOnly {
+    + <<readonly>> IsCreated : bool <<get>>
+    + <<readonly>> IsEmpty() : bool
+    + <<readonly>> Count : int <<get>>
+    + <<readonly>> GetEnumerator() : Enumerator
+}
+struct ParallelWriter {
+    + Enqueue(value:T) : void
+}
+class "IEnumerator`1"<T> {
+}
+class "IEnumerable`1"<T> {
+}
+UnsafeQueueData --> "m_FirstBlock" IntPtr
+UnsafeQueueData --> "m_LastBlock" IntPtr
+INativeDisposable <|-- "UnsafeQueue`1"
+IJob <|-- UnsafeQueueDisposeJob
+UnsafeQueueDisposeJob --> "Data" UnsafeQueueDispose
+"UnsafeQueue`1" +-- Enumerator
+"IEnumerator`1" "<T>" <|-- Enumerator
+Enumerator --> "Current" T
+"UnsafeQueue`1" +-- ReadOnly
+"IEnumerable`1" "<T>" <|-- ReadOnly
+"UnsafeQueue`1" +-- ParallelWriter
+@enduml

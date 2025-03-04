@@ -1,0 +1,16 @@
+@startuml
+class SavedVariables <<static>> {
+    + <<const>> assetPath : string = "SavedVariables"
+    + <<const>> playerPrefsKey : string = "LudiqSavedVariables"
+    + {static} Load() : void
+    + {static} OnEnterEditMode() : void
+    + {static} OnExitEditMode() : void
+    + {static} SaveDeclarations(declarations:VariableDeclarations) : void
+    + {static} FetchSavedDeclarations() : void
+}
+SavedVariables --> "asset" VariablesAsset
+SavedVariables --> "initial" VariableDeclarations
+SavedVariables --> "saved" VariableDeclarations
+SavedVariables --> "merged" VariableDeclarations
+SavedVariables --> "current" VariableDeclarations
+@enduml

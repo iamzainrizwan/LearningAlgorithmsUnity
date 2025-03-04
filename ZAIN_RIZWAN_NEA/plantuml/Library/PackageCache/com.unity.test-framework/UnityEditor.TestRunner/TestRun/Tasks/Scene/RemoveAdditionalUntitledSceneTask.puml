@@ -1,0 +1,6 @@
+@startuml
+class RemoveAdditionalUntitledSceneTask {
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- RemoveAdditionalUntitledSceneTask
+@enduml

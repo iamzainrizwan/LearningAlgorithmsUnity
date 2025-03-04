@@ -1,0 +1,5 @@
+@startuml
+abstract class "StaticFunctionInvokerBase`1"<TResult> {
+}
+StaticInvokerBase <|-- "StaticFunctionInvokerBase`1"
+@enduml

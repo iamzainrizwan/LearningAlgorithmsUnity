@@ -1,0 +1,6 @@
+@startuml
+class SaveUndoIndexTask {
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- SaveUndoIndexTask
+@enduml

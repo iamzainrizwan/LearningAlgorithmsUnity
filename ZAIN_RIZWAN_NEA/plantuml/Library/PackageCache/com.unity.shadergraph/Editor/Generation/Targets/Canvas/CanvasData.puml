@@ -1,0 +1,12 @@
+@startuml
+class CanvasData {
+    + alphaClip : bool <<get>> <<set>>
+    + disableTint : bool <<get>> <<set>>
+}
+enum Version {
+    Initial,
+}
+JsonObject <|-- CanvasData
+CanvasData --> "version" Version
+CanvasData +-- Version
+@enduml

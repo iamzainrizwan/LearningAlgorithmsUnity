@@ -1,0 +1,4 @@
+@startuml
+class Light2D <<sealed>> <<partial>> {
+}
+@enduml

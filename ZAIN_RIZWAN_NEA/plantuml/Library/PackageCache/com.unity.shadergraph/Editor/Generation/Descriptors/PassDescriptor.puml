@@ -1,0 +1,22 @@
+@startuml
+struct PassDescriptor {
+    + displayName : string
+    + referenceName : string
+    + lightMode : string
+    + useInPreview : bool
+    + virtualTextureFeedback : bool
+    + analyticDerivativesEnabled : bool
+    + analyticDerivativesApplyEmulate : bool
+    + passTemplatePath : string
+    + Equals(other:PassDescriptor) : bool
+}
+PassDescriptor --> "structs" StructCollection
+PassDescriptor --> "requiredFields" FieldCollection
+PassDescriptor --> "fieldDependencies" DependencyCollection
+PassDescriptor --> "renderStates" RenderStateCollection
+PassDescriptor --> "pragmas" PragmaCollection
+PassDescriptor --> "defines" DefineCollection
+PassDescriptor --> "keywords" KeywordCollection
+PassDescriptor --> "includes" IncludeCollection
+PassDescriptor --> "additionalCommands" AdditionalCommandCollection
+@enduml

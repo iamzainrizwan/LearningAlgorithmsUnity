@@ -1,0 +1,21 @@
+@startuml
+class TimelineTreeViewGUI {
+    + showingVerticalScrollBar : bool <<get>>
+    + FrameItem(item:TreeViewItem) : void
+    + TimelineTreeViewGUI(sequencerWindow:TimelineWindow, timeline:TimelineAsset, rect:Rect)
+    + CalculateRowRects() : void
+    + Reload() : void
+    + OnGUI(rect:Rect) : void
+    + GetRowRect(row:int) : Rect
+}
+class "List`1"<T> {
+}
+TimelineTreeViewGUI --> "allClipGuis<TimelineClipGUI>" "List`1"
+TimelineTreeViewGUI --> "allTrackGuis<TimelineTrackBaseGUI>" "List`1"
+TimelineTreeViewGUI --> "contentSize" Vector2
+TimelineTreeViewGUI --> "scrollPosition" Vector2
+TimelineTreeViewGUI --> "timelineDragging" TimelineDragging
+TimelineTreeViewGUI --> "gui" ITreeViewGUI
+TimelineTreeViewGUI --> "data" ITreeViewDataSource
+TimelineTreeViewGUI --> "TimelineWindow" TimelineWindow
+@enduml

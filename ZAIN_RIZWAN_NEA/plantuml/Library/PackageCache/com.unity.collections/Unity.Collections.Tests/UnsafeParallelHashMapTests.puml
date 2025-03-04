@@ -1,0 +1,28 @@
+@startuml
+class UnsafeParallelHashMapTests {
+    + UnsafeParallelHashMap_AddJob() : void
+    + UnsafeParallelHashMap_ForEach(n:int) : void
+    + UnsafeParallelHashSet_ToArray() : void
+    + UnsafeParallelHashMap_CustomAllocatorTest() : void
+    + <<unsafe>> UnsafeParallelHashMap_BurstedCustomAllocatorTest() : void
+    + UnsafeParallelHashMap_IndexerAdd_ResizesContainer() : void
+    + UnsafeParallelHashMap_ForEach_From_Job(n:int) : void
+}
+struct UnsafeParallelHashMapAddJob {
+    + Execute() : void
+}
+struct BurstedCustomAllocatorJob {
+    + Execute() : void
+}
+struct UnsafeParallelHashMap_ForEach_Job {
+    + Num : int
+    + Execute() : void
+}
+CollectionsTestCommonBase <|-- UnsafeParallelHashMapTests
+UnsafeParallelHashMapTests +-- UnsafeParallelHashMapAddJob
+IJob <|-- UnsafeParallelHashMapAddJob
+UnsafeParallelHashMapTests +-- BurstedCustomAllocatorJob
+IJob <|-- BurstedCustomAllocatorJob
+UnsafeParallelHashMapTests +-- UnsafeParallelHashMap_ForEach_Job
+IJob <|-- UnsafeParallelHashMap_ForEach_Job
+@enduml

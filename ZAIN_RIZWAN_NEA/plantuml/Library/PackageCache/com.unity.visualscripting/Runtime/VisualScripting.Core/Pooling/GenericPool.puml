@@ -1,0 +1,6 @@
+@startuml
+class "GenericPool`1"<T> <<static>> {
+    + {static} New(constructor:Func<T>) : T
+    + {static} Free(item:T) : void
+}
+@enduml

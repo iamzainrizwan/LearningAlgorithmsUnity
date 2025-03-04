@@ -1,0 +1,5 @@
+@startuml
+class SolutionGuidGenerator <<static>> {
+    + {static} GuidForProject(projectName:string) : string
+}
+@enduml

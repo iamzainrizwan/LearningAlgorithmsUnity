@@ -1,0 +1,5 @@
+@startuml
+interface IUnitValuePort {
+}
+IUnitPort <|-- IUnitValuePort
+@enduml

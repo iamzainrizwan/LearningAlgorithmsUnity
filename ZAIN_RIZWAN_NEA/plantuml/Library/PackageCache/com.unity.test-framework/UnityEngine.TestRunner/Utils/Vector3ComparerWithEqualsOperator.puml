@@ -1,0 +1,10 @@
+@startuml
+class Vector3ComparerWithEqualsOperator {
+    + Equals(expected:Vector3, actual:Vector3) : bool
+    + GetHashCode(vec3:Vector3) : int
+}
+class "IEqualityComparer`1"<T> {
+}
+"IEqualityComparer`1" "<Vector3>" <|-- Vector3ComparerWithEqualsOperator
+Vector3ComparerWithEqualsOperator --> "Instance" Vector3ComparerWithEqualsOperator
+@enduml

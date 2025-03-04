@@ -1,0 +1,28 @@
+@startuml
+class ProbeAdjustmentColorPreferences {
+}
+class ProbeAdjustmentVolumeEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+class "CoreEditorDrawer`1"<T> {
+}
+class Styles <<static>> {
+}
+class ProbeAdjustmentVolumeUI <<static>> {
+    + {static} DrawVolumeContent(serialized:SerializedProbeAdjustmentVolume, owner:Editor) : void
+    + {static} DrawAdjustmentContent(serialized:SerializedProbeAdjustmentVolume, owner:Editor) : void
+    + {static} DrawAdditionalContent(serialized:SerializedProbeAdjustmentVolume, owner:Editor) : void
+}
+enum AdditionalProperties {
+    Adjustments= 1 << 0,
+}
+enum Expandable {
+    Volume= 1 << 0,
+    Adjustments= 1 << 1,
+}
+Editor <|-- ProbeAdjustmentVolumeEditor
+ProbeAdjustmentVolumeEditor +-- Styles
+ProbeAdjustmentVolumeEditor +-- ProbeAdjustmentVolumeUI
+ProbeAdjustmentVolumeUI +-- AdditionalProperties
+ProbeAdjustmentVolumeUI +-- Expandable
+@enduml

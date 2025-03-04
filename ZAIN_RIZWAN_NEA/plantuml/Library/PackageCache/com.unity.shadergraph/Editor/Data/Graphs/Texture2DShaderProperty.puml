@@ -1,0 +1,18 @@
+@startuml
+class Texture2DShaderProperty {
+}
+class "AbstractShaderProperty`1"<T> {
+}
+enum DefaultType {
+    White,
+    Black,
+    Grey,
+    NormalMap,
+    LinearGrey,
+    Red,
+}
+"AbstractShaderProperty`1" "<SerializableTexture>" <|-- Texture2DShaderProperty
+Texture2DShaderProperty --> "propertyType" PropertyType
+Texture2DShaderProperty --> "defaultType" DefaultType
+Texture2DShaderProperty +-- DefaultType
+@enduml

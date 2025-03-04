@@ -1,0 +1,23 @@
+@startuml
+class TextureGradient {
+    + textureSize : int <<get>>
+    + TextureGradient(baseCurve:Gradient)
+    + TextureGradient(colorKeys:GradientColorKey[], alphaKeys:GradientAlphaKey[], mode:GradientMode, colorSpace:ColorSpace, requestedTextureSize:int, precise:bool)
+    + Dispose() : void
+    + Release() : void
+    + SetDirty() : void
+    + GetTexture() : Texture2D
+    + Evaluate(time:float) : Color
+    + SetKeys(colorKeys:GradientColorKey[], alphaKeys:GradientAlphaKey[], mode:GradientMode, colorSpace:ColorSpace) : void
+}
+class TextureGradientParameter {
+    + TextureGradientParameter(value:TextureGradient, overrideState:bool)
+    + <<override>> Release() : void
+}
+class "VolumeParameter`1"<T> {
+}
+IDisposable <|-- TextureGradient
+TextureGradient o-> "mode" GradientMode
+TextureGradient o-> "colorSpace" ColorSpace
+"VolumeParameter`1" "<TextureGradient>" <|-- TextureGradientParameter
+@enduml

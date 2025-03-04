@@ -1,0 +1,14 @@
+@startuml
+class UVNode {
+    + <<const>> OutputSlotId : int = 0
+    + <<override>> hasPreview : bool <<get>>
+    + UVNode()
+    + <<override>> UpdateNodeAfterDeserialization() : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + RequiresMeshUV(channel:UVChannel, stageCapability:ShaderStageCapability) : bool
+}
+AbstractMaterialNode <|-- UVNode
+IGeneratesBodyCode <|-- UVNode
+IMayRequireMeshUV <|-- UVNode
+UVNode --> "uvChannel" UVChannel
+@enduml

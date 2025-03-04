@@ -1,0 +1,19 @@
+@startuml
+struct PostProcessParams {
+    + {static} Create() : PostProcessParams
+}
+struct PostProcessPasses {
+    + isCreated : bool <<get>>
+    + PostProcessPasses(rendererPostProcessData:PostProcessData, postProcessParams:PostProcessParams)
+    + Recreate(data:PostProcessData, ppParams:PostProcessParams) : void
+    + Dispose() : void
+}
+PostProcessParams --> "blitMaterial" Material
+PostProcessParams --> "requestColorFormat" GraphicsFormat
+IDisposable <|-- PostProcessPasses
+PostProcessPasses --> "colorGradingLutPass" ColorGradingLutPass
+PostProcessPasses --> "postProcessPass" PostProcessPass
+PostProcessPasses --> "finalPostProcessPass" PostProcessPass
+PostProcessPasses --> "afterPostProcessColor" RTHandle
+PostProcessPasses --> "colorGradingLut" RTHandle
+@enduml

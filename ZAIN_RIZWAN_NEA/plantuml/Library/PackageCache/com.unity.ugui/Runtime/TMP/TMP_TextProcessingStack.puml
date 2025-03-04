@@ -1,0 +1,35 @@
+@startuml
+struct TMP_FontStyleStack {
+    + bold : byte
+    + italic : byte
+    + underline : byte
+    + strikethrough : byte
+    + highlight : byte
+    + superscript : byte
+    + subscript : byte
+    + uppercase : byte
+    + lowercase : byte
+    + smallcaps : byte
+    + Clear() : void
+    + Add(style:FontStyles) : byte
+    + Remove(style:FontStyles) : byte
+}
+struct "TMP_TextProcessingStack`1"<T> {
+    + index : int
+    + TMP_TextProcessingStack(stack:T[])
+    + TMP_TextProcessingStack(capacity:int)
+    + TMP_TextProcessingStack(capacity:int, rolloverSize:int)
+    + Count : int <<get>>
+    + current : T <<get>>
+    + rolloverSize : int <<get>> <<set>>
+    + Clear() : void
+    + SetDefault(item:T) : void
+    + Add(item:T) : void
+    + Remove() : T
+    + Push(item:T) : void
+    + Pop() : T
+    + Peek() : T
+    + CurrentItem() : T
+    + PreviousItem() : T
+}
+@enduml

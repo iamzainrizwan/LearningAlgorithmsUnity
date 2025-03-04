@@ -1,0 +1,8 @@
+@startuml
+class "StaticActionInvoker`1"<TParam0> <<sealed>> {
+    + StaticActionInvoker(methodInfo:MethodInfo)
+    + <<override>> Invoke(target:object, args:object[]) : object
+    + <<override>> Invoke(target:object, arg0:object) : object
+}
+StaticActionInvokerBase <|-- "StaticActionInvoker`1"
+@enduml

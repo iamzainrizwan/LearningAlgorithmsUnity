@@ -1,0 +1,19 @@
+@startuml
+class JsonObject {
+    + <<virtual>> latestVersion : int <<get>> = 0
+    + <<virtual>> sgVersion : int <<get>> <<protected set>>
+    + JsonObject()
+    + {static} <<readonly>> emptyObjectId : string
+    + objectId : string <<get>>
+    + objectIdIsEmpty : bool <<get>>
+    + <<virtual>> CastTo() : T
+    + <<virtual>> Serialize() : string
+    + <<virtual>> Deserailize(typeInfo:string, jsonData:string) : void
+    + <<virtual>> OnBeforeSerialize() : void
+    + <<virtual>> OnBeforeDeserialize() : void
+    + <<virtual>> OnAfterDeserialize() : void
+    + <<virtual>> OnAfterDeserialize(json:string) : void
+    + <<virtual>> OnAfterMultiDeserialize(json:string) : void
+}
+ISerializationCallbackReceiver <|-- JsonObject
+@enduml

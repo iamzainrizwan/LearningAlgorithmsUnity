@@ -1,0 +1,17 @@
+@startuml
+class VolumeProfileOverridesAnalytic {
+    + callbackOrder : int <<get>>
+}
+class Analytic {
+    + Analytic(asset_guid:string, type:string, p:string[])
+    + TryGatherData(data:IAnalytic.IData, error:Exception) : bool
+}
+struct Data {
+    + volume_profile_asset_guid : string
+    + component_type : string
+}
+IPostprocessBuildWithReport <|-- VolumeProfileOverridesAnalytic
+VolumeProfileOverridesAnalytic +-- Analytic
+IAnalytic <|-- Analytic
+Analytic +-- Data
+@enduml

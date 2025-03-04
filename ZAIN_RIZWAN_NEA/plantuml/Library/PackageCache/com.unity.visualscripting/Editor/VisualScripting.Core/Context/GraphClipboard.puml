@@ -1,0 +1,18 @@
+@startuml
+class GraphClipboard <<static>> {
+    + {static} canCopySelection : bool <<get>>
+    + {static} canPaste : bool <<get>>
+    + {static} canPasteOutside : bool <<get>>
+    + {static} canDuplicateSelection : bool <<get>>
+    + {static} CopyElement(element:IGraphElement) : void
+    + {static} CopySelection() : void
+    + {static} Paste(position:Vector2?) : void
+    + {static} CanPasteInside(element:IGraphElement) : bool
+    + {static} PasteInside(element:IGraphElement) : void
+    + {static} PasteOutside(reposition:bool, position:Vector2?) : void
+    + {static} CutSelection() : void
+    + {static} DuplicateSelection() : void
+}
+GraphClipboard --> "singleClipboard" Clipboard
+GraphClipboard --> "groupClipboard" Clipboard
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+enum ConstantType {
+    PI,
+    TAU,
+    PHI,
+    E,
+    SQRT2,
+}
+class ConstantNode {
+    + ConstantNode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + <<override>> GetVariableNameForSlot(slotId:int) : string
+}
+AbstractMaterialNode <|-- ConstantNode
+IGeneratesBodyCode <|-- ConstantNode
+ConstantNode --> "constant" ConstantType
+@enduml

@@ -1,0 +1,37 @@
+@startuml
+struct "UnmanagedArray`1"<T> {
+    + Length : int <<get>>
+    + UnmanagedArray(length:int, allocator:AllocatorManager.AllocatorHandle)
+    + Dispose() : void
+    + <<unsafe>> GetUnsafePointer() : T*
+}
+struct RewindableAllocator {
+    + Initialize(initialSizeInBytes:int, enableBlockFree:bool) : void
+    + EnableBlockFree : bool <<get>> <<set>>
+    + BlocksAllocated : int <<get>>
+    + InitialSizeInBytes : int <<get>>
+    + Rewind() : void
+    + Dispose() : void
+    + Try(block:AllocatorManager.Block) : int
+    + IsCustomAllocator : bool <<get>>
+    + IsAutoDispose : bool <<get>>
+    + AllocateNativeArray(length:int) : NativeArray<T>
+    + AllocateNativeList(capacity:int) : NativeList<T>
+}
+struct Union {
+}
+struct MemoryBlock {
+    + <<const>> kMaximumAlignment : int = 16384
+    + m_bytes : long
+    + MemoryBlock(bytes:long)
+    + Rewind() : void
+    + Dispose() : void
+    + Contains(ptr:IntPtr) : bool
+}
+IDisposable <|-- "UnmanagedArray`1"
+RewindableAllocator --> "ToAllocator" Allocator
+RewindableAllocator +-- Union
+RewindableAllocator +-- MemoryBlock
+IDisposable <|-- MemoryBlock
+MemoryBlock --> "m_union" Union
+@enduml

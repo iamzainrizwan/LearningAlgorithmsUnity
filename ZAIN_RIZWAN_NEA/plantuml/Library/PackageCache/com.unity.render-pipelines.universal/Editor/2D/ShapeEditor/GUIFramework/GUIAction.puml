@@ -1,0 +1,18 @@
+@startuml
+abstract class GUIAction {
+    + ID : int <<get>>
+    + OnGUI(guiState:IGUIState) : void
+    + IsEnabled(guiState:IGUIState) : bool
+    + IsRepaintEnabled(guiState:IGUIState) : bool
+    + PreRepaint(guiState:IGUIState) : void
+}
+class "Func`3"<T1,T2,T3> {
+}
+class "Action`2"<T1,T2> {
+}
+GUIAction --> "enable<IGUIState,GUIAction,bool>" "Func`3"
+GUIAction --> "enableRepaint<IGUIState,GUIAction,bool>" "Func`3"
+GUIAction --> "repaintOnMouseMove<IGUIState,GUIAction,bool>" "Func`3"
+GUIAction --> "onPreRepaint<IGUIState,GUIAction>" "Action`2"
+GUIAction --> "onRepaint<IGUIState,GUIAction>" "Action`2"
+@enduml

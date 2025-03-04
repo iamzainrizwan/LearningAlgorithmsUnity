@@ -1,0 +1,5 @@
+@startuml
+class TestCommandBuilder <<static>> {
+    + {static} BuildTestCommand(test:TestMethod, filter:ITestFilter) : TestCommand
+}
+@enduml

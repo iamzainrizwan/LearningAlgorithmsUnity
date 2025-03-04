@@ -1,0 +1,5 @@
+@startuml
+class FlowDragAndDropUtility <<static>> {
+    + {static} AcceptsScript(graph:IGraph) : bool
+}
+@enduml

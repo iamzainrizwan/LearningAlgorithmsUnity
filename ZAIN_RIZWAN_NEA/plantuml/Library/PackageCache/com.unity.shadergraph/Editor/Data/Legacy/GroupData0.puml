@@ -1,0 +1,7 @@
+@startuml
+class GroupData0 {
+    + m_GuidSerialized : string
+    + m_Title : string
+}
+GroupData0 --> "m_Position" Vector2
+@enduml

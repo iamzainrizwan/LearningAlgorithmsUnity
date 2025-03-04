@@ -1,0 +1,23 @@
+@startuml
+struct Navigation {
+    + wrapAround : bool <<get>> <<set>>
+    + Equals(other:Navigation) : bool
+}
+class "IEquatable`1"<T> {
+}
+enum Mode {
+    None= 0,
+    Horizontal= 1,
+    Vertical= 2,
+    Automatic= 3,
+    Explicit= 4,
+}
+"IEquatable`1" "<Navigation>" <|-- Navigation
+Navigation --> "mode" Mode
+Navigation --> "selectOnUp" Selectable
+Navigation --> "selectOnDown" Selectable
+Navigation --> "selectOnLeft" Selectable
+Navigation --> "selectOnRight" Selectable
+Navigation --> "defaultNavigation" Navigation
+Navigation +-- Mode
+@enduml

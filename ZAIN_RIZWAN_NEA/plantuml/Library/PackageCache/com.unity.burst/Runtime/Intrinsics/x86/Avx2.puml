@@ -1,0 +1,203 @@
+@startuml
+class X86 <<unsafe>> <<static>> <<partial>> {
+}
+class Avx2 <<static>> {
+    + {static} IsAvx2Supported : bool <<get>>
+    + {static} mm256_movemask_epi8(a:v256) : int
+    + {static} mm256_extract_epi8(a:v256, index:int) : int
+    + {static} mm256_extract_epi16(a:v256, index:int) : int
+    + {static} mm256_cvtsd_f64(a:v256) : double
+    + {static} mm256_cvtsi256_si32(a:v256) : int
+    + {static} mm256_cvtsi256_si64(a:v256) : long
+    + {static} mm256_cmpeq_epi8(a:v256, b:v256) : v256
+    + {static} mm256_cmpeq_epi16(a:v256, b:v256) : v256
+    + {static} mm256_cmpeq_epi32(a:v256, b:v256) : v256
+    + {static} mm256_cmpeq_epi64(a:v256, b:v256) : v256
+    + {static} mm256_cmpgt_epi8(a:v256, b:v256) : v256
+    + {static} mm256_cmpgt_epi16(a:v256, b:v256) : v256
+    + {static} mm256_cmpgt_epi32(a:v256, b:v256) : v256
+    + {static} mm256_cmpgt_epi64(a:v256, b:v256) : v256
+    + {static} mm256_max_epi8(a:v256, b:v256) : v256
+    + {static} mm256_max_epi16(a:v256, b:v256) : v256
+    + {static} mm256_max_epi32(a:v256, b:v256) : v256
+    + {static} mm256_max_epu8(a:v256, b:v256) : v256
+    + {static} mm256_max_epu16(a:v256, b:v256) : v256
+    + {static} mm256_max_epu32(a:v256, b:v256) : v256
+    + {static} mm256_min_epi8(a:v256, b:v256) : v256
+    + {static} mm256_min_epi16(a:v256, b:v256) : v256
+    + {static} mm256_min_epi32(a:v256, b:v256) : v256
+    + {static} mm256_min_epu8(a:v256, b:v256) : v256
+    + {static} mm256_min_epu16(a:v256, b:v256) : v256
+    + {static} mm256_min_epu32(a:v256, b:v256) : v256
+    + {static} mm256_and_si256(a:v256, b:v256) : v256
+    + {static} mm256_andnot_si256(a:v256, b:v256) : v256
+    + {static} mm256_or_si256(a:v256, b:v256) : v256
+    + {static} mm256_xor_si256(a:v256, b:v256) : v256
+    + {static} mm256_abs_epi8(a:v256) : v256
+    + {static} mm256_abs_epi16(a:v256) : v256
+    + {static} mm256_abs_epi32(a:v256) : v256
+    + {static} mm256_add_epi8(a:v256, b:v256) : v256
+    + {static} mm256_add_epi16(a:v256, b:v256) : v256
+    + {static} mm256_add_epi32(a:v256, b:v256) : v256
+    + {static} mm256_add_epi64(a:v256, b:v256) : v256
+    + {static} mm256_adds_epi8(a:v256, b:v256) : v256
+    + {static} mm256_adds_epi16(a:v256, b:v256) : v256
+    + {static} mm256_adds_epu8(a:v256, b:v256) : v256
+    + {static} mm256_adds_epu16(a:v256, b:v256) : v256
+    + {static} mm256_sub_epi8(a:v256, b:v256) : v256
+    + {static} mm256_sub_epi16(a:v256, b:v256) : v256
+    + {static} mm256_sub_epi32(a:v256, b:v256) : v256
+    + {static} mm256_sub_epi64(a:v256, b:v256) : v256
+    + {static} mm256_subs_epi8(a:v256, b:v256) : v256
+    + {static} mm256_subs_epi16(a:v256, b:v256) : v256
+    + {static} mm256_subs_epu8(a:v256, b:v256) : v256
+    + {static} mm256_subs_epu16(a:v256, b:v256) : v256
+    + {static} mm256_avg_epu8(a:v256, b:v256) : v256
+    + {static} mm256_avg_epu16(a:v256, b:v256) : v256
+    + {static} mm256_hadd_epi16(a:v256, b:v256) : v256
+    + {static} mm256_hadd_epi32(a:v256, b:v256) : v256
+    + {static} mm256_hadds_epi16(a:v256, b:v256) : v256
+    + {static} mm256_hsub_epi16(a:v256, b:v256) : v256
+    + {static} mm256_hsub_epi32(a:v256, b:v256) : v256
+    + {static} mm256_hsubs_epi16(a:v256, b:v256) : v256
+    + {static} mm256_madd_epi16(a:v256, b:v256) : v256
+    + {static} mm256_maddubs_epi16(a:v256, b:v256) : v256
+    + {static} mm256_mulhi_epi16(a:v256, b:v256) : v256
+    + {static} mm256_mulhi_epu16(a:v256, b:v256) : v256
+    + {static} mm256_mullo_epi16(a:v256, b:v256) : v256
+    + {static} mm256_mullo_epi32(a:v256, b:v256) : v256
+    + {static} mm256_mul_epu32(a:v256, b:v256) : v256
+    + {static} mm256_mul_epi32(a:v256, b:v256) : v256
+    + {static} mm256_sign_epi8(a:v256, b:v256) : v256
+    + {static} mm256_sign_epi16(a:v256, b:v256) : v256
+    + {static} mm256_sign_epi32(a:v256, b:v256) : v256
+    + {static} mm256_mulhrs_epi16(a:v256, b:v256) : v256
+    + {static} mm256_sad_epu8(a:v256, b:v256) : v256
+    + {static} mm256_mpsadbw_epu8(a:v256, b:v256, imm8:int) : v256
+    + {static} mm256_slli_si256(a:v256, imm8:int) : v256
+    + {static} mm256_bslli_epi128(a:v256, imm8:int) : v256
+    + {static} mm256_srli_si256(a:v256, imm8:int) : v256
+    + {static} mm256_bsrli_epi128(a:v256, imm8:int) : v256
+    + {static} mm256_sll_epi16(a:v256, count:v128) : v256
+    + {static} mm256_sll_epi32(a:v256, count:v128) : v256
+    + {static} mm256_sll_epi64(a:v256, count:v128) : v256
+    + {static} mm256_slli_epi16(a:v256, imm8:int) : v256
+    + {static} mm256_slli_epi32(a:v256, imm8:int) : v256
+    + {static} mm256_slli_epi64(a:v256, imm8:int) : v256
+    + {static} mm256_sllv_epi32(a:v256, count:v256) : v256
+    + {static} mm256_sllv_epi64(a:v256, count:v256) : v256
+    + {static} sllv_epi32(a:v128, count:v128) : v128
+    + {static} sllv_epi64(a:v128, count:v128) : v128
+    + {static} mm256_sra_epi16(a:v256, count:v128) : v256
+    + {static} mm256_sra_epi32(a:v256, count:v128) : v256
+    + {static} mm256_srai_epi16(a:v256, imm8:int) : v256
+    + {static} mm256_srai_epi32(a:v256, imm8:int) : v256
+    + {static} mm256_srav_epi32(a:v256, count:v256) : v256
+    + {static} srav_epi32(a:v128, count:v128) : v128
+    + {static} mm256_srl_epi16(a:v256, count:v128) : v256
+    + {static} mm256_srl_epi32(a:v256, count:v128) : v256
+    + {static} mm256_srl_epi64(a:v256, count:v128) : v256
+    + {static} mm256_srli_epi16(a:v256, imm8:int) : v256
+    + {static} mm256_srli_epi32(a:v256, imm8:int) : v256
+    + {static} mm256_srli_epi64(a:v256, imm8:int) : v256
+    + {static} mm256_srlv_epi32(a:v256, count:v256) : v256
+    + {static} mm256_srlv_epi64(a:v256, count:v256) : v256
+    + {static} srlv_epi32(a:v128, count:v128) : v128
+    + {static} srlv_epi64(a:v128, count:v128) : v128
+    + {static} blend_epi32(a:v128, b:v128, imm8:int) : v128
+    + {static} mm256_blend_epi32(a:v256, b:v256, imm8:int) : v256
+    + {static} mm256_alignr_epi8(a:v256, b:v256, imm8:int) : v256
+    + {static} mm256_blendv_epi8(a:v256, b:v256, mask:v256) : v256
+    + {static} mm256_blend_epi16(a:v256, b:v256, imm8:int) : v256
+    + {static} mm256_packs_epi16(a:v256, b:v256) : v256
+    + {static} mm256_packs_epi32(a:v256, b:v256) : v256
+    + {static} mm256_packus_epi16(a:v256, b:v256) : v256
+    + {static} mm256_packus_epi32(a:v256, b:v256) : v256
+    + {static} mm256_unpackhi_epi8(a:v256, b:v256) : v256
+    + {static} mm256_unpackhi_epi16(a:v256, b:v256) : v256
+    + {static} mm256_unpackhi_epi32(a:v256, b:v256) : v256
+    + {static} mm256_unpackhi_epi64(a:v256, b:v256) : v256
+    + {static} mm256_unpacklo_epi8(a:v256, b:v256) : v256
+    + {static} mm256_unpacklo_epi16(a:v256, b:v256) : v256
+    + {static} mm256_unpacklo_epi32(a:v256, b:v256) : v256
+    + {static} mm256_unpacklo_epi64(a:v256, b:v256) : v256
+    + {static} mm256_shuffle_epi8(a:v256, b:v256) : v256
+    + {static} mm256_shuffle_epi32(a:v256, imm8:int) : v256
+    + {static} mm256_shufflehi_epi16(a:v256, imm8:int) : v256
+    + {static} mm256_shufflelo_epi16(a:v256, imm8:int) : v256
+    + {static} mm256_extracti128_si256(a:v256, imm8:int) : v128
+    + {static} mm256_inserti128_si256(a:v256, b:v128, imm8:int) : v256
+    + {static} broadcastss_ps(a:v128) : v128
+    + {static} mm256_broadcastss_ps(a:v128) : v256
+    + {static} broadcastsd_pd(a:v128) : v128
+    + {static} mm256_broadcastsd_pd(a:v128) : v256
+    + {static} broadcastb_epi8(a:v128) : v128
+    + {static} broadcastw_epi16(a:v128) : v128
+    + {static} broadcastd_epi32(a:v128) : v128
+    + {static} broadcastq_epi64(a:v128) : v128
+    + {static} mm256_broadcastb_epi8(a:v128) : v256
+    + {static} mm256_broadcastw_epi16(a:v128) : v256
+    + {static} mm256_broadcastd_epi32(a:v128) : v256
+    + {static} mm256_broadcastq_epi64(a:v128) : v256
+    + {static} mm256_broadcastsi128_si256(a:v128) : v256
+    + {static} mm256_cvtepi8_epi16(a:v128) : v256
+    + {static} mm256_cvtepi8_epi32(a:v128) : v256
+    + {static} mm256_cvtepi8_epi64(a:v128) : v256
+    + {static} mm256_cvtepi16_epi32(a:v128) : v256
+    + {static} mm256_cvtepi16_epi64(a:v128) : v256
+    + {static} mm256_cvtepi32_epi64(a:v128) : v256
+    + {static} mm256_cvtepu8_epi16(a:v128) : v256
+    + {static} mm256_cvtepu8_epi32(a:v128) : v256
+    + {static} mm256_cvtepu8_epi64(a:v128) : v256
+    + {static} mm256_cvtepu16_epi32(a:v128) : v256
+    + {static} mm256_cvtepu16_epi64(a:v128) : v256
+    + {static} mm256_cvtepu32_epi64(a:v128) : v256
+    + {static} maskload_epi32(mem_addr:void*, mask:v128) : v128
+    + {static} maskload_epi64(mem_addr:void*, mask:v128) : v128
+    + {static} maskstore_epi32(mem_addr:void*, mask:v128, a:v128) : void
+    + {static} maskstore_epi64(mem_addr:void*, mask:v128, a:v128) : void
+    + {static} mm256_maskload_epi32(mem_addr:void*, mask:v256) : v256
+    + {static} mm256_maskload_epi64(mem_addr:void*, mask:v256) : v256
+    + {static} mm256_maskstore_epi32(mem_addr:void*, mask:v256, a:v256) : void
+    + {static} mm256_maskstore_epi64(mem_addr:void*, mask:v256, a:v256) : void
+    + {static} mm256_permutevar8x32_epi32(a:v256, idx:v256) : v256
+    + {static} mm256_permutevar8x32_ps(a:v256, idx:v256) : v256
+    + {static} mm256_permute4x64_epi64(a:v256, imm8:int) : v256
+    + {static} mm256_permute4x64_pd(a:v256, imm8:int) : v256
+    + {static} mm256_permute2x128_si256(a:v256, b:v256, imm8:int) : v256
+    + {static} mm256_stream_load_si256(mem_addr:void*) : v256
+    + {static} mm256_i32gather_epi32(base_addr:void*, vindex:v256, scale:int) : v256
+    + {static} mm256_i32gather_pd(base_addr:void*, vindex:v128, scale:int) : v256
+    + {static} mm256_i32gather_ps(base_addr:void*, vindex:v256, scale:int) : v256
+    + {static} mm256_i64gather_pd(base_addr:void*, vindex:v256, scale:int) : v256
+    + {static} mm256_i64gather_ps(base_addr:void*, vindex:v256, scale:int) : v128
+    + {static} i32gather_pd(base_addr:void*, vindex:v128, scale:int) : v128
+    + {static} i32gather_ps(base_addr:void*, vindex:v128, scale:int) : v128
+    + {static} i64gather_pd(base_addr:void*, vindex:v128, scale:int) : v128
+    + {static} i64gather_ps(base_addr:void*, vindex:v128, scale:int) : v128
+    + {static} mm256_i32gather_epi64(base_addr:void*, vindex:v128, scale:int) : v256
+    + {static} mm256_i64gather_epi32(base_addr:void*, vindex:v256, scale:int) : v128
+    + {static} mm256_i64gather_epi64(base_addr:void*, vindex:v256, scale:int) : v256
+    + {static} i32gather_epi32(base_addr:void*, vindex:v128, scale:int) : v128
+    + {static} i32gather_epi64(base_addr:void*, vindex:v128, scale:int) : v128
+    + {static} i64gather_epi32(base_addr:void*, vindex:v128, scale:int) : v128
+    + {static} i64gather_epi64(base_addr:void*, vindex:v128, scale:int) : v128
+    + {static} mm256_mask_i32gather_pd(src:v256, base_addr:void*, vindex:v128, mask:v256, scale:int) : v256
+    + {static} mm256_mask_i32gather_ps(src:v256, base_addr:void*, vindex:v256, mask:v256, scale:int) : v256
+    + {static} mm256_mask_i64gather_pd(src:v256, base_addr:void*, vindex:v256, mask:v256, scale:int) : v256
+    + {static} mm256_mask_i64gather_ps(src:v128, base_addr:void*, vindex:v256, mask:v128, scale:int) : v128
+    + {static} mm256_mask_i32gather_epi32(src:v256, base_addr:void*, vindex:v256, mask:v256, scale:int) : v256
+    + {static} mm256_mask_i32gather_epi64(src:v256, base_addr:void*, vindex:v128, mask:v256, scale:int) : v256
+    + {static} mm256_mask_i64gather_epi64(src:v256, base_addr:void*, vindex:v256, mask:v256, scale:int) : v256
+    + {static} mm256_mask_i64gather_epi32(src:v128, base_addr:void*, vindex:v256, mask:v128, scale:int) : v128
+    + {static} mask_i32gather_pd(src:v128, base_addr:void*, vindex:v128, mask:v128, scale:int) : v128
+    + {static} mask_i32gather_ps(src:v128, base_addr:void*, vindex:v128, mask:v128, scale:int) : v128
+    + {static} mask_i64gather_pd(src:v128, base_addr:void*, vindex:v128, mask:v128, scale:int) : v128
+    + {static} mask_i64gather_ps(src:v128, base_addr:void*, vindex:v128, mask:v128, scale:int) : v128
+    + {static} mask_i32gather_epi32(src:v128, base_addr:void*, vindex:v128, mask:v128, scale:int) : v128
+    + {static} mask_i32gather_epi64(src:v128, base_addr:void*, vindex:v128, mask:v128, scale:int) : v128
+    + {static} mask_i64gather_epi32(src:v128, base_addr:void*, vindex:v128, mask:v128, scale:int) : v128
+    + {static} mask_i64gather_epi64(src:v128, base_addr:void*, vindex:v128, mask:v128, scale:int) : v128
+}
+X86 +-- Avx2
+@enduml

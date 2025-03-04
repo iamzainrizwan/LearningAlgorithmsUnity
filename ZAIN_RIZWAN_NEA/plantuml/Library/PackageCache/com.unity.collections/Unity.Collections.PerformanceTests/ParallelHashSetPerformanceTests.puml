@@ -1,0 +1,140 @@
+@startuml
+class ParallelHashSetUtil <<static>> {
+    {static} + AllocInt(container:NativeParallelHashSet<int>, capacity:int, addValues:bool) : void
+    {static} + AllocInt(containerA:NativeParallelHashSet<int>, containerB:NativeParallelHashSet<int>, capacity:int, addValues:bool) : void
+    {static} + AllocInt(container:UnsafeParallelHashSet<int>, capacity:int, addValues:bool) : void
+    {static} + AllocInt(containerA:UnsafeParallelHashSet<int>, containerB:UnsafeParallelHashSet<int>, capacity:int, addValues:bool) : void
+    {static} + AllocBclContainer(capacity:int, addValues:bool) : object
+    {static} + AllocBclContainerTuple(capacity:int, addValues:bool) : object
+    {static} + CreateRandomKeys(capacity:int, keys:UnsafeList<int>) : void
+    {static} + SplitForWorkers(count:int, worker:int, workers:int, startInclusive:int, endExclusive:int) : void
+}
+class "FakeConcurrentHashSet`1"<T> {
+    + Add(item:T) : bool
+    + Clear() : void
+    + Contains(item:T) : bool
+    + Remove(item:T) : bool
+    + Count : int <<get>>
+    + CopyTo(array:T[]) : void
+    + GetEnumerator() : System.Collections.Generic.HashSet<T>.Enumerator
+    + UnionWith(other:FakeConcurrentHashSet<T>) : void
+    + IntersectWith(other:FakeConcurrentHashSet<T>) : void
+    + ExceptWith(other:FakeConcurrentHashSet<T>) : void
+    + Dispose() : void
+}
+struct ParallelHashSetIsEmpty100k {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(worker:int, threadIndex:int) : void
+    + MeasureUnsafeContainer(worker:int, threadIndex:int) : void
+    + MeasureBclContainer(container:object, worker:int) : void
+}
+struct ParallelHashSetCount100k {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(worker:int, threadIndex:int) : void
+    + MeasureUnsafeContainer(worker:int, threadIndex:int) : void
+    + MeasureBclContainer(container:object, worker:int) : void
+}
+struct ParallelHashSetToNativeArray {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(worker:int, threadIndex:int) : void
+    + MeasureUnsafeContainer(worker:int, threadIndex:int) : void
+    + MeasureBclContainer(container:object, worker:int) : void
+}
+struct ParallelHashSetInsert {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(worker:int, threadIndex:int) : void
+    + MeasureUnsafeContainer(worker:int, threadIndex:int) : void
+    + MeasureBclContainer(container:object, worker:int) : void
+}
+struct ParallelHashSetAddGrow {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(_:int, __:int) : void
+    + MeasureUnsafeContainer(_:int, __:int) : void
+    + MeasureBclContainer(container:object, _:int) : void
+}
+struct ParallelHashSetContains {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(worker:int, threadIndex:int) : void
+    + MeasureUnsafeContainer(worker:int, threadIndex:int) : void
+    + MeasureBclContainer(container:object, worker:int) : void
+}
+struct ParallelHashSetRemove {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(worker:int, threadIndex:int) : void
+    + MeasureUnsafeContainer(worker:int, threadIndex:int) : void
+    + MeasureBclContainer(container:object, worker:int) : void
+}
+struct ParallelHashSetForEach {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(_:int, __:int) : void
+    + MeasureUnsafeContainer(_:int, __:int) : void
+    + MeasureBclContainer(container:object, _:int) : void
+}
+struct ParallelHashSetUnionWith {
+    + total : int
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(_:int, __:int) : void
+    + MeasureUnsafeContainer(_:int, __:int) : void
+    + MeasureBclContainer(container:object, _:int) : void
+}
+struct ParallelHashSetIntersectWith {
+    + total : int
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(_:int, __:int) : void
+    + MeasureUnsafeContainer(_:int, __:int) : void
+    + MeasureBclContainer(container:object, _:int) : void
+}
+struct ParallelHashSetExceptWith {
+    + total : int
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(_:int, __:int) : void
+    + MeasureUnsafeContainer(_:int, __:int) : void
+    + MeasureBclContainer(container:object, _:int) : void
+}
+class ParallelHashSet {
+    + <<unsafe>> IsEmpty_x_100k(workers:int, capacity:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Count_x_100k(workers:int, capacity:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> ToNativeArray(workers:int, capacity:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Insert(workers:int, insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> AddGrow(workers:int, capacity:int, growTo:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Contains(workers:int, insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Remove(workers:int, insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Foreach(workers:int, insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> UnionWith(workers:int, insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> IntersectWith(workers:int, insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> ExceptWith(workers:int, insertions:int, type:BenchmarkContainerType) : void
+}
+IBenchmarkContainerParallel <|-- ParallelHashSetIsEmpty100k
+IBenchmarkContainerParallel <|-- ParallelHashSetCount100k
+IBenchmarkContainerParallel <|-- ParallelHashSetToNativeArray
+IBenchmarkContainerParallel <|-- ParallelHashSetInsert
+IBenchmarkContainerParallel <|-- ParallelHashSetAddGrow
+IBenchmarkContainerParallel <|-- ParallelHashSetContains
+IBenchmarkContainerParallel <|-- ParallelHashSetRemove
+IBenchmarkContainerParallel <|-- ParallelHashSetForEach
+IBenchmarkContainerParallel <|-- ParallelHashSetUnionWith
+IBenchmarkContainerParallel <|-- ParallelHashSetIntersectWith
+IBenchmarkContainerParallel <|-- ParallelHashSetExceptWith
+@enduml

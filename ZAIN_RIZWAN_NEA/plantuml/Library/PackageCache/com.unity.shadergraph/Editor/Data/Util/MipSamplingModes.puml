@@ -1,0 +1,36 @@
+@startuml
+enum Texture2DMipSamplingMode {
+    Standard,
+    LOD,
+    Gradient,
+    Bias,
+}
+enum Texture3DMipSamplingMode {
+    Standard,
+    LOD,
+}
+struct Mip2DSamplingInputs {
+    + biasInput : int
+    + lodInput : int
+    + ddxInput : int
+    + ddyInput : int
+    + {static} NewDefault() : Mip2DSamplingInputs
+}
+struct Mip3DSamplingInputs {
+    + lodInput : int
+    + {static} NewDefault() : Mip3DSamplingInputs
+}
+class MipSamplingModesUtils <<static>> {
+    + {static} Get2DTextureSamplingMacro(mode:Texture2DMipSamplingMode, usePlatformMacros:bool, isArray:bool) : string
+    + {static} Get3DTextureSamplingMacro(mode:Texture3DMipSamplingMode, usePlatformMacros:bool) : string
+    + {static} CreateMip2DSamplingInputs(node:AbstractMaterialNode, mode:Texture2DMipSamplingMode, previousInputs:Mip2DSamplingInputs, biasInputId:int, lodInputId:int, ddxInputId:int, ddyInputId:int) : Mip2DSamplingInputs
+    + {static} CreateMip3DSamplingInputs(node:AbstractMaterialNode, mode:Texture3DMipSamplingMode, previousInputs:Mip3DSamplingInputs, lodInputId:int) : Mip3DSamplingInputs
+    + {static} GetSamplerMipArgs(node:AbstractMaterialNode, mode:Texture2DMipSamplingMode, inputs:Mip2DSamplingInputs, generationMode:GenerationMode) : string
+    + {static} GetSamplerMipArgs(node:AbstractMaterialNode, mode:Texture3DMipSamplingMode, inputs:Mip3DSamplingInputs, generationMode:GenerationMode) : string
+}
+Mip2DSamplingInputs --> "bias" MaterialSlot
+Mip2DSamplingInputs --> "lod" MaterialSlot
+Mip2DSamplingInputs --> "ddx" MaterialSlot
+Mip2DSamplingInputs --> "ddy" MaterialSlot
+Mip3DSamplingInputs --> "lod" MaterialSlot
+@enduml

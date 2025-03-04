@@ -1,0 +1,10 @@
+@startuml
+interface "IGraphElementCollection`1"<T> {
+}
+class "IKeyedCollection`2"<T1,T2> {
+}
+class "INotifyCollectionChanged`1"<T> {
+}
+"IKeyedCollection`2" "<Guid,T>" <|-- "IGraphElementCollection`1"
+"INotifyCollectionChanged`1" "<T>" <|-- "IGraphElementCollection`1"
+@enduml

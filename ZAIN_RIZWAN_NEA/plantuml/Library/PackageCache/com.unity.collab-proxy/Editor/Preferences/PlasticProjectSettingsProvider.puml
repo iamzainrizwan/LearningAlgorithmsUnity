@@ -1,0 +1,10 @@
+@startuml
+class PlasticProjectSettingsProvider {
+    + PlasticProjectSettingsProvider(path:string, scope:SettingsScope)
+    + {static} CreateSettingsProvider() : SettingsProvider
+    + <<override>> OnActivate(searchContext:string, rootElement:VisualElement) : void
+    + <<override>> OnDeactivate() : void
+    + <<override>> OnGUI(searchContext:string) : void
+}
+SettingsProvider <|-- PlasticProjectSettingsProvider
+@enduml

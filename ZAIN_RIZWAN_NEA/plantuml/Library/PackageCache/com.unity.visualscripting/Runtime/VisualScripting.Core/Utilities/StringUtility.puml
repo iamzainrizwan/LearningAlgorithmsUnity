@@ -1,0 +1,41 @@
+@startuml
+class StringUtility <<static>> {
+    + {static} IsNullOrWhiteSpace(s:string) : bool
+    + {static} FallbackEmpty(s:string, fallback:string) : string
+    + {static} FallbackWhitespace(s:string, fallback:string) : string
+    + {static} AppendLineFormat(sb:StringBuilder, format:string, args:object[]) : void
+    + {static} ToSeparatedString(enumerable:IEnumerable, separator:string) : string
+    + {static} ToCommaSeparatedString(enumerable:IEnumerable) : string
+    + {static} ToLineSeparatedString(enumerable:IEnumerable) : string
+    + {static} ContainsInsensitive(haystack:string, needle:string) : bool
+    + {static} AllIndexesOf(haystack:string, needle:string) : IEnumerable<int>
+    + {static} Filter(s:string, letters:bool, numbers:bool, whitespace:bool, symbols:bool, punctuation:bool) : string
+    + {static} FilterReplace(s:string, replacement:char, merge:bool, letters:bool, numbers:bool, whitespace:bool, symbols:bool, punctuation:bool) : string
+    + {static} Prettify(s:string) : string
+    + {static} IsWordDelimiter(c:char) : bool
+    + {static} IsWordBeginning(previous:char?, current:char, next:char?) : bool
+    + {static} IsWordBeginning(s:string, index:int) : bool
+    + {static} SplitWords(s:string, separator:char) : string
+    + {static} RemoveConsecutiveCharacters(s:string, c:char) : string
+    + {static} ReplaceMultiple(s:string, haystacks:HashSet<char>, replacement:char) : string
+    + {static} Truncate(value:string, maxLength:int, suffix:string) : string
+    + {static} TrimEnd(source:string, value:string) : string
+    + {static} TrimStart(source:string, value:string) : string
+    + {static} FirstCharacterToLower(s:string) : string
+    + {static} FirstCharacterToUpper(s:string) : string
+    + {static} PartBefore(s:string, c:char) : string
+    + {static} PartAfter(s:string, c:char) : string
+    + {static} PartsAround(s:string, c:char, before:string, after:string) : void
+    + {static} EndsWith(s:string, c:char) : bool
+    + {static} StartsWith(s:string, c:char) : bool
+    + {static} Contains(s:string, c:char) : bool
+    + {static} NullIfEmpty(s:string) : string
+    + {static} ToBinaryString(value:int) : string
+    + {static} ToBinaryString(value:long) : string
+    + {static} ToBinaryString(value:Enum) : string
+    + {static} CountIndices(s:string, c:char) : int
+    + {static} IsGuid(value:string) : bool
+    + {static} PathEllipsis(s:string, maxLength:int) : string
+    + {static} ToHexString(bytes:byte[]) : string
+}
+@enduml

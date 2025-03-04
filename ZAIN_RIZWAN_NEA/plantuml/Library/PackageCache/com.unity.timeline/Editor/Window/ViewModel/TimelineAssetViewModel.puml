@@ -1,0 +1,38 @@
+@startuml
+class TrackViewModelData {
+    + {static} <<readonly>> DefaultinlineAnimationCurveHeight : float = 100.0f
+    + collapsed : bool = true
+    + showMarkers : bool = true
+    + showInlineCurves : bool = false
+    + inlineAnimationCurveHeight : float
+    + lastInlineCurveDataID : int
+    + trackHeightExtension : int
+    + OnBeforeSerialize() : void
+    + OnAfterDeserialize() : void
+}
+class TimelineAssetViewModel <<partial>> {
+    + <<const>> DefaultTrackScale : float = 1.0f
+    + <<const>> DefaultVerticalScroll : float = 0
+    + trackScale : float
+    + playRangeEnabled : bool
+    + windowTime : double
+    + verticalScroll : float
+    + sequencerHeaderWidth : float
+    + OnBeforeSerialize() : void
+    + OnAfterDeserialize() : void
+    + OnEnable() : void
+}
+class "Dictionary`2"<T1,T2> {
+}
+ISerializationCallbackReceiver <|-- TrackViewModelData
+TrackViewModelData o-> "inlineCurvesState" TreeViewState
+TrackViewModelData o-> "inlineCurvesShownAreaInsideMargins" Rect
+TrackViewModelData o-> "markerTimeStamps<int,long>" "Dictionary`2"
+ScriptableObject <|-- TimelineAssetViewModel
+ISerializationCallbackReceiver <|-- TimelineAssetViewModel
+TimelineAssetViewModel o-> "TimeAreaDefaultRange" Vector2
+TimelineAssetViewModel o-> "NoPlayRangeSet" PlayRange
+TimelineAssetViewModel o-> "timeAreaShownRange" Vector2
+TimelineAssetViewModel --> "timeAreaPlayRange" PlayRange
+TimelineAssetViewModel o-> "tracksViewModelData<TrackAsset,TrackViewModelData>" "Dictionary`2"
+@enduml

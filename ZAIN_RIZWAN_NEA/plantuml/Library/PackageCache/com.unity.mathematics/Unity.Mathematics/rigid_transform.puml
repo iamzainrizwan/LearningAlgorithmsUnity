@@ -1,0 +1,46 @@
+@startuml
+struct RigidTransform {
+    + RigidTransform(rotation:quaternion, translation:float3)
+    + RigidTransform(rotation:float3x3, translation:float3)
+    + RigidTransform(transform:float4x4)
+    + {static} AxisAngle(axis:float3, angle:float) : RigidTransform
+    + {static} EulerXYZ(xyz:float3) : RigidTransform
+    + {static} EulerXZY(xyz:float3) : RigidTransform
+    + {static} EulerYXZ(xyz:float3) : RigidTransform
+    + {static} EulerYZX(xyz:float3) : RigidTransform
+    + {static} EulerZXY(xyz:float3) : RigidTransform
+    + {static} EulerZYX(xyz:float3) : RigidTransform
+    + {static} EulerXYZ(x:float, y:float, z:float) : RigidTransform
+    + {static} EulerXZY(x:float, y:float, z:float) : RigidTransform
+    + {static} EulerYXZ(x:float, y:float, z:float) : RigidTransform
+    + {static} EulerYZX(x:float, y:float, z:float) : RigidTransform
+    + {static} EulerZXY(x:float, y:float, z:float) : RigidTransform
+    + {static} EulerZYX(x:float, y:float, z:float) : RigidTransform
+    + {static} Euler(xyz:float3, order:RotationOrder) : RigidTransform
+    + {static} Euler(x:float, y:float, z:float, order:RotationOrder) : RigidTransform
+    + {static} RotateX(angle:float) : RigidTransform
+    + {static} RotateY(angle:float) : RigidTransform
+    + {static} RotateZ(angle:float) : RigidTransform
+    + {static} Translate(vector:float3) : RigidTransform
+    + Equals(x:RigidTransform) : bool
+    + <<override>> Equals(x:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+    + ToString(format:string, formatProvider:IFormatProvider) : string
+}
+class math <<static>> <<partial>> {
+    + {static} RigidTransform(rot:quaternion, pos:float3) : RigidTransform
+    + {static} RigidTransform(rotation:float3x3, translation:float3) : RigidTransform
+    + {static} RigidTransform(transform:float4x4) : RigidTransform
+    + {static} inverse(t:RigidTransform) : RigidTransform
+    + {static} mul(a:RigidTransform, b:RigidTransform) : RigidTransform
+    + {static} mul(a:RigidTransform, pos:float4) : float4
+    + {static} rotate(a:RigidTransform, dir:float3) : float3
+    + {static} transform(a:RigidTransform, pos:float3) : float3
+    + {static} hash(t:RigidTransform) : uint
+    + {static} hashwide(t:RigidTransform) : uint4
+}
+RigidTransform --> "rot" quaternion
+RigidTransform --> "pos" float3
+RigidTransform o-> "identity" RigidTransform
+@enduml

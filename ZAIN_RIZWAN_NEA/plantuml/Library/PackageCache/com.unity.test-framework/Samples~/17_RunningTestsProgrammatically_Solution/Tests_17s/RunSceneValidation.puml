@@ -1,0 +1,13 @@
+@startuml
+class RunSceneValidation <<static>> {
+    + {static} ValidateScene() : void
+}
+class Callbacks {
+    + RunStarted(testsToRun:ITestAdaptor) : void
+    + RunFinished(result:ITestResultAdaptor) : void
+    + TestStarted(test:ITestAdaptor) : void
+    + TestFinished(result:ITestResultAdaptor) : void
+}
+RunSceneValidation +-- Callbacks
+ICallbacks <|-- Callbacks
+@enduml

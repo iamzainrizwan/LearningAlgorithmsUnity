@@ -1,0 +1,22 @@
+@startuml
+class CoreRPHelpURLAttribute {
+    + CoreRPHelpURLAttribute(pageName:string, packageName:string)
+    + CoreRPHelpURLAttribute(pageName:string, pageHash:string, packageName:string)
+}
+class CurrentPipelineHelpURLAttribute {
+    + CurrentPipelineHelpURLAttribute(pageName:string)
+    + <<override>> URL : string <<get>>
+}
+class DocumentationInfo {
+    + {static} version : string <<get>>
+    + {static} GetPackageLink(packageName:string, packageVersion:string, pageName:string) : string
+    + {static} GetPageLink(packageName:string, pageName:string) : string
+    + {static} GetPageLink(packageName:string, pageName:string, pageHash:string) : string
+}
+class DocumentationUtils <<static>> {
+    + {static} GetHelpURL(mask:TEnum) : string
+    + {static} TryGetHelpURL(type:Type, url:string) : bool
+}
+HelpURLAttribute <|-- CoreRPHelpURLAttribute
+HelpURLAttribute <|-- CurrentPipelineHelpURLAttribute
+@enduml

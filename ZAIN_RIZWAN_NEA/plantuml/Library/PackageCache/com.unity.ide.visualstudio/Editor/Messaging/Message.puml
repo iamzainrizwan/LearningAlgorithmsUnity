@@ -1,0 +1,8 @@
+@startuml
+class Message {
+    + Value : string <<get>> <<set>>
+    + <<override>> ToString() : string
+}
+Message --> "Type" MessageType
+Message --> "Origin" IPEndPoint
+@enduml

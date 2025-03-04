@@ -1,0 +1,10 @@
+@startuml
+class InvokeOnRenderObjectCallbackPass {
+    + InvokeOnRenderObjectCallbackPass(evt:RenderPassEvent)
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+}
+class PassData {
+}
+ScriptableRenderPass <|-- InvokeOnRenderObjectCallbackPass
+InvokeOnRenderObjectCallbackPass +-- PassData
+@enduml

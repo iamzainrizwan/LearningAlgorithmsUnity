@@ -1,0 +1,23 @@
+@startuml
+class XmlDocumentation <<static>> {
+    + {static}  <<event>> loadComplete : Action 
+    + {static} loaded : bool <<get>>
+    + {static} BackgroundWork() : void
+    + {static} ClearCache() : void
+    + {static} Documentation(memberInfo:MemberInfo) : XmlDocumentationTags
+    + {static} ParameterSummary(methodBase:MethodBase, parameterInfo:ParameterInfo) : string
+    + {static} Summary(memberInfo:MemberInfo) : string
+    + {static} Summary(@enum:Enum) : string
+    + {static} Documentation(@enum:Enum) : XmlDocumentationTags
+}
+class Data {
+    + Clear() : void
+}
+class "Dictionary`2"<T1,T2> {
+}
+XmlDocumentation +-- Data
+Data --> "documentations<Assembly,Dictionary<string, XmlDocumentationTags>>" "Dictionary`2"
+Data --> "typeDocumentations<Type,XmlDocumentationTags>" "Dictionary`2"
+Data --> "memberDocumentations<MemberInfo,XmlDocumentationTags>" "Dictionary`2"
+Data --> "enumDocumentations<object,XmlDocumentationTags>" "Dictionary`2"
+@enduml

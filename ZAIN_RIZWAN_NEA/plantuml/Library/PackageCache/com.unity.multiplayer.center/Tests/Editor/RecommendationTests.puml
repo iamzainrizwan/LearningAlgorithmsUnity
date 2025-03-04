@@ -1,0 +1,13 @@
+@startuml
+class RecommendationTests <<partial>> {
+    + Setup() : void
+    + TestPreset_RecommendedPackagesMatchesExpected(preset:Preset, expected:string[]) : void
+    + TestPreset_RecommendedSolutionsAreValid(playerCount:string, netcode:PossibleSolution, hosting:PossibleSolution, preset:Preset) : void
+    + TestGameSpecsForClientServerWithoutPreset_CheatingNotImportant_MatchesMiroTable(expectedHosting:PossibleSolution, expectedNetcode:PossibleSolution, costSensitivity:string, pace:string, playerCounts:string[]) : void
+    + TestGameSpecsForClientServerWithoutPreset_CheatingImportant_MatchesMiroTable(expectedNetcode:PossibleSolution, costSensitivity:string, pace:string, playerCounts:string[]) : void
+    + PackageLists_PackagesHaveNames() : void
+    + PackageLists_DependenciesAreAllValid() : void
+    + TestIncompatibilityWithSolution_MatchesExpected(netcode:PossibleSolution, hostingModel:PossibleSolution, expected:bool) : void
+    + TestAdditionalPackagesStillWork() : void
+}
+@enduml

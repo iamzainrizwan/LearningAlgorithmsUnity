@@ -1,0 +1,5 @@
+@startuml
+class ValueAttribute {
+}
+Attribute <|-- ValueAttribute
+@enduml

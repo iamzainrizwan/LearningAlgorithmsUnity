@@ -1,0 +1,46 @@
+@startuml
+class MenuOptions <<static>> {
+    {static} + AddImage(menuCommand:MenuCommand) : void
+    {static} + AddRawImage(menuCommand:MenuCommand) : void
+    {static} + AddPanel(menuCommand:MenuCommand) : void
+    {static} + AddToggle(menuCommand:MenuCommand) : void
+    {static} + AddSlider(menuCommand:MenuCommand) : void
+    {static} + AddScrollbar(menuCommand:MenuCommand) : void
+    {static} + AddScrollView(menuCommand:MenuCommand) : void
+    {static} + AddCanvas(menuCommand:MenuCommand) : void
+    {static} + AddText(menuCommand:MenuCommand) : void
+    {static} + AddButton(menuCommand:MenuCommand) : void
+    {static} + AddDropdown(menuCommand:MenuCommand) : void
+    + {static} AddInputField(menuCommand:MenuCommand) : void
+    {static} + CreateNewUI() : GameObject
+    + {static} CreateEventSystem(menuCommand:MenuCommand) : void
+    {static} + GetOrCreateCanvasGameObject() : GameObject
+}
+enum MenuOptionsPriorityOrder {
+    Image= 2001,
+    RawImage= 2002,
+    Panel= 2003,
+    Toggle= 2021,
+    Slider= 2024,
+    Scrollbar= 2025,
+    ScrollView= 2026,
+    Canvas= 2060,
+    EventSystem= 2061,
+    Text= 2080,
+    Button= 2081,
+    Dropdown= 2082,
+    InputField= 2083,
+}
+class DefaultEditorFactory {
+    + CreateGameObject(name:string, components:Type[]) : GameObject
+}
+class FactorySwapToEditor {
+    + FactorySwapToEditor()
+    + Dispose() : void
+}
+MenuOptions +-- MenuOptionsPriorityOrder
+MenuOptions +-- DefaultEditorFactory
+DefaultEditorFactory o-> "Default" DefaultEditorFactory
+MenuOptions +-- FactorySwapToEditor
+IDisposable <|-- FactorySwapToEditor
+@enduml

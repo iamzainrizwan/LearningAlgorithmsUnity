@@ -1,0 +1,8 @@
+@startuml
+class Vector2Modulo <<sealed>> {
+    + <<override>> Operation(a:Vector2, b:Vector2) : Vector2
+}
+class "Modulo`1"<T> {
+}
+"Modulo`1" "<Vector2>" <|-- Vector2Modulo
+@enduml

@@ -1,0 +1,28 @@
+@startuml
+class SetAdditionalPropertiesVisibilityAttribute <<sealed>> {
+}
+class VolumeComponentEditorAttribute <<sealed>> {
+    + VolumeComponentEditorAttribute(componentType:Type)
+}
+interface "IRemoveAdditionalDataContextualMenu`1"<T> {
+}
+class RenderPipelineGlobalSettingsUI <<static>> <<partial>> {
+    + {static} DrawShaderStrippingSettings(serialized:ISerializedRenderPipelineGlobalSettings, owner:Editor, additionalShaderStrippingSettings:CoreEditorDrawer<ISerializedRenderPipelineGlobalSettings>.IDrawer) : void
+}
+interface ISerializedRenderPipelineGlobalSettings {
+}
+class DefaultVolumeProfileEditor <<sealed>> <<partial>> {
+    + DefaultVolumeProfileEditor(baseEditor:Editor, profile:VolumeProfile)
+}
+class Styles <<static>> {
+    + <<const>> labelWidth : int = 250
+}
+Attribute <|-- SetAdditionalPropertiesVisibilityAttribute
+CustomEditor <|-- VolumeComponentEditorAttribute
+VolumeComponentEditorAttribute --> "componentType" Type
+RenderPipelineGlobalSettingsUI +-- Styles
+Styles o-> "shaderStrippingSettingsLabel" GUIContent
+Styles o-> "shaderVariantLogLevelLabel" GUIContent
+Styles o-> "exportShaderVariantsLabel" GUIContent
+Styles o-> "stripRuntimeDebugShadersLabel" GUIContent
+@enduml

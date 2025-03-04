@@ -1,0 +1,11 @@
+@startuml
+class LogicTests {
+    + TryGetQuestionByQuestionId_IdExists_Found() : void
+    + TryGetQuestionByQuestionId_StringIdExists_Found() : void
+    + TryGetQuestionByQuestionId_IdDoesNotExist_NotFound() : void
+    + TryGetAnswerByQuestionId_IdExists_Found() : void
+    + TryGetAnswerByQuestionId_IdDoesNotExist_NotFound() : void
+    + TestApplyPresetToAnswerData_WhenPlayerCountIsSet_PlayerCountStays() : void
+    + TestIsVersionLower_ReturnsCorrectResult(versionToTest:string, currentVersion:string, expected:bool[]) : void
+}
+@enduml

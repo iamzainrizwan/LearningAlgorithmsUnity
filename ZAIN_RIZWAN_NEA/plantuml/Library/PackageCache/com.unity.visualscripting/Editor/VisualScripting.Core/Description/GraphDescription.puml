@@ -1,0 +1,6 @@
+@startuml
+class GraphDescription {
+}
+Description <|-- GraphDescription
+IGraphDescription <|-- GraphDescription
+@enduml

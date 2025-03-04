@@ -1,0 +1,6 @@
+@startuml
+class ScrollbarEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+SelectableEditor <|-- ScrollbarEditor
+@enduml

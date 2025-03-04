@@ -1,0 +1,19 @@
+@startuml
+class DebugManager <<sealed>> <<partial>> {
+    + {static}  <<event>> windowStateChanged : Action<UIMode, bool> 
+    + displayEditorUI : bool <<get>> <<set>>
+    + enableRuntimeUI : bool <<get>> <<set>>
+    + displayRuntimeUI : bool <<get>> <<set>>
+    + displayPersistentRuntimeUI : bool <<get>> <<set>>
+}
+enum UIMode {
+    EditorMode,
+    RuntimeMode,
+}
+class UIState {
+    + open : bool <<get>> <<set>>
+}
+DebugManager +-- UIMode
+DebugManager +-- UIState
+UIState --> "mode" UIMode
+@enduml

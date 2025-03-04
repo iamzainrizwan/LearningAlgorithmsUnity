@@ -1,0 +1,10 @@
+@startuml
+struct MaterialHeaderScopeItem {
+    + expandable : uint <<get>> <<set>>
+    + url : string <<get>> <<set>>
+}
+class "Action`1"<T> {
+}
+MaterialHeaderScopeItem --> "headerTitle" GUIContent
+MaterialHeaderScopeItem --> "drawMaterialScope<Material>" "Action`1"
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+enum ExponentialBase {
+    BaseE,
+    Base2,
+}
+class ExponentialNode {
+    + ExponentialNode()
+}
+CodeFunctionNode <|-- ExponentialNode
+ExponentialNode --> "exponentialBase" ExponentialBase
+@enduml

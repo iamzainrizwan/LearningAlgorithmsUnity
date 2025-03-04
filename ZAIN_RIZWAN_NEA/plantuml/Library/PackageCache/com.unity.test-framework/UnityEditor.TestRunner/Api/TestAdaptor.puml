@@ -1,0 +1,29 @@
+@startuml
+class TestAdaptor {
+    + SetParent(parent:ITestAdaptor) : void
+    + Id : string <<get>>
+    + Name : string <<get>>
+    + FullName : string <<get>>
+    + TestCaseCount : int <<get>>
+    + HasChildren : bool <<get>>
+    + IsSuite : bool <<get>>
+    + TestCaseTimeout : int <<get>>
+    + IsTestAssembly : bool <<get>>
+    + Description : string <<get>>
+    + SkipReason : string <<get>>
+    + ParentId : string <<get>>
+    + ParentFullName : string <<get>>
+    + UniqueName : string <<get>>
+    + ParentUniqueName : string <<get>>
+    + ChildIndex : int <<get>>
+}
+class "IEnumerable`1"<T> {
+}
+ITestAdaptor <|-- TestAdaptor
+TestAdaptor --> "Children<ITestAdaptor>" "IEnumerable`1"
+TestAdaptor --> "Parent" ITestAdaptor
+TestAdaptor --> "TypeInfo" ITypeInfo
+TestAdaptor --> "Method" IMethodInfo
+TestAdaptor --> "RunState" RunState
+TestAdaptor --> "TestMode" TestMode
+@enduml

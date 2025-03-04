@@ -1,0 +1,45 @@
+@startuml
+class OnboardingSectionAttribute <<sealed>> {
+    + <<readonly>> Id : string
+    + Priority : int <<get>> <<set>>
+    + Order : int <<get>> <<set>>
+    + TargetPackageId : string <<get>> <<set>>
+    + OnboardingSectionAttribute(category:OnboardingSectionCategory, id:string)
+}
+enum OnboardingSectionCategory {
+    Intro,
+    Netcode,
+    ConnectingPlayers,
+    ServerInfrastructure,
+    Other,
+    LiveOps,
+}
+enum DisplayCondition {
+    None,
+    PackageInstalled,
+    NoPackageInstalled,
+}
+enum InfrastructureDependency {
+    None,
+    ClientHosted,
+    DedicatedServer,
+    CloudCode,
+}
+interface IOnboardingSection {
+    + Load() : void
+    + Unload() : void
+}
+interface ISectionDependingOnUserChoices {
+    + HandleAnswerData(answerData:AnswerData) : void
+    + HandleUserSelectionData(selectedSolutionsData:SelectedSolutionsData) : void
+    + HandlePreset(preset:Preset) : void
+}
+interface ISectionWithAnalytics {
+}
+Attribute <|-- OnboardingSectionAttribute
+OnboardingSectionAttribute --> "Category" OnboardingSectionCategory
+OnboardingSectionAttribute --> "DisplayCondition" DisplayCondition
+IOnboardingSection --> "Root" VisualElement
+IOnboardingSection <|-- ISectionDependingOnUserChoices
+ISectionWithAnalytics --> "AnalyticsProvider" IOnboardingSectionAnalyticsProvider
+@enduml

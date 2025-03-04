@@ -1,0 +1,15 @@
+@startuml
+class PlayerSystemInfo {
+    + PlayerSystemInfo()
+    + PlayerSystemInfo(operatingSystem:string, deviceModel:string, deviceName:string, processorType:string, processorCount:int, graphicsDeviceName:string, systemMemorySize:int, xrModel:string, xrDevice:string)
+    + OperatingSystem : string
+    + DeviceModel : string
+    + DeviceName : string
+    + ProcessorType : string
+    + ProcessorCount : int
+    + GraphicsDeviceName : string
+    + SystemMemorySize : int
+    + XrModel : string
+    + XrDevice : string
+}
+@enduml

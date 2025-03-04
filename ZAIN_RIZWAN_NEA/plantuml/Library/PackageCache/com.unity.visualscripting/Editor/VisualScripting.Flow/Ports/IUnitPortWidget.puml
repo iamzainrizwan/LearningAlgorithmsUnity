@@ -1,0 +1,5 @@
+@startuml
+interface IUnitPortWidget {
+}
+IWidget <|-- IUnitPortWidget
+@enduml

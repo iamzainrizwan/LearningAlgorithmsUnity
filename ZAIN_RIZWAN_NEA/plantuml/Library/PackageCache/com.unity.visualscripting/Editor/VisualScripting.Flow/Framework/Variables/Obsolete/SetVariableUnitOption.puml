@@ -1,0 +1,10 @@
+@startuml
+class "SetVariableUnitOption`1"<TVariableUnit> {
+    + SetVariableUnitOption()
+    + SetVariableUnitOption(unit:TVariableUnit)
+    + <<override>> Kind() : string
+}
+class "VariableUnitOption`1"<T> {
+}
+"VariableUnitOption`1" "<TVariableUnit>" <|-- "SetVariableUnitOption`1"
+@enduml

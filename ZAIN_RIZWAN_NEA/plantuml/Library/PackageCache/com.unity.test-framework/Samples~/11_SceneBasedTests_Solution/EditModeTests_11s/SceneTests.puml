@@ -1,0 +1,7 @@
+@startuml
+class SceneTests {
+    + Setup() : void
+    + VerifyScene() : void
+    + Teardown() : void
+}
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+abstract class "SerializableSelection`1"<T> {
+    + Count : int <<get>>
+    + activeElement : T <<get>> <<set>>
+    + Clear() : void
+    + BeginSelection() : void
+    + EndSelection(select:bool) : void
+    + Select(element:T, select:bool) : bool
+    + Contains(element:T) : bool
+}
+class "ISelection`1"<T> {
+}
+"ISelection`1" "<T>" <|-- "SerializableSelection`1"
+ISerializationCallbackReceiver <|-- "SerializableSelection`1"
+@enduml

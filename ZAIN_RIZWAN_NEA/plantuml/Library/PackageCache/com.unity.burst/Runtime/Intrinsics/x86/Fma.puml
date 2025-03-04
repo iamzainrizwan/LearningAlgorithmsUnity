@@ -1,0 +1,45 @@
+@startuml
+class X86 <<unsafe>> <<static>> <<partial>> {
+}
+class Fma <<static>> {
+    + {static} IsFmaSupported : bool <<get>>
+    + {static} fmadd_pd(a:v128, b:v128, c:v128) : v128
+    + {static} mm256_fmadd_pd(a:v256, b:v256, c:v256) : v256
+    + {static} fmadd_ps(a:v128, b:v128, c:v128) : v128
+    + {static} mm256_fmadd_ps(a:v256, b:v256, c:v256) : v256
+    + {static} fmadd_sd(a:v128, b:v128, c:v128) : v128
+    + {static} fmadd_ss(a:v128, b:v128, c:v128) : v128
+    + {static} fmaddsub_pd(a:v128, b:v128, c:v128) : v128
+    + {static} mm256_fmaddsub_pd(a:v256, b:v256, c:v256) : v256
+    + {static} fmaddsub_ps(a:v128, b:v128, c:v128) : v128
+    + {static} mm256_fmaddsub_ps(a:v256, b:v256, c:v256) : v256
+    + {static} fmsub_pd(a:v128, b:v128, c:v128) : v128
+    + {static} mm256_fmsub_pd(a:v256, b:v256, c:v256) : v256
+    + {static} fmsub_ps(a:v128, b:v128, c:v128) : v128
+    + {static} mm256_fmsub_ps(a:v256, b:v256, c:v256) : v256
+    + {static} fmsub_sd(a:v128, b:v128, c:v128) : v128
+    + {static} fmsub_ss(a:v128, b:v128, c:v128) : v128
+    + {static} fmsubadd_pd(a:v128, b:v128, c:v128) : v128
+    + {static} mm256_fmsubadd_pd(a:v256, b:v256, c:v256) : v256
+    + {static} fmsubadd_ps(a:v128, b:v128, c:v128) : v128
+    + {static} mm256_fmsubadd_ps(a:v256, b:v256, c:v256) : v256
+    + {static} fnmadd_pd(a:v128, b:v128, c:v128) : v128
+    + {static} mm256_fnmadd_pd(a:v256, b:v256, c:v256) : v256
+    + {static} fnmadd_ps(a:v128, b:v128, c:v128) : v128
+    + {static} mm256_fnmadd_ps(a:v256, b:v256, c:v256) : v256
+    + {static} fnmadd_sd(a:v128, b:v128, c:v128) : v128
+    + {static} fnmadd_ss(a:v128, b:v128, c:v128) : v128
+    + {static} fnmsub_pd(a:v128, b:v128, c:v128) : v128
+    + {static} mm256_fnmsub_pd(a:v256, b:v256, c:v256) : v256
+    + {static} fnmsub_ps(a:v128, b:v128, c:v128) : v128
+    + {static} mm256_fnmsub_ps(a:v256, b:v256, c:v256) : v256
+    + {static} fnmsub_sd(a:v128, b:v128, c:v128) : v128
+    + {static} fnmsub_ss(a:v128, b:v128, c:v128) : v128
+}
+struct Union {
+    + f : float
+    + u : uint
+}
+X86 +-- Fma
+Fma +-- Union
+@enduml

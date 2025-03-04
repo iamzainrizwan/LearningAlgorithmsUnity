@@ -1,0 +1,7 @@
+@startuml
+class TestRunnerWindowSettings {
+    + verticalSplit : bool
+    + TestRunnerWindowSettings(prefsKey:string)
+    + ToggleVerticalSplit() : void
+}
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class CubemapShaderProperty <<sealed>> {
+}
+class "AbstractShaderProperty`1"<T> {
+}
+"AbstractShaderProperty`1" "<SerializableCubemap>" <|-- CubemapShaderProperty
+CubemapShaderProperty --> "propertyType" PropertyType
+@enduml

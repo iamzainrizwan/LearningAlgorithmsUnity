@@ -1,0 +1,5 @@
+@startuml
+abstract class "GraphInspector`1"<TGraphContext> {
+}
+Inspector <|-- "GraphInspector`1"
+@enduml

@@ -1,0 +1,92 @@
+@startuml
+class FaceInfo_Legacy {
+    + Name : string
+    + PointSize : float
+    + Scale : float
+    + CharacterCount : int
+    + LineHeight : float
+    + Baseline : float
+    + Ascender : float
+    + CapHeight : float
+    + Descender : float
+    + CenterLine : float
+    + SuperscriptOffset : float
+    + SubscriptOffset : float
+    + SubSize : float
+    + Underline : float
+    + UnderlineThickness : float
+    + strikethrough : float
+    + strikethroughThickness : float
+    + TabWidth : float
+    + Padding : float
+    + AtlasWidth : float
+    + AtlasHeight : float
+}
+class TMP_Glyph {
+    + {static} Clone(source:TMP_Glyph) : TMP_Glyph
+}
+struct FontAssetCreationSettings {
+    + sourceFontFileName : string
+    + sourceFontFileGUID : string
+    + faceIndex : int
+    + pointSizeSamplingMode : int
+    + pointSize : int
+    + padding : int
+    + paddingMode : int
+    + packingMode : int
+    + atlasWidth : int
+    + atlasHeight : int
+    + characterSetSelectionMode : int
+    + characterSequence : string
+    + referencedFontAssetGUID : string
+    + referencedTextAssetGUID : string
+    + fontStyle : int
+    + fontStyleModifier : float
+    + renderMode : int
+    + includeFontFeatures : bool
+}
+struct TMP_FontWeightPair {
+}
+struct KerningPairKey {
+    + ascii_Left : uint
+    + ascii_Right : uint
+    + key : uint
+    + KerningPairKey(ascii_left:uint, ascii_right:uint)
+}
+struct GlyphValueRecord_Legacy {
+    + xPlacement : float
+    + yPlacement : float
+    + xAdvance : float
+    + yAdvance : float
+}
+class KerningPair {
+    + firstGlyph : uint <<get>> <<set>>
+    + secondGlyph : uint <<get>> <<set>>
+    + xOffset : float
+    + ignoreSpacingAdjustments : bool <<get>>
+    + KerningPair()
+    + KerningPair(left:uint, right:uint, offset:float)
+    + KerningPair(firstGlyph:uint, firstGlyphAdjustments:GlyphValueRecord_Legacy, secondGlyph:uint, secondGlyphAdjustments:GlyphValueRecord_Legacy)
+}
+class KerningTable {
+    + KerningTable()
+    + AddKerningPair() : void
+    + AddKerningPair(first:uint, second:uint, offset:float) : int
+    + AddGlyphPairAdjustmentRecord(first:uint, firstAdjustments:GlyphValueRecord_Legacy, second:uint, secondAdjustments:GlyphValueRecord_Legacy) : int
+    + RemoveKerningPair(left:int, right:int) : void
+    + RemoveKerningPair(index:int) : void
+    + SortKerningPairs() : void
+}
+class TMP_FontUtilities <<static>> {
+    + {static} SearchForCharacter(font:TMP_FontAsset, unicode:uint, character:TMP_Character) : TMP_FontAsset
+    + {static} SearchForCharacter(fonts:List<TMP_FontAsset>, unicode:uint, character:TMP_Character) : TMP_FontAsset
+}
+class "List`1"<T> {
+}
+TMP_TextElement_Legacy <|-- TMP_Glyph
+TMP_FontWeightPair --> "regularTypeface" TMP_FontAsset
+TMP_FontWeightPair --> "italicTypeface" TMP_FontAsset
+KerningPair --> "firstGlyphAdjustments" GlyphValueRecord_Legacy
+KerningPair --> "secondGlyphAdjustments" GlyphValueRecord_Legacy
+KerningTable --> "kerningPairs<KerningPair>" "List`1"
+@enduml

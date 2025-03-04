@@ -1,0 +1,11 @@
+@startuml
+class QualitySettings {
+    + QualitySettings(vsync:int, antiAliasing:int, colorSpace:string, anisotropicFiltering:string, blendWeights:string)
+    + QualitySettings()
+    + Vsync : int
+    + AntiAliasing : int
+    + ColorSpace : string
+    + AnisotropicFiltering : string
+    + BlendWeights : string
+}
+@enduml

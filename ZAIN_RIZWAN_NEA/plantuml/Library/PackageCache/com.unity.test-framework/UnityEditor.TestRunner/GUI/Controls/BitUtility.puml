@@ -1,0 +1,4 @@
+@startuml
+class BitUtility <<static>> {
+}
+@enduml

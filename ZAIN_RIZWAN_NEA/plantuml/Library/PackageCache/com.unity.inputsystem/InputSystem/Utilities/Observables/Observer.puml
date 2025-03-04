@@ -1,0 +1,11 @@
+@startuml
+class "Observer`1"<TValue> {
+    + Observer(onNext:Action<TValue>, onCompleted:Action)
+    + OnCompleted() : void
+    + OnError(error:Exception) : void
+    + OnNext(evt:TValue) : void
+}
+class "IObserver`1"<T> {
+}
+"IObserver`1" "<TValue>" <|-- "Observer`1"
+@enduml

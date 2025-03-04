@@ -1,0 +1,11 @@
+@startuml
+abstract class "Minimum`1"<T> {
+    + {abstract} Operation(a:T, b:T) : T
+    + {abstract} Operation(values:IEnumerable<T>) : T
+    + Operation(flow:Flow) : T
+}
+class "MultiInputUnit`1"<T> {
+}
+"MultiInputUnit`1" "<T>" <|-- "Minimum`1"
+"Minimum`1" --> "minimum" ValueOutput
+@enduml

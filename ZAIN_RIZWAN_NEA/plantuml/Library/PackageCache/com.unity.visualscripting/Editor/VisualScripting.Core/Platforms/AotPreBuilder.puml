@@ -1,0 +1,17 @@
+@startuml
+class AotCommentStub {
+    + AotCommentStub(wrapper:string)
+    + <<override>> stubMethodComment : string <<get>>
+    + <<override>> stubMethodName : string <<get>>
+    + <<override>> GetStubStatements() : IEnumerable<CodeStatement>
+}
+class AotPreBuilder {
+    + callbackOrder : int <<get>>
+    + AotPreBuilder()
+    + {static} OnPostProcessBuild(target:BuildTarget, pathToBuiltProject:string) : void
+    + {static} GenerateFromInternalMenu() : void
+    + OnPreprocessBuild(report:BuildReport) : void
+}
+AotStubWriter <|-- AotCommentStub
+IPreprocessBuildWithReport <|-- AotPreBuilder
+@enduml

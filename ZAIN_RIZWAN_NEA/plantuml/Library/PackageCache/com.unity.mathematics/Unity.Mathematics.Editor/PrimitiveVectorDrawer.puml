@@ -1,0 +1,21 @@
+@startuml
+class PrimitiveVectorDrawer {
+    + <<override>> CanCacheInspectorGUI(property:SerializedProperty) : bool
+    + <<override>> GetPropertyHeight(property:SerializedProperty, label:GUIContent) : float
+    + <<override>> OnGUI(position:Rect, property:SerializedProperty, label:GUIContent) : void
+}
+class EditorGUICopy {
+    + {static} MultiPropertyField(position:Rect, subLabels:GUIContent[], valuesIterator:SerializedProperty, label:GUIContent) : void
+}
+class Content <<static>> {
+    + {static} <<readonly>> doNotNormalizeCompatibility : string
+    + {static} <<readonly>> doNotNormalizeTooltip : string
+}
+enum PropertyVisibility {
+    All,
+    OnlyVisible,
+}
+PropertyDrawer <|-- PrimitiveVectorDrawer
+PrimitiveVectorDrawer +-- Content
+EditorGUICopy +-- PropertyVisibility
+@enduml

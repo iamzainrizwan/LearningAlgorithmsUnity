@@ -1,0 +1,24 @@
+@startuml
+class TextureCurve {
+    + length : int <<get>>
+    + TextureCurve(baseCurve:AnimationCurve, zeroValue:float, loop:bool, bounds:Vector2)
+    + TextureCurve(keys:Keyframe[], zeroValue:float, loop:bool, bounds:Vector2)
+    + Dispose() : void
+    + Release() : void
+    + SetDirty() : void
+    + GetTexture() : Texture2D
+    + Evaluate(time:float) : float
+    + AddKey(time:float, value:float) : int
+    + MoveKey(index:int, key:Keyframe) : int
+    + RemoveKey(index:int) : void
+    + SmoothTangents(index:int, weight:float) : void
+}
+class TextureCurveParameter {
+    + TextureCurveParameter(value:TextureCurve, overrideState:bool)
+    + <<override>> Release() : void
+}
+class "VolumeParameter`1"<T> {
+}
+IDisposable <|-- TextureCurve
+"VolumeParameter`1" "<TextureCurve>" <|-- TextureCurveParameter
+@enduml

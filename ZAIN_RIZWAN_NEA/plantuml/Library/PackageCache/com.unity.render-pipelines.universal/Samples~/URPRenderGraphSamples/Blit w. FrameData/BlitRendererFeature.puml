@@ -1,0 +1,41 @@
+@startuml
+class BlitRendererFeature {
+    + <<override>> Create() : void
+    + <<override>> AddRenderPasses(renderer:ScriptableRenderer, renderingData:RenderingData) : void
+}
+class BlitData {
+    + Init(renderGraph:RenderGraph, targetDescriptor:RenderTextureDescriptor, textureName:string) : void
+    + <<override>> Reset() : void
+    + RecordBlitColor(renderGraph:RenderGraph, frameData:ContextContainer) : void
+    + RecordBlitBackToColor(renderGraph:RenderGraph, frameData:ContextContainer) : void
+    + RecordFullScreenPass(renderGraph:RenderGraph, passName:string, material:Material) : void
+    + Dispose() : void
+}
+class BlitStartRenderPass {
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+class BlitRenderPass {
+    + Setup(materials:List<Material>) : void
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+class BlitEndRenderPass {
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+class PassData {
+}
+ScriptableRendererFeature <|-- BlitRendererFeature
+BlitRendererFeature +-- BlitData
+ContextItem <|-- BlitData
+IDisposable <|-- BlitData
+BlitData --> "texture" TextureHandle
+BlitRendererFeature +-- BlitStartRenderPass
+ScriptableRenderPass <|-- BlitStartRenderPass
+BlitRendererFeature +-- BlitRenderPass
+ScriptableRenderPass <|-- BlitRenderPass
+BlitRendererFeature +-- BlitEndRenderPass
+ScriptableRenderPass <|-- BlitEndRenderPass
+BlitData +-- PassData
+PassData --> "source" TextureHandle
+PassData --> "destination" TextureHandle
+PassData --> "material" Material
+@enduml

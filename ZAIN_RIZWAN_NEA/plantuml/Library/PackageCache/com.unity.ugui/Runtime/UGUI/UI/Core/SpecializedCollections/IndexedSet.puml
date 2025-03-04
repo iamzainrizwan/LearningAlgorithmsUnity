@@ -1,0 +1,25 @@
+@startuml
+class "IndexedSet`1"<T> {
+    + Add(item:T) : void
+    + Add(item:T, isActive:bool) : void
+    + AddUnique(item:T, isActive:bool) : bool
+    + EnableItem(item:T) : bool
+    + DisableItem(item:T) : bool
+    + Remove(item:T) : bool
+    + GetEnumerator() : IEnumerator<T>
+    + Clear() : void
+    + Contains(item:T) : bool
+    + CopyTo(array:T[], arrayIndex:int) : void
+    + Count : int <<get>>
+    + Capacity : int <<get>>
+    + IsReadOnly : bool <<get>>
+    + IndexOf(item:T) : int
+    + Insert(index:int, item:T) : void
+    + RemoveAt(index:int) : void
+    + RemoveAll(match:Predicate<T>) : void
+    + Sort(sortLayoutFunction:Comparison<T>) : void
+}
+class "IList`1"<T> {
+}
+"IList`1" "<T>" <|-- "IndexedSet`1"
+@enduml

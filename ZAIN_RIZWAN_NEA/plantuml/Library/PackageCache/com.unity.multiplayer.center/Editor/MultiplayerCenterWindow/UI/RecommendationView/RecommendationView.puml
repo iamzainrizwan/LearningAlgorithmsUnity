@@ -1,0 +1,11 @@
+@startuml
+class RecommendationView {
+    + RecommendationView()
+    + UpdateRecommendation(recommendation:RecommendationViewData, preReleaseHandling:PreReleaseHandling) : void
+    + Clear() : void
+}
+RecommendationView --> "AllPackages" SolutionsToRecommendedPackageViewData
+RecommendationView --> "CurrentRecommendation" RecommendationViewData
+RecommendationView o-> "Root" ScrollView
+RecommendationView --> "OnPackageSelectionChanged" Action
+@enduml

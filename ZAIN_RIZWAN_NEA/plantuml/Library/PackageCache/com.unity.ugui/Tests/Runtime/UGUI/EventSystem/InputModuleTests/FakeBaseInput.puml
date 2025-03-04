@@ -1,0 +1,28 @@
+@startuml
+class FakeBaseInput {
+    + MousePresent : bool = false
+    + TouchSupported : bool = false
+    + TouchCount : int = 0
+    + AxisRaw : float = 0f
+    + ButtonDown : bool = false
+    + <<override>> compositionString : string <<get>>
+    + <<override>> mousePresent : bool <<get>>
+    + <<override>> GetMouseButtonDown(button:int) : bool
+    + <<override>> GetMouseButtonUp(button:int) : bool
+    + <<override>> GetMouseButton(button:int) : bool
+    + <<override>> touchSupported : bool <<get>>
+    + <<override>> touchCount : int <<get>>
+    + <<override>> GetTouch(index:int) : Touch
+    + <<override>> GetAxisRaw(axisName:string) : float
+    + <<override>> GetButtonDown(buttonName:string) : bool
+}
+BaseInput <|-- FakeBaseInput
+FakeBaseInput o-> "CompositionString" String
+FakeBaseInput o-> "MousePosition" Vector2
+FakeBaseInput o-> "MouseScrollDelta" Vector2
+FakeBaseInput --> "TouchData" Touch
+FakeBaseInput --> "imeCompositionMode" IMECompositionMode
+FakeBaseInput --> "compositionCursorPos" Vector2
+FakeBaseInput --> "mousePosition" Vector2
+FakeBaseInput --> "mouseScrollDelta" Vector2
+@enduml

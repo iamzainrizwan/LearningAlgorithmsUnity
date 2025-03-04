@@ -1,0 +1,6 @@
+@startuml
+class ShadowShapeProvider2DUtility <<static>> {
+    {static} + GetTrimEdgeFromBounds(bounds:Bounds, trimMultipler:float) : float
+    {static} + IsUsingGpuDeformation() : bool
+}
+@enduml

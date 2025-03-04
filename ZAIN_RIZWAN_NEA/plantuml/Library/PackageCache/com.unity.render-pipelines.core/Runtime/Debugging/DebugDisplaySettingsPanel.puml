@@ -1,0 +1,12 @@
+@startuml
+abstract class DebugDisplaySettingsPanel {
+    + <<virtual>> PanelName : string <<get>>
+    + <<virtual>> Order : int <<get>>
+    + <<virtual>> Dispose() : void
+}
+abstract class "DebugDisplaySettingsPanel`1"<T> {
+    + data : T <<get>> <<internal set>>
+}
+IDebugDisplaySettingsPanelDisposable <|-- DebugDisplaySettingsPanel
+DebugDisplaySettingsPanel <|-- "DebugDisplaySettingsPanel`1"
+@enduml

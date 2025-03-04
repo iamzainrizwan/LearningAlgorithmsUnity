@@ -1,0 +1,17 @@
+@startuml
+class "ImplementationInspector`1"<T> {
+    + ImplementationInspector(metadata:Metadata)
+    + {static} compactSelectorSubtractedWidth : float <<get>>
+}
+class Styles <<static>> {
+    + {static} <<readonly>> spaceAroundCompactSelector : int = 3
+    + {static} <<readonly>> showCompactSelectorIcon : bool = true
+}
+Inspector <|-- "ImplementationInspector`1"
+"ImplementationInspector`1" --> "implementationMetadata" Metadata
+"ImplementationInspector`1" +-- Styles
+Styles --> "compactSelectorWithoutIcon" GUIStyle
+Styles --> "compactSelectorWithIcon" GUIStyle
+Styles --> "compactSelectorWithoutIconContent" GUIContent
+Styles --> "compactSelector" GUIStyle
+@enduml

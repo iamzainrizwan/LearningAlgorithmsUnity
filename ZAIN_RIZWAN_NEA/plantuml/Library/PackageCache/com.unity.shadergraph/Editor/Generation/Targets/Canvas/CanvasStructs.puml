@@ -1,0 +1,8 @@
+@startuml
+class CanvasStructs <<static>> {
+}
+CanvasStructs o-> "Varyings" StructDescriptor
+CanvasStructs o-> "Attributes" StructDescriptor
+CanvasStructs o-> "CanvasVertexDescriptionInputs" StructDescriptor
+CanvasStructs o-> "CanvasSurfaceDescriptionInputs" StructDescriptor
+@enduml

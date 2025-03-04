@@ -1,0 +1,18 @@
+@startuml
+enum ShaderVariantLogLevel {
+    Disabled,
+    OnlySRPShaders,
+    AllShaders,
+}
+class ShaderStrippingSetting {
+    + version : int <<get>>
+    + exportShaderVariants : bool <<get>> <<set>>
+    + stripRuntimeDebugShaders : bool <<get>> <<set>>
+}
+enum Version {
+    Initial= 0,
+}
+IRenderPipelineGraphicsSettings <|-- ShaderStrippingSetting
+ShaderStrippingSetting --> "shaderVariantLogLevel" ShaderVariantLogLevel
+ShaderStrippingSetting +-- Version
+@enduml

@@ -1,0 +1,34 @@
+@startuml
+class UnsafeParallelHashSetTests {
+    + UnsafeParallelHashSet_IsEmpty() : void
+    + UnsafeParallelHashSet_Capacity() : void
+    + UnsafeParallelHashSet_Full_Throws() : void
+    + UnsafeParallelHashSet_RemoveOnEmptyMap_DoesNotThrow() : void
+    + UnsafeParallelHashSet_Collisions() : void
+    + UnsafeParallelHashSet_SameElement() : void
+    + UnsafeParallelHashSet_ForEach_FixedStringInHashMap() : void
+    + UnsafeParallelHashSet_ForEach(n:int) : void
+    + UnsafeParallelHashSet_EIU_ExceptWith_Empty() : void
+    + UnsafeParallelHashSet_EIU_ExceptWith_AxB() : void
+    + UnsafeParallelHashSet_EIU_ExceptWith_BxA() : void
+    + UnsafeParallelHashSet_EIU_IntersectWith_Empty() : void
+    + UnsafeParallelHashSet_EIU_IntersectWith() : void
+    + UnsafeParallelHashSet_EIU_UnionWith_Empty() : void
+    + UnsafeParallelHashSet_EIU_UnionWith() : void
+    + UnsafeParallelHashSet_CustomAllocatorTest() : void
+    + <<unsafe>> UnsafeParallelHashSet_BurstedCustomAllocatorTest() : void
+    + UnsafeParallelHashSet_ForEach_From_Job(n:int) : void
+}
+struct BurstedCustomAllocatorJob {
+    + Execute() : void
+}
+struct UnsafeParallelHashSet_ForEach_Job {
+    + Num : int
+    + Execute() : void
+}
+CollectionsTestCommonBase <|-- UnsafeParallelHashSetTests
+UnsafeParallelHashSetTests +-- BurstedCustomAllocatorJob
+IJob <|-- BurstedCustomAllocatorJob
+UnsafeParallelHashSetTests +-- UnsafeParallelHashSet_ForEach_Job
+IJob <|-- UnsafeParallelHashSet_ForEach_Job
+@enduml

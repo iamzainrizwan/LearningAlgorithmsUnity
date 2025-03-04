@@ -1,0 +1,6 @@
+@startuml
+class InverseLerpNode {
+    + InverseLerpNode()
+}
+CodeFunctionNode <|-- InverseLerpNode
+@enduml

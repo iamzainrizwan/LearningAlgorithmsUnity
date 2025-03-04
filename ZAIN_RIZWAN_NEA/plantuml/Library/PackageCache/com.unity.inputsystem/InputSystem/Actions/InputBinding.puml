@@ -1,0 +1,52 @@
+@startuml
+struct InputBinding {
+    + <<const>> Separator : char = ';'
+    + name : string <<get>> <<set>>
+    + path : string <<get>> <<set>>
+    + overridePath : string <<get>> <<set>>
+    + interactions : string <<get>> <<set>>
+    + overrideInteractions : string <<get>> <<set>>
+    + processors : string <<get>> <<set>>
+    + overrideProcessors : string <<get>> <<set>>
+    + groups : string <<get>> <<set>>
+    + action : string <<get>> <<set>>
+    + isComposite : bool <<get>> <<set>>
+    + isPartOfComposite : bool <<get>> <<set>>
+    + hasOverrides : bool <<get>>
+    + InputBinding(path:string, action:string, groups:string, processors:string, interactions:string, name:string)
+    + GetNameOfComposite() : string
+    + {static} MaskByGroup(group:string) : InputBinding
+    + {static} MaskByGroups(groups:string[]) : InputBinding
+    + effectivePath : string <<get>>
+    + effectiveInteractions : string <<get>>
+    + effectiveProcessors : string <<get>>
+    + Equals(other:InputBinding) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+    + ToDisplayString(options:DisplayStringOptions, control:InputControl) : string
+    + ToDisplayString(deviceLayoutName:string, controlPath:string, options:DisplayStringOptions, control:InputControl) : string
+    + Matches(binding:InputBinding) : bool
+}
+class "IEquatable`1"<T> {
+}
+enum DisplayStringOptions {
+    DontUseShortDisplayNames= 1 << 0,
+    DontOmitDevice= 1 << 1,
+    DontIncludeInteractions= 1 << 2,
+    IgnoreBindingOverrides= 1 << 3,
+}
+enum MatchOptions {
+    EmptyGroupMatchesAny= 1 << 0,
+}
+enum Flags {
+    None= 0,
+    Composite= 1 << 2,
+    PartOfComposite= 1 << 3,
+}
+"IEquatable`1" "<InputBinding>" <|-- InputBinding
+InputBinding --> "id" Guid
+InputBinding +-- DisplayStringOptions
+InputBinding +-- MatchOptions
+InputBinding +-- Flags
+@enduml

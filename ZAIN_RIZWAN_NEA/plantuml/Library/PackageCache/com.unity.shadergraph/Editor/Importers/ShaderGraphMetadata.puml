@@ -1,0 +1,28 @@
+@startuml
+struct GraphInputData {
+    + referenceName : string
+    + isKeyword : bool
+    + isCompoundProperty : bool
+}
+struct SubPropertyData {
+    + referenceName : string
+}
+class MinimalCategoryData {
+    + {static} ProcessVirtualTextureProperty(virtualTextureShaderProperty:VirtualTextureShaderProperty) : GraphInputData
+    + categoryName : string
+    + expanded : bool = true
+}
+class ShaderGraphMetadata {
+    + outputNodeTypeName : string
+}
+class "List`1"<T> {
+}
+GraphInputData --> "propertyType" PropertyType
+GraphInputData --> "keywordType" KeywordType
+GraphInputData --> "subProperties<SubPropertyData>" "List`1"
+SubPropertyData --> "propertyType" PropertyType
+MinimalCategoryData --> "propertyDatas<GraphInputData>" "List`1"
+ScriptableObject <|-- ShaderGraphMetadata
+ShaderGraphMetadata --> "assetDependencies<Object>" "List`1"
+ShaderGraphMetadata --> "categoryDatas<MinimalCategoryData>" "List`1"
+@enduml

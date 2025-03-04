@@ -1,0 +1,6 @@
+@startuml
+interface IDefaultVolumeProfileAsset {
+}
+IRenderPipelineGraphicsSettings <|-- IDefaultVolumeProfileAsset
+IDefaultVolumeProfileAsset --> "defaultVolumeProfile" VolumeProfile
+@enduml

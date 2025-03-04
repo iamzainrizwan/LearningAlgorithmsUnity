@@ -1,0 +1,31 @@
+@startuml
+interface IBaseRenderGraphBuilder {
+    + UseTexture(input:TextureHandle, flags:AccessFlags) : void
+    + UseGlobalTexture(propertyId:int, flags:AccessFlags) : void
+    + UseAllGlobalTextures(enable:bool) : void
+    + SetGlobalTextureAfterPass(input:TextureHandle, propertyId:int) : void
+    + UseBuffer(input:BufferHandle, flags:AccessFlags) : BufferHandle
+    + CreateTransientTexture(desc:TextureDesc) : TextureHandle
+    + CreateTransientTexture(texture:TextureHandle) : TextureHandle
+    + CreateTransientBuffer(desc:BufferDesc) : BufferHandle
+    + CreateTransientBuffer(computebuffer:BufferHandle) : BufferHandle
+    + UseRendererList(input:RendererListHandle) : void
+    + EnableAsyncCompute(value:bool) : void
+    + AllowPassCulling(value:bool) : void
+    + AllowGlobalStateModification(value:bool) : void
+    + EnableFoveatedRasterization(value:bool) : void
+}
+interface IComputeRenderGraphBuilder {
+    + SetRenderFunc(renderFunc:BaseRenderFunc<PassData, ComputeGraphContext>) : void
+}
+interface IUnsafeRenderGraphBuilder {
+    + SetRenderFunc(renderFunc:BaseRenderFunc<PassData, UnsafeGraphContext>) : void
+}
+interface IRasterRenderGraphBuilder {
+    + SetRenderFunc(renderFunc:BaseRenderFunc<PassData, RasterGraphContext>) : void
+}
+IDisposable <|-- IBaseRenderGraphBuilder
+IBaseRenderGraphBuilder <|-- IComputeRenderGraphBuilder
+IBaseRenderGraphBuilder <|-- IUnsafeRenderGraphBuilder
+IBaseRenderGraphBuilder <|-- IRasterRenderGraphBuilder
+@enduml

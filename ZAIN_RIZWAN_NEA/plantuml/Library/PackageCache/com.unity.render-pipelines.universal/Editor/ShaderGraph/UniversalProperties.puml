@@ -1,0 +1,25 @@
+@startuml
+class Property <<static>> {
+    + {static} <<readonly>> SpecularWorkflowMode : string = "_WorkflowMode"
+    + {static} <<readonly>> SurfaceType : string = "_Surface"
+    + {static} <<readonly>> BlendMode : string = "_Blend"
+    + {static} <<readonly>> AlphaClip : string = "_AlphaClip"
+    + {static} <<readonly>> AlphaToMask : string = "_AlphaToMask"
+    + {static} <<readonly>> SrcBlend : string = "_SrcBlend"
+    + {static} <<readonly>> DstBlend : string = "_DstBlend"
+    + {static} <<readonly>> SrcBlendAlpha : string = "_SrcBlendAlpha"
+    + {static} <<readonly>> DstBlendAlpha : string = "_DstBlendAlpha"
+    + {static} <<readonly>> BlendModePreserveSpecular : string = "_BlendModePreserveSpecular"
+    + {static} <<readonly>> ZWrite : string = "_ZWrite"
+    + {static} <<readonly>> CullMode : string = "_Cull"
+    + {static} <<readonly>> CastShadows : string = "_CastShadows"
+    + {static} <<readonly>> ReceiveShadows : string = "_ReceiveShadows"
+    + {static} <<readonly>> QueueOffset : string = "_QueueOffset"
+    + {static} <<readonly>> ZTest : string = "_ZTest"
+    + {static} <<readonly>> ZWriteControl : string = "_ZWriteControl"
+    + {static} <<readonly>> QueueControl : string = "_QueueControl"
+    + {static} <<readonly>> AddPrecomputedVelocity : string = "_AddPrecomputedVelocity"
+    + {static} <<readonly>> EmissionMap : string = "_EmissionMap"
+    + {static} <<readonly>> EmissionColor : string = "_EmissionColor"
+}
+@enduml

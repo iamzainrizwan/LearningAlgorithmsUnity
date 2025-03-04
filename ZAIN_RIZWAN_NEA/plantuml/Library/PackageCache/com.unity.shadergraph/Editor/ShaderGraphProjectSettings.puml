@@ -1,0 +1,24 @@
+@startuml
+class ShaderGraphProjectSettings {
+    + GetHeatValues() : ShaderGraphHeatmapValues
+}
+class ShaderGraphProjectSettingsProvider {
+    + ShaderGraphProjectSettingsProvider(path:string, scopes:SettingsScope, keywords:IEnumerable<string>)
+    + <<override>> OnActivate(searchContext:string, rootElement:VisualElement) : void
+    + {static} CreateShaderGraphProjectSettingsProvider() : SettingsProvider
+}
+class "ScriptableSingleton`1"<T> {
+}
+class Styles {
+}
+"ScriptableSingleton`1" "<ShaderGraphProjectSettings>" <|-- ShaderGraphProjectSettings
+SettingsProvider <|-- ShaderGraphProjectSettingsProvider
+ShaderGraphProjectSettingsProvider +-- Styles
+Styles o-> "shaderVariantLimitLabel" GUIContent
+Styles o-> "CustomInterpLabel" GUIContent
+Styles o-> "CustomInterpWarnThresholdLabel" GUIContent
+Styles o-> "CustomInterpErrorThresholdLabel" GUIContent
+Styles o-> "ReadMore" GUIContent
+Styles o-> "HeatmapSectionLabel" GUIContent
+Styles o-> "HeatmapAssetLabel" GUIContent
+@enduml

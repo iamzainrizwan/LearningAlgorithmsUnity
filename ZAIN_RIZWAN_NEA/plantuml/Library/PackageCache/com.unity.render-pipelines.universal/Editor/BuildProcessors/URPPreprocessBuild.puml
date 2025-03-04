@@ -1,0 +1,8 @@
+@startuml
+class URPPreprocessBuild {
+    + callbackOrder : int <<get>>
+    + OnPreprocessBuild(report:BuildReport) : void
+    + OnPostprocessBuild(report:BuildReport) : void
+}
+IPreprocessBuildWithReport <|-- URPPreprocessBuild
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class SolutionProperties {
+    + Name : string <<get>> <<set>>
+    + Type : string <<get>> <<set>>
+}
+class "IList`1"<T> {
+}
+SolutionProperties --> "Entries<KeyValuePair<string, string>>" "IList`1"
+@enduml

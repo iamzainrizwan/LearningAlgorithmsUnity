@@ -1,0 +1,41 @@
+@startuml
+struct InputStateBlock {
+    + <<const>> InvalidOffset : uint = 0xffffffff
+    + <<const>> AutomaticOffset : uint = 0xfffffffe
+    + {static} GetSizeOfPrimitiveFormatInBits(type:FourCC) : int
+    + {static} GetPrimitiveFormatFromType(type:Type) : FourCC
+    + byteOffset : uint <<get>> <<set>>
+    + bitOffset : uint <<get>> <<set>>
+    + sizeInBits : uint <<get>> <<set>>
+    + ReadInt(statePtr:void*) : int
+    + WriteInt(statePtr:void*, value:int) : void
+    + ReadFloat(statePtr:void*) : float
+    + WriteFloat(statePtr:void*, value:float) : void
+    + ReadDouble(statePtr:void*) : double
+    + WriteDouble(statePtr:void*, value:double) : void
+    + Write(statePtr:void*, value:PrimitiveValue) : void
+    + CopyToFrom(toStatePtr:void*, fromStatePtr:void*) : void
+}
+InputStateBlock o-> "FormatInvalid" FourCC
+InputStateBlock o-> "FormatBit" FourCC
+InputStateBlock o-> "FormatSBit" FourCC
+InputStateBlock o-> "FormatInt" FourCC
+InputStateBlock o-> "FormatUInt" FourCC
+InputStateBlock o-> "FormatShort" FourCC
+InputStateBlock o-> "FormatUShort" FourCC
+InputStateBlock o-> "FormatByte" FourCC
+InputStateBlock o-> "FormatSByte" FourCC
+InputStateBlock o-> "FormatLong" FourCC
+InputStateBlock o-> "FormatULong" FourCC
+InputStateBlock o-> "FormatFloat" FourCC
+InputStateBlock o-> "FormatDouble" FourCC
+InputStateBlock o-> "FormatVector2" FourCC
+InputStateBlock o-> "FormatVector3" FourCC
+InputStateBlock o-> "FormatQuaternion" FourCC
+InputStateBlock o-> "FormatVector2Short" FourCC
+InputStateBlock o-> "FormatVector3Short" FourCC
+InputStateBlock o-> "FormatVector2Byte" FourCC
+InputStateBlock o-> "FormatVector3Byte" FourCC
+InputStateBlock o-> "FormatPose" FourCC
+InputStateBlock --> "format" FourCC
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class ColorInspector {
+    + ColorInspector(metadata:Metadata)
+}
+Inspector <|-- ColorInspector
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class GBufferPass {
+    + GBufferPass(evt:RenderPassEvent, renderQueueRange:RenderQueueRange, layerMask:LayerMask, stencilState:StencilState, stencilReference:int, deferredLights:DeferredLights)
+    + Dispose() : void
+    + <<override>> Configure(cmd:CommandBuffer, cameraTextureDescriptor:RenderTextureDescriptor) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+}
+class PassData {
+}
+ScriptableRenderPass <|-- GBufferPass
+GBufferPass +-- PassData
+@enduml

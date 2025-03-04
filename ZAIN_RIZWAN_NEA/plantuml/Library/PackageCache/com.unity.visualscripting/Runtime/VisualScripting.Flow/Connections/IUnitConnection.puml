@@ -1,0 +1,8 @@
+@startuml
+interface IUnitConnection {
+}
+class "IConnection`2"<T1,T2> {
+}
+"IConnection`2" "<IUnitOutputPort,IUnitInputPort>" <|-- IUnitConnection
+IGraphElementWithDebugData <|-- IUnitConnection
+@enduml

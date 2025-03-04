@@ -1,0 +1,6 @@
+@startuml
+class RandomWalk {
+    + m_Range : float = 25.0f
+}
+MonoBehaviour <|-- RandomWalk
+@enduml

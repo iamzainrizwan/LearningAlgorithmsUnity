@@ -1,0 +1,9 @@
+@startuml
+struct RequestSyncCommand {
+    + {static} Create() : RequestSyncCommand
+}
+IInputDeviceCommandInfo <|-- RequestSyncCommand
+RequestSyncCommand --> "Type" FourCC
+RequestSyncCommand --> "baseCommand" InputDeviceCommand
+RequestSyncCommand --> "typeStatic" FourCC
+@enduml

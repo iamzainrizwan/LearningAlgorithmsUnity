@@ -1,0 +1,7 @@
+@startuml
+class UnityTestMethodCommand {
+    + UnityTestMethodCommand(testMethod:TestMethod)
+    + <<override>> Execute(context:ITestExecutionContext) : TestResult
+}
+TestMethodCommand <|-- UnityTestMethodCommand
+@enduml

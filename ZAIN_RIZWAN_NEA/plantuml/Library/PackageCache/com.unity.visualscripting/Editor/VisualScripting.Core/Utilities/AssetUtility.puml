@@ -1,0 +1,13 @@
+@startuml
+class AssetUtility <<static>> {
+    + {static} LoadAssetBundle(name:string, path:string) : AssetBundle
+    + {static} GetAllAssetsOfType() : IEnumerable<T>
+    + {static} GetSelectedFolderPath() : string
+    + {static} GetFileID(@namespace:string, name:string) : int
+    + {static} GetFileID(type:Type) : int
+    + {static} GetPluginRuntimeGUID(plugin:Plugin) : string
+    + {static} TryLoadIfExists(path:string, asset:T) : bool
+    + {static} TryLoad(path:string, asset:T) : bool
+}
+AssetUtility --> "AssetBundleEditor" AssetBundle
+@enduml

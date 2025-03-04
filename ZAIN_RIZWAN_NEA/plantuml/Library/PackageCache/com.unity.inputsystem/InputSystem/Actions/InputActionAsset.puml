@@ -1,0 +1,44 @@
+@startuml
+class InputActionAsset {
+    + <<const>> Extension : string = "inputactions"
+    + enabled : bool <<get>>
+    + ToJson() : string
+    + LoadFromJson(json:string) : void
+    + {static} FromJson(json:string) : InputActionAsset
+    + FindAction(actionNameOrId:string, throwIfNotFound:bool) : InputAction
+    + FindBinding(mask:InputBinding, action:InputAction) : int
+    + FindActionMap(nameOrId:string, throwIfNotFound:bool) : InputActionMap
+    + FindActionMap(id:Guid) : InputActionMap
+    + FindAction(guid:Guid) : InputAction
+    + FindControlSchemeIndex(name:string) : int
+    + FindControlScheme(name:string) : InputControlScheme?
+    + IsUsableWithDevice(device:InputDevice) : bool
+    + Enable() : void
+    + Disable() : void
+    + Contains(action:InputAction) : bool
+    + GetEnumerator() : IEnumerator<InputAction>
+}
+class "ReadOnlyArray`1"<T> {
+}
+class "IEnumerable`1"<T> {
+}
+struct WriteFileJson {
+    + name : string
+}
+struct WriteFileJsonNoName {
+}
+struct ReadFileJson {
+    + name : string
+    + ToAsset(asset:InputActionAsset) : void
+}
+ScriptableObject <|-- InputActionAsset
+IInputActionCollection2 <|-- InputActionAsset
+InputActionAsset --> "actionMaps<InputActionMap>" "ReadOnlyArray`1"
+InputActionAsset --> "controlSchemes<InputControlScheme>" "ReadOnlyArray`1"
+InputActionAsset --> "bindings<InputBinding>" "IEnumerable`1"
+InputActionAsset --> "bindingMask" InputBinding
+InputActionAsset --> "devices<InputDevice>" "ReadOnlyArray`1"
+InputActionAsset +-- WriteFileJson
+InputActionAsset +-- WriteFileJsonNoName
+InputActionAsset +-- ReadFileJson
+@enduml

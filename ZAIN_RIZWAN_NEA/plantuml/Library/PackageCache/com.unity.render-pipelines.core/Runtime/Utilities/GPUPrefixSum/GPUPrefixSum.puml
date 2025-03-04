@@ -1,0 +1,7 @@
+@startuml
+struct GPUPrefixSum {
+    + GPUPrefixSum(resources:SystemResources)
+    + DispatchDirect(cmdBuffer:CommandBuffer, arguments:DirectArgs) : void
+    + DispatchIndirect(cmdBuffer:CommandBuffer, arguments:IndirectDirectArgs) : void
+}
+@enduml

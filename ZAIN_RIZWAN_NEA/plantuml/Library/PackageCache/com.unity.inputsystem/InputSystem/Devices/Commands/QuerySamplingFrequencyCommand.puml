@@ -1,0 +1,10 @@
+@startuml
+struct QuerySamplingFrequencyCommand {
+    + frequency : float
+    + {static} Create() : QuerySamplingFrequencyCommand
+}
+IInputDeviceCommandInfo <|-- QuerySamplingFrequencyCommand
+QuerySamplingFrequencyCommand --> "Type" FourCC
+QuerySamplingFrequencyCommand --> "baseCommand" InputDeviceCommand
+QuerySamplingFrequencyCommand --> "typeStatic" FourCC
+@enduml

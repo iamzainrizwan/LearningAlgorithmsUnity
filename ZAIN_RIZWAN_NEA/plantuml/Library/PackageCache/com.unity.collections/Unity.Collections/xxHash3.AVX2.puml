@@ -1,0 +1,4 @@
+@startuml
+class xxHash3 <<static>> <<partial>> {
+}
+@enduml

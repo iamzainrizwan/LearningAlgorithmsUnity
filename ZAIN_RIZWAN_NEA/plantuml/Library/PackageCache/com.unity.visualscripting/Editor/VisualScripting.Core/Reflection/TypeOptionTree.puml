@@ -1,0 +1,22 @@
+@startuml
+class TypeOptionTree {
+    + <<override>> Option(item:object) : IFuzzyOption
+    + TypeOptionTree(types:IEnumerable<Type>)
+    + TypeOptionTree(typeSet:IEnumerable<Type>, filter:TypeFilter)
+    + <<override>> Prewarm() : void
+    + groupEnums : bool <<get>> <<set>> = true
+    + surfaceCommonTypes : bool <<get>> <<set>> = true
+    + <<override>> Root() : IEnumerable<object>
+    + <<override>> Children(parent:object) : IEnumerable<object>
+    + <<override>> searchable : bool <<get>> = true
+    + <<override>> SearchResults(query:string, cancellation:CancellationToken) : IEnumerable<ISearchResult>
+    + <<override>> SearchResultLabel(item:object, query:string) : string
+}
+enum RootMode {
+    Types,
+    Namespaces,
+}
+FuzzyOptionTree <|-- TypeOptionTree
+TypeOptionTree o-> "rootMode" RootMode
+TypeOptionTree +-- RootMode
+@enduml

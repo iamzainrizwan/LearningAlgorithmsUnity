@@ -1,0 +1,11 @@
+@startuml
+class Sequence <<sealed>> {
+    + outputCount : int <<get>> <<set>>
+    + CopyFrom(source:Sequence) : void
+}
+class "ReadOnlyCollection`1"<T> {
+}
+Unit <|-- Sequence
+Sequence --> "enter" ControlInput
+Sequence --> "multiOutputs<ControlOutput>" "ReadOnlyCollection`1"
+@enduml

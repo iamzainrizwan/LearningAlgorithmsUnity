@@ -1,0 +1,16 @@
+@startuml
+enum SampleUnit {
+    Nanosecond,
+    Microsecond,
+    Millisecond,
+    Second,
+    Byte,
+    Kilobyte,
+    Megabyte,
+    Gigabyte,
+    Undefined,
+}
+class SampleUnitExtensions <<static>> {
+    + {static} ShortName(s:SampleUnit) : string
+}
+@enduml

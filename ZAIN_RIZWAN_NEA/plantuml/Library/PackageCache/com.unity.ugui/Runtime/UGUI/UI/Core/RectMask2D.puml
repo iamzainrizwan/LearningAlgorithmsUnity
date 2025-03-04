@@ -1,0 +1,16 @@
+@startuml
+class RectMask2D {
+    + <<virtual>> IsRaycastLocationValid(sp:Vector2, eventCamera:Camera) : bool
+    + <<virtual>> PerformClipping() : void
+    + <<virtual>> UpdateClipSoftness() : void
+    + AddClippable(clippable:IClippable) : void
+    + RemoveClippable(clippable:IClippable) : void
+}
+UIBehaviour <|-- RectMask2D
+IClipper <|-- RectMask2D
+ICanvasRaycastFilter <|-- RectMask2D
+RectMask2D --> "padding" Vector4
+RectMask2D --> "softness" Vector2Int
+RectMask2D --> "canvasRect" Rect
+RectMask2D --> "rectTransform" RectTransform
+@enduml

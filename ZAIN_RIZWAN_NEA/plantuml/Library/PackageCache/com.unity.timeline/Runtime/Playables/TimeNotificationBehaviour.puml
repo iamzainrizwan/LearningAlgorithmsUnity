@@ -1,0 +1,21 @@
+@startuml
+class TimeNotificationBehaviour {
+    + {static} Create(graph:PlayableGraph, duration:double, loopMode:DirectorWrapMode) : ScriptPlayable<TimeNotificationBehaviour>
+    + AddNotification(time:double, payload:INotification, flags:NotificationFlags) : void
+    + <<override>> OnGraphStart(playable:Playable) : void
+    + <<override>> OnBehaviourPause(playable:Playable, info:FrameData) : void
+    + <<override>> PrepareFrame(playable:Playable, info:FrameData) : void
+}
+struct NotificationEntry {
+    + time : double
+    + notificationFired : bool
+    + triggerInEditor : bool <<get>>
+    + prewarm : bool <<get>>
+    + triggerOnce : bool <<get>>
+}
+PlayableBehaviour <|-- TimeNotificationBehaviour
+TimeNotificationBehaviour --> "timeSource" Playable
+TimeNotificationBehaviour +-- NotificationEntry
+NotificationEntry --> "payload" INotification
+NotificationEntry --> "flags" NotificationFlags
+@enduml

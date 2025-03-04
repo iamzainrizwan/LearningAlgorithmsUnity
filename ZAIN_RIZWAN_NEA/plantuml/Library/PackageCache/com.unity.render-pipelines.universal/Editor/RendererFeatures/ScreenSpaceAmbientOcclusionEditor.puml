@@ -1,0 +1,25 @@
+@startuml
+class ScreenSpaceAmbientOcclusionEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+class HeaderBool {
+    + value : bool
+}
+struct Styles {
+}
+Editor <|-- ScreenSpaceAmbientOcclusionEditor
+ScreenSpaceAmbientOcclusionEditor +-- HeaderBool
+ScreenSpaceAmbientOcclusionEditor +-- Styles
+Styles o-> "AOMethod" GUIContent
+Styles o-> "Intensity" GUIContent
+Styles o-> "Radius" GUIContent
+Styles o-> "Falloff" GUIContent
+Styles o-> "DirectLightingStrength" GUIContent
+Styles o-> "Quality" GUIContent
+Styles o-> "Source" GUIContent
+Styles o-> "NormalQuality" GUIContent
+Styles o-> "Downsample" GUIContent
+Styles o-> "AfterOpaque" GUIContent
+Styles o-> "BlurQuality" GUIContent
+Styles o-> "Samples" GUIContent
+@enduml

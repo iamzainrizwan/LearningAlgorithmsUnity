@@ -1,0 +1,10 @@
+@startuml
+class UITestRunnerFilter {
+    + synchronousOnly : bool
+    + {static} AssemblyNameFromPath(path:string) : string
+    + ClearResults(newResultList:Dictionary<string, IClearableResult>) : void
+}
+interface IClearableResult {
+}
+UITestRunnerFilter +-- IClearableResult
+@enduml

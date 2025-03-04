@@ -1,0 +1,27 @@
+@startuml
+class UnsafeAppendBufferTests {
+    + UnsafeAppendBuffer_DisposeAllocated() : void
+    <<unsafe>> + UnsafeAppendBuffer_DisposeExternal() : void
+    + UnsafeAppendBuffer_ThrowZeroAlignment() : void
+    + <<unsafe>> UnsafeAppendBuffer_AddAndPop_UnalignedRead() : void
+    + <<unsafe>> UnsafeAppendBuffer_AddAndRead_UnalignedRead() : void
+    + <<unsafe>> UnsafeAppendBuffer_PushHeadersWithPackets() : void
+    + <<unsafe>> UnsafeAppendBuffer_ReadHeadersWithPackets() : void
+    + <<unsafe>> UnsafeAppendBuffer_AddAndPop() : void
+    + <<unsafe>> UnsafeAppendBuffer_ReadNextArray() : void
+    + <<unsafe>> UnsafeAppendBuffer_DisposeJob() : void
+    + UnsafeAppendBuffer_CustomAllocatorTest() : void
+    + <<unsafe>> UnsafeAppendBuffer_BurstedCustomAllocatorTest() : void
+}
+struct TestHeader {
+    + Type : int
+    + PayloadSize : int
+}
+struct BurstedCustomAllocatorJob {
+    + Execute() : void
+}
+CollectionsTestCommonBase <|-- UnsafeAppendBufferTests
+UnsafeAppendBufferTests +-- TestHeader
+UnsafeAppendBufferTests +-- BurstedCustomAllocatorJob
+IJob <|-- BurstedCustomAllocatorJob
+@enduml

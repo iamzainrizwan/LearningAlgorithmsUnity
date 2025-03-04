@@ -1,0 +1,11 @@
+@startuml
+interface IGraphElement {
+}
+IGraphItem <|-- IGraphElement
+INotifiedCollectionItem <|-- IGraphElement
+IDisposable <|-- IGraphElement
+IPrewarmable <|-- IGraphElement
+IAotStubbable <|-- IGraphElement
+IIdentifiable <|-- IGraphElement
+IAnalyticsIdentifiable <|-- IGraphElement
+@enduml

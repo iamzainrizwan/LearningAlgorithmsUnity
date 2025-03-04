@@ -1,0 +1,11 @@
+@startuml
+class SceneColorNode <<sealed>> {
+    + <<const>> ScreenPositionSlotId : int = 0
+    + <<const>> OutputSlotId : int = 1
+    + SceneColorNode()
+    + <<override>> hasPreview : bool <<get>>
+    + RequiresCameraOpaqueTexture(stageCapability:ShaderStageCapability) : bool
+}
+CodeFunctionNode <|-- SceneColorNode
+IMayRequireCameraOpaqueTexture <|-- SceneColorNode
+@enduml

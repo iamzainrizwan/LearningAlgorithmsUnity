@@ -1,0 +1,18 @@
+@startuml
+class NavMeshLink <<partial>> {
+    + agentTypeID : int <<get>> <<set>>
+    + width : float <<get>> <<set>>
+    + costModifier : float <<get>> <<set>>
+    + bidirectional : bool <<get>> <<set>>
+    + autoUpdate : bool <<get>> <<set>>
+    + area : int <<get>> <<set>>
+    + activated : bool <<get>> <<set>>
+    + occupied : bool <<get>>
+    + UpdateLink() : void
+}
+MonoBehaviour <|-- NavMeshLink
+NavMeshLink --> "startPoint" Vector3
+NavMeshLink --> "endPoint" Vector3
+NavMeshLink --> "startTransform" Transform
+NavMeshLink --> "endTransform" Transform
+@enduml

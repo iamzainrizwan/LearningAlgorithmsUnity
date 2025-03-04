@@ -1,0 +1,15 @@
+@startuml
+class Texture2DPropertiesNode {
+    + <<const>> OutputSlotWId : int = 0
+    + <<const>> OutputSlotHId : int = 2
+    + <<const>> OutputSlotTWId : int = 3
+    + <<const>> OutputSlotTHId : int = 4
+    + <<const>> TextureInputId : int = 1
+    + <<override>> hasPreview : bool <<get>>
+    + Texture2DPropertiesNode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<virtual>> GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+}
+AbstractMaterialNode <|-- Texture2DPropertiesNode
+IGeneratesBodyCode <|-- Texture2DPropertiesNode
+@enduml

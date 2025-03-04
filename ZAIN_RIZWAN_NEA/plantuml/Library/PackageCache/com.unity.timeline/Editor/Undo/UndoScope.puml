@@ -1,0 +1,12 @@
+@startuml
+struct UndoScope {
+    + UndoScope(name:string)
+    + Dispose() : void
+    + AddObject(asset:UnityEngine.Object) : void
+    + AddClip(clip:TimelineClip, includeAsset:bool) : void
+    + Add(tracks:IEnumerable<TrackAsset>) : void
+    + Add(clips:IEnumerable<TimelineClip>, includeAssets:bool) : void
+    + Add(markers:IEnumerable<IMarker>) : void
+}
+IDisposable <|-- UndoScope
+@enduml

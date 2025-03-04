@@ -1,0 +1,13 @@
+@startuml
+class RenderingLayersMigrationTest {
+    + PerformMigration(testCase:IGlobalSettingsMigrationTestCase) : void
+}
+class TestCase1 {
+    + SetUp(globalSettingsAsset:UniversalRenderPipelineGlobalSettings, renderPipelineAsset:UniversalRenderPipelineAsset) : void
+    + TearDown(globalSettingsAsset:UniversalRenderPipelineGlobalSettings, renderPipelineAsset:UniversalRenderPipelineAsset) : void
+    + IsMigrationCorrect(message:string) : bool
+}
+GlobalSettingsMigrationTest <|-- RenderingLayersMigrationTest
+RenderingLayersMigrationTest +-- TestCase1
+IGlobalSettingsMigrationTestCase <|-- TestCase1
+@enduml

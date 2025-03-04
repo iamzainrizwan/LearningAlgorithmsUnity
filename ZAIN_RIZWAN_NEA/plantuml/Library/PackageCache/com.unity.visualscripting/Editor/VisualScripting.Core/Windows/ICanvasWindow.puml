@@ -1,0 +1,8 @@
+@startuml
+interface ICanvasWindow {
+}
+class XCanvasWindow <<static>> {
+    + {static} IsFocused(window:ICanvasWindow) : bool
+    + {static} Focus(window:ICanvasWindow) : void
+}
+@enduml

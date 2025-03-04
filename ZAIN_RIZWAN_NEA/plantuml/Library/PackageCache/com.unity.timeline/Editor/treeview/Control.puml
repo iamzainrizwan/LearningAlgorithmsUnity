@@ -1,0 +1,6 @@
+@startuml
+class Control {
+    + HandleManipulatorsEvents(state:WindowState) : bool
+    + AddManipulator(m:Manipulator) : void
+}
+@enduml

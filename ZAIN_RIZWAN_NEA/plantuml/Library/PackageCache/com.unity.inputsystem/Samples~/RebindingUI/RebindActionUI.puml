@@ -1,0 +1,30 @@
+@startuml
+class RebindActionUI {
+    + bindingId : string <<get>> <<set>>
+    + ResolveActionAndBinding(action:InputAction, bindingIndex:int) : bool
+    + UpdateBindingDisplay() : void
+    + ResetToDefault() : void
+    + StartInteractiveRebind() : void
+}
+class UpdateBindingUIEvent {
+}
+class InteractiveRebindEvent {
+}
+class "UnityEvent`4"<T1,T2,T3,T4> {
+}
+class "UnityEvent`2"<T1,T2> {
+}
+MonoBehaviour <|-- RebindActionUI
+RebindActionUI --> "actionReference" InputActionReference
+RebindActionUI --> "actionLabel" Text
+RebindActionUI --> "bindingText" Text
+RebindActionUI --> "rebindPrompt" Text
+RebindActionUI --> "rebindOverlay" GameObject
+RebindActionUI --> "updateBindingUIEvent" UpdateBindingUIEvent
+RebindActionUI --> "startRebindEvent" InteractiveRebindEvent
+RebindActionUI --> "stopRebindEvent" InteractiveRebindEvent
+RebindActionUI +-- UpdateBindingUIEvent
+"UnityEvent`4" "<RebindActionUI,string,string,string>" <|-- UpdateBindingUIEvent
+RebindActionUI +-- InteractiveRebindEvent
+"UnityEvent`2" "<RebindActionUI,InputActionRebindingExtensions.RebindingOperation>" <|-- InteractiveRebindEvent
+@enduml

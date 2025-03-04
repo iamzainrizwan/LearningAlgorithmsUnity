@@ -1,0 +1,79 @@
+@startuml
+struct uint2 {
+    + x : uint
+    + y : uint
+    + uint2(x:uint, y:uint)
+    + uint2(xy:uint2)
+    + uint2(v:uint)
+    + uint2(v:bool)
+    + uint2(v:bool2)
+    + uint2(v:int)
+    + uint2(v:int2)
+    + uint2(v:float)
+    + uint2(v:float2)
+    + uint2(v:double)
+    + uint2(v:double2)
+    + Equals(rhs:uint2) : bool
+    + <<override>> Equals(o:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+    + ToString(format:string, formatProvider:IFormatProvider) : string
+}
+class math <<static>> <<partial>> {
+    + {static} uint2(x:uint, y:uint) : uint2
+    + {static} uint2(xy:uint2) : uint2
+    + {static} uint2(v:uint) : uint2
+    + {static} uint2(v:bool) : uint2
+    + {static} uint2(v:bool2) : uint2
+    + {static} uint2(v:int) : uint2
+    + {static} uint2(v:int2) : uint2
+    + {static} uint2(v:float) : uint2
+    + {static} uint2(v:float2) : uint2
+    + {static} uint2(v:double) : uint2
+    + {static} uint2(v:double2) : uint2
+    + {static} hash(v:uint2) : uint
+    + {static} hashwide(v:uint2) : uint2
+    + {static} shuffle(left:uint2, right:uint2, x:ShuffleComponent) : uint
+    + {static} shuffle(left:uint2, right:uint2, x:ShuffleComponent, y:ShuffleComponent) : uint2
+    + {static} shuffle(left:uint2, right:uint2, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent) : uint3
+    + {static} shuffle(left:uint2, right:uint2, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent, w:ShuffleComponent) : uint4
+}
+class "IEquatable`1"<T> {
+}
+class DebuggerProxy <<sealed>> {
+    + x : uint
+    + y : uint
+    + DebuggerProxy(v:uint2)
+}
+IFormattable <|-- uint2
+uint2 --> "zero" uint2
+uint2 --> "xxxx" uint4
+uint2 --> "xxxy" uint4
+uint2 --> "xxyx" uint4
+uint2 --> "xxyy" uint4
+uint2 --> "xyxx" uint4
+uint2 --> "xyxy" uint4
+uint2 --> "xyyx" uint4
+uint2 --> "xyyy" uint4
+uint2 --> "yxxx" uint4
+uint2 --> "yxxy" uint4
+uint2 --> "yxyx" uint4
+uint2 --> "yxyy" uint4
+uint2 --> "yyxx" uint4
+uint2 --> "yyxy" uint4
+uint2 --> "yyyx" uint4
+uint2 --> "yyyy" uint4
+uint2 --> "xxx" uint3
+uint2 --> "xxy" uint3
+uint2 --> "xyx" uint3
+uint2 --> "xyy" uint3
+uint2 --> "yxx" uint3
+uint2 --> "yxy" uint3
+uint2 --> "yyx" uint3
+uint2 --> "yyy" uint3
+uint2 --> "xx" uint2
+uint2 --> "xy" uint2
+uint2 --> "yx" uint2
+uint2 --> "yy" uint2
+uint2 +-- DebuggerProxy
+@enduml

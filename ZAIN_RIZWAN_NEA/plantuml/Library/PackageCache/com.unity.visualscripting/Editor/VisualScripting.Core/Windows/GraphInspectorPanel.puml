@@ -1,0 +1,12 @@
+@startuml
+class GraphInspectorPanel <<sealed>> {
+    + sidebarControlHint : object <<get>>
+    + GraphInspectorPanel(context:IGraphContext)
+    + OnGUI(position:Rect) : void
+    + GetHeight(width:float) : float
+}
+ISidebarPanelContent <|-- GraphInspectorPanel
+GraphInspectorPanel --> "context" IGraphContext
+GraphInspectorPanel --> "titleContent" GUIContent
+GraphInspectorPanel --> "minSize" Vector2
+@enduml

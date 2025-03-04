@@ -1,0 +1,6 @@
+@startuml
+class PostProcessDataEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+Editor <|-- PostProcessDataEditor
+@enduml

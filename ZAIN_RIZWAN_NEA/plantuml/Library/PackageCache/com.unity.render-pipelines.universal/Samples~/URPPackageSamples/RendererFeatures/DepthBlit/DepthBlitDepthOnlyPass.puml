@@ -1,0 +1,15 @@
+@startuml
+class DepthBlitDepthOnlyPass {
+    + DepthBlitDepthOnlyPass(evt:RenderPassEvent, renderQueueRange:RenderQueueRange, layerMask:LayerMask, desc:RenderTextureDescriptor, filterMode:FilterMode, wrapMode:TextureWrapMode, name:string)
+    + <<override>> Configure(cmd:CommandBuffer, cameraTextureDescriptor:RenderTextureDescriptor) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+    + Dispose() : void
+}
+class PassData {
+}
+ScriptableRenderPass <|-- DepthBlitDepthOnlyPass
+DepthBlitDepthOnlyPass --> "depthRT" RTHandle
+DepthBlitDepthOnlyPass +-- PassData
+PassData --> "rendererList" RendererListHandle
+@enduml

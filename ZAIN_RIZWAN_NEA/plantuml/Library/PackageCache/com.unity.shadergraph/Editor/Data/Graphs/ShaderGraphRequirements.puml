@@ -1,0 +1,26 @@
+@startuml
+struct ShaderGraphRequirements {
+    + requiresScreenPosition : bool <<get>> <<internal set>>
+    + requiresNDCPosition : bool <<get>> <<internal set>>
+    + requiresPixelPosition : bool <<get>> <<internal set>>
+    + requiresVertexColor : bool <<get>> <<internal set>>
+    + requiresFaceSign : bool <<get>> <<internal set>>
+    + requiresDepthTexture : bool <<get>> <<internal set>>
+    + requiresCameraOpaqueTexture : bool <<get>> <<internal set>>
+    + requiresTime : bool <<get>> <<internal set>>
+    + requiresVertexSkinning : bool <<get>> <<internal set>>
+    + requiresVertexID : bool <<get>> <<internal set>>
+    + requiresInstanceID : bool <<get>> <<internal set>>
+}
+class "List`1"<T> {
+}
+ShaderGraphRequirements --> "requiresTransforms<NeededTransform>" "List`1"
+ShaderGraphRequirements --> "requiresNormal" NeededCoordinateSpace
+ShaderGraphRequirements --> "requiresBitangent" NeededCoordinateSpace
+ShaderGraphRequirements --> "requiresTangent" NeededCoordinateSpace
+ShaderGraphRequirements --> "requiresViewDir" NeededCoordinateSpace
+ShaderGraphRequirements --> "requiresPosition" NeededCoordinateSpace
+ShaderGraphRequirements --> "requiresPositionPredisplacement" NeededCoordinateSpace
+ShaderGraphRequirements --> "requiresMeshUVs<UVChannel>" "List`1"
+ShaderGraphRequirements --> "requiresMeshUVDerivatives<UVChannel>" "List`1"
+@enduml

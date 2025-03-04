@@ -1,0 +1,58 @@
+@startuml
+interface IEventSystemHandler {
+}
+interface IPointerMoveHandler {
+}
+interface IPointerEnterHandler {
+}
+interface IPointerExitHandler {
+}
+interface IPointerDownHandler {
+}
+interface IPointerUpHandler {
+}
+interface IPointerClickHandler {
+}
+interface IBeginDragHandler {
+}
+interface IInitializePotentialDragHandler {
+}
+interface IDragHandler {
+}
+interface IEndDragHandler {
+}
+interface IDropHandler {
+}
+interface IScrollHandler {
+}
+interface IUpdateSelectedHandler {
+}
+interface ISelectHandler {
+}
+interface IDeselectHandler {
+}
+interface IMoveHandler {
+}
+interface ISubmitHandler {
+}
+interface ICancelHandler {
+}
+IEventSystemHandler <|-- IPointerMoveHandler
+IEventSystemHandler <|-- IPointerEnterHandler
+IEventSystemHandler <|-- IPointerExitHandler
+IEventSystemHandler <|-- IPointerDownHandler
+IEventSystemHandler <|-- IPointerUpHandler
+IEventSystemHandler <|-- IPointerClickHandler
+IEventSystemHandler <|-- IBeginDragHandler
+IEventSystemHandler <|-- IInitializePotentialDragHandler
+IEventSystemHandler <|-- IDragHandler
+IEventSystemHandler <|-- IEndDragHandler
+IEventSystemHandler <|-- IDropHandler
+IEventSystemHandler <|-- IScrollHandler
+IEventSystemHandler <|-- IUpdateSelectedHandler
+IEventSystemHandler <|-- ISelectHandler
+IEventSystemHandler <|-- IDeselectHandler
+IEventSystemHandler <|-- IMoveHandler
+IEventSystemHandler <|-- ISubmitHandler
+IEventSystemHandler <|-- ICancelHandler
+@enduml

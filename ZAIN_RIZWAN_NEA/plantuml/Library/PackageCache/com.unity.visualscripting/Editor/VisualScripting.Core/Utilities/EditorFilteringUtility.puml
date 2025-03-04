@@ -1,0 +1,8 @@
+@startuml
+class EditorFilteringUtility <<static>> {
+    + {static} Configure(typeFilter:TypeFilter, aotSafe:bool) : void
+    + {static} Configure(memberFilter:MemberFilter) : void
+    + {static} Configured(typeFilter:TypeFilter, aotSafe:bool) : TypeFilter
+    + {static} Configured(memberFilter:MemberFilter) : MemberFilter
+}
+@enduml

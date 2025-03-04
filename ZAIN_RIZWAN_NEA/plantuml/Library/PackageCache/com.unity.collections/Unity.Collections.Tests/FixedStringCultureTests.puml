@@ -1,0 +1,25 @@
+@startuml
+class FixedStringCultureTests {
+    + FixedStringCultureTests(culture:string)
+    + <<virtual>> Setup() : void
+    + <<virtual>> TearDown() : void
+    + FixedStringNParseIntWorks(a:String, expectedOffset:int, expectedOutput:int, expectedResult:ParseError) : void
+    + FixedStringNParseUIntWorks(a:String, expectedOffset:int, expectedOutput:uint, expectedResult:ParseError) : void
+    + FixedStringNParseFloat(unlocalizedString:String, expectedOffset:int, expectedResult:ParseError) : void
+    + FixedStringNParseFloatNan() : void
+    + FixedStringNParseFloatInfinity() : void
+    + FixedStringNParseFloatNegativeInfinity() : void
+    + FixedStringNFormatInt(input:int) : void
+    + FixedStringNFormatLong(input:long) : void
+    + FixedStringNFormatUInt(input:uint) : void
+    + FixedStringNFormatULong(input:ulong) : void
+    + FixedStringNFormatFloat(input:float, expectedResult:FormatError) : void
+    + FixedStringNAppendInt(input:int) : void
+    + FixedStringNAppendLong(input:long) : void
+    + FixedStringNAppendUInt(input:uint) : void
+    + FixedStringNAppendULong(input:ulong) : void
+    + FixedStringNAppendFloat(input:float, expectedResult:FormatError) : void
+    + FixedStringNFormatNegativeZero() : void
+    + FixedStringNParseFloatLocale(locale:String) : void
+}
+@enduml

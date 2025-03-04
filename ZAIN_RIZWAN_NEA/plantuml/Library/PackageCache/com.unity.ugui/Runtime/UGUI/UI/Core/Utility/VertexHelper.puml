@@ -1,0 +1,23 @@
+@startuml
+class VertexHelper {
+    + VertexHelper()
+    + VertexHelper(m:Mesh)
+    + Dispose() : void
+    + Clear() : void
+    + currentVertCount : int <<get>>
+    + currentIndexCount : int <<get>>
+    + PopulateUIVertex(vertex:UIVertex, i:int) : void
+    + SetUIVertex(vertex:UIVertex, i:int) : void
+    + FillMesh(mesh:Mesh) : void
+    + AddVert(position:Vector3, color:Color32, uv0:Vector4, uv1:Vector4, uv2:Vector4, uv3:Vector4, normal:Vector3, tangent:Vector4) : void
+    + AddVert(position:Vector3, color:Color32, uv0:Vector4, uv1:Vector4, normal:Vector3, tangent:Vector4) : void
+    + AddVert(position:Vector3, color:Color32, uv0:Vector4) : void
+    + AddVert(v:UIVertex) : void
+    + AddTriangle(idx0:int, idx1:int, idx2:int) : void
+    + AddUIVertexQuad(verts:UIVertex[]) : void
+    + AddUIVertexStream(verts:List<UIVertex>, indices:List<int>) : void
+    + AddUIVertexTriangleStream(verts:List<UIVertex>) : void
+    + GetUIVertexStream(stream:List<UIVertex>) : void
+}
+IDisposable <|-- VertexHelper
+@enduml

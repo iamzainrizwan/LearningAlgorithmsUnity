@@ -1,0 +1,23 @@
+@startuml
+class FramesMeasurement {
+    + ProfilerMarkers(profilerMarkerNames:string[]) : FramesMeasurement
+    + ProfilerMarkers(sampleGroups:SampleGroup[]) : FramesMeasurement
+    + SampleGroup(name:string) : FramesMeasurement
+    + SampleGroup(sampleGroup:SampleGroup) : FramesMeasurement
+    + MeasurementCount(count:int) : FramesMeasurement
+    + DynamicMeasurementCount(outlierMode:OutlierMode) : FramesMeasurement
+    + DynamicMeasurementCount(maxRelativeError:double, confidenceLevel:ConfidenceLevel, outlierMode:OutlierMode) : FramesMeasurement
+    + WarmupCount(count:int) : FramesMeasurement
+    + DontRecordFrametime() : FramesMeasurement
+    + Scope(name:string) : ScopedFrameTimeMeasurement
+    + Scope(sampleGroup:SampleGroup) : ScopedFrameTimeMeasurement
+    + Run() : IEnumerator
+}
+struct ScopedFrameTimeMeasurement {
+    + ScopedFrameTimeMeasurement(sampleGroup:SampleGroup)
+    + ScopedFrameTimeMeasurement(name:string)
+    + Dispose() : void
+}
+FramesMeasurement +-- ScopedFrameTimeMeasurement
+IDisposable <|-- ScopedFrameTimeMeasurement
+@enduml

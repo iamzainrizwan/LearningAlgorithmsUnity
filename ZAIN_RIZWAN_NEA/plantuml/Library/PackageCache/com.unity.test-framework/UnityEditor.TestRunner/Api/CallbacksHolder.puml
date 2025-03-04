@@ -1,0 +1,25 @@
+@startuml
+class CallbacksHolder {
+    + Add(callback:ICallbacks, priority:int) : void
+    + Remove(callback:ICallbacks) : void
+    + GetAll() : ICallbacks[]
+    + Clear() : void
+    + TemporarilySuppressCallbacks() : IDisposable
+}
+class "ScriptableSingleton`1"<T> {
+}
+struct CallbackWithPriority {
+    + Priority : int
+    + CallbackWithPriority(callback:ICallbacks, priority:int)
+}
+class Suppressor <<sealed>> {
+    + Suppressor(instance:CallbacksHolder)
+    + Dispose() : void
+}
+"ScriptableSingleton`1" "<CallbacksHolder>" <|-- CallbacksHolder
+ICallbacksHolder <|-- CallbacksHolder
+CallbacksHolder +-- CallbackWithPriority
+CallbackWithPriority --> "Callback" ICallbacks
+CallbacksHolder +-- Suppressor
+IDisposable <|-- Suppressor
+@enduml

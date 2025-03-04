@@ -1,0 +1,26 @@
+@startuml
+class FastAssert <<static>> {
+    + {static} IsTrue(b:bool) : void
+    + {static} IsTrue(b:bool, msg:string) : void
+    + {static} True(b:bool) : void
+    + {static} True(b:bool, msg:string) : void
+    + {static} IsFalse(b:bool) : void
+    + {static} IsFalse(b:bool, msg:string) : void
+    + {static} False(b:bool) : void
+    + {static} False(b:bool, msg:string) : void
+    + {static} AreEqual(a:T, b:T) : void
+    + {static} AreEqual(a:T, b:T, msg:string) : void
+    + {static} AreNotEqual(a:T, b:T) : void
+    + {static} AreNotEqual(a:T, b:T, msg:string) : void
+    + {static} LessOrEqual(a:T, b:T) : void
+    + {static} LessOrEqual(a:T, b:T, msg:string) : void
+    + {static} Less(a:T, b:T) : void
+    + {static} Less(a:T, b:T, msg:string) : void
+    + {static} GreaterOrEqual(a:T, b:T) : void
+    + {static} GreaterOrEqual(a:T, b:T, msg:string) : void
+    + {static} Greater(a:T, b:T) : void
+    + {static} Greater(a:T, b:T, msg:string) : void
+    + {static} DoesNotThrow(del:TestDelegate) : void
+    + {static} Throws(del:TestDelegate) : void
+}
+@enduml

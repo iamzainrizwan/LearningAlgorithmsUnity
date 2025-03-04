@@ -1,0 +1,32 @@
+@startuml
+class NavMeshSurfaceEditor {
+    + <<override>> OnInspectorGUI() : void
+    + {static} CreateNavMeshSurface(menuCommand:MenuCommand) : void
+}
+class Content <<static>> {
+    + {static} <<readonly>> VoxelSizeFormatString : string
+    + {static} <<readonly>> VoxelSizeHelpBox : string
+    + {static} <<readonly>> TileWorldSizeFormatString : string
+    + {static} <<readonly>> TileWorldSizeHelpBox : string
+    + {static} <<readonly>> UndoModifyVolume : string
+}
+NavMeshSurfaceEditor +-- Content
+Content o-> "AgentType" GUIContent
+Content o-> "DefaultArea" GUIContent
+Content o-> "GenerateLinks" GUIContent
+Content o-> "UseGeometry" GUIContent
+Content o-> "ObjectCollectionHeader" GUIContent
+Content o-> "CollectObjects" GUIContent
+Content o-> "IncludeLayers" GUIContent
+Content o-> "AdvancedHeader" GUIContent
+Content o-> "OverrideVoxelSize" GUIContent
+Content o-> "VoxelSize" GUIContent
+Content o-> "OverrideTileSize" GUIContent
+Content o-> "TileSize" GUIContent
+Content o-> "MinimumRegionArea" GUIContent
+Content o-> "BuildHeightMesh" GUIContent
+Content o-> "NavMeshData" GUIContent
+Content o-> "ClearButton" GUIContent
+Content o-> "BakeButton" GUIContent
+Content o-> "BakeInProgressButton" GUIContent
+@enduml

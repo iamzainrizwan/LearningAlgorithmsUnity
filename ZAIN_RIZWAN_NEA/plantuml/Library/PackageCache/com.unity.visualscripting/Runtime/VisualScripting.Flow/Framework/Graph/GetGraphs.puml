@@ -1,0 +1,11 @@
+@startuml
+abstract class "GetGraphs`3"<TGraph,TGraphAsset,TMachine> {
+}
+class "Macro`1"<T> {
+}
+class "Machine`2"<T1,T2> {
+}
+Unit <|-- "GetGraphs`3"
+"GetGraphs`3" --> "gameObject" ValueInput
+"GetGraphs`3" --> "graphList" ValueOutput
+@enduml

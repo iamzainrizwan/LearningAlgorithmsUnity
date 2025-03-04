@@ -1,0 +1,22 @@
+@startuml
+class VolumeProfileUtils <<static>> {
+    + {static} UpdateGlobalDefaultVolumeProfileWithConfirmation(globalDefaultVolumeProfile:VolumeProfile, defaultValueSource:VolumeProfile) : bool
+    + {static} UpdateGlobalDefaultVolumeProfile(globalDefaultVolumeProfile:VolumeProfile, defaultValueSource:VolumeProfile) : void
+    + {static} EnsureAllOverridesForDefaultProfile(profile:VolumeProfile, defaultValueSource:VolumeProfile) : void
+    + {static} AddVolumeProfileContextMenuItems(menu:GenericMenu, volumeProfile:VolumeProfile, componentEditors:List<VolumeComponentEditor>, overrideStateOnReset:bool, defaultVolumeProfilePath:string, onNewVolumeProfileCreated:Action<VolumeProfile>, onComponentEditorsExpandedCollapsed:Action, canCreateNewProfile:bool) : void
+    + {static} OnVolumeProfileContextClick(position:Vector2, volumeProfile:VolumeProfile, componentEditors:List<VolumeComponentEditor>, overrideStateOnReset:bool, defaultVolumeProfilePath:string, onNewVolumeProfileCreated:Action<VolumeProfile>, onComponentEditorsExpandedCollapsed:Action) : void
+}
+class Styles <<static>> {
+}
+VolumeProfileUtils +-- Styles
+Styles o-> "newVolumeProfile" GUIContent
+Styles o-> "clone" GUIContent
+Styles o-> "collapseAll" GUIContent
+Styles o-> "expandAll" GUIContent
+Styles o-> "reset" GUIContent
+Styles o-> "resetAll" GUIContent
+Styles o-> "openInRenderingDebugger" GUIContent
+Styles o-> "copySettings" GUIContent
+Styles o-> "copyAllSettings" GUIContent
+Styles o-> "pasteSettings" GUIContent
+@enduml

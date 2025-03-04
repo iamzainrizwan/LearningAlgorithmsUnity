@@ -1,0 +1,12 @@
+@startuml
+class CreateStruct <<sealed>> {
+    + CreateStruct()
+    + CreateStruct(type:Type)
+    + <<override>> canDefine : bool <<get>>
+}
+Unit <|-- CreateStruct
+CreateStruct --> "type" Type
+CreateStruct --> "enter" ControlInput
+CreateStruct --> "exit" ControlOutput
+CreateStruct --> "output" ValueOutput
+@enduml

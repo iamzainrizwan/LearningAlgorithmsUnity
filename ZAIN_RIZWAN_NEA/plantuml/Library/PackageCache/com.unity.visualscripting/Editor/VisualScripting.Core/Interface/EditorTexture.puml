@@ -1,0 +1,11 @@
+@startuml
+class EditorTexture {
+    + {static} Single(texture:Texture2D) : EditorTexture
+    + {static} Single(texture:Texture) : EditorTexture
+    + Single() : Texture2D
+    + {static} Load(resourceProviders:IEnumerable<IResourceProvider>, path:string, options:CreateTextureOptions, required:bool) : EditorTexture
+    + {static} Load(resourceProviders:IEnumerable<IResourceProvider>, path:string, resolutions:TextureResolution[], options:CreateTextureOptions, required:bool) : EditorTexture
+    + {static} Load(resources:IResourceProvider, path:string, options:CreateTextureOptions, required:bool) : EditorTexture
+    + {static} Load(resources:IResourceProvider, path:string, resolutions:TextureResolution[], options:CreateTextureOptions, required:bool) : EditorTexture
+}
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+class TouchPhaseControl {
+    + TouchPhaseControl()
+    + <<override>> <<unsafe>> ReadUnprocessedValueFromState(statePtr:void*) : TouchPhase
+    + <<override>> <<unsafe>> WriteValueIntoState(value:TouchPhase, statePtr:void*) : void
+}
+class "InputControl`1"<T> {
+}
+"InputControl`1" "<TouchPhase>" <|-- TouchPhaseControl
+@enduml

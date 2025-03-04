@@ -1,0 +1,6 @@
+@startuml
+class ShaderData {
+    + Dispose() : void
+}
+IDisposable <|-- ShaderData
+@enduml

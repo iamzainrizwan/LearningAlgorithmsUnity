@@ -1,0 +1,9 @@
+@startuml
+class ProgressControlsForDialogs {
+}
+class Data {
+}
+VisualElement <|-- ProgressControlsForDialogs
+IProgressControls <|-- ProgressControlsForDialogs
+ProgressControlsForDialogs +-- Data
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+class ImageEditor {
+    + <<override>> OnInspectorGUI() : void
+    + <<override>> HasPreviewGUI() : bool
+    + <<override>> OnPreviewGUI(rect:Rect, background:GUIStyle) : void
+    + <<override>> GetInfoString() : string
+}
+class Styles {
+}
+GraphicEditor <|-- ImageEditor
+ImageEditor +-- Styles
+Styles o-> "text" GUIContent
+@enduml

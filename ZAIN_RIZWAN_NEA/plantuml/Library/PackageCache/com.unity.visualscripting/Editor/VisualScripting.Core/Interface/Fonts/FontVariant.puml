@@ -1,0 +1,9 @@
+@startuml
+struct FontVariant {
+    + FontVariant(weight:FontWeight, style:FontStyle)
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+FontVariant --> "weight" FontWeight
+FontVariant --> "style" FontStyle
+@enduml

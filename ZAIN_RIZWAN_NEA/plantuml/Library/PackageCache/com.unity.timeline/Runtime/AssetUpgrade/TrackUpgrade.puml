@@ -1,0 +1,15 @@
+@startuml
+class TrackAsset <<partial>> {
+}
+enum Versions {
+    Initial= 0,
+    RotationAsEuler= 1,
+    RootMotionUpgrade= 2,
+    AnimatedTrackProperties= 3,
+}
+class TrackAssetUpgrade <<static>> {
+}
+ISerializationCallbackReceiver <|-- TrackAsset
+TrackAsset +-- Versions
+TrackAsset +-- TrackAssetUpgrade
+@enduml

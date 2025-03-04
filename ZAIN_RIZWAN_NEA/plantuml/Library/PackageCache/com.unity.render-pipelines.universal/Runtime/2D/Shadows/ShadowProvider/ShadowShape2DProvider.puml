@@ -1,0 +1,11 @@
+@startuml
+abstract class ShadowShape2DProvider {
+    + <<virtual>> ProviderName(componentName:string) : string
+    + <<virtual>> Priority() : int
+    + <<virtual>> Enabled(sourceComponent:Component) : void
+    + <<virtual>> Disabled(sourceComponent:Component) : void
+    + {abstract} IsShapeSource(sourceComponent:Component) : bool
+    + <<virtual>> OnPersistantDataCreated(sourceComponent:Component, persistantShadowShape:ShadowShape2D) : void
+    + <<virtual>> OnBeforeRender(sourceComponent:Component, worldCullingBounds:Bounds, persistantShadowShape:ShadowShape2D) : void
+}
+@enduml

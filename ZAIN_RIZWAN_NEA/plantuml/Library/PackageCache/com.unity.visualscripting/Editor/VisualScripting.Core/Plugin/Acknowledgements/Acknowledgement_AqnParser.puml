@@ -1,0 +1,12 @@
+@startuml
+class Acknowledgement_AqnParser {
+    + Acknowledgement_AqnParser(plugin:Plugin)
+    + <<override>> title : string <<get>>
+    + <<override>> author : string <<get>>
+    + <<override>> copyrightYear : int? <<get>>
+    + <<override>> url : string <<get>>
+    + <<override>> licenseName : string <<get>>
+    + <<override>> licenseText : string <<get>>
+}
+PluginAcknowledgement <|-- Acknowledgement_AqnParser
+@enduml

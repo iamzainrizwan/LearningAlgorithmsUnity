@@ -1,0 +1,5 @@
+@startuml
+abstract class "InstanceInvokerBase`1"<TTarget> {
+}
+InvokerBase <|-- "InstanceInvokerBase`1"
+@enduml

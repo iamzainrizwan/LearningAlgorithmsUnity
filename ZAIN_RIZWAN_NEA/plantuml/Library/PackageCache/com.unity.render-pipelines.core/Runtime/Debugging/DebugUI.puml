@@ -1,0 +1,70 @@
+@startuml
+class DebugUI <<partial>> {
+}
+enum Flags {
+    None= 0,
+    EditorOnly= 1 << 1,
+    RuntimeOnly= 1 << 2,
+    EditorForceUpdate= 1 << 3,
+    FrequentlyUsed= 1 << 4,
+}
+abstract class Widget {
+    + displayName : string <<get>> <<set>>
+    + tooltip : string <<get>> <<set>>
+    + queryPath : string <<get>>
+    + isEditorOnly : bool <<get>>
+    + isRuntimeOnly : bool <<get>>
+    + isInactiveInEditor : bool <<get>>
+    + isHidden : bool <<get>>
+    + <<override>> GetHashCode() : int
+}
+interface IContainer {
+}
+interface IValueField {
+}
+class Button {
+}
+class Value {
+    + refreshRate : float = 0.1f
+    + formatString : string = null
+    + Value()
+    + <<virtual>> GetValue() : object
+    + <<virtual>> FormatString(value:object) : string
+}
+class ProgressBarValue {
+    + min : float = 0f
+    + max : float = 1f
+    + <<override>> FormatString(value:object) : string
+}
+class ValueTuple {
+    + numElements : int <<get>>
+    + refreshRate : float <<get>>
+    + pinnedElementIndex : int
+}
+class "Func`1"<T> {
+}
+struct NameAndTooltip {
+    + name : string
+    + tooltip : string
+}
+DebugUI +-- Flags
+DebugUI +-- Widget
+Widget --> "panel" Panel
+Widget --> "parent" IContainer
+Widget --> "flags" Flags
+Widget --> "isHiddenCallback<bool>" "Func`1"
+Widget --> "nameAndTooltip" NameAndTooltip
+DebugUI +-- IContainer
+DebugUI +-- IValueField
+DebugUI +-- Button
+Widget <|-- Button
+Button --> "action" Action
+DebugUI +-- Value
+Widget <|-- Value
+Value --> "getter<object>" "Func`1"
+DebugUI +-- ProgressBarValue
+Value <|-- ProgressBarValue
+DebugUI +-- ValueTuple
+Widget <|-- ValueTuple
+Widget +-- NameAndTooltip
+@enduml

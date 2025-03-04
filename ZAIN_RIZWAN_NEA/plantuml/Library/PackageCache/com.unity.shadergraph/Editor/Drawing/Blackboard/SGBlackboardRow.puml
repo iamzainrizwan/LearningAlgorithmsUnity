@@ -1,0 +1,9 @@
+@startuml
+class SGBlackboardRow {
+    + expanded : bool <<get>> <<set>>
+    + SGBlackboardRow(item:VisualElement, propertyView:VisualElement)
+    + Dispose() : void
+}
+VisualElement <|-- SGBlackboardRow
+IDisposable <|-- SGBlackboardRow
+@enduml

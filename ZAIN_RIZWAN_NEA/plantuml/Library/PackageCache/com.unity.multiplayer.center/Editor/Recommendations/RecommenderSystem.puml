@@ -1,0 +1,9 @@
+@startuml
+class RecommenderSystem <<static>> {
+    + {static} GetRecommendation(questionnaireData:QuestionnaireData, answerData:AnswerData) : RecommendationViewData
+    + {static} GetSolutionsToRecommendedPackageViewData() : SolutionsToRecommendedPackageViewData
+    + {static} AdaptRecommendationToNetcodeSelection(recommendation:RecommendationViewData) : void
+}
+class "Tuple`2"<T1,T2> {
+}
+@enduml

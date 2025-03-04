@@ -1,0 +1,5 @@
+@startuml
+class DebugUpdater {
+}
+MonoBehaviour <|-- DebugUpdater
+@enduml

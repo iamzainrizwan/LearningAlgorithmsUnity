@@ -1,0 +1,7 @@
+@startuml
+class Texture3DPropertyDrawer {
+    + DrawProperty(propertyInfo:PropertyInfo, actualObject:object, attribute:InspectableAttribute) : VisualElement
+}
+IPropertyDrawer <|-- Texture3DPropertyDrawer
+Texture3DPropertyDrawer --> "inspectorUpdateDelegate" Action
+@enduml

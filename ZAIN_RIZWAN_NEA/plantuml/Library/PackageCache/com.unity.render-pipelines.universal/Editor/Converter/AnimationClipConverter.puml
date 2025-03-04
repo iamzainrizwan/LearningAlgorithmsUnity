@@ -1,0 +1,13 @@
+@startuml
+class AnimationClipConverter <<sealed>> {
+    + <<override>> name : string <<get>>
+    + <<override>> info : string <<get>>
+    + <<override>> category : string <<get>>
+    + <<override>> OnInitialize(ctx:InitializeConverterContext, callback:Action) : void
+    + <<override>> OnPreRun() : void
+    + <<override>> OnRun(ctx:RunItemContext) : void
+    + <<override>> OnClicked(index:int) : void
+}
+RenderPipelineConverter <|-- AnimationClipConverter
+AnimationClipConverter --> "container" Type
+@enduml

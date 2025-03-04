@@ -1,0 +1,6 @@
+@startuml
+class UniversalSpeedTree9Upgrader {
+    {static} + UniversalSpeedTree9MaterialFinalizer(mat:Material) : void
+}
+SpeedTree9MaterialUpgrader <|-- UniversalSpeedTree9Upgrader
+@enduml

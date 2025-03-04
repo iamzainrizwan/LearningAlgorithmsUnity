@@ -1,0 +1,14 @@
+@startuml
+class EditorUnityObjectUtility <<static>> {
+    + {static} GetUnityTypes(target:UnityObject) : IEnumerable<Type>
+    + {static} GetPrefabDefinition(uo:UnityObject) : UnityObject
+    + {static} IsPrefabInstance(uo:UnityObject) : bool
+    + {static} IsPrefabDefinition(uo:UnityObject) : bool
+    + {static} IsConnectedPrefabInstance(uo:UnityObject) : bool
+    + {static} IsDisconnectedPrefabInstance(uo:UnityObject) : bool
+    + {static} IsSceneBound(uo:UnityObject) : bool
+    + <<const>> MonoBehaviourClassID : int = 114
+    + {static} GetClassID(type:Type) : int
+    + {static} GetScriptClass(type:Type) : string
+}
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class BoolInspector {
+    + BoolInspector(metadata:Metadata)
+    + <<override>> GetAdaptiveWidth() : float
+}
+Inspector <|-- BoolInspector
+@enduml

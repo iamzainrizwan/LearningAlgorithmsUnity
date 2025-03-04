@@ -1,0 +1,8 @@
+@startuml
+class TaskInfo {
+    + index : int
+    + stopBeforeIndex : int
+    + pc : int
+}
+TaskInfo o-> "taskMode" TaskMode
+@enduml

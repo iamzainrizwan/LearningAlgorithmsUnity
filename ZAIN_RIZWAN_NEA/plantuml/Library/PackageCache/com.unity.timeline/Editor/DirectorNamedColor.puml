@@ -1,0 +1,61 @@
+@startuml
+class DirectorNamedColor {
+    + SetDefault() : void
+    + ToText(path:string) : void
+    + FromText(text:string) : void
+    + {static} CreateAndLoadFromText(text:string) : DirectorNamedColor
+}
+ScriptableObject <|-- DirectorNamedColor
+DirectorNamedColor --> "colorPlayhead" Color
+DirectorNamedColor --> "colorSelection" Color
+DirectorNamedColor --> "colorEndmarker" Color
+DirectorNamedColor --> "colorGroup" Color
+DirectorNamedColor --> "colorGroupTrackBackground" Color
+DirectorNamedColor --> "colorAnimation" Color
+DirectorNamedColor --> "colorAnimationRecorded" Color
+DirectorNamedColor --> "colorAudio" Color
+DirectorNamedColor --> "colorAudioWaveform" Color
+DirectorNamedColor --> "colorActivation" Color
+DirectorNamedColor --> "colorDropTarget" Color
+DirectorNamedColor --> "colorClipFont" Color
+DirectorNamedColor --> "colorInvalidClipOverlay" Color
+DirectorNamedColor --> "colorTrackBackground" Color
+DirectorNamedColor --> "colorTrackHeaderBackground" Color
+DirectorNamedColor --> "colorTrackDarken" Color
+DirectorNamedColor --> "colorTrackBackgroundRecording" Color
+DirectorNamedColor --> "colorInfiniteTrackBackgroundRecording" Color
+DirectorNamedColor --> "colorTrackBackgroundSelected" Color
+DirectorNamedColor --> "colorTrackFont" Color
+DirectorNamedColor --> "colorClipUnion" Color
+DirectorNamedColor --> "colorTopOutline3" Color
+DirectorNamedColor --> "colorDurationLine" Color
+DirectorNamedColor --> "colorRange" Color
+DirectorNamedColor --> "colorSequenceBackground" Color
+DirectorNamedColor --> "colorTooltipBackground" Color
+DirectorNamedColor --> "colorInfiniteClipLine" Color
+DirectorNamedColor --> "colorDefaultTrackDrawer" Color
+DirectorNamedColor o-> "colorDuration" Color
+DirectorNamedColor o-> "colorRecordingClipOutline" Color
+DirectorNamedColor o-> "colorAnimEditorBinding" Color
+DirectorNamedColor o-> "colorTimelineBackground" Color
+DirectorNamedColor o-> "colorLockTextBG" Color
+DirectorNamedColor o-> "colorInlineCurveVerticalLines" Color
+DirectorNamedColor o-> "colorInlineCurveOutOfRangeOverlay" Color
+DirectorNamedColor --> "colorInlineCurvesBackground" Color
+DirectorNamedColor o-> "markerDrawerBackgroundColor" Color
+DirectorNamedColor o-> "markerHeaderDrawerBackgroundColor" Color
+DirectorNamedColor o-> "colorControl" Color
+DirectorNamedColor o-> "colorSubSequenceBackground" Color
+DirectorNamedColor o-> "colorTrackSubSequenceBackground" Color
+DirectorNamedColor o-> "colorTrackSubSequenceBackgroundSelected" Color
+DirectorNamedColor o-> "colorSubSequenceOverlay" Color
+DirectorNamedColor o-> "colorSubSequenceDurationLine" Color
+DirectorNamedColor o-> "clipBckg" Color
+DirectorNamedColor o-> "clipSelectedBckg" Color
+DirectorNamedColor o-> "clipBorderColor" Color
+DirectorNamedColor o-> "clipEaseBckgColor" Color
+DirectorNamedColor --> "clipBlendIn" Color
+DirectorNamedColor --> "clipBlendInSelected" Color
+DirectorNamedColor --> "clipBlendOut" Color
+DirectorNamedColor --> "clipBlendOutSelected" Color
+@enduml

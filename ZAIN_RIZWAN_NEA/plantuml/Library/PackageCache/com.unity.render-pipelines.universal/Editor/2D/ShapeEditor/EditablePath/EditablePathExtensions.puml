@@ -1,0 +1,16 @@
+@startuml
+class EditablePathExtensions <<static>> {
+    + {static} ToPolygon(path:IEditablePath) : Polygon
+    + {static} ToSpline(path:IEditablePath) : Spline
+    + {static} CalculateLocalLeftTangent(path:IEditablePath, index:int) : Vector3
+    + {static} CalculateLeftTangent(path:IEditablePath, index:int) : Vector3
+    + {static} CalculateLocalRightTangent(path:IEditablePath, index:int) : Vector3
+    + {static} CalculateRightTangent(path:IEditablePath, index:int) : Vector3
+    + {static} GetPrevPoint(path:IEditablePath, index:int) : ControlPoint
+    + {static} GetNextPoint(path:IEditablePath, index:int) : ControlPoint
+    + {static} UpdateTangentMode(path:IEditablePath, index:int) : void
+    + {static} UpdateTangentsFromMode(path:IEditablePath) : void
+    + {static} SetTangentMode(path:IEditablePath, index:int, tangentMode:TangentMode) : void
+    + {static} MirrorTangent(path:IEditablePath, index:int) : void
+}
+@enduml

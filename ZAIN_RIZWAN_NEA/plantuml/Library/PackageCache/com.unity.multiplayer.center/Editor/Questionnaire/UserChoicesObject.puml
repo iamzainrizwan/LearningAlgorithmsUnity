@@ -1,0 +1,12 @@
+@startuml
+class UserChoicesObject {
+    + QuestionnaireVersion : string
+    +  <<event>> OnSolutionSelectionChanged : Action 
+}
+class "ScriptableSingleton`1"<T> {
+}
+"ScriptableSingleton`1" "<UserChoicesObject>" <|-- UserChoicesObject
+UserChoicesObject o-> "UserAnswers" AnswerData
+UserChoicesObject --> "Preset" Preset
+UserChoicesObject --> "SelectedSolutions" SelectedSolutionsData
+@enduml

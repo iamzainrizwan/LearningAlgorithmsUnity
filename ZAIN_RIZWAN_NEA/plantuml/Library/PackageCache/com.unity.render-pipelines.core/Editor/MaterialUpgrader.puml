@@ -1,0 +1,53 @@
+@startuml
+class DialogText <<static>> {
+    + {static} <<readonly>> title : string = "Material Upgrader"
+    + {static} <<readonly>> proceed : string = "Proceed"
+    + {static} <<readonly>> ok : string = "OK"
+    + {static} <<readonly>> cancel : string = "Cancel"
+    + {static} <<readonly>> noSelectionMessage : string = "You must select at least one material."
+    + {static} <<readonly>> projectBackMessage : string = "Make sure to have a project backup before proceeding."
+}
+class MaterialUpgrader {
+    + NewShaderPath : string <<get>>
+    + GetPropertyRenameMap(type:MaterialPropertyType) : IReadOnlyDictionary<string, string>
+    + Upgrade(material:Material, flags:UpgradeFlags) : void
+    + <<virtual>> Convert(srcMaterial:Material, dstMaterial:Material) : void
+    + RenameShader(oldName:string, newName:string, finalizer:MaterialFinalizer) : void
+    + RenameTexture(oldName:string, newName:string) : void
+    + RenameFloat(oldName:string, newName:string) : void
+    + RenameColor(oldName:string, newName:string) : void
+    + RemoveTexture(name:string) : void
+    + SetFloat(propertyName:string, value:float) : void
+    + SetColor(propertyName:string, value:Color) : void
+    + SetTexture(propertyName:string, value:Texture) : void
+    + RenameKeywordToFloat(oldName:string, newName:string, setVal:float, unsetVal:float) : void
+    + {static} ProjectFolderContainsNonBuiltinMaterials(upgraders:List<MaterialUpgrader>) : bool
+    + {static} UpgradeProjectFolder(upgraders:List<MaterialUpgrader>, progressBarName:string, flags:UpgradeFlags) : void
+    + {static} UpgradeProjectFolder(upgraders:List<MaterialUpgrader>, shaderNamesToIgnore:HashSet<string>, progressBarName:string, flags:UpgradeFlags) : void
+    + {static} Upgrade(material:Material, upgrader:MaterialUpgrader, flags:UpgradeFlags) : void
+    + {static} Upgrade(material:Material, upgraders:List<MaterialUpgrader>, flags:UpgradeFlags) : void
+    + {static} Upgrade(material:Material, upgraders:List<MaterialUpgrader>, flags:UpgradeFlags, message:string) : bool
+    + {static} UpgradeSelection(upgraders:List<MaterialUpgrader>, progressBarName:string, flags:UpgradeFlags) : void
+    + {static} UpgradeSelection(upgraders:List<MaterialUpgrader>, shaderNamesToIgnore:HashSet<string>, progressBarName:string, flags:UpgradeFlags) : void
+}
+class KeywordFloatRename {
+    + keyword : string
+    + property : string
+    + setVal : float
+    + unsetVal : float
+}
+enum MaterialPropertyType {
+    Texture,
+    Float,
+    Color,
+}
+enum UpgradeFlags {
+    None= 0,
+    LogErrorOnNonExistingProperty= 1,
+    CleanupNonUpgradedProperties= 2,
+    LogMessageWhenNoUpgraderFound= 4,
+}
+MaterialUpgrader +-- KeywordFloatRename
+MaterialUpgrader +-- MaterialPropertyType
+MaterialUpgrader +-- UpgradeFlags
+@enduml

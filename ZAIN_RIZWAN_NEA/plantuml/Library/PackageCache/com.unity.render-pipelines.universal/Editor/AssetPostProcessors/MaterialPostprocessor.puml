@@ -1,0 +1,33 @@
+@startuml
+class MaterialModificationProcessor {
+}
+class MaterialReimporter {
+}
+class MaterialPostprocessor {
+}
+class LitUpdaterV1 {
+    + {static} UpdateLitDetails(material:Material) : void
+    + LitUpdaterV1(oldShaderName:string)
+}
+class UnlitUpdaterV1 {
+    + {static} UpgradeToUnlit(material:Material) : void
+    + UnlitUpdaterV1(oldShaderName:string)
+}
+class SimpleLitUpdaterV1 {
+    + SimpleLitUpdaterV1(oldShaderName:string)
+    + {static} UpgradeToSimpleLit(material:Material) : void
+}
+class ParticleUpdaterV1 {
+    + ParticleUpdaterV1(shaderName:string)
+}
+class "List`1"<T> {
+}
+AssetModificationProcessor <|-- MaterialModificationProcessor
+Editor <|-- MaterialReimporter
+AssetPostprocessor <|-- MaterialPostprocessor
+MaterialPostprocessor o-> "s_CreatedAssets<string>" "List`1"
+MaterialUpgrader <|-- LitUpdaterV1
+MaterialUpgrader <|-- UnlitUpdaterV1
+MaterialUpgrader <|-- SimpleLitUpdaterV1
+MaterialUpgrader <|-- ParticleUpdaterV1
+@enduml

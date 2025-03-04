@@ -1,0 +1,20 @@
+@startuml
+class ComputeRendererFeature {
+    + <<override>> Create() : void
+    + <<override>> AddRenderPasses(renderer:ScriptableRenderer, renderingData:RenderingData) : void
+}
+class ComputePass {
+    + ComputePass()
+    + Setup(cs:ComputeShader) : void
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+class PassData {
+}
+ScriptableRendererFeature <|-- ComputeRendererFeature
+ComputeRendererFeature +-- ComputePass
+ScriptableRenderPass <|-- ComputePass
+ComputePass +-- PassData
+PassData --> "cs" ComputeShader
+PassData --> "input" BufferHandle
+PassData --> "output" BufferHandle
+@enduml

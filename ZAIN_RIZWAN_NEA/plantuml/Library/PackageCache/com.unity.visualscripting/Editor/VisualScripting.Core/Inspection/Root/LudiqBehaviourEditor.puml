@@ -1,0 +1,5 @@
+@startuml
+class LudiqBehaviourEditor {
+}
+LudiqRootObjectEditor <|-- LudiqBehaviourEditor
+@enduml

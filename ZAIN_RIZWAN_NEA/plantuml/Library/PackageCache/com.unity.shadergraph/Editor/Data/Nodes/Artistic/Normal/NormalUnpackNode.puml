@@ -1,0 +1,7 @@
+@startuml
+class NormalUnpackNode {
+    + NormalUnpackNode()
+}
+CodeFunctionNode <|-- NormalUnpackNode
+NormalUnpackNode --> "normalMapSpace" NormalMapSpace
+@enduml

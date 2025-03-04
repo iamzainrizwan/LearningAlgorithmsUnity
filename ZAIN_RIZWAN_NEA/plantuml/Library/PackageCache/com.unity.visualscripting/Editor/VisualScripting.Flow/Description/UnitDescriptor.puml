@@ -1,0 +1,25 @@
+@startuml
+class "UnitDescriptor`1"<TUnit> {
+    + UnitDescriptor(target:TUnit)
+    + unit : TUnit <<get>>
+    + {static} FreeReflectedDescriptions() : void
+    + <<sealed>> <<override>> Title() : string
+    + ShortTitle() : string
+    + Surtitle() : string
+    + Subtitle() : string
+    + <<sealed>> <<override>> Summary() : string
+    + <<sealed>> <<override>> Icon() : EditorTexture
+    + Icons() : IEnumerable<EditorTexture>
+    + DescribePort(port:IUnitPort, description:UnitPortDescription) : void
+}
+class "Descriptor`2"<T1,T2> {
+}
+enum State {
+    Defined,
+    NotDefined,
+    FailedToDefine,
+}
+"Descriptor`2" "<TUnit,UnitDescription>" <|-- "UnitDescriptor`1"
+IUnitDescriptor <|-- "UnitDescriptor`1"
+"UnitDescriptor`1" +-- State
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class TestActionCommand {
+    + TestActionCommand(innerCommand:TestCommand)
+}
+class "BeforeAfterTestCommandBase`1"<T> {
+}
+"BeforeAfterTestCommandBase`1" "<ITestAction>" <|-- TestActionCommand
+@enduml

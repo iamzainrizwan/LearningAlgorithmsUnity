@@ -1,0 +1,5 @@
+@startuml
+class UtpMessageBuilder <<static>> {
+    + {static} BuildQualitySettings() : QualitySettingsMessage
+}
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class UnityLogCheckDelegatingCommand {
+    + UnityLogCheckDelegatingCommand(innerCommand:TestCommand)
+    + <<override>> Execute(context:ITestExecutionContext) : TestResult
+    + ExecuteEnumerable(context:ITestExecutionContext) : IEnumerable
+}
+DelegatingTestCommand <|-- UnityLogCheckDelegatingCommand
+IEnumerableTestMethodCommand <|-- UnityLogCheckDelegatingCommand
+@enduml

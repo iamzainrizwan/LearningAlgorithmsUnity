@@ -1,0 +1,10 @@
+@startuml
+class RenderGraphViewer <<partial>> {
+}
+class PassTitleLabel {
+    + PassTitleLabel(text:string)
+    + <<override>> ContainsPoint(localPoint:Vector2) : bool
+}
+RenderGraphViewer +-- PassTitleLabel
+Label <|-- PassTitleLabel
+@enduml

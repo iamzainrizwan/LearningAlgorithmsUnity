@@ -1,0 +1,7 @@
+@startuml
+class fsConverterRegistrar <<partial>> {
+}
+class "List`1"<T> {
+}
+fsConverterRegistrar --> "Converters<Type>" "List`1"
+@enduml

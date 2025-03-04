@@ -1,0 +1,8 @@
+@startuml
+struct ShadowEdge {
+    + v0 : int
+    + v1 : int
+    + ShadowEdge(indexA:int, indexB:int)
+    + Reverse() : void
+}
+@enduml

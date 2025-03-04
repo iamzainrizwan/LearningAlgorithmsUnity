@@ -1,0 +1,412 @@
+@startuml
+class SQLiteException {
+    + {static} New(r:SQLite3.Result, message:string) : SQLiteException
+}
+class NotNullConstraintViolationException {
+    + {static} <<new>> New(r:SQLite3.Result, message:string) : NotNullConstraintViolationException
+    + {static} New(r:SQLite3.Result, message:string, mapping:TableMapping, obj:object) : NotNullConstraintViolationException
+    + {static} New(exception:SQLiteException, mapping:TableMapping, obj:object) : NotNullConstraintViolationException
+}
+enum SQLiteOpenFlags {
+    ReadOnly= 1,
+    ReadWrite= 2,
+    Create= 4,
+    NoMutex= 0x8000,
+    FullMutex= 0x10000,
+    SharedCache= 0x20000,
+    PrivateCache= 0x40000,
+    ProtectionComplete= 0x00100000,
+    ProtectionCompleteUnlessOpen= 0x00200000,
+    ProtectionCompleteUntilFirstUserAuthentication= 0x00300000,
+    ProtectionNone= 0x00400000,
+}
+enum CreateFlags {
+    None= 0,
+    ImplicitPK= 1,
+    ImplicitIndex= 2,
+    AllImplicit= 3,
+    AutoIncPK= 4,
+}
+class SQLiteConnection <<partial>> {
+    + DatabasePath : string <<get>>
+    + TimeExecution : bool <<get>> <<set>>
+    + Trace : bool <<get>> <<set>>
+    +  <<event>> TraceEvent : TraceHandler 
+    + StoreDateTimeAsTicks : bool <<get>>
+    + SQLiteConnection(databasePath:string, storeDateTimeAsTicks:bool)
+    + SQLiteConnection(databasePath:string, openFlags:SQLiteOpenFlags, storeDateTimeAsTicks:bool)
+    + SyncObject : object <<get>>
+    + EnableLoadExtension(onoff:int) : void
+    + GetMapping(type:Type, createFlags:CreateFlags) : TableMapping
+    + GetMapping() : TableMapping
+    + DropTable() : int
+    + CreateTable(createFlags:CreateFlags) : int
+    + CreateTable(ty:Type, createFlags:CreateFlags) : int
+    + CreateIndex(indexName:string, tableName:string, columnNames:string[], unique:bool) : int
+    + CreateIndex(indexName:string, tableName:string, columnName:string, unique:bool) : int
+    + CreateIndex(tableName:string, columnName:string, unique:bool) : int
+    + CreateIndex(tableName:string, columnNames:string[], unique:bool) : int
+    + CreateIndex(property:Expression<Func<T, object>>, unique:bool) : void
+    + GetTableInfo(tableName:string) : List<ColumnInfo>
+    + CreateCommand(cmdText:string, ps:object[]) : SQLiteCommand
+    + Execute(query:string, args:object[]) : int
+    + ExecuteScalar(query:string, args:object[]) : T
+    + Query(query:string, args:object[]) : List<T>
+    + DeferredQuery(query:string, args:object[]) : IEnumerable<T>
+    + Query(map:TableMapping, query:string, args:object[]) : List<object>
+    + DeferredQuery(map:TableMapping, query:string, args:object[]) : IEnumerable<object>
+    + Table() : TableQuery<T>
+    + Get(pk:object) : T
+    + Get(predicate:Expression<Func<T, bool>>) : T
+    + Find(pk:object) : T
+    + Find(pk:object, map:TableMapping) : object
+    + Find(predicate:Expression<Func<T, bool>>) : T
+    + IsInTransaction : bool <<get>>
+    + BeginTransaction() : void
+    + SaveTransactionPoint() : string
+    + Rollback() : void
+    + RollbackTo(savepoint:string) : void
+    + Release(savepoint:string) : void
+    + Commit() : void
+    + RunInTransaction(action:Action) : void
+    + RunInDatabaseLock(action:Action) : void
+    + InsertAll(objects:System.Collections.IEnumerable) : int
+    + InsertAll(objects:System.Collections.IEnumerable, extra:string) : int
+    + InsertAll(objects:System.Collections.IEnumerable, objType:Type) : int
+    + Insert(obj:object) : int
+    + InsertOrReplace(obj:object) : int
+    + Insert(obj:object, objType:Type) : int
+    + InsertOrReplace(obj:object, objType:Type) : int
+    + Insert(obj:object, extra:string) : int
+    + Insert(obj:object, extra:string, objType:Type) : int
+    + Update(obj:object) : int
+    + Update(obj:object, objType:Type) : int
+    + UpdateAll(objects:System.Collections.IEnumerable) : int
+    + Delete(objectToDelete:object) : int
+    + Delete(primaryKey:object) : int
+    + DeleteAll() : int
+    + Dispose() : void
+    + Close() : void
+}
+class SQLiteConnectionString {
+    + ConnectionString : string <<get>>
+    + DatabasePath : string <<get>>
+    + StoreDateTimeAsTicks : bool <<get>>
+    + SQLiteConnectionString(databasePath:string, storeDateTimeAsTicks:bool)
+}
+class TableAttribute {
+    + Name : string <<get>> <<set>>
+    + TableAttribute(name:string)
+}
+class ColumnAttribute {
+    + Name : string <<get>> <<set>>
+    + ColumnAttribute(name:string)
+}
+class PrimaryKeyAttribute {
+}
+class AutoIncrementAttribute {
+}
+class IndexedAttribute {
+    + Name : string <<get>> <<set>>
+    + Order : int <<get>> <<set>>
+    + <<virtual>> Unique : bool <<get>> <<set>>
+    + IndexedAttribute()
+    + IndexedAttribute(name:string, order:int)
+}
+class IgnoreAttribute {
+}
+class UniqueAttribute {
+    + <<override>> Unique : bool <<get>> <<set>>
+}
+class MaxLengthAttribute {
+    + Value : int <<get>>
+    + MaxLengthAttribute(length:int)
+}
+class CollationAttribute {
+    + Value : string <<get>>
+    + CollationAttribute(collation:string)
+}
+class NotNullAttribute {
+}
+class TableMapping {
+    + TableName : string <<get>>
+    + GetByPrimaryKeySql : string <<get>>
+    + TableMapping(type:Type, createFlags:CreateFlags)
+    + HasAutoIncPK : bool <<get>>
+    + SetAutoIncPK(obj:object, id:long) : void
+    + FindColumnWithPropertyName(propertyName:string) : Column
+    + FindColumn(columnName:string) : Column
+    + GetInsertCommand(conn:SQLiteConnection, extra:string) : PreparedSqlLiteInsertCommand
+}
+class Orm <<static>> {
+    + <<const>> DefaultMaxStringLength : int = 140
+    + <<const>> ImplicitPkName : string = "Id"
+    + <<const>> ImplicitIndexSuffix : string = "Id"
+    + {static} SqlDecl(p:TableMapping.Column, storeDateTimeAsTicks:bool) : string
+    + {static} SqlType(p:TableMapping.Column, storeDateTimeAsTicks:bool) : string
+    + {static} IsPK(p:MemberInfo) : bool
+    + {static} Collation(p:MemberInfo) : string
+    + {static} IsAutoInc(p:MemberInfo) : bool
+    + {static} GetIndices(p:MemberInfo) : IEnumerable<IndexedAttribute>
+    + {static} MaxStringLength(p:PropertyInfo) : int?
+    + {static} IsMarkedNotNull(p:MemberInfo) : bool
+}
+class SQLiteCommand <<partial>> {
+    + CommandText : string <<get>> <<set>>
+    + ExecuteNonQuery() : int
+    + ExecuteDeferredQuery() : IEnumerable<T>
+    + ExecuteQuery() : List<T>
+    + ExecuteQuery(map:TableMapping) : List<T>
+    + ExecuteDeferredQuery(map:TableMapping) : IEnumerable<T>
+    + ExecuteScalar() : T
+    + Bind(name:string, val:object) : void
+    + Bind(val:object) : void
+    + <<override>> ToString() : string
+}
+class PreparedSqlLiteInsertCommand {
+    + Initialized : bool <<get>> <<set>>
+    + CommandText : string <<get>> <<set>>
+    + ExecuteNonQuery(source:object[]) : int
+    + Dispose() : void
+}
+abstract class BaseTableQuery {
+}
+class "TableQuery`1"<T> {
+    + TableQuery(conn:SQLiteConnection)
+    + Clone() : TableQuery<U>
+    + Where(predExpr:Expression<Func<T, bool>>) : TableQuery<T>
+    + Take(n:int) : TableQuery<T>
+    + Skip(n:int) : TableQuery<T>
+    + ElementAt(index:int) : T
+    + Deferred() : TableQuery<T>
+    + OrderBy(orderExpr:Expression<Func<T, U>>) : TableQuery<T>
+    + OrderByDescending(orderExpr:Expression<Func<T, U>>) : TableQuery<T>
+    + ThenBy(orderExpr:Expression<Func<T, U>>) : TableQuery<T>
+    + ThenByDescending(orderExpr:Expression<Func<T, U>>) : TableQuery<T>
+    + Join(inner:TableQuery<TInner>, outerKeySelector:Expression<Func<T, TKey>>, innerKeySelector:Expression<Func<TInner, TKey>>, resultSelector:Expression<Func<T, TInner, TResult>>) : TableQuery<TResult>
+    + GenerateCommand(selectionList:string) : SQLiteCommand
+    + Count() : int
+    + Count(predExpr:Expression<Func<T, bool>>) : int
+    + GetEnumerator() : IEnumerator<T>
+    + First() : T
+    + FirstOrDefault() : T
+}
+class SQLite3 <<static>> {
+    + {static} <<extern>> Open(filename:string, db:IntPtr) : Result
+    + {static} <<extern>> Open(filename:string, db:IntPtr, flags:int, zvfs:IntPtr) : Result
+    + {static} <<extern>> Open(filename:byte[], db:IntPtr, flags:int, zvfs:IntPtr) : Result
+    + {static} <<extern>> Open16(filename:string, db:IntPtr) : Result
+    + {static} <<extern>> EnableLoadExtension(db:IntPtr, onoff:int) : Result
+    + {static} <<extern>> Close(db:IntPtr) : Result
+    + {static} <<extern>> Initialize() : Result
+    + {static} <<extern>> Shutdown() : Result
+    + {static} <<extern>> Config(option:ConfigOption) : Result
+    + {static} <<extern>> SetDirectory(directoryType:uint, directoryPath:string) : int
+    + {static} <<extern>> BusyTimeout(db:IntPtr, milliseconds:int) : Result
+    + {static} <<extern>> Changes(db:IntPtr) : int
+    + {static} <<extern>> Prepare2(db:IntPtr, sql:string, numBytes:int, stmt:IntPtr, pzTail:IntPtr) : Result
+    + {static} Prepare2(db:IntPtr, query:string) : IntPtr
+    + {static} <<extern>> Step(stmt:IntPtr) : Result
+    + {static} <<extern>> Reset(stmt:IntPtr) : Result
+    + {static} <<extern>> Finalize(stmt:IntPtr) : Result
+    + {static} <<extern>> LastInsertRowid(db:IntPtr) : long
+    + {static} <<extern>> Errmsg(db:IntPtr) : IntPtr
+    + {static} <<extern>> BindParameterIndex(stmt:IntPtr, name:string) : int
+    + {static} <<extern>> BindNull(stmt:IntPtr, index:int) : int
+    + {static} <<extern>> BindInt(stmt:IntPtr, index:int, val:int) : int
+    + {static} <<extern>> BindInt64(stmt:IntPtr, index:int, val:long) : int
+    + {static} <<extern>> BindDouble(stmt:IntPtr, index:int, val:double) : int
+    + {static} <<extern>> BindText(stmt:IntPtr, index:int, val:string, n:int, free:IntPtr) : int
+    + {static} <<extern>> BindBlob(stmt:IntPtr, index:int, val:byte[], n:int, free:IntPtr) : int
+    + {static} <<extern>> ColumnCount(stmt:IntPtr) : int
+    + {static} <<extern>> ColumnName(stmt:IntPtr, index:int) : IntPtr
+    + {static} <<extern>> ColumnType(stmt:IntPtr, index:int) : ColType
+    + {static} <<extern>> ColumnInt(stmt:IntPtr, index:int) : int
+    + {static} <<extern>> ColumnInt64(stmt:IntPtr, index:int) : long
+    + {static} <<extern>> ColumnDouble(stmt:IntPtr, index:int) : double
+    + {static} <<extern>> ColumnText(stmt:IntPtr, index:int) : IntPtr
+    + {static} <<extern>> ColumnText16(stmt:IntPtr, index:int) : IntPtr
+    + {static} <<extern>> ColumnBlob(stmt:IntPtr, index:int) : IntPtr
+    + {static} <<extern>> ColumnBytes(stmt:IntPtr, index:int) : int
+    + {static} <<extern>> ExtendedErrCode(db:IntPtr) : ExtendedResult
+    + {static} <<extern>> LibVersionNumber() : int
+    + {static} GetErrmsg(db:IntPtr) : string
+    + {static} ColumnName16(stmt:IntPtr, index:int) : string
+    + {static} ColumnString(stmt:IntPtr, index:int) : string
+    + {static} ColumnByteArray(stmt:IntPtr, index:int) : byte[]
+}
+class "IEnumerable`1"<T> {
+}
+struct IndexedColumn {
+    + Order : int
+    + ColumnName : string
+}
+struct IndexInfo {
+    + IndexName : string
+    + TableName : string
+    + Unique : bool
+}
+class ColumnInfo {
+    + Name : string <<get>> <<set>>
+    + notnull : int <<get>> <<set>>
+    + <<override>> ToString() : string
+}
+class Column {
+    + Name : string <<get>>
+    + PropertyName : string <<get>>
+    + Collation : string <<get>>
+    + IsAutoInc : bool <<get>>
+    + IsAutoGuid : bool <<get>>
+    + IsPK : bool <<get>>
+    + IsNullable : bool <<get>>
+    + MaxStringLength : int? <<get>>
+    + Column(prop:PropertyInfo, createFlags:CreateFlags)
+    + SetValue(obj:object, val:object) : void
+    + GetValue(obj:object) : object
+}
+class Binding {
+    + Name : string <<get>> <<set>>
+    + Value : object <<get>> <<set>>
+    + Index : int <<get>> <<set>>
+}
+class Ordering {
+    + ColumnName : string <<get>> <<set>>
+    + Ascending : bool <<get>> <<set>>
+}
+class CompileResult {
+    + CommandText : string <<get>> <<set>>
+    + Value : object <<get>> <<set>>
+}
+enum Result {
+    OK= 0,
+    Error= 1,
+    Internal= 2,
+    Perm= 3,
+    Abort= 4,
+    Busy= 5,
+    Locked= 6,
+    NoMem= 7,
+    ReadOnly= 8,
+    Interrupt= 9,
+    IOError= 10,
+    Corrupt= 11,
+    NotFound= 12,
+    Full= 13,
+    CannotOpen= 14,
+    LockErr= 15,
+    Empty= 16,
+    SchemaChngd= 17,
+    TooBig= 18,
+    Constraint= 19,
+    Mismatch= 20,
+    Misuse= 21,
+    NotImplementedLFS= 22,
+    AccessDenied= 23,
+    Format= 24,
+    Range= 25,
+    NonDBFile= 26,
+    Notice= 27,
+    Warning= 28,
+    Row= 100,
+    Done= 101,
+}
+enum ExtendedResult {
+    IOErrorRead= (Result.IOError | (1 << 8)),
+    IOErrorShortRead= (Result.IOError | (2 << 8)),
+    IOErrorWrite= (Result.IOError | (3 << 8)),
+    IOErrorFsync= (Result.IOError | (4 << 8)),
+    IOErrorDirFSync= (Result.IOError | (5 << 8)),
+    IOErrorTruncate= (Result.IOError | (6 << 8)),
+    IOErrorFStat= (Result.IOError | (7 << 8)),
+    IOErrorUnlock= (Result.IOError | (8 << 8)),
+    IOErrorRdlock= (Result.IOError | (9 << 8)),
+    IOErrorDelete= (Result.IOError | (10 << 8)),
+    IOErrorBlocked= (Result.IOError | (11 << 8)),
+    IOErrorNoMem= (Result.IOError | (12 << 8)),
+    IOErrorAccess= (Result.IOError | (13 << 8)),
+    IOErrorCheckReservedLock= (Result.IOError | (14 << 8)),
+    IOErrorLock= (Result.IOError | (15 << 8)),
+    IOErrorClose= (Result.IOError | (16 << 8)),
+    IOErrorDirClose= (Result.IOError | (17 << 8)),
+    IOErrorSHMOpen= (Result.IOError | (18 << 8)),
+    IOErrorSHMSize= (Result.IOError | (19 << 8)),
+    IOErrorSHMLock= (Result.IOError | (20 << 8)),
+    IOErrorSHMMap= (Result.IOError | (21 << 8)),
+    IOErrorSeek= (Result.IOError | (22 << 8)),
+    IOErrorDeleteNoEnt= (Result.IOError | (23 << 8)),
+    IOErrorMMap= (Result.IOError | (24 << 8)),
+    LockedSharedcache= (Result.Locked | (1 << 8)),
+    BusyRecovery= (Result.Busy | (1 << 8)),
+    CannottOpenNoTempDir= (Result.CannotOpen | (1 << 8)),
+    CannotOpenIsDir= (Result.CannotOpen | (2 << 8)),
+    CannotOpenFullPath= (Result.CannotOpen | (3 << 8)),
+    CorruptVTab= (Result.Corrupt | (1 << 8)),
+    ReadonlyRecovery= (Result.ReadOnly | (1 << 8)),
+    ReadonlyCannotLock= (Result.ReadOnly | (2 << 8)),
+    ReadonlyRollback= (Result.ReadOnly | (3 << 8)),
+    AbortRollback= (Result.Abort | (2 << 8)),
+    ConstraintCheck= (Result.Constraint | (1 << 8)),
+    ConstraintCommitHook= (Result.Constraint | (2 << 8)),
+    ConstraintForeignKey= (Result.Constraint | (3 << 8)),
+    ConstraintFunction= (Result.Constraint | (4 << 8)),
+    ConstraintNotNull= (Result.Constraint | (5 << 8)),
+    ConstraintPrimaryKey= (Result.Constraint | (6 << 8)),
+    ConstraintTrigger= (Result.Constraint | (7 << 8)),
+    ConstraintUnique= (Result.Constraint | (8 << 8)),
+    ConstraintVTab= (Result.Constraint | (9 << 8)),
+    NoticeRecoverWAL= (Result.Notice | (1 << 8)),
+    NoticeRecoverRollback= (Result.Notice | (2 << 8)),
+}
+enum ConfigOption {
+    SingleThread= 1,
+    MultiThread= 2,
+    Serialized= 3,
+}
+enum ColType {
+    Integer= 1,
+    Float= 2,
+    Text= 3,
+    Blob= 4,
+    Null= 5,
+}
+class "List`1"<T> {
+}
+Exception <|-- SQLiteException
+SQLiteException <|-- NotNullConstraintViolationException
+NotNullConstraintViolationException --> "Columns<TableMapping.Column>" "IEnumerable`1"
+IDisposable <|-- SQLiteConnection
+SQLiteConnection --> "Handle" Sqlite3DatabaseHandle
+SQLiteConnection --> "BusyTimeout" TimeSpan
+SQLiteConnection --> "TableMappings<TableMapping>" "IEnumerable`1"
+Attribute <|-- TableAttribute
+Attribute <|-- ColumnAttribute
+Attribute <|-- PrimaryKeyAttribute
+Attribute <|-- AutoIncrementAttribute
+Attribute <|-- IndexedAttribute
+Attribute <|-- IgnoreAttribute
+IndexedAttribute <|-- UniqueAttribute
+Attribute <|-- MaxLengthAttribute
+Attribute <|-- CollationAttribute
+Attribute <|-- NotNullAttribute
+TableMapping --> "MappedType" Type
+TableMapping --> "PK" Column
+IDisposable <|-- PreparedSqlLiteInsertCommand
+BaseTableQuery <|-- "TableQuery`1"
+"IEnumerable`1" "<T>" <|-- "TableQuery`1"
+"TableQuery`1" --> "Connection" SQLiteConnection
+"TableQuery`1" --> "Table" TableMapping
+SQLiteConnection +-- IndexedColumn
+SQLiteConnection +-- IndexInfo
+IndexInfo --> "Columns<IndexedColumn>" "List`1"
+SQLiteConnection +-- ColumnInfo
+TableMapping +-- Column
+Column --> "ColumnType" Type
+Column --> "Indices<IndexedAttribute>" "IEnumerable`1"
+SQLiteCommand +-- Binding
+BaseTableQuery +-- Ordering
+"TableQuery`1" +-- CompileResult
+SQLite3 +-- Result
+SQLite3 +-- ExtendedResult
+SQLite3 +-- ConfigOption
+SQLite3 +-- ColType
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+enum ResizeDirection {
+    Any,
+    Vertical,
+    Horizontal,
+}
+enum ResizeHandleAnchor {
+    Top,
+    TopRight,
+    Right,
+    BottomRight,
+    Bottom,
+    BottomLeft,
+    Left,
+    TopLeft,
+}
+class ResizeSideHandle {
+    + maintainAspectRatio : bool <<get>> <<set>>
+    + ResizeSideHandle(resizeTarget:VisualElement, container:VisualElement, anchor:ResizeHandleAnchor)
+}
+ImmediateModeElement <|-- ResizeSideHandle
+ResizeSideHandle --> "OnResizeFinished" Action
+@enduml

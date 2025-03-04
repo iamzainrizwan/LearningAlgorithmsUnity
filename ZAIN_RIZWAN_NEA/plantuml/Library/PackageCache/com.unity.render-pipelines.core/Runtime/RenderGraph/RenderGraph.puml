@@ -1,0 +1,160 @@
+@startuml
+enum DepthAccess {
+    Read= 1 << 0,
+    Write= 1 << 1,
+    ReadWrite= Read | Write,
+}
+enum AccessFlags {
+    None= 0,
+    Read= 1 << 0,
+    Write= 1 << 1,
+    Discard= 1 << 2,
+    WriteAll= Write | Discard,
+    ReadWrite= Read | Write,
+}
+class InternalRenderGraphContext {
+}
+interface IDerivedRendergraphContext {
+    + FromInternalContext(context:InternalRenderGraphContext) : void
+}
+struct RenderGraphContext {
+    + FromInternalContext(context:InternalRenderGraphContext) : void
+}
+struct RasterGraphContext {
+    + FromInternalContext(context:InternalRenderGraphContext) : void
+}
+class ComputeGraphContext {
+    + FromInternalContext(context:InternalRenderGraphContext) : void
+}
+class UnsafeGraphContext {
+    + FromInternalContext(context:InternalRenderGraphContext) : void
+}
+struct RenderGraphParameters {
+    + executionName : string
+    + currentFrameIndex : int
+    + rendererListCulling : bool
+}
+class RenderGraph <<partial>> {
+    + {static} <<readonly>> kMaxMRTCount : int = 8
+    + nativeRenderPassesEnabled : bool <<get>> <<set>>
+    + name : string <<get>> = "RenderGraph"
+    + {static} isRenderGraphViewerActive : bool <<get>> <<internal set>>
+    + RenderGraph(name:string)
+    + Cleanup() : void
+    + RegisterDebug(panel:DebugUI.Panel) : void
+    + UnRegisterDebug() : void
+    + {static} GetRegisteredRenderGraphs() : List<RenderGraph>
+    + EndFrame() : void
+    + ImportTexture(rt:RTHandle) : TextureHandle
+    + ImportTexture(rt:RTHandle, importParams:ImportResourceParams) : TextureHandle
+    + ImportTexture(rt:RTHandle, info:RenderTargetInfo, importParams:ImportResourceParams) : TextureHandle
+    + ImportBackbuffer(rt:RenderTargetIdentifier, info:RenderTargetInfo, importParams:ImportResourceParams) : TextureHandle
+    + ImportBackbuffer(rt:RenderTargetIdentifier) : TextureHandle
+    + CreateTexture(desc:TextureDesc) : TextureHandle
+    + CreateSharedTexture(desc:TextureDesc, explicitRelease:bool) : TextureHandle
+    + RefreshSharedTextureDesc(handle:TextureHandle, desc:TextureDesc) : void
+    + ReleaseSharedTexture(texture:TextureHandle) : void
+    + CreateTexture(texture:TextureHandle) : TextureHandle
+    + CreateTextureIfInvalid(desc:TextureDesc, texture:TextureHandle) : void
+    + GetTextureDesc(texture:TextureHandle) : TextureDesc
+    + GetRenderTargetInfo(texture:TextureHandle) : RenderTargetInfo
+    + CreateRendererList(desc:CoreRendererListDesc) : RendererListHandle
+    + CreateRendererList(desc:RendererListParams) : RendererListHandle
+    + CreateShadowRendererList(shadowDrawingSettings:ShadowDrawingSettings) : RendererListHandle
+    + CreateGizmoRendererList(camera:Camera, gizmoSubset:GizmoSubset) : RendererListHandle
+    + CreateUIOverlayRendererList(camera:Camera) : RendererListHandle
+    + CreateUIOverlayRendererList(camera:Camera, uiSubset:UISubset) : RendererListHandle
+    + CreateWireOverlayRendererList(camera:Camera) : RendererListHandle
+    + CreateSkyboxRendererList(camera:Camera) : RendererListHandle
+    + CreateSkyboxRendererList(camera:Camera, projectionMatrix:Matrix4x4, viewMatrix:Matrix4x4) : RendererListHandle
+    + CreateSkyboxRendererList(camera:Camera, projectionMatrixL:Matrix4x4, viewMatrixL:Matrix4x4, projectionMatrixR:Matrix4x4, viewMatrixR:Matrix4x4) : RendererListHandle
+    + ImportBuffer(graphicsBuffer:GraphicsBuffer, forceRelease:bool) : BufferHandle
+    + CreateBuffer(desc:BufferDesc) : BufferHandle
+    + CreateBuffer(graphicsBuffer:BufferHandle) : BufferHandle
+    + GetBufferDesc(graphicsBuffer:BufferHandle) : BufferDesc
+    + ImportRayTracingAccelerationStructure(accelStruct:RayTracingAccelerationStructure, name:string) : RayTracingAccelerationStructureHandle
+    + AddRasterRenderPass(passName:string, passData:PassData, file:string, line:int) : IRasterRenderGraphBuilder
+    + AddRasterRenderPass(passName:string, passData:PassData, sampler:ProfilingSampler, file:string, line:int) : IRasterRenderGraphBuilder
+    + AddComputePass(passName:string, passData:PassData, file:string, line:int) : IComputeRenderGraphBuilder
+    + AddComputePass(passName:string, passData:PassData, sampler:ProfilingSampler, file:string, line:int) : IComputeRenderGraphBuilder
+    + AddUnsafePass(passName:string, passData:PassData, file:string, line:int) : IUnsafeRenderGraphBuilder
+    + AddUnsafePass(passName:string, passData:PassData, sampler:ProfilingSampler, file:string, line:int) : IUnsafeRenderGraphBuilder
+    + AddRenderPass(passName:string, passData:PassData, sampler:ProfilingSampler, file:string, line:int) : RenderGraphBuilder
+    + AddRenderPass(passName:string, passData:PassData, file:string, line:int) : RenderGraphBuilder
+    + BeginRecording(parameters:RenderGraphParameters) : void
+    + EndRecordingAndExecute() : void
+    + BeginProfilingSampler(sampler:ProfilingSampler, file:string, line:int) : void
+    + EndProfilingSampler(sampler:ProfilingSampler, file:string, line:int) : void
+}
+struct RenderGraphProfilingScope {
+    + RenderGraphProfilingScope(renderGraph:RenderGraph, sampler:ProfilingSampler)
+    + Dispose() : void
+}
+struct CompiledResourceInfo {
+    + refCount : int
+    + imported : bool
+    + Reset() : void
+}
+struct CompiledPassInfo {
+    + name : string
+    + index : int
+    + refCount : int
+    + syncToPassIndex : int
+    + syncFromPassIndex : int
+    + enableAsyncCompute : bool
+    + allowPassCulling : bool
+    + needGraphicsFence : bool
+    + culled : bool
+    + culledByRendererList : bool
+    + hasSideEffect : bool
+    + enableFoveatedRasterization : bool
+    + Reset(pass:RenderGraphPass, index:int) : void
+}
+interface ICompiledGraph {
+    + Clear() : void
+}
+class CompiledGraph {
+    + lastExecutionFrame : int
+    + CompiledGraph()
+    + Clear() : void
+    + InitializeCompilationData(passes:List<RenderGraphPass>, resources:RenderGraphResourceRegistry) : void
+}
+class ProfilingScopePassData {
+}
+class "List`1"<T> {
+}
+class "DynamicArray`1"<T> {
+}
+IDerivedRendergraphContext <|-- RenderGraphContext
+RenderGraphContext --> "renderContext" ScriptableRenderContext
+RenderGraphContext --> "cmd" CommandBuffer
+RenderGraphContext --> "renderGraphPool" RenderGraphObjectPool
+RenderGraphContext --> "defaultResources" RenderGraphDefaultResources
+IDerivedRendergraphContext <|-- RasterGraphContext
+RasterGraphContext --> "cmd" RasterCommandBuffer
+RasterGraphContext --> "defaultResources" RenderGraphDefaultResources
+RasterGraphContext --> "renderGraphPool" RenderGraphObjectPool
+IDerivedRendergraphContext <|-- ComputeGraphContext
+ComputeGraphContext --> "cmd" ComputeCommandBuffer
+ComputeGraphContext --> "defaultResources" RenderGraphDefaultResources
+ComputeGraphContext --> "renderGraphPool" RenderGraphObjectPool
+IDerivedRendergraphContext <|-- UnsafeGraphContext
+UnsafeGraphContext --> "cmd" UnsafeCommandBuffer
+UnsafeGraphContext --> "defaultResources" RenderGraphDefaultResources
+UnsafeGraphContext --> "renderGraphPool" RenderGraphObjectPool
+RenderGraphParameters --> "scriptableRenderContext" ScriptableRenderContext
+RenderGraphParameters --> "commandBuffer" CommandBuffer
+RenderGraph --> "defaultResources" RenderGraphDefaultResources
+IDisposable <|-- RenderGraphProfilingScope
+RenderGraph +-- CompiledResourceInfo
+CompiledResourceInfo --> "producers<int>" "List`1"
+CompiledResourceInfo --> "consumers<int>" "List`1"
+RenderGraph +-- CompiledPassInfo
+CompiledPassInfo --> "fence" GraphicsFence
+RenderGraph +-- ICompiledGraph
+RenderGraph +-- CompiledGraph
+ICompiledGraph <|-- CompiledGraph
+CompiledGraph o-> "compiledPassInfos<CompiledPassInfo>" "DynamicArray`1"
+RenderGraph +-- ProfilingScopePassData
+ProfilingScopePassData --> "sampler" ProfilingSampler
+@enduml

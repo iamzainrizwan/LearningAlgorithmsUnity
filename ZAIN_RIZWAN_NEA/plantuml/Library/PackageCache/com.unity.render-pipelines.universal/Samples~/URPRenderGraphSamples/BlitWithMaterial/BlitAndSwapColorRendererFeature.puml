@@ -1,0 +1,14 @@
+@startuml
+class BlitAndSwapColorPass {
+    + Setup(mat:Material) : void
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+class BlitAndSwapColorRendererFeature {
+    + <<override>> Create() : void
+    + <<override>> AddRenderPasses(renderer:ScriptableRenderer, renderingData:RenderingData) : void
+}
+ScriptableRenderPass <|-- BlitAndSwapColorPass
+ScriptableRendererFeature <|-- BlitAndSwapColorRendererFeature
+BlitAndSwapColorRendererFeature --> "material" Material
+BlitAndSwapColorRendererFeature o-> "renderPassEvent" RenderPassEvent
+@enduml

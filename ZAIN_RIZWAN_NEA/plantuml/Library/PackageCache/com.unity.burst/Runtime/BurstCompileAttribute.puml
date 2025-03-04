@@ -1,0 +1,32 @@
+@startuml
+enum OptimizeFor {
+    Default= 0,
+    Performance= 1,
+    Size= 2,
+    FastCompilation= 3,
+    Balanced= 4,
+}
+enum FloatMode {
+    Default= 0,
+    Strict= 1,
+    Deterministic= 2,
+    Fast= 3,
+}
+enum FloatPrecision {
+    Standard= 0,
+    High= 1,
+    Medium= 2,
+    Low= 3,
+}
+class BurstCompileAttribute {
+    + CompileSynchronously : bool <<get>> <<set>>
+    + Debug : bool <<get>> <<set>>
+    + DisableSafetyChecks : bool <<get>> <<set>>
+    + DisableDirectCall : bool <<get>> <<set>>
+    + BurstCompileAttribute()
+    + BurstCompileAttribute(floatPrecision:FloatPrecision, floatMode:FloatMode)
+}
+BurstCompileAttribute --> "FloatMode" FloatMode
+BurstCompileAttribute --> "FloatPrecision" FloatPrecision
+BurstCompileAttribute --> "OptimizeFor" OptimizeFor
+@enduml

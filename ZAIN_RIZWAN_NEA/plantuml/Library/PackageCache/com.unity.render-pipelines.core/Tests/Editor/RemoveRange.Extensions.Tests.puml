@@ -1,0 +1,26 @@
+@startuml
+class RemoveRangeExtensionsTests {
+    + ItemInRangeAreRemovedAfterRemoveRangeForList(ints:int[], startIndex:int, count:int) : void
+    + ItemInRangeAreRemovedAfterRemoveRangeForSimpleList(ints:int[], startIndex:int, count:int) : void
+    + ExceptionsAreCorrectForList(ints:int[], startIndex:int, count:int) : Type
+    + ExceptionsAreCorrectForSimpleList(ints:int[], startIndex:int, count:int) : Type
+}
+class SimpleList {
+    + AddRange(ints:int[]) : void
+    + GetEnumerator() : IEnumerator<int>
+    + Add(item:int) : void
+    + Clear() : void
+    + Contains(item:int) : bool
+    + CopyTo(array:int[], arrayIndex:int) : void
+    + Remove(item:int) : bool
+    + Count : int <<get>>
+    + IsReadOnly : bool <<get>>
+    + IndexOf(item:int) : int
+    + Insert(index:int, item:int) : void
+    + RemoveAt(index:int) : void
+}
+class "IList`1"<T> {
+}
+RemoveRangeExtensionsTests +-- SimpleList
+"IList`1" "<int>" <|-- SimpleList
+@enduml

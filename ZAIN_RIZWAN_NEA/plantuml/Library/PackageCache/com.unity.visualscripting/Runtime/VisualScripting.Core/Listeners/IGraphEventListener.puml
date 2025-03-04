@@ -1,0 +1,9 @@
+@startuml
+interface IGraphEventListener {
+}
+class XGraphEventListener <<static>> {
+    + {static} StartListening(listener:IGraphEventListener, reference:GraphReference) : void
+    + {static} StopListening(listener:IGraphEventListener, reference:GraphReference) : void
+    + {static} IsHierarchyListening(reference:GraphReference) : bool
+}
+@enduml

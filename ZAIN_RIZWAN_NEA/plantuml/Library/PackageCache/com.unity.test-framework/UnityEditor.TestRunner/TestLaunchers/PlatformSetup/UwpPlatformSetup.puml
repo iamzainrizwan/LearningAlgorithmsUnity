@@ -1,0 +1,10 @@
+@startuml
+class UwpPlatformSetup {
+    + Setup() : void
+    + PostBuildAction() : void
+    + PostSuccessfulBuildAction() : void
+    + PostSuccessfulLaunchAction() : void
+    + CleanUp() : void
+}
+IPlatformSetup <|-- UwpPlatformSetup
+@enduml

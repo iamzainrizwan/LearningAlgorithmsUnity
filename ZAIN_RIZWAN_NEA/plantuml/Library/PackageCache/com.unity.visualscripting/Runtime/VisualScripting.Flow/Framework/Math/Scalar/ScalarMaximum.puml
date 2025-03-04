@@ -1,0 +1,9 @@
+@startuml
+class ScalarMaximum <<sealed>> {
+    + <<override>> Operation(a:float, b:float) : float
+    + <<override>> Operation(values:IEnumerable<float>) : float
+}
+class "Maximum`1"<T> {
+}
+"Maximum`1" "<float>" <|-- ScalarMaximum
+@enduml

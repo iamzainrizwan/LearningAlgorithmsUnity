@@ -1,0 +1,6 @@
+@startuml
+class AddNode {
+    + AddNode()
+}
+CodeFunctionNode <|-- AddNode
+@enduml

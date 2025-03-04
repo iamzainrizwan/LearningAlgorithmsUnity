@@ -1,0 +1,5 @@
+@startuml
+class TypeExtensions <<static>> {
+    + {static} GenerateTypeHandle(type:Type) : SerializableType
+}
+@enduml

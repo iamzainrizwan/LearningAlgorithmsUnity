@@ -1,0 +1,14 @@
+@startuml
+class SliderControlAttribute {
+    + SliderControlAttribute(label:string, displayMinMax:bool)
+    + InstantiateControl(node:AbstractMaterialNode, propertyInfo:PropertyInfo) : VisualElement
+}
+class SliderControlView {
+    + SliderControlView(label:string, displayMinMax:bool, node:AbstractMaterialNode, propertyInfo:PropertyInfo)
+    + OnNodeModified(scope:ModificationScope) : void
+}
+Attribute <|-- SliderControlAttribute
+IControlAttribute <|-- SliderControlAttribute
+VisualElement <|-- SliderControlView
+AbstractMaterialNodeModificationListener <|-- SliderControlView
+@enduml

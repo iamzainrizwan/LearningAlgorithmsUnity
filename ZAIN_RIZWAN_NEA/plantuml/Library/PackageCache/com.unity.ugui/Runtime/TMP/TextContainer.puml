@@ -1,0 +1,30 @@
+@startuml
+enum TextContainerAnchors {
+    TopLeft= 0,
+    Top= 1,
+    TopRight= 2,
+    Left= 3,
+    Middle= 4,
+    Right= 5,
+    BottomLeft= 6,
+    Bottom= 7,
+    BottomRight= 8,
+    Custom= 9,
+}
+class TextContainer {
+    + hasChanged : bool <<get>> <<set>>
+    + width : float <<get>> <<set>>
+    + height : float <<get>> <<set>>
+    + isDefaultWidth : bool <<get>>
+    + isDefaultHeight : bool <<get>>
+    + isAutoFitting : bool <<get>> <<set>>
+}
+UIBehaviour <|-- TextContainer
+TextContainer --> "pivot" Vector2
+TextContainer --> "anchorPosition" TextContainerAnchors
+TextContainer --> "rect" Rect
+TextContainer --> "size" Vector2
+TextContainer --> "margins" Vector4
+TextContainer --> "rectTransform" RectTransform
+TextContainer --> "textMeshPro" TextMeshPro
+@enduml

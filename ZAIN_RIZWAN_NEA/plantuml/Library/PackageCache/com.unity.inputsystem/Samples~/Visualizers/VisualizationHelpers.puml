@@ -1,0 +1,107 @@
+@startuml
+class VisualizationHelpers <<static>> {
+    + {static} DrawAxis(axis:Axis, rect:Rect, color:Color, width:float) : void
+    + {static} DrawRectangle(rect:Rect, color:Color) : void
+    + {static} DrawText(text:string, pos:Vector2, style:GUIStyle) : void
+    + {static} DrawText(text:GUIContent, pos:Vector2, style:GUIStyle) : void
+    + {static} DrawLine(pointA:Vector2, pointB:Vector2, color:Color, width:float) : void
+}
+enum Axis {
+    X,
+    Y,
+    Z,
+}
+abstract class Visualizer {
+    + {abstract} OnDraw(rect:Rect) : void
+    + {abstract} AddSample(value:object, time:double) : void
+}
+abstract class "ValueVisualizer`1"<TValue> {
+    + <<override>> AddSample(value:object, time:double) : void
+}
+class "ScalarVisualizer`1"<TValue> {
+    + limitMin : TValue
+    + limitMax : TValue
+    + min : TValue
+    + max : TValue
+    + ScalarVisualizer(numSamples:int)
+    + <<override>> OnDraw(rect:Rect) : void
+    + <<override>> AddSample(value:object, time:double) : void
+}
+class CurrentDeviceVisualizer {
+    + <<override>> OnDraw(rect:Rect) : void
+    + <<override>> AddSample(value:object, time:double) : void
+}
+class Vector2Visualizer {
+    + Vector2Visualizer(numSamples:int)
+    + <<override>> AddSample(value:object, time:double) : void
+    + <<override>> OnDraw(rect:Rect) : void
+}
+class TimelineVisualizer {
+    + showLegend : bool <<get>> <<set>>
+    + showLimits : bool <<get>> <<set>>
+    + timelineCount : int <<get>>
+    + historyDepth : int <<get>> <<set>> = 100
+    + TimelineVisualizer(totalTimeUnitsShown:float)
+    + <<override>> OnDraw(rect:Rect) : void
+    + <<override>> AddSample(value:object, time:double) : void
+    + AddTimeline(name:string, color:Color, plotType:PlotType) : int
+    + GetTimeline(name:string) : int
+    + AddSample(timelineIndex:int, value:PrimitiveValue, time:float) : void
+    + GetOrCreateSample(timelineIndex:int, frame:int) : ref PrimitiveValue
+}
+struct "RingBuffer`1"<TValue> {
+    + head : int
+    + count : int
+    + RingBuffer(size:int)
+    + Append(value:TValue) : ref TValue
+}
+struct TimeSample {
+    + time : float
+}
+struct FrameSample {
+    + frame : int
+}
+struct Timeline {
+}
+enum PlotType {
+    LineGraph,
+    BarChart,
+}
+enum TimeUnit {
+    Seconds,
+    Frames,
+}
+VisualizationHelpers +-- Axis
+VisualizationHelpers +-- Visualizer
+VisualizationHelpers +-- "ValueVisualizer`1"
+Visualizer <|-- "ValueVisualizer`1"
+"ValueVisualizer`1" --> "samples<TValue>" "RingBuffer`1"
+"ValueVisualizer`1" --> "samplesText<GUIContent>" "RingBuffer`1"
+VisualizationHelpers +-- "ScalarVisualizer`1"
+"ValueVisualizer`1" "<TValue>" <|-- "ScalarVisualizer`1"
+VisualizationHelpers +-- CurrentDeviceVisualizer
+Visualizer <|-- CurrentDeviceVisualizer
+VisualizationHelpers +-- Vector2Visualizer
+"ValueVisualizer`1" "<Vector2>" <|-- Vector2Visualizer
+Vector2Visualizer o-> "limits" Vector2
+VisualizationHelpers +-- TimelineVisualizer
+Visualizer <|-- TimelineVisualizer
+TimelineVisualizer o-> "timeUnit" TimeUnit
+TimelineVisualizer --> "valueUnit" GUIContent
+TimelineVisualizer --> "limitsY" Vector2
+VisualizationHelpers +-- "RingBuffer`1"
+TimelineVisualizer +-- TimeSample
+TimeSample --> "value" PrimitiveValue
+TimelineVisualizer +-- FrameSample
+FrameSample --> "value" PrimitiveValue
+TimelineVisualizer +-- Timeline
+Timeline --> "name" GUIContent
+Timeline --> "color" Color
+Timeline --> "timeSamples<TimeSample>" "RingBuffer`1"
+Timeline --> "frameSamples<FrameSample>" "RingBuffer`1"
+Timeline --> "minValue" PrimitiveValue
+Timeline --> "maxValue" PrimitiveValue
+Timeline --> "plotType" PlotType
+TimelineVisualizer +-- PlotType
+TimelineVisualizer +-- TimeUnit
+@enduml

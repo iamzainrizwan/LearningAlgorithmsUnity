@@ -1,0 +1,4 @@
+@startuml
+class CheckWorkspaceTreeNodeStatus <<static>> {
+}
+@enduml

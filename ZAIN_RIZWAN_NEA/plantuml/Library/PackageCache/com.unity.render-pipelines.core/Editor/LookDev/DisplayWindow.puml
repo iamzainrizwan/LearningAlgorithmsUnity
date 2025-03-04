@@ -1,0 +1,17 @@
+@startuml
+interface IViewDisplayer {
+}
+class DisplayWindow <<partial>> {
+}
+class Style <<static>> <<partial>> {
+}
+class "Action`2"<T1,T2> {
+}
+class "Action`1"<T> {
+}
+class "Action`3"<T1,T2,T3> {
+}
+EditorWindow <|-- DisplayWindow
+IViewDisplayer <|-- DisplayWindow
+DisplayWindow +-- Style
+@enduml

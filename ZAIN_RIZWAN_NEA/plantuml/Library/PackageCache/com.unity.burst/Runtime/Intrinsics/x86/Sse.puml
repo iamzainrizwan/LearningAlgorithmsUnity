@@ -1,0 +1,99 @@
+@startuml
+class X86 <<unsafe>> <<static>> <<partial>> {
+}
+class Sse <<static>> {
+    + {static} IsSseSupported : bool <<get>>
+    + {static} load_ps(ptr:void*) : v128
+    + {static} loadu_ps(ptr:void*) : v128
+    + {static} store_ps(ptr:void*, val:v128) : void
+    + {static} storeu_ps(ptr:void*, val:v128) : void
+    + {static} stream_ps(mem_addr:void*, a:v128) : void
+    + {static} cvtsi32_ss(a:v128, b:int) : v128
+    + {static} cvtsi64_ss(a:v128, b:long) : v128
+    + {static} add_ss(a:v128, b:v128) : v128
+    + {static} add_ps(a:v128, b:v128) : v128
+    + {static} sub_ss(a:v128, b:v128) : v128
+    + {static} sub_ps(a:v128, b:v128) : v128
+    + {static} mul_ss(a:v128, b:v128) : v128
+    + {static} mul_ps(a:v128, b:v128) : v128
+    + {static} div_ss(a:v128, b:v128) : v128
+    + {static} div_ps(a:v128, b:v128) : v128
+    + {static} sqrt_ss(a:v128) : v128
+    + {static} sqrt_ps(a:v128) : v128
+    + {static} rcp_ss(a:v128) : v128
+    + {static} rcp_ps(a:v128) : v128
+    + {static} rsqrt_ss(a:v128) : v128
+    + {static} rsqrt_ps(a:v128) : v128
+    + {static} min_ss(a:v128, b:v128) : v128
+    + {static} min_ps(a:v128, b:v128) : v128
+    + {static} max_ss(a:v128, b:v128) : v128
+    + {static} max_ps(a:v128, b:v128) : v128
+    + {static} and_ps(a:v128, b:v128) : v128
+    + {static} andnot_ps(a:v128, b:v128) : v128
+    + {static} or_ps(a:v128, b:v128) : v128
+    + {static} xor_ps(a:v128, b:v128) : v128
+    + {static} cmpeq_ss(a:v128, b:v128) : v128
+    + {static} cmpeq_ps(a:v128, b:v128) : v128
+    + {static} cmplt_ss(a:v128, b:v128) : v128
+    + {static} cmplt_ps(a:v128, b:v128) : v128
+    + {static} cmple_ss(a:v128, b:v128) : v128
+    + {static} cmple_ps(a:v128, b:v128) : v128
+    + {static} cmpgt_ss(a:v128, b:v128) : v128
+    + {static} cmpgt_ps(a:v128, b:v128) : v128
+    + {static} cmpge_ss(a:v128, b:v128) : v128
+    + {static} cmpge_ps(a:v128, b:v128) : v128
+    + {static} cmpneq_ss(a:v128, b:v128) : v128
+    + {static} cmpneq_ps(a:v128, b:v128) : v128
+    + {static} cmpnlt_ss(a:v128, b:v128) : v128
+    + {static} cmpnlt_ps(a:v128, b:v128) : v128
+    + {static} cmpnle_ss(a:v128, b:v128) : v128
+    + {static} cmpnle_ps(a:v128, b:v128) : v128
+    + {static} cmpngt_ss(a:v128, b:v128) : v128
+    + {static} cmpngt_ps(a:v128, b:v128) : v128
+    + {static} cmpnge_ss(a:v128, b:v128) : v128
+    + {static} cmpnge_ps(a:v128, b:v128) : v128
+    + {static} cmpord_ss(a:v128, b:v128) : v128
+    + {static} cmpord_ps(a:v128, b:v128) : v128
+    + {static} cmpunord_ss(a:v128, b:v128) : v128
+    + {static} cmpunord_ps(a:v128, b:v128) : v128
+    + {static} comieq_ss(a:v128, b:v128) : int
+    + {static} comilt_ss(a:v128, b:v128) : int
+    + {static} comile_ss(a:v128, b:v128) : int
+    + {static} comigt_ss(a:v128, b:v128) : int
+    + {static} comige_ss(a:v128, b:v128) : int
+    + {static} comineq_ss(a:v128, b:v128) : int
+    + {static} ucomieq_ss(a:v128, b:v128) : int
+    + {static} ucomilt_ss(a:v128, b:v128) : int
+    + {static} ucomile_ss(a:v128, b:v128) : int
+    + {static} ucomigt_ss(a:v128, b:v128) : int
+    + {static} ucomige_ss(a:v128, b:v128) : int
+    + {static} ucomineq_ss(a:v128, b:v128) : int
+    + {static} cvtss_si32(a:v128) : int
+    + {static} cvt_ss2si(a:v128) : int
+    + {static} cvtss_si64(a:v128) : long
+    + {static} cvtss_f32(a:v128) : float
+    + {static} cvttss_si32(a:v128) : int
+    + {static} cvtt_ss2si(a:v128) : int
+    + {static} cvttss_si64(a:v128) : long
+    + {static} set_ss(a:float) : v128
+    + {static} set1_ps(a:float) : v128
+    + {static} set_ps1(a:float) : v128
+    + {static} set_ps(e3:float, e2:float, e1:float, e0:float) : v128
+    + {static} setr_ps(e3:float, e2:float, e1:float, e0:float) : v128
+    + {static} move_ss(a:v128, b:v128) : v128
+    + {static} SHUFFLE(d:int, c:int, b:int, a:int) : int
+    + {static} shuffle_ps(a:v128, b:v128, imm8:int) : v128
+    + {static} unpackhi_ps(a:v128, b:v128) : v128
+    + {static} unpacklo_ps(a:v128, b:v128) : v128
+    + {static} movehl_ps(a:v128, b:v128) : v128
+    + {static} movelh_ps(a:v128, b:v128) : v128
+    + {static} movemask_ps(a:v128) : int
+    + {static} TRANSPOSE4_PS(row0:v128, row1:v128, row2:v128, row3:v128) : void
+    + {static} setzero_ps() : v128
+    + {static} loadu_si16(mem_addr:void*) : v128
+    + {static} storeu_si16(mem_addr:void*, a:v128) : void
+    + {static} loadu_si64(mem_addr:void*) : v128
+    + {static} storeu_si64(mem_addr:void*, a:v128) : void
+}
+X86 +-- Sse
+@enduml

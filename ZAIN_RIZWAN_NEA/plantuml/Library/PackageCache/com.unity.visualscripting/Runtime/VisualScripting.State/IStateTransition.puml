@@ -1,0 +1,8 @@
+@startuml
+interface IStateTransition {
+}
+class "IConnection`2"<T1,T2> {
+}
+IGraphElementWithDebugData <|-- IStateTransition
+"IConnection`2" "<IState,IState>" <|-- IStateTransition
+@enduml

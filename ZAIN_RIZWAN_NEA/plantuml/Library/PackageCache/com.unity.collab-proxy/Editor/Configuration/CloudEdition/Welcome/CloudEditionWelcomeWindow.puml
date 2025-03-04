@@ -1,0 +1,8 @@
+@startuml
+interface IWelcomeWindowNotify {
+}
+class CloudEditionWelcomeWindow {
+}
+EditorWindow <|-- CloudEditionWelcomeWindow
+IWelcomeWindowNotify <|-- CloudEditionWelcomeWindow
+@enduml

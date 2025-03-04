@@ -1,0 +1,10 @@
+@startuml
+class OnDropdownValueChanged <<sealed>> {
+}
+class "GameObjectEventUnit`1"<T> {
+}
+"GameObjectEventUnit`1" "<int>" <|-- OnDropdownValueChanged
+OnDropdownValueChanged --> "MessageListenerType" Type
+OnDropdownValueChanged --> "index" ValueOutput
+OnDropdownValueChanged --> "text" ValueOutput
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class EvaluationException <<sealed>> {
+    + EvaluationException(message:string)
+    + EvaluationException(message:string, innerException:Exception)
+}
+ApplicationException <|-- EvaluationException
+@enduml

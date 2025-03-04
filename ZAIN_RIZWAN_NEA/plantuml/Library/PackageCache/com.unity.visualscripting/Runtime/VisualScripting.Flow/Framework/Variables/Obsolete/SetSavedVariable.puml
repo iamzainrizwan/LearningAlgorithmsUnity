@@ -1,0 +1,8 @@
+@startuml
+class SetSavedVariable <<sealed>> {
+    + SetSavedVariable()
+    + SetSavedVariable(defaultName:string)
+}
+SetVariableUnit <|-- SetSavedVariable
+ISavedVariableUnit <|-- SetSavedVariable
+@enduml

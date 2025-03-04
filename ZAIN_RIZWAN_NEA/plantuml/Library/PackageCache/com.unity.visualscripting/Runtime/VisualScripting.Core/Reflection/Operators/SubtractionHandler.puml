@@ -1,0 +1,6 @@
+@startuml
+class SubtractionHandler <<sealed>> {
+    + SubtractionHandler()
+}
+BinaryOperatorHandler <|-- SubtractionHandler
+@enduml

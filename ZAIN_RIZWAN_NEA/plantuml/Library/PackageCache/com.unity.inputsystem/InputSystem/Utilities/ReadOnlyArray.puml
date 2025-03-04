@@ -1,0 +1,28 @@
+@startuml
+struct "ReadOnlyArray`1"<TValue> {
+    + ReadOnlyArray(array:TValue[])
+    + ReadOnlyArray(array:TValue[], index:int, length:int)
+    + ToArray() : TValue[]
+    + IndexOf(predicate:Predicate<TValue>) : int
+    + GetEnumerator() : Enumerator
+    + Count : int <<get>>
+}
+class ReadOnlyArrayExtensions <<static>> {
+    + {static} Contains(array:ReadOnlyArray<TValue>, value:TValue) : bool
+    + {static} ContainsReference(array:ReadOnlyArray<TValue>, value:TValue) : bool
+    + {static} IndexOfReference(array:ReadOnlyArray<TValue>, value:TValue) : int
+}
+class "IReadOnlyList`1"<T> {
+}
+struct Enumerator {
+    + Dispose() : void
+    + MoveNext() : bool
+    + Reset() : void
+}
+class "IEnumerator`1"<T> {
+}
+"IReadOnlyList`1" "<TValue>" <|-- "ReadOnlyArray`1"
+"ReadOnlyArray`1" +-- Enumerator
+"IEnumerator`1" "<TValue>" <|-- Enumerator
+Enumerator --> "Current" TValue
+@enduml

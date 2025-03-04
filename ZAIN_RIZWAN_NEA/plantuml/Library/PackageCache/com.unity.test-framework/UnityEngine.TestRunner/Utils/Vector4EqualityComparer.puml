@@ -1,0 +1,11 @@
+@startuml
+class Vector4EqualityComparer {
+    + Vector4EqualityComparer(allowedError:float)
+    + Equals(expected:Vector4, actual:Vector4) : bool
+    + GetHashCode(vec4:Vector4) : int
+}
+class "IEqualityComparer`1"<T> {
+}
+"IEqualityComparer`1" "<Vector4>" <|-- Vector4EqualityComparer
+Vector4EqualityComparer --> "Instance" Vector4EqualityComparer
+@enduml

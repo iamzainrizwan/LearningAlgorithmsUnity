@@ -1,0 +1,10 @@
+@startuml
+class MarkerInspector {
+}
+class Styles <<static>> {
+    + {static} <<readonly>> MultipleMarkerSelectionTitle : string
+    + {static} <<readonly>> UndoCommand : string
+}
+BasicAssetInspector <|-- MarkerInspector
+MarkerInspector +-- Styles
+@enduml

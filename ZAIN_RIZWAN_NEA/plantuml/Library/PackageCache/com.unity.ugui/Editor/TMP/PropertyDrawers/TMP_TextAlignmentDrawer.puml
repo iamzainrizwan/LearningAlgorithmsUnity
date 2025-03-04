@@ -1,0 +1,17 @@
+@startuml
+class TMP_TextAlignmentDrawer {
+    + <<override>> GetPropertyHeight(property:SerializedProperty, label:GUIContent) : float
+    + <<override>> OnGUI(position:Rect, property:SerializedProperty, label:GUIContent) : void
+}
+class TMP_HorizontalAlignmentDrawer {
+    + <<override>> GetPropertyHeight(property:SerializedProperty, label:GUIContent) : float
+    + <<override>> OnGUI(position:Rect, property:SerializedProperty, label:GUIContent) : void
+}
+class TMP_VerticalAlignmentDrawer {
+    + <<override>> GetPropertyHeight(property:SerializedProperty, label:GUIContent) : float
+    + <<override>> OnGUI(position:Rect, property:SerializedProperty, label:GUIContent) : void
+}
+PropertyDrawer <|-- TMP_TextAlignmentDrawer
+PropertyDrawer <|-- TMP_HorizontalAlignmentDrawer
+PropertyDrawer <|-- TMP_VerticalAlignmentDrawer
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class SaveVariables <<sealed>> {
+}
+Unit <|-- SaveVariables
+SaveVariables --> "enter" ControlInput
+SaveVariables --> "exit" ControlOutput
+@enduml

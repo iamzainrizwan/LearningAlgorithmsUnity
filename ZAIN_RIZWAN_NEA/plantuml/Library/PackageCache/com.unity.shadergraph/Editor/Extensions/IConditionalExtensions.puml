@@ -1,0 +1,5 @@
+@startuml
+class IConditionalExtensions <<static>> {
+    + {static} TestActive(conditional:IConditional, fields:ActiveFields) : bool
+}
+@enduml

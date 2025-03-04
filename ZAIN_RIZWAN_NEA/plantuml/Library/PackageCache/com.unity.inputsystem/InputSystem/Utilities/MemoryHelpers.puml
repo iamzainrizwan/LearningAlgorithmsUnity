@@ -1,0 +1,32 @@
+@startuml
+class MemoryHelpers <<static>> <<unsafe>> {
+    + {static} Compare(ptr1:void*, ptr2:void*, region:BitRegion) : bool
+    + {static} ComputeFollowingByteOffset(byteOffset:uint, sizeInBits:uint) : uint
+    + {static} WriteSingleBit(ptr:void*, bitOffset:uint, value:bool) : void
+    + {static} ReadSingleBit(ptr:void*, bitOffset:uint) : bool
+    + {static} MemCpyBitRegion(destination:void*, source:void*, bitOffset:uint, bitCount:uint) : void
+    + {static} MemCmpBitRegion(ptr1:void*, ptr2:void*, bitOffset:uint, bitCount:uint, mask:void*) : bool
+    + {static} MemSet(destination:void*, numBytes:int, value:byte) : void
+    + {static} MemCpyMasked(destination:void*, source:void*, numBytes:int, mask:void*) : void
+    + {static} ReadMultipleBitsAsUInt(ptr:void*, bitOffset:uint, bitCount:uint) : uint
+    + {static} WriteUIntAsMultipleBits(ptr:void*, bitOffset:uint, bitCount:uint, value:uint) : void
+    + {static} ReadTwosComplementMultipleBitsAsInt(ptr:void*, bitOffset:uint, bitCount:uint) : int
+    + {static} WriteIntAsTwosComplementMultipleBits(ptr:void*, bitOffset:uint, bitCount:uint, value:int) : void
+    + {static} ReadExcessKMultipleBitsAsInt(ptr:void*, bitOffset:uint, bitCount:uint) : int
+    + {static} WriteIntAsExcessKMultipleBits(ptr:void*, bitOffset:uint, bitCount:uint, value:int) : void
+    + {static} ReadMultipleBitsAsNormalizedUInt(ptr:void*, bitOffset:uint, bitCount:uint) : float
+    + {static} WriteNormalizedUIntAsMultipleBits(ptr:void*, bitOffset:uint, bitCount:uint, value:float) : void
+    + {static} SetBitsInBuffer(buffer:void*, byteOffset:int, bitOffset:int, sizeInBits:int, value:bool) : void
+    + {static} Swap(a:TValue, b:TValue) : void
+    + {static} AlignNatural(offset:uint, sizeInBytes:uint) : uint
+}
+struct BitRegion {
+    + bitOffset : uint
+    + sizeInBits : uint
+    + isEmpty : bool <<get>>
+    + BitRegion(bitOffset:uint, sizeInBits:uint)
+    + BitRegion(byteOffset:uint, bitOffset:uint, sizeInBits:uint)
+    + Overlap(other:BitRegion) : BitRegion
+}
+MemoryHelpers +-- BitRegion
+@enduml

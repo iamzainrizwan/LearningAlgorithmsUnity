@@ -1,0 +1,37 @@
+@startuml
+class ImageTests {
+    + TestSetup() : void
+    + TearDown() : void
+    + SetTestSprite() : void
+    + TestPixelsPerUnit() : void
+    + RaycastOverImageWithoutASpriteReturnTrue() : void
+    + RaycastOverImageWithoutASpriteReturnsTrueWithCoordinatesOutsideTheBoundaries(alphaThreshold:float, x:float, y:float) : void
+    + RaycastOverImageWithNonZeroSpritePosition_AlphaHitTestMinimumThreshold() : void
+    + RaycastOverImage_IgnoresDisabledCanvasGroup() : void
+    + SettingSpriteMarksAllAsDirty() : void
+    + SettingOverrideSpriteMarksAllAsDirty() : void
+    + SettingTypeMarksVerticesAsDirty() : void
+    + SettingPreserveAspectMarksVerticesAsDirty() : void
+    + SettingFillCenterMarksVerticesAsDirty() : void
+    + SettingFillMethodMarksVerticesAsDirty() : void
+    + SettingFillAmountMarksVerticesAsDirty() : void
+    + SettingFillClockwiseMarksVerticesAsDirty() : void
+    + SettingFillOriginMarksVerticesAsDirty() : void
+    + SettingEventAlphaThresholdMarksNothingAsDirty() : void
+    + OnAfterDeserializeMakeFillOriginZeroIfNotBetweenZeroAndThree() : void
+    + OnAfterDeserializeMakeFillOriginZeroIfFillOriginGreaterThan1AndFillMethodHorizontalOrVertical() : void
+    + OnAfterDeserializeClampsFillAmountBetweenZeroAndOne() : void
+    + SetNativeSizeSetsAllAsDirtyAndSetsAnchorMaxAndSizeDeltaWhenOverrideSpriteIsNotNull() : void
+    + OnPopulateMeshWhenNoOverrideSpritePresentDefersToGraphicImplementation() : void
+    + OnPopulateMeshWithTypeTiledNoBorderGeneratesExpectedResults() : void
+    + MinWidthHeightAreZeroWithNoImage() : void
+    + FlexibleWidthHeightAreCorrectWithNoImage() : void
+    + PreferredWidthHeightAreCorrectWithNoImage() : void
+    + MinWidthHeightAreZeroWithImage() : void
+    + FlexibleWidthHeightAreCorrectWithImage() : void
+    + PreferredWidthHeightAreCorrectWithImage() : void
+    + MinWidthHeightAreZeroWithOverrideImage() : void
+    + FlexibleWidthHeightAreCorrectWithOverrideImage() : void
+    + PreferredWidthHeightAreCorrectWithOverrideImage() : void
+}
+@enduml

@@ -1,0 +1,52 @@
+@startuml
+class "DynamicArray`1"<T> {
+    + size : int <<get>> <<protected set>>
+    + capacity : int <<get>>
+    + DynamicArray()
+    + DynamicArray(size:int)
+    + DynamicArray(capacity:int, resize:bool)
+    + DynamicArray(deepCopy:DynamicArray<T>)
+    + Clear() : void
+    + Contains(item:T) : bool
+    + Add(value:T) : int
+    + AddRange(array:DynamicArray<T>) : void
+    + Insert(index:int, item:T) : void
+    + Remove(item:T) : bool
+    + RemoveAt(index:int) : void
+    + RemoveRange(index:int, count:int) : void
+    + FindIndex(startIndex:int, count:int, match:Predicate<T>) : int
+    + IndexOf(item:T, index:int, count:int) : int
+    + IndexOf(item:T, index:int) : int
+    + IndexOf(item:T) : int
+    + Resize(newSize:int, keepContent:bool) : void
+    + ResizeAndClear(newSize:int) : void
+    + Reserve(newCapacity:int, keepContent:bool) : void
+    + GetEnumerator() : Iterator
+    + SubRange(first:int, numItems:int) : RangeEnumerable
+}
+class DynamicArrayExtensions <<static>> {
+    + {static} QuickSort(array:DynamicArray<T>) : void
+    + {static} QuickSort(array:DynamicArray<T>, comparer:DynamicArray<T>.SortComparer) : void
+}
+class "ReadOnlySpan`1"<T> {
+}
+class "Span`1"<T> {
+}
+struct Iterator {
+    + Iterator(setOwner:DynamicArray<T>)
+    + MoveNext() : bool
+    + Reset() : void
+}
+struct RangeEnumerable {
+    + GetEnumerator() : RangeIterator
+}
+struct RangeIterator {
+    + RangeIterator(setOwner:DynamicArray<T>, first:int, numItems:int)
+    + MoveNext() : bool
+    + Reset() : void
+}
+"DynamicArray`1" +-- Iterator
+"DynamicArray`1" +-- RangeEnumerable
+RangeEnumerable --> "iterator" RangeIterator
+RangeEnumerable +-- RangeIterator
+@enduml

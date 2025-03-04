@@ -1,0 +1,10 @@
+@startuml
+class DebugShapes <<partial>> {
+    + RequestSphereMesh() : Mesh
+    + BuildCustomSphereMesh(radius:float, longSubdiv:uint, latSubdiv:uint) : Mesh
+    + RequestBoxMesh() : Mesh
+    + RequestConeMesh() : Mesh
+    + RequestPyramidMesh() : Mesh
+}
+DebugShapes --> "instance" DebugShapes
+@enduml

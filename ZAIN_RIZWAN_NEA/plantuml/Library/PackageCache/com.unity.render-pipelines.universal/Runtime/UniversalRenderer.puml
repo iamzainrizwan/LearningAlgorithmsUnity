@@ -1,0 +1,31 @@
+@startuml
+enum RenderingMode {
+    Forward= 0,
+    ForwardPlus= 2,
+    Deferred= 1,
+}
+enum DepthPrimingMode {
+    Disabled,
+    Auto,
+    Forced,
+}
+class UniversalRenderer <<sealed>> <<partial>> {
+    + <<override>> SupportedCameraStackingTypes() : int
+    + UniversalRenderer(data:UniversalRendererData)
+    + {static} IsOffscreenDepthTexture(cameraData:CameraData) : bool
+    + {static} IsOffscreenDepthTexture(cameraData:UniversalCameraData) : bool
+    + <<override>> Setup(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + <<override>> SetupLights(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + <<override>> SetupCullingParameters(cullingParameters:ScriptableCullingParameters, cameraData:CameraData) : void
+    + <<override>> FinishRendering(cmd:CommandBuffer) : void
+}
+class Profiling <<static>> {
+}
+struct RenderPassInputSummary {
+}
+ScriptableRenderer <|-- UniversalRenderer
+UniversalRenderer --> "depthPrimingMode" DepthPrimingMode
+UniversalRenderer +-- Profiling
+Profiling o-> "createCameraRenderTarget" ProfilingSampler
+UniversalRenderer +-- RenderPassInputSummary
+@enduml

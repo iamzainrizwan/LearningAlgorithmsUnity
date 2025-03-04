@@ -1,0 +1,64 @@
+@startuml
+class ReorderableListGUI <<static>> {
+    + <<const>> DefaultItemHeight : float = 18
+    + {static} IndexOfChangedItem : int <<get>> <<internal set>>
+    + {static} CurrentListControlID : int <<get>>
+    + {static} CurrentItemIndex : int <<get>>
+    + {static} DefaultItemDrawer(position:Rect, item:T) : T
+    + {static} TextFieldItemDrawer(position:Rect, item:string) : string
+    + {static} Title(title:GUIContent) : void
+    + {static} Title(title:string) : void
+    + {static} Title(position:Rect, title:GUIContent) : void
+    + {static} Title(position:Rect, text:string) : void
+    + {static} ListField(list:IList<T>, drawItem:ReorderableListControl.ItemDrawer<T>, drawEmpty:ReorderableListControl.DrawEmpty, itemHeight:float, flags:ReorderableListFlags) : void
+    + {static} ListFieldAbsolute(position:Rect, list:IList<T>, drawItem:ReorderableListControl.ItemDrawer<T>, drawEmpty:ReorderableListControl.DrawEmptyAbsolute, itemHeight:float, flags:ReorderableListFlags) : void
+    + {static} ListField(list:IList<T>, drawItem:ReorderableListControl.ItemDrawer<T>, drawEmpty:ReorderableListControl.DrawEmpty, itemHeight:float) : void
+    + {static} ListFieldAbsolute(position:Rect, list:IList<T>, drawItem:ReorderableListControl.ItemDrawer<T>, drawEmpty:ReorderableListControl.DrawEmptyAbsolute, itemHeight:float) : void
+    + {static} ListField(list:IList<T>, drawItem:ReorderableListControl.ItemDrawer<T>, drawEmpty:ReorderableListControl.DrawEmpty, flags:ReorderableListFlags) : void
+    + {static} ListFieldAbsolute(position:Rect, list:IList<T>, drawItem:ReorderableListControl.ItemDrawer<T>, drawEmpty:ReorderableListControl.DrawEmptyAbsolute, flags:ReorderableListFlags) : void
+    + {static} ListField(list:IList<T>, drawItem:ReorderableListControl.ItemDrawer<T>, drawEmpty:ReorderableListControl.DrawEmpty) : void
+    + {static} ListFieldAbsolute(position:Rect, list:IList<T>, drawItem:ReorderableListControl.ItemDrawer<T>, drawEmpty:ReorderableListControl.DrawEmptyAbsolute) : void
+    + {static} ListField(list:IList<T>, drawItem:ReorderableListControl.ItemDrawer<T>, itemHeight:float, flags:ReorderableListFlags) : void
+    + {static} ListFieldAbsolute(position:Rect, list:IList<T>, drawItem:ReorderableListControl.ItemDrawer<T>, itemHeight:float, flags:ReorderableListFlags) : void
+    + {static} ListField(list:IList<T>, drawItem:ReorderableListControl.ItemDrawer<T>, itemHeight:float) : void
+    + {static} ListFieldAbsolute(position:Rect, list:IList<T>, drawItem:ReorderableListControl.ItemDrawer<T>, itemHeight:float) : void
+    + {static} ListField(list:IList<T>, drawItem:ReorderableListControl.ItemDrawer<T>, flags:ReorderableListFlags) : void
+    + {static} ListFieldAbsolute(position:Rect, list:IList<T>, drawItem:ReorderableListControl.ItemDrawer<T>, flags:ReorderableListFlags) : void
+    + {static} ListField(list:IList<T>, drawItem:ReorderableListControl.ItemDrawer<T>) : void
+    + {static} ListFieldAbsolute(position:Rect, list:IList<T>, drawItem:ReorderableListControl.ItemDrawer<T>) : void
+    + {static} CalculateListFieldHeight(itemCount:int, itemHeight:float, flags:ReorderableListFlags) : float
+    + {static} CalculateListFieldHeight(itemCount:int, flags:ReorderableListFlags) : float
+    + {static} CalculateListFieldHeight(itemCount:int, itemHeight:float) : float
+    + {static} CalculateListFieldHeight(itemCount:int) : float
+    + {static} ListField(arrayProperty:SerializedProperty, drawEmpty:ReorderableListControl.DrawEmpty, flags:ReorderableListFlags) : void
+    + {static} ListFieldAbsolute(position:Rect, arrayProperty:SerializedProperty, drawEmpty:ReorderableListControl.DrawEmptyAbsolute, flags:ReorderableListFlags) : void
+    + {static} ListField(arrayProperty:SerializedProperty, drawEmpty:ReorderableListControl.DrawEmpty) : void
+    + {static} ListFieldAbsolute(position:Rect, arrayProperty:SerializedProperty, drawEmpty:ReorderableListControl.DrawEmptyAbsolute) : void
+    + {static} ListField(arrayProperty:SerializedProperty, flags:ReorderableListFlags) : void
+    + {static} ListFieldAbsolute(position:Rect, arrayProperty:SerializedProperty, flags:ReorderableListFlags) : void
+    + {static} ListField(arrayProperty:SerializedProperty) : void
+    + {static} ListFieldAbsolute(position:Rect, arrayProperty:SerializedProperty) : void
+    + {static} CalculateListFieldHeight(arrayProperty:SerializedProperty, flags:ReorderableListFlags) : float
+    + {static} CalculateListFieldHeight(arrayProperty:SerializedProperty) : float
+    + {static} ListField(arrayProperty:SerializedProperty, fixedItemHeight:float, drawEmpty:ReorderableListControl.DrawEmpty, flags:ReorderableListFlags) : void
+    + {static} ListFieldAbsolute(position:Rect, arrayProperty:SerializedProperty, fixedItemHeight:float, drawEmpty:ReorderableListControl.DrawEmptyAbsolute, flags:ReorderableListFlags) : void
+    + {static} ListField(arrayProperty:SerializedProperty, fixedItemHeight:float, drawEmpty:ReorderableListControl.DrawEmpty) : void
+    + {static} ListFieldAbsolute(position:Rect, arrayProperty:SerializedProperty, fixedItemHeight:float, drawEmpty:ReorderableListControl.DrawEmptyAbsolute) : void
+    + {static} ListField(arrayProperty:SerializedProperty, fixedItemHeight:float, flags:ReorderableListFlags) : void
+    + {static} ListFieldAbsolute(position:Rect, arrayProperty:SerializedProperty, fixedItemHeight:float, flags:ReorderableListFlags) : void
+    + {static} ListField(arrayProperty:SerializedProperty, fixedItemHeight:float) : void
+    + {static} ListFieldAbsolute(position:Rect, arrayProperty:SerializedProperty, fixedItemHeight:float) : void
+    + {static} ListField(adaptor:IReorderableListAdaptor, drawEmpty:ReorderableListControl.DrawEmpty, flags:ReorderableListFlags) : void
+    + {static} ListFieldAbsolute(position:Rect, adaptor:IReorderableListAdaptor, drawEmpty:ReorderableListControl.DrawEmptyAbsolute, flags:ReorderableListFlags) : void
+    + {static} ListField(adaptor:IReorderableListAdaptor, drawEmpty:ReorderableListControl.DrawEmpty) : void
+    + {static} ListFieldAbsolute(position:Rect, adaptor:IReorderableListAdaptor, drawEmpty:ReorderableListControl.DrawEmptyAbsolute) : void
+    + {static} ListField(adaptor:IReorderableListAdaptor, flags:ReorderableListFlags) : void
+    + {static} ListFieldAbsolute(position:Rect, adaptor:IReorderableListAdaptor, flags:ReorderableListFlags) : void
+    + {static} ListField(adaptor:IReorderableListAdaptor) : void
+    + {static} ListFieldAbsolute(position:Rect, adaptor:IReorderableListAdaptor) : void
+    + {static} CalculateListFieldHeight(adaptor:IReorderableListAdaptor, flags:ReorderableListFlags) : float
+    + {static} CalculateListFieldHeight(adaptor:IReorderableListAdaptor) : float
+}
+ReorderableListGUI --> "CurrentListPosition" Rect
+ReorderableListGUI --> "CurrentItemTotalPosition" Rect
+@enduml

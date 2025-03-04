@@ -1,0 +1,5 @@
+@startuml
+class PerformanceTestException {
+    + PerformanceTestException(message:string)
+}
+@enduml

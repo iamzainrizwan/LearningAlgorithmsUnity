@@ -1,0 +1,7 @@
+@startuml
+class RectMask2DWithNestedCanvasCullsUsingCorrectCanvasRect {
+    + TestSetup() : void
+    + RectMask2DShouldNotCullImagesWithCanvas() : IEnumerator
+    + TearDown() : void
+}
+@enduml

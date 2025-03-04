@@ -1,0 +1,40 @@
+@startuml
+class FilterWindow {
+    + {static} <<readonly>> DefaultWidth : float = 250f
+    + {static} <<readonly>> DefaultHeight : float = 300f
+    + {static} Show(position:Vector2, provider:IProvider) : bool
+}
+interface IProvider {
+}
+class Element {
+    + level : int
+    + name : string <<get>>
+    + CompareTo(o:object) : int
+}
+class GroupElement {
+    + selectedIndex : int
+    + WantsFocus : bool <<get>> <<protected set>>
+    + <<virtual>> ShouldDisable : bool <<get>>
+    + GroupElement(level:int, name:string)
+    + <<virtual>> HandleKeyboard(evt:Event, window:FilterWindow, goToParent:Action) : bool
+    + <<virtual>> OnGUI(sFilterWindow:FilterWindow) : bool
+}
+class Styles {
+    + Styles()
+}
+EditorWindow <|-- FilterWindow
+FilterWindow +-- IProvider
+FilterWindow +-- Element
+IComparable <|-- Element
+Element --> "content" GUIContent
+FilterWindow +-- GroupElement
+Element <|-- GroupElement
+GroupElement --> "scroll" Vector2
+FilterWindow +-- Styles
+Styles o-> "header" GUIStyle
+Styles o-> "componentButton" GUIStyle
+Styles --> "groupButton" GUIStyle
+Styles o-> "background" GUIStyle
+Styles o-> "rightArrow" GUIStyle
+Styles o-> "leftArrow" GUIStyle
+@enduml

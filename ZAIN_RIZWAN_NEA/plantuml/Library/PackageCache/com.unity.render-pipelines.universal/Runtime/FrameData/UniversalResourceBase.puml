@@ -1,0 +1,10 @@
+@startuml
+abstract class UniversalResourceDataBase {
+}
+enum ActiveID {
+    Camera,
+    BackBuffer,
+}
+ContextItem <|-- UniversalResourceDataBase
+UniversalResourceDataBase +-- ActiveID
+@enduml

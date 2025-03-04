@@ -1,0 +1,5 @@
+@startuml
+class WaitForNextFrameUnit {
+}
+WaitUnit <|-- WaitForNextFrameUnit
+@enduml

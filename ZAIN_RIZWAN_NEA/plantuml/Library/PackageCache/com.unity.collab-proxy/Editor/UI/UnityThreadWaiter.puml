@@ -1,0 +1,8 @@
+@startuml
+class UnityThreadWaiterBuilder {
+}
+class UnityThreadWaiter {
+}
+IThreadWaiterBuilder <|-- UnityThreadWaiterBuilder
+IThreadWaiter <|-- UnityThreadWaiter
+@enduml

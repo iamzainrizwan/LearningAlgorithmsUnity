@@ -1,0 +1,12 @@
+@startuml
+class Measure <<static>> {
+    + {static} Custom(sampleGroup:SampleGroup, value:double) : void
+    + {static} Custom(name:string, value:double) : void
+    + {static} Scope(name:string) : ScopeMeasurement
+    + {static} Scope(sampleGroup:SampleGroup) : ScopeMeasurement
+    + {static} ProfilerMarkers(profilerMarkerLabels:string[]) : ProfilerMeasurement
+    + {static} ProfilerMarkers(sampleGroups:SampleGroup[]) : ProfilerMeasurement
+    + {static} Method(action:Action) : MethodMeasurement
+    + {static} Frames() : FramesMeasurement
+}
+@enduml

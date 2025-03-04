@@ -1,0 +1,12 @@
+@startuml
+class CustomTrackDrawerAttribute <<sealed>> {
+    + CustomTrackDrawerAttribute(type:Type)
+}
+class CustomTimelineEditorAttribute <<sealed>> {
+    + CustomTimelineEditorAttribute(type:Type)
+}
+Attribute <|-- CustomTrackDrawerAttribute
+CustomTrackDrawerAttribute --> "assetType" Type
+Attribute <|-- CustomTimelineEditorAttribute
+CustomTimelineEditorAttribute --> "classToEdit" Type
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+class DefaultControls <<static>> {
+    + {static} CreatePanel(resources:Resources) : GameObject
+    + {static} CreateButton(resources:Resources) : GameObject
+    + {static} CreateText(resources:Resources) : GameObject
+    + {static} CreateImage(resources:Resources) : GameObject
+    + {static} CreateRawImage(resources:Resources) : GameObject
+    + {static} CreateSlider(resources:Resources) : GameObject
+    + {static} CreateScrollbar(resources:Resources) : GameObject
+    + {static} CreateToggle(resources:Resources) : GameObject
+    + {static} CreateInputField(resources:Resources) : GameObject
+    + {static} CreateDropdown(resources:Resources) : GameObject
+    + {static} CreateScrollView(resources:Resources) : GameObject
+}
+interface IFactoryControls {
+}
+class DefaultRuntimeFactory {
+    + CreateGameObject(name:string, components:Type[]) : GameObject
+}
+struct Resources {
+}
+DefaultControls --> "factory" IFactoryControls
+DefaultControls +-- IFactoryControls
+DefaultControls +-- DefaultRuntimeFactory
+IFactoryControls <|-- DefaultRuntimeFactory
+DefaultRuntimeFactory o-> "Default" IFactoryControls
+DefaultControls +-- Resources
+Resources --> "standard" Sprite
+Resources --> "background" Sprite
+Resources --> "inputField" Sprite
+Resources --> "knob" Sprite
+Resources --> "checkmark" Sprite
+Resources --> "dropdown" Sprite
+Resources --> "mask" Sprite
+@enduml

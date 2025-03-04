@@ -1,0 +1,5 @@
+@startuml
+interface ICloudBackground {
+    + IsCloudBackgroundUsable() : bool
+}
+@enduml

@@ -1,0 +1,37 @@
+@startuml
+class JobParallelIndexListExtensions <<static>> {
+    + {static} <<unsafe>> ScheduleAppend(jobData:T, indices:NativeList<int>, arrayLength:int, innerloopBatchCount:int, dependsOn:JobHandle) : JobHandle
+    + {static} <<unsafe>> ScheduleFilter(jobData:T, indices:NativeList<int>, innerloopBatchCount:int, dependsOn:JobHandle) : JobHandle
+}
+interface IJobParallelForFilter {
+}
+interface IJobFilter {
+}
+class IJobFilterExtensions <<static>> {
+    + {static} EarlyJobInit() : void
+    + {static} <<unsafe>> ScheduleAppend(jobData:T, indices:NativeList<int>, arrayLength:int, dependsOn:JobHandle) : JobHandle
+    + {static} <<unsafe>> ScheduleFilter(jobData:T, indices:NativeList<int>, dependsOn:JobHandle) : JobHandle
+    + {static} <<unsafe>> RunAppend(jobData:T, indices:NativeList<int>, arrayLength:int) : void
+    + {static} <<unsafe>> RunFilter(jobData:T, indices:NativeList<int>) : void
+    + {static} <<unsafe>> ScheduleAppendByRef(jobData:T, indices:NativeList<int>, arrayLength:int, dependsOn:JobHandle) : JobHandle
+    + {static} <<unsafe>> ScheduleFilterByRef(jobData:T, indices:NativeList<int>, dependsOn:JobHandle) : JobHandle
+    + {static} <<unsafe>> RunAppendByRef(jobData:T, indices:NativeList<int>, arrayLength:int) : void
+    + {static} <<unsafe>> RunFilterByRef(jobData:T, indices:NativeList<int>) : void
+}
+class "JobFilterProducer`1"<T> {
+}
+struct "JobFilterProducer`1"<T> {
+    + {static} Execute(jobWrapper:JobWrapper, additionalPtr:IntPtr, bufferRangePatchData:IntPtr, ranges:JobRanges, jobIndex:int) : void
+    + {static} <<unsafe>> ExecuteAppend(jobWrapper:JobWrapper, bufferRangePatchData:System.IntPtr) : void
+    + {static} <<unsafe>> ExecuteFilter(jobWrapper:JobWrapper, bufferRangePatchData:System.IntPtr) : void
+}
+struct JobWrapper {
+    + appendCount : int
+}
+class "NativeList`1"<T> {
+}
+IJobFilterExtensions +-- "JobFilterProducer`1"
+"JobFilterProducer`1" +-- JobWrapper
+JobWrapper --> "outputIndices<int>" "NativeList`1"
+JobWrapper --> "JobData" T
+@enduml

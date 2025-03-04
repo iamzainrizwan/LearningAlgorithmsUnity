@@ -1,0 +1,14 @@
+@startuml
+struct AABB {
+    + <<override>> ToString() : string
+    + {static} Transform(transform:float4x4, localBounds:AABB) : AABB
+}
+class AABBExtensions <<static>> {
+    + {static} ToAABB(bounds:Bounds) : AABB
+    + {static} ToBounds(aabb:AABB) : Bounds
+}
+AABB --> "center" float3
+AABB --> "extents" float3
+AABB --> "min" float3
+AABB --> "max" float3
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class UniversalRenderPipelineAssetEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+Editor <|-- UniversalRenderPipelineAssetEditor
+@enduml

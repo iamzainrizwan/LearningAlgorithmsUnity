@@ -1,0 +1,71 @@
+@startuml
+class SerializedUniversalRenderPipelineAsset {
+    + SerializedUniversalRenderPipelineAsset(serializedObject:SerializedObject)
+    + Update() : void
+    + Apply() : void
+}
+class "EditorPrefBoolFlags`1"<T> {
+}
+SerializedUniversalRenderPipelineAsset --> "rendererDataProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "defaultRendererProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "requireDepthTextureProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "requireOpaqueTextureProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "opaqueDownsamplingProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "supportsTerrainHolesProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "enableLODCrossFadeProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "lodCrossFadeDitheringTypeProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "storeActionsOptimizationProperty" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "hdr" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "hdrColorBufferPrecisionProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "msaa" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "renderScale" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "upscalingFilter" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "fsrOverrideSharpness" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "fsrSharpness" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "mainLightRenderingModeProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "mainLightShadowsSupportedProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "mainLightShadowmapResolutionProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "shEvalModeProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "additionalLightsRenderingModeProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "additionalLightsPerObjectLimitProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "additionalLightShadowsSupportedProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "additionalLightShadowmapResolutionProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "additionalLightsShadowResolutionTierLowProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "additionalLightsShadowResolutionTierMediumProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "additionalLightsShadowResolutionTierHighProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "additionalLightCookieResolutionProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "additionalLightCookieFormatProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "reflectionProbeBlendingProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "reflectionProbeBoxProjectionProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "shadowDistanceProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "shadowCascadeCountProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "shadowCascade2SplitProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "shadowCascade3SplitProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "shadowCascade4SplitProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "shadowCascadeBorderProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "shadowDepthBiasProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "shadowNormalBiasProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "softShadowsSupportedProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "softShadowQualityProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "conservativeEnclosingSphereProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "srpBatcher" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "supportsDynamicBatching" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "mixedLightingSupportedProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "useRenderingLayers" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "supportsLightCookies" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "debugLevelProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "volumeFrameworkUpdateModeProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "volumeProfileProp" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "colorGradingMode" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "colorGradingLutSize" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "allowPostProcessAlphaOutput" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "useFastSRGBLinearConversion" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "supportDataDrivenLensFlare" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "supportScreenSpaceLensFlare" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "gpuResidentDrawerMode" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "smallMeshScreenPercentage" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "gpuResidentDrawerEnableOcclusionCullingInCameras" SerializedProperty
+SerializedUniversalRenderPipelineAsset --> "asset" UniversalRenderPipelineAsset
+SerializedUniversalRenderPipelineAsset --> "serializedObject" SerializedObject
+SerializedUniversalRenderPipelineAsset --> "state<EditorUtils.Unit>" "EditorPrefBoolFlags`1"
+@enduml

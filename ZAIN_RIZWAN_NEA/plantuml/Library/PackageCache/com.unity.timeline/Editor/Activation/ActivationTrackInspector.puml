@@ -1,0 +1,11 @@
+@startuml
+class ActivationTrackInspector {
+    + <<override>> OnInspectorGUI() : void
+    + <<override>> OnEnable() : void
+}
+class Styles <<static>> {
+}
+TrackAssetInspector <|-- ActivationTrackInspector
+ActivationTrackInspector +-- Styles
+Styles o-> "PostPlaybackStateText" GUIContent
+@enduml

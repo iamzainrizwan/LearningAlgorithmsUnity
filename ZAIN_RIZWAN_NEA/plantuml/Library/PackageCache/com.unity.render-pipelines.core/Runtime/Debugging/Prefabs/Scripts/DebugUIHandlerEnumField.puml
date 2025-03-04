@@ -1,0 +1,10 @@
+@startuml
+class DebugUIHandlerEnumField {
+    + <<override>> OnIncrement(fast:bool) : void
+    + <<override>> OnDecrement(fast:bool) : void
+    + <<override>> UpdateValueLabel() : void
+}
+class "DebugUIHandlerField`1"<T> {
+}
+"DebugUIHandlerField`1" "<DebugUI.EnumField>" <|-- DebugUIHandlerEnumField
+@enduml

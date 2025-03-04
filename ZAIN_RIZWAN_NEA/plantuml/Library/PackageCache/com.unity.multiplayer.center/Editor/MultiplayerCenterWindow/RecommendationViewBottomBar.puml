@@ -1,0 +1,7 @@
+@startuml
+class RecommendationViewBottomBar {
+    + RecommendationViewBottomBar(analytics:IMultiplayerCenterAnalytics)
+    + UpdatePackagesToInstall(data:RecommendationViewData, packageViewData:SolutionsToRecommendedPackageViewData) : void
+}
+VisualElement <|-- RecommendationViewBottomBar
+@enduml

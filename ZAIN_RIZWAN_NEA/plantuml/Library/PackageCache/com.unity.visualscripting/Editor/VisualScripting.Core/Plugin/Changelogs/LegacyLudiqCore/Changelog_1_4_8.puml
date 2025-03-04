@@ -1,0 +1,11 @@
+@startuml
+class LudiqCoreChangelog_1_4_8 {
+    + LudiqCoreChangelog_1_4_8(plugin:Plugin)
+}
+class "IEnumerable`1"<T> {
+}
+PluginChangelog <|-- LudiqCoreChangelog_1_4_8
+LudiqCoreChangelog_1_4_8 --> "version" SemanticVersion
+LudiqCoreChangelog_1_4_8 --> "date" DateTime
+LudiqCoreChangelog_1_4_8 --> "changes<string>" "IEnumerable`1"
+@enduml

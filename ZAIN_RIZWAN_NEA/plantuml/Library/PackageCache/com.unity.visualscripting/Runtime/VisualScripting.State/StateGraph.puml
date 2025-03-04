@@ -1,0 +1,22 @@
+@startuml
+class StateGraph <<sealed>> {
+    + StateGraph()
+    + <<override>> CreateData() : IGraphData
+    + StartListening(stack:GraphStack) : void
+    + StopListening(stack:GraphStack) : void
+    + IsListening(pointer:GraphPointer) : bool
+    + Start(flow:Flow) : void
+    + Stop(flow:Flow) : void
+    + {static} WithStart() : StateGraph
+}
+class "GraphElementCollection`1"<T> {
+}
+class "GraphConnectionCollection`3"<T1,T2,T3> {
+}
+Graph <|-- StateGraph
+IGraphEventListener <|-- StateGraph
+StateGraph --> "states<IState>" "GraphElementCollection`1"
+StateGraph --> "transitions<IStateTransition,IState,IState>" "GraphConnectionCollection`3"
+StateGraph --> "groups<GraphGroup>" "GraphElementCollection`1"
+StateGraph --> "sticky<StickyNote>" "GraphElementCollection`1"
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+enum NormalMapSpace {
+    Tangent,
+    Object,
+}
+@enduml

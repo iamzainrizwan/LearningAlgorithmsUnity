@@ -1,0 +1,11 @@
+@startuml
+class VolumeCollection {
+    + count : int <<get>>
+    + Register(volume:Volume, layer:int) : bool
+    + Unregister(volume:Volume, layer:int) : bool
+    + ChangeLayer(volume:Volume, previousLayerIndex:int, currentLayerIndex:int) : bool
+    + GrabVolumes(mask:LayerMask) : List<Volume>
+    + SetLayerIndexDirty(layerIndex:int) : void
+    + IsComponentActiveInMask(layerMask:LayerMask) : bool
+}
+@enduml

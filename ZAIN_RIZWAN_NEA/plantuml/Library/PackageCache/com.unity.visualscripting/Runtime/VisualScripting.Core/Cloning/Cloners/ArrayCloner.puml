@@ -1,0 +1,10 @@
+@startuml
+class ArrayCloner <<sealed>> {
+    + <<override>> Handles(type:Type) : bool
+    + <<override>> ConstructClone(type:Type, original:Array) : Array
+    + <<override>> FillClone(type:Type, clone:Array, original:Array, context:CloningContext) : void
+}
+class "Cloner`1"<T> {
+}
+"Cloner`1" "<Array>" <|-- ArrayCloner
+@enduml

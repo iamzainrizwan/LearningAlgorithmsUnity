@@ -1,0 +1,10 @@
+@startuml
+class NullableInspector {
+    + NullableInspector(metadata:Metadata)
+}
+class Styles <<static>> {
+    + {static} <<readonly>> toggleSpacing : int = 3
+}
+Inspector <|-- NullableInspector
+NullableInspector +-- Styles
+@enduml

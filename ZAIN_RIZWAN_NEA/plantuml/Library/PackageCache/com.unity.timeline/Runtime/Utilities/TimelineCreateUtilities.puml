@@ -1,0 +1,9 @@
+@startuml
+class TimelineCreateUtilities <<static>> {
+    + {static} GenerateUniqueActorName(tracks:List<ScriptableObject>, name:string) : string
+    + {static} SaveAssetIntoObject(childAsset:Object, masterAsset:Object) : void
+    + {static} RemoveAssetFromObject(childAsset:Object, masterAsset:Object) : void
+    + {static} CreateAnimationClipForTrack(name:string, track:TrackAsset, isLegacy:bool) : AnimationClip
+    + {static} ValidateParentTrack(parent:TrackAsset, childType:Type) : bool
+}
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class SignNode {
+    + SignNode()
+}
+CodeFunctionNode <|-- SignNode
+@enduml

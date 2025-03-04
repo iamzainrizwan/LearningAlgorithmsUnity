@@ -1,0 +1,12 @@
+@startuml
+class LiteralOption {
+    + LiteralOption()
+    + LiteralOption(unit:Literal)
+    + <<override>> Deserialize(row:UnitOptionRow) : void
+    + <<override>> Serialize() : UnitOptionRow
+}
+class "UnitOption`1"<T> {
+}
+"UnitOption`1" "<Literal>" <|-- LiteralOption
+LiteralOption --> "literalType" Type
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+abstract class UnityWorkItem {
+    +  <<event>> Completed : EventHandler 
+    + ResultedInDomainReload : bool <<get>> <<internal set>>
+    + InitializeContext(context:UnityTestExecutionContext) : void
+    + <<virtual>> Execute() : IEnumerable
+    + <<virtual>> Cancel(force:bool) : void
+}
+class "List`1"<T> {
+}
+UnityWorkItem --> "Context" UnityTestExecutionContext
+UnityWorkItem --> "Test" Test
+UnityWorkItem --> "Result" TestResult
+UnityWorkItem --> "State" WorkItemState
+UnityWorkItem --> "Actions<ITestAction>" "List`1"
+@enduml

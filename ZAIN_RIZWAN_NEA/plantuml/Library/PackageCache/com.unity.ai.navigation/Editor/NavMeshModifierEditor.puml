@@ -1,0 +1,15 @@
+@startuml
+class NavMeshModifierEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+class Content <<static>> {
+}
+NavMeshModifierEditor +-- Content
+Content o-> "Mode" GUIContent
+Content o-> "AffectedAgents" GUIContent
+Content o-> "ApplyToChildren" GUIContent
+Content o-> "OverrideArea" GUIContent
+Content o-> "AreaType" GUIContent
+Content o-> "OverrideGenerateLinks" GUIContent
+Content o-> "GenerateLinks" GUIContent
+@enduml

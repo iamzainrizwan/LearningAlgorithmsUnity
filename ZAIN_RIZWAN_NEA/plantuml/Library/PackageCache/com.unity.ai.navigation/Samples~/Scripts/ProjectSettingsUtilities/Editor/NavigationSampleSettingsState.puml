@@ -1,0 +1,6 @@
+@startuml
+class NavigationSampleSettingsState {
+    + generated : bool <<get>> <<set>>
+}
+ScriptableObject <|-- NavigationSampleSettingsState
+@enduml

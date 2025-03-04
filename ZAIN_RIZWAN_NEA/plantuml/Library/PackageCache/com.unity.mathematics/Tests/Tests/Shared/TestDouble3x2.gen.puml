@@ -1,0 +1,45 @@
+@startuml
+class TestDouble3x2 {
+    + {static} double3x2_zero() : void
+    + {static} double3x2_operator_equal_wide_wide() : void
+    + {static} double3x2_operator_equal_wide_scalar() : void
+    + {static} double3x2_operator_equal_scalar_wide() : void
+    + {static} double3x2_operator_not_equal_wide_wide() : void
+    + {static} double3x2_operator_not_equal_wide_scalar() : void
+    + {static} double3x2_operator_not_equal_scalar_wide() : void
+    + {static} double3x2_operator_less_wide_wide() : void
+    + {static} double3x2_operator_less_wide_scalar() : void
+    + {static} double3x2_operator_less_scalar_wide() : void
+    + {static} double3x2_operator_greater_wide_wide() : void
+    + {static} double3x2_operator_greater_wide_scalar() : void
+    + {static} double3x2_operator_greater_scalar_wide() : void
+    + {static} double3x2_operator_less_equal_wide_wide() : void
+    + {static} double3x2_operator_less_equal_wide_scalar() : void
+    + {static} double3x2_operator_less_equal_scalar_wide() : void
+    + {static} double3x2_operator_greater_equal_wide_wide() : void
+    + {static} double3x2_operator_greater_equal_wide_scalar() : void
+    + {static} double3x2_operator_greater_equal_scalar_wide() : void
+    + {static} double3x2_operator_add_wide_wide() : void
+    + {static} double3x2_operator_add_wide_scalar() : void
+    + {static} double3x2_operator_add_scalar_wide() : void
+    + {static} double3x2_operator_sub_wide_wide() : void
+    + {static} double3x2_operator_sub_wide_scalar() : void
+    + {static} double3x2_operator_sub_scalar_wide() : void
+    + {static} double3x2_operator_mul_wide_wide() : void
+    + {static} double3x2_operator_mul_wide_scalar() : void
+    + {static} double3x2_operator_mul_scalar_wide() : void
+    + {static} double3x2_operator_div_wide_wide() : void
+    + {static} double3x2_operator_div_wide_scalar() : void
+    + {static} double3x2_operator_div_scalar_wide() : void
+    + {static} double3x2_operator_mod_wide_wide() : void
+    + {static} double3x2_operator_mod_wide_scalar() : void
+    + {static} double3x2_operator_mod_scalar_wide() : void
+    + {static} double3x2_operator_plus() : void
+    + {static} double3x2_operator_neg() : void
+    + {static} double3x2_operator_prefix_inc() : void
+    + {static} double3x2_operator_postfix_inc() : void
+    + {static} double3x2_operator_prefix_dec() : void
+    + {static} double3x2_operator_postfix_dec() : void
+    + {static} double3x2_EqualsObjectOverride() : void
+}
+@enduml

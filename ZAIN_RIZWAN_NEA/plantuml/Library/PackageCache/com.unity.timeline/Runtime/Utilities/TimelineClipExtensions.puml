@@ -1,0 +1,6 @@
+@startuml
+class TimelineClipExtensions <<static>> {
+    + {static} MoveToTrack(clip:TimelineClip, destinationTrack:TrackAsset) : void
+    + {static} TryMoveToTrack(clip:TimelineClip, destinationTrack:TrackAsset) : bool
+}
+@enduml

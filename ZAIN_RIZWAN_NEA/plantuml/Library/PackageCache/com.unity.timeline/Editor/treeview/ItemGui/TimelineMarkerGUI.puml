@@ -1,0 +1,22 @@
+@startuml
+class TimelineMarkerGUI {
+    +  <<event>> onStartDrag : System.Action 
+    + time : double <<get>>
+    + <<override>> start : double <<get>>
+    + <<override>> end : double <<get>>
+    + <<override>> Select() : void
+    + <<override>> IsSelected() : bool
+    + <<override>> Deselect() : void
+    + TimelineMarkerGUI(theMarker:IMarker, parent:IRowGUI, provider:IZOrderProvider)
+    + <<override>> Draw(trackRect:Rect, trackRectChanged:bool, state:WindowState) : void
+    + QueueOverlay(rect:Rect, isSelected:bool, isCollapsed:bool) : void
+    + <<override>> StartDrag() : void
+    + <<override>> RectToTimeline(trackRect:Rect, state:WindowState) : Rect
+    + SnappableEdgesFor(attractable:IAttractable, manipulateEdges:ManipulateEdges) : IEnumerable<Edge>
+    + ShouldSnapTo(snappable:ISnappable) : bool
+}
+TimelineItemGUI <|-- TimelineMarkerGUI
+ISnappable <|-- TimelineMarkerGUI
+IAttractable <|-- TimelineMarkerGUI
+TimelineMarkerGUI --> "item" ITimelineItem
+@enduml

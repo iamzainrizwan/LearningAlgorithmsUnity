@@ -1,0 +1,14 @@
+@startuml
+class BuiltInStructFields <<static>> {
+}
+struct Varyings {
+    + {static} name : string = "Varyings"
+}
+BuiltInStructFields +-- Varyings
+Varyings o-> "lightmapUV" FieldDescriptor
+Varyings o-> "sh" FieldDescriptor
+Varyings o-> "fogFactorAndVertexLight" FieldDescriptor
+Varyings o-> "shadowCoord" FieldDescriptor
+Varyings o-> "stereoTargetEyeIndexAsRTArrayIdx" FieldDescriptor
+Varyings o-> "stereoTargetEyeIndexAsBlendIdx0" FieldDescriptor
+@enduml

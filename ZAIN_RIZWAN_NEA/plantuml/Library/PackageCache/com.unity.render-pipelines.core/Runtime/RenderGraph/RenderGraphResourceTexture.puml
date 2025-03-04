@@ -1,0 +1,76 @@
+@startuml
+struct TextureAccess {
+    + mipLevel : int
+    + depthSlice : int
+    + TextureAccess(handle:TextureHandle, flags:AccessFlags, mipLevel:int, depthSlice:int)
+}
+struct TextureHandle {
+    + IsValid() : bool
+    + GetDescriptor(renderGraph:RenderGraph) : TextureDesc
+}
+enum TextureSizeMode {
+    Explicit,
+    Scale,
+    Functor,
+}
+struct TextureDesc {
+    + width : int
+    + height : int
+    + slices : int
+    + enableRandomWrite : bool
+    + useMipMap : bool
+    + autoGenerateMips : bool
+    + isShadowMap : bool
+    + anisoLevel : int
+    + mipMapBias : float
+    + bindTextureMS : bool
+    + useDynamicScale : bool
+    + useDynamicScaleExplicit : bool
+    + name : string
+    + fallBackToBlackTexture : bool
+    + disableFallBackToImportedTexture : bool
+    + clearBuffer : bool
+    + discardBuffer : bool
+    + TextureDesc(width:int, height:int, dynamicResolution:bool, xrReady:bool)
+    + TextureDesc(scale:Vector2, dynamicResolution:bool, xrReady:bool)
+    + TextureDesc(func:ScaleFunc, dynamicResolution:bool, xrReady:bool)
+    + TextureDesc(input:TextureDesc)
+    + TextureDesc(input:RenderTextureDescriptor)
+    + TextureDesc(input:RenderTexture)
+    + <<override>> GetHashCode() : int
+    + CalculateFinalDimensions() : Vector2Int
+}
+class TextureResource {
+    + <<override>> GetName() : string
+    + <<override>> GetDescHashCode() : int
+    + <<override>> CreateGraphicsResource() : void
+    + <<override>> UpdateGraphicsResource() : void
+    + <<override>> ReleaseGraphicsResource() : void
+    + <<override>> LogCreation(logger:RenderGraphLogger) : void
+    + <<override>> LogRelease(logger:RenderGraphLogger) : void
+}
+class TexturePool {
+}
+class "RenderGraphResource`2"<T1,T2> {
+}
+class "RenderGraphResourcePool`1"<T> {
+}
+TextureAccess --> "textureHandle" TextureHandle
+TextureAccess --> "flags" AccessFlags
+TextureHandle --> "nullHandle" TextureHandle
+TextureDesc --> "sizeMode" TextureSizeMode
+TextureDesc --> "scale" Vector2
+TextureDesc --> "func" ScaleFunc
+TextureDesc --> "format" GraphicsFormat
+TextureDesc --> "filterMode" FilterMode
+TextureDesc --> "wrapMode" TextureWrapMode
+TextureDesc --> "dimension" TextureDimension
+TextureDesc --> "msaaSamples" MSAASamples
+TextureDesc --> "memoryless" RenderTextureMemoryless
+TextureDesc --> "vrUsage" VRTextureUsage
+TextureDesc --> "clearColor" Color
+TextureDesc --> "depthBufferBits" DepthBits
+TextureDesc --> "colorFormat" GraphicsFormat
+"RenderGraphResource`2" "<TextureDesc,RTHandle>" <|-- TextureResource
+"RenderGraphResourcePool`1" "<RTHandle>" <|-- TexturePool
+@enduml

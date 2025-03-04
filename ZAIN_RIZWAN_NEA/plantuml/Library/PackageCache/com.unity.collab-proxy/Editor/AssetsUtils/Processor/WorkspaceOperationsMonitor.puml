@@ -1,0 +1,10 @@
+@startuml
+class WorkspaceOperationsMonitor {
+}
+interface IDisableAssetsProcessor {
+}
+class AssetsProcessorOperations <<static>> {
+}
+WorkspaceOperationsMonitor +-- IDisableAssetsProcessor
+WorkspaceOperationsMonitor +-- AssetsProcessorOperations
+@enduml

@@ -1,0 +1,37 @@
+@startuml
+class SelectionManager <<static>> {
+    + {static} AddObject(obj:Object) : void
+    + {static} Add(obj:TrackAsset) : void
+    + {static} Add(item:TimelineClip) : void
+    + {static} Add(marker:IMarker) : void
+    + {static} Add(item:ITimelineItem) : void
+    + {static} SelectOnly(track:TrackAsset) : void
+    + {static} SelectOnly(clip:TimelineClip) : void
+    + {static} SelectOnly(item:IMarker) : void
+    + {static} SelectOnly(item:ITimelineItem) : void
+    + {static} SelectInlineCurveEditor(selection:IClipCurveEditorOwner) : void
+    + {static} GetCurrentInlineEditorCurve() : IClipCurveEditorOwner
+    + {static} IsCurveEditorFocused(selection:IClipCurveEditorOwner) : bool
+    + {static} Contains(item:TrackAsset) : bool
+    + {static} Contains(item:TimelineClip) : bool
+    + {static} Contains(obj:Object) : bool
+    + {static} Contains(marker:IMarker) : bool
+    + {static} Contains(item:ITimelineItem) : bool
+    + {static} Clear() : void
+    + {static} UnSelectTracks() : void
+    + {static} Remove(item:TimelineClip) : void
+    + {static} Remove(marker:IMarker) : void
+    + {static} Remove(item:TrackAsset) : void
+    + {static} Remove(item:ITimelineItem) : void
+    + {static} RemoveTimelineSelection() : void
+    + {static} RemoveAllClips() : void
+    + {static} Count() : int
+    + {static} SelectedClipGUI() : IEnumerable<TimelineClipGUI>
+    + {static} SelectedClips() : IEnumerable<TimelineClip>
+    + {static} SelectedMarkers() : IEnumerable<IMarker>
+    + {static} SelectedTracks() : IEnumerable<TrackAsset>
+    + {static} SelectedItemOfType() : IEnumerable<T>
+    + {static} SelectedTrackGUI() : IEnumerable<TimelineTrackBaseGUI>
+    + {static} SelectedItems() : IEnumerable<ITimelineItem>
+}
+@enduml

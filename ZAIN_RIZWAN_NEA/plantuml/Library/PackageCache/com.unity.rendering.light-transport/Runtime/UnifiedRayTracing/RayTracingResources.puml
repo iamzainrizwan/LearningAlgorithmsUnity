@@ -1,0 +1,14 @@
+@startuml
+class RayTracingResources {
+}
+RayTracingResources --> "geometryPoolKernels" ComputeShader
+RayTracingResources --> "copyBuffer" ComputeShader
+RayTracingResources --> "hardwareRayTracingMaterial" Shader
+RayTracingResources --> "copyPositions" ComputeShader
+RayTracingResources --> "bitHistogram" ComputeShader
+RayTracingResources --> "blockReducePart" ComputeShader
+RayTracingResources --> "blockScan" ComputeShader
+RayTracingResources --> "buildHlbvh" ComputeShader
+RayTracingResources --> "restructureBvh" ComputeShader
+RayTracingResources --> "scatter" ComputeShader
+@enduml

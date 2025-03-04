@@ -1,0 +1,13 @@
+@startuml
+class URPShaderStrippingSetting {
+    + version : int <<get>>
+    + stripUnusedPostProcessingVariants : bool <<get>> <<set>>
+    + stripUnusedVariants : bool <<get>> <<set>>
+    + stripScreenCoordOverrideVariants : bool <<get>> <<set>>
+}
+enum Version {
+    Initial= 0,
+}
+IRenderPipelineGraphicsSettings <|-- URPShaderStrippingSetting
+URPShaderStrippingSetting +-- Version
+@enduml

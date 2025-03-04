@@ -1,0 +1,23 @@
+@startuml
+class TMP_SubMesh {
+    + isDefaultMaterial : bool <<get>> <<set>>
+    + padding : float <<get>> <<set>>
+    + {static} AddSubTextObject(textComponent:TextMeshPro, materialReference:MaterialReference) : TMP_SubMesh
+    + DestroySelf() : void
+    + GetPaddingForMaterial() : float
+    + UpdateMeshPadding(isExtraPadding:bool, isUsingBold:bool) : void
+    + SetVerticesDirty() : void
+    + SetMaterialDirty() : void
+}
+MonoBehaviour <|-- TMP_SubMesh
+TMP_SubMesh --> "fontAsset" TMP_FontAsset
+TMP_SubMesh --> "spriteAsset" TMP_SpriteAsset
+TMP_SubMesh --> "material" Material
+TMP_SubMesh --> "sharedMaterial" Material
+TMP_SubMesh --> "fallbackMaterial" Material
+TMP_SubMesh --> "fallbackSourceMaterial" Material
+TMP_SubMesh --> "renderer" Renderer
+TMP_SubMesh --> "meshFilter" MeshFilter
+TMP_SubMesh --> "mesh" Mesh
+TMP_SubMesh --> "textComponent" TMP_Text
+@enduml

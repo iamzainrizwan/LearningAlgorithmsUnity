@@ -1,0 +1,9 @@
+@startuml
+interface IUnit {
+}
+class XUnit <<static>> {
+    + {static} CompatibleValueInput(unit:IUnit, outputType:Type) : ValueInput
+    + {static} CompatibleValueOutput(unit:IUnit, inputType:Type) : ValueOutput
+}
+IGraphElementWithDebugData <|-- IUnit
+@enduml

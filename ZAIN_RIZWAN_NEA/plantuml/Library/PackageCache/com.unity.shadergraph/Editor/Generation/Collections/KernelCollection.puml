@@ -1,0 +1,19 @@
+@startuml
+class KernelCollection {
+    + KernelCollection()
+    + Add(passes:KernelCollection) : KernelCollection
+    + Add(descriptor:KernelDescriptor) : KernelCollection
+    + Add(descriptor:KernelDescriptor, fieldCondition:FieldCondition) : KernelCollection
+    + Add(descriptor:KernelDescriptor, fieldConditions:FieldCondition[]) : KernelCollection
+    + GetEnumerator() : IEnumerator<Item>
+}
+class "IEnumerable`1"<T> {
+}
+class Item {
+    + Item(descriptor:KernelDescriptor, fieldConditions:FieldCondition[])
+}
+"IEnumerable`1" "<KernelCollection.Item>" <|-- KernelCollection
+KernelCollection +-- Item
+IConditional <|-- Item
+Item --> "descriptor" KernelDescriptor
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class PostProcessDataAnalyticsTests {
+    + DataIsExtractedCorrectly(testCase:(string[] input, PostProcessDataAnalytics.Analytic.PropertyToGUIDs expected)) : void
+    + GenerateMapWithDifferencesTests(testCase:(PostProcessDataAnalytics.Analytic.PropertyToGUIDs input, PostProcessDataAnalytics.Analytic.Usage expected)) : void
+}
+@enduml

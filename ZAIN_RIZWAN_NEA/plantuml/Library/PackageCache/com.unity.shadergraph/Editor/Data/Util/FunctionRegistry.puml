@@ -1,0 +1,24 @@
+@startuml
+class FunctionSource {
+    + code : string
+    + isGeneric : bool
+    + graphPrecisionFlags : int
+    + concretePrecisionFlags : int
+}
+class FunctionRegistry {
+    + FunctionRegistry(builder:ShaderStringBuilder, includes:IncludeCollection, validate:bool)
+    + RequiresIncludes(includes:IncludeCollection) : void
+    + RequiresIncludePath(includePath:string, shouldIncludeWithPragmas:bool) : void
+    + ProvideFunction(name:string, graphPrecision:GraphPrecision, concretePrecision:ConcretePrecision, generator:Action<ShaderStringBuilder>) : void
+    + ProvideFunction(name:string, generator:Action<ShaderStringBuilder>) : void
+}
+class "HashSet`1"<T> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+class "List`1"<T> {
+}
+FunctionSource --> "nodes<AbstractMaterialNode>" "HashSet`1"
+FunctionRegistry --> "sources<string,FunctionSource>" "Dictionary`2"
+FunctionRegistry o-> "names<string>" "List`1"
+@enduml

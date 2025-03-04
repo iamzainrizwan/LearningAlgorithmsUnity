@@ -1,0 +1,20 @@
+@startuml
+struct fsResult {
+    + AddMessage(message:string) : void
+    + AddMessages(result:fsResult) : void
+    + Merge(other:fsResult) : fsResult
+    + {static} Warn(warning:string) : fsResult
+    + {static} Fail(warning:string) : fsResult
+    + Failed : bool <<get>>
+    + Succeeded : bool <<get>>
+    + HasWarnings : bool <<get>>
+    + AssertSuccess() : fsResult
+    + AssertSuccessWithoutWarnings() : fsResult
+    + FormattedMessages : string <<get>>
+}
+class "IEnumerable`1"<T> {
+}
+fsResult o-> "Success" fsResult
+fsResult --> "AsException" Exception
+fsResult --> "RawMessages<string>" "IEnumerable`1"
+@enduml

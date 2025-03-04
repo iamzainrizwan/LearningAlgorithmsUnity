@@ -1,0 +1,53 @@
+@startuml
+struct DecalSubDrawCall {
+    + start : int
+    + end : int
+    + count : int <<get>>
+}
+class DecalDrawCallChunk {
+    + subCallCount : int <<set>> <<get>>
+    + <<override>> RemoveAtSwapBack(entityIndex:int) : void
+    + <<override>> SetCapacity(newCapacity:int) : void
+    + <<override>> Dispose() : void
+}
+class DecalCreateDrawCallSystem {
+    + maxDrawDistance : float <<get>> <<set>>
+    + DecalCreateDrawCallSystem(entityManager:DecalEntityManager, maxDrawDistance:float)
+    + Execute() : void
+}
+class "NativeArray`1"<T> {
+}
+struct DrawCallJob {
+    + sceneCullingMask : ulong
+    + cullingMask : int
+    + visibleDecalCount : int
+    + maxDrawDistance : float
+    + Execute() : void
+}
+DecalChunk <|-- DecalDrawCallChunk
+DecalDrawCallChunk --> "decalToWorlds<float4x4>" "NativeArray`1"
+DecalDrawCallChunk --> "normalToDecals<float4x4>" "NativeArray`1"
+DecalDrawCallChunk --> "renderingLayerMasks<float>" "NativeArray`1"
+DecalDrawCallChunk --> "subCalls<DecalSubDrawCall>" "NativeArray`1"
+DecalDrawCallChunk --> "subCallCounts<int>" "NativeArray`1"
+DecalCreateDrawCallSystem +-- DrawCallJob
+IJob <|-- DrawCallJob
+DrawCallJob --> "decalToWorlds<float4x4>" "NativeArray`1"
+DrawCallJob --> "normalToWorlds<float4x4>" "NativeArray`1"
+DrawCallJob --> "sizeOffsets<float4x4>" "NativeArray`1"
+DrawCallJob --> "drawDistances<float2>" "NativeArray`1"
+DrawCallJob --> "angleFades<float2>" "NativeArray`1"
+DrawCallJob --> "uvScaleBiases<float4>" "NativeArray`1"
+DrawCallJob --> "layerMasks<int>" "NativeArray`1"
+DrawCallJob --> "sceneLayerMasks<ulong>" "NativeArray`1"
+DrawCallJob --> "fadeFactors<float>" "NativeArray`1"
+DrawCallJob --> "boundingSpheres<BoundingSphere>" "NativeArray`1"
+DrawCallJob --> "renderingLayerMasks<uint>" "NativeArray`1"
+DrawCallJob --> "cameraPosition" Vector3
+DrawCallJob --> "visibleDecalIndices<int>" "NativeArray`1"
+DrawCallJob --> "decalToWorldsDraw<float4x4>" "NativeArray`1"
+DrawCallJob --> "normalToDecalsDraw<float4x4>" "NativeArray`1"
+DrawCallJob --> "renderingLayerMasksDraw<float>" "NativeArray`1"
+DrawCallJob --> "subCalls<DecalSubDrawCall>" "NativeArray`1"
+DrawCallJob --> "subCallCount<int>" "NativeArray`1"
+@enduml

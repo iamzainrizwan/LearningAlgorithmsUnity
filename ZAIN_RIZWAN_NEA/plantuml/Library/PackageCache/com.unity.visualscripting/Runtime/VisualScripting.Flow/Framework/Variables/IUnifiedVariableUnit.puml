@@ -1,0 +1,5 @@
+@startuml
+interface IUnifiedVariableUnit {
+}
+IUnit <|-- IUnifiedVariableUnit
+@enduml

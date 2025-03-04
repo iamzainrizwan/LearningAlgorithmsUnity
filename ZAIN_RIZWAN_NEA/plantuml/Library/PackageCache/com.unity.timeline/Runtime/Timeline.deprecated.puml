@@ -1,0 +1,18 @@
+@startuml
+class TimelineAsset <<partial>> {
+}
+class TrackMediaType {
+    + TrackMediaType(mt:TimelineAsset.MediaType)
+}
+enum MediaType {
+    Animation,
+    Audio,
+    Texture= 2,
+    Video= 2,
+    Script,
+    Hybrid,
+    Group,
+}
+Attribute <|-- TrackMediaType
+TimelineAsset +-- MediaType
+@enduml

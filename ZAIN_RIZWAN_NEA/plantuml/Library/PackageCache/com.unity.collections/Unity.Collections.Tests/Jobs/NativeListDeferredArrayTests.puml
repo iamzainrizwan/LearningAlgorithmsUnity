@@ -1,0 +1,45 @@
+@startuml
+class NativeListDeferredArrayTests {
+    + NativeListDeferredArrayTestsSetup() : void
+    + ResizedListToDeferredJobArray(length:int) : void
+    + <<unsafe>> DeferredParallelForFromIntPtr() : void
+    + ResizeListBeforeSchedule(length:int) : void
+    + TearDown() : void
+}
+struct AliasJob {
+    + Execute() : void
+}
+struct SetListLengthJob {
+    + ResizeLength : int
+    + Execute() : void
+}
+struct SetArrayValuesJobParallel {
+    + Execute(index:int) : void
+}
+struct GetArrayValuesJobParallel {
+    + Execute(index:int) : void
+}
+struct ParallelForWithoutList {
+    + Execute(index:int) : void
+}
+class "NativeArray`1"<T> {
+}
+class "NativeList`1"<T> {
+}
+JobTestsFixtureBasic <|-- NativeListDeferredArrayTests
+NativeListDeferredArrayTests +-- AliasJob
+IJob <|-- AliasJob
+AliasJob --> "array<int>" "NativeArray`1"
+AliasJob --> "list<int>" "NativeList`1"
+NativeListDeferredArrayTests +-- SetListLengthJob
+IJob <|-- SetListLengthJob
+SetListLengthJob --> "list<int>" "NativeList`1"
+NativeListDeferredArrayTests +-- SetArrayValuesJobParallel
+IJobParallelForDefer <|-- SetArrayValuesJobParallel
+SetArrayValuesJobParallel --> "array<int>" "NativeArray`1"
+NativeListDeferredArrayTests +-- GetArrayValuesJobParallel
+IJobParallelForDefer <|-- GetArrayValuesJobParallel
+GetArrayValuesJobParallel --> "array<int>" "NativeArray`1"
+NativeListDeferredArrayTests +-- ParallelForWithoutList
+IJobParallelForDefer <|-- ParallelForWithoutList
+@enduml

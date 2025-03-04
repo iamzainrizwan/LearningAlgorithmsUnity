@@ -1,0 +1,56 @@
+@startuml
+class ProbeAdjustmentVolume {
+    + radius : float = 1.0f
+    + intensityScale : float = 1.0f
+    + overriddenDilationThreshold : float = 0.75f
+    + virtualOffsetDistance : float = 1.0f
+    + geometryBias : float = 0.01f
+    + virtualOffsetThreshold : float = 0.75f
+    + rayOriginBias : float
+    + directSampleCount : int = 32
+    + indirectSampleCount : int = 512
+    + sampleCountMultiplier : int = 4
+    + maxBounces : int = 2
+    + skyOcclusionSampleCount : int = 2048
+    + skyOcclusionMaxBounces : int = 2
+    + renderingLayerMask : byte
+    + invalidateProbes : bool = false
+    + overrideDilationThreshold : bool = false
+}
+enum Shape {
+    Box,
+    Sphere,
+}
+enum Mode {
+    InvalidateProbes,
+    OverrideValidityThreshold,
+    ApplyVirtualOffset,
+    OverrideVirtualOffsetSettings,
+    OverrideSkyDirection,
+    OverrideSampleCount,
+    OverrideRenderingLayerMask,
+    IntensityScale= 99,
+}
+enum RenderingLayerMaskOperation {
+    Override,
+    Add,
+    Remove,
+}
+enum Version {
+    Initial,
+    Mode,
+    Count,
+}
+MonoBehaviour <|-- ProbeAdjustmentVolume
+ISerializationCallbackReceiver <|-- ProbeAdjustmentVolume
+ProbeAdjustmentVolume o-> "shape" Shape
+ProbeAdjustmentVolume o-> "size" Vector3
+ProbeAdjustmentVolume o-> "mode" Mode
+ProbeAdjustmentVolume o-> "virtualOffsetRotation" Vector3
+ProbeAdjustmentVolume o-> "skyDirection" Vector3
+ProbeAdjustmentVolume --> "renderingLayerMaskOperation" RenderingLayerMaskOperation
+ProbeAdjustmentVolume +-- Shape
+ProbeAdjustmentVolume +-- Mode
+ProbeAdjustmentVolume +-- RenderingLayerMaskOperation
+ProbeAdjustmentVolume +-- Version
+@enduml

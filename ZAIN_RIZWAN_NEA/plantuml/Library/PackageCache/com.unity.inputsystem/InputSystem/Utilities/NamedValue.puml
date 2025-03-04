@@ -1,0 +1,21 @@
+@startuml
+struct NamedValue {
+    + <<const>> Separator : string = ","
+    + name : string <<get>> <<set>>
+    + ConvertTo(type:TypeCode) : NamedValue
+    + {static} From(name:string, value:TValue) : NamedValue
+    + <<override>> ToString() : string
+    + Equals(other:NamedValue) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + {static} ParseMultiple(parameterString:string) : NamedValue[]
+    + {static} Parse(str:string) : NamedValue
+    + ApplyToObject(instance:object) : void
+    + {static} ApplyAllToObject(instance:object, parameters:TParameterList) : void
+}
+class "IEquatable`1"<T> {
+}
+"IEquatable`1" "<NamedValue>" <|-- NamedValue
+NamedValue --> "value" PrimitiveValue
+NamedValue --> "type" TypeCode
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class Invoker <<static>> {
+    + {static} Invoke(context:ActionContext) : bool
+    + {static} Invoke(tracks:IEnumerable<TrackAsset>) : bool
+    + {static} Invoke(clips:IEnumerable<TimelineClip>) : bool
+    + {static} Invoke(markers:IEnumerable<IMarker>) : bool
+    + {static} InvokeWithSelected() : bool
+    + {static} InvokeWithSelectedClips() : bool
+    + {static} InvokeWithSelectedTracks() : bool
+    + {static} InvokeWithSelectedMarkers() : bool
+}
+@enduml

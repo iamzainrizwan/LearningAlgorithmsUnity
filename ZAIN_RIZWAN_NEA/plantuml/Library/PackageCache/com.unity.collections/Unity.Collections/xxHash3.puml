@@ -1,0 +1,20 @@
+@startuml
+class xxHash3 <<static>> <<partial>> {
+    + {static} <<unsafe>> Hash64(input:void*, length:long) : uint2
+    + {static} <<unsafe>> Hash64(input:T) : uint2
+    + {static} <<unsafe>> Hash64(input:void*, length:long, seed:ulong) : uint2
+    + {static} <<unsafe>> Hash128(input:void*, length:long) : uint4
+    + {static} <<unsafe>> Hash128(input:T) : uint4
+    + {static} <<unsafe>> Hash128(input:void*, destination:void*, length:long) : uint4
+    + {static} <<unsafe>> Hash128(input:void*, length:long, seed:ulong) : uint4
+    + {static} <<unsafe>> Hash128(input:void*, destination:void*, length:long, seed:ulong) : uint4
+}
+class xxHashDefaultKey <<static>> {
+}
+struct ulong2 {
+    + x : ulong
+    + y : ulong
+    + ulong2(x:ulong, y:ulong)
+}
+xxHash3 +-- ulong2
+@enduml

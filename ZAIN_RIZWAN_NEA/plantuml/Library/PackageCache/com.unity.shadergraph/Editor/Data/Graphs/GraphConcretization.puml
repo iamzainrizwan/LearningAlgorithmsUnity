@@ -1,0 +1,11 @@
+@startuml
+class GraphData <<sealed>> <<partial>> {
+}
+class GraphConcretization <<static>> {
+    + {static} ConcretizeNode(node:AbstractMaterialNode) : void
+    + {static} ConcretizeProperties(graph:GraphData) : void
+    + {static} ConcretizeGraph(graph:GraphData) : void
+}
+ISerializationCallbackReceiver <|-- GraphData
+GraphData +-- GraphConcretization
+@enduml

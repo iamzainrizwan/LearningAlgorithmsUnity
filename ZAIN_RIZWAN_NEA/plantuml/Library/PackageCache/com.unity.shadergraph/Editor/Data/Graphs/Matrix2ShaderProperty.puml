@@ -1,0 +1,9 @@
+@startuml
+class Matrix2ShaderProperty {
+    + Matrix2ShaderProperty()
+    + <<override>> latestVersion : int <<get>>
+    + <<override>> OnAfterDeserialize(json:string) : void
+}
+MatrixShaderProperty <|-- Matrix2ShaderProperty
+Matrix2ShaderProperty --> "propertyType" PropertyType
+@enduml

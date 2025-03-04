@@ -1,0 +1,13 @@
+@startuml
+abstract class EditorWindowWrapper {
+    + isOpen : bool <<get>>
+    + Close() : void
+    + <<virtual>> OnShow() : void
+    + <<virtual>> Update() : void
+    + <<virtual>> OnGUI() : void
+    + <<virtual>> OnClose() : void
+    + <<virtual>> OnFocus() : void
+    + <<virtual>> OnLostFocus() : void
+}
+EditorWindowWrapper --> "window" WrappedEditorWindow
+@enduml

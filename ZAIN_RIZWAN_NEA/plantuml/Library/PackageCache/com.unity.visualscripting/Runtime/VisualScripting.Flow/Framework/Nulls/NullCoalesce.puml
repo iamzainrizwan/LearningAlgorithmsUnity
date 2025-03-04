@@ -1,0 +1,9 @@
+@startuml
+class NullCoalesce <<sealed>> {
+    + Coalesce(flow:Flow) : object
+}
+Unit <|-- NullCoalesce
+NullCoalesce --> "input" ValueInput
+NullCoalesce --> "fallback" ValueInput
+NullCoalesce --> "result" ValueOutput
+@enduml

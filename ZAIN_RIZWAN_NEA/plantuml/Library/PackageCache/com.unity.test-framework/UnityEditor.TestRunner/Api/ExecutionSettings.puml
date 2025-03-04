@@ -1,0 +1,9 @@
+@startuml
+class ExecutionSettings {
+    + ExecutionSettings(filtersToExecute:Filter[])
+    + runSynchronously : bool
+    + playerHeartbeatTimeout : int
+    + <<override>> ToString() : string
+}
+ExecutionSettings --> "overloadTestRunSettings" ITestRunSettings
+@enduml

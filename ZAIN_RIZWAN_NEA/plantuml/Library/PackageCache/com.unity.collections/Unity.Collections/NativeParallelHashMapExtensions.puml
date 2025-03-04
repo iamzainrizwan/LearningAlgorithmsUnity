@@ -1,0 +1,10 @@
+@startuml
+class NativeParallelHashMapExtensions <<static>> {
+    + {static} Unique(array:NativeArray<T>) : int
+    + {static} GetUniqueKeyArray(container:UnsafeParallelMultiHashMap<TKey, TValue>, allocator:AllocatorManager.AllocatorHandle) : (NativeArray<TKey>, int)
+    + {static} GetUniqueKeyArray(container:NativeParallelMultiHashMap<TKey, TValue>, allocator:AllocatorManager.AllocatorHandle) : (NativeArray<TKey>, int)
+    + {static} <<unsafe>> GetUnsafeBucketData(container:NativeParallelHashMap<TKey, TValue>) : UnsafeParallelHashMapBucketData
+    + {static} <<unsafe>> GetUnsafeBucketData(container:NativeParallelMultiHashMap<TKey, TValue>) : UnsafeParallelHashMapBucketData
+    + {static} Remove(container:NativeParallelMultiHashMap<TKey, TValue>, key:TKey, value:TValue) : void
+}
+@enduml

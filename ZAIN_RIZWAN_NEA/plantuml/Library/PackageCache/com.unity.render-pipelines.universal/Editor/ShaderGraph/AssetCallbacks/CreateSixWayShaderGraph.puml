@@ -1,0 +1,5 @@
+@startuml
+class CreateSixWayShaderGraph <<static>> {
+    + {static} CreateLitGraph() : void
+}
+@enduml

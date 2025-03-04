@@ -1,0 +1,6 @@
+@startuml
+class ModuloHandler <<sealed>> {
+    + ModuloHandler()
+}
+BinaryOperatorHandler <|-- ModuloHandler
+@enduml

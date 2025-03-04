@@ -1,0 +1,12 @@
+@startuml
+struct "PinnedArray`1"<T> {
+    + length : int <<get>>
+    + PinnedArray(length:int)
+    + Dispose() : void
+}
+class "NativeArray`1"<T> {
+}
+IDisposable <|-- "PinnedArray`1"
+"PinnedArray`1" --> "handle" GCHandle
+"PinnedArray`1" --> "nativeArray<T>" "NativeArray`1"
+@enduml

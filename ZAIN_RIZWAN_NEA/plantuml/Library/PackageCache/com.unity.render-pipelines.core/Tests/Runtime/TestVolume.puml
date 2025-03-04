@@ -1,0 +1,11 @@
+@startuml
+class TestVolume {
+    + {static} <<readonly>> k_DefaultValue : float = 123.0f
+    + {static} <<readonly>> k_OverrideValue : float = 456.0f
+    + {static} <<readonly>> k_OverrideValue2 : float = 789.0f
+    + {static} <<readonly>> k_OverrideValue3 : float = 999.0f
+    + IsActive() : bool
+}
+VolumeComponent <|-- TestVolume
+TestVolume o-> "param" FloatParameter
+@enduml

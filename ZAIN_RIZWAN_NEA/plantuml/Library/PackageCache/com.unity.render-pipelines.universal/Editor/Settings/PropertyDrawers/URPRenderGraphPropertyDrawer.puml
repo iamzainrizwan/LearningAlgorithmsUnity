@@ -1,0 +1,6 @@
+@startuml
+class RenderGraphPropertyDrawer {
+    + <<override>> CreatePropertyGUI(property:SerializedProperty) : VisualElement
+}
+PropertyDrawer <|-- RenderGraphPropertyDrawer
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class DropdownOption {
+    + DropdownOption(value:object)
+    + DropdownOption(value:object, label:string)
+    + label : string <<get>> <<set>>
+    + <<virtual>> popupLabel : string <<get>>
+    + value : object <<get>> <<set>>
+    + {static} GetEnumOptions() : IEnumerable<DropdownOption>
+    + {static} GetEnumOptionsNicified() : IEnumerable<DropdownOption>
+}
+IDropdownOption <|-- DropdownOption
+@enduml

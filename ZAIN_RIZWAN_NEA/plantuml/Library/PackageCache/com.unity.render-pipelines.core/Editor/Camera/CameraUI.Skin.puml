@@ -1,0 +1,17 @@
+@startuml
+class CameraUI <<static>> <<partial>> {
+}
+class Styles <<static>> {
+    + {static} <<readonly>> unsupportedPresetPropertiesMessage : string
+}
+CameraUI +-- Styles
+Styles o-> "projectionSettingsHeaderContent" GUIContent
+Styles o-> "clippingPlaneMultiFieldTitle" GUIContent
+Styles o-> "projectionContent" GUIContent
+Styles o-> "sizeContent" GUIContent
+Styles o-> "fieldOfViewContent" GUIContent
+Styles o-> "FOVAxisModeContent" GUIContent
+Styles o-> "physicalCameraContent" GUIContent
+Styles o-> "nearPlaneContent" GUIContent
+Styles o-> "farPlaneContent" GUIContent
+@enduml

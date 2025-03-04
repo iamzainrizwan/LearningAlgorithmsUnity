@@ -1,0 +1,8 @@
+@startuml
+class InspectableAttribute <<sealed>> {
+    + InspectableAttribute()
+    + order : int <<get>> <<set>>
+}
+Attribute <|-- InspectableAttribute
+IInspectableAttribute <|-- InspectableAttribute
+@enduml

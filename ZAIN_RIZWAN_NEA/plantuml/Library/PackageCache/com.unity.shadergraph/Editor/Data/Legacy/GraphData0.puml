@@ -1,0 +1,14 @@
+@startuml
+class GraphData0 {
+    + m_ActiveOutputNodeGuidSerialized : string
+    + m_Version : int
+}
+class "List`1"<T> {
+}
+GraphData0 --> "m_SerializableNodes<SerializationHelper.JSONSerializedElement>" "List`1"
+GraphData0 --> "m_SerializableEdges<SerializationHelper.JSONSerializedElement>" "List`1"
+GraphData0 --> "m_SerializedProperties<SerializationHelper.JSONSerializedElement>" "List`1"
+GraphData0 --> "m_SerializedKeywords<SerializationHelper.JSONSerializedElement>" "List`1"
+GraphData0 --> "m_StickyNotes<StickyNoteData0>" "List`1"
+GraphData0 --> "m_Groups<GroupData0>" "List`1"
+@enduml

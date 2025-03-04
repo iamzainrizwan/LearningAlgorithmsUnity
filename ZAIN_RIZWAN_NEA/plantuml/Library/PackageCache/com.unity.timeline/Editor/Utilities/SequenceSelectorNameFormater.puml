@@ -1,0 +1,5 @@
+@startuml
+class SequenceMenuNameFormater {
+    + Format(text:string) : string
+}
+@enduml

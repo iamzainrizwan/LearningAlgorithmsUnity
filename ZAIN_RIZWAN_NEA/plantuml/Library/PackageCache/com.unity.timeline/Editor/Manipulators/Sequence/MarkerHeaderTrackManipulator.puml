@@ -1,0 +1,5 @@
+@startuml
+class MarkerHeaderTrackManipulator {
+}
+Manipulator <|-- MarkerHeaderTrackManipulator
+@enduml

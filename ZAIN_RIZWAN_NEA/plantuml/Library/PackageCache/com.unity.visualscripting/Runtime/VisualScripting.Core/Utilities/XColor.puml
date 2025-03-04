@@ -1,0 +1,5 @@
+@startuml
+class XColor <<static>> {
+    + {static} ToHexString(color:Color) : string
+}
+@enduml

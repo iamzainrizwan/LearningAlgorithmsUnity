@@ -1,0 +1,6 @@
+@startuml
+class VolumeComponentVisibilityTests {
+    + DetermineVisibilityMethodTests(volumeComponentType:Type, renderPipelineAssetType:Type) : bool
+}
+RenderPipelineTests <|-- VolumeComponentVisibilityTests
+@enduml

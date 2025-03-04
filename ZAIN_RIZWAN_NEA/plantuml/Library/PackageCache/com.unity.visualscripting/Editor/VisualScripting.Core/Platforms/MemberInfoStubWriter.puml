@@ -1,0 +1,8 @@
+@startuml
+abstract class "MemberInfoStubWriter`1"<T> {
+    + <<new>> stub : T <<get>>
+    + <<override>> stubMethodComment : string <<get>>
+    + <<override>> stubMethodName : string <<get>>
+}
+AotStubWriter <|-- "MemberInfoStubWriter`1"
+@enduml

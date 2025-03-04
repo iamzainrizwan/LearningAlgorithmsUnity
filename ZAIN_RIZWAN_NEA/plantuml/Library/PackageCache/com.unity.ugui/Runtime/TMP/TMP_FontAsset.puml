@@ -1,0 +1,56 @@
+@startuml
+enum AtlasPopulationMode {
+    Static= 0x0,
+    Dynamic= 0x1,
+    DynamicOS= 0x2,
+}
+class TMP_FontAsset {
+    + atlasTextureCount : int <<get>>
+    + isMultiAtlasTexturesEnabled : bool <<get>> <<set>>
+    + getFontFeatures : bool <<get>> <<set>>
+    + atlasWidth : int <<get>> <<internal set>>
+    + atlasHeight : int <<get>> <<internal set>>
+    + atlasPadding : int <<get>> <<internal set>>
+    + normalStyle : float = 0
+    + normalSpacingOffset : float = 0
+    + boldStyle : float = 0.75f
+    + boldSpacing : float = 7f
+    + italicStyle : byte = 35
+    + tabSize : byte = 10
+    + {static} CreateFontAsset(familyName:string, styleName:string, pointSize:int) : TMP_FontAsset
+    + {static} CreateFontAsset(fontFilePath:string, faceIndex:int, samplingPointSize:int, atlasPadding:int, renderMode:GlyphRenderMode, atlasWidth:int, atlasHeight:int) : TMP_FontAsset
+    + {static} CreateFontAsset(font:Font) : TMP_FontAsset
+    + {static} CreateFontAsset(font:Font, samplingPointSize:int, atlasPadding:int, renderMode:GlyphRenderMode, atlasWidth:int, atlasHeight:int, atlasPopulationMode:AtlasPopulationMode, enableMultiAtlasSupport:bool) : TMP_FontAsset
+    + ReadFontAssetDefinition() : void
+    + HasCharacter(character:int) : bool
+    + HasCharacter(character:char, searchFallbacks:bool, tryAddCharacter:bool) : bool
+    + HasCharacters(text:string, missingCharacters:List<char>) : bool
+    + HasCharacters(text:string, missingCharacters:uint[], searchFallbacks:bool, tryAddCharacter:bool) : bool
+    + HasCharacters(text:string) : bool
+    + {static} GetCharacters(fontAsset:TMP_FontAsset) : string
+    + {static} GetCharactersArray(fontAsset:TMP_FontAsset) : int[]
+    + TryAddCharacters(unicodes:uint[], includeFontFeatures:bool) : bool
+    + TryAddCharacters(unicodes:uint[], missingUnicodes:uint[], includeFontFeatures:bool) : bool
+    + TryAddCharacters(characters:string, includeFontFeatures:bool) : bool
+    + TryAddCharacters(characters:string, missingCharacters:string, includeFontFeatures:bool) : bool
+    + ClearFontAssetData(setAtlasSizeToZero:bool) : void
+}
+class "List`1"<T> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+TMP_Asset <|-- TMP_FontAsset
+TMP_FontAsset --> "creationSettings" FontAssetCreationSettings
+TMP_FontAsset --> "sourceFontFile" Font
+TMP_FontAsset --> "atlasPopulationMode" AtlasPopulationMode
+TMP_FontAsset --> "glyphTable<Glyph>" "List`1"
+TMP_FontAsset --> "glyphLookupTable<uint,Glyph>" "Dictionary`2"
+TMP_FontAsset --> "characterTable<TMP_Character>" "List`1"
+TMP_FontAsset --> "characterLookupTable<uint,TMP_Character>" "Dictionary`2"
+TMP_FontAsset --> "atlasTexture" Texture2D
+TMP_FontAsset --> "atlasRenderMode" GlyphRenderMode
+TMP_FontAsset --> "fontFeatureTable" TMP_FontFeatureTable
+TMP_FontAsset --> "fallbackFontAssetTable<TMP_FontAsset>" "List`1"
+TMP_FontAsset --> "fontInfo" FaceInfo_Legacy
+TMP_FontAsset --> "atlas" Texture2D
+@enduml

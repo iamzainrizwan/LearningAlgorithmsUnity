@@ -1,0 +1,6 @@
+@startuml
+class ColorRGBASlotControlView {
+    + ColorRGBASlotControlView(slot:ColorRGBAMaterialSlot)
+}
+VisualElement <|-- ColorRGBASlotControlView
+@enduml

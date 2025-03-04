@@ -1,0 +1,23 @@
+@startuml
+class SerializedPropertyAdaptor {
+    + FixedItemHeight : float
+    + SerializedPropertyAdaptor(arrayProperty:SerializedProperty, fixedItemHeight:float)
+    + SerializedPropertyAdaptor(arrayProperty:SerializedProperty)
+    + Count : int <<get>>
+    + <<virtual>> CanDrag(index:int) : bool
+    + <<virtual>> CanRemove(index:int) : bool
+    + Add() : void
+    + Insert(index:int) : void
+    + Duplicate(index:int) : void
+    + Remove(index:int) : void
+    + Move(sourceIndex:int, destIndex:int) : void
+    + Clear() : void
+    + <<virtual>> BeginGUI() : void
+    + <<virtual>> EndGUI() : void
+    + <<virtual>> DrawItemBackground(position:Rect, index:int) : void
+    + <<virtual>> DrawItem(position:Rect, index:int) : void
+    + <<virtual>> GetItemHeight(index:int) : float
+}
+IReorderableListAdaptor <|-- SerializedPropertyAdaptor
+SerializedPropertyAdaptor --> "arrayProperty" SerializedProperty
+@enduml

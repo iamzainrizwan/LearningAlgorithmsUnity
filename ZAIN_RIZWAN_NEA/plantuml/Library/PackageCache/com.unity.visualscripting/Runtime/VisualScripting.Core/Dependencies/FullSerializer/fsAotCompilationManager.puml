@@ -1,0 +1,14 @@
+@startuml
+class fsAotCompilationManager {
+    + {static} TryToPerformAotCompilation(config:fsConfig, type:Type, aotCompiledClassInCSharp:string) : bool
+    + {static} AddAotCompilation(type:Type, members:fsMetaProperty[], isConstructorPublic:bool) : void
+}
+class "Dictionary`2"<T1,T2> {
+}
+struct AotCompilation {
+    + IsConstructorPublic : bool
+}
+fsAotCompilationManager --> "AvailableAotCompilations<Type,string>" "Dictionary`2"
+fsAotCompilationManager +-- AotCompilation
+AotCompilation --> "Type" Type
+@enduml

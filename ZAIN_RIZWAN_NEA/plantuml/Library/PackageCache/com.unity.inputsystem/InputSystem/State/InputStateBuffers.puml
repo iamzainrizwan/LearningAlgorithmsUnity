@@ -1,0 +1,23 @@
+@startuml
+struct InputStateBuffers {
+    + sizePerBuffer : uint
+    + totalSize : uint
+    + GetDoubleBuffersFor(updateType:InputUpdateType) : DoubleBuffers
+    + {static} GetFrontBufferForDevice(deviceIndex:int) : void*
+    + {static} GetBackBufferForDevice(deviceIndex:int) : void*
+    + {static} SwitchTo(buffers:InputStateBuffers, update:InputUpdateType) : void
+    + AllocateAll(devices:InputDevice[], deviceCount:int) : void
+    + FreeAll() : void
+    + MigrateAll(devices:InputDevice[], deviceCount:int, oldBuffers:InputStateBuffers) : void
+}
+struct DoubleBuffers {
+    + deviceCount : int
+    + valid : bool <<get>>
+    + SetFrontBuffer(deviceIndex:int, ptr:void*) : void
+    + SetBackBuffer(deviceIndex:int, ptr:void*) : void
+    + GetFrontBuffer(deviceIndex:int) : void*
+    + GetBackBuffer(deviceIndex:int) : void*
+    + SwapBuffers(deviceIndex:int) : void
+}
+InputStateBuffers +-- DoubleBuffers
+@enduml

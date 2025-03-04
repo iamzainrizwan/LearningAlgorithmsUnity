@@ -1,0 +1,14 @@
+@startuml
+class TMP_FrameRateCounter {
+    + UpdateInterval : float = 5.0f
+}
+enum FpsCounterAnchorPositions {
+    TopLeft,
+    BottomLeft,
+    TopRight,
+    BottomRight,
+}
+MonoBehaviour <|-- TMP_FrameRateCounter
+TMP_FrameRateCounter o-> "AnchorPosition" FpsCounterAnchorPositions
+TMP_FrameRateCounter +-- FpsCounterAnchorPositions
+@enduml

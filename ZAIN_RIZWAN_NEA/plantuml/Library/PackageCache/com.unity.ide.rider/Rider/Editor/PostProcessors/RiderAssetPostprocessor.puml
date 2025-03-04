@@ -1,0 +1,6 @@
+@startuml
+class RiderAssetPostprocessor {
+    + {static} OnPreGeneratingCSProjectFiles() : bool
+}
+AssetPostprocessor <|-- RiderAssetPostprocessor
+@enduml

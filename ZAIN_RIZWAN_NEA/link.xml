@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="NumSharp">
+    <type fullname="NumSharp" preserve ="all"/>
+  </assembly>
+  <assembly fullname="System">
+    <type fullname="System" preserve ="all"/>
+    <type fullname="System.Numerics.Vectors" preserve ="all"/>
+    <type fullname="System.Buffers" preserve ="all"/>
+    <type fullname="System.Memory" preserve ="all"/>
+    <type fullname="System.Runtime.CompilerServices.Unsafe" preserve ="all"/>
+    <type fullname="System.Collections" preserve ="all"/>
+    <type fullname="System.Configuration" preserve ="all"/>
+    <type fullname="System.Security" preserve ="all"/>
+  </assembly> 
+  <assembly fullname="TorchSharp"> 
+    <type fullname="TorchSharp" preserve ="all"/>
+  </assembly>
+  <assembly fullname="Microsoft">
+    <type fullname="Microsoft.DotNet" preserve ="all"/>
+    <type fullname="Microsoft.AspNetCore" preserve ="all"/>
+    <type fullname="Microsoft.Build.Utilities.Core" preserve="all"/>
+    <type fullname="Microsoft.Build" preserve="all"/>
+    <type fullname="Microsoft.NET" preserve="all"/>
+  </assembly>
+  <assembly fullname="SkiaSharp">
+    <type fullname="SkiaSharp"/>
+  </assembly>
+</linker>

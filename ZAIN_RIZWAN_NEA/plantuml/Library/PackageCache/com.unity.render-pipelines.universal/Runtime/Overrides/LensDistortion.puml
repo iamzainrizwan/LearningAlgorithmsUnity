@@ -1,0 +1,13 @@
+@startuml
+class LensDistortion <<sealed>> {
+    + IsActive() : bool
+    + IsTileCompatible() : bool
+}
+VolumeComponent <|-- LensDistortion
+IPostProcessComponent <|-- LensDistortion
+LensDistortion o-> "intensity" ClampedFloatParameter
+LensDistortion o-> "xMultiplier" ClampedFloatParameter
+LensDistortion o-> "yMultiplier" ClampedFloatParameter
+LensDistortion o-> "center" Vector2Parameter
+LensDistortion o-> "scale" ClampedFloatParameter
+@enduml

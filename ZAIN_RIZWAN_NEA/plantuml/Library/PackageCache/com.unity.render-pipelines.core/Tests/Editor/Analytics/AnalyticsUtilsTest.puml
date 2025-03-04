@@ -1,0 +1,73 @@
+@startuml
+class AnalyticsUtilsTests {
+    + SetUp() : void
+    + TearDown() : void
+    + ToNestedColumnUnityObject(fieldName:string, value:object) : string[]
+    + ToNestedColumnWithDefault(fieldName:string, value:object) : string[]
+    + GivenAnObjectWithSerializableFields_WhenAllFieldsAreRequested_AllOfThemAreReturnedCorrectly() : void
+    + CheckEditorAnalyticsAreDisabledOnCI() : void
+    + GetSerializableFields(type:Type, removeObsolete:bool) : string[]
+    + TestAreValuesEqual(fieldType:Type, valueCurrent:object, valueDefault:object, expected:bool) : void
+    + TestIsComplexType(fieldType:Type, expected:bool) : void
+}
+class TestObject {
+    + integer : int
+    + floatNumber : float
+    + doubleNumber : double
+    + boolean : bool
+    + test : string
+}
+class TestScriptableObject {
+    + TestScriptableObject()
+}
+class ClassWithPublicInt {
+    + myPublicInt : int
+}
+class ClassWithPrivateBool {
+}
+class ClassWithPrivateIntWithSerializableFieldAttribute {
+}
+class ClassWithPublicIntWithNonSerializableFieldAttribute {
+    + myPublicNonSerializedInt : int
+}
+class ClassWithPublicPropertytWithSerializableFieldAttributeForTheBackingField {
+    + myProperty : int <<get>>
+}
+class ClassWithObsoletePublicField {
+    + myPublicInt : int
+}
+class BaseClassWithField {
+    + myPublicInt : int
+}
+class ChildClass {
+    + myPublicBool : bool
+}
+class TestClass {
+}
+enum TestDiffEnum {
+    a,
+    b,
+    c,
+}
+struct InnerTestStruct {
+    + myValue : int
+}
+AnalyticsUtilsTests +-- TestObject
+TestObject --> "diffEnum" TestDiffEnum
+TestObject --> "innerStruct" InnerTestStruct
+AnalyticsUtilsTests +-- TestScriptableObject
+ScriptableObject <|-- TestScriptableObject
+TestScriptableObject --> "myData" TestObject
+AnalyticsUtilsTests +-- ClassWithPublicInt
+AnalyticsUtilsTests +-- ClassWithPrivateBool
+AnalyticsUtilsTests +-- ClassWithPrivateIntWithSerializableFieldAttribute
+AnalyticsUtilsTests +-- ClassWithPublicIntWithNonSerializableFieldAttribute
+AnalyticsUtilsTests +-- ClassWithPublicPropertytWithSerializableFieldAttributeForTheBackingField
+AnalyticsUtilsTests +-- ClassWithObsoletePublicField
+AnalyticsUtilsTests +-- BaseClassWithField
+AnalyticsUtilsTests +-- ChildClass
+BaseClassWithField <|-- ChildClass
+AnalyticsUtilsTests +-- TestClass
+TestObject +-- TestDiffEnum
+TestObject +-- InnerTestStruct
+@enduml

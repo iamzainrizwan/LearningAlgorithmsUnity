@@ -1,0 +1,5 @@
+@startuml
+class EditorBindingUtility <<static>> {
+    + <<const>> FactoryMethodWarning : string = "This parameterless factory method is only made public for the editor. Use the constructor instead."
+}
+@enduml

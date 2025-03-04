@@ -1,0 +1,8 @@
+@startuml
+class TMP_UpdateManager {
+    + {static} RegisterTextElementForLayoutRebuild(element:TMP_Text) : void
+    + {static} RegisterTextElementForGraphicRebuild(element:TMP_Text) : void
+    + {static} RegisterTextElementForCullingUpdate(element:TMP_Text) : void
+    + {static} UnRegisterTextElementForRebuild(element:TMP_Text) : void
+}
+@enduml

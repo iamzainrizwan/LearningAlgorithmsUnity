@@ -1,0 +1,9 @@
+@startuml
+class ClipperRegistry {
+    + Cull() : void
+    + {static} Register(c:IClipper) : void
+    + {static} Unregister(c:IClipper) : void
+    + {static} Disable(c:IClipper) : void
+}
+ClipperRegistry --> "instance" ClipperRegistry
+@enduml

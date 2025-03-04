@@ -1,0 +1,7 @@
+@startuml
+class ToggleDataPropertyDrawer {
+    + DrawProperty(propertyInfo:PropertyInfo, actualObject:object, attribute:InspectableAttribute) : VisualElement
+}
+IPropertyDrawer <|-- ToggleDataPropertyDrawer
+ToggleDataPropertyDrawer --> "inspectorUpdateDelegate" Action
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+abstract class "Sum`1"<T> {
+    + {abstract} Operation(a:T, b:T) : T
+    + {abstract} Operation(values:IEnumerable<T>) : T
+    + Operation(flow:Flow) : T
+}
+class "Add`1"<T> {
+}
+class "MultiInputUnit`1"<T> {
+}
+"MultiInputUnit`1" "<T>" <|-- "Sum`1"
+"Sum`1" --> "sum" ValueOutput
+@enduml

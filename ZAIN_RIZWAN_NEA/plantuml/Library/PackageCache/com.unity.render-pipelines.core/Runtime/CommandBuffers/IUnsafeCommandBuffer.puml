@@ -1,0 +1,23 @@
+@startuml
+interface IUnsafeCommandBuffer {
+    + Clear() : void
+    + SetRenderTarget(rt:RenderTargetIdentifier) : void
+    + SetRenderTarget(rt:RenderTargetIdentifier, loadAction:RenderBufferLoadAction, storeAction:RenderBufferStoreAction) : void
+    + SetRenderTarget(rt:RenderTargetIdentifier, colorLoadAction:RenderBufferLoadAction, colorStoreAction:RenderBufferStoreAction, depthLoadAction:RenderBufferLoadAction, depthStoreAction:RenderBufferStoreAction) : void
+    + SetRenderTarget(rt:RenderTargetIdentifier, mipLevel:int) : void
+    + SetRenderTarget(rt:RenderTargetIdentifier, mipLevel:int, cubemapFace:CubemapFace) : void
+    + SetRenderTarget(rt:RenderTargetIdentifier, mipLevel:int, cubemapFace:CubemapFace, depthSlice:int) : void
+    + SetRenderTarget(color:RenderTargetIdentifier, depth:RenderTargetIdentifier) : void
+    + SetRenderTarget(color:RenderTargetIdentifier, depth:RenderTargetIdentifier, mipLevel:int) : void
+    + SetRenderTarget(color:RenderTargetIdentifier, depth:RenderTargetIdentifier, mipLevel:int, cubemapFace:CubemapFace) : void
+    + SetRenderTarget(color:RenderTargetIdentifier, depth:RenderTargetIdentifier, mipLevel:int, cubemapFace:CubemapFace, depthSlice:int) : void
+    + SetRenderTarget(color:RenderTargetIdentifier, colorLoadAction:RenderBufferLoadAction, colorStoreAction:RenderBufferStoreAction, depth:RenderTargetIdentifier, depthLoadAction:RenderBufferLoadAction, depthStoreAction:RenderBufferStoreAction) : void
+    + SetRenderTarget(colors:RenderTargetIdentifier[], depth:RenderTargetIdentifier) : void
+    + SetRenderTarget(colors:RenderTargetIdentifier[], depth:RenderTargetIdentifier, mipLevel:int, cubemapFace:CubemapFace, depthSlice:int) : void
+    + SetRenderTarget(binding:RenderTargetBinding, mipLevel:int, cubemapFace:CubemapFace, depthSlice:int) : void
+    + SetRenderTarget(binding:RenderTargetBinding) : void
+}
+IBaseCommandBuffer <|-- IUnsafeCommandBuffer
+IRasterCommandBuffer <|-- IUnsafeCommandBuffer
+IComputeCommandBuffer <|-- IUnsafeCommandBuffer
+@enduml

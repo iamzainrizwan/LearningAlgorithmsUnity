@@ -1,0 +1,22 @@
+@startuml
+class AnalyserProvider <<sealed>> {
+    + AnalyserProvider(reference:GraphReference)
+    + <<override>> IsValid(analyzed:object) : bool
+    + Analyze(analyzed:object) : void
+    + AnalyzeAll() : void
+}
+class XAnalyserProvider <<static>> {
+    + {static} Analyser(target:object, context:IGraphContext) : IAnalyser
+    + {static} Analyser(target:object, context:IGraphContext) : TAnalyser
+    + {static} Analysis(target:object, context:IGraphContext) : IAnalysis
+    + {static} Analysis(target:object, context:IGraphContext) : TAnalysis
+    + {static} Analyser(target:object, reference:GraphReference) : IAnalyser
+    + {static} Analyser(target:object, reference:GraphReference) : TAnalyser
+    + {static} Analysis(target:object, reference:GraphReference) : IAnalysis
+    + {static} Analysis(target:object, reference:GraphReference) : TAnalysis
+}
+class "SingleDecoratorProvider`3"<T1,T2,T3> {
+}
+"SingleDecoratorProvider`3" "<object,IAnalyser,AnalyserAttribute>" <|-- AnalyserProvider
+AnalyserProvider --> "reference" GraphReference
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+class SixWayGUI {
+    + <<override>> FindProperties(properties:MaterialProperty[]) : void
+    + <<override>> DrawSurfaceOptions(material:Material) : void
+    + {static} UpdateSixWayKeywords(material:Material) : void
+    + <<override>> ValidateMaterial(material:Material) : void
+}
+class SixWayStyles {
+}
+ShaderGraphLitGUI <|-- SixWayGUI
+SixWayGUI +-- SixWayStyles
+SixWayStyles o-> "UseColorAbsorptionText" GUIContent
+@enduml

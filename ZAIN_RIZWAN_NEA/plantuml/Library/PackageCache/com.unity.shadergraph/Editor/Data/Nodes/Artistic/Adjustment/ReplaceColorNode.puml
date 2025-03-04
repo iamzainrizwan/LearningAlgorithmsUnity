@@ -1,0 +1,6 @@
+@startuml
+class ReplaceColorNode {
+    + ReplaceColorNode()
+}
+CodeFunctionNode <|-- ReplaceColorNode
+@enduml

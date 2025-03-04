@@ -1,0 +1,8 @@
+@startuml
+class SettingsBuilder {
+    + SettingsBuilder(testSettingsDeserializer:ITestSettingsDeserializer, logAction:Action<string>, logWarningAction:Action<string>, scriptCompilationFailedCheck:Func<bool>)
+    + BuildApiExecutionSettings(commandLineArgs:string[]) : Api.ExecutionSettings
+    + BuildExecutionSettings(commandLineArgs:string[]) : ExecutionSettings
+}
+ISettingsBuilder <|-- SettingsBuilder
+@enduml

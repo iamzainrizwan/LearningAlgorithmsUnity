@@ -1,0 +1,19 @@
+@startuml
+class AssemblyNameProvider {
+    + ProjectGenerationRootNamespace : string <<get>>
+    + GetAssemblyNameFromScriptPath(path:string) : string
+    + GetAllAssemblies() : Assembly[]
+    + GetNamedAssembly(name:string) : Assembly
+    + GetProjectName(name:string, defines:string[]) : string
+    + GetAllAssetPaths() : IEnumerable<string>
+    + GetPackageInfoForAssetPath(assetPath:string) : PackageInfo
+    + ResetCaches() : void
+    + IsInternalizedPackagePath(path:string) : bool
+    + ParseResponseFile(responseFilePath:string, projectDirectory:string, apiCompatibilityLevel:ApiCompatibilityLevel) : ResponseFileData
+    + GetRoslynAnalyzerPaths() : IEnumerable<string>
+    + ToggleProjectGeneration(preference:ProjectGenerationFlag) : void
+    + ResetProjectGenerationFlag() : void
+}
+IAssemblyNameProvider <|-- AssemblyNameProvider
+AssemblyNameProvider --> "ProjectGenerationFlag" ProjectGenerationFlag
+@enduml

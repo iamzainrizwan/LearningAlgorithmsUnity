@@ -1,0 +1,25 @@
+@startuml
+class fsSerializer {
+    + fsSerializer()
+    + AddProcessor(processor:fsObjectProcessor) : void
+    + RemoveProcessor() : void
+    + SetDefaultStorageType(abstractType:Type, defaultStorageType:Type) : void
+    + AddConverter(converter:fsBaseConverter) : void
+    + TrySerialize(instance:T, data:fsData) : fsResult
+    + TryDeserialize(data:fsData, instance:T) : fsResult
+    + TrySerialize(storageType:Type, instance:object, data:fsData) : fsResult
+    + TrySerialize(storageType:Type, overrideConverterType:Type, instance:object, data:fsData) : fsResult
+    + TryDeserialize(data:fsData, storageType:Type, result:object) : fsResult
+    + TryDeserialize(data:fsData, storageType:Type, overrideConverterType:Type, result:object) : fsResult
+    + {static} IsReservedKeyword(key:string) : bool
+    + {static} StripDeserializationMetadata(data:fsData) : void
+}
+class fsLazyCycleDefinitionWriter {
+    + WriteDefinition(id:int, data:fsData) : void
+    + WriteReference(id:int, dict:Dictionary<string, fsData>) : void
+    + Clear() : void
+}
+fsSerializer --> "Context" fsContext
+fsSerializer --> "Config" fsConfig
+fsSerializer +-- fsLazyCycleDefinitionWriter
+@enduml

@@ -1,0 +1,49 @@
+@startuml
+class NativeContainerTests_ValidateTypes {
+    + Scheduling_With_Supported_Types() : void
+}
+enum MyTestEnum {
+    HellWorld,
+}
+struct Vector3 {
+    + x : float
+    + y : float
+    + z : float
+}
+struct Matrix4x4 {
+    + m0 : float
+    + m1 : float
+    + m2 : float
+    + m3 : float
+    + m4 : float
+    + m5 : float
+    + m6 : float
+    + m7 : float
+    + m8 : float
+    + m9 : float
+    + m10 : float
+    + m11 : float
+    + m12 : float
+    + m13 : float
+    + m14 : float
+    + m15 : float
+}
+struct StructWithVariousStructsAndValueTypesJob {
+    + Execute() : void
+}
+struct StructEmptyJob {
+    + Execute() : void
+}
+class "NativeArray`1"<T> {
+}
+NativeContainerTests_ValidateTypesFixture <|-- NativeContainerTests_ValidateTypes
+NativeContainerTests_ValidateTypes +-- MyTestEnum
+NativeContainerTests_ValidateTypes +-- Vector3
+NativeContainerTests_ValidateTypes +-- Matrix4x4
+NativeContainerTests_ValidateTypes +-- StructWithVariousStructsAndValueTypesJob
+IJob <|-- StructWithVariousStructsAndValueTypesJob
+StructWithVariousStructsAndValueTypesJob --> "nativeArrayRO<float>" "NativeArray`1"
+StructWithVariousStructsAndValueTypesJob --> "nativeArrayRW<float>" "NativeArray`1"
+NativeContainerTests_ValidateTypes +-- StructEmptyJob
+IJob <|-- StructEmptyJob
+@enduml

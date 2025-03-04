@@ -1,0 +1,29 @@
+@startuml
+class CodebaseSubset <<sealed>> {
+    + Cache() : void
+    + ValidateType(type:Type) : bool
+    + ValidateMember(member:Member) : bool
+    + FilterMembers(type:Type) : IEnumerable<Member>
+}
+class "IEnumerable`1"<T> {
+}
+class "HashSet`1"<T> {
+}
+struct Query {
+    + Query(typeSet:IEnumerable<Type>, typeFilter:TypeFilter, memberFilter:MemberFilter, memberTypeFilter:TypeFilter)
+    + Query(types:IEnumerable<Type>, memberFilter:MemberFilter, memberTypeFilter:TypeFilter)
+    + <<override>> GetHashCode() : int
+}
+CodebaseSubset --> "typeSet<Type>" "IEnumerable`1"
+CodebaseSubset --> "typeFilter" TypeFilter
+CodebaseSubset --> "memberFilter" MemberFilter
+CodebaseSubset --> "memberTypeFilter" TypeFilter
+CodebaseSubset --> "types<Type>" "HashSet`1"
+CodebaseSubset --> "members<Member>" "HashSet`1"
+CodebaseSubset +-- Query
+Query --> "types<Type>" "IEnumerable`1"
+Query --> "typeSet<Type>" "IEnumerable`1"
+Query --> "typeFilter" TypeFilter
+Query --> "memberFilter" MemberFilter
+Query --> "memberTypeFilter" TypeFilter
+@enduml

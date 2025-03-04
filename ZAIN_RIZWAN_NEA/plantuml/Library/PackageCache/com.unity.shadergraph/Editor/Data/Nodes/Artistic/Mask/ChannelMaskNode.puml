@@ -1,0 +1,20 @@
+@startuml
+enum TextureChannel {
+    Red,
+    Green,
+    Blue,
+    Alpha,
+}
+class ChannelMaskNode {
+    + ChannelMaskNode()
+    + <<override>> hasPreview : bool <<get>>
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + channelMask : int <<get>> <<set>>
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + GenerateNodeFunction(registry:FunctionRegistry, generationMode:GenerationMode) : void
+}
+AbstractMaterialNode <|-- ChannelMaskNode
+IGeneratesBodyCode <|-- ChannelMaskNode
+IGeneratesFunction <|-- ChannelMaskNode
+ChannelMaskNode --> "channel" TextureChannel
+@enduml

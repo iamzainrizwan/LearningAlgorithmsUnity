@@ -1,0 +1,10 @@
+@startuml
+enum TrimEdge {
+    Start,
+    End,
+}
+interface ITrimItemMode {
+}
+interface ITrimItemDrawer {
+}
+@enduml

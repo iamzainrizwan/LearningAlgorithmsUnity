@@ -1,0 +1,26 @@
+@startuml
+class NavMeshLinkEditorTests {
+    + OneTimeSetup() : void
+    + OneTimeTearDown() : void
+    + Setup() : void
+    + TearDown() : void
+    + ReverseDirection_SwapsStartAndEndPoints(position:Vector3, orientation:Quaternion, scale:Vector3) : void
+    + ReverseDirection_SwapsStartAndEndPoints_TargetTransformsDoNotAffect(position:Vector3, orientation:Quaternion, scale:Vector3) : void
+    + ReverseDirection_SwapsStartAndEndTransforms() : void
+    + ReverseDirection_OneTransformIsNotSet_SwapsStartAndEndTransforms() : void
+    + AlignTransformToEndPoints_MovesTransformInTheMiddle(startType:From, endType:To, transformRotation:Quaternion, expectedPosition:Vector3, _:Vector3) : void
+    + AlignTransformToEndPoints_EndpointsWorldPositionsRemainUnchanged(startType:From, endType:To, transformRotation:Quaternion, _:Vector3, __:Vector3) : void
+    + AlignTransformToEndPoints_EndsTransformsRemainUnchanged(startType:From, endType:To, transformRotation:Quaternion, _:Vector3, __:Vector3) : void
+    + AlignTransformToEndPoints_ChildGameObjectsRetainWorldPositions() : void
+    + AlignTransformToEndPoints_EndpointsWorldPositionsRemainUnchanged_InSiblingLinks() : void
+    + AlignTransformToEndPoints_UpVectorRemainsUnchanged(startType:From, endType:To, transformRotation:Quaternion, _:Vector3, __:Vector3) : void
+    + AlignTransformToEndPoints_OrientsForwardVectorFromStartToEndInXZPlane(startType:From, endType:To, transformRotation:Quaternion, _:Vector3, expectedForward:Vector3) : void
+    + CalcLinkRight_ReturnsLocalRightIn2D(transformRotation:Quaternion, expectedLocalRight:Vector3, expectedEnd:Vector3) : void
+}
+enum LinkEndType {
+    Point,
+    Transform,
+    TransformChild,
+}
+NavMeshLinkEditorTests +-- LinkEndType
+@enduml

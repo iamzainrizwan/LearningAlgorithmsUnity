@@ -1,0 +1,10 @@
+@startuml
+class LooseAssemblyNameOption {
+    + LooseAssemblyNameOption(looseAssemblyName:LooseAssemblyName)
+    + {static} Haystack(looseAssemblyName:LooseAssemblyName) : string
+    + {static} SearchResultLabel(looseAssemblyName:LooseAssemblyName, query:string) : string
+}
+class "FuzzyOption`1"<T> {
+}
+"FuzzyOption`1" "<LooseAssemblyName>" <|-- LooseAssemblyNameOption
+@enduml

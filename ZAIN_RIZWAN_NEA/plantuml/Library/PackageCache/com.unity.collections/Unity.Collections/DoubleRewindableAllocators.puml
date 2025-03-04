@@ -1,0 +1,10 @@
+@startuml
+struct DoubleRewindableAllocators {
+    + Update() : void
+    + IsCreated : bool <<get>>
+    + DoubleRewindableAllocators(backingAllocator:AllocatorManager.AllocatorHandle, initialSizeInBytes:int)
+    + Initialize(backingAllocator:AllocatorManager.AllocatorHandle, initialSizeInBytes:int) : void
+    + Dispose() : void
+}
+IDisposable <|-- DoubleRewindableAllocators
+@enduml

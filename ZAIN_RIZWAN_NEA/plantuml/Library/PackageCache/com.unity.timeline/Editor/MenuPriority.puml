@@ -1,0 +1,92 @@
+@startuml
+class MenuPriority <<static>> {
+    + <<const>> defaultPriority : int = 9000
+    + <<const>> separatorAt : int = 1000
+}
+class TimelineActionSection <<static>> {
+    + <<const>> start : int = 1000
+    + <<const>> copy : int
+    + <<const>> paste : int
+    + <<const>> duplicate : int
+    + <<const>> delete : int
+    + <<const>> keyAllAnimated : int
+    + <<const>> matchContent : int
+}
+class TrackActionSection <<static>> {
+    + <<const>> start : int
+    + <<const>> lockTrack : int
+    + <<const>> lockSelected : int
+    + <<const>> mute : int
+    + <<const>> muteSelected : int
+    + <<const>> showHideMarkers : int
+    + <<const>> removeInvalidMarkers : int
+    + <<const>> editInAnimationWindow : int
+}
+class AddTrackMenu <<static>> {
+    + <<const>> start : int
+    + <<const>> addLayerTrack : int
+}
+class ClipEditActionSection <<static>> {
+    + <<const>> start : int
+    + <<const>> editInAnimationWindow : int
+    + <<const>> editSubTimeline : int
+}
+class ClipActionSection <<static>> {
+    + <<const>> start : int
+    + <<const>> trimStart : int
+    + <<const>> trimEnd : int
+    + <<const>> split : int
+    + <<const>> completeLastLoop : int
+    + <<const>> trimLastLoop : int
+    + <<const>> matchDuration : int
+    + <<const>> doubleSpeed : int
+    + <<const>> halfSpeed : int
+    + <<const>> resetDuration : int
+    + <<const>> resetSpeed : int
+    + <<const>> resetAll : int
+    + <<const>> tile : int
+    + <<const>> findSourceAsset : int
+}
+class MarkerActionSection <<static>> {
+    + <<const>> start : int
+}
+class CustomTimelineActionSection <<static>> {
+    + <<const>> start : int
+}
+class CustomTrackActionSection <<static>> {
+    + <<const>> start : int
+    + <<const>> convertToClipMode : int
+    + <<const>> convertFromClipMode : int
+    + <<const>> applyTrackOffset : int
+    + <<const>> applySceneOffset : int
+    + <<const>> applyAutoOffset : int
+    + <<const>> addOverrideTrack : int
+    + <<const>> customTrackAction : int
+}
+class CustomClipActionSection <<static>> {
+    + <<const>> start : int
+    + <<const>> matchPrevious : int
+    + <<const>> matchNext : int
+    + <<const>> resetOffset : int
+    + <<const>> customClipAction : int
+}
+class AddItem <<static>> {
+    + <<const>> addGroup : int
+    + <<const>> addTrack : int
+    + <<const>> addCustomTrack : int
+    + <<const>> addClip : int
+    + <<const>> addCustomClip : int
+    + <<const>> addMarker : int
+    + <<const>> addCustomMarker : int
+}
+MenuPriority +-- TimelineActionSection
+MenuPriority +-- TrackActionSection
+MenuPriority +-- AddTrackMenu
+MenuPriority +-- ClipEditActionSection
+MenuPriority +-- ClipActionSection
+MenuPriority +-- MarkerActionSection
+MenuPriority +-- CustomTimelineActionSection
+MenuPriority +-- CustomTrackActionSection
+MenuPriority +-- CustomClipActionSection
+MenuPriority +-- AddItem
+@enduml

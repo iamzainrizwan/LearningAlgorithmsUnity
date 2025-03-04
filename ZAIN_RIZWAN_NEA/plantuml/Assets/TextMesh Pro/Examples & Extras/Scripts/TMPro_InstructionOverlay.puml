@@ -1,0 +1,13 @@
+@startuml
+class TMPro_InstructionOverlay {
+}
+enum FpsCounterAnchorPositions {
+    TopLeft,
+    BottomLeft,
+    TopRight,
+    BottomRight,
+}
+MonoBehaviour <|-- TMPro_InstructionOverlay
+TMPro_InstructionOverlay o-> "AnchorPosition" FpsCounterAnchorPositions
+TMPro_InstructionOverlay +-- FpsCounterAnchorPositions
+@enduml

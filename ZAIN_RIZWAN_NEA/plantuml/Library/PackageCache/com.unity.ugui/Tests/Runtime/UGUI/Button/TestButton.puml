@@ -1,0 +1,15 @@
+@startuml
+class TestButton {
+    + isStateNormal : bool <<get>>
+    + isStateHighlighted : bool <<get>>
+    + isStatePressed : bool <<get>>
+    + isStateDisabled : bool <<get>>
+    + isStateSelected : bool <<get>>
+    + IsTransitionToNormal(index:int) : bool
+    + IsTransitionToHighlighted(index:int) : bool
+    + IsTransitionToPressed(index:int) : bool
+    + IsTransitionToDisabled(index:int) : bool
+    + StateTransitionCount : int <<get>>
+}
+Button <|-- TestButton
+@enduml

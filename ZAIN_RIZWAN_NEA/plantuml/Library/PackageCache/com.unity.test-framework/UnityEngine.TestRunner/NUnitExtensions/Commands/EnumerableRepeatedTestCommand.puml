@@ -1,0 +1,9 @@
+@startuml
+class EnumerableRepeatedTestCommand {
+    + EnumerableRepeatedTestCommand(commandToReplace:RepeatAttribute.RepeatedTestCommand)
+    + <<override>> Execute(context:ITestExecutionContext) : TestResult
+    + ExecuteEnumerable(context:ITestExecutionContext) : IEnumerable
+}
+DelegatingTestCommand <|-- EnumerableRepeatedTestCommand
+IEnumerableTestMethodCommand <|-- EnumerableRepeatedTestCommand
+@enduml

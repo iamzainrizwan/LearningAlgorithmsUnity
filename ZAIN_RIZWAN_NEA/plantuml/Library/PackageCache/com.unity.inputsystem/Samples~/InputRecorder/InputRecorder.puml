@@ -1,0 +1,45 @@
+@startuml
+class InputRecorder {
+    + captureIsRunning : bool <<get>>
+    + replayIsRunning : bool <<get>>
+    + startRecordingWhenEnabled : bool <<get>> <<set>>
+    + eventCount : long <<get>>
+    + totalEventSizeInBytes : long <<get>>
+    + allocatedSizeInBytes : long <<get>>
+    + recordFrames : bool <<get>> <<set>>
+    + recordStateEventsOnly : bool <<get>> <<set>>
+    + devicePath : string <<get>> <<set>>
+    + recordButtonPath : string <<get>> <<set>>
+    + playButtonPath : string <<get>> <<set>>
+    + replayPosition : int <<get>>
+    + replayOnNewDevices : bool <<get>> <<set>>
+    + simulateOriginalTimingOnReplay : bool <<get>> <<set>>
+    + StartCapture() : void
+    + StopCapture() : void
+    + StartReplay() : void
+    + StopReplay() : void
+    + PauseReplay() : void
+    + ClearCapture() : void
+    + LoadCaptureFromFile(fileName:string) : void
+    + SaveCaptureToFile(fileName:string) : void
+}
+enum Change {
+    None,
+    EventCaptured,
+    EventPlayed,
+    CaptureStarted,
+    CaptureStopped,
+    ReplayStarted,
+    ReplayStopped,
+}
+class ChangeEvent {
+}
+class "UnityEvent`1"<T> {
+}
+MonoBehaviour <|-- InputRecorder
+InputRecorder --> "capture" InputEventTrace
+InputRecorder --> "changeEvent" ChangeEvent
+InputRecorder +-- Change
+InputRecorder +-- ChangeEvent
+"UnityEvent`1" "<Change>" <|-- ChangeEvent
+@enduml

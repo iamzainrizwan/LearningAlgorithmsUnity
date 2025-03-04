@@ -1,0 +1,10 @@
+@startuml
+class FieldRangeValidator {
+    + validatorType : int = 0
+    + minValue : float = 0f
+    + maxValue : float = 100f
+    + isValid : bool
+}
+MonoBehaviour <|-- FieldRangeValidator
+FieldRangeValidator --> "feedbackText" TMP_Text
+@enduml

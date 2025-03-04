@@ -1,0 +1,5 @@
+@startuml
+class CurrentNextOffMeshLinkDataSetUp {
+}
+PrebuiltSceneSetup <|-- CurrentNextOffMeshLinkDataSetUp
+@enduml

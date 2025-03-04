@@ -1,0 +1,12 @@
+@startuml
+class ColorControlAttribute {
+    + ColorControlAttribute(label:string, colorMode:ColorMode)
+    + InstantiateControl(node:AbstractMaterialNode, propertyInfo:PropertyInfo) : VisualElement
+}
+class ColorControlView {
+    + ColorControlView(label:string, colorMode:ColorMode, node:AbstractMaterialNode, propertyInfo:PropertyInfo)
+}
+Attribute <|-- ColorControlAttribute
+IControlAttribute <|-- ColorControlAttribute
+VisualElement <|-- ColorControlView
+@enduml

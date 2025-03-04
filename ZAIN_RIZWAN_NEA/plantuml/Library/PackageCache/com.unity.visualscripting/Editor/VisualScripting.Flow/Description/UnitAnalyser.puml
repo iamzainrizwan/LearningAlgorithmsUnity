@@ -1,0 +1,9 @@
+@startuml
+class "UnitAnalyser`1"<TUnit> {
+    + UnitAnalyser(reference:GraphReference, target:TUnit)
+    + unit : TUnit <<get>>
+}
+class "Analyser`2"<T1,T2> {
+}
+"Analyser`2" "<TUnit,UnitAnalysis>" <|-- "UnitAnalyser`1"
+@enduml

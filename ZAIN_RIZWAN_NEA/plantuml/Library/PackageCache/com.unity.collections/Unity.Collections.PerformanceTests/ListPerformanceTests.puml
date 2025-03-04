@@ -1,0 +1,111 @@
+@startuml
+class ListUtil <<static>> {
+    {static} + AllocInt(container:NativeList<int>, capacity:int, addValues:bool) : void
+    {static} + AllocInt(container:UnsafeList<int>, capacity:int, addValues:bool) : void
+    {static} + AllocBclContainer(capacity:int, addValues:bool) : object
+    {static} + CreateRandomValues(capacity:int, values:UnsafeList<int>) : void
+}
+struct ListIsEmpty100k {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct ListCount100k {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct ListToNativeArray {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct ListAdd {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct ListAddGrow {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct ListContains {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct ListIndexedRead {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct ListIndexedWrite {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct ListRemove {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct ListForEach {
+    + total : int
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+class List {
+    + <<unsafe>> IsEmpty_x_100k(capacity:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Count_x_100k(capacity:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> ToNativeArray(capacity:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Add(insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> AddGrow(capacity:int, growTo:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Contains(insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> IndexedRead(insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> IndexedWrite(insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Remove(insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Foreach(insertions:int, type:BenchmarkContainerType) : void
+}
+IBenchmarkContainer <|-- ListIsEmpty100k
+IBenchmarkContainer <|-- ListCount100k
+IBenchmarkContainer <|-- ListToNativeArray
+IBenchmarkContainer <|-- ListAdd
+IBenchmarkContainer <|-- ListAddGrow
+IBenchmarkContainer <|-- ListContains
+IBenchmarkContainer <|-- ListIndexedRead
+IBenchmarkContainer <|-- ListIndexedWrite
+IBenchmarkContainer <|-- ListRemove
+IBenchmarkContainer <|-- ListForEach
+@enduml

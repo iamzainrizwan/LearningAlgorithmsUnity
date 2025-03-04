@@ -1,0 +1,6 @@
+@startuml
+class While {
+}
+LoopUnit <|-- While
+While --> "condition" ValueInput
+@enduml

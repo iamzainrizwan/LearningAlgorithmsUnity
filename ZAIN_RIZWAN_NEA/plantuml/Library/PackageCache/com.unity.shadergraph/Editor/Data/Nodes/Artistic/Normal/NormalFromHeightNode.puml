@@ -1,0 +1,25 @@
+@startuml
+enum OutputSpace {
+    Tangent,
+    World,
+}
+class NormalFromHeightNode {
+    + NormalFromHeightNode()
+    + <<override>> hasPreview : bool <<get>>
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + GenerateNodeFunction(registry:FunctionRegistry, generationMode:GenerationMode) : void
+    + RequiresTangent(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresBitangent(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresNormal(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresPosition(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+}
+AbstractMaterialNode <|-- NormalFromHeightNode
+IGeneratesBodyCode <|-- NormalFromHeightNode
+IGeneratesFunction <|-- NormalFromHeightNode
+IMayRequireTangent <|-- NormalFromHeightNode
+IMayRequireBitangent <|-- NormalFromHeightNode
+IMayRequireNormal <|-- NormalFromHeightNode
+IMayRequirePosition <|-- NormalFromHeightNode
+NormalFromHeightNode --> "outputSpace" OutputSpace
+@enduml

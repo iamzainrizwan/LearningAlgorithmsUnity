@@ -1,0 +1,11 @@
+@startuml
+class EnsureThat <<partial>> {
+    + Is(param:T, expected:T) : void
+    + IsNot(param:T, expected:T) : void
+    + IsLt(param:T, limit:T) : void
+    + IsLte(param:T, limit:T) : void
+    + IsGt(param:T, limit:T) : void
+    + IsGte(param:T, limit:T) : void
+    + IsInRange(param:T, min:T, max:T) : void
+}
+@enduml

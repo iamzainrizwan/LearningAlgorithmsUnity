@@ -1,0 +1,12 @@
+@startuml
+abstract class fsDirectConverter {
+}
+abstract class "fsDirectConverter`1"<TModel> {
+    + <<sealed>> <<override>> TrySerialize(instance:object, serialized:fsData, storageType:Type) : fsResult
+    + <<sealed>> <<override>> TryDeserialize(data:fsData, instance:object, storageType:Type) : fsResult
+}
+fsBaseConverter <|-- fsDirectConverter
+fsDirectConverter --> "ModelType" Type
+fsDirectConverter <|-- "fsDirectConverter`1"
+"fsDirectConverter`1" --> "ModelType" Type
+@enduml

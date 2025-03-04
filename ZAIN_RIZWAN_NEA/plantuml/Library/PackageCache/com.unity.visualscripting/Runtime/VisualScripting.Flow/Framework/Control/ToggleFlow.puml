@@ -1,0 +1,22 @@
+@startuml
+class ToggleFlow <<sealed>> {
+    + startOn : bool <<get>> <<set>> = true
+    + CreateData() : IGraphElementData
+}
+class Data {
+    + isOn : bool
+}
+Unit <|-- ToggleFlow
+IGraphElementWithData <|-- ToggleFlow
+ToggleFlow --> "enter" ControlInput
+ToggleFlow --> "turnOn" ControlInput
+ToggleFlow --> "turnOff" ControlInput
+ToggleFlow --> "toggle" ControlInput
+ToggleFlow --> "exitOn" ControlOutput
+ToggleFlow --> "exitOff" ControlOutput
+ToggleFlow --> "turnedOn" ControlOutput
+ToggleFlow --> "turnedOff" ControlOutput
+ToggleFlow --> "isOn" ValueOutput
+ToggleFlow +-- Data
+IGraphElementData <|-- Data
+@enduml

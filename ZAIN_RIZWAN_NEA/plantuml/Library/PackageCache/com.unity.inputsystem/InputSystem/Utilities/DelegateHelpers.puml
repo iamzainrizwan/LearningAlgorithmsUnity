@@ -1,0 +1,10 @@
+@startuml
+class DelegateHelpers <<static>> {
+    + {static} InvokeCallbacksSafe(callbacks:CallbackArray<Action>, marker:ProfilerMarker, callbackName:string, context:object) : void
+    + {static} InvokeCallbacksSafe(callbacks:CallbackArray<Action<TValue>>, argument:TValue, callbackName:string, context:object) : void
+    + {static} InvokeCallbacksSafe(callbacks:CallbackArray<Action<TValue1, TValue2>>, argument1:TValue1, argument2:TValue2, marker:ProfilerMarker, callbackName:string, context:object) : void
+    + {static} InvokeCallbacksSafe_AnyCallbackReturnsTrue(callbacks:CallbackArray<Func<TValue1, TValue2, bool>>, argument1:TValue1, argument2:TValue2, callbackName:string, context:object) : bool
+    + {static} InvokeCallbacksSafe_AndInvokeReturnedActions(callbacks:CallbackArray<Func<TValue, Action>>, argument:TValue, callbackName:string, context:object) : void
+    + {static} InvokeCallbacksSafe_AnyCallbackReturnsObject(callbacks:CallbackArray<Func<TValue, TReturn>>, argument:TValue, callbackName:string, context:object) : bool
+}
+@enduml

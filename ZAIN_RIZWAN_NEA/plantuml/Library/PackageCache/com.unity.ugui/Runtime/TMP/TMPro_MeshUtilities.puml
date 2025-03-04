@@ -1,0 +1,148 @@
+@startuml
+enum TMP_VertexDataUpdateFlags {
+    None= 0x0,
+    Vertices= 0x1,
+    Uv0= 0x2,
+    Uv2= 0x4,
+    Uv4= 0x8,
+    Colors32= 0x10,
+    All= 0xFF,
+}
+struct VertexGradient {
+    + VertexGradient(color:Color)
+    + VertexGradient(color0:Color, color1:Color, color2:Color, color3:Color)
+}
+struct TMP_PageInfo {
+    + firstCharacterIndex : int
+    + lastCharacterIndex : int
+    + ascender : float
+    + baseLine : float
+    + descender : float
+}
+struct TMP_LinkInfo {
+    + hashCode : int
+    + linkIdFirstCharacterIndex : int
+    + linkIdLength : int
+    + linkTextfirstCharacterIndex : int
+    + linkTextLength : int
+    + GetLinkText() : string
+    + GetLink() : string
+    + GetLinkID() : string
+}
+struct TMP_WordInfo {
+    + firstCharacterIndex : int
+    + lastCharacterIndex : int
+    + characterCount : int
+    + GetWord() : string
+}
+struct TMP_SpriteInfo {
+    + spriteIndex : int
+    + characterIndex : int
+    + vertexIndex : int
+}
+struct Extents {
+    + Extents(min:Vector2, max:Vector2)
+    + <<override>> ToString() : string
+}
+struct Mesh_Extents {
+    + Mesh_Extents(min:Vector2, max:Vector2)
+    + <<override>> ToString() : string
+}
+struct WordWrapState {
+    + previous_WordBreak : int
+    + total_CharacterCount : int
+    + visible_CharacterCount : int
+    + visibleSpaceCount : int
+    + visible_SpriteCount : int
+    + visible_LinkCount : int
+    + firstCharacterIndex : int
+    + firstVisibleCharacterIndex : int
+    + lastCharacterIndex : int
+    + lastVisibleCharIndex : int
+    + lineNumber : int
+    + maxCapHeight : float
+    + maxAscender : float
+    + maxDescender : float
+    + startOfLineAscender : float
+    + maxLineAscender : float
+    + maxLineDescender : float
+    + pageAscender : float
+    + marginLeft : float
+    + marginRight : float
+    + xAdvance : float
+    + preferredWidth : float
+    + preferredHeight : float
+    + renderedWidth : float
+    + renderedHeight : float
+    + previousLineScale : float
+    + wordCount : int
+    + italicAngle : int
+    + fontScaleMultiplier : float
+    + currentFontSize : float
+    + baselineOffset : float
+    + lineOffset : float
+    + isDrivenLineSpacing : bool
+    + lastBaseGlyphIndex : int
+    + cSpace : float
+    + mSpace : float
+    + spriteAnimationID : int
+    + currentMaterialIndex : int
+    + tagNoParsing : bool
+    + isNonBreakingSpace : bool
+}
+struct TagAttribute {
+    + startIndex : int
+    + length : int
+    + hashCode : int
+}
+struct RichTextTagAttribute {
+    + nameHashCode : int
+    + valueHashCode : int
+    + valueStartIndex : int
+    + valueLength : int
+}
+class "TMP_TextProcessingStack`1"<T> {
+}
+VertexGradient --> "topLeft" Color
+VertexGradient --> "topRight" Color
+VertexGradient --> "bottomLeft" Color
+VertexGradient --> "bottomRight" Color
+TMP_LinkInfo --> "textComponent" TMP_Text
+TMP_WordInfo --> "textComponent" TMP_Text
+Extents --> "min" Vector2
+Extents --> "max" Vector2
+Mesh_Extents --> "min" Vector2
+Mesh_Extents --> "max" Vector2
+WordWrapState --> "horizontalAlignment" HorizontalAlignmentOptions
+WordWrapState --> "fontStyle" FontStyles
+WordWrapState --> "textInfo" TMP_TextInfo
+WordWrapState --> "lineInfo" TMP_LineInfo
+WordWrapState --> "vertexColor" Color32
+WordWrapState --> "underlineColor" Color32
+WordWrapState --> "strikethroughColor" Color32
+WordWrapState --> "highlightState" HighlightState
+WordWrapState --> "basicStyleStack" TMP_FontStyleStack
+WordWrapState --> "italicAngleStack<int>" "TMP_TextProcessingStack`1"
+WordWrapState --> "colorStack<Color32>" "TMP_TextProcessingStack`1"
+WordWrapState --> "underlineColorStack<Color32>" "TMP_TextProcessingStack`1"
+WordWrapState --> "strikethroughColorStack<Color32>" "TMP_TextProcessingStack`1"
+WordWrapState --> "highlightColorStack<Color32>" "TMP_TextProcessingStack`1"
+WordWrapState --> "highlightStateStack<HighlightState>" "TMP_TextProcessingStack`1"
+WordWrapState --> "colorGradientStack<TMP_ColorGradient>" "TMP_TextProcessingStack`1"
+WordWrapState --> "sizeStack<float>" "TMP_TextProcessingStack`1"
+WordWrapState --> "indentStack<float>" "TMP_TextProcessingStack`1"
+WordWrapState --> "fontWeightStack<FontWeight>" "TMP_TextProcessingStack`1"
+WordWrapState --> "styleStack<int>" "TMP_TextProcessingStack`1"
+WordWrapState --> "baselineStack<float>" "TMP_TextProcessingStack`1"
+WordWrapState --> "actionStack<int>" "TMP_TextProcessingStack`1"
+WordWrapState --> "materialReferenceStack<MaterialReference>" "TMP_TextProcessingStack`1"
+WordWrapState --> "lineJustificationStack<HorizontalAlignmentOptions>" "TMP_TextProcessingStack`1"
+WordWrapState --> "currentFontAsset" TMP_FontAsset
+WordWrapState --> "currentSpriteAsset" TMP_SpriteAsset
+WordWrapState --> "currentMaterial" Material
+WordWrapState --> "meshExtents" Extents
+WordWrapState --> "fxRotation" Quaternion
+WordWrapState --> "fxScale" Vector3
+RichTextTagAttribute --> "valueType" TagValueType
+RichTextTagAttribute --> "unitType" TagUnitType
+@enduml

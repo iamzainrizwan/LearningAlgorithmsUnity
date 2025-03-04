@@ -1,0 +1,6 @@
+@startuml
+class CommandLineOptionSet {
+    + CommandLineOptionSet(options:ICommandLineOption[])
+    + Parse(args:string[]) : void
+}
+@enduml

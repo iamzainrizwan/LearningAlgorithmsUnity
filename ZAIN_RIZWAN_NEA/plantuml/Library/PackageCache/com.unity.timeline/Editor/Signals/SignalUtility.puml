@@ -1,0 +1,17 @@
+@startuml
+interface ISignalAssetProvider {
+}
+class SignalUtility <<static>> {
+    + {static} DrawSignalNames(assetProvider:ISignalAssetProvider, position:Rect, label:GUIContent, multipleValues:bool) : void
+    + {static} GetNewSignalPath() : string
+    + {static} IsSignalAssetHandled(receiver:SignalReceiver, asset:SignalAsset) : bool
+    + {static} AddNewReaction(receiver:SignalReceiver, signalAsset:SignalAsset) : void
+    + {static} DrawCenteredMessage(message:string) : void
+    + {static} DrawCenteredButton(buttonLabel:GUIContent) : bool
+}
+class SignalReceiverUtility <<static>> {
+    + {static} headerHeight : int <<get>>
+    + {static} FindSignalsProperty(obj:SerializedObject) : SerializedProperty
+    + {static} FindEventsProperty(obj:SerializedObject) : SerializedProperty
+}
+@enduml

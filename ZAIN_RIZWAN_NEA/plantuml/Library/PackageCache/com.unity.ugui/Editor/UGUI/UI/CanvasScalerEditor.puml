@@ -1,0 +1,16 @@
+@startuml
+class CanvasScalerEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+class Styles {
+    + Styles()
+}
+Editor <|-- CanvasScalerEditor
+CanvasScalerEditor +-- Styles
+Styles --> "matchContent" GUIContent
+Styles --> "widthContent" GUIContent
+Styles --> "heightContent" GUIContent
+Styles --> "uiScaleModeContent" GUIContent
+Styles --> "leftAlignedLabel" GUIStyle
+Styles --> "rightAlignedLabel" GUIStyle
+@enduml

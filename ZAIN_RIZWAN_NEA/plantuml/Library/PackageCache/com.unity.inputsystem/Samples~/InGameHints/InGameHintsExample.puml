@@ -1,0 +1,21 @@
+@startuml
+class InGameHintsExample {
+    + moveSpeed : float
+    + rotateSpeed : float
+    + throwForce : float
+    + pickupDistance : float
+    + holdDistance : float
+    + Awake() : void
+    + OnEnable() : void
+    + OnControlsChanged() : void
+    + Update() : void
+}
+enum State {
+    Wandering,
+    ObjectInSights,
+    ObjectPickedUp,
+}
+MonoBehaviour <|-- InGameHintsExample
+InGameHintsExample --> "helpText" Text
+InGameHintsExample +-- State
+@enduml

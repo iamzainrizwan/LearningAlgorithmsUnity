@@ -1,0 +1,11 @@
+@startuml
+class NormalMaterialSlot {
+    + NormalMaterialSlot()
+    + NormalMaterialSlot(slotId:int, displayName:string, shaderOutputName:string, space:CoordinateSpace, stageCapability:ShaderStageCapability, hidden:bool)
+    + <<override>> InstantiateControl() : VisualElement
+    + <<override>> GetDefaultValue(generationMode:GenerationMode) : string
+    + RequiresNormal(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+}
+SpaceMaterialSlot <|-- NormalMaterialSlot
+IMayRequireNormal <|-- NormalMaterialSlot
+@enduml

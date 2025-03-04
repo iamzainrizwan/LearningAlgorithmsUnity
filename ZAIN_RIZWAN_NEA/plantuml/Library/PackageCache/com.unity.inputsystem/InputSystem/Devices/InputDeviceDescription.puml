@@ -1,0 +1,31 @@
+@startuml
+struct InputDeviceDescription {
+    + interfaceName : string <<get>> <<set>>
+    + deviceClass : string <<get>> <<set>>
+    + manufacturer : string <<get>> <<set>>
+    + product : string <<get>> <<set>>
+    + serial : string <<get>> <<set>>
+    + version : string <<get>> <<set>>
+    + capabilities : string <<get>> <<set>>
+    + empty : bool <<get>>
+    + <<override>> ToString() : string
+    + Equals(other:InputDeviceDescription) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + ToJson() : string
+    + {static} FromJson(json:string) : InputDeviceDescription
+}
+class "IEquatable`1"<T> {
+}
+struct DeviceDescriptionJson {
+    + @interface : string
+    + type : string
+    + product : string
+    + serial : string
+    + version : string
+    + manufacturer : string
+    + capabilities : string
+}
+"IEquatable`1" "<InputDeviceDescription>" <|-- InputDeviceDescription
+InputDeviceDescription +-- DeviceDescriptionJson
+@enduml

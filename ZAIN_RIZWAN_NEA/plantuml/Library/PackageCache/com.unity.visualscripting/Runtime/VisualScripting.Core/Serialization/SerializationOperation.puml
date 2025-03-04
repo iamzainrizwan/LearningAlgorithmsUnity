@@ -1,0 +1,10 @@
+@startuml
+class SerializationOperation {
+    + SerializationOperation()
+    + Reset() : void
+}
+class "List`1"<T> {
+}
+SerializationOperation --> "serializer" fsSerializer
+SerializationOperation --> "objectReferences<UnityObject>" "List`1"
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class URPBuildDataValidator {
+    + {static} IsProjectValidForBuilding(report:BuildReport, message:string) : bool
+}
+@enduml

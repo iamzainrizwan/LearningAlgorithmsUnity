@@ -1,0 +1,22 @@
+@startuml
+enum ShaderPathID {
+    Lit,
+    SimpleLit,
+    Unlit,
+    TerrainLit,
+    ParticlesLit,
+    ParticlesSimpleLit,
+    ParticlesUnlit,
+    BakedLit,
+    SpeedTree7,
+    SpeedTree7Billboard,
+    SpeedTree8,
+    SpeedTree9,
+    ComplexLit,
+}
+class ShaderUtils <<static>> {
+    + {static} GetShaderPath(id:ShaderPathID) : string
+    + {static} GetEnumFromPath(path:string) : ShaderPathID
+    + {static} IsLWShader(shader:Shader) : bool
+}
+@enduml

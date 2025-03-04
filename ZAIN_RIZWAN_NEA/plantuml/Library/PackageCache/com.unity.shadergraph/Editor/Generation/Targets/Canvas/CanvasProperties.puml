@@ -1,0 +1,15 @@
+@startuml
+class CanvasProperties <<static>> {
+}
+CanvasProperties o-> "StencilComp" Vector1ShaderProperty
+CanvasProperties o-> "Stencil" Vector1ShaderProperty
+CanvasProperties o-> "StencilOp" Vector1ShaderProperty
+CanvasProperties o-> "StencilWriteMask" Vector1ShaderProperty
+CanvasProperties o-> "StencilReadMask" Vector1ShaderProperty
+CanvasProperties o-> "ColorMask" Vector1ShaderProperty
+CanvasProperties o-> "UIMaskSoftnessX" Vector1ShaderProperty
+CanvasProperties o-> "UIMaskSoftnessY" Vector1ShaderProperty
+CanvasProperties o-> "ClipRect" Vector4ShaderProperty
+CanvasProperties o-> "AlphaTest" Vector1ShaderProperty
+CanvasProperties o-> "MainTex" Texture2DShaderProperty
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class noise <<static>> <<partial>> {
+    + {static} cellular(P:float3) : float2
+}
+@enduml

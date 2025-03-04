@@ -1,0 +1,11 @@
+@startuml
+class DebugUIHandlerToggle {
+    + <<override>> OnSelection(fromNext:bool, previous:DebugUIHandlerWidget) : bool
+    + <<override>> OnDeselection() : void
+    + <<override>> OnAction() : void
+}
+DebugUIHandlerWidget <|-- DebugUIHandlerToggle
+DebugUIHandlerToggle --> "nameLabel" Text
+DebugUIHandlerToggle --> "valueToggle" Toggle
+DebugUIHandlerToggle --> "checkmarkImage" Image
+@enduml

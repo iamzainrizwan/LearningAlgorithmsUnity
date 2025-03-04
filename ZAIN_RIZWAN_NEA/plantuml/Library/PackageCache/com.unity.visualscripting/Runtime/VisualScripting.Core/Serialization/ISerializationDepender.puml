@@ -1,0 +1,5 @@
+@startuml
+interface ISerializationDepender {
+}
+ISerializationCallbackReceiver <|-- ISerializationDepender
+@enduml

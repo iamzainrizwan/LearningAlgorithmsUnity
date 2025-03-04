@@ -1,0 +1,9 @@
+@startuml
+class "StaticActionInvoker`4"<TParam0,TParam1,TParam2,TParam3> <<sealed>> {
+    + StaticActionInvoker(methodInfo:MethodInfo)
+    + <<override>> Invoke(target:object, args:object[]) : object
+    + <<override>> Invoke(target:object, arg0:object, arg1:object, arg2:object, arg3:object) : object
+    + InvokeUnsafe(target:object, arg0:object, arg1:object, arg2:object, arg3:object) : object
+}
+StaticActionInvokerBase <|-- "StaticActionInvoker`4"
+@enduml

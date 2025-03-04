@@ -1,0 +1,53 @@
+@startuml
+class UniversalSixWaySubTarget <<sealed>> {
+    + <<override>> latestVersion : int <<get>>
+    + UniversalSixWaySubTarget()
+    + <<override>> IsActive() : bool
+    + <<override>> Setup(context:TargetSetupContext) : void
+    + <<override>> ProcessPreviewMaterial(material:Material) : void
+    + <<override>> GetFields(context:TargetFieldContext) : void
+    + <<override>> GetActiveBlocks(context:TargetActiveBlockContext) : void
+    + <<override>> CollectShaderProperties(collector:PropertyCollector, generationMode:GenerationMode) : void
+    + <<override>> GetPropertiesGUI(context:TargetPropertyGUIContext, onChange:Action, registerUndo:Action<String>) : void
+}
+struct Varyings {
+    + {static} name : string = "Varyings"
+}
+class SubShaders <<static>> {
+    + {static} SixWaySubShader(target:UniversalTarget, renderType:string, renderQueue:string, disableBatchingTag:string, useColorAbsorption:bool) : SubShaderDescriptor
+}
+class SixWayPasses <<static>> {
+    + {static} ForwardOnly(target:UniversalTarget, vertexBlocks:BlockFieldDescriptor[], pixelBlocks:BlockFieldDescriptor[], pragmas:PragmaCollection, keywords:KeywordCollection, useColorAbsorption:bool) : PassDescriptor
+    + {static} Meta(target:UniversalTarget) : PassDescriptor
+}
+class SixWayBlockMasks <<static>> {
+}
+class SixWayRequiredFields <<static>> {
+}
+class SixWayProperties <<static>> {
+    + {static} <<readonly>> UseColorAbsorption : string = "_UseColorAbsorption"
+}
+class SixWayKeywords <<static>> {
+}
+class SixWayIncludes <<static>> {
+}
+UniversalSubTarget <|-- UniversalSixWaySubTarget
+UniversalSixWaySubTarget +-- Varyings
+Varyings o-> "diffuseGIData0" FieldDescriptor
+Varyings o-> "diffuseGIData1" FieldDescriptor
+Varyings o-> "diffuseGIData2" FieldDescriptor
+UniversalSixWaySubTarget +-- SubShaders
+UniversalSixWaySubTarget +-- SixWayPasses
+UniversalSixWaySubTarget +-- SixWayBlockMasks
+UniversalSixWaySubTarget +-- SixWayRequiredFields
+SixWayRequiredFields o-> "Forward" FieldCollection
+SixWayRequiredFields o-> "Meta" FieldCollection
+UniversalSixWaySubTarget +-- SixWayProperties
+UniversalSixWaySubTarget +-- SixWayKeywords
+SixWayKeywords o-> "ReceiveShadowsOff" KeywordDescriptor
+SixWayKeywords o-> "UseColorAbsorption" KeywordDescriptor
+SixWayKeywords o-> "Forward" KeywordCollection
+UniversalSixWaySubTarget +-- SixWayIncludes
+SixWayIncludes o-> "Forward" IncludeCollection
+SixWayIncludes o-> "Meta" IncludeCollection
+@enduml

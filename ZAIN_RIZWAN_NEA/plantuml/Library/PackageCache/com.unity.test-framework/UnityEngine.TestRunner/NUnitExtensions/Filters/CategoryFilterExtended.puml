@@ -1,0 +1,8 @@
+@startuml
+class CategoryFilterExtended {
+    + {static} k_DefaultCategory : string = "Uncategorized"
+    + CategoryFilterExtended(name:string)
+    + <<override>> Match(test:ITest) : bool
+}
+CategoryFilter <|-- CategoryFilterExtended
+@enduml

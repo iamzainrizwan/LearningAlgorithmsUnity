@@ -1,0 +1,21 @@
+@startuml
+class UInterfaceManager {
+    + screenIndex : int = 0
+    + GraphOverview() : void
+}
+MonoBehaviour <|-- UInterfaceManager
+UInterfaceManager --> "nextButton" Button
+UInterfaceManager --> "backButton" Button
+UInterfaceManager --> "startButton" Button
+UInterfaceManager --> "gameManager" GameManager
+UInterfaceManager --> "panelManager" PanelManager
+UInterfaceManager --> "statsDrawer" StatsDrawer
+UInterfaceManager --> "runnerDropdownHandler" DropdownHandler
+UInterfaceManager --> "taggerDropdownHandler" DropdownHandler
+UInterfaceManager --> "errorText" TMP_Text
+UInterfaceManager --> "configControl" GameObject
+UInterfaceManager --> "statsButton" Button
+UInterfaceManager --> "pauseButton" Button
+UInterfaceManager --> "resumeButton" Button
+UInterfaceManager --> "statsToggleButton" Button
+@enduml

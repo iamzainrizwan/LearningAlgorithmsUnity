@@ -1,0 +1,43 @@
+@startuml
+class BoltCoreResources <<sealed>> {
+    + <<override>> LateInitialize() : void
+}
+class Icons {
+    + Icons(resources:BoltCoreResources)
+    + Load() : void
+    + VariableKind(kind:VariableKind) : EditorTexture
+}
+PluginResources <|-- BoltCoreResources
+BoltCoreResources --> "icons" Icons
+BoltCoreResources --> "loader" EditorTexture
+BoltCoreResources +-- Icons
+Icons --> "variablesWindow" EditorTexture
+Icons --> "variable" EditorTexture
+Icons --> "flowVariable" EditorTexture
+Icons --> "graphVariable" EditorTexture
+Icons --> "objectVariable" EditorTexture
+Icons --> "sceneVariable" EditorTexture
+Icons --> "applicationVariable" EditorTexture
+Icons --> "savedVariable" EditorTexture
+Icons --> "window" EditorTexture
+Icons --> "inspectorWindow" EditorTexture
+Icons --> "empty" EditorTexture
+Icons --> "progress" EditorTexture
+Icons --> "errorState" EditorTexture
+Icons --> "successState" EditorTexture
+Icons --> "warningState" EditorTexture
+Icons --> "informationMessage" EditorTexture
+Icons --> "questionMessage" EditorTexture
+Icons --> "warningMessage" EditorTexture
+Icons --> "successMessage" EditorTexture
+Icons --> "errorMessage" EditorTexture
+Icons --> "upgrade" EditorTexture
+Icons --> "upToDate" EditorTexture
+Icons --> "downgrade" EditorTexture
+Icons --> "supportWindow" EditorTexture
+Icons --> "sidebarAnchorLeft" EditorTexture
+Icons --> "sidebarAnchorRight" EditorTexture
+Icons --> "editorPref" EditorTexture
+Icons --> "projectSetting" EditorTexture
+Icons --> "@null" EditorTexture
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+enum ConfidenceLevel {
+    L90,
+    L95,
+    L99,
+    L999,
+}
+@enduml

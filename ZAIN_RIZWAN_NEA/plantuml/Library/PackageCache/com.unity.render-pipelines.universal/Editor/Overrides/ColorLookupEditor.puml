@@ -1,0 +1,7 @@
+@startuml
+class ColorLookupEditor <<sealed>> {
+    + <<override>> OnEnable() : void
+    + <<override>> OnInspectorGUI() : void
+}
+VolumeComponentEditor <|-- ColorLookupEditor
+@enduml

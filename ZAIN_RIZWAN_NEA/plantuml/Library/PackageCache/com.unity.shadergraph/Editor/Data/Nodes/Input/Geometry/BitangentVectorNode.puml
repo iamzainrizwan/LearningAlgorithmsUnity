@@ -1,0 +1,12 @@
+@startuml
+class BitangentVectorNode {
+    + <<const>> kOutputSlotId : int = 0
+    + <<const>> kOutputSlotName : string = "Out"
+    + BitangentVectorNode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> GetVariableNameForSlot(slotId:int) : string
+    + RequiresBitangent(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+}
+GeometryNode <|-- BitangentVectorNode
+IMayRequireBitangent <|-- BitangentVectorNode
+@enduml

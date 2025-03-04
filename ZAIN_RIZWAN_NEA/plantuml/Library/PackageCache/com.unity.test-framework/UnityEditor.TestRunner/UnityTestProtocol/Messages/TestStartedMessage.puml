@@ -1,0 +1,8 @@
+@startuml
+class TestStartedMessage {
+    + name : string
+    + TestStartedMessage()
+}
+Message <|-- TestStartedMessage
+TestStartedMessage --> "state" TestState
+@enduml

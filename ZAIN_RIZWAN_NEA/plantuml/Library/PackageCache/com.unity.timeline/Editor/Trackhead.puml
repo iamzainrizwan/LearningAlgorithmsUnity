@@ -1,0 +1,32 @@
+@startuml
+class Gaps <<static>> {
+    + {static} Insert(asset:TimelineAsset, at:double, amount:double, tolerance:double) : void
+}
+class PlayheadContextMenu {
+    + PlayheadContextMenu(timeAreaItem:TimeAreaItem)
+}
+class TimeAreaContextMenu {
+}
+class Scrub {
+    + Scrub(onMouseDown:Func<Event, WindowState, bool>, onMouseDrag:Action<double>, onMouseUp:System.Action)
+}
+class TimeAreaItem {
+    + drawLine : bool <<get>> <<set>>
+    + drawHead : bool <<get>> <<set>>
+    + canMoveHead : bool <<get>> <<set>>
+    + tooltip : string <<get>> <<set>>
+    + showTooltip : bool <<get>> <<set>>
+    + firstDrag : bool <<get>>
+    + TimeAreaItem(style:GUIStyle, onDrag:Action<double>)
+    + Draw(rect:Rect, state:WindowState, time:double) : void
+}
+Manipulator <|-- PlayheadContextMenu
+Manipulator <|-- TimeAreaContextMenu
+Manipulator <|-- Scrub
+Control <|-- TimeAreaItem
+TimeAreaItem --> "headColor" Color
+TimeAreaItem --> "lineColor" Color
+TimeAreaItem --> "boundOffset" Vector2
+TimeAreaItem --> "bounds" Rect
+TimeAreaItem --> "style" GUIStyle
+@enduml

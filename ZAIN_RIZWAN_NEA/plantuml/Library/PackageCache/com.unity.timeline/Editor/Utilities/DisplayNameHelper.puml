@@ -1,0 +1,7 @@
+@startuml
+class DisplayNameHelper <<static>> {
+    + {static} GetDisplayName(sequence:ISequenceState) : string
+    + {static} GetDisplayName(asset:PlayableAsset) : string
+    + {static} GetDisplayName(director:PlayableDirector) : string
+}
+@enduml

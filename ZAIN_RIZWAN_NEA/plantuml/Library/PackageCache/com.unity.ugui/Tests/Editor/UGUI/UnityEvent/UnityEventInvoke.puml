@@ -1,0 +1,15 @@
+@startuml
+class UnityEventInvoke {
+    + TestSetup() : void
+    + TearDown() : void
+    + UnityEvent_InvokeCallsListenerOnce() : void
+    + UnityEvent_EditMode_InvokeDoesNotCallRuntimeListener() : void
+}
+class SimpleCounter {
+    + m_Count : int = 0
+    + Add() : void
+    + NoOp(i:int) : void
+}
+UnityEventInvoke +-- SimpleCounter
+MonoBehaviour <|-- SimpleCounter
+@enduml

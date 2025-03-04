@@ -1,0 +1,9 @@
+@startuml
+class OnInputFieldEndEdit <<sealed>> {
+}
+class "GameObjectEventUnit`1"<T> {
+}
+"GameObjectEventUnit`1" "<string>" <|-- OnInputFieldEndEdit
+OnInputFieldEndEdit --> "MessageListenerType" Type
+OnInputFieldEndEdit --> "value" ValueOutput
+@enduml

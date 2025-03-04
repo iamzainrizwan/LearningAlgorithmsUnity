@@ -1,0 +1,8 @@
+@startuml
+class PostbuildCleanupTask {
+    + PostbuildCleanupTask()
+}
+class "BuildActionTaskBase`1"<T> {
+}
+"BuildActionTaskBase`1" "<IPostBuildCleanup>" <|-- PostbuildCleanupTask
+@enduml

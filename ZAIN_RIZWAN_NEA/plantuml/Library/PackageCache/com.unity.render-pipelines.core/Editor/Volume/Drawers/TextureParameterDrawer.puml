@@ -1,0 +1,24 @@
+@startuml
+class TextureParameterHelper <<static>> {
+}
+class TextureParameterDrawer <<sealed>> {
+    + <<override>> OnGUI(parameter:SerializedDataParameter, title:GUIContent) : bool
+}
+class Texture2DParameterDrawer <<sealed>> {
+    + <<override>> OnGUI(parameter:SerializedDataParameter, title:GUIContent) : bool
+}
+class Texture3DParameterDrawer <<sealed>> {
+    + <<override>> OnGUI(parameter:SerializedDataParameter, title:GUIContent) : bool
+}
+class CubemapParameterDrawer <<sealed>> {
+    + <<override>> OnGUI(parameter:SerializedDataParameter, title:GUIContent) : bool
+}
+class NoInterpCubemapParameterDrawer <<sealed>> {
+    + <<override>> OnGUI(parameter:SerializedDataParameter, title:GUIContent) : bool
+}
+VolumeParameterDrawer <|-- TextureParameterDrawer
+VolumeParameterDrawer <|-- Texture2DParameterDrawer
+VolumeParameterDrawer <|-- Texture3DParameterDrawer
+VolumeParameterDrawer <|-- CubemapParameterDrawer
+VolumeParameterDrawer <|-- NoInterpCubemapParameterDrawer
+@enduml

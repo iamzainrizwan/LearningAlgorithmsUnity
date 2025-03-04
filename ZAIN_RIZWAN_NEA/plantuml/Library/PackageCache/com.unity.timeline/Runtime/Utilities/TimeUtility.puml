@@ -1,0 +1,37 @@
+@startuml
+enum StandardFrameRates {
+    Fps24,
+    Fps23_97,
+    Fps25,
+    Fps30,
+    Fps29_97,
+    Fps50,
+    Fps60,
+    Fps59_94,
+}
+class TimeUtility <<static>> {
+    + {static} <<readonly>> kTimeEpsilon : double = 1e-14
+    + {static} <<readonly>> kFrameRateEpsilon : double = 1e-6
+    + {static} <<readonly>> k_MaxTimelineDurationInSeconds : double = 9e6
+    + {static} <<readonly>> kFrameRateRounding : double = 1e-2
+    + {static} ToFrames(time:double, frameRate:double) : int
+    + {static} ToExactFrames(time:double, frameRate:double) : double
+    + {static} FromFrames(frames:int, frameRate:double) : double
+    + {static} FromFrames(frames:double, frameRate:double) : double
+    + {static} OnFrameBoundary(time:double, frameRate:double) : bool
+    + {static} GetEpsilon(time:double, frameRate:double) : double
+    + {static} PreviousFrame(time:double, frameRate:double) : int
+    + {static} NextFrame(time:double, frameRate:double) : int
+    + {static} PreviousFrameTime(time:double, frameRate:double) : double
+    + {static} NextFrameTime(time:double, frameRate:double) : double
+    + {static} OnFrameBoundary(time:double, frameRate:double, epsilon:double) : bool
+    + {static} RoundToFrame(time:double, frameRate:double) : double
+    + {static} TimeAsFrames(timeValue:double, frameRate:double, format:string) : string
+    + {static} TimeAsTimeCode(timeValue:double, frameRate:double, format:string) : string
+    + {static} ParseTimeCode(timeCode:string, frameRate:double, defaultValue:double) : double
+    + {static} ParseTimeSeconds(timeCode:string, frameRate:double, defaultValue:double) : double
+    + {static} GetAnimationClipLength(clip:AnimationClip) : double
+    + {static} GetClosestFrameRate(frameRate:double) : FrameRate
+    + {static} ToFrameRate(enumValue:StandardFrameRates) : FrameRate
+}
+@enduml

@@ -1,0 +1,40 @@
+@startuml
+class TerrainLitShaderGUI {
+    + TerrainLitShaderGUI()
+    {static} + SetupMaterialKeywords(material:Material) : void
+    {static} + TextureHasAlpha(inTex:Texture2D) : bool
+    + <<override>> OnGUI(materialEditorIn:MaterialEditor, properties:MaterialProperty[]) : void
+}
+class StylesLayer {
+}
+enum HeightParametrization {
+    Amplitude,
+    MinMax,
+}
+ITerrainLayerCustomUI <|-- TerrainLitShaderGUI
+TerrainLitShaderGUI +-- StylesLayer
+StylesLayer o-> "warningHeightBasedBlending" GUIContent
+StylesLayer o-> "enableHeightBlend" GUIContent
+StylesLayer o-> "heightTransition" GUIContent
+StylesLayer o-> "enableInstancedPerPixelNormal" GUIContent
+StylesLayer o-> "diffuseTexture" GUIContent
+StylesLayer o-> "colorTint" GUIContent
+StylesLayer o-> "opacityAsDensity" GUIContent
+StylesLayer o-> "normalMapTexture" GUIContent
+StylesLayer o-> "normalScale" GUIContent
+StylesLayer o-> "maskMapTexture" GUIContent
+StylesLayer o-> "maskMapTextureWithoutHeight" GUIContent
+StylesLayer o-> "channelRemapping" GUIContent
+StylesLayer o-> "defaultValues" GUIContent
+StylesLayer o-> "metallic" GUIContent
+StylesLayer o-> "ao" GUIContent
+StylesLayer o-> "height" GUIContent
+StylesLayer o-> "heightParametrization" GUIContent
+StylesLayer o-> "heightAmplitude" GUIContent
+StylesLayer o-> "heightBase" GUIContent
+StylesLayer o-> "heightMin" GUIContent
+StylesLayer o-> "heightMax" GUIContent
+StylesLayer o-> "heightCm" GUIContent
+StylesLayer o-> "smoothness" GUIContent
+TerrainLitShaderGUI +-- HeightParametrization
+@enduml

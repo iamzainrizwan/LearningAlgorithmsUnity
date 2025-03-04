@@ -1,0 +1,12 @@
+@startuml
+struct InstanceOcclusionCullerShaderVariables {
+    + _DrawInfoAllocIndex : uint
+    + _DrawInfoCount : uint
+    + _InstanceInfoAllocIndex : uint
+    + _InstanceInfoCount : uint
+    + _BoundingSphereInstanceDataAddress : int
+    + _DebugCounterIndex : int
+    + _InstanceMultiplierShift : int
+    + _InstanceOcclusionCullerPad0 : int
+}
+@enduml

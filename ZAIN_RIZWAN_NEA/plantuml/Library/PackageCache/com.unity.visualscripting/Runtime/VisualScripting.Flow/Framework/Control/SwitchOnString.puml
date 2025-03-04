@@ -1,0 +1,8 @@
+@startuml
+class SwitchOnString {
+    + ignoreCase : bool <<get>> <<set>>
+}
+class "SwitchUnit`1"<T> {
+}
+"SwitchUnit`1" "<string>" <|-- SwitchOnString
+@enduml

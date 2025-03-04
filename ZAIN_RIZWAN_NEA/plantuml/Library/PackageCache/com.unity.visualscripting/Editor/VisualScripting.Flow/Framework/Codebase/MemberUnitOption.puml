@@ -1,0 +1,18 @@
+@startuml
+interface IMemberUnitOption {
+}
+abstract class "MemberUnitOption`1"<TMemberUnit> {
+    + isPseudoInherited : bool <<get>>
+    + <<override>> Deserialize(row:UnitOptionRow) : void
+    + <<override>> Serialize() : UnitOptionRow
+    + <<override>> OnPopulate() : void
+}
+class "UnitOption`1"<T> {
+}
+IUnitOption <|-- IMemberUnitOption
+"UnitOption`1" "<TMemberUnit>" <|-- "MemberUnitOption`1"
+IMemberUnitOption <|-- "MemberUnitOption`1"
+"MemberUnitOption`1" --> "member" Member
+"MemberUnitOption`1" --> "pseudoDeclarer" Member
+"MemberUnitOption`1" --> "targetType" Type
+@enduml

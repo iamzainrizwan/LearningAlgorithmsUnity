@@ -1,0 +1,6 @@
+@startuml
+class DegreesToRadiansNode {
+    + DegreesToRadiansNode()
+}
+CodeFunctionNode <|-- DegreesToRadiansNode
+@enduml

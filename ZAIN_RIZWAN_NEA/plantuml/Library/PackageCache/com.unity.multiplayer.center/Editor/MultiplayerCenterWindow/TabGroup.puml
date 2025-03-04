@@ -1,0 +1,14 @@
+@startuml
+interface ITabView {
+}
+class TabGroup {
+    + CurrentTab : int <<get>>
+    + ViewCount : int <<get>>
+    + TabGroup(analytics:IMultiplayerCenterAnalytics, tabViews:ITabView[], defaultIndex:int)
+    + SetSelected(index:int, force:bool) : void
+    + CreateTabs() : void
+    + Clear() : void
+    + TabsAreValid() : bool
+}
+TabGroup --> "Root" VisualElement
+@enduml

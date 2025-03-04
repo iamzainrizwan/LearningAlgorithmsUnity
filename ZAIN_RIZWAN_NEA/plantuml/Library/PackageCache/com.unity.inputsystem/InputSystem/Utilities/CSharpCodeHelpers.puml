@@ -1,0 +1,9 @@
+@startuml
+class CSharpCodeHelpers <<static>> {
+    + {static} IsProperIdentifier(name:string) : bool
+    + {static} IsEmptyOrProperIdentifier(name:string) : bool
+    + {static} IsEmptyOrProperNamespaceName(name:string) : bool
+    + {static} MakeIdentifier(name:string, suffix:string) : string
+    + {static} MakeTypeName(name:string, suffix:string) : string
+}
+@enduml

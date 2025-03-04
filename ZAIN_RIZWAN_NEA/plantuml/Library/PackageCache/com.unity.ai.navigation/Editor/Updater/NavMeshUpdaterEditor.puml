@@ -1,0 +1,5 @@
+@startuml
+class NavMeshUpdaterEditor <<static>> {
+    + {static} ShowWindow() : void
+}
+@enduml

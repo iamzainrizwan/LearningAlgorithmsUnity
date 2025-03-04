@@ -1,0 +1,5 @@
+@startuml
+abstract class AbstractShaderGraphDataExtension {
+}
+JsonObject <|-- AbstractShaderGraphDataExtension
+@enduml

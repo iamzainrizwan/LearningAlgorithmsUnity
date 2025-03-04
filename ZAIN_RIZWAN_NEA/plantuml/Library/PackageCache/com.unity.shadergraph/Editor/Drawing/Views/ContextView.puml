@@ -1,0 +1,15 @@
+@startuml
+class ContextView <<sealed>> {
+    + ContextView(name:string, contextData:ContextData, editorWindow:EditorWindow)
+    + <<override>> BuildContextualMenu(evt:ContextualMenuPopulateEvent) : void
+    + isDragging : bool <<get>>
+    + AddPort(direction:Direction) : void
+    + InsertBlock(nodeView:MaterialNodeView) : void
+    + InsertElements(insertIndex:int, elements:IEnumerable<GraphElement>) : void
+    + Dispose() : void
+}
+StackNode <|-- ContextView
+IDisposable <|-- ContextView
+ContextView --> "contextData" ContextData
+ContextView --> "port" Port
+@enduml

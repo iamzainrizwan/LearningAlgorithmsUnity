@@ -1,0 +1,9 @@
+@startuml
+class UnifiedVariableUnitWidget <<sealed>> {
+    + UnifiedVariableUnitWidget(canvas:FlowCanvas, unit:UnifiedVariableUnit)
+    + <<override>> GetPortInspector(port:IUnitPort, metadata:Metadata) : Inspector
+}
+class "UnitWidget`1"<T> {
+}
+"UnitWidget`1" "<UnifiedVariableUnit>" <|-- UnifiedVariableUnitWidget
+@enduml

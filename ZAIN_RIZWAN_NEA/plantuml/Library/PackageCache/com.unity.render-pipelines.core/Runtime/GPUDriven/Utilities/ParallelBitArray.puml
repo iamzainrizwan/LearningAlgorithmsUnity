@@ -1,0 +1,20 @@
+@startuml
+struct ParallelBitArray {
+    + Length : int <<get>>
+    + IsCreated : bool <<get>>
+    + ParallelBitArray(length:int, allocator:Allocator, options:NativeArrayOptions)
+    + Dispose() : void
+    + Dispose(inputDeps:JobHandle) : void
+    + Resize(newLength:int) : void
+    + Set(index:int, value:bool) : void
+    + Get(index:int) : bool
+    + GetChunk(chunk_index:int) : ulong
+    + SetChunk(chunk_index:int, chunk_bits:ulong) : void
+    + <<unsafe>> InterlockedReadChunk(chunk_index:int) : ulong
+    + <<unsafe>> InterlockedOrChunk(chunk_index:int, chunk_bits:ulong) : void
+    + ChunkCount() : int
+    + GetSubArray(length:int) : ParallelBitArray
+    + GetBitsArray() : NativeArray<long>
+    + FillZeroes(length:int) : void
+}
+@enduml

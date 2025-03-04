@@ -1,0 +1,38 @@
+@startuml
+class TMP_TextEventHandler {
+    + OnPointerEnter(eventData:PointerEventData) : void
+    + OnPointerExit(eventData:PointerEventData) : void
+}
+class CharacterSelectionEvent {
+}
+class SpriteSelectionEvent {
+}
+class WordSelectionEvent {
+}
+class LineSelectionEvent {
+}
+class LinkSelectionEvent {
+}
+class "UnityEvent`2"<T1,T2> {
+}
+class "UnityEvent`3"<T1,T2,T3> {
+}
+MonoBehaviour <|-- TMP_TextEventHandler
+IPointerEnterHandler <|-- TMP_TextEventHandler
+IPointerExitHandler <|-- TMP_TextEventHandler
+TMP_TextEventHandler --> "onCharacterSelection" CharacterSelectionEvent
+TMP_TextEventHandler --> "onSpriteSelection" SpriteSelectionEvent
+TMP_TextEventHandler --> "onWordSelection" WordSelectionEvent
+TMP_TextEventHandler --> "onLineSelection" LineSelectionEvent
+TMP_TextEventHandler --> "onLinkSelection" LinkSelectionEvent
+TMP_TextEventHandler +-- CharacterSelectionEvent
+"UnityEvent`2" "<char,int>" <|-- CharacterSelectionEvent
+TMP_TextEventHandler +-- SpriteSelectionEvent
+"UnityEvent`2" "<char,int>" <|-- SpriteSelectionEvent
+TMP_TextEventHandler +-- WordSelectionEvent
+"UnityEvent`3" "<string,int,int>" <|-- WordSelectionEvent
+TMP_TextEventHandler +-- LineSelectionEvent
+"UnityEvent`3" "<string,int,int>" <|-- LineSelectionEvent
+TMP_TextEventHandler +-- LinkSelectionEvent
+"UnityEvent`3" "<string,string,int>" <|-- LinkSelectionEvent
+@enduml

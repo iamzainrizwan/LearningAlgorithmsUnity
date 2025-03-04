@@ -1,0 +1,24 @@
+@startuml
+class BoltCore <<sealed>> {
+    + <<const>> ID : string = "VisualScripting.Core"
+    + BoltCore()
+    + <<const>> LegacyRuntimeDllGuid : string = "c8d0ad23af520fe46aabe2b1fecf6462"
+    + <<const>> LegacyEditorDllGuid : string = "7314928a14330c04fb980214791646e9"
+    + <<const>> LegacyLudiqCoreRuntimeDllGuid : string = "1eea3bf15bb7ddb4582c462beee0ad13"
+    + <<const>> LegacyLudiqCoreEditorDllGuid : string = "8878d90c345be1a43ab0c9a9898ad433"
+    + <<override>> SetupWizardPages() : IEnumerable<Page>
+}
+class "IEnumerable`1"<T> {
+}
+class Styles <<static>> {
+}
+Plugin <|-- BoltCore
+BoltCore --> "instance" BoltCore
+BoltCore --> "Manifest" BoltCoreManifest
+BoltCore --> "Configuration" BoltCoreConfiguration
+BoltCore --> "Resources" BoltCoreResources
+BoltCore --> "Paths" BoltCorePaths
+BoltCore --> "scriptReferenceReplacements<ScriptReferenceReplacement>" "IEnumerable`1"
+BoltCore +-- Styles
+Styles --> "nodeLabel" GUIStyle
+@enduml

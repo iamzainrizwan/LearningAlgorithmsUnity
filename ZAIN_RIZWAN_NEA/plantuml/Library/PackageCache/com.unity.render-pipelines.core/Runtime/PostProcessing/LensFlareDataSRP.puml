@@ -1,0 +1,83 @@
+@startuml
+enum SRPLensFlareBlendMode {
+    Additive,
+    Screen,
+    Premultiply,
+    Lerp,
+}
+enum SRPLensFlareDistribution {
+    Uniform,
+    Curve,
+    Random,
+}
+enum SRPLensFlareType {
+    Image,
+    Circle,
+    Polygon,
+    Ring,
+    LensFlareDataSRP,
+}
+enum SRPLensFlareColorType {
+    Constant= 0,
+    RadialGradient,
+    AngularGradient,
+}
+class LensFlareDataElementSRP <<sealed>> {
+    + LensFlareDataElementSRP()
+    + Clone() : LensFlareDataElementSRP
+    + visible : bool
+    + position : float
+    + angularOffset : float
+    + ringThickness : float
+    + hoopFactor : float
+    + noiseAmplitude : float
+    + noiseFrequency : int
+    + noiseSpeed : float
+    + shapeCutOffSpeed : float
+    + shapeCutOffRadius : float
+    + localIntensity : float <<get>> <<set>>
+    + uniformScale : float
+    + allowMultipleElement : bool
+    + count : int <<get>> <<set>>
+    + preserveAspectRatio : bool
+    + rotation : float
+    + autoRotate : bool
+    + modulateByLightColor : bool
+    + lengthSpread : float
+    + seed : int
+    + intensityVariation : float <<get>> <<set>>
+    + scaleVariation : float
+    + rotationVariation : float
+    + enableRadialDistortion : bool
+    + distortionRelativeToCenter : bool
+    + fallOff : float <<get>> <<set>>
+    + edgeOffset : float <<get>> <<set>>
+    + sideCount : int <<get>> <<set>>
+    + sdfRoundness : float <<get>> <<set>>
+    + inverseSDF : bool
+    + uniformAngle : float
+}
+class LensFlareDataSRP <<sealed>> {
+    + LensFlareDataSRP()
+    + HasAModulateByLightColorElement() : bool
+}
+LensFlareDataElementSRP --> "lensFlareDataSRP" LensFlareDataSRP
+LensFlareDataElementSRP --> "positionOffset" Vector2
+LensFlareDataElementSRP --> "translationScale" Vector2
+LensFlareDataElementSRP --> "lensFlareTexture" Texture
+LensFlareDataElementSRP --> "sizeXY" Vector2
+LensFlareDataElementSRP --> "tintColorType" SRPLensFlareColorType
+LensFlareDataElementSRP --> "tint" Color
+LensFlareDataElementSRP --> "tintGradient" TextureGradient
+LensFlareDataElementSRP --> "blendMode" SRPLensFlareBlendMode
+LensFlareDataElementSRP --> "flareType" SRPLensFlareType
+LensFlareDataElementSRP --> "distribution" SRPLensFlareDistribution
+LensFlareDataElementSRP --> "positionCurve" AnimationCurve
+LensFlareDataElementSRP --> "scaleCurve" AnimationCurve
+LensFlareDataElementSRP --> "colorGradient" Gradient
+LensFlareDataElementSRP --> "positionVariation" Vector2
+LensFlareDataElementSRP --> "targetSizeDistortion" Vector2
+LensFlareDataElementSRP --> "distortionCurve" AnimationCurve
+LensFlareDataElementSRP --> "uniformAngleCurve" AnimationCurve
+ScriptableObject <|-- LensFlareDataSRP
+@enduml

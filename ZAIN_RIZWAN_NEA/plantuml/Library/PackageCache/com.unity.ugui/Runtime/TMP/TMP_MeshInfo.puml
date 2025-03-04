@@ -1,0 +1,23 @@
+@startuml
+enum VertexSortingOrder {
+    Normal,
+    Reverse,
+}
+struct TMP_MeshInfo {
+    + vertexCount : int
+    + TMP_MeshInfo(mesh:Mesh, size:int)
+    + TMP_MeshInfo(mesh:Mesh, size:int, isVolumetric:bool)
+    + ResizeMeshInfo(size:int) : void
+    + ResizeMeshInfo(size:int, isVolumetric:bool) : void
+    + Clear() : void
+    + Clear(uploadChanges:bool) : void
+    + ClearUnusedVertices() : void
+    + ClearUnusedVertices(startIndex:int) : void
+    + ClearUnusedVertices(startIndex:int, updateMesh:bool) : void
+    + SortGeometry(order:VertexSortingOrder) : void
+    + SortGeometry(sortingOrder:IList<int>) : void
+    + SwapVertexData(src:int, dst:int) : void
+}
+TMP_MeshInfo --> "mesh" Mesh
+TMP_MeshInfo --> "material" Material
+@enduml

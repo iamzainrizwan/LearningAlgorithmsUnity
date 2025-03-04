@@ -1,0 +1,11 @@
+@startuml
+class SelectUnit <<sealed>> {
+    + Branch(flow:Flow) : object
+}
+Unit <|-- SelectUnit
+ISelectUnit <|-- SelectUnit
+SelectUnit --> "condition" ValueInput
+SelectUnit --> "ifTrue" ValueInput
+SelectUnit --> "ifFalse" ValueInput
+SelectUnit --> "selection" ValueOutput
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+class UnitPortDescription <<sealed>> {
+    + fallbackLabel : string <<get>> <<set>>
+    + label : string <<get>> <<set>>
+    + showLabel : bool <<get>> <<set>>
+    + summary : string <<get>> <<set>>
+    + CopyFrom(other:UnitPortDescription) : void
+}
+class "Func`2"<T1,T2> {
+}
+IDescription <|-- UnitPortDescription
+UnitPortDescription --> "icon" EditorTexture
+UnitPortDescription --> "getMetadata<Metadata,Metadata>" "Func`2"
+@enduml

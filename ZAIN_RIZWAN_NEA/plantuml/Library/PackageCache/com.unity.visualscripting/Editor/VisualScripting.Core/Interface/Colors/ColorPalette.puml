@@ -1,0 +1,18 @@
+@startuml
+class ColorPalette <<static>> {
+}
+ColorPalette o-> "unityBackgroundVeryDark" SkinnedColor
+ColorPalette o-> "unityBackgroundDark" SkinnedColor
+ColorPalette o-> "unityBackgroundMid" SkinnedColor
+ColorPalette o-> "unityBackgroundLight" SkinnedColor
+ColorPalette o-> "unityBackgroundLighter" SkinnedColor
+ColorPalette o-> "unityBackgroundPure" SkinnedColor
+ColorPalette o-> "unityForeground" SkinnedColor
+ColorPalette o-> "unityForegroundDim" SkinnedColor
+ColorPalette o-> "unityForegroundSelected" SkinnedColor
+ColorPalette o-> "unitySelectionHighlight" SkinnedColor
+ColorPalette o-> "reorderableListBackground" SkinnedColor
+ColorPalette o-> "transparent" SkinnedColor
+ColorPalette o-> "hyperlink" SkinnedColor
+ColorPalette o-> "hyperlinkActive" SkinnedColor
+@enduml

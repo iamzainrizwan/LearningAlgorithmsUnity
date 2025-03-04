@@ -1,0 +1,10 @@
+@startuml
+class NavMeshLinkTests {
+    + TrackedList_AddOneItemToListInEditMode_TrackedListSetToZeroInPlayMode(option:EnterPlayModeOptions) : IEnumerator
+    + TrackedList_CreateAutoUpdatedNavMeshLinkInEditMode_NavMeshLinkRemainsInTrackedListInPlayMode(option:EnterPlayModeOptions) : IEnumerator
+    + CostModifier_SetValue_SerializedPropertyIsTheSame(costModifier:int, expectedCostValue:float, expectedOverrideValue:bool) : void
+    + CostModifier_Reset_CostModifierRunsThroughUpgrader() : void
+    + NavMeshLink_Reset_NavMeshLinkHasDefaultValues() : void
+}
+DomainReloadTestBase <|-- NavMeshLinkTests
+@enduml

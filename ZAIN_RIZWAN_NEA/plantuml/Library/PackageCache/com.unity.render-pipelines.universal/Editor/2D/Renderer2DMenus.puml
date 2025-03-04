@@ -1,0 +1,15 @@
+@startuml
+class Renderer2DMenus <<static>> {
+}
+class Create2DRendererDataAsset {
+    +  <<event>> onCreated : Action<Renderer2DData> 
+    + <<override>> Action(instanceId:int, pathName:string, resourceFile:string) : void
+}
+class CreateUniversalPipelineAsset {
+    + <<override>> Action(instanceId:int, pathName:string, resourceFile:string) : void
+}
+Renderer2DMenus +-- Create2DRendererDataAsset
+EndNameEditAction <|-- Create2DRendererDataAsset
+Renderer2DMenus +-- CreateUniversalPipelineAsset
+EndNameEditAction <|-- CreateUniversalPipelineAsset
+@enduml

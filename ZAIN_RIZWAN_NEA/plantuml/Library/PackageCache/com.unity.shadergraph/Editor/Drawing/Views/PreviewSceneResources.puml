@@ -1,0 +1,14 @@
+@startuml
+class PreviewSceneResources {
+    + PreviewSceneResources()
+    + Dispose() : void
+}
+IDisposable <|-- PreviewSceneResources
+PreviewSceneResources --> "light0" Light
+PreviewSceneResources --> "light1" Light
+PreviewSceneResources --> "sphere" Mesh
+PreviewSceneResources --> "quad" Mesh
+PreviewSceneResources --> "checkerboardMaterial" Material
+PreviewSceneResources --> "blitNoAlphaMaterial" Material
+PreviewSceneResources --> "camera" Camera
+@enduml

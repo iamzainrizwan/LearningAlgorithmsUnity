@@ -1,0 +1,24 @@
+@startuml
+class CurveEditUtility <<static>> {
+    + {static} IsRotationKey(binding:EditorCurveBinding) : bool
+    + {static} AddKey(clip:AnimationClip, sourceBinding:EditorCurveBinding, prop:SerializedProperty, time:double) : void
+    + {static} RemoveKey(clip:AnimationClip, sourceBinding:EditorCurveBinding, prop:SerializedProperty, time:double) : void
+    + {static} RemoveObjectKey(clip:AnimationClip, sourceBinding:EditorCurveBinding, time:double) : void
+    + {static} GetObjectKeyCount(clip:AnimationClip, sourceBinding:EditorCurveBinding) : int
+    + {static} RemoveCurves(clip:AnimationClip, prop:SerializedProperty) : void
+    + {static} AddKeyFrameToCurve(curve:AnimationCurve, time:float, framerate:float, value:float, stepped:bool) : void
+    + {static} RemoveKeyFrameFromCurve(curve:AnimationCurve, time:float, framerate:float) : bool
+    + {static} GetKeyValue(prop:SerializedProperty) : float
+    + {static} SetFromKeyValue(prop:SerializedProperty, keyValue:float) : void
+    + {static} GetKeyframeAtTime(curve:AnimationCurve, time:float, frameRate:float) : int
+    + {static} GetKeyframeAtTime(curve:ObjectReferenceKeyframe[], time:float, frameRate:float) : int
+    + {static} GetKeyTime(time:float, frameRate:float) : float
+    + {static} KeyCompare(timeA:float, timeB:float, frameRate:float) : int
+    + {static} Evaluate(curve:ObjectReferenceKeyframe[], time:float) : Object
+    + {static} EvaluateIndex(curve:ObjectReferenceKeyframe[], time:float) : int
+    + {static} ShiftBySeconds(clip:AnimationClip, time:float) : void
+    + {static} ScaleTime(clip:AnimationClip, scale:float) : void
+    + {static} CreateMatchingCurve(curve:AnimationCurve) : AnimationCurve
+    + {static} SanitizeCurveKeys(keys:Keyframe[], easeIn:bool) : Keyframe[]
+}
+@enduml

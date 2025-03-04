@@ -1,0 +1,7 @@
+@startuml
+abstract class Manipulator {
+    + <<virtual>> Overlay(evt:Event, state:WindowState) : void
+    + HandleEvent(state:WindowState) : bool
+    + HandleEvent(type:EventType, state:WindowState) : bool
+}
+@enduml

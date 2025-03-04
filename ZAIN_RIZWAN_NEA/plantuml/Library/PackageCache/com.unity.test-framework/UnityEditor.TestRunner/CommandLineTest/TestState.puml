@@ -1,0 +1,9 @@
+@startuml
+enum TestRunState {
+    NoCallbacksReceived,
+    OneOrMoreTestsExecutedWithNoFailures,
+    OneOrMoreTestsExecutedWithOneOrMoreFailed,
+    CompletedJobWithoutAnyTestsExecuted,
+    RunError,
+}
+@enduml

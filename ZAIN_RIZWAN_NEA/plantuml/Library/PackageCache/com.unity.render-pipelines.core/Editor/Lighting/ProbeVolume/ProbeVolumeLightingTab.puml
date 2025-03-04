@@ -1,0 +1,73 @@
+@startuml
+class ProbeVolumeLightingTab {
+    + {static} singleSceneMode : bool <<get>>
+    + <<override>> OnEnable() : void
+    + <<override>> OnDisable() : void
+    + <<override>> OnGUI() : void
+    + <<override>> HasHelpGUI() : bool
+    + <<override>> OnHeaderSettingsGUI() : void
+    + <<override>> OnBakeButtonGUI() : void
+    + <<override>> OnSummaryGUI() : void
+}
+class Styles <<static>> {
+    + {static} <<readonly>> msgEnableAll : string = "Some loaded Scenes are disabled by this Baking Set. These Scenes will not contribute to the generation of probe data."
+    + {static} <<readonly>> msgUnloadOther : string = "Scene(s) not belonging to this Baking Set are currently loaded in the Hierarchy. This might result in incorrect lighting."
+    + {static} <<readonly>> msgLoadForBake : string = "Some scene(s) in this Baking Set are not currently loaded in the Hierarchy. This might result in missing or incomplete lighting."
+    + <<const>> statusLabelWidth : float = 80
+    + <<const>> lightingButtonWidth : float = 170
+}
+enum Expandable {
+    Baking= 1 << 0,
+    BakingWarnings= 1 << 1,
+    Scenarios= 1 << 2,
+    Placement= 1 << 3,
+    PlacementFilters= 1 << 4,
+    InvaliditySettings= 1 << 5,
+    SettingsSkyOcclusion= 1 << 8,
+    SettingsRenderingLayers= 1 << 9,
+}
+struct SceneData {
+    + guid : string
+    + GetPath() : string
+}
+class ProbeVolumeOverlay {
+    + visible : bool <<get>>
+    + <<override>> OnCreated() : void
+    + <<override>> CreatePanelContent() : VisualElement
+}
+LightingWindowTab <|-- ProbeVolumeLightingTab
+ProbeVolumeLightingTab --> "instance" ProbeVolumeLightingTab
+ProbeVolumeLightingTab +-- Styles
+Styles o-> "helpIcon" GUIContent
+Styles o-> "settingsIcon" GUIContent
+Styles o-> "debugIcon" GUIContent
+Styles o-> "lightingSettings" GUIContent
+Styles o-> "bakingTitle" GUIContent
+Styles o-> "bakingMode" GUIContent
+Styles o-> "currentBakingSet" GUIContent
+Styles o-> "scenesInSet" GUIContent
+Styles o-> "addLoadedScenes" GUIContent
+Styles o-> "toggleBakeAll" GUIContent
+Styles o-> "toggleBakeNone" GUIContent
+Styles o-> "status" GUIContent
+Styles o-> "bake" GUIContent
+Styles o-> "bakeBox" GUIContent
+Styles o-> "warnings" GUIContent
+Styles o-> "iconEnableAll" GUIContent
+Styles o-> "iconLoadForBake" GUIContent
+Styles o-> "scenarioCostStat" GUIContent
+Styles o-> "totalCostStat" GUIContent
+Styles o-> "generateLighting" GUIContent
+Styles o-> "generateAPV" GUIContent
+Styles o-> "cancelBake" GUIContent
+Styles o-> "buttonStyle" GUIStyle
+Styles o-> "inspectorTitle" GUIStyle
+Styles o-> "boldFoldout" GUIStyle
+Styles o-> "labelFont" GUIStyle
+ProbeVolumeLightingTab +-- Expandable
+ProbeVolumeLightingTab +-- SceneData
+SceneData --> "asset" SceneAsset
+ProbeVolumeLightingTab +-- ProbeVolumeOverlay
+Overlay <|-- ProbeVolumeOverlay
+ITransientOverlay <|-- ProbeVolumeOverlay
+@enduml

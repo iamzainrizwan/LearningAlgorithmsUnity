@@ -1,0 +1,54 @@
+@startuml
+class InputDevice {
+    + <<const>> InvalidDeviceId : int = 0
+    + enabled : bool <<get>>
+    + canRunInBackground : bool <<get>>
+    + added : bool <<get>>
+    + remote : bool <<get>>
+    + native : bool <<get>>
+    + updateBeforeRender : bool <<get>>
+    + deviceId : int <<get>>
+    + lastUpdateTime : double <<get>>
+    + wasUpdatedThisFrame : bool <<get>>
+    + <<override>> valueSizeInBytes : int <<get>>
+    + InputDevice()
+    + <<override>> <<unsafe>> ReadValueFromBufferAsObject(buffer:void*, bufferSize:int) : object
+    + <<override>> <<unsafe>> ReadValueFromStateAsObject(statePtr:void*) : object
+    + <<override>> <<unsafe>> ReadValueFromStateIntoBuffer(statePtr:void*, bufferPtr:void*, bufferSize:int) : void
+    + <<override>> <<unsafe>> CompareValue(firstStatePtr:void*, secondStatePtr:void*) : bool
+    + <<virtual>> MakeCurrent() : void
+    + <<unsafe>> ExecuteCommand(command:TCommand) : long
+}
+class "ReadOnlyArray`1"<T> {
+}
+enum DeviceFlags {
+    UpdateBeforeRender= 1 << 0,
+    HasStateCallbacks= 1 << 1,
+    HasControlsWithDefaultState= 1 << 2,
+    HasDontResetControls= 1 << 10,
+    HasEventMerger= 1 << 13,
+    HasEventPreProcessor= 1 << 14,
+    Remote= 1 << 3,
+    Native= 1 << 4,
+    DisabledInFrontend= 1 << 5,
+    DisabledInRuntime= 1 << 7,
+    DisabledWhileInBackground= 1 << 8,
+    DisabledStateHasBeenQueriedFromRuntime= 1 << 6,
+    CanRunInBackground= 1 << 11,
+    CanRunInBackgroundHasBeenQueried= 1 << 12,
+}
+struct ControlBitRangeNode {
+    + endBitOffset : ushort
+    + leftChildIndex : short
+    + controlStartIndex : ushort
+    + controlCount : byte
+    + ControlBitRangeNode(endOffset:ushort)
+}
+InputControl <|-- InputDevice
+InputDevice --> "description" InputDeviceDescription
+InputDevice --> "allControls<InputControl>" "ReadOnlyArray`1"
+InputDevice --> "valueType" Type
+InputDevice --> "all<InputDevice>" "ReadOnlyArray`1"
+InputDevice +-- DeviceFlags
+InputDevice +-- ControlBitRangeNode
+@enduml

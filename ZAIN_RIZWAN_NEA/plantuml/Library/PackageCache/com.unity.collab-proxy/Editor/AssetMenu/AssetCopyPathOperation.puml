@@ -1,0 +1,5 @@
+@startuml
+class AssetCopyPathOperation {
+}
+IAssetMenuCopyPathOperation <|-- AssetCopyPathOperation
+@enduml

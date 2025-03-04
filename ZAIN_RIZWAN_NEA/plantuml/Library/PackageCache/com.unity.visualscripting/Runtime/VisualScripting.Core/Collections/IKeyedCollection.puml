@@ -1,0 +1,7 @@
+@startuml
+interface "IKeyedCollection`2"<TKey,TItem> {
+}
+class "ICollection`1"<T> {
+}
+"ICollection`1" "<TItem>" <|-- "IKeyedCollection`2"
+@enduml

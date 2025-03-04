@@ -1,0 +1,13 @@
+@startuml
+class CanvasGroupTests {
+    + TestSetup() : void
+    + TearDown() : void
+    + EnabledCanvasGroupEffectSelfAndChildrenAlpha() : void
+    + EnabledCanvasGroupOnACanvasEffectAllChildrenAlpha() : void
+    + EnabledCanvasGroupOnLeafChildEffectOnlyThatChild() : void
+    + EnabledCanvasGroupOnCanvasAndChildMultipleAlphaValuesCorrectly() : void
+    + EnabledCanvasGroupOnCanvasAndChildWithChildIgnoringParentGroupMultipleAlphaValuesCorrectly() : void
+    + EnabledCanvasGroupOnCanvasAndChildrenWithAllChildrenIgnoringParentGroupMultipleAlphaValuesCorrectly() : void
+    + EnabledCanvasGroupOnNestedCanvasIgnoringParentGroupMultipleAlphaValuesCorrectly() : void
+}
+@enduml

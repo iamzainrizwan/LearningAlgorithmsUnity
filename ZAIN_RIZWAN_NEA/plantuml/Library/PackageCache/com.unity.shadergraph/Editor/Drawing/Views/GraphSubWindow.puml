@@ -1,0 +1,29 @@
+@startuml
+interface ISelectionProvider {
+}
+class GraphSubWindow {
+    + <<virtual>> layoutKey : string <<get>>
+    + <<virtual>> styleName : string <<get>>
+    + <<virtual>> UxmlName : string <<get>>
+    + <<virtual>> elementName : string <<get>>
+    + <<virtual>> windowTitle : string <<get>>
+    + <<override>> title : string <<get>> <<set>>
+    + subTitle : string <<get>> <<set>>
+    + isWindowed : bool <<get>> <<set>>
+    + ShowWindow() : void
+    + HideWindow() : void
+    + ClampToParentLayout(parentLayout:Rect) : void
+    + OnStartResize() : void
+    + OnResized() : void
+    + DeserializeLayout() : void
+    + CanResizePastParentBounds() : bool
+    + <<virtual>> Dispose() : void
+}
+class "List`1"<T> {
+}
+GraphElement <|-- GraphSubWindow
+ISGResizable <|-- GraphSubWindow
+GraphSubWindow --> "ParentView" VisualElement
+GraphSubWindow --> "selection<ISelectable>" "List`1"
+GraphSubWindow --> "contentContainer" VisualElement
+@enduml

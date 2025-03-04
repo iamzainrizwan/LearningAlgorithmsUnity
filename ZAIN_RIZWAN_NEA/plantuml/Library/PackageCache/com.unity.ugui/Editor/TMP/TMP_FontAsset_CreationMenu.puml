@@ -1,0 +1,4 @@
+@startuml
+class TMP_FontAsset_CreationMenu <<static>> {
+}
+@enduml

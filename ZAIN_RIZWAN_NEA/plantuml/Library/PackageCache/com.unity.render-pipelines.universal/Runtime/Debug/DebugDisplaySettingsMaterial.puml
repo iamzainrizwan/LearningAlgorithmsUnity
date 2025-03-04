@@ -1,0 +1,79 @@
+@startuml
+class DebugDisplaySettingsMaterial {
+    + albedoMinLuminance : float <<get>> <<set>> = 0.01f
+    + albedoMaxLuminance : float <<get>> <<set>> = 0.90f
+    + albedoHueTolerance : float <<get>> <<set>>
+    + albedoSaturationTolerance : float <<get>> <<set>>
+    + metallicMinValue : float <<get>> <<set>> = 0.0f
+    + metallicMaxValue : float <<get>> <<set>> = 0.9f
+    + renderingLayersSelectedLight : bool <<get>> <<set>> = false
+    + selectedLightShadowLayerMask : bool <<get>> <<set>> = false
+    + renderingLayerMask : uint <<get>> <<set>> = 0
+    + GetDebugLightLayersMask() : uint
+    + AreAnySettingsActive : bool <<get>>
+    + IsPostProcessingAllowed : bool <<get>>
+    + IsLightingActive : bool <<get>>
+}
+enum AlbedoDebugValidationPreset {
+    DefaultLuminance,
+    BlackAcrylicPaint,
+    DarkSoil,
+    WornAsphalt,
+    DryClaySoil,
+    GreenGrass,
+    OldConcrete,
+    RedClayTile,
+    DrySand,
+    NewConcrete,
+    WhiteAcrylicPaint,
+    FreshSnow,
+    BlueSky,
+    Foliage,
+    Custom,
+}
+struct AlbedoDebugValidationPresetData {
+    + name : string
+    + minLuminance : float
+    + maxLuminance : float
+}
+class Strings <<static>> {
+    + <<const>> AlbedoSettingsContainerName : string = "Albedo Settings"
+    + <<const>> MetallicSettingsContainerName : string = "Metallic Settings"
+    + <<const>> RenderingLayerMasksSettingsContainerName : string = "Rendering Layer Masks Settings"
+}
+class WidgetFactory <<static>> {
+}
+class SettingsPanel {
+    + SettingsPanel(data:DebugDisplaySettingsMaterial)
+}
+class "DebugDisplaySettingsPanel`1"<T> {
+}
+IDebugDisplaySettingsData <|-- DebugDisplaySettingsMaterial
+DebugDisplaySettingsMaterial --> "albedoValidationPreset" AlbedoDebugValidationPreset
+DebugDisplaySettingsMaterial o-> "albedoCompareColor" Color
+DebugDisplaySettingsMaterial --> "materialValidationMode" DebugMaterialValidationMode
+DebugDisplaySettingsMaterial --> "materialDebugMode" DebugMaterialMode
+DebugDisplaySettingsMaterial --> "vertexAttributeDebugMode" DebugVertexAttributeMode
+DebugDisplaySettingsMaterial +-- AlbedoDebugValidationPreset
+DebugDisplaySettingsMaterial +-- AlbedoDebugValidationPresetData
+AlbedoDebugValidationPresetData --> "color" Color
+DebugDisplaySettingsMaterial +-- Strings
+Strings o-> "MaterialOverride" NameAndTooltip
+Strings o-> "VertexAttribute" NameAndTooltip
+Strings o-> "MaterialValidationMode" NameAndTooltip
+Strings o-> "RenderingLayersSelectedLight" NameAndTooltip
+Strings o-> "SelectedLightShadowLayerMask" NameAndTooltip
+Strings o-> "RenderingLayerColors" NameAndTooltip
+Strings o-> "FilterRenderingLayerMask" NameAndTooltip
+Strings o-> "ValidationPreset" NameAndTooltip
+Strings o-> "AlbedoCustomColor" NameAndTooltip
+Strings o-> "AlbedoMinLuminance" NameAndTooltip
+Strings o-> "AlbedoMaxLuminance" NameAndTooltip
+Strings o-> "AlbedoHueTolerance" NameAndTooltip
+Strings o-> "AlbedoSaturationTolerance" NameAndTooltip
+Strings o-> "MetallicMinValue" NameAndTooltip
+Strings o-> "MetallicMaxValue" NameAndTooltip
+DebugDisplaySettingsMaterial +-- WidgetFactory
+DebugDisplaySettingsMaterial +-- SettingsPanel
+"DebugDisplaySettingsPanel`1" "<DebugDisplaySettingsMaterial>" <|-- SettingsPanel
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class PolarCoordinatesNode {
+    + PolarCoordinatesNode()
+}
+CodeFunctionNode <|-- PolarCoordinatesNode
+@enduml

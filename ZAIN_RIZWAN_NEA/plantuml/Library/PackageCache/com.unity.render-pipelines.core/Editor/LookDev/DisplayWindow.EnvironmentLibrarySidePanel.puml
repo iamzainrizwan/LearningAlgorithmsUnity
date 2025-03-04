@@ -1,0 +1,25 @@
+@startuml
+interface IEnvironmentDisplayer {
+}
+class DisplayWindow <<partial>> {
+}
+class Style <<static>> <<partial>> {
+}
+class "Action`1"<T> {
+}
+class DraggingContext {
+    + <<readonly>> draggedIndex : int
+    + DraggingContext(windowContent:VisualElement, draggedElement:Image, draggedIndex:int, worldPosition:Vector2)
+    + UpdateCursorFollower(mouseWorldPosition:Vector2) : void
+    + Dispose() : void
+}
+class EnvironmentPreviewDragger {
+    + EnvironmentPreviewDragger(window:DisplayWindow, dropArea:VisualElement)
+}
+IEnvironmentDisplayer <|-- DisplayWindow
+DisplayWindow +-- Style
+DisplayWindow +-- DraggingContext
+IDisposable <|-- DraggingContext
+DisplayWindow +-- EnvironmentPreviewDragger
+Manipulator <|-- EnvironmentPreviewDragger
+@enduml

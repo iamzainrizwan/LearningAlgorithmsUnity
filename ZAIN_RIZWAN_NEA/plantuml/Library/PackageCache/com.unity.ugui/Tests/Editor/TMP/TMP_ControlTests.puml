@@ -1,0 +1,6 @@
+@startuml
+class TMP_ControlTests {
+    + Setup() : void
+    + TMPControlCreationAndUndoTest(menuItem:string) : void
+}
+@enduml

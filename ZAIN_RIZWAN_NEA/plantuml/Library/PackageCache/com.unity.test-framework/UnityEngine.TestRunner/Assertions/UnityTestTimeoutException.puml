@@ -1,0 +1,8 @@
+@startuml
+class UnityTestTimeoutException {
+    + UnityTestTimeoutException(timeout:int)
+    + <<override>> StackTrace : string <<get>>
+}
+ResultStateException <|-- UnityTestTimeoutException
+UnityTestTimeoutException --> "ResultState" ResultState
+@enduml

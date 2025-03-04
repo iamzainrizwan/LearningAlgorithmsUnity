@@ -1,0 +1,29 @@
+@startuml
+struct GPUSort {
+}
+struct Args {
+    + count : uint
+    + maxDepth : uint
+}
+struct RenderGraphResources {
+    + {static} Create(count:int, renderGraph:RenderGraph, builder:RenderGraphBuilder) : RenderGraphResources
+}
+struct SupportResources {
+    + {static} Load(renderGraphResources:RenderGraphResources) : SupportResources
+    + Dispose() : void
+}
+struct SystemResources {
+}
+GPUSort +-- Args
+Args --> "inputKeys" GraphicsBuffer
+Args --> "inputValues" GraphicsBuffer
+Args --> "resources" SupportResources
+GPUSort +-- RenderGraphResources
+RenderGraphResources --> "sortBufferKeys" BufferHandle
+RenderGraphResources --> "sortBufferValues" BufferHandle
+GPUSort +-- SupportResources
+SupportResources --> "sortBufferKeys" GraphicsBuffer
+SupportResources --> "sortBufferValues" GraphicsBuffer
+GPUSort +-- SystemResources
+SystemResources --> "computeAsset" ComputeShader
+@enduml

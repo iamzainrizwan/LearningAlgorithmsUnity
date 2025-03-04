@@ -1,0 +1,6 @@
+@startuml
+class ReloadModifiedScenesTask {
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- ReloadModifiedScenesTask
+@enduml

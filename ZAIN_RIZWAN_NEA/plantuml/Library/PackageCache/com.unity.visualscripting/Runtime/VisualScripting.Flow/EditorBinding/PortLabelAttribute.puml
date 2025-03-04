@@ -1,0 +1,8 @@
+@startuml
+class PortLabelAttribute {
+    + PortLabelAttribute(label:string)
+    + label : string <<get>>
+    + hidden : bool <<get>> <<set>>
+}
+Attribute <|-- PortLabelAttribute
+@enduml

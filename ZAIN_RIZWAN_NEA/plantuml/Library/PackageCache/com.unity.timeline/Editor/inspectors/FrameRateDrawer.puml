@@ -1,0 +1,7 @@
+@startuml
+class FrameRateDrawer {
+    + <<override>> OnGUI(position:Rect, property:SerializedProperty, label:GUIContent) : void
+    + {static} FrameRateField(frameRate:double, label:GUIContent, position:Rect, isValid:bool) : double
+}
+PropertyDrawer <|-- FrameRateDrawer
+@enduml

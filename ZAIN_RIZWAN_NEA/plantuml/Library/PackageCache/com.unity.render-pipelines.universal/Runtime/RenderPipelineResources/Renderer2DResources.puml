@@ -1,0 +1,6 @@
+@startuml
+class Renderer2DResources {
+    + version : int <<get>>
+}
+IRenderPipelineResources <|-- Renderer2DResources
+@enduml

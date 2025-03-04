@@ -1,0 +1,7 @@
+@startuml
+class AutomaticReflectedInspector <<sealed>> {
+    + AutomaticReflectedInspector(metadata:Metadata)
+    + <<override>> Initialize() : void
+}
+ReflectedInspector <|-- AutomaticReflectedInspector
+@enduml

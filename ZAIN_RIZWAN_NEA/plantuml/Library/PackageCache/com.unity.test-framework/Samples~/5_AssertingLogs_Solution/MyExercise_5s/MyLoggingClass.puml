@@ -1,0 +1,6 @@
+@startuml
+class MyLoggingClass {
+    + DoSomething() : void
+    + DoSomethingElse() : void
+}
+@enduml

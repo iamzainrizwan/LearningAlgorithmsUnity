@@ -1,0 +1,28 @@
+@startuml
+class PackageManagement <<static>> {
+    + {static} OpenPackageManager(packageName:string) : void
+    + {static} IsDirectDependency(packageId:string) : bool
+    + {static} IsInstalled(packageId:string) : bool
+    + {static} IsLinkedLocallyOrEmbeddedOrViaGit(packageId:string) : bool
+    + {static} GetInstalledPackage(packageId:string) : UnityEditor.PackageManager.PackageInfo
+    + {static} RemoveLocallyLinkedOrEmbeddedOrViaGitPackagesFromList(installCandidates:IEnumerable<string>) : IEnumerable<string>
+    + {static} IsAnyPackageInstalled(packageIds:string[]) : bool
+    + {static} InstallPackage(packageId:string, onInstalled:Action<bool>) : void
+    + {static} RegisterToExistingInstaller(onInstalled:Action<bool>) : void
+    + {static} InstallPackages(packageIds:IEnumerable<string>, onAllInstalled:Action<bool>, packageIdsToRemove:IEnumerable<string>) : void
+    + {static} IsAnyMultiplayerPackageInstalled() : bool
+    + {static} IsInstallationFinished() : bool
+}
+class VersionChecker {
+    + VersionChecker(packageID:string)
+    +  <<event>> OnVersionFound : Action<UnityEditor.PackageManager.PackageInfo> 
+}
+class PackageInstaller {
+    +  <<event>> OnInstalled : Action<bool> 
+    + PackageInstaller(packageId:string)
+    + PackageInstaller(packageIds:IEnumerable<string>, packageIdsToRemove:IEnumerable<string>)
+    + IsCompleted() : bool
+}
+PackageManagement +-- VersionChecker
+PackageManagement +-- PackageInstaller
+@enduml

@@ -1,0 +1,36 @@
+@startuml
+class BlockFields <<static>> {
+}
+struct VertexDescription {
+    + {static} name : string = "VertexDescription"
+}
+struct SurfaceDescription {
+    + {static} name : string = "SurfaceDescription"
+}
+struct SurfaceDescriptionLegacy {
+    + {static} name : string = "SurfaceDescription"
+}
+BlockFields +-- VertexDescription
+VertexDescription o-> "Position" BlockFieldDescriptor
+VertexDescription o-> "Normal" BlockFieldDescriptor
+VertexDescription o-> "Tangent" BlockFieldDescriptor
+BlockFields +-- SurfaceDescription
+SurfaceDescription o-> "BaseColor" BlockFieldDescriptor
+SurfaceDescription o-> "NormalTS" BlockFieldDescriptor
+SurfaceDescription o-> "NormalOS" BlockFieldDescriptor
+SurfaceDescription o-> "NormalWS" BlockFieldDescriptor
+SurfaceDescription o-> "Metallic" BlockFieldDescriptor
+SurfaceDescription o-> "Specular" BlockFieldDescriptor
+SurfaceDescription o-> "Smoothness" BlockFieldDescriptor
+SurfaceDescription o-> "Occlusion" BlockFieldDescriptor
+SurfaceDescription o-> "Emission" BlockFieldDescriptor
+SurfaceDescription o-> "Alpha" BlockFieldDescriptor
+SurfaceDescription o-> "AlphaClipThreshold" BlockFieldDescriptor
+SurfaceDescription o-> "CoatMask" BlockFieldDescriptor
+SurfaceDescription o-> "CoatSmoothness" BlockFieldDescriptor
+SurfaceDescription o-> "MapRightTopBack" BlockFieldDescriptor
+SurfaceDescription o-> "MapLeftBottomFront" BlockFieldDescriptor
+SurfaceDescription o-> "AbsorptionStrength" BlockFieldDescriptor
+BlockFields +-- SurfaceDescriptionLegacy
+SurfaceDescriptionLegacy o-> "SpriteColor" BlockFieldDescriptor
+@enduml

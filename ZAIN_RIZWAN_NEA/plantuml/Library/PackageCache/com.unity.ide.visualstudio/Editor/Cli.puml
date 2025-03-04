@@ -1,0 +1,4 @@
+@startuml
+class Cli <<static>> {
+}
+@enduml

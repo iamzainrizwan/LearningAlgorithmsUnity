@@ -1,0 +1,18 @@
+@startuml
+abstract class InputProcessor {
+    + {abstract} ProcessAsObject(value:object, control:InputControl) : object
+    + {abstract} <<unsafe>> Process(buffer:void*, bufferSize:int, control:InputControl) : void
+}
+abstract class "InputProcessor`1"<TValue> {
+    + {abstract} Process(value:TValue, control:InputControl) : TValue
+    + <<override>> ProcessAsObject(value:object, control:InputControl) : object
+    + <<override>> <<unsafe>> Process(buffer:void*, bufferSize:int, control:InputControl) : void
+}
+enum CachingPolicy {
+    CacheResult= 0,
+    EvaluateOnEveryRead= 1,
+}
+InputProcessor --> "cachingPolicy" CachingPolicy
+InputProcessor <|-- "InputProcessor`1"
+InputProcessor +-- CachingPolicy
+@enduml

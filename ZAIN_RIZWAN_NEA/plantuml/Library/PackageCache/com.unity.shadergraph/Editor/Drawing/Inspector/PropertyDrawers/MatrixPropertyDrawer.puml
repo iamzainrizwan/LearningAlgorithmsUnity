@@ -1,0 +1,14 @@
+@startuml
+class MatrixPropertyDrawer {
+    + DrawProperty(propertyInfo:PropertyInfo, actualObject:object, attribute:InspectableAttribute) : VisualElement
+}
+enum MatrixDimensions {
+    Two,
+    Three,
+    Four,
+}
+IPropertyDrawer <|-- MatrixPropertyDrawer
+MatrixPropertyDrawer --> "dimension" MatrixDimensions
+MatrixPropertyDrawer --> "inspectorUpdateDelegate" Action
+MatrixPropertyDrawer +-- MatrixDimensions
+@enduml

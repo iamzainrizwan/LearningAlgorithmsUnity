@@ -1,0 +1,7 @@
+@startuml
+class AddDeleteItemModeReplace {
+    + InsertItemsAtTime(itemsGroups:IEnumerable<ItemsPerTrack>, requestedTime:double) : void
+    + RemoveItems(itemsGroups:IEnumerable<ItemsPerTrack>) : void
+}
+IAddDeleteItemMode <|-- AddDeleteItemModeReplace
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+class ClipModifier <<static>> {
+    + {static} Delete(timeline:TimelineAsset, clip:TimelineClip) : bool
+    + {static} Tile(clips:IEnumerable<TimelineClip>) : bool
+    + {static} TrimStart(clips:IEnumerable<TimelineClip>, trimTime:double) : bool
+    + {static} TrimStart(clip:TimelineClip, trimTime:double) : bool
+    + {static} TrimEnd(clips:IEnumerable<TimelineClip>, trimTime:double) : bool
+    + {static} TrimEnd(clip:TimelineClip, trimTime:double) : bool
+    + {static} MatchDuration(clips:IEnumerable<TimelineClip>) : bool
+    + {static} Split(clips:IEnumerable<TimelineClip>, splitTime:double, director:PlayableDirector) : bool
+    + {static} SetStart(clip:TimelineClip, time:double, affectTimeScale:bool) : void
+    + {static} SetEnd(clip:TimelineClip, time:double, affectTimeScale:bool) : void
+    + {static} ResetEditing(clips:IEnumerable<TimelineClip>) : bool
+    + {static} ResetEditing(clip:TimelineClip) : bool
+    + {static} MatchContent(clips:IEnumerable<TimelineClip>) : bool
+    + {static} MatchContent(clip:TimelineClip) : bool
+    + {static} TrimClipWithEditMode(clip:TimelineClip, edge:TrimEdge, time:double) : void
+    + {static} CompleteLastLoop(clips:IEnumerable<TimelineClip>) : bool
+    + {static} CompleteLastLoop(clip:TimelineClip) : void
+    + {static} TrimLastLoop(clips:IEnumerable<TimelineClip>) : bool
+    + {static} TrimLastLoop(clip:TimelineClip) : void
+    + {static} DoubleSpeed(clips:IEnumerable<TimelineClip>) : bool
+    + {static} HalfSpeed(clips:IEnumerable<TimelineClip>) : bool
+    + {static} ResetSpeed(clips:IEnumerable<TimelineClip>) : bool
+}
+@enduml

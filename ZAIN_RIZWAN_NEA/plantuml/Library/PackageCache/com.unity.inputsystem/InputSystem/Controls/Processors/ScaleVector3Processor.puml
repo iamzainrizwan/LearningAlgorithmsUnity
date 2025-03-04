@@ -1,0 +1,12 @@
+@startuml
+class ScaleVector3Processor {
+    + x : float = 1
+    + y : float = 1
+    + z : float = 1
+    + <<override>> Process(value:Vector3, control:InputControl) : Vector3
+    + <<override>> ToString() : string
+}
+class "InputProcessor`1"<T> {
+}
+"InputProcessor`1" "<Vector3>" <|-- ScaleVector3Processor
+@enduml

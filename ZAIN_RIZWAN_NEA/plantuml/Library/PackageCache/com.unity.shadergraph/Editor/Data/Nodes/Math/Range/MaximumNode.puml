@@ -1,0 +1,6 @@
+@startuml
+class MaximumNode {
+    + MaximumNode()
+}
+CodeFunctionNode <|-- MaximumNode
+@enduml

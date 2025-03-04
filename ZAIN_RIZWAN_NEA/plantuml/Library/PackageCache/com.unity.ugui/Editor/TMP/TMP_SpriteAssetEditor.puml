@@ -1,0 +1,15 @@
+@startuml
+class TMP_SpriteAssetEditor {
+    + OnEnable() : void
+    + <<override>> OnInspectorGUI() : void
+}
+struct UI_PanelState {
+    + {static} spriteAssetFaceInfoPanel : bool = true
+    + {static} spriteAtlasInfoPanel : bool = true
+    + {static} fallbackSpriteAssetPanel : bool = true
+    + {static} spriteCharacterTablePanel : bool
+    + {static} spriteGlyphTablePanel : bool
+}
+Editor <|-- TMP_SpriteAssetEditor
+TMP_SpriteAssetEditor +-- UI_PanelState
+@enduml

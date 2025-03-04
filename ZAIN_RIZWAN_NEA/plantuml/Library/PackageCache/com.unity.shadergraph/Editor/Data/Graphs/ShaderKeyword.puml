@@ -1,0 +1,24 @@
+@startuml
+class ShaderKeyword {
+    + <<const>> kVariantLimitWarning : string = "Graph is generating too many variants. Either delete Keywords, reduce Keyword variants or increase the Shader Variant Limit in Preferences > Shader Graph."
+    + ShaderKeyword()
+    + ShaderKeyword(keywordType:KeywordType)
+    + {static} CreateBuiltInKeyword(descriptor:KeywordDescriptor) : ShaderKeyword
+    + value : int <<get>> <<set>>
+    + isBuiltIn : bool <<get>> <<set>>
+    + <<override>> GetOldDefaultReferenceName() : string
+    + AppendPropertyBlockStrings(builder:ShaderStringBuilder) : void
+    + AppendKeywordDeclarationStrings(builder:ShaderStringBuilder) : void
+    + GetKeywordPreviewDeclarationString() : string
+    + <<override>> latestVersion : int <<get>>
+    + <<override>> OnAfterDeserialize(json:string) : void
+}
+class "List`1"<T> {
+}
+ShaderInput <|-- ShaderKeyword
+ShaderKeyword --> "keywordType" KeywordType
+ShaderKeyword --> "keywordDefinition" KeywordDefinition
+ShaderKeyword --> "keywordScope" KeywordScope
+ShaderKeyword --> "keywordStages" KeywordShaderStage
+ShaderKeyword --> "entries<KeywordEntry>" "List`1"
+@enduml

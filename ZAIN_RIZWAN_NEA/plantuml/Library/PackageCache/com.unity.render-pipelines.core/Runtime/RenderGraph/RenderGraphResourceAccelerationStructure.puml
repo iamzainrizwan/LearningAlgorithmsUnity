@@ -1,0 +1,15 @@
+@startuml
+struct RayTracingAccelerationStructureHandle {
+    + IsValid() : bool
+}
+struct RayTracingAccelerationStructureDesc {
+    + name : string
+}
+class RayTracingAccelerationStructureResource {
+    + <<override>> GetName() : string
+}
+class "RenderGraphResource`2"<T1,T2> {
+}
+RayTracingAccelerationStructureHandle --> "nullHandle" RayTracingAccelerationStructureHandle
+"RenderGraphResource`2" "<RayTracingAccelerationStructureDesc,RayTracingAccelerationStructure>" <|-- RayTracingAccelerationStructureResource
+@enduml

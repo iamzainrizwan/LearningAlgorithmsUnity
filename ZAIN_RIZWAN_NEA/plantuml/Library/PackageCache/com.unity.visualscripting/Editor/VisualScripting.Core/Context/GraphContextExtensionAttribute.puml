@@ -1,0 +1,8 @@
+@startuml
+class GraphContextExtensionAttribute <<sealed>> {
+    + GraphContextExtensionAttribute(type:Type)
+}
+Attribute <|-- GraphContextExtensionAttribute
+IDecoratorAttribute <|-- GraphContextExtensionAttribute
+GraphContextExtensionAttribute --> "type" Type
+@enduml

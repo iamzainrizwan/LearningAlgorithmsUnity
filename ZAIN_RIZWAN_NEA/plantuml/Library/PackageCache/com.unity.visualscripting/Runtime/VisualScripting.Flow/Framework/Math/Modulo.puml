@@ -1,0 +1,10 @@
+@startuml
+abstract class "Modulo`1"<T> {
+    + {abstract} Operation(divident:T, divisor:T) : T
+    + Operation(flow:Flow) : T
+}
+Unit <|-- "Modulo`1"
+"Modulo`1" --> "dividend" ValueInput
+"Modulo`1" --> "divisor" ValueInput
+"Modulo`1" --> "remainder" ValueOutput
+@enduml

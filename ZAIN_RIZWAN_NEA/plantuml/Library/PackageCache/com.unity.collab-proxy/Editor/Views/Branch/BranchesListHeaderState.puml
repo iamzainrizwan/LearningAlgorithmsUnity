@@ -1,0 +1,15 @@
+@startuml
+enum BranchesListColumn {
+    Name,
+    Repository,
+    CreatedBy,
+    CreationDate,
+    Comment,
+    Branch,
+    Guid,
+}
+class BranchesListHeaderState {
+}
+MultiColumnHeaderState <|-- BranchesListHeaderState
+ISerializationCallbackReceiver <|-- BranchesListHeaderState
+@enduml

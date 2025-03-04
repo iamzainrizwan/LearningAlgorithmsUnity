@@ -1,0 +1,10 @@
+@startuml
+class SamplesFreeCamera {
+    + m_LookSpeedController : float = 120f
+    + m_LookSpeedMouse : float = 4.0f
+    + m_MoveSpeed : float = 10.0f
+    + m_MoveSpeedIncrement : float = 2.5f
+    + m_Turbo : float = 10.0f
+}
+MonoBehaviour <|-- SamplesFreeCamera
+@enduml

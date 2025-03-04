@@ -1,0 +1,22 @@
+@startuml
+class X86 <<unsafe>> <<static>> <<partial>> {
+}
+class Bmi1 <<static>> {
+    + {static} IsBmi1Supported : bool <<get>>
+    + {static} andn_u32(a:uint, b:uint) : uint
+    + {static} andn_u64(a:ulong, b:ulong) : ulong
+    + {static} bextr_u32(a:uint, start:uint, len:uint) : uint
+    + {static} bextr_u64(a:ulong, start:uint, len:uint) : ulong
+    + {static} bextr2_u32(a:uint, control:uint) : uint
+    + {static} bextr2_u64(a:ulong, control:ulong) : ulong
+    + {static} blsi_u32(a:uint) : uint
+    + {static} blsi_u64(a:ulong) : ulong
+    + {static} blsmsk_u32(a:uint) : uint
+    + {static} blsmsk_u64(a:ulong) : ulong
+    + {static} blsr_u32(a:uint) : uint
+    + {static} blsr_u64(a:ulong) : ulong
+    + {static} tzcnt_u32(a:uint) : uint
+    + {static} tzcnt_u64(a:ulong) : ulong
+}
+X86 +-- Bmi1
+@enduml

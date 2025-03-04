@@ -1,0 +1,5 @@
+@startuml
+interface IGraphNester {
+}
+IGraphParent <|-- IGraphNester
+@enduml

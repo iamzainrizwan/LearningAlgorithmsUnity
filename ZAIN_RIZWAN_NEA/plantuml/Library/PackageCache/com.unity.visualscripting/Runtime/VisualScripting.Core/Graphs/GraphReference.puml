@@ -1,0 +1,22 @@
+@startuml
+class GraphReference <<sealed>> {
+    + {static} New(root:IGraphRoot, ensureValid:bool) : GraphReference
+    + {static} New(root:IGraphRoot, parentElements:IEnumerable<IGraphParentElement>, ensureValid:bool) : GraphReference
+    + {static} New(rootObject:UnityObject, parentElementGuids:IEnumerable<Guid>, ensureValid:bool) : GraphReference
+    + <<override>> CopyFrom(other:GraphPointer) : void
+    + Clone() : GraphReference
+    + <<override>> AsReference() : GraphReference
+    + ToStackPooled() : GraphStack
+    + CreateGraphData() : void
+    + FreeGraphData() : void
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + ParentReference(ensureValid:bool) : GraphReference
+    + ChildReference(parentElement:IGraphParentElement, ensureValid:bool, maxRecursionDepth:int?) : GraphReference
+    + Revalidate(ensureValid:bool) : GraphReference
+    + GetBreadcrumbs() : IEnumerable<GraphReference>
+    + {static} Intern(pointer:GraphPointer) : GraphReference
+    + {static} FreeInvalidInterns() : void
+}
+GraphPointer <|-- GraphReference
+@enduml

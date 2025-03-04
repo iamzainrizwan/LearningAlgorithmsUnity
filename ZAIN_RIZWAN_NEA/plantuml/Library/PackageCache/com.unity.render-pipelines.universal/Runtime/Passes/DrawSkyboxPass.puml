@@ -1,0 +1,10 @@
+@startuml
+class DrawSkyboxPass {
+    + DrawSkyboxPass(evt:RenderPassEvent)
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+}
+class PassData {
+}
+ScriptableRenderPass <|-- DrawSkyboxPass
+DrawSkyboxPass +-- PassData
+@enduml

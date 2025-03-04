@@ -1,0 +1,12 @@
+@startuml
+abstract class GeometryNode {
+    + GeometryNode()
+    + <<override>> hasPreview : bool <<get>>
+}
+class "List`1"<T> {
+}
+AbstractMaterialNode <|-- GeometryNode
+GeometryNode --> "validSpaces<CoordinateSpace>" "List`1"
+GeometryNode --> "spacePopup" PopupList
+GeometryNode --> "space" CoordinateSpace
+@enduml

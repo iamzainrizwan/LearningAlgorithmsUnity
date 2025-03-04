@@ -1,0 +1,41 @@
+@startuml
+struct PenState {
+    + pressure : float
+    + twist : float
+    + buttons : ushort
+    + WithButton(button:PenButton, state:bool) : PenState
+}
+enum PenButton {
+    Tip,
+    Eraser,
+    BarrelFirst,
+    BarrelSecond,
+    InRange,
+    BarrelThird,
+    BarrelFourth,
+    Barrel1= BarrelFirst,
+    Barrel2= BarrelSecond,
+    Barrel3= BarrelThird,
+    Barrel4= BarrelFourth,
+}
+class Pen {
+    + <<override>> MakeCurrent() : void
+}
+IInputStateTypeInfo <|-- PenState
+PenState --> "Format" FourCC
+PenState --> "position" Vector2
+PenState --> "delta" Vector2
+PenState --> "tilt" Vector2
+PenState --> "format" FourCC
+Pointer <|-- Pen
+Pen --> "tip" ButtonControl
+Pen --> "eraser" ButtonControl
+Pen --> "firstBarrelButton" ButtonControl
+Pen --> "secondBarrelButton" ButtonControl
+Pen --> "thirdBarrelButton" ButtonControl
+Pen --> "fourthBarrelButton" ButtonControl
+Pen --> "inRange" ButtonControl
+Pen --> "tilt" Vector2Control
+Pen --> "twist" AxisControl
+Pen --> "current" Pen
+@enduml

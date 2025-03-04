@@ -1,0 +1,9 @@
+@startuml
+class ValueOutputWidget {
+    + ValueOutputWidget(canvas:FlowCanvas, port:ValueOutput)
+}
+class "UnitOutputPortWidget`1"<T> {
+}
+"UnitOutputPortWidget`1" "<ValueOutput>" <|-- ValueOutputWidget
+ValueOutputWidget --> "color" Color
+@enduml

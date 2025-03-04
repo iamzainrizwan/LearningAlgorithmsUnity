@@ -1,0 +1,6 @@
+@startuml
+class OnCancel <<sealed>> {
+}
+GenericGuiEventUnit <|-- OnCancel
+OnCancel --> "MessageListenerType" Type
+@enduml

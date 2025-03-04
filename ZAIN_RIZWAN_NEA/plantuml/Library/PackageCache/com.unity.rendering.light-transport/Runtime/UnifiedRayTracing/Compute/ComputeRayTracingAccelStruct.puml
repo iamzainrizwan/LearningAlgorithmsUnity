@@ -1,0 +1,37 @@
+@startuml
+class ComputeRayTracingAccelStruct {
+    + Dispose() : void
+    + AddInstance(meshInstance:MeshInstanceDesc) : int
+    + RemoveInstance(instanceHandle:int) : void
+    + ClearInstances() : void
+    + UpdateInstanceTransform(instanceHandle:int, localToWorldMatrix:Matrix4x4) : void
+    + UpdateInstanceID(instanceHandle:int, instanceID:uint) : void
+    + UpdateInstanceMask(instanceHandle:int, mask:uint) : void
+    + Build(cmd:CommandBuffer, scratchBuffer:GraphicsBuffer) : void
+    + GetBuildScratchBufferRequiredSizeInBytes() : ulong
+    + Bind(cmd:CommandBuffer, name:string, shader:IRayTracingShader) : void
+}
+struct Triangle {
+}
+class RadeonRaysInstance <<sealed>> {
+    + instanceMask : uint
+    + triangleCullingEnabled : bool
+    + invertTriangleCulling : bool
+    + userInstanceID : uint
+}
+class MeshBlas <<sealed>> {
+    + bvhBuilt : bool = false
+    + IncRef() : void
+    + DecRef() : void
+    + IsUnreferenced() : bool
+}
+IRayTracingAccelStruct <|-- ComputeRayTracingAccelStruct
+ComputeRayTracingAccelStruct +-- Triangle
+Triangle --> "v0" float3
+Triangle --> "v1" float3
+Triangle --> "v2" float3
+ComputeRayTracingAccelStruct +-- RadeonRaysInstance
+RadeonRaysInstance --> "blas" MeshBlas
+ComputeRayTracingAccelStruct +-- MeshBlas
+MeshBlas --> "buildInfo" MeshBuildInfo
+@enduml

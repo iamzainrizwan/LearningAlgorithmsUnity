@@ -1,0 +1,9 @@
+@startuml
+class StrictCheckCommand {
+    + StrictCheckCommand(innerCommand:TestCommand)
+    + <<override>> Execute(context:ITestExecutionContext) : TestResult
+    + ExecuteEnumerable(context:ITestExecutionContext) : IEnumerable
+}
+DelegatingTestCommand <|-- StrictCheckCommand
+IEnumerableTestMethodCommand <|-- StrictCheckCommand
+@enduml

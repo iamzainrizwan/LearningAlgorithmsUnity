@@ -1,0 +1,20 @@
+@startuml
+class UniversalRenderPipelineSerializedLight {
+    + Update() : void
+    + Apply() : void
+    + UniversalRenderPipelineSerializedLight(serializedObject:SerializedObject, settings:LightEditor.Settings)
+}
+ISerializedLight <|-- UniversalRenderPipelineSerializedLight
+UniversalRenderPipelineSerializedLight --> "serializedObject" SerializedObject
+UniversalRenderPipelineSerializedLight --> "serializedAdditionalDataObject" SerializedObject
+UniversalRenderPipelineSerializedLight --> "additionalLightData" UniversalAdditionalLightData
+UniversalRenderPipelineSerializedLight --> "intensity" SerializedProperty
+UniversalRenderPipelineSerializedLight --> "useAdditionalDataProp" SerializedProperty
+UniversalRenderPipelineSerializedLight --> "additionalLightsShadowResolutionTierProp" SerializedProperty
+UniversalRenderPipelineSerializedLight --> "softShadowQualityProp" SerializedProperty
+UniversalRenderPipelineSerializedLight --> "lightCookieSizeProp" SerializedProperty
+UniversalRenderPipelineSerializedLight --> "lightCookieOffsetProp" SerializedProperty
+UniversalRenderPipelineSerializedLight --> "renderingLayers" SerializedProperty
+UniversalRenderPipelineSerializedLight --> "customShadowLayers" SerializedProperty
+UniversalRenderPipelineSerializedLight --> "shadowRenderingLayers" SerializedProperty
+@enduml

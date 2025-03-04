@@ -1,0 +1,7 @@
+@startuml
+class angletoother {
+}
+MonoBehaviour <|-- angletoother
+angletoother --> "tf1" Transform
+angletoother --> "tf2" Transform
+@enduml

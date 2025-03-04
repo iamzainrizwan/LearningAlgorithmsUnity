@@ -1,0 +1,20 @@
+@startuml
+class BasicPlayableBehaviour {
+    + <<virtual>> duration : double <<get>>
+    + <<virtual>> OnGraphStart(playable:Playable) : void
+    + <<virtual>> OnGraphStop(playable:Playable) : void
+    + <<virtual>> OnPlayableCreate(playable:Playable) : void
+    + <<virtual>> OnPlayableDestroy(playable:Playable) : void
+    + <<virtual>> OnBehaviourPlay(playable:Playable, info:FrameData) : void
+    + <<virtual>> OnBehaviourPause(playable:Playable, info:FrameData) : void
+    + <<virtual>> PrepareFrame(playable:Playable, info:FrameData) : void
+    + <<virtual>> ProcessFrame(playable:Playable, info:FrameData, playerData:object) : void
+    + <<virtual>> CreatePlayable(graph:PlayableGraph, owner:GameObject) : Playable
+}
+class "IEnumerable`1"<T> {
+}
+ScriptableObject <|-- BasicPlayableBehaviour
+IPlayableAsset <|-- BasicPlayableBehaviour
+IPlayableBehaviour <|-- BasicPlayableBehaviour
+BasicPlayableBehaviour --> "outputs<PlayableBinding>" "IEnumerable`1"
+@enduml

@@ -1,0 +1,65 @@
+@startuml
+enum CurveChangeType {
+    None,
+    CurveModified,
+    CurveAddedOrRemoved,
+}
+abstract class CurveDataSource {
+    + {static} Create(trackGUI:IRowGUI) : CurveDataSource
+    + {static} Create(clipGUI:TimelineClipGUI) : CurveDataSource
+    + id : int <<get>>
+    + {abstract} start : float <<get>>
+    + {abstract} timeScale : float <<get>>
+    + {abstract} groupingName : string <<get>>
+    + <<virtual>> ApplyCurveChanges(updatedCurves:IEnumerable<CurveWrapper>) : void
+    + <<virtual>> GetClipVersion() : UInt64
+    + <<virtual>> UpdateExternalChanges(curveVersion:UInt64) : CurveChangeType
+    + <<virtual>> ModifyPropertyDisplayName(path:string, propertyName:string) : string
+    + <<virtual>> RemoveCurves(bindings:IEnumerable<EditorCurveBinding>) : void
+    + GetBackgroundRect(state:WindowState) : Rect
+    + GenerateWrappers(bindings:IEnumerable<EditorCurveBinding>) : List<CurveWrapper>
+}
+class ClipAnimationCurveDataSource {
+    + ClipAnimationCurveDataSource(clipGUI:TimelineClipGUI)
+    + <<override>> start : float <<get>>
+    + <<override>> timeScale : float <<get>>
+    + <<override>> groupingName : string <<get>>
+    + <<override>> ModifyPropertyDisplayName(path:string, propertyName:string) : string
+}
+class ClipParametersCurveDataSource {
+    + ClipParametersCurveDataSource(clipGUI:TimelineClipGUI)
+    + <<override>> GetClipVersion() : UInt64
+    + <<override>> UpdateExternalChanges(curveVersion:ulong) : CurveChangeType
+    + <<override>> start : float <<get>>
+    + <<override>> timeScale : float <<get>>
+    + <<override>> groupingName : string <<get>>
+    + <<override>> RemoveCurves(bindings:IEnumerable<EditorCurveBinding>) : void
+    + <<override>> ApplyCurveChanges(updatedCurves:IEnumerable<CurveWrapper>) : void
+}
+class InfiniteClipCurveDataSource {
+    + InfiniteClipCurveDataSource(trackGui:IRowGUI)
+    + <<override>> start : float <<get>>
+    + <<override>> timeScale : float <<get>>
+    + <<override>> groupingName : string <<get>>
+    + <<override>> ModifyPropertyDisplayName(path:string, propertyName:string) : string
+}
+class TrackParametersCurveDataSource {
+    + TrackParametersCurveDataSource(trackGui:IRowGUI)
+    + <<override>> GetClipVersion() : UInt64
+    + <<override>> UpdateExternalChanges(curveVersion:ulong) : CurveChangeType
+    + <<override>> start : float <<get>>
+    + <<override>> timeScale : float <<get>>
+    + <<override>> groupingName : string <<get>>
+    + <<override>> RemoveCurves(bindings:IEnumerable<EditorCurveBinding>) : void
+    + <<override>> ApplyCurveChanges(updatedCurves:IEnumerable<CurveWrapper>) : void
+}
+CurveDataSource --> "animationClip" AnimationClip
+CurveDataSource <|-- ClipAnimationCurveDataSource
+ClipAnimationCurveDataSource --> "animationClip" AnimationClip
+CurveDataSource <|-- ClipParametersCurveDataSource
+ClipParametersCurveDataSource --> "animationClip" AnimationClip
+CurveDataSource <|-- InfiniteClipCurveDataSource
+InfiniteClipCurveDataSource --> "animationClip" AnimationClip
+CurveDataSource <|-- TrackParametersCurveDataSource
+TrackParametersCurveDataSource --> "animationClip" AnimationClip
+@enduml

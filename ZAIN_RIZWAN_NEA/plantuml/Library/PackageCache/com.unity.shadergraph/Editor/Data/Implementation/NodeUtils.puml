@@ -1,0 +1,36 @@
+@startuml
+class SlotConfigurationException {
+    + SlotConfigurationException(message:string)
+}
+class NodeUtils <<static>> {
+    + {static} SlotConfigurationExceptionIfBadConfiguration(node:AbstractMaterialNode, expectedInputSlots:IEnumerable<int>, expectedOutputSlots:IEnumerable<int>) : void
+    + {static} GetAllEdges(node:AbstractMaterialNode) : IEnumerable<IEdge>
+    + {static} GetDuplicateSafeNameForSlot(node:AbstractMaterialNode, slotId:int, name:string) : string
+    + {static} DepthFirstCollectRedirectNodeFromNode(node:RedirectNodeData) : SlotReference
+    + {static} DepthFirstCollectNodesFromNode(nodeList:ICollection<AbstractMaterialNode>, node:AbstractMaterialNode, includeSelf:IncludeSelf, keywordPermutation:List<KeyValuePair<ShaderKeyword, int>>, ignoreActiveState:bool) : void
+    + {static} ReevaluateActivityOfConnectedNodes(node:AbstractMaterialNode, changedNodes:PooledHashSet<AbstractMaterialNode>) : void
+    + {static} ReevaluateActivityOfNodeList(nodes:IEnumerable<AbstractMaterialNode>, changedNodes:PooledHashSet<AbstractMaterialNode>) : void
+    + {static} GetDownsteamNodesForNode(nodeList:List<AbstractMaterialNode>, node:AbstractMaterialNode) : void
+    + {static} CollectNodeSet(nodeSet:HashSet<AbstractMaterialNode>, slot:MaterialSlot) : void
+    + {static} CollectNodeSet(nodeSet:HashSet<AbstractMaterialNode>, node:AbstractMaterialNode) : void
+    + {static} CollectNodesNodeFeedsInto(nodeList:List<AbstractMaterialNode>, node:AbstractMaterialNode, includeSelf:IncludeSelf) : void
+    + {static} GetDocumentationString(pageName:string) : string
+    + {static} GetEffectiveShaderStage(initialSlot:MaterialSlot, goingBackwards:bool) : ShaderStage
+    + {static} GetEffectiveShaderStageCapability(initialSlot:MaterialSlot, goingBackwards:bool, lookUp:Dictionary<SlotReference, ShaderStageCapability>) : ShaderStageCapability
+    + {static} GetSlotDimension(slotValue:ConcreteSlotValueType) : string
+    + {static} GetHLSLSafeName(input:string) : string
+    + {static} IsHLSLKeyword(id:string) : bool
+    + {static} IsShaderLabKeyWord(id:string) : bool
+    + {static} IsShaderGraphKeyWord(id:string) : bool
+    + {static} ConvertToValidHLSLIdentifier(originalId:string, isDisallowedIdentifier:Func<string, bool>) : string
+    + {static} ValidateSlotName(inName:string, errorMessage:string) : bool
+    + {static} FloatToShaderValue(value:float) : string
+    + {static} FloatToShaderValueShaderLabSafe(value:float) : string
+}
+enum IncludeSelf {
+    Include,
+    Exclude,
+}
+Exception <|-- SlotConfigurationException
+NodeUtils +-- IncludeSelf
+@enduml

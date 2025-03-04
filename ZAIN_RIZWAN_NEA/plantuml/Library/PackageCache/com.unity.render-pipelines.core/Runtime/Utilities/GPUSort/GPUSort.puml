@@ -1,0 +1,13 @@
+@startuml
+struct GPUSort {
+    + GPUSort(resources:SystemResources)
+    + Dispatch(cmd:CommandBuffer, args:Args) : void
+}
+enum Stage {
+    LocalBMS,
+    LocalDisperse,
+    BigFlip,
+    BigDisperse,
+}
+GPUSort +-- Stage
+@enduml

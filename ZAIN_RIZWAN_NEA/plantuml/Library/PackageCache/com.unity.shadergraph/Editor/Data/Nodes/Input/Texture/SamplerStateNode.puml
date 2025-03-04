@@ -1,0 +1,14 @@
+@startuml
+class SamplerStateNode {
+    + SamplerStateNode()
+    + <<override>> hasPreview : bool <<get>>
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> GetVariableNameForSlot(slotId:int) : string
+    + <<override>> CollectShaderProperties(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + <<override>> GetVariableNameForNode() : string
+    + AsShaderProperty() : AbstractShaderProperty
+    + outputSlotId : int <<get>>
+}
+AbstractMaterialNode <|-- SamplerStateNode
+IPropertyFromNode <|-- SamplerStateNode
+@enduml

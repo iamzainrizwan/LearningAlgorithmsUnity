@@ -1,0 +1,13 @@
+@startuml
+class PlaymodeTestsControllerSettings {
+    + sceneBased : bool
+    + originalScene : string
+    + bootstrapScene : string
+    + retryCount : int
+    + repeatCount : int
+    + automated : bool
+    + randomOrderSeed : int
+    + {static} CreateRunnerSettings(filters:RuntimeTestRunnerFilter[], orderedTestNames:string[], randomSeed:int, featureFlags:FeatureFlags, retryCount:int, repeatCount:int, automated:bool) : PlaymodeTestsControllerSettings
+}
+PlaymodeTestsControllerSettings --> "featureFlags" FeatureFlags
+@enduml

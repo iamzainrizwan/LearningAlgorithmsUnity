@@ -1,0 +1,10 @@
+@startuml
+class StencilStateData {
+    + overrideStencilState : bool = false
+    + stencilReference : int = 0
+}
+StencilStateData o-> "stencilCompareFunction" CompareFunction
+StencilStateData o-> "passOperation" StencilOp
+StencilStateData o-> "failOperation" StencilOp
+StencilStateData o-> "zFailOperation" StencilOp
+@enduml

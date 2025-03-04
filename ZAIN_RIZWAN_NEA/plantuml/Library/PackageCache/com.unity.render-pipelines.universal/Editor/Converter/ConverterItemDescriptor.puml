@@ -1,0 +1,8 @@
+@startuml
+struct ConverterItemDescriptor {
+    + name : string
+    + info : string
+    + warningMessage : string
+    + helpLink : string
+}
+@enduml

@@ -1,0 +1,54 @@
+@startuml
+class Selectable {
+    + {static} allSelectableCount : int <<get>>
+    + {static} AllSelectablesNoAlloc(selectables:Selectable[]) : int
+    + interactable : bool <<get>> <<set>>
+    + <<virtual>> IsInteractable() : bool
+    + FindSelectable(dir:Vector3) : Selectable
+    + <<virtual>> FindSelectableOnLeft() : Selectable
+    + <<virtual>> FindSelectableOnRight() : Selectable
+    + <<virtual>> FindSelectableOnUp() : Selectable
+    + <<virtual>> FindSelectableOnDown() : Selectable
+    + <<virtual>> OnMove(eventData:AxisEventData) : void
+    + <<virtual>> OnPointerDown(eventData:PointerEventData) : void
+    + <<virtual>> OnPointerUp(eventData:PointerEventData) : void
+    + <<virtual>> OnPointerEnter(eventData:PointerEventData) : void
+    + <<virtual>> OnPointerExit(eventData:PointerEventData) : void
+    + <<virtual>> OnSelect(eventData:BaseEventData) : void
+    + <<virtual>> OnDeselect(eventData:BaseEventData) : void
+    + <<virtual>> Select() : void
+}
+class "List`1"<T> {
+}
+enum Transition {
+    None,
+    ColorTint,
+    SpriteSwap,
+    Animation,
+}
+enum SelectionState {
+    Normal,
+    Highlighted,
+    Pressed,
+    Selected,
+    Disabled,
+}
+UIBehaviour <|-- Selectable
+IMoveHandler <|-- Selectable
+IPointerDownHandler <|-- Selectable
+IPointerUpHandler <|-- Selectable
+IPointerEnterHandler <|-- Selectable
+IPointerExitHandler <|-- Selectable
+ISelectHandler <|-- Selectable
+IDeselectHandler <|-- Selectable
+Selectable --> "allSelectables<Selectable>" "List`1"
+Selectable --> "navigation" Navigation
+Selectable --> "transition" Transition
+Selectable --> "colors" ColorBlock
+Selectable --> "spriteState" SpriteState
+Selectable --> "animationTriggers" AnimationTriggers
+Selectable --> "targetGraphic" Graphic
+Selectable --> "image" Image
+Selectable +-- Transition
+Selectable +-- SelectionState
+@enduml

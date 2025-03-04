@@ -1,0 +1,9 @@
+@startuml
+class TMP_TextSelector_A {
+    + OnPointerEnter(eventData:PointerEventData) : void
+    + OnPointerExit(eventData:PointerEventData) : void
+}
+MonoBehaviour <|-- TMP_TextSelector_A
+IPointerEnterHandler <|-- TMP_TextSelector_A
+IPointerExitHandler <|-- TMP_TextSelector_A
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class OuterUnityTestActionCommand {
+    + OuterUnityTestActionCommand(innerCommand:TestCommand)
+}
+class "BeforeAfterTestCommandBase`1"<T> {
+}
+"BeforeAfterTestCommandBase`1" "<IOuterUnityTestAction>" <|-- OuterUnityTestActionCommand
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class FlowStateTransitionEditor <<sealed>> {
+    + FlowStateTransitionEditor(metadata:Metadata)
+}
+NesterStateTransitionEditor <|-- FlowStateTransitionEditor
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class fsConverterRegistrar <<partial>> {
+}
+class Keyframe_DirectConverter {
+    + <<override>> CreateInstance(data:fsData, storageType:Type) : object
+}
+class "fsDirectConverter`1"<T> {
+}
+fsConverterRegistrar --> "Register_Keyframe_DirectConverter" Keyframe_DirectConverter
+"fsDirectConverter`1" "<Keyframe>" <|-- Keyframe_DirectConverter
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+interface IDataProvider {
+}
+struct Sky {
+    + longitudeOffset : float
+    + exposure : float
+}
+class StageRuntimeInterface {
+    + StageRuntimeInterface(AddGameObject:System.Func<bool, GameObject>, GetCamera:System.Func<Camera>, GetSunLight:System.Func<Light>)
+    + AddGameObject(persistent:bool) : GameObject
+    + SRPData : object
+}
+Sky --> "cubemap" Cubemap
+StageRuntimeInterface --> "camera" Camera
+StageRuntimeInterface --> "sunLight" Light
+@enduml

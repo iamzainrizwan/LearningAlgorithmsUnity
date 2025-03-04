@@ -1,0 +1,11 @@
+@startuml
+class IncludeDescriptor {
+    + IncludeDescriptor(guid:string, path:string, location:IncludeLocation, fieldConditions:FieldCondition[], shouldIncludeWithPragmas:bool)
+    + guid : string <<get>>
+    + path : string <<get>>
+    + shouldIncludeWithPragmas : bool <<get>>
+    + value : string <<get>>
+}
+IConditional <|-- IncludeDescriptor
+IncludeDescriptor --> "location" IncludeLocation
+@enduml

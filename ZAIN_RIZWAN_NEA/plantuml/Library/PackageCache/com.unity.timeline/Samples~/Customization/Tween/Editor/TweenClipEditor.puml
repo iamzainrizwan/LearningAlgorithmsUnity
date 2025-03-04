@@ -1,0 +1,6 @@
+@startuml
+class TweenClipEditor {
+    + <<override>> DrawBackground(clip:TimelineClip, region:ClipBackgroundRegion) : void
+}
+ClipEditor <|-- TweenClipEditor
+@enduml

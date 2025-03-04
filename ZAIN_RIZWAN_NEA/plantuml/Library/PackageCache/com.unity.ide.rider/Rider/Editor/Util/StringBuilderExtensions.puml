@@ -1,0 +1,5 @@
+@startuml
+class StringBuilderExtensions <<static>> {
+    + {static} CompatibleAppendJoin(stringBuilder:StringBuilder, separator:char, parts:IEnumerable<string>) : StringBuilder
+}
+@enduml

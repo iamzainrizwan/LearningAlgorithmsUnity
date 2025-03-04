@@ -1,0 +1,12 @@
+@startuml
+class QuestionSection {
+    +  <<event>> QuestionUpdated : Action<AnsweredQuestion> 
+    +  <<event>> OnPresetSelected : Action<Preset> 
+    + CreateAdvancedFoldout(questions:Question[], existingAnswers:IEnumerable<AnsweredQuestion>, headerTitle:string) : void
+    + QuestionSection(questions:Question[], existingAnswers:IEnumerable<AnsweredQuestion>, headerTitle:string, mandatoryQuestions:bool)
+    + AddPresetView() : void
+    + SetAdvancedSectionVisible(isVisible:bool) : void
+}
+VisualElement <|-- QuestionSection
+QuestionSection --> "ContentRoot" VisualElement
+@enduml

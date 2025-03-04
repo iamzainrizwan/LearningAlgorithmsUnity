@@ -1,0 +1,12 @@
+@startuml
+class ShaderGraphLitGUI {
+    + <<override>> FindProperties(properties:MaterialProperty[]) : void
+    + {static} UpdateMaterial(material:Material, updateType:MaterialUpdateType) : void
+    + <<override>> ValidateMaterial(material:Material) : void
+    + <<override>> DrawSurfaceOptions(material:Material) : void
+    + <<override>> DrawSurfaceInputs(material:Material) : void
+    + <<override>> DrawAdvancedOptions(material:Material) : void
+}
+BaseShaderGUI <|-- ShaderGraphLitGUI
+ShaderGraphLitGUI --> "workflowMode" MaterialProperty
+@enduml

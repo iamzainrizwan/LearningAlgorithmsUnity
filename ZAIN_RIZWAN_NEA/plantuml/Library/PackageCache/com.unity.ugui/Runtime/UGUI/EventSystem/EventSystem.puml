@@ -1,0 +1,22 @@
+@startuml
+class EventSystem {
+    + sendNavigationEvents : bool <<get>> <<set>>
+    + pixelDragThreshold : int <<get>> <<set>>
+    + isFocused : bool <<get>>
+    + UpdateModules() : void
+    + alreadySelecting : bool <<get>>
+    + SetSelectedGameObject(selected:GameObject, pointer:BaseEventData) : void
+    + SetSelectedGameObject(selected:GameObject) : void
+    + RaycastAll(eventData:PointerEventData, raycastResults:List<RaycastResult>) : void
+    + IsPointerOverGameObject() : bool
+    + IsPointerOverGameObject(pointerId:int) : bool
+    + {static} SetUITookitEventSystemOverride(activeEventSystem:EventSystem, sendEvents:bool, createPanelGameObjectsOnStart:bool) : void
+    + <<override>> ToString() : string
+}
+UIBehaviour <|-- EventSystem
+EventSystem --> "current" EventSystem
+EventSystem --> "currentInputModule" BaseInputModule
+EventSystem --> "firstSelectedGameObject" GameObject
+EventSystem --> "currentSelectedGameObject" GameObject
+EventSystem --> "lastSelectedGameObject" GameObject
+@enduml

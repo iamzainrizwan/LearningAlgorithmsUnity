@@ -1,0 +1,25 @@
+@startuml
+abstract class Wizard {
+    + farthestNavigatedIndex : int <<get>> <<set>>
+    + canNavigateForward : bool <<get>> <<set>>
+    + canNavigateBackward : bool <<get>> <<set>>
+    + <<new>> Show() : void
+    + <<override>> OnShow() : void
+    + <<override>> OnClose() : void
+    + <<override>> Update() : void
+    + <<override>> OnGUI() : void
+}
+class "List`1"<T> {
+}
+class Styles <<static>> {
+}
+EditorWindowWrapper <|-- Wizard
+Wizard --> "pages<Page>" "List`1"
+Wizard --> "currentPage" Page
+Wizard +-- Styles
+Styles --> "sectionBorder" GUIStyle
+Styles --> "footerBackground" GUIStyle
+Styles --> "breadcrumbStart" GUIStyle
+Styles --> "breadcrumbMid" GUIStyle
+Styles --> "breadcrumbEnd" GUIStyle
+@enduml

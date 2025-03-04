@@ -1,0 +1,10 @@
+@startuml
+class LiteralWidget <<sealed>> {
+    + LiteralWidget(canvas:FlowCanvas, unit:Literal)
+    + <<override>> foregroundRequiresInput : bool <<get>>
+    + <<override>> BeforeFrame() : void
+}
+class "UnitWidget`1"<T> {
+}
+"UnitWidget`1" "<Literal>" <|-- LiteralWidget
+@enduml

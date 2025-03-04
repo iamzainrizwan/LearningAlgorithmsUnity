@@ -1,0 +1,7 @@
+@startuml
+class NoFoldOutPropertyDrawer {
+    + <<override>> GetPropertyHeight(property:SerializedProperty, label:GUIContent) : float
+    + <<override>> OnGUI(position:Rect, property:SerializedProperty, label:GUIContent) : void
+}
+PropertyDrawer <|-- NoFoldOutPropertyDrawer
+@enduml

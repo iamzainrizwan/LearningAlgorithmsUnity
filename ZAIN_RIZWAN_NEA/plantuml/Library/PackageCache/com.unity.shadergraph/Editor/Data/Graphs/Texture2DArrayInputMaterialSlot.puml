@@ -1,0 +1,18 @@
+@startuml
+class Texture2DArrayInputMaterialSlot {
+    + <<override>> isDefaultValue : bool <<get>>
+    + Texture2DArrayInputMaterialSlot()
+    + Texture2DArrayInputMaterialSlot(slotId:int, displayName:string, shaderOutputName:string, shaderStageCapability:ShaderStageCapability, hidden:bool)
+    + <<override>> InstantiateControl() : VisualElement
+    + <<override>> GetDefaultValue(generationMode:GenerationMode) : string
+    + <<override>> AddDefaultProperty(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + <<override>> GetPreviewProperties(properties:List<PreviewProperty>, name:string) : void
+    + <<override>> CopyValuesFrom(foundSlot:MaterialSlot) : void
+}
+class MinimalTexture2DArrayInputMaterialSlot {
+    + GetSourceAssetDependencies(assetCollection:AssetCollection) : void
+}
+Texture2DArrayMaterialSlot <|-- Texture2DArrayInputMaterialSlot
+Texture2DArrayInputMaterialSlot --> "textureArray" Texture2DArray
+IHasDependencies <|-- MinimalTexture2DArrayInputMaterialSlot
+@enduml

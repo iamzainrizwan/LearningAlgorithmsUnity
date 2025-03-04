@@ -1,0 +1,27 @@
+@startuml
+class SequenceHierarchy {
+    + count : int <<get>>
+    + {static} CreateInstance() : SequenceHierarchy
+    + Init(owner:WindowState) : void
+    + Add(asset:TimelineAsset, director:PlayableDirector, hostClip:TimelineClip) : void
+    + Remove() : void
+    + GetStateAtIndex(index:int) : ISequenceState
+    + RemoveUntilCount(expectedCount:int) : void
+    + Clear() : void
+    + ToSequencePath() : SequencePath
+    + NeedsUpdate(path:SequencePath, forceRebuild:bool) : bool
+    + FromSequencePath(path:SequencePath, forceRebuild:bool) : void
+}
+class "IEnumerable`1"<T> {
+}
+struct SequenceBuildingBlock {
+}
+ScriptableObject <|-- SequenceHierarchy
+SequenceHierarchy --> "masterSequence" ISequenceState
+SequenceHierarchy --> "editSequence" ISequenceState
+SequenceHierarchy --> "allSequences<ISequenceState>" "IEnumerable`1"
+SequenceHierarchy +-- SequenceBuildingBlock
+SequenceBuildingBlock --> "asset" TimelineAsset
+SequenceBuildingBlock --> "director" PlayableDirector
+SequenceBuildingBlock --> "hostClip" TimelineClip
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+struct ShaderBitArray {
+    + elemLength : int <<get>>
+    + bitCapacity : int <<get>>
+    + Resize(bitCount:int) : void
+    + Clear() : void
+    + <<override>> ToString() : string
+}
+@enduml

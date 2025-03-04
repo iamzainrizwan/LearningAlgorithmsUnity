@@ -1,0 +1,12 @@
+@startuml
+class SectionHeaderTests {
+    + Setup() : void
+    + SectionHeader_AppendsRecommendationText() : IEnumerator
+    + SectionHeader_IgnoresIncompatibleSolutions() : IEnumerator
+    + TearDown() : void
+}
+class DummyWindow {
+}
+SectionHeaderTests +-- DummyWindow
+EditorWindow <|-- DummyWindow
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+class "MergedCollection`1"<T> {
+    + MergedCollection()
+    + Count : int <<get>>
+    + IsReadOnly : bool <<get>>
+    + Include(collection:ICollection<TI>) : void
+    + Includes() : bool
+    + Includes(implementationType:Type) : bool
+    + ForType() : ICollection<TI>
+    + GetEnumerator() : IEnumerator<T>
+    + Contains(item:T) : bool
+    + <<virtual>> Add(item:T) : void
+    + <<virtual>> Clear() : void
+    + <<virtual>> Remove(item:T) : bool
+    + CopyTo(array:T[], arrayIndex:int) : void
+}
+class "IMergedCollection`1"<T> {
+}
+"IMergedCollection`1" "<T>" <|-- "MergedCollection`1"
+@enduml

@@ -1,0 +1,25 @@
+@startuml
+enum TangentMode {
+    Linear= 0,
+    Continuous= 1,
+    Broken= 2,
+}
+struct TangentCache {
+}
+struct ControlPoint {
+    + mirrorLeft : bool
+    + ControlPoint(pos:Vector3)
+    + StoreTangents() : void
+    + RestoreTangents() : void
+}
+TangentCache --> "leftTangent" Vector3
+TangentCache --> "rightTangent" Vector3
+ControlPoint --> "position" Vector3
+ControlPoint --> "localLeftTangent" Vector3
+ControlPoint --> "localRightTangent" Vector3
+ControlPoint --> "tangentMode" TangentMode
+ControlPoint --> "continuousCache" TangentCache
+ControlPoint --> "brokenCache" TangentCache
+ControlPoint --> "leftTangent" Vector3
+ControlPoint --> "rightTangent" Vector3
+@enduml

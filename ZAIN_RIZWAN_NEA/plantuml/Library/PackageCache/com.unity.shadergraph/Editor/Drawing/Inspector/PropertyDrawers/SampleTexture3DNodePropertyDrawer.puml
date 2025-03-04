@@ -1,0 +1,5 @@
+@startuml
+class SampleTexture3DNodePropertyDrawer {
+}
+AbstractMaterialNodePropertyDrawer <|-- SampleTexture3DNodePropertyDrawer
+@enduml

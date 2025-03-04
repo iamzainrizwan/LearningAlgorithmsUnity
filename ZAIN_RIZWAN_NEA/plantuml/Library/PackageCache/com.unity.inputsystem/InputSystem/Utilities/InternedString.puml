@@ -1,0 +1,19 @@
+@startuml
+struct InternedString {
+    + length : int <<get>>
+    + InternedString(text:string)
+    + IsEmpty() : bool
+    + ToLower() : string
+    + <<override>> Equals(obj:object) : bool
+    + Equals(other:InternedString) : bool
+    + CompareTo(other:InternedString) : int
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+}
+class "IEquatable`1"<T> {
+}
+class "IComparable`1"<T> {
+}
+"IEquatable`1" "<InternedString>" <|-- InternedString
+"IComparable`1" "<InternedString>" <|-- InternedString
+@enduml

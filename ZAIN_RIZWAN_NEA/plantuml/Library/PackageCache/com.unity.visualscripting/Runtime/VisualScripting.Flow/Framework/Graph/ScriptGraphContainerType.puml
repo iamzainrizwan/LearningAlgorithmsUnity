@@ -1,0 +1,6 @@
+@startuml
+enum ScriptGraphContainerType {
+    GameObject,
+    ScriptMachine,
+}
+@enduml

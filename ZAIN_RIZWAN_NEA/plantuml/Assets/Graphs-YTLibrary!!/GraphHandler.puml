@@ -1,0 +1,66 @@
+@startuml
+class GraphHandler {
+    + CreatePoint(newValue:Vector2) : void
+    + ChangePoint(indexToChange:int, newValue:Vector2) : void
+    + SetCornerValues(newBottomLeft:Vector2, newTopRight:Vector2) : void
+    + UpdateGraph() : void
+    + updateGraph : bool = false
+    + activePointIndex : int
+    + fixedPointIndex : int
+    + UpdateGraphInternal(methodsToUpdate:UpdateMethod) : void
+}
+class "List`1"<T> {
+}
+enum MouseActionType {
+    Move,
+    SelectAreaToZoom,
+    SelectPoints,
+}
+enum RectangleType {
+    Free,
+    PreserveAspectRatio,
+    OriginalAspectRatio,
+}
+enum RectangleSelectionType {
+    SelectAll,
+    SelectUnselect,
+}
+enum RectangleSelectionPhase {
+    Moving,
+    Release,
+}
+enum PointSelectionType {
+    Select,
+    FixZoomPoint,
+}
+enum UpdateMethod {
+    UpdatePositionAndScale= 1 << 0,
+    UpdateOutlines= 1 << 1,
+    UpdatePointVisuals= 1 << 2,
+    UpdateContent= 1 << 3,
+    MouseZoom= 1 << 4,
+    MouseAction= 1 << 5,
+    UpdateGridLines= 1 << 6,
+    All= 1 << 7,
+}
+MonoBehaviour <|-- GraphHandler
+GraphHandler --> "Values<Vector2>" "List`1"
+GraphHandler --> "XAxisRange" Vector2Int
+GraphHandler --> "ActivePointValue" Vector2
+GraphHandler --> "BottomLeft" Vector2
+GraphHandler --> "TopRight" Vector2
+GraphHandler --> "Center" Vector2
+GraphHandler --> "mouseActionType" MouseActionType
+GraphHandler --> "rectangleType" RectangleType
+GraphHandler --> "rectangleSelectionType" RectangleSelectionType
+GraphHandler --> "rectangleSelectionPhase" RectangleSelectionPhase
+GraphHandler --> "pointSelectionType" PointSelectionType
+GraphHandler o-> "targetZoom" Vector2
+GraphHandler --> "targetMoveOffset" Vector2
+GraphHandler +-- MouseActionType
+GraphHandler +-- RectangleType
+GraphHandler +-- RectangleSelectionType
+GraphHandler +-- RectangleSelectionPhase
+GraphHandler +-- PointSelectionType
+GraphHandler +-- UpdateMethod
+@enduml

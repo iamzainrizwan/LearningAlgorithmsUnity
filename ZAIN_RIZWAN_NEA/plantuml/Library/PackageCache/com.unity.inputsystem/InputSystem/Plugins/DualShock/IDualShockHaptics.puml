@@ -1,0 +1,5 @@
+@startuml
+interface IDualShockHaptics {
+}
+IDualMotorRumble <|-- IDualShockHaptics
+@enduml

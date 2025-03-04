@@ -1,0 +1,18 @@
+@startuml
+class RunFinishedData {
+    + totalTests : int
+    + numPassedTests : int
+    + numFailedTests : int
+    + numInconclusiveTests : int
+    + numSkippedTests : int
+    + testModeFilter : int
+    + isAutomated : bool
+    + isFromCommandLine : bool
+    + isFiltering : bool
+    + targetPlatform : string
+    + totalTestDuration : double
+    + totalRunDuration : double
+    + runSynchronously : bool
+    + isCustomRunner : bool
+}
+@enduml

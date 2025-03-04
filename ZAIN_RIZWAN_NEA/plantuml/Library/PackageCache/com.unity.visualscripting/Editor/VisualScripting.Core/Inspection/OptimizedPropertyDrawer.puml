@@ -1,0 +1,7 @@
+@startuml
+abstract class "OptimizedPropertyDrawer`1"<TIndividual> {
+    + <<sealed>> <<override>> GetPropertyHeight(property:SerializedProperty, label:GUIContent) : float
+    + <<sealed>> <<override>> OnGUI(position:Rect, property:SerializedProperty, label:GUIContent) : void
+}
+PropertyDrawer <|-- "OptimizedPropertyDrawer`1"
+@enduml

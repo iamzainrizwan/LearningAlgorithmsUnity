@@ -1,0 +1,37 @@
+@startuml
+class MemberFilter <<sealed>> {
+    + MemberFilter()
+    + Fields : bool <<get>> <<set>>
+    + Properties : bool <<get>> <<set>>
+    + Methods : bool <<get>> <<set>>
+    + Constructors : bool <<get>> <<set>>
+    + Gettable : bool <<get>> <<set>>
+    + Settable : bool <<get>> <<set>>
+    + Inherited : bool <<get>> <<set>>
+    + Targeted : bool <<get>> <<set>>
+    + NonTargeted : bool <<get>> <<set>>
+    + Public : bool <<get>> <<set>>
+    + NonPublic : bool <<get>> <<set>>
+    + ReadOnly : bool <<get>> <<set>>
+    + WriteOnly : bool <<get>> <<set>>
+    + Extensions : bool <<get>> <<set>>
+    + Operators : bool <<get>> <<set>>
+    + Conversions : bool <<get>> <<set>>
+    + Setters : bool <<get>> <<set>>
+    + Parameters : bool <<get>> <<set>>
+    + Obsolete : bool <<get>> <<set>>
+    + OpenConstructedGeneric : bool <<get>> <<set>>
+    + TypeInitializers : bool <<get>> <<set>>
+    + ClsNonCompliant : bool <<get>> <<set>>
+    + Clone() : MemberFilter
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + ValidateMember(member:MemberInfo, typeFilter:TypeFilter) : bool
+    + <<override>> ToString() : string
+}
+Attribute <|-- MemberFilter
+ICloneable <|-- MemberFilter
+MemberFilter --> "validBindingFlags" BindingFlags
+MemberFilter --> "validMemberTypes" MemberTypes
+MemberFilter --> "Any" MemberFilter
+@enduml

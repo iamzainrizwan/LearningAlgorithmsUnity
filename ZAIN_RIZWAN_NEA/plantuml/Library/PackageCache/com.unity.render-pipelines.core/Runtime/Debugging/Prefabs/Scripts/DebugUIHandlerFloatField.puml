@@ -1,0 +1,11 @@
+@startuml
+class DebugUIHandlerFloatField {
+    + <<override>> OnSelection(fromNext:bool, previous:DebugUIHandlerWidget) : bool
+    + <<override>> OnDeselection() : void
+    + <<override>> OnIncrement(fast:bool) : void
+    + <<override>> OnDecrement(fast:bool) : void
+}
+DebugUIHandlerWidget <|-- DebugUIHandlerFloatField
+DebugUIHandlerFloatField --> "nameLabel" Text
+DebugUIHandlerFloatField --> "valueLabel" Text
+@enduml

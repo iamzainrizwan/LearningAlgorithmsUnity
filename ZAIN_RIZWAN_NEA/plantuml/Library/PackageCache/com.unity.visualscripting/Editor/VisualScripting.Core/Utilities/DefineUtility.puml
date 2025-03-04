@@ -1,0 +1,8 @@
+@startuml
+class DefineUtility <<static>> {
+    + {static} ToggleDefine(define:string, enable:bool) : bool
+    + {static} AddDefine(define:string) : bool
+    + {static} RemoveDefine(define:string) : bool
+    + {static} ClearAllDefines() : void
+}
+@enduml

@@ -1,0 +1,66 @@
+@startuml
+class BaseMaterialGraphTests {
+    + RunBeforeAnyTests() : void
+    + TestCanCreateBaseMaterialGraph() : void
+    + TestCanAddNodeToBaseMaterialGraph() : void
+    + TestCanRemoveNodeFromBaseMaterialGraph() : void
+    + TestCanModifyNodeDrawState() : void
+    + TestChildClassCanModifyErrorState() : void
+    + TestRemoveNodeFromBaseMaterialGraphCleansEdges() : void
+    + TestCanNotRemoveNoDeleteNodeFromBaseMaterialGraph() : void
+    + TestSerializedGraphDelegatesOnEnableCalls() : void
+    + TestCanFindNodeInBaseMaterialGraph() : void
+    + TestCanAddSlotToTestNode() : void
+    + TestCanNotAddNullSlotToTestNode() : void
+    + TestCanRemoveSlotFromTestNode() : void
+    + TestCanRemoveSlotsWithNonMathingNameFromTestNode() : void
+    + TestCanNotAddDuplicateSlotToTestNode() : void
+    + TestCanUpdateDisplaynameByReaddingSlotToTestNode() : void
+    + TestCanUpdateSlotDisplayName() : void
+    + TestCanFindSlotOnTestNode() : void
+    + TestCanFindSlotReferenceOnTestNode() : void
+    + TestCanConnectAndTraverseTwoNodesOnBaseMaterialGraph() : void
+    + TestCanConnectAndTraverseThreeNodesOnBaseMaterialGraph() : void
+    + TestExceptionIfBadNodeConfigurationWorks() : void
+    + TestConectionToSameInputReplacesOldInput() : void
+    + TestRemovingSlotRemovesConnectedEdges() : void
+    + TestCanNotConnectToNullSlot() : void
+    + TestCanNotConnectTwoOuputSlotsOnBaseMaterialGraph() : void
+    + TestCanNotConnectTwoInputSlotsOnBaseMaterialGraph() : void
+    + TestRemovingNodeRemovesConectedEdgesOnBaseMaterialGraph() : void
+    + TestRemovingEdgeOnBaseMaterialGraph() : void
+    + TestRemovingElementsFromBaseMaterialGraph() : void
+    + TestCanGetEdgesOnBaseMaterialGraphFromSlotReference() : void
+    + TestGetInputsWithNoConnection() : void
+    + TestCyclicConnectionsAreNotAllowedOnGraph() : void
+}
+class SetErrorNode {
+    + SetError() : void
+    + ClearError() : void
+}
+class TestableNode {
+    + <<const>> Input0 : int = 0
+    + <<const>> Input1 : int = 1
+    + <<const>> Input2 : int = 2
+    + <<const>> Output0 : int = 3
+    + <<const>> Output1 : int = 4
+    + <<const>> Output2 : int = 5
+    + TestableNode()
+}
+class NoDeleteNode {
+    + <<override>> canDeleteNode : bool <<get>>
+}
+class OnEnableNode {
+    + called : bool = false
+    + OnEnable() : void
+}
+BaseMaterialGraphTests +-- SetErrorNode
+TestNode <|-- SetErrorNode
+BaseMaterialGraphTests +-- TestableNode
+TestNode <|-- TestableNode
+BaseMaterialGraphTests +-- NoDeleteNode
+TestNode <|-- NoDeleteNode
+BaseMaterialGraphTests +-- OnEnableNode
+TestNode <|-- OnEnableNode
+IOnAssetEnabled <|-- OnEnableNode
+@enduml

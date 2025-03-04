@@ -1,0 +1,7 @@
+@startuml
+class DisallowSmallMeshCulling {
+    + m_applyToChildrenRecursively : bool
+    + applyToChildrenRecursively : bool <<get>> <<set>>
+}
+MonoBehaviour <|-- DisallowSmallMeshCulling
+@enduml

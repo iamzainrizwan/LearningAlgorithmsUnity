@@ -1,0 +1,82 @@
+@startuml
+class InputActionSetupExtensions <<static>> {
+    + {static} AddActionMap(asset:InputActionAsset, name:string) : InputActionMap
+    + {static} AddActionMap(asset:InputActionAsset, map:InputActionMap) : void
+    + {static} RemoveActionMap(asset:InputActionAsset, map:InputActionMap) : void
+    + {static} RemoveActionMap(asset:InputActionAsset, nameOrId:string) : void
+    + {static} AddAction(map:InputActionMap, name:string, type:InputActionType, binding:string, interactions:string, processors:string, groups:string, expectedControlLayout:string) : InputAction
+    + {static} RemoveAction(action:InputAction) : void
+    + {static} RemoveAction(asset:InputActionAsset, nameOrId:string) : void
+    + {static} AddBinding(action:InputAction, path:string, interactions:string, processors:string, groups:string) : BindingSyntax
+    + {static} AddBinding(action:InputAction, control:InputControl) : BindingSyntax
+    + {static} AddBinding(action:InputAction, binding:InputBinding) : BindingSyntax
+    + {static} AddBinding(actionMap:InputActionMap, path:string, interactions:string, groups:string, action:string, processors:string) : BindingSyntax
+    + {static} AddBinding(actionMap:InputActionMap, path:string, action:InputAction, interactions:string, groups:string) : BindingSyntax
+    + {static} AddBinding(actionMap:InputActionMap, path:string, action:Guid, interactions:string, groups:string) : BindingSyntax
+    + {static} AddBinding(actionMap:InputActionMap, binding:InputBinding) : BindingSyntax
+    + {static} AddCompositeBinding(action:InputAction, composite:string, interactions:string, processors:string) : CompositeSyntax
+    + {static} ChangeBinding(action:InputAction, index:int) : BindingSyntax
+    + {static} ChangeBinding(action:InputAction, name:string) : BindingSyntax
+    + {static} ChangeBinding(actionMap:InputActionMap, index:int) : BindingSyntax
+    + {static} ChangeBindingWithId(action:InputAction, id:string) : BindingSyntax
+    + {static} ChangeBindingWithId(action:InputAction, id:Guid) : BindingSyntax
+    + {static} ChangeBindingWithGroup(action:InputAction, group:string) : BindingSyntax
+    + {static} ChangeBindingWithPath(action:InputAction, path:string) : BindingSyntax
+    + {static} ChangeBinding(action:InputAction, match:InputBinding) : BindingSyntax
+    + {static} ChangeCompositeBinding(action:InputAction, compositeName:string) : BindingSyntax
+    + {static} Rename(action:InputAction, newName:string) : void
+    + {static} AddControlScheme(asset:InputActionAsset, controlScheme:InputControlScheme) : void
+    + {static} AddControlScheme(asset:InputActionAsset, name:string) : ControlSchemeSyntax
+    + {static} RemoveControlScheme(asset:InputActionAsset, name:string) : void
+    + {static} WithBindingGroup(scheme:InputControlScheme, bindingGroup:string) : InputControlScheme
+    + {static} WithDevice(scheme:InputControlScheme, controlPath:string, required:bool) : InputControlScheme
+    + {static} WithRequiredDevice(scheme:InputControlScheme, controlPath:string) : InputControlScheme
+    + {static} WithOptionalDevice(scheme:InputControlScheme, controlPath:string) : InputControlScheme
+    + {static} OrWithRequiredDevice(scheme:InputControlScheme, controlPath:string) : InputControlScheme
+    + {static} OrWithOptionalDevice(scheme:InputControlScheme, controlPath:string) : InputControlScheme
+}
+struct BindingSyntax {
+    + valid : bool <<get>>
+    + bindingIndex : int <<get>>
+    + WithName(name:string) : BindingSyntax
+    + WithPath(path:string) : BindingSyntax
+    + WithGroup(group:string) : BindingSyntax
+    + WithGroups(groups:string) : BindingSyntax
+    + WithInteraction(interaction:string) : BindingSyntax
+    + WithInteractions(interactions:string) : BindingSyntax
+    + WithInteraction() : BindingSyntax
+    + WithProcessor(processor:string) : BindingSyntax
+    + WithProcessors(processors:string) : BindingSyntax
+    + WithProcessor() : BindingSyntax
+    + Triggering(action:InputAction) : BindingSyntax
+    + To(binding:InputBinding) : BindingSyntax
+    + NextBinding() : BindingSyntax
+    + PreviousBinding() : BindingSyntax
+    + NextPartBinding(partName:string) : BindingSyntax
+    + PreviousPartBinding(partName:string) : BindingSyntax
+    + NextCompositeBinding(compositeName:string) : BindingSyntax
+    + PreviousCompositeBinding(compositeName:string) : BindingSyntax
+    + Erase() : void
+    + InsertPartBinding(partName:string, path:string) : BindingSyntax
+}
+struct CompositeSyntax {
+    + bindingIndex : int <<get>>
+    + With(name:string, binding:string, groups:string, processors:string) : CompositeSyntax
+}
+struct ControlSchemeSyntax {
+    + WithBindingGroup(bindingGroup:string) : ControlSchemeSyntax
+    + WithRequiredDevice() : ControlSchemeSyntax
+    + WithOptionalDevice() : ControlSchemeSyntax
+    + OrWithRequiredDevice() : ControlSchemeSyntax
+    + OrWithOptionalDevice() : ControlSchemeSyntax
+    + WithRequiredDevice(controlPath:string) : ControlSchemeSyntax
+    + WithOptionalDevice(controlPath:string) : ControlSchemeSyntax
+    + OrWithRequiredDevice(controlPath:string) : ControlSchemeSyntax
+    + OrWithOptionalDevice(controlPath:string) : ControlSchemeSyntax
+    + Done() : InputControlScheme
+}
+InputActionSetupExtensions +-- BindingSyntax
+BindingSyntax --> "binding" InputBinding
+InputActionSetupExtensions +-- CompositeSyntax
+InputActionSetupExtensions +-- ControlSchemeSyntax
+@enduml

@@ -1,0 +1,51 @@
+@startuml
+class MeshUtil <<static>> {
+}
+class ComputeRayTracingAccelStructTests {
+    + Build_TwoInstancesOfASingleTriangleMesh_ShouldGenerateCorrectResult() : void
+}
+class AccelStructTests {
+    + AccelStructTests(backendAsString:string)
+    + SetUp() : void
+    + TearDown() : void
+    + RayTracePixelsInUnitQuad(rayResolution:int, buildFlagsAsInteger:int) : void
+    + FrontOrBackFaceCulling() : void
+    + InstanceAndRayMask() : void
+    + AddAndRemoveInstances() : void
+    + Add_1KTerrain_Works() : void
+    + Add_4KTerrain_Works() : void
+}
+struct RayWithFlags {
+    + minT : float
+    + maxT : float
+    + culling : uint
+    + instanceMask : uint
+    + RayWithFlags(origin:float3, direction:float3)
+}
+enum RayCulling {
+    None= 0,
+    CullFrontFace= 0x10,
+    CullBackFace= 0x20,
+}
+struct Hit {
+    + instanceID : uint
+    + primitiveIndex : uint
+    + hitDistance : float
+    + isFrontFace : uint
+    + Valid() : bool
+}
+struct HitGeomAttributes {
+}
+AccelStructTests +-- RayWithFlags
+RayWithFlags --> "origin" float3
+RayWithFlags --> "direction" float3
+AccelStructTests +-- RayCulling
+AccelStructTests +-- Hit
+Hit --> "uvBarycentrics" float2
+AccelStructTests +-- HitGeomAttributes
+HitGeomAttributes --> "position" float3
+HitGeomAttributes --> "normal" float3
+HitGeomAttributes --> "faceNormal" float3
+HitGeomAttributes --> "uv0" float4
+HitGeomAttributes --> "uv1" float4
+@enduml

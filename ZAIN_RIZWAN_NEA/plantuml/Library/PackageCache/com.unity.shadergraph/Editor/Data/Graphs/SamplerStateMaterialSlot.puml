@@ -1,0 +1,17 @@
+@startuml
+class SamplerStateMaterialSlot {
+    + SamplerStateMaterialSlot()
+    + SamplerStateMaterialSlot(slotId:int, displayName:string, shaderOutputName:string, slotType:SlotType, stageCapability:ShaderStageCapability, hidden:bool)
+    + defaultSamplerStateName : string <<get>>
+    + <<override>> AppendHLSLParameterDeclaration(sb:ShaderStringBuilder, paramName:string) : void
+    + <<override>> GetDefaultValue(generationMode:GenerationMode) : string
+    + <<override>> isDefaultValue : bool <<get>>
+    + <<override>> AddDefaultProperty(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + <<override>> CopyValuesFrom(foundSlot:MaterialSlot) : void
+    + <<override>> CopyDefaultValue(other:MaterialSlot) : void
+}
+MaterialSlot <|-- SamplerStateMaterialSlot
+SamplerStateMaterialSlot --> "defaultSamplerState" TextureSamplerState
+SamplerStateMaterialSlot --> "valueType" SlotValueType
+SamplerStateMaterialSlot --> "concreteValueType" ConcreteSlotValueType
+@enduml

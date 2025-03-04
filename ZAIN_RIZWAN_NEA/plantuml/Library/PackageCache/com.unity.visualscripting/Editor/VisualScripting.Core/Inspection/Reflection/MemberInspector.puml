@@ -1,0 +1,11 @@
+@startuml
+class MemberInspector <<sealed>> {
+    + MemberInspector(metadata:Metadata)
+    + <<override>> Initialize() : void
+}
+class Styles <<static>> {
+}
+Inspector <|-- MemberInspector
+MemberInspector +-- Styles
+Styles --> "failurePopup" GUIStyle
+@enduml

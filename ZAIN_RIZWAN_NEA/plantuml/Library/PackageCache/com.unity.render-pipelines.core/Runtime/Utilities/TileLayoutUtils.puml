@@ -1,0 +1,7 @@
+@startuml
+class TileLayoutUtils <<static>> {
+    + {static} TryLayoutByTiles(src:RectInt, tileSize:uint, main:RectInt, topRow:RectInt, rightCol:RectInt, topRight:RectInt) : bool
+    + {static} TryLayoutByRow(src:RectInt, tileSize:uint, main:RectInt, other:RectInt) : bool
+    + {static} TryLayoutByCol(src:RectInt, tileSize:uint, main:RectInt, other:RectInt) : bool
+}
+@enduml

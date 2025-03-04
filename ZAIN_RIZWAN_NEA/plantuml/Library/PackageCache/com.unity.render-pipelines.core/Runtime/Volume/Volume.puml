@@ -1,0 +1,16 @@
+@startuml
+class Volume {
+    + isGlobal : bool <<get>> <<set>>
+    + priority : float = 0f
+    + blendDistance : float = 0f
+    + weight : float = 1f
+    + HasInstantiatedProfile() : bool
+}
+class "List`1"<T> {
+}
+MonoBehaviour <|-- Volume
+IVolume <|-- Volume
+Volume o-> "sharedProfile" VolumeProfile
+Volume --> "profile" VolumeProfile
+Volume --> "colliders<Collider>" "List`1"
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+class GeneratePropertyProvidersPage {
+    + GeneratePropertyProvidersPage()
+}
+class Styles <<static>> {
+}
+Page <|-- GeneratePropertyProvidersPage
+GeneratePropertyProvidersPage +-- Styles
+Styles --> "background" GUIStyle
+Styles --> "nextButton" GUIStyle
+Styles --> "skipButton" GUIStyle
+Styles --> "regenerateLabel" GUIStyle
+@enduml

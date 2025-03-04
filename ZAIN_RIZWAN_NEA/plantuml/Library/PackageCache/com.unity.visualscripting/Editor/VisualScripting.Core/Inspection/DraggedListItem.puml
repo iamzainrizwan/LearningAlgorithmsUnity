@@ -1,0 +1,11 @@
+@startuml
+class DraggedListItem {
+    + DraggedListItem(sourceListAdaptor:MetadataListAdaptor, index:int, item:object)
+    + <<readonly>> index : int
+    + <<readonly>> item : object
+    + {static} <<readonly>> TypeName : string
+    + <<override>> ToString() : string
+}
+DraggedListItem --> "sourceListAdaptor" MetadataListAdaptor
+DraggedListItem --> "sourceList" IList
+@enduml

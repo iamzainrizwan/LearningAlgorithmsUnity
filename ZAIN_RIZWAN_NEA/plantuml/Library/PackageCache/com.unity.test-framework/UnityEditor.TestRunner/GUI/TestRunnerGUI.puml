@@ -1,0 +1,12 @@
+@startuml
+class TestRunnerGUI <<static>> {
+}
+class Styles {
+    + <<readonly>> TestPlatformButtonString : string = "Run Location:"
+    + <<readonly>> CategoryButtonWidth : float
+    + Styles()
+}
+TestRunnerGUI +-- Styles
+Styles o-> "DropdownButton" GUIStyle
+Styles o-> "CategoryButtonContent" GUIContent
+@enduml

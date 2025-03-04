@@ -1,0 +1,7 @@
+@startuml
+class PanelManager {
+    + CreatePanel(headerText:string, bodyText:string, position:Vector2) : DraggablePanel
+    + DestroyAllPanels() : void
+}
+MonoBehaviour <|-- PanelManager
+@enduml

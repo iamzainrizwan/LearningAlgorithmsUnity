@@ -1,0 +1,68 @@
+@startuml
+class ShaderScriptableStripper {
+    + active : bool <<get>>
+    + {static} <<readonly>> kPassNameUniversal2D : string = "Universal2D"
+    + {static} <<readonly>> kPassNameGBuffer : string = "GBuffer"
+    + {static} <<readonly>> kPassNameForwardLit : string = "ForwardLit"
+    + {static} <<readonly>> kPassNameDepthNormals : string = "DepthNormals"
+    + {static} <<readonly>> kPassNameXRMotionVectors : string = "XRMotionVectors"
+    + CanRemoveVariant(shader:Shader, passData:ShaderSnippetData, variantData:ShaderCompilerData) : bool
+    + BeforeShaderStripping(shader:Shader) : void
+    + AfterShaderStripping(shader:Shader) : void
+}
+interface IShaderScriptableStrippingData {
+    + isGLDevice : bool <<get>> <<set>>
+    + strip2DPasses : bool <<get>> <<set>>
+    + stripSoftShadowQualityLevels : bool <<get>> <<set>>
+    + stripDebugDisplayShaders : bool <<get>> <<set>>
+    + stripScreenCoordOverrideVariants : bool <<get>> <<set>>
+    + stripUnusedVariants : bool <<get>> <<set>>
+    + stripUnusedPostProcessingVariants : bool <<get>> <<set>>
+    + stripUnusedXRVariants : bool <<get>> <<set>>
+    + passName : string <<get>> <<set>>
+    + IsHDRDisplaySupportEnabled : bool <<get>> <<set>>
+    + IsHDRShaderVariantValid : bool <<get>> <<set>>
+    + IsShaderFeatureEnabled(feature:ShaderFeatures) : bool
+    + IsVolumeFeatureEnabled(feature:VolumeFeatures) : bool
+    + IsKeywordEnabled(keyword:LocalKeyword) : bool
+    + PassHasKeyword(keyword:LocalKeyword) : bool
+}
+struct StrippingData {
+    + isGLDevice : bool <<get>> <<set>>
+    + stripSoftShadowQualityLevels : bool <<get>> <<set>>
+    + strip2DPasses : bool <<get>> <<set>>
+    + stripDebugDisplayShaders : bool <<get>> <<set>>
+    + stripScreenCoordOverrideVariants : bool <<get>> <<set>>
+    + stripUnusedVariants : bool <<get>> <<set>>
+    + stripUnusedPostProcessingVariants : bool <<get>> <<set>>
+    + stripUnusedXRVariants : bool <<get>> <<set>>
+    + passName : string <<get>> <<set>>
+    + IsHDRDisplaySupportEnabled : bool <<get>> <<set>>
+    + IsHDRShaderVariantValid : bool <<get>> <<set>>
+    + IsKeywordEnabled(keyword:LocalKeyword) : bool
+    + IsShaderFeatureEnabled(feature:ShaderFeatures) : bool
+    + IsVolumeFeatureEnabled(feature:VolumeFeatures) : bool
+    + PassHasKeyword(keyword:LocalKeyword) : bool
+}
+IShaderVariantStripper <|-- ShaderScriptableStripper
+IShaderVariantStripperScope <|-- ShaderScriptableStripper
+ShaderScriptableStripper +-- IShaderScriptableStrippingData
+IShaderScriptableStrippingData --> "shaderFeatures" ShaderFeatures
+IShaderScriptableStrippingData --> "volumeFeatures" VolumeFeatures
+IShaderScriptableStrippingData --> "shader" Shader
+IShaderScriptableStrippingData --> "shaderType" ShaderType
+IShaderScriptableStrippingData --> "shaderCompilerPlatform" ShaderCompilerPlatform
+IShaderScriptableStrippingData --> "passType" PassType
+IShaderScriptableStrippingData --> "passIdentifier" PassIdentifier
+ShaderScriptableStripper +-- StrippingData
+IShaderScriptableStrippingData <|-- StrippingData
+StrippingData --> "shaderFeatures" ShaderFeatures
+StrippingData --> "volumeFeatures" VolumeFeatures
+StrippingData --> "shader" Shader
+StrippingData --> "shaderType" ShaderType
+StrippingData --> "shaderCompilerPlatform" ShaderCompilerPlatform
+StrippingData --> "passType" PassType
+StrippingData --> "passIdentifier" PassIdentifier
+StrippingData --> "passData" ShaderSnippetData
+StrippingData --> "variantData" ShaderCompilerData
+@enduml

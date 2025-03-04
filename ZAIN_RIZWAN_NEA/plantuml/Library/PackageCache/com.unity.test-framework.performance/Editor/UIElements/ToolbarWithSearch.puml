@@ -1,0 +1,11 @@
+@startuml
+class ToolbarWithSearch {
+    + ToolbarWithSearch()
+    + Draw() : void
+    + ClearSearchString() : void
+}
+class "Action`1"<T> {
+}
+VisualElement <|-- ToolbarWithSearch
+ToolbarWithSearch --> "SearchTextChanged<string>" "Action`1"
+@enduml

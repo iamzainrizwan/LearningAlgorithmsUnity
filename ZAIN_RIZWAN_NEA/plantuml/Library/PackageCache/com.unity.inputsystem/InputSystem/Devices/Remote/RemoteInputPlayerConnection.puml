@@ -1,0 +1,27 @@
+@startuml
+class RemoteInputPlayerConnection {
+    + Bind(connection:IEditorPlayerConnection, isConnected:bool) : void
+    + Subscribe(observer:IObserver<InputRemoting.Message>) : IDisposable
+}
+class "IObserver`1"<T> {
+}
+class "IObservable`1"<T> {
+}
+class Subscriber {
+    + Dispose() : void
+}
+ScriptableObject <|-- RemoteInputPlayerConnection
+"IObserver`1" "<InputRemoting.Message>" <|-- RemoteInputPlayerConnection
+"IObservable`1" "<InputRemoting.Message>" <|-- RemoteInputPlayerConnection
+RemoteInputPlayerConnection o-> "kNewDeviceMsg" Guid
+RemoteInputPlayerConnection o-> "kNewLayoutMsg" Guid
+RemoteInputPlayerConnection o-> "kNewEventsMsg" Guid
+RemoteInputPlayerConnection o-> "kRemoveDeviceMsg" Guid
+RemoteInputPlayerConnection o-> "kChangeUsagesMsg" Guid
+RemoteInputPlayerConnection o-> "kStartSendingMsg" Guid
+RemoteInputPlayerConnection o-> "kStopSendingMsg" Guid
+RemoteInputPlayerConnection +-- Subscriber
+IDisposable <|-- Subscriber
+Subscriber --> "owner" RemoteInputPlayerConnection
+Subscriber --> "observer<InputRemoting.Message>" "IObserver`1"
+@enduml

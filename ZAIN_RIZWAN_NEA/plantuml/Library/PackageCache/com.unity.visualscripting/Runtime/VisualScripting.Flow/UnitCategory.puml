@@ -1,0 +1,18 @@
+@startuml
+class UnitCategory {
+    + UnitCategory(fullName:string)
+    + fullName : string <<get>>
+    + name : string <<get>>
+    + isRoot : bool <<get>>
+    + AndAncestors() : IEnumerable<UnitCategory>
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+}
+class "IEnumerable`1"<T> {
+}
+Attribute <|-- UnitCategory
+UnitCategory --> "root" UnitCategory
+UnitCategory --> "parent" UnitCategory
+UnitCategory --> "ancestors<UnitCategory>" "IEnumerable`1"
+@enduml

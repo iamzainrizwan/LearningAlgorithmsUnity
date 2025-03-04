@@ -1,0 +1,12 @@
+@startuml
+class InputModuleTests {
+    + Setup() : void
+    + TearDown() : void
+    + InputModuleComponentFactory_AddComponent_CanBeOverriden() : void
+}
+class TestInputModule {
+    + <<override>> Process() : void
+}
+InputModuleTests +-- TestInputModule
+BaseInputModule <|-- TestInputModule
+@enduml

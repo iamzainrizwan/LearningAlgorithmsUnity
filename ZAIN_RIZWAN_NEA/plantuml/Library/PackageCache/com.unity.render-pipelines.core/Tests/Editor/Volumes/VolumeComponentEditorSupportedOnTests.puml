@@ -1,0 +1,6 @@
+@startuml
+class VolumeComponentEditorSupportedOnTests {
+    + TestVolumeManagerSupportedOnFiltering(renderPipelineAssetType:Type, expectedTypes:Type[], notExpectedTypes:Type[]) : void
+}
+RenderPipelineTests <|-- VolumeComponentEditorSupportedOnTests
+@enduml

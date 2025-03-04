@@ -1,0 +1,10 @@
+@startuml
+class DebugUIHandlerObjectPopupField {
+    + <<override>> OnIncrement(fast:bool) : void
+    + <<override>> OnDecrement(fast:bool) : void
+    + <<override>> UpdateValueLabel() : void
+}
+class "DebugUIHandlerField`1"<T> {
+}
+"DebugUIHandlerField`1" "<DebugUI.ObjectPopupField>" <|-- DebugUIHandlerObjectPopupField
+@enduml

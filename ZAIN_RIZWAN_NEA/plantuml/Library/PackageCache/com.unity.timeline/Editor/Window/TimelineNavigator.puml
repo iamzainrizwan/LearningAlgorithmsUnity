@@ -1,0 +1,10 @@
+@startuml
+class TimelineNavigator <<sealed>> {
+    + GetCurrentContext() : SequenceContext
+    + GetParentContext() : SequenceContext
+    + GetRootContext() : SequenceContext
+    + GetChildContexts() : IEnumerable<SequenceContext>
+    + GetBreadcrumbs() : IEnumerable<SequenceContext>
+    + NavigateTo(context:SequenceContext) : void
+}
+@enduml

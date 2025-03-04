@@ -1,0 +1,16 @@
+@startuml
+class TabbedView <<partial>> {
+    + TabbedView()
+    + AddTab(tabButton:TabButton, activate:bool) : void
+    + RemoveTab(tabButton:TabButton) : void
+    + Activate(button:TabButton) : void
+}
+class UxmlFactory <<new>> {
+}
+class "UxmlFactory`2"<T1,T2> {
+}
+VisualElement <|-- TabbedView
+TabbedView --> "contentContainer" VisualElement
+TabbedView +-- UxmlFactory
+"UxmlFactory`2" "<TabbedView,UxmlTraits>" <|-- UxmlFactory
+@enduml

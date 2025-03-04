@@ -1,0 +1,9 @@
+@startuml
+class SetMemberOption {
+    + SetMemberOption()
+    + SetMemberOption(unit:SetMember)
+}
+class "MemberUnitOption`1"<T> {
+}
+"MemberUnitOption`1" "<SetMember>" <|-- SetMemberOption
+@enduml

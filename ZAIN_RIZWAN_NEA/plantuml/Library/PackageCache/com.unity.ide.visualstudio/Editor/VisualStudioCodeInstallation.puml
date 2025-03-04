@@ -1,0 +1,19 @@
+@startuml
+class VisualStudioCodeInstallation {
+    + <<override>> SupportsAnalyzers : bool <<get>>
+    + <<override>> GetAnalyzers() : string[]
+    + {static} TryDiscoverInstallation(editorPath:string, installation:IVisualStudioInstallation) : bool
+    + {static} GetVisualStudioInstallations() : IEnumerable<IVisualStudioInstallation>
+    + <<override>> CreateExtraFiles(projectDirectory:string) : void
+    + <<override>> Open(path:string, line:int, column:int, solution:string) : bool
+    + {static} Initialize() : void
+}
+class VisualStudioCodeManifest {
+    + name : string
+    + version : string
+}
+VisualStudioInstallation <|-- VisualStudioCodeInstallation
+VisualStudioCodeInstallation --> "LatestLanguageVersionSupported" Version
+VisualStudioCodeInstallation --> "ProjectGenerator" IGenerator
+VisualStudioCodeInstallation +-- VisualStudioCodeManifest
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class NavMeshModifierVolume {
+    + area : int <<get>> <<set>>
+    + AffectsAgentType(agentTypeID:int) : bool
+}
+class "List`1"<T> {
+}
+MonoBehaviour <|-- NavMeshModifierVolume
+NavMeshModifierVolume --> "size" Vector3
+NavMeshModifierVolume --> "center" Vector3
+NavMeshModifierVolume --> "activeModifiers<NavMeshModifierVolume>" "List`1"
+@enduml

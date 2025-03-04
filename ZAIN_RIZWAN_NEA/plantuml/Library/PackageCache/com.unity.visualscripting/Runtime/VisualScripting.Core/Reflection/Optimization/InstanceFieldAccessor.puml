@@ -1,0 +1,9 @@
+@startuml
+class "InstanceFieldAccessor`2"<TTarget,TField> {
+    + InstanceFieldAccessor(fieldInfo:FieldInfo)
+    + Compile() : void
+    + GetValue(target:object) : object
+    + SetValue(target:object, value:object) : void
+}
+IOptimizedAccessor <|-- "InstanceFieldAccessor`2"
+@enduml

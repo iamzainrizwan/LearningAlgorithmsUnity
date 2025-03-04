@@ -1,0 +1,6 @@
+@startuml
+class Scrollable {
+    + Scrollable(handler:Action<float>)
+}
+MouseManipulator <|-- Scrollable
+@enduml

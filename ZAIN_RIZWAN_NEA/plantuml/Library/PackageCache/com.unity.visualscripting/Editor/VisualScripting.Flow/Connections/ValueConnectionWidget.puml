@@ -1,0 +1,16 @@
+@startuml
+class ValueConnectionWidget <<sealed>> {
+    + ValueConnectionWidget(canvas:FlowCanvas, connection:ValueConnection)
+    + <<override>> DrawForeground() : void
+    + {static} DetermineColor(source:Type, destination:Type) : Color
+    + {static} DetermineColor(type:Type) : Color
+}
+class "UnitConnectionWidget`1"<T> {
+}
+class Styles <<static>> {
+}
+"UnitConnectionWidget`1" "<ValueConnection>" <|-- ValueConnectionWidget
+ValueConnectionWidget --> "color" Color
+ValueConnectionWidget +-- Styles
+Styles --> "prediction" GUIStyle
+@enduml

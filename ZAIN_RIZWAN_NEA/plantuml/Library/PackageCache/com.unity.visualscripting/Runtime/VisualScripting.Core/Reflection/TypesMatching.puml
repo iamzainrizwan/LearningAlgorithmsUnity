@@ -1,0 +1,7 @@
+@startuml
+enum TypesMatching {
+    ConvertibleToAny,
+    AssignableToAll,
+    Any,
+}
+@enduml

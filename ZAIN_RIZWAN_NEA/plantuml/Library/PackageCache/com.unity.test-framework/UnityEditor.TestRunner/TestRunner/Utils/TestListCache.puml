@@ -1,0 +1,8 @@
+@startuml
+class TestListCache {
+    + TestListCache(testAdaptorFactory:ITestAdaptorFactory, testResultDataFactory:IRemoteTestResultDataFactory, testListCacheData:ITestListCacheData)
+    + CacheTest(platform:TestPlatform, test:ITest) : void
+    + GetTestFromCacheAsync(platform:TestPlatform) : IEnumerator<ITestAdaptor>
+}
+ITestListCache <|-- TestListCache
+@enduml

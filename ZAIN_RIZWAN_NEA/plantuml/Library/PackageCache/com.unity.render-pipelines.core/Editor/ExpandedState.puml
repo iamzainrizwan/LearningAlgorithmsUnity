@@ -1,0 +1,22 @@
+@startuml
+abstract class "ExpandedStateBase`1"<TState> {
+    + {abstract} GetExpandedAreas(mask:TState) : bool
+    + {abstract} SetExpandedAreas(mask:TState, value:bool) : void
+    + {abstract} ExpandAll() : void
+    + {abstract} CollapseAll() : void
+}
+class "ExpandedState`2"<TState,TTarget> {
+    + ExpandedState(defaultValue:TState, prefix:string, stateId:string)
+    + <<override>> GetExpandedAreas(mask:TState) : bool
+    + <<override>> SetExpandedAreas(mask:TState, value:bool) : void
+    + <<override>> ExpandAll() : void
+    + <<override>> CollapseAll() : void
+}
+class "ExpandedStateList`1"<TTarget> {
+    + ExpandedStateList(prefix:string)
+    + SwapFlags(srcIndex:int, dstIndex:int) : void
+    + RemoveFlagAtIndex(index:int) : void
+}
+"ExpandedStateBase`1" "<TState>" <|-- "ExpandedState`2"
+"ExpandedState`2" "<int,TTarget>" <|-- "ExpandedStateList`1"
+@enduml

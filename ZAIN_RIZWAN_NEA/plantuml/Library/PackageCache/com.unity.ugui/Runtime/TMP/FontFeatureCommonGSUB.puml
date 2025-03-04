@@ -1,0 +1,12 @@
+@startuml
+struct SingleSubstitutionRecord {
+}
+struct MultipleSubstitutionRecord {
+    + targetGlyphID : uint <<get>> <<set>>
+}
+struct AlternateSubstitutionRecord {
+}
+struct LigatureSubstitutionRecord {
+    + ligatureGlyphID : uint <<get>> <<set>>
+}
+@enduml

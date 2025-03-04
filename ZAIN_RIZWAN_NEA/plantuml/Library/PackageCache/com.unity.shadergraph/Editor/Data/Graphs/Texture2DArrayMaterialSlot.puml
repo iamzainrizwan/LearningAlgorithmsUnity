@@ -1,0 +1,13 @@
+@startuml
+class Texture2DArrayMaterialSlot {
+    + Texture2DArrayMaterialSlot()
+    + Texture2DArrayMaterialSlot(slotId:int, displayName:string, shaderOutputName:string, slotType:SlotType, shaderStageCapability:ShaderStageCapability, hidden:bool)
+    + <<override>> AppendHLSLParameterDeclaration(sb:ShaderStringBuilder, paramName:string) : void
+    + <<override>> isDefaultValue : bool <<get>>
+    + <<override>> AddDefaultProperty(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + <<override>> CopyValuesFrom(foundSlot:MaterialSlot) : void
+}
+MaterialSlot <|-- Texture2DArrayMaterialSlot
+Texture2DArrayMaterialSlot --> "valueType" SlotValueType
+Texture2DArrayMaterialSlot --> "concreteValueType" ConcreteSlotValueType
+@enduml

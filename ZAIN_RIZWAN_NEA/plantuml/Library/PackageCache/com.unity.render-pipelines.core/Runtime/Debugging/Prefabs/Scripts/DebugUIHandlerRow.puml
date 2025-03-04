@@ -1,0 +1,5 @@
+@startuml
+class DebugUIHandlerRow {
+}
+DebugUIHandlerFoldout <|-- DebugUIHandlerRow
+@enduml

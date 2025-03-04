@@ -1,0 +1,41 @@
+@startuml
+enum DebugAction {
+    EnableDebugMenu,
+    PreviousDebugPanel,
+    NextDebugPanel,
+    Action,
+    MakePersistent,
+    MoveVertical,
+    MoveHorizontal,
+    Multiplier,
+    ResetAll,
+    DebugActionCount,
+}
+enum DebugActionRepeatMode {
+    Never,
+    Delay,
+}
+class DebugManager <<sealed>> <<partial>> {
+}
+class DebugActionDesc {
+    + axisTrigger : string = ""
+    + repeatDelay : float
+}
+class DebugActionState {
+    + TriggerWithButton(buttons:string[], state:float) : void
+    + TriggerWithAxis(axis:string, state:float) : void
+    + TriggerWithKey(keys:KeyCode[], state:float) : void
+    + Update(desc:DebugActionDesc) : void
+}
+class "List`1"<T> {
+}
+enum DebugActionKeyType {
+    Button,
+    Axis,
+    Key,
+}
+DebugActionDesc o-> "buttonTriggerList<string[]>" "List`1"
+DebugActionDesc o-> "keyTriggerList<KeyCode[]>" "List`1"
+DebugActionDesc o-> "repeatMode" DebugActionRepeatMode
+DebugActionState +-- DebugActionKeyType
+@enduml

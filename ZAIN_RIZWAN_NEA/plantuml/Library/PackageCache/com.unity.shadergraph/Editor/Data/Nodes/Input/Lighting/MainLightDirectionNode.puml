@@ -1,0 +1,7 @@
+@startuml
+class MainLightDirectionNode {
+    + MainLightDirectionNode()
+    + <<override>> hasPreview : bool <<get>>
+}
+CodeFunctionNode <|-- MainLightDirectionNode
+@enduml

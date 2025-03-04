@@ -1,0 +1,7 @@
+@startuml
+class ScreenSpaceLensFlareEditor {
+    + <<override>> OnEnable() : void
+    + <<override>> OnInspectorGUI() : void
+}
+VolumeComponentEditor <|-- ScreenSpaceLensFlareEditor
+@enduml

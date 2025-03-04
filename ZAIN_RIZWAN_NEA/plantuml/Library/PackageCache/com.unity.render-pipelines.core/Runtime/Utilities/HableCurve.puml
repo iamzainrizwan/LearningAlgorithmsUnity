@@ -1,0 +1,35 @@
+@startuml
+class HableCurve {
+    + whitePoint : float <<get>>
+    + inverseWhitePoint : float <<get>>
+    + x0 : float <<get>>
+    + x1 : float <<get>>
+    + HableCurve()
+    + Eval(x:float) : float
+    + Init(toeStrength:float, toeLength:float, shoulderStrength:float, shoulderLength:float, shoulderAngle:float, gamma:float) : void
+}
+class Segment {
+    + offsetX : float
+    + offsetY : float
+    + scaleX : float
+    + scaleY : float
+    + lnA : float
+    + B : float
+    + Eval(x:float) : float
+}
+struct DirectParams {
+}
+class Uniforms {
+}
+HableCurve --> "uniforms" Uniforms
+HableCurve +-- Segment
+HableCurve +-- DirectParams
+HableCurve +-- Uniforms
+Uniforms --> "curve" Vector4
+Uniforms --> "toeSegmentA" Vector4
+Uniforms --> "toeSegmentB" Vector4
+Uniforms --> "midSegmentA" Vector4
+Uniforms --> "midSegmentB" Vector4
+Uniforms --> "shoSegmentA" Vector4
+Uniforms --> "shoSegmentB" Vector4
+@enduml

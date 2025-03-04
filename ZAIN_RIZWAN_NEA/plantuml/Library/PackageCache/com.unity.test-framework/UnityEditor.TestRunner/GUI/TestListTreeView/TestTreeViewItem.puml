@@ -1,0 +1,19 @@
+@startuml
+class TestTreeViewItem <<sealed>> {
+    + IsGroupNode : bool <<get>>
+    + FullName : string <<get>>
+    + UniqueName : string <<get>>
+    + <<override>> displayName : string <<get>> <<set>>
+    + GetAssemblyName() : string
+    + GetMinimizedSelectedTree() : IEnumerable<ITestAdaptor>
+    + TestTreeViewItem(test:ITestAdaptor, depth:int, parent:TreeViewItem)
+    + TotalChildrenCount : int <<get>> <<set>>
+    + TotalSuccessChildrenCount : int <<get>> <<set>>
+    + SetResult(testResult:TestRunnerResult) : void
+    + GetResultText() : string
+}
+TreeViewItem <|-- TestTreeViewItem
+TestTreeViewItem --> "result" TestRunnerResult
+TestTreeViewItem --> "type" Type
+TestTreeViewItem --> "method" MethodInfo
+@enduml

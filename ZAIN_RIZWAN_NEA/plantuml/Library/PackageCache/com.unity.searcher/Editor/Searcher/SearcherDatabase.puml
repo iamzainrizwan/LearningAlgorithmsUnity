@@ -1,0 +1,18 @@
+@startuml
+class SearcherDatabase {
+    + {static} Create(items:List<SearcherItem>, databaseDirectory:string, serializeToFile:bool) : SearcherDatabase
+    + {static} Load(databaseDirectory:string) : SearcherDatabase
+    + SearcherDatabase(db:IReadOnlyCollection<SearcherItem>)
+    + <<override>> Search(query:string, localMaxScore:float) : List<SearcherItem>
+    + <<override>> BuildIndex() : void
+}
+class Result {
+    + maxScore : float
+}
+class "Func`3"<T1,T2,T3> {
+}
+SearcherDatabaseBase <|-- SearcherDatabase
+SearcherDatabase --> "MatchFilter<string,SearcherItem,bool>" "Func`3"
+SearcherDatabase +-- Result
+Result --> "item" SearcherItem
+@enduml

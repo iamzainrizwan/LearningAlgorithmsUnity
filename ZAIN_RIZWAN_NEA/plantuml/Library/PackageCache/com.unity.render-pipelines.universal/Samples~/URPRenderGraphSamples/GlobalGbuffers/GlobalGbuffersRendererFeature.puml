@@ -1,0 +1,15 @@
+@startuml
+class GlobalGbuffersRendererFeature {
+    + <<override>> Create() : void
+    + <<override>> AddRenderPasses(renderer:ScriptableRenderer, renderingData:RenderingData) : void
+}
+class GlobalGBuffersRenderPass {
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+class PassData {
+}
+ScriptableRendererFeature <|-- GlobalGbuffersRendererFeature
+GlobalGbuffersRendererFeature +-- GlobalGBuffersRenderPass
+ScriptableRenderPass <|-- GlobalGBuffersRenderPass
+GlobalGBuffersRenderPass +-- PassData
+@enduml

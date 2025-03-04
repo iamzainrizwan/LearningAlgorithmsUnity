@@ -1,0 +1,205 @@
+@startuml
+class InstanceDataSystem <<partial>> {
+}
+struct QueryRendererGroupInstancesCountJob {
+    + <<const>> k_BatchSize : int = 128
+    + Execute(startIndex:int, count:int) : void
+}
+struct ComputeInstancesOffsetAndResizeInstancesArrayJob {
+    + Execute() : void
+}
+struct QueryRendererGroupInstancesJob {
+    + <<const>> k_BatchSize : int = 128
+    + Execute(startIndex:int, count:int) : void
+}
+struct QueryRendererGroupInstancesMultiJob {
+    + <<const>> k_BatchSize : int = 128
+    + Execute(startIndex:int, count:int) : void
+}
+struct QuerySortedMeshInstancesJob {
+    + <<const>> k_BatchSize : int = 64
+    + Execute(startIndex:int, count:int) : void
+}
+struct CalculateInterpolatedLightAndOcclusionProbesBatchJob {
+    + <<const>> k_BatchSize : int = 1
+    + <<const>> k_CalculatedProbesPerBatch : int = 8
+    + probesCount : int
+    + Execute(index:int) : void
+}
+struct ScatterTetrahedronCacheIndicesJob {
+    + <<const>> k_BatchSize : int = 128
+    + Execute(index:int) : void
+}
+struct TransformUpdateJob {
+    + <<const>> k_BatchSize : int = 64
+    + initialize : bool
+    + enableBoundingSpheres : bool
+    + Execute(startIndex:int, count:int) : void
+}
+struct ProbesUpdateJob {
+    + <<const>> k_BatchSize : int = 64
+    + initialize : bool
+    + Execute(startIndex:int, count:int) : void
+}
+struct MotionUpdateJob {
+    + <<const>> k_BatchSize : int = 16
+    + queueWriteBase : int
+    + Execute(chunk_index:int) : void
+}
+struct ReallocateInstancesJob {
+    + implicitInstanceIndices : bool
+    + Execute() : void
+}
+struct FreeInstancesJob {
+    + Execute() : void
+}
+struct FreeRendererGroupInstancesJob {
+    + Execute() : void
+}
+struct UpdateRendererInstancesJob {
+    + <<const>> k_BatchSize : int = 128
+    + implicitInstanceIndices : bool
+    + Execute(index:int) : void
+}
+struct CollectInstancesLODGroupsAndMasksJob {
+    + <<const>> k_BatchSize : int = 128
+    + Execute(index:int) : void
+}
+struct GetVisibleNonProcessedTreeInstancesJob {
+    + <<const>> k_BatchSize : int = 64
+    + becomeVisible : bool
+    + Execute(startIndex:int, count:int) : void
+}
+struct UpdateCompactedInstanceVisibilityJob {
+    + <<const>> k_BatchSize : int = 64
+    + Execute(startIndex:int, count:int) : void
+}
+class "NativeParallelMultiHashMap`2"<T1,T2> {
+}
+class "NativeArray`1"<T> {
+}
+class "NativeList`1"<T> {
+}
+class "NativeParallelHashMap`2"<T1,T2> {
+}
+IDisposable <|-- InstanceDataSystem
+InstanceDataSystem +-- QueryRendererGroupInstancesCountJob
+IJobParallelForBatch <|-- QueryRendererGroupInstancesCountJob
+QueryRendererGroupInstancesCountJob --> "instanceData" CPUInstanceData
+QueryRendererGroupInstancesCountJob --> "sharedInstanceData" CPUSharedInstanceData
+QueryRendererGroupInstancesCountJob --> "rendererGroupInstanceMultiHash<int,InstanceHandle>" "NativeParallelMultiHashMap`2"
+QueryRendererGroupInstancesCountJob --> "rendererGroupIDs<int>" "NativeArray`1"
+QueryRendererGroupInstancesCountJob --> "instancesCount<int>" "NativeArray`1"
+InstanceDataSystem +-- ComputeInstancesOffsetAndResizeInstancesArrayJob
+IJob <|-- ComputeInstancesOffsetAndResizeInstancesArrayJob
+ComputeInstancesOffsetAndResizeInstancesArrayJob --> "instancesCount<int>" "NativeArray`1"
+ComputeInstancesOffsetAndResizeInstancesArrayJob --> "instancesOffset<int>" "NativeArray`1"
+ComputeInstancesOffsetAndResizeInstancesArrayJob --> "instances<InstanceHandle>" "NativeList`1"
+InstanceDataSystem +-- QueryRendererGroupInstancesJob
+IJobParallelForBatch <|-- QueryRendererGroupInstancesJob
+QueryRendererGroupInstancesJob --> "rendererGroupInstanceMultiHash<int,InstanceHandle>" "NativeParallelMultiHashMap`2"
+QueryRendererGroupInstancesJob --> "rendererGroupIDs<int>" "NativeArray`1"
+QueryRendererGroupInstancesJob --> "instances<InstanceHandle>" "NativeArray`1"
+QueryRendererGroupInstancesJob --> "atomicNonFoundInstancesCount" UnsafeAtomicCounter32
+InstanceDataSystem +-- QueryRendererGroupInstancesMultiJob
+IJobParallelForBatch <|-- QueryRendererGroupInstancesMultiJob
+QueryRendererGroupInstancesMultiJob --> "rendererGroupInstanceMultiHash<int,InstanceHandle>" "NativeParallelMultiHashMap`2"
+QueryRendererGroupInstancesMultiJob --> "rendererGroupIDs<int>" "NativeArray`1"
+QueryRendererGroupInstancesMultiJob --> "instancesOffsets<int>" "NativeArray`1"
+QueryRendererGroupInstancesMultiJob --> "instancesCounts<int>" "NativeArray`1"
+QueryRendererGroupInstancesMultiJob --> "instances<InstanceHandle>" "NativeArray`1"
+QueryRendererGroupInstancesMultiJob --> "atomicNonFoundSharedInstancesCount" UnsafeAtomicCounter32
+QueryRendererGroupInstancesMultiJob --> "atomicNonFoundInstancesCount" UnsafeAtomicCounter32
+InstanceDataSystem +-- QuerySortedMeshInstancesJob
+IJobParallelForBatch <|-- QuerySortedMeshInstancesJob
+QuerySortedMeshInstancesJob --> "instanceData" CPUInstanceData
+QuerySortedMeshInstancesJob --> "sharedInstanceData" CPUSharedInstanceData
+QuerySortedMeshInstancesJob --> "sortedMeshID<int>" "NativeArray`1"
+QuerySortedMeshInstancesJob --> "instances<InstanceHandle>" "NativeList`1"
+InstanceDataSystem +-- CalculateInterpolatedLightAndOcclusionProbesBatchJob
+IJobParallelFor <|-- CalculateInterpolatedLightAndOcclusionProbesBatchJob
+CalculateInterpolatedLightAndOcclusionProbesBatchJob --> "lightProbesQuery" LightProbesQuery
+CalculateInterpolatedLightAndOcclusionProbesBatchJob --> "queryPostitions<Vector3>" "NativeArray`1"
+CalculateInterpolatedLightAndOcclusionProbesBatchJob --> "compactTetrahedronCache<int>" "NativeArray`1"
+CalculateInterpolatedLightAndOcclusionProbesBatchJob --> "probesSphericalHarmonics<SphericalHarmonicsL2>" "NativeArray`1"
+CalculateInterpolatedLightAndOcclusionProbesBatchJob --> "probesOcclusion<Vector4>" "NativeArray`1"
+InstanceDataSystem +-- ScatterTetrahedronCacheIndicesJob
+IJobParallelFor <|-- ScatterTetrahedronCacheIndicesJob
+ScatterTetrahedronCacheIndicesJob --> "probeInstances<InstanceHandle>" "NativeArray`1"
+ScatterTetrahedronCacheIndicesJob --> "compactTetrahedronCache<int>" "NativeArray`1"
+ScatterTetrahedronCacheIndicesJob --> "instanceData" CPUInstanceData
+InstanceDataSystem +-- TransformUpdateJob
+IJobParallelForBatch <|-- TransformUpdateJob
+TransformUpdateJob --> "instances<InstanceHandle>" "NativeArray`1"
+TransformUpdateJob --> "localToWorldMatrices<Matrix4x4>" "NativeArray`1"
+TransformUpdateJob --> "prevLocalToWorldMatrices<Matrix4x4>" "NativeArray`1"
+TransformUpdateJob --> "atomicTransformQueueCount" UnsafeAtomicCounter32
+TransformUpdateJob --> "sharedInstanceData" CPUSharedInstanceData
+TransformUpdateJob --> "instanceData" CPUInstanceData
+TransformUpdateJob --> "transformUpdateInstanceQueue<InstanceHandle>" "NativeArray`1"
+TransformUpdateJob --> "transformUpdateDataQueue<TransformUpdatePacket>" "NativeArray`1"
+TransformUpdateJob --> "boundingSpheresDataQueue<float4>" "NativeArray`1"
+InstanceDataSystem +-- ProbesUpdateJob
+IJobParallelForBatch <|-- ProbesUpdateJob
+ProbesUpdateJob --> "instances<InstanceHandle>" "NativeArray`1"
+ProbesUpdateJob --> "instanceData" CPUInstanceData
+ProbesUpdateJob --> "sharedInstanceData" CPUSharedInstanceData
+ProbesUpdateJob --> "atomicProbesQueueCount" UnsafeAtomicCounter32
+ProbesUpdateJob --> "probeInstanceQueue<InstanceHandle>" "NativeArray`1"
+ProbesUpdateJob --> "compactTetrahedronCache<int>" "NativeArray`1"
+ProbesUpdateJob --> "probeQueryPosition<Vector3>" "NativeArray`1"
+InstanceDataSystem +-- MotionUpdateJob
+IJobParallelFor <|-- MotionUpdateJob
+MotionUpdateJob --> "instanceData" CPUInstanceData
+MotionUpdateJob --> "atomicUpdateQueueCount" UnsafeAtomicCounter32
+MotionUpdateJob --> "transformUpdateInstanceQueue<InstanceHandle>" "NativeArray`1"
+InstanceDataSystem +-- ReallocateInstancesJob
+IJob <|-- ReallocateInstancesJob
+ReallocateInstancesJob --> "rendererGroupIDs<int>" "NativeArray`1"
+ReallocateInstancesJob --> "packedRendererData<GPUDrivenPackedRendererData>" "NativeArray`1"
+ReallocateInstancesJob --> "instanceOffsets<int>" "NativeArray`1"
+ReallocateInstancesJob --> "instanceCounts<int>" "NativeArray`1"
+ReallocateInstancesJob --> "instanceAllocators" InstanceAllocators
+ReallocateInstancesJob --> "instanceData" CPUInstanceData
+ReallocateInstancesJob --> "sharedInstanceData" CPUSharedInstanceData
+ReallocateInstancesJob --> "instances<InstanceHandle>" "NativeArray`1"
+ReallocateInstancesJob --> "rendererGroupInstanceMultiHash<int,InstanceHandle>" "NativeParallelMultiHashMap`2"
+InstanceDataSystem +-- FreeInstancesJob
+IJob <|-- FreeInstancesJob
+FreeInstancesJob --> "instances<InstanceHandle>" "NativeArray`1"
+FreeInstancesJob --> "instanceAllocators" InstanceAllocators
+FreeInstancesJob --> "instanceData" CPUInstanceData
+FreeInstancesJob --> "sharedInstanceData" CPUSharedInstanceData
+FreeInstancesJob --> "rendererGroupInstanceMultiHash<int,InstanceHandle>" "NativeParallelMultiHashMap`2"
+InstanceDataSystem +-- FreeRendererGroupInstancesJob
+IJob <|-- FreeRendererGroupInstancesJob
+FreeRendererGroupInstancesJob --> "rendererGroupsID<int>" "NativeArray`1"
+FreeRendererGroupInstancesJob --> "instanceAllocators" InstanceAllocators
+FreeRendererGroupInstancesJob --> "instanceData" CPUInstanceData
+FreeRendererGroupInstancesJob --> "sharedInstanceData" CPUSharedInstanceData
+FreeRendererGroupInstancesJob --> "rendererGroupInstanceMultiHash<int,InstanceHandle>" "NativeParallelMultiHashMap`2"
+InstanceDataSystem +-- UpdateRendererInstancesJob
+IJobParallelFor <|-- UpdateRendererInstancesJob
+UpdateRendererInstancesJob --> "rendererData" GPUDrivenRendererGroupData
+UpdateRendererInstancesJob --> "instances<InstanceHandle>" "NativeArray`1"
+UpdateRendererInstancesJob --> "lodGroupDataMap<int,GPUInstanceIndex>" "NativeParallelHashMap`2"
+UpdateRendererInstancesJob --> "instanceData" CPUInstanceData
+UpdateRendererInstancesJob --> "sharedInstanceData" CPUSharedInstanceData
+InstanceDataSystem +-- CollectInstancesLODGroupsAndMasksJob
+IJobParallelFor <|-- CollectInstancesLODGroupsAndMasksJob
+CollectInstancesLODGroupsAndMasksJob --> "instances<InstanceHandle>" "NativeArray`1"
+CollectInstancesLODGroupsAndMasksJob --> "lodGroupAndMasks<uint>" "NativeArray`1"
+InstanceDataSystem +-- GetVisibleNonProcessedTreeInstancesJob
+IJobParallelForBatch <|-- GetVisibleNonProcessedTreeInstancesJob
+GetVisibleNonProcessedTreeInstancesJob --> "instanceData" CPUInstanceData
+GetVisibleNonProcessedTreeInstancesJob --> "sharedInstanceData" CPUSharedInstanceData
+GetVisibleNonProcessedTreeInstancesJob --> "compactedVisibilityMasks" ParallelBitArray
+GetVisibleNonProcessedTreeInstancesJob --> "processedBits" ParallelBitArray
+GetVisibleNonProcessedTreeInstancesJob --> "rendererIDs<int>" "NativeArray`1"
+GetVisibleNonProcessedTreeInstancesJob --> "instances<InstanceHandle>" "NativeArray`1"
+GetVisibleNonProcessedTreeInstancesJob --> "atomicTreeInstancesCount" UnsafeAtomicCounter32
+InstanceDataSystem +-- UpdateCompactedInstanceVisibilityJob
+IJobParallelForBatch <|-- UpdateCompactedInstanceVisibilityJob
+UpdateCompactedInstanceVisibilityJob --> "compactedVisibilityMasks" ParallelBitArray
+UpdateCompactedInstanceVisibilityJob --> "instanceData" CPUInstanceData
+@enduml

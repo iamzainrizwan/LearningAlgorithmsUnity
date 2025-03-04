@@ -1,0 +1,84 @@
+@startuml
+enum OcclusionCullingCommonConfig {
+    MaxOccluderMips= 8,
+    MaxOccluderSilhouettePlanes= 6,
+    MaxSubviewsPerView= 6,
+    DebugPyramidOffset= 4,
+}
+enum OcclusionTestDebugFlag {
+    AlwaysPass= (1 << 0),
+    CountVisible= (1 << 1),
+}
+struct OcclusionTestComputeShader {
+    + Init(cs:ComputeShader) : void
+}
+struct SilhouettePlaneCache {
+    + Init() : void
+    + Dispose() : void
+    + Update(viewInstanceID:int, planes:NativeArray<Plane>, frameIndex:int) : void
+    + FreeUnusedSlots(frameIndex:int, maximumAge:int) : void
+    + GetSubArray(viewInstanceID:int) : NativeArray<Plane>
+}
+class OcclusionCullingCommon {
+    + RenderDebugOcclusionTestOverlay(renderGraph:RenderGraph, debugSettings:DebugDisplayGPUResidentDrawer, viewInstanceID:int, colorBuffer:TextureHandle) : void
+    + RenderDebugOccluderOverlay(renderGraph:RenderGraph, debugSettings:DebugDisplayGPUResidentDrawer, screenPos:Vector2, maxHeight:float, colorBuffer:TextureHandle) : void
+    + UpdateInstanceOccluders(renderGraph:RenderGraph, occluderParams:OccluderParameters, occluderSubviewUpdates:ReadOnlySpan<OccluderSubviewUpdate>) : bool
+    + UpdateOccluderStats(debugStats:DebugRendererBatcherStats) : void
+    + Dispose() : void
+}
+struct Slot {
+    + isActive : bool
+    + viewInstanceID : int
+    + planeCount : int
+    + lastUsedFrameIndex : int
+    + Slot(viewInstanceID:int, planeCount:int, frameIndex:int)
+}
+struct OccluderContextSlot {
+    + valid : bool
+    + lastUsedFrameIndex : int
+    + viewInstanceID : int
+}
+class ShaderIDs <<static>> {
+    + {static} <<readonly>> OcclusionCullingCommonShaderVariables : int
+    + {static} <<readonly>> _OccluderDepthPyramid : int
+    + {static} <<readonly>> _OcclusionDebugOverlay : int
+    + {static} <<readonly>> OcclusionCullingDebugShaderVariables : int
+}
+class OcclusionTestOverlaySetupPassData {
+}
+class OcclusionTestOverlayPassData {
+}
+struct DebugOccluderViewData {
+    + passIndex : int
+    + valid : bool
+}
+class OccluderOverlayPassData {
+    + passIndex : int
+}
+class UpdateOccludersPassData {
+}
+class "List`1"<T> {
+}
+OcclusionTestComputeShader --> "cs" ComputeShader
+OcclusionTestComputeShader --> "occlusionDebugKeyword" LocalKeyword
+IDisposable <|-- SilhouettePlaneCache
+IDisposable <|-- OcclusionCullingCommon
+SilhouettePlaneCache +-- Slot
+OcclusionCullingCommon +-- OccluderContextSlot
+OcclusionCullingCommon +-- ShaderIDs
+OcclusionCullingCommon +-- OcclusionTestOverlaySetupPassData
+OcclusionTestOverlaySetupPassData --> "cb" OcclusionCullingDebugShaderVariables
+OcclusionCullingCommon +-- OcclusionTestOverlayPassData
+OcclusionTestOverlayPassData --> "debugPyramid" BufferHandle
+OcclusionCullingCommon +-- DebugOccluderViewData
+DebugOccluderViewData --> "viewport" Rect
+OcclusionCullingCommon +-- OccluderOverlayPassData
+OccluderOverlayPassData --> "debugMaterial" Material
+OccluderOverlayPassData --> "occluderTexture" RTHandle
+OccluderOverlayPassData --> "viewport" Rect
+OccluderOverlayPassData --> "validRange" Vector2
+OcclusionCullingCommon +-- UpdateOccludersPassData
+UpdateOccludersPassData --> "occluderParams" OccluderParameters
+UpdateOccludersPassData --> "occluderSubviewUpdates<OccluderSubviewUpdate>" "List`1"
+UpdateOccludersPassData --> "occluderHandles" OccluderHandles
+@enduml

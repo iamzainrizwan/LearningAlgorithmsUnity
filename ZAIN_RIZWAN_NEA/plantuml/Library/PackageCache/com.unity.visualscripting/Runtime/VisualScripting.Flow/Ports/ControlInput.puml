@@ -1,0 +1,29 @@
+@startuml
+class ControlInput <<sealed>> {
+    + ControlInput(key:string, action:Func<Flow, ControlOutput>)
+    + ControlInput(key:string, coroutineAction:Func<Flow, IEnumerator>)
+    + ControlInput(key:string, action:Func<Flow, ControlOutput>, coroutineAction:Func<Flow, IEnumerator>)
+    + supportsCoroutine : bool <<get>>
+    + requiresCoroutine : bool <<get>>
+    + isPredictable : bool <<get>>
+    + IsPredictable(recursion:Recursion) : bool
+    + couldBeEntered : bool <<get>>
+    + <<override>> CanConnectToValid(port:ControlOutput) : bool
+    + <<override>> ConnectToValid(port:ControlOutput) : void
+    + <<override>> ConnectToInvalid(port:IUnitOutputPort) : void
+    + <<override>> DisconnectFromValid(port:ControlOutput) : void
+    + <<override>> DisconnectFromInvalid(port:IUnitOutputPort) : void
+    + <<override>> CompatiblePort(unit:IUnit) : IUnitPort
+}
+class "UnitPort`3"<T1,T2,T3> {
+}
+class "IEnumerable`1"<T> {
+}
+"UnitPort`3" "<ControlOutput,IUnitOutputPort,ControlConnection>" <|-- ControlInput
+IUnitControlPort <|-- ControlInput
+IUnitInputPort <|-- ControlInput
+ControlInput --> "validConnections<ControlConnection>" "IEnumerable`1"
+ControlInput --> "invalidConnections<InvalidConnection>" "IEnumerable`1"
+ControlInput --> "validConnectedPorts<ControlOutput>" "IEnumerable`1"
+ControlInput --> "invalidConnectedPorts<IUnitOutputPort>" "IEnumerable`1"
+@enduml

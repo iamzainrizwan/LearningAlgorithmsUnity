@@ -1,0 +1,31 @@
+@startuml
+struct ReflectionProbeManager {
+    + {static} Create() : ReflectionProbeManager
+    + <<unsafe>> UpdateGpuData(cmd:CommandBuffer, cullResults:CullingResults) : void
+    + Dispose() : void
+}
+struct CachedProbe {
+    + updateCount : uint
+    + size : int
+    + mipCount : int
+    + <<fixed>> dataIndices : int
+    + <<fixed>> levels : int
+    + lastUsed : int
+}
+class ShaderProperties <<static>> {
+    + {static} <<readonly>> BoxMin : int
+    + {static} <<readonly>> BoxMax : int
+    + {static} <<readonly>> ProbePosition : int
+    + {static} <<readonly>> MipScaleOffset : int
+    + {static} <<readonly>> Count : int
+    + {static} <<readonly>> Atlas : int
+}
+IDisposable <|-- ReflectionProbeManager
+ReflectionProbeManager --> "atlasRT" RenderTexture
+ReflectionProbeManager --> "atlasRTHandle" RTHandle
+ReflectionProbeManager +-- CachedProbe
+CachedProbe --> "imageContentsHash" Hash128
+CachedProbe --> "texture" Texture
+CachedProbe --> "hdrData" Vector4
+ReflectionProbeManager +-- ShaderProperties
+@enduml

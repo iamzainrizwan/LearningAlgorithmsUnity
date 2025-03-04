@@ -1,0 +1,6 @@
+@startuml
+class AnimatedPropertyUtility <<static>> {
+    + {static} IsMaterialProperty(propertyName:string) : bool
+    + {static} RemapMaterialName(gameObject:GameObject, propertyName:string) : string
+}
+@enduml

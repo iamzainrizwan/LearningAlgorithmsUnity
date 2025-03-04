@@ -1,0 +1,9 @@
+@startuml
+class Shadow {
+    + useGraphicAlpha : bool <<get>> <<set>>
+    + <<override>> ModifyMesh(vh:VertexHelper) : void
+}
+BaseMeshEffect <|-- Shadow
+Shadow --> "effectColor" Color
+Shadow --> "effectDistance" Vector2
+@enduml

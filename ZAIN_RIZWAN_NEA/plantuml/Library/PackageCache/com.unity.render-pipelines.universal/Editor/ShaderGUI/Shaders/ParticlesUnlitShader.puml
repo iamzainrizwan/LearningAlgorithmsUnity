@@ -1,0 +1,11 @@
+@startuml
+class ParticlesUnlitShader {
+    + <<override>> FindProperties(properties:MaterialProperty[]) : void
+    + <<override>> ValidateMaterial(material:Material) : void
+    + <<override>> DrawSurfaceOptions(material:Material) : void
+    + <<override>> DrawSurfaceInputs(material:Material) : void
+    + <<override>> DrawAdvancedOptions(material:Material) : void
+    + <<override>> OnOpenGUI(material:Material, materialEditor:MaterialEditor) : void
+}
+BaseShaderGUI <|-- ParticlesUnlitShader
+@enduml

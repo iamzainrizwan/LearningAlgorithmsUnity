@@ -1,0 +1,7 @@
+@startuml
+interface ISGControlledElement {
+}
+interface "ISGControlledElement`1"<T> {
+}
+ISGControlledElement <|-- "ISGControlledElement`1"
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class KeyTraverser {
+    + lastIndex : int <<get>>
+    + {static} GetClipKeyTimes(clip:TimelineClip) : IEnumerable<float>
+    + {static} GetTrackKeyTimes(track:AnimationTrack) : IEnumerable<float>
+    + KeyTraverser(timeline:TimelineAsset, epsilon:float)
+    + GetNextKey(key:float, dirtyStamp:int) : float
+    + GetPrevKey(key:float, dirtyStamp:int) : float
+    + GetKeyCount(dirtyStamp:int) : int
+}
+@enduml

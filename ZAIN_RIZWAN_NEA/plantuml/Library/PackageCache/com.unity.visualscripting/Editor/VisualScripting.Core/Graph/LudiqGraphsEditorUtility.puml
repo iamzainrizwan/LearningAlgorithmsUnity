@@ -1,0 +1,7 @@
+@startuml
+class LudiqGraphsEditorUtility <<static>> {
+}
+class "OverrideStack`1"<T> {
+}
+LudiqGraphsEditorUtility o-> "editedContext<IGraphContext>" "OverrideStack`1"
+@enduml

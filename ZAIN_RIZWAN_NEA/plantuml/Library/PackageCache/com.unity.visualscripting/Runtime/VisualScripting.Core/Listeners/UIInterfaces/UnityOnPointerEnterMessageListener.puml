@@ -1,0 +1,7 @@
+@startuml
+class UnityOnPointerEnterMessageListener <<sealed>> {
+    + OnPointerEnter(eventData:PointerEventData) : void
+}
+MessageListener <|-- UnityOnPointerEnterMessageListener
+IPointerEnterHandler <|-- UnityOnPointerEnterMessageListener
+@enduml

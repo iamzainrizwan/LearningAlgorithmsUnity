@@ -1,0 +1,113 @@
+@startuml
+class NCalcLexer {
+    + NCalcLexer()
+    + NCalcLexer(input:ICharStream)
+    + NCalcLexer(input:ICharStream, state:RecognizerSharedState)
+    <<override>> + GrammarFileName : string <<get>>
+    + mT__19() : void
+    + mT__20() : void
+    + mT__21() : void
+    + mT__22() : void
+    + mT__23() : void
+    + mT__24() : void
+    + mT__25() : void
+    + mT__26() : void
+    + mT__27() : void
+    + mT__28() : void
+    + mT__29() : void
+    + mT__30() : void
+    + mT__31() : void
+    + mT__32() : void
+    + mT__33() : void
+    + mT__34() : void
+    + mT__35() : void
+    + mT__36() : void
+    + mT__37() : void
+    + mT__38() : void
+    + mT__39() : void
+    + mT__40() : void
+    + mT__41() : void
+    + mT__42() : void
+    + mT__43() : void
+    + mT__44() : void
+    + mT__45() : void
+    + mT__46() : void
+    + mT__47() : void
+    + mT__48() : void
+    + mTRUE() : void
+    + mFALSE() : void
+    + mID() : void
+    + mINTEGER() : void
+    + mFLOAT() : void
+    + mSTRING() : void
+    + mDATETIME() : void
+    + mNAME() : void
+    + mE() : void
+    + mLETTER() : void
+    + mDIGIT() : void
+    + mEscapeSequence() : void
+    + mHexDigit() : void
+    + mUnicodeEscape() : void
+    + mWS() : void
+    <<override>> + mTokens() : void
+    + <<const>> T__29 : int = 29
+    + <<const>> T__28 : int = 28
+    + <<const>> T__27 : int = 27
+    + <<const>> T__26 : int = 26
+    + <<const>> T__25 : int = 25
+    + <<const>> T__24 : int = 24
+    + <<const>> LETTER : int = 12
+    + <<const>> T__23 : int = 23
+    + <<const>> T__22 : int = 22
+    + <<const>> T__21 : int = 21
+    + <<const>> T__20 : int = 20
+    + <<const>> FLOAT : int = 5
+    + <<const>> ID : int = 10
+    + <<const>> EOF : int
+    + <<const>> HexDigit : int = 17
+    + <<const>> T__19 : int = 19
+    + <<const>> NAME : int = 11
+    + <<const>> DIGIT : int = 13
+    + <<const>> T__42 : int = 42
+    + <<const>> INTEGER : int = 4
+    + <<const>> E : int = 14
+    + <<const>> T__43 : int = 43
+    + <<const>> T__40 : int = 40
+    + <<const>> T__41 : int = 41
+    + <<const>> T__46 : int = 46
+    + <<const>> T__47 : int = 47
+    + <<const>> T__44 : int = 44
+    + <<const>> T__45 : int = 45
+    + <<const>> T__48 : int = 48
+    + <<const>> DATETIME : int = 7
+    + <<const>> TRUE : int = 8
+    + <<const>> T__30 : int = 30
+    + <<const>> T__31 : int = 31
+    + <<const>> T__32 : int = 32
+    + <<const>> WS : int = 18
+    + <<const>> T__33 : int = 33
+    + <<const>> T__34 : int = 34
+    + <<const>> T__35 : int = 35
+    + <<const>> T__36 : int = 36
+    + <<const>> T__37 : int = 37
+    + <<const>> T__38 : int = 38
+    + <<const>> T__39 : int = 39
+    + <<const>> UnicodeEscape : int = 16
+    + <<const>> FALSE : int = 9
+    + <<const>> EscapeSequence : int = 15
+    + <<const>> STRING : int = 6
+}
+class DFA7 {
+    + DFA7(recognizer:BaseRecognizer)
+    <<override>> + Description : string <<get>>
+}
+class DFA14 {
+    + DFA14(recognizer:BaseRecognizer)
+    <<override>> + Description : string <<get>>
+}
+Lexer <|-- NCalcLexer
+NCalcLexer +-- DFA7
+DFA <|-- DFA7
+NCalcLexer +-- DFA14
+DFA <|-- DFA14
+@enduml

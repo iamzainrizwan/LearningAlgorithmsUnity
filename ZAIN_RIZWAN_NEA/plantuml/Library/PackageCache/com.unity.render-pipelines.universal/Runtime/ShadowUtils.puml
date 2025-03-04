@@ -1,0 +1,32 @@
+@startuml
+struct ShadowSliceData {
+    + offsetX : int
+    + offsetY : int
+    + resolution : int
+    + Clear() : void
+}
+class ShadowUtils <<static>> {
+    + {static} ExtractDirectionalLightMatrix(cullResults:CullingResults, shadowData:ShadowData, shadowLightIndex:int, cascadeIndex:int, shadowmapWidth:int, shadowmapHeight:int, shadowResolution:int, shadowNearPlane:float, cascadeSplitDistance:Vector4, shadowSliceData:ShadowSliceData, viewMatrix:Matrix4x4, projMatrix:Matrix4x4) : bool
+    + {static} ExtractDirectionalLightMatrix(cullResults:CullingResults, shadowData:ShadowData, shadowLightIndex:int, cascadeIndex:int, shadowmapWidth:int, shadowmapHeight:int, shadowResolution:int, shadowNearPlane:float, cascadeSplitDistance:Vector4, shadowSliceData:ShadowSliceData) : bool
+    + {static} ExtractDirectionalLightMatrix(cullResults:CullingResults, shadowData:UniversalShadowData, shadowLightIndex:int, cascadeIndex:int, shadowmapWidth:int, shadowmapHeight:int, shadowResolution:int, shadowNearPlane:float, cascadeSplitDistance:Vector4, shadowSliceData:ShadowSliceData) : bool
+    + {static} ExtractSpotLightMatrix(cullResults:CullingResults, shadowData:ShadowData, shadowLightIndex:int, shadowMatrix:Matrix4x4, viewMatrix:Matrix4x4, projMatrix:Matrix4x4, splitData:ShadowSplitData) : bool
+    + {static} ExtractSpotLightMatrix(cullResults:CullingResults, shadowData:UniversalShadowData, shadowLightIndex:int, shadowMatrix:Matrix4x4, viewMatrix:Matrix4x4, projMatrix:Matrix4x4, splitData:ShadowSplitData) : bool
+    + {static} ExtractPointLightMatrix(cullResults:CullingResults, shadowData:ShadowData, shadowLightIndex:int, cubemapFace:CubemapFace, fovBias:float, shadowMatrix:Matrix4x4, viewMatrix:Matrix4x4, projMatrix:Matrix4x4, splitData:ShadowSplitData) : bool
+    + {static} ExtractPointLightMatrix(cullResults:CullingResults, shadowData:UniversalShadowData, shadowLightIndex:int, cubemapFace:CubemapFace, fovBias:float, shadowMatrix:Matrix4x4, viewMatrix:Matrix4x4, projMatrix:Matrix4x4, splitData:ShadowSplitData) : bool
+    + {static} RenderShadowSlice(cmd:CommandBuffer, context:ScriptableRenderContext, shadowSliceData:ShadowSliceData, settings:ShadowDrawingSettings, proj:Matrix4x4, view:Matrix4x4) : void
+    + {static} RenderShadowSlice(cmd:CommandBuffer, context:ScriptableRenderContext, shadowSliceData:ShadowSliceData, settings:ShadowDrawingSettings) : void
+    + {static} GetMaxTileResolutionInAtlas(atlasWidth:int, atlasHeight:int, tileCount:int) : int
+    + {static} ApplySliceTransform(shadowSliceData:ShadowSliceData, atlasWidth:int, atlasHeight:int) : void
+    + {static} GetShadowBias(shadowLight:VisibleLight, shadowLightIndex:int, shadowData:ShadowData, lightProjectionMatrix:Matrix4x4, shadowResolution:float) : Vector4
+    + {static} GetShadowBias(shadowLight:VisibleLight, shadowLightIndex:int, shadowData:UniversalShadowData, lightProjectionMatrix:Matrix4x4, shadowResolution:float) : Vector4
+    + {static} SetupShadowCasterConstantBuffer(cmd:CommandBuffer, shadowLight:VisibleLight, shadowBias:Vector4) : void
+    + {static} GetTemporaryShadowTexture(width:int, height:int, bits:int) : RenderTexture
+    + {static} ShadowRTNeedsReAlloc(handle:RTHandle, width:int, height:int, bits:int, anisoLevel:int, mipMapBias:float, name:string) : bool
+    + {static} AllocShadowRT(width:int, height:int, bits:int, anisoLevel:int, mipMapBias:float, name:string) : RTHandle
+    + {static} ShadowRTReAllocateIfNeeded(handle:RTHandle, width:int, height:int, bits:int, anisoLevel:int, mipMapBias:float, name:string) : bool
+}
+ShadowSliceData --> "viewMatrix" Matrix4x4
+ShadowSliceData --> "projectionMatrix" Matrix4x4
+ShadowSliceData --> "shadowTransform" Matrix4x4
+ShadowSliceData --> "splitData" ShadowSplitData
+@enduml

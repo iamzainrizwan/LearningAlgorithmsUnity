@@ -1,0 +1,8 @@
+@startuml
+class ControlOutputWidget {
+    + ControlOutputWidget(canvas:FlowCanvas, port:ControlOutput)
+}
+class "UnitOutputPortWidget`1"<T> {
+}
+"UnitOutputPortWidget`1" "<ControlOutput>" <|-- ControlOutputWidget
+@enduml

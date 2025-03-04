@@ -1,0 +1,9 @@
+@startuml
+class TMP_SpriteGlyph {
+    + TMP_SpriteGlyph()
+    + TMP_SpriteGlyph(index:uint, metrics:GlyphMetrics, glyphRect:GlyphRect, scale:float, atlasIndex:int)
+    + TMP_SpriteGlyph(index:uint, metrics:GlyphMetrics, glyphRect:GlyphRect, scale:float, atlasIndex:int, sprite:Sprite)
+}
+Glyph <|-- TMP_SpriteGlyph
+TMP_SpriteGlyph --> "sprite" Sprite
+@enduml

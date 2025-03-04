@@ -1,0 +1,15 @@
+@startuml
+class SignalReceiverItem {
+    + SignalReceiverItem(signalAsset:SerializedProperty, eventListEntry:SerializedProperty, id:int, readonlySignal:bool, enabled:bool, treeView:SignalReceiverTreeView)
+    + GetHeight() : float
+    + Draw(rect:Rect, colIdx:int, rowIdx:int, padding:float, target:SignalReceiver) : void
+}
+class UnityEventCloner {
+}
+TreeViewItem <|-- SignalReceiverItem
+ISignalAssetProvider <|-- SignalReceiverItem
+SignalReceiverItem --> "signalAsset" SignalAsset
+SignalReceiverItem +-- UnityEventCloner
+ScriptableObject <|-- UnityEventCloner
+UnityEventCloner --> "evt" UnityEvent
+@enduml

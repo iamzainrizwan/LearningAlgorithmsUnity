@@ -1,0 +1,11 @@
+@startuml
+enum AttractedEdge {
+    None,
+    Left,
+    Right,
+}
+interface IAttractable {
+}
+interface IAttractionHandler {
+}
+@enduml

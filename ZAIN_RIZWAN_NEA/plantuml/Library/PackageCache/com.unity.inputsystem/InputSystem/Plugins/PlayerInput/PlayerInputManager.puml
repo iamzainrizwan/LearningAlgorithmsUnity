@@ -1,0 +1,39 @@
+@startuml
+class PlayerInputManager {
+    + <<const>> PlayerJoinedMessage : string = "OnPlayerJoined"
+    + <<const>> PlayerLeftMessage : string = "OnPlayerLeft"
+    + splitScreen : bool <<get>> <<set>>
+    + maintainAspectRatioInSplitScreen : bool <<get>>
+    + fixedNumberOfSplitScreens : int <<get>>
+    + playerCount : int <<get>>
+    + maxPlayerCount : int <<get>>
+    + joiningEnabled : bool <<get>>
+    + EnableJoining() : void
+    + DisableJoining() : void
+    + JoinPlayerFromAction(context:InputAction.CallbackContext) : void
+    + JoinPlayerFromActionIfNotAlreadyJoined(context:InputAction.CallbackContext) : void
+    + JoinPlayer(playerIndex:int, splitScreenIndex:int, controlScheme:string, pairWithDevice:InputDevice) : PlayerInput
+    + JoinPlayer(playerIndex:int, splitScreenIndex:int, controlScheme:string, pairWithDevices:InputDevice[]) : PlayerInput
+}
+class "Action`1"<T> {
+}
+class PlayerJoinedEvent {
+}
+class PlayerLeftEvent {
+}
+class "UnityEvent`1"<T> {
+}
+MonoBehaviour <|-- PlayerInputManager
+PlayerInputManager --> "splitScreenArea" Rect
+PlayerInputManager --> "joinBehavior" PlayerJoinBehavior
+PlayerInputManager --> "joinAction" InputActionProperty
+PlayerInputManager --> "notificationBehavior" PlayerNotifications
+PlayerInputManager --> "playerJoinedEvent" PlayerJoinedEvent
+PlayerInputManager --> "playerLeftEvent" PlayerLeftEvent
+PlayerInputManager --> "playerPrefab" GameObject
+PlayerInputManager --> "instance" PlayerInputManager
+PlayerInputManager +-- PlayerJoinedEvent
+"UnityEvent`1" "<PlayerInput>" <|-- PlayerJoinedEvent
+PlayerInputManager +-- PlayerLeftEvent
+"UnityEvent`1" "<PlayerInput>" <|-- PlayerLeftEvent
+@enduml

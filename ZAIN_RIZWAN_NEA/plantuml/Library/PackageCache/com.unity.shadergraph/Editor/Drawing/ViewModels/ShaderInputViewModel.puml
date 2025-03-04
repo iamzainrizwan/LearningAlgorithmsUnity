@@ -1,0 +1,8 @@
+@startuml
+class ShaderInputViewModel {
+    + ResetViewModelData() : void
+}
+ISGViewModel <|-- ShaderInputViewModel
+ShaderInputViewModel --> "model" ShaderInput
+ShaderInputViewModel --> "parentView" VisualElement
+@enduml

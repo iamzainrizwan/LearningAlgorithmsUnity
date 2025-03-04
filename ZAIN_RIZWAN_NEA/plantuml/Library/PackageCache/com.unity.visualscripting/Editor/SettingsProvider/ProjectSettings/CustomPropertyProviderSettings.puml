@@ -1,0 +1,9 @@
+@startuml
+class CustomPropertyProviderSettings {
+    + OnGUI() : void
+}
+class Styles <<static>> {
+}
+CustomPropertyProviderSettings +-- Styles
+Styles --> "defaultsButton" GUIStyle
+@enduml

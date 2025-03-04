@@ -1,0 +1,20 @@
+@startuml
+class FreeCam {
+    + sensitivityX : float = 15F
+    + sensitivityY : float = 15F
+    + minimumX : float
+    + maximumX : float = 360F
+    + minimumY : float
+    + maximumY : float = 60F
+    + moveSpeed : float = 1.0f
+    + lockHeight : bool = false
+}
+enum RotationAxes {
+    MouseXAndY= 0,
+    MouseX= 1,
+    MouseY= 2,
+}
+MonoBehaviour <|-- FreeCam
+FreeCam o-> "axes" RotationAxes
+FreeCam +-- RotationAxes
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+class GraphicRaycaster {
+    + <<override>> sortOrderPriority : int <<get>>
+    + <<override>> renderOrderPriority : int <<get>>
+    + ignoreReversedGraphics : bool <<get>> <<set>>
+    + <<override>> Raycast(eventData:PointerEventData, resultAppendList:List<RaycastResult>) : void
+}
+enum BlockingObjects {
+    None= 0,
+    TwoD= 1,
+    ThreeD= 2,
+    All= 3,
+}
+BaseRaycaster <|-- GraphicRaycaster
+GraphicRaycaster --> "blockingObjects" BlockingObjects
+GraphicRaycaster --> "blockingMask" LayerMask
+GraphicRaycaster --> "eventCamera" Camera
+GraphicRaycaster +-- BlockingObjects
+@enduml

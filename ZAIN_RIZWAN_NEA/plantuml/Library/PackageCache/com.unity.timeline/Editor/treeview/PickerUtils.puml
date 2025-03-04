@@ -1,0 +1,12 @@
+@startuml
+class PickerUtils <<static>> {
+    + {static} DoPick(state:WindowState, mousePosition:Vector2) : void
+    + {static} TopmostPickedItem() : ILayerable
+    + {static} TopmostPickedItemOfType() : T
+    + {static} TopmostPickedItemOfType(predicate:Func<T, bool>) : T
+    + {static} FirstPickedElementOfType() : T
+}
+class "List`1"<T> {
+}
+PickerUtils --> "pickedElements<object>" "List`1"
+@enduml

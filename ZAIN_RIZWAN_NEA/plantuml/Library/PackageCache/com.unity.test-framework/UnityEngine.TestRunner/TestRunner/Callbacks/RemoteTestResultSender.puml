@@ -1,0 +1,16 @@
+@startuml
+class RemoteTestResultSender {
+    + Start() : void
+    + RunStarted(testsToRun:ITest) : void
+    + RunFinished(testResults:ITestResult) : void
+    + TestStarted(test:ITest) : void
+    + TestFinished(result:ITestResult) : void
+    + SendDataRoutine() : IEnumerator
+}
+class QueueData {
+}
+MonoBehaviour <|-- RemoteTestResultSender
+ITestRunnerListener <|-- RemoteTestResultSender
+RemoteTestResultSender +-- QueueData
+QueueData --> "id" Guid
+@enduml

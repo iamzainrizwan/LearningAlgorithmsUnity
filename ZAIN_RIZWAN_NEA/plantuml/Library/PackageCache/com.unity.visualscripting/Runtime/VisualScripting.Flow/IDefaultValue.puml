@@ -1,0 +1,4 @@
+@startuml
+interface "IDefaultValue`1"<out T> {
+}
+@enduml

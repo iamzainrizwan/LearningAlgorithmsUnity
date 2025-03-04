@@ -1,0 +1,7 @@
+@startuml
+class ToggleTestImageHook {
+    + durationTween : float
+    + <<override>> CrossFadeColor(targetColor:Color, duration:float, ignoreTimeScale:bool, useAlpha:bool, useRGB:bool) : void
+}
+Image <|-- ToggleTestImageHook
+@enduml

@@ -1,0 +1,75 @@
+@startuml
+interface IBaseCommandBuffer {
+    + SetInvertCulling(invertCulling:bool) : void
+    + SetViewport(pixelRect:Rect) : void
+    + EnableScissorRect(scissor:Rect) : void
+    + DisableScissorRect() : void
+    + SetGlobalFloat(nameID:int, value:float) : void
+    + SetGlobalInt(nameID:int, value:int) : void
+    + SetGlobalInteger(nameID:int, value:int) : void
+    + SetGlobalVector(nameID:int, value:Vector4) : void
+    + SetGlobalColor(nameID:int, value:Color) : void
+    + SetGlobalMatrix(nameID:int, value:Matrix4x4) : void
+    + EnableShaderKeyword(keyword:string) : void
+    + EnableKeyword(keyword:GlobalKeyword) : void
+    + EnableKeyword(material:Material, keyword:LocalKeyword) : void
+    + EnableKeyword(computeShader:ComputeShader, keyword:LocalKeyword) : void
+    + DisableShaderKeyword(keyword:string) : void
+    + DisableKeyword(keyword:GlobalKeyword) : void
+    + DisableKeyword(material:Material, keyword:LocalKeyword) : void
+    + DisableKeyword(computeShader:ComputeShader, keyword:LocalKeyword) : void
+    + SetKeyword(keyword:GlobalKeyword, value:bool) : void
+    + SetKeyword(material:Material, keyword:LocalKeyword, value:bool) : void
+    + SetKeyword(computeShader:ComputeShader, keyword:LocalKeyword, value:bool) : void
+    + SetViewProjectionMatrices(view:Matrix4x4, proj:Matrix4x4) : void
+    + SetGlobalDepthBias(bias:float, slopeBias:float) : void
+    + SetGlobalFloatArray(nameID:int, values:float[]) : void
+    + SetGlobalVectorArray(nameID:int, values:Vector4[]) : void
+    + SetGlobalMatrixArray(nameID:int, values:Matrix4x4[]) : void
+    + SetLateLatchProjectionMatrices(projectionMat:Matrix4x4[]) : void
+    + MarkLateLatchMatrixShaderPropertyID(matrixPropertyType:CameraLateLatchMatrixType, shaderPropertyID:int) : void
+    + UnmarkLateLatchMatrix(matrixPropertyType:CameraLateLatchMatrixType) : void
+    + BeginSample(name:string) : void
+    + EndSample(name:string) : void
+    + BeginSample(sampler:CustomSampler) : void
+    + EndSample(sampler:CustomSampler) : void
+    + BeginSample(marker:ProfilerMarker) : void
+    + EndSample(marker:ProfilerMarker) : void
+    + IncrementUpdateCount(dest:RenderTargetIdentifier) : void
+    + SetupCameraProperties(camera:Camera) : void
+    + InvokeOnRenderObjectCallbacks() : void
+    + SetGlobalFloat(name:string, value:float) : void
+    + SetGlobalInt(name:string, value:int) : void
+    + SetGlobalInteger(name:string, value:int) : void
+    + SetGlobalVector(name:string, value:Vector4) : void
+    + SetGlobalColor(name:string, value:Color) : void
+    + SetGlobalMatrix(name:string, value:Matrix4x4) : void
+    + SetGlobalFloatArray(propertyName:string, values:List<float>) : void
+    + SetGlobalFloatArray(nameID:int, values:List<float>) : void
+    + SetGlobalFloatArray(propertyName:string, values:float[]) : void
+    + SetGlobalVectorArray(propertyName:string, values:List<Vector4>) : void
+    + SetGlobalVectorArray(nameID:int, values:List<Vector4>) : void
+    + SetGlobalVectorArray(propertyName:string, values:Vector4[]) : void
+    + SetGlobalMatrixArray(propertyName:string, values:List<Matrix4x4>) : void
+    + SetGlobalMatrixArray(nameID:int, values:List<Matrix4x4>) : void
+    + SetGlobalMatrixArray(propertyName:string, values:Matrix4x4[]) : void
+    + SetGlobalTexture(name:string, value:TextureHandle) : void
+    + SetGlobalTexture(nameID:int, value:TextureHandle) : void
+    + SetGlobalTexture(name:string, value:TextureHandle, element:RenderTextureSubElement) : void
+    + SetGlobalTexture(nameID:int, value:TextureHandle, element:RenderTextureSubElement) : void
+    + SetGlobalBuffer(name:string, value:ComputeBuffer) : void
+    + SetGlobalBuffer(nameID:int, value:ComputeBuffer) : void
+    + SetGlobalBuffer(name:string, value:GraphicsBuffer) : void
+    + SetGlobalBuffer(nameID:int, value:GraphicsBuffer) : void
+    + SetGlobalConstantBuffer(buffer:ComputeBuffer, nameID:int, offset:int, size:int) : void
+    + SetGlobalConstantBuffer(buffer:ComputeBuffer, name:string, offset:int, size:int) : void
+    + SetGlobalConstantBuffer(buffer:GraphicsBuffer, nameID:int, offset:int, size:int) : void
+    + SetGlobalConstantBuffer(buffer:GraphicsBuffer, name:string, offset:int, size:int) : void
+    + SetShadowSamplingMode(shadowmap:RenderTargetIdentifier, mode:ShadowSamplingMode) : void
+    + SetSinglePassStereo(mode:SinglePassStereoMode) : void
+    + IssuePluginEvent(callback:IntPtr, eventID:int) : void
+    + IssuePluginEventAndData(callback:IntPtr, eventID:int, data:IntPtr) : void
+    + IssuePluginCustomBlit(callback:IntPtr, command:uint, source:RenderTargetIdentifier, dest:RenderTargetIdentifier, commandParam:uint, commandFlags:uint) : void
+    + IssuePluginCustomTextureUpdateV2(callback:IntPtr, targetTexture:Texture, userData:uint) : void
+}
+@enduml

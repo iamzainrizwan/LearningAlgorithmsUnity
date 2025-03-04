@@ -1,0 +1,18 @@
+@startuml
+class MatrixConstructionNode {
+    + <<const>> InputSlotM0Id : int = 0
+    + <<const>> InputSlotM1Id : int = 1
+    + <<const>> InputSlotM2Id : int = 2
+    + <<const>> InputSlotM3Id : int = 3
+    + <<const>> Output4x4SlotId : int = 4
+    + <<const>> Output3x3SlotId : int = 5
+    + <<const>> Output2x2SlotId : int = 6
+    + MatrixConstructionNode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + GenerateNodeFunction(registry:FunctionRegistry, generationMode:GenerationMode) : void
+}
+AbstractMaterialNode <|-- MatrixConstructionNode
+IGeneratesBodyCode <|-- MatrixConstructionNode
+IGeneratesFunction <|-- MatrixConstructionNode
+@enduml

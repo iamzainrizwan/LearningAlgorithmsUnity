@@ -1,0 +1,59 @@
+@startuml
+class Light2D <<sealed>> <<partial>> {
+    + blendStyleIndex : int <<get>> <<set>>
+    + shadowIntensity : float <<get>> <<set>>
+    + shadowSoftness : float <<get>> <<set>>
+    + shadowsEnabled : bool <<get>> <<set>>
+    + shadowVolumeIntensity : float <<get>> <<set>>
+    + volumetricShadowsEnabled : bool <<get>> <<set>>
+    + intensity : float <<get>> <<set>>
+    + volumeOpacity : float <<get>>
+    + volumeIntensity : float <<get>> <<set>>
+    + volumeIntensityEnabled : bool <<get>> <<set>>
+    + volumetricEnabled : bool <<get>> <<set>>
+    + falloffIntensity : float <<get>> <<set>>
+    + shadowSoftnessFalloffIntensity : float <<get>> <<set>>
+    + alphaBlendOnOverlap : bool <<get>>
+    + lightOrder : int <<get>> <<set>>
+    + normalMapDistance : float <<get>>
+    + renderVolumetricShadows : bool <<get>>
+    + OnBeforeSerialize() : void
+    + OnAfterDeserialize() : void
+}
+enum DeprecatedLightType {
+    Parametric= 0,
+}
+enum LightType {
+    Parametric= 0,
+    Freeform= 1,
+    Sprite= 2,
+    Point= 3,
+    Global= 4,
+}
+enum NormalMapQuality {
+    Disabled= 2,
+    Fast= 0,
+    Accurate= 1,
+}
+enum OverlapOperation {
+    Additive,
+    AlphaBlend,
+}
+enum ComponentVersions {
+    Version_Unserialized= 0,
+    Version_1= 1,
+    Version_2= 2,
+}
+Light2DBase <|-- Light2D
+ISerializationCallbackReceiver <|-- Light2D
+Light2D --> "lightType" LightType
+Light2D --> "color" Color
+Light2D --> "lightCookieSprite" Sprite
+Light2D --> "overlapOperation" OverlapOperation
+Light2D --> "normalMapQuality" NormalMapQuality
+Light2D +-- DeprecatedLightType
+Light2D +-- LightType
+Light2D +-- NormalMapQuality
+Light2D +-- OverlapOperation
+Light2D +-- ComponentVersions
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+class UnsafeStreamPerformanceTests {
+    + UnsafeStream_Performance_Write() : void
+    + UnsafeStream_Performance_Write_Burst() : void
+}
+class Pointers {
+    + {static} StreamWrite(stream:UnsafeStream, numElements:int) : void
+}
+UnsafeStreamPerformanceTests +-- Pointers
+@enduml

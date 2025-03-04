@@ -1,0 +1,14 @@
+@startuml
+class Vector2Node {
+    + <<const>> OutputSlotId : int = 0
+    + <<const>> InputSlotXId : int = 1
+    + <<const>> InputSlotYId : int = 2
+    + Vector2Node()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + AsShaderProperty() : AbstractShaderProperty
+}
+AbstractMaterialNode <|-- Vector2Node
+IGeneratesBodyCode <|-- Vector2Node
+IPropertyFromNode <|-- Vector2Node
+@enduml

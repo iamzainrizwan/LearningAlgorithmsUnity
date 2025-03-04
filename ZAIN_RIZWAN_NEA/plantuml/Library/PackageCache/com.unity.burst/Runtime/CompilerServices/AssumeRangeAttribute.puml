@@ -1,0 +1,7 @@
+@startuml
+class AssumeRangeAttribute {
+    + AssumeRangeAttribute(min:long, max:long)
+    + AssumeRangeAttribute(min:ulong, max:ulong)
+}
+Attribute <|-- AssumeRangeAttribute
+@enduml

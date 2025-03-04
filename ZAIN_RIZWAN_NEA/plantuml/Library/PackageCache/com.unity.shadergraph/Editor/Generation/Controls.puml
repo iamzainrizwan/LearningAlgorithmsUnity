@@ -1,0 +1,65 @@
+@startuml
+interface IControl {
+}
+class PositionControl {
+    + PositionControl(space:CoordinateSpace)
+    + GetRequirements() : ShaderGraphRequirements
+}
+class NormalControl {
+    + NormalControl(space:CoordinateSpace)
+    + GetRequirements() : ShaderGraphRequirements
+}
+class TangentControl {
+    + TangentControl(space:CoordinateSpace)
+    + GetRequirements() : ShaderGraphRequirements
+}
+class ColorControl {
+    + hdr : bool <<get>>
+    + ColorControl(value:Color, hdr:bool)
+    + GetRequirements() : ShaderGraphRequirements
+}
+class ColorRGBAControl {
+    + ColorRGBAControl(value:Color)
+    + GetRequirements() : ShaderGraphRequirements
+}
+class FloatControl {
+    + value : float <<get>>
+    + FloatControl(value:float)
+    + GetRequirements() : ShaderGraphRequirements
+}
+class Vector2Control {
+    + Vector2Control(value:Vector2)
+    + GetRequirements() : ShaderGraphRequirements
+}
+class Vector3Control {
+    + Vector3Control(value:Vector3)
+    + GetRequirements() : ShaderGraphRequirements
+}
+class Vector4Control {
+    + Vector4Control(value:Vector4)
+    + GetRequirements() : ShaderGraphRequirements
+}
+class VertexColorControl {
+    + VertexColorControl(value:Color)
+    + GetRequirements() : ShaderGraphRequirements
+}
+IControl <|-- PositionControl
+PositionControl --> "space" CoordinateSpace
+IControl <|-- NormalControl
+NormalControl --> "space" CoordinateSpace
+IControl <|-- TangentControl
+TangentControl --> "space" CoordinateSpace
+IControl <|-- ColorControl
+ColorControl --> "value" Color
+IControl <|-- ColorRGBAControl
+ColorRGBAControl --> "value" Color
+IControl <|-- FloatControl
+IControl <|-- Vector2Control
+Vector2Control --> "value" Vector2
+IControl <|-- Vector3Control
+Vector3Control --> "value" Vector3
+IControl <|-- Vector4Control
+Vector4Control --> "value" Vector4
+IControl <|-- VertexColorControl
+VertexColorControl --> "value" Color
+@enduml

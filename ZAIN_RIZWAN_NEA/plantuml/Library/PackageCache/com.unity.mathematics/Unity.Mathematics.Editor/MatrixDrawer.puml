@@ -1,0 +1,8 @@
+@startuml
+class MatrixDrawer {
+    + <<override>> CanCacheInspectorGUI(property:SerializedProperty) : bool
+    + <<override>> GetPropertyHeight(property:SerializedProperty, label:GUIContent) : float
+    + <<override>> OnGUI(position:Rect, property:SerializedProperty, label:GUIContent) : void
+}
+PropertyDrawer <|-- MatrixDrawer
+@enduml

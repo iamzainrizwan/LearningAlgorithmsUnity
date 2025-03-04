@@ -1,0 +1,11 @@
+@startuml
+struct SamplePoint {
+    + sample : double
+    + index : int
+    + SamplePoint(_sample:double, _index:int)
+    + CompareTo(other:SamplePoint) : int
+}
+class "IComparable`1"<T> {
+}
+"IComparable`1" "<SamplePoint>" <|-- SamplePoint
+@enduml

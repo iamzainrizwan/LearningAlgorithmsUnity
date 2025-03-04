@@ -1,0 +1,18 @@
+@startuml
+abstract class Page {
+    + title : string <<get>> <<set>>
+    + shortTitle : string <<get>> <<set>>
+    + subtitle : string <<get>> <<set>>
+    + completeLabel : string <<get>> <<set>>
+    + <<virtual>> Update() : void
+    + CompleteSwitch() : bool
+    + Show() : void
+    + Close() : void
+    + DrawHeader() : void
+    + DrawContent() : void
+    + <<virtual>> OnFocus() : void
+    + <<virtual>> OnLostFocus() : void
+}
+Page --> "icon" EditorTexture
+Page --> "onComplete" Action
+@enduml

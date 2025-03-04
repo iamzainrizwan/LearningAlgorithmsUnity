@@ -1,0 +1,19 @@
+@startuml
+class RestructureBvh <<sealed>> {
+    + RestructureBvh(shaders:RadeonRaysShaders)
+    + Dispose() : void
+    + GetScratchDataSizeInDwords(triangleCount:uint) : ulong
+    + {static} GetBvhNodeCount(leafCount:uint) : uint
+    + Execute(cmd:CommandBuffer, vertices:GraphicsBuffer, verticesOffset:int, vertexStride:uint, triangleCount:uint, scratch:GraphicsBuffer, result:BottomLevelLevelAccelStruct) : void
+}
+struct ScratchBufferLayout {
+    + LeafParents : uint
+    + TreeletCount : uint
+    + TreeletRoots : uint
+    + PrimitiveCounts : uint
+    + TotalSize : uint
+    + {static} Create(triangleCount:uint) : ScratchBufferLayout
+}
+IDisposable <|-- RestructureBvh
+RestructureBvh +-- ScratchBufferLayout
+@enduml

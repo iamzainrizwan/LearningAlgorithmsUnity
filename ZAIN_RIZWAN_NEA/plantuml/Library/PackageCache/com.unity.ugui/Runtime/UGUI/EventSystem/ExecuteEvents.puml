@@ -1,0 +1,29 @@
+@startuml
+class ExecuteEvents <<static>> {
+    + {static} ValidateEventData(data:BaseEventData) : T
+    + {static} Execute(target:GameObject, eventData:BaseEventData, functor:EventFunction<T>) : bool
+    + {static} ExecuteHierarchy(root:GameObject, eventData:BaseEventData, callbackFunction:EventFunction<T>) : GameObject
+    + {static} CanHandleEvent(go:GameObject) : bool
+    + {static} GetEventHandler(root:GameObject) : GameObject
+}
+class "EventFunction`1"<T> {
+}
+ExecuteEvents --> "pointerMoveHandler<IPointerMoveHandler>" "EventFunction`1"
+ExecuteEvents --> "pointerEnterHandler<IPointerEnterHandler>" "EventFunction`1"
+ExecuteEvents --> "pointerExitHandler<IPointerExitHandler>" "EventFunction`1"
+ExecuteEvents --> "pointerDownHandler<IPointerDownHandler>" "EventFunction`1"
+ExecuteEvents --> "pointerUpHandler<IPointerUpHandler>" "EventFunction`1"
+ExecuteEvents --> "pointerClickHandler<IPointerClickHandler>" "EventFunction`1"
+ExecuteEvents --> "initializePotentialDrag<IInitializePotentialDragHandler>" "EventFunction`1"
+ExecuteEvents --> "beginDragHandler<IBeginDragHandler>" "EventFunction`1"
+ExecuteEvents --> "dragHandler<IDragHandler>" "EventFunction`1"
+ExecuteEvents --> "endDragHandler<IEndDragHandler>" "EventFunction`1"
+ExecuteEvents --> "dropHandler<IDropHandler>" "EventFunction`1"
+ExecuteEvents --> "scrollHandler<IScrollHandler>" "EventFunction`1"
+ExecuteEvents --> "updateSelectedHandler<IUpdateSelectedHandler>" "EventFunction`1"
+ExecuteEvents --> "selectHandler<ISelectHandler>" "EventFunction`1"
+ExecuteEvents --> "deselectHandler<IDeselectHandler>" "EventFunction`1"
+ExecuteEvents --> "moveHandler<IMoveHandler>" "EventFunction`1"
+ExecuteEvents --> "submitHandler<ISubmitHandler>" "EventFunction`1"
+ExecuteEvents --> "cancelHandler<ICancelHandler>" "EventFunction`1"
+@enduml

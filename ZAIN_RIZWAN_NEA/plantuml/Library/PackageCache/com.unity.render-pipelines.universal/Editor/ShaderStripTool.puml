@@ -1,0 +1,11 @@
+@startuml
+struct "ShaderStripTool`1"<T> {
+    + ShaderStripTool(features:T, strippingData:IShaderScriptableStrippingData)
+    + StripMultiCompileKeepOffVariant(kw:LocalKeyword, feature:T, kw2:LocalKeyword, feature2:T, kw3:LocalKeyword, feature3:T) : bool
+    + StripMultiCompile(kw:LocalKeyword, feature:T, kw2:LocalKeyword, feature2:T, kw3:LocalKeyword, feature3:T) : bool
+    + StripMultiCompileKeepOffVariant(kw:LocalKeyword, feature:T, kw2:LocalKeyword, feature2:T) : bool
+    + StripMultiCompile(kw:LocalKeyword, feature:T, kw2:LocalKeyword, feature2:T) : bool
+    + StripMultiCompileKeepOffVariant(kw:LocalKeyword, feature:T) : bool
+    + StripMultiCompile(kw:LocalKeyword, feature:T) : bool
+}
+@enduml

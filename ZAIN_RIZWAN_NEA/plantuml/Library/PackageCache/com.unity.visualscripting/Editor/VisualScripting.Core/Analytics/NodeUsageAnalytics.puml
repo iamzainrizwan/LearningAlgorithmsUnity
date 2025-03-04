@@ -1,0 +1,10 @@
+@startuml
+class NodeUsageAnalytics <<static>> {
+}
+class Data {
+}
+struct NodeCount {
+}
+NodeUsageAnalytics +-- Data
+NodeUsageAnalytics +-- NodeCount
+@enduml

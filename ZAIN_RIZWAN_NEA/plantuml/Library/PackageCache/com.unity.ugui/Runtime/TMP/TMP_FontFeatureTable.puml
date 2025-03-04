@@ -1,0 +1,15 @@
+@startuml
+class TMP_FontFeatureTable {
+    + TMP_FontFeatureTable()
+    + SortGlyphPairAdjustmentRecords() : void
+    + SortMarkToBaseAdjustmentRecords() : void
+    + SortMarkToMarkAdjustmentRecords() : void
+}
+class "List`1"<T> {
+}
+TMP_FontFeatureTable --> "multipleSubstitutionRecords<MultipleSubstitutionRecord>" "List`1"
+TMP_FontFeatureTable --> "ligatureRecords<LigatureSubstitutionRecord>" "List`1"
+TMP_FontFeatureTable --> "glyphPairAdjustmentRecords<GlyphPairAdjustmentRecord>" "List`1"
+TMP_FontFeatureTable --> "MarkToBaseAdjustmentRecords<MarkToBaseAdjustmentRecord>" "List`1"
+TMP_FontFeatureTable --> "MarkToMarkAdjustmentRecords<MarkToMarkAdjustmentRecord>" "List`1"
+@enduml

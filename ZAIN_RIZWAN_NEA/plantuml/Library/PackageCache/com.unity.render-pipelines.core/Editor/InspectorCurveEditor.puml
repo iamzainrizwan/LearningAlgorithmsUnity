@@ -1,0 +1,61 @@
+@startuml
+class InspectorCurveEditor <<sealed>> {
+    + InspectorCurveEditor()
+    + InspectorCurveEditor(settings:Settings)
+    + Add(curves:SerializedProperty[]) : void
+    + Add(curve:SerializedProperty) : void
+    + Add(curve:SerializedProperty, state:CurveState) : void
+    + Remove(curve:SerializedProperty) : void
+    + RemoveAll() : void
+    + GetCurveState(curve:SerializedProperty) : CurveState
+    + SetCurveState(curve:SerializedProperty, state:CurveState) : void
+    + GetSelection() : Selection
+    + SetKeyframe(curve:SerializedProperty, keyframeIndex:int, keyframe:Keyframe) : void
+    + OnGUI(rect:Rect) : bool
+}
+enum EditMode {
+    None,
+    Moving,
+    TangentEdit,
+}
+enum Tangent {
+    In,
+    Out,
+}
+struct Settings {
+    + curvePickingDistance : float
+    + keyTimeClampingDistance : float
+}
+struct CurveState {
+    + visible : bool
+    + editable : bool
+    + minPointCount : uint
+    + zeroKeyConstantValue : float
+    + width : float
+    + handleWidth : float
+    + showNonEditableHandles : bool
+    + onlyShowHandlesOnSelection : bool
+    + loopInBounds : bool
+}
+struct Selection {
+    + keyframeIndex : int
+    + keyframe : Keyframe?
+    + Selection(curve:SerializedProperty, keyframeIndex:int, keyframe:Keyframe?)
+}
+struct MenuAction {
+}
+InspectorCurveEditor --> "settings" Settings
+InspectorCurveEditor +-- EditMode
+InspectorCurveEditor +-- Tangent
+InspectorCurveEditor +-- Settings
+Settings --> "bounds" Rect
+Settings --> "padding" RectOffset
+Settings --> "selectionColor" Color
+Settings --> "defaultSettings" Settings
+InspectorCurveEditor +-- CurveState
+CurveState --> "color" Color
+CurveState --> "defaultState" CurveState
+InspectorCurveEditor +-- Selection
+Selection --> "curve" SerializedProperty
+InspectorCurveEditor +-- MenuAction
+@enduml

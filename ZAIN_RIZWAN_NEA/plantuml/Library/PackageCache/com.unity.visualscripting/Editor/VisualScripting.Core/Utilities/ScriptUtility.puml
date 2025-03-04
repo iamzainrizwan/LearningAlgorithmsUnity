@@ -1,0 +1,13 @@
+@startuml
+class ScriptUtility <<static>> {
+    + {static} GetScriptGuid(type:Type) : string
+    + {static} GetScriptGuids(type:Type) : IEnumerable<string>
+    + {static} GetScriptTypes(guid:string) : IEnumerable<Type>
+    + {static} GetAllScriptGuids() : IEnumerable<string>
+    + {static} GetModifiedScriptGuids(sinceUtc:DateTime) : IEnumerable<string>
+    + <<const>> CsFileID : int = 11500000
+    + {static} GetFileID(type:Type) : int
+    + {static} GetDllFileID(type:Type) : int
+    + {static} GetDllFileID(@namespace:string, name:string) : int
+}
+@enduml

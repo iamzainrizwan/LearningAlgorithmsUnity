@@ -1,0 +1,14 @@
+@startuml
+class TestAdaptorFactory {
+    + Create(test:ITest) : ITestAdaptor
+    + Create(testData:RemoteTestData) : ITestAdaptor
+    + Create(testResult:ITestResult) : ITestResultAdaptor
+    + Create(test:ITest, filter:ITestFilter) : ITestAdaptor
+    + Create(testResult:RemoteTestResultData, allData:RemoteTestResultDataWithTestData) : ITestResultAdaptor
+    + BuildTree(data:RemoteTestResultDataWithTestData) : ITestAdaptor
+    + BuildTreeAsync(data:RemoteTestResultDataWithTestData) : IEnumerator<ITestAdaptor>
+    + ClearResultsCache() : void
+    + ClearTestsCache() : void
+}
+ITestAdaptorFactory <|-- TestAdaptorFactory
+@enduml

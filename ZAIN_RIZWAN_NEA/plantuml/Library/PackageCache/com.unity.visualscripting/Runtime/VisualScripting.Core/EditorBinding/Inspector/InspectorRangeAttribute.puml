@@ -1,0 +1,8 @@
+@startuml
+class InspectorRangeAttribute <<sealed>> {
+    + InspectorRangeAttribute(min:float, max:float)
+    + min : float <<get>>
+    + max : float <<get>>
+}
+Attribute <|-- InspectorRangeAttribute
+@enduml

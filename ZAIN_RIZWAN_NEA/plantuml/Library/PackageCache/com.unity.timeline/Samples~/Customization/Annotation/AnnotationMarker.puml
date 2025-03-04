@@ -1,0 +1,9 @@
+@startuml
+class AnnotationMarker {
+    + title : string
+    + showLineOverlay : bool = true
+    + description : string
+}
+Marker <|-- AnnotationMarker
+AnnotationMarker o-> "color" Color
+@enduml

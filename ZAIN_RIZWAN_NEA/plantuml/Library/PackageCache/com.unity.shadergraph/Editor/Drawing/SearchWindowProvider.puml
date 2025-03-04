@@ -1,0 +1,28 @@
+@startuml
+struct NodeEntry {
+    + compatibleSlotId : int
+    + slotName : string
+}
+class SearchWindowProvider {
+    + nodeNeedsRepositioning : bool <<get>> <<set>>
+    + regenerateEntries : bool <<get>> <<set>>
+    + Initialize(editorWindow:EditorWindow, graph:GraphData, graphView:GraphView) : void
+    + Dispose() : void
+    + GenerateNodeEntries() : void
+}
+class SearcherProvider {
+    + LoadSearchWindow() : Searcher.Searcher
+    + OnSearcherSelectEntry(entry:SearcherItem, screenMousePosition:Vector2) : bool
+    + CopyNodeForGraph(oldNode:AbstractMaterialNode) : AbstractMaterialNode
+}
+class "List`1"<T> {
+}
+NodeEntry --> "node" AbstractMaterialNode
+IDisposable <|-- SearchWindowProvider
+SearchWindowProvider --> "currentNodeEntries<NodeEntry>" "List`1"
+SearchWindowProvider --> "connectedPort" ShaderPort
+SearchWindowProvider --> "targetSlotReference" SlotReference
+SearchWindowProvider --> "targetPosition" Vector2
+SearchWindowProvider --> "target" VisualElement
+SearchWindowProvider <|-- SearcherProvider
+@enduml

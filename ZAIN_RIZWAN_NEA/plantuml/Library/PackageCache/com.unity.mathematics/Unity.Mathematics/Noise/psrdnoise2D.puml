@@ -1,0 +1,12 @@
+@startuml
+class noise <<static>> <<partial>> {
+    + {static} psrdnoise(pos:float2, per:float2, rot:float) : float3
+    + {static} psrdnoise(pos:float2, per:float2) : float3
+    + {static} psrnoise(pos:float2, per:float2, rot:float) : float
+    + {static} psrnoise(pos:float2, per:float2) : float
+    + {static} srdnoise(pos:float2, rot:float) : float3
+    + {static} srdnoise(pos:float2) : float3
+    + {static} srnoise(pos:float2, rot:float) : float
+    + {static} srnoise(pos:float2) : float
+}
+@enduml

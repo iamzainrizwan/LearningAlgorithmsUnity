@@ -1,0 +1,23 @@
+@startuml
+interface IJobParallelForBatch {
+}
+class IJobParallelForBatchExtensions <<static>> {
+    + {static} EarlyJobInit() : void
+    + {static} <<unsafe>> Schedule(jobData:T, arrayLength:int, indicesPerJobCount:int, dependsOn:JobHandle) : JobHandle
+    + {static} <<unsafe>> ScheduleByRef(jobData:T, arrayLength:int, indicesPerJobCount:int, dependsOn:JobHandle) : JobHandle
+    + {static} <<unsafe>> ScheduleParallel(jobData:T, arrayLength:int, indicesPerJobCount:int, dependsOn:JobHandle) : JobHandle
+    + {static} <<unsafe>> ScheduleParallelByRef(jobData:T, arrayLength:int, indicesPerJobCount:int, dependsOn:JobHandle) : JobHandle
+    + {static} <<unsafe>> ScheduleBatch(jobData:T, arrayLength:int, indicesPerJobCount:int, dependsOn:JobHandle) : JobHandle
+    + {static} <<unsafe>> ScheduleBatchByRef(jobData:T, arrayLength:int, indicesPerJobCount:int, dependsOn:JobHandle) : JobHandle
+    + {static} <<unsafe>> Run(jobData:T, arrayLength:int, indicesPerJobCount:int) : void
+    + {static} <<unsafe>> RunByRef(jobData:T, arrayLength:int, indicesPerJobCount:int) : void
+    + {static} <<unsafe>> RunBatch(jobData:T, arrayLength:int) : void
+    + {static} <<unsafe>> RunBatchByRef(jobData:T, arrayLength:int) : void
+}
+class "JobParallelForBatchProducer`1"<T> {
+}
+struct "JobParallelForBatchProducer`1"<T> {
+    + <<unsafe>> {static} Execute(jobData:T, additionalPtr:IntPtr, bufferRangePatchData:IntPtr, ranges:JobRanges, jobIndex:int) : void
+}
+IJobParallelForBatchExtensions +-- "JobParallelForBatchProducer`1"
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+class PlasticNotification <<static>> {
+}
+enum Status {
+    None,
+    IncomingChanges,
+    Conflicts,
+}
+PlasticNotification +-- Status
+@enduml

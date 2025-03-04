@@ -1,0 +1,11 @@
+@startuml
+abstract class TimelineEditorWindow {
+    + {abstract} locked : bool <<get>> <<set>>
+    + {abstract} SetTimeline(sequence:TimelineAsset) : void
+    + {abstract} SetTimeline(director:PlayableDirector) : void
+    + {abstract} ClearTimeline() : void
+}
+EditorWindow <|-- TimelineEditorWindow
+TimelineEditorWindow --> "navigator" TimelineNavigator
+TimelineEditorWindow --> "playbackControls" TimelinePlaybackControls
+@enduml

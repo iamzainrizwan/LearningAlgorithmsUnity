@@ -1,0 +1,19 @@
+@startuml
+class KeywordCollection {
+    + KeywordCollection()
+    + Add(keywords:KeywordCollection) : KeywordCollection
+    + Add(descriptor:KeywordDescriptor) : KeywordCollection
+    + Add(descriptor:KeywordDescriptor, fieldCondition:FieldCondition) : KeywordCollection
+    + Add(descriptor:KeywordDescriptor, fieldConditions:FieldCondition[]) : KeywordCollection
+    + GetEnumerator() : IEnumerator<Item>
+}
+class "IEnumerable`1"<T> {
+}
+class Item {
+    + Item(descriptor:KeywordDescriptor, fieldConditions:FieldCondition[])
+}
+"IEnumerable`1" "<KeywordCollection.Item>" <|-- KeywordCollection
+KeywordCollection +-- Item
+IConditional <|-- Item
+Item --> "descriptor" KeywordDescriptor
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class Universal2DResourceData {
+    + <<override>> Reset() : void
+}
+UniversalResourceDataBase <|-- Universal2DResourceData
+@enduml

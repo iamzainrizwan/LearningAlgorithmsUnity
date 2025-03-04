@@ -1,0 +1,19 @@
+@startuml
+class PerformanceTest {
+    + Name : string
+    + ClassName : string
+    + MethodName : string
+    + Version : string
+    + {static}  <<event>> OnTestEnded : Action 
+    + PerformanceTest()
+    + {static} GetSampleGroup(name:string) : SampleGroup
+    + {static} AddSampleGroup(sampleGroup:SampleGroup) : void
+    + CalculateStatisticalValues() : void
+    + <<override>> ToString() : string
+}
+class "List`1"<T> {
+}
+PerformanceTest o-> "Categories<string>" "List`1"
+PerformanceTest o-> "SampleGroups<SampleGroup>" "List`1"
+PerformanceTest --> "Active" PerformanceTest
+@enduml

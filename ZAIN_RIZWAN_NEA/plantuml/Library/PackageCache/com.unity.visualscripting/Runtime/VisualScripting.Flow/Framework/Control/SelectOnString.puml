@@ -1,0 +1,8 @@
+@startuml
+class SelectOnString {
+    + ignoreCase : bool <<get>> <<set>>
+}
+class "SelectUnit`1"<T> {
+}
+"SelectUnit`1" "<string>" <|-- SelectOnString
+@enduml

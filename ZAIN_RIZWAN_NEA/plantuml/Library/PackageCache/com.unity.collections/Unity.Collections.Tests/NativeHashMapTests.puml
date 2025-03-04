@@ -1,0 +1,103 @@
+@startuml
+class NativeHashMapTests {
+    + NativeHashMap_TryAdd_TryGetValue_Clear() : void
+    + NativeHashMap_Key_Collisions() : void
+    + NativeHashMap_HashMapSupportsAutomaticCapacityChange() : void
+    + NativeHashMap_HashMapSameKey() : void
+    + NativeHashMap_IsEmpty() : void
+    + NativeHashMap_HashMapEmptyCapacity() : void
+    + NativeHashMap_Remove() : void
+    + NativeHashMap_RemoveOnEmptyMap_DoesNotThrow() : void
+    + NativeHashMap_TryAddScalability() : void
+    + NativeHashMap_GetKeysEmpty() : void
+    + NativeHashMap_GetKeys() : void
+    + NativeHashMap_GetValues() : void
+    + NativeHashMap_GetKeysAndValues() : void
+    + NativeHashMap_GetKeysGuid() : void
+    + NativeHashMap_IndexerWorks() : void
+    + NativeHashMap_ContainsKeyHashMap() : void
+    + NativeHashMap_UseAfterFree_UsesCustomOwnerTypeName() : void
+    + NativeHashMap_CreateAndUseAfterFreeInBurstJob_UsesCustomOwnerTypeName() : void
+    + NativeHashMap_ForEach_FixedStringInHashMap() : void
+    + NativeHashMap_EnumeratorDoesNotReturnRemovedElementsTest() : void
+    + NativeHashMap_EnumeratorInfiniteIterationTest() : void
+    + NativeHashMap_ForEach(n:int) : void
+    + NativeHashMap_ForEach_From_Job(n:int) : void
+    + NativeHashMap_Write_From_Job() : void
+    + NativeHashMap_ForEach_Throws_When_Modified() : void
+    + NativeHashMap_ForEach_Throws_Job_Iterator() : void
+    + NativeHashMap_CustomAllocatorTest() : void
+    + <<unsafe>> NativeHashMap_BurstedCustomAllocatorTest() : void
+    + NativeHashMap_Nested() : void
+    + NativeHashMap_ForEach_FixedStringKey() : void
+    + NativeHashMap_SupportsAutomaticCapacityChange() : void
+    + NativeHashMap_SameKey() : void
+    + NativeHashMap_EmptyCapacity() : void
+    + <<unsafe>> NativeHashMap_TrimExcess() : void
+    + NativeHashMap_DisposeJob() : void
+    + NativeHashMap_CanInsertSentinelValue() : void
+    + NativeHashMap_SoakTest(s:int) : void
+    + NativeHashMap_IndexerAdd_ResizesContainer() : void
+}
+struct NonBlittableStruct {
+    + Equals(other:NonBlittableStruct) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+struct LargeKey {
+    + Equals(rhs:LargeKey) : bool
+    + <<override>> GetHashCode() : int
+}
+struct TestEntityGuid {
+    + a : ulong
+    + b : ulong
+    + Equals(other:TestEntityGuid) : bool
+    + <<override>> GetHashCode() : int
+    + CompareTo(other:TestEntityGuid) : int
+}
+struct NativeHashMap_CreateAndUseAfterFreeBurst {
+    + Execute() : void
+}
+struct NativeHashMap_ForEach_Job {
+    + Num : int
+    + Execute() : void
+}
+struct NativeHashMap_Write_Job {
+    + Execute() : void
+}
+struct NativeHashMap_ForEachIterator {
+    + Execute() : void
+}
+struct BurstedCustomAllocatorJob {
+    + Execute() : void
+}
+struct NestedHashMap {
+}
+class "IEquatable`1"<T> {
+}
+class "IComparable`1"<T> {
+}
+class "NativeHashMap`2"<T1,T2> {
+}
+CollectionsTestCommonBase <|-- NativeHashMapTests
+NativeHashMapTests +-- NonBlittableStruct
+"IEquatable`1" "<NonBlittableStruct>" <|-- NonBlittableStruct
+NativeHashMapTests +-- LargeKey
+"IEquatable`1" "<LargeKey>" <|-- LargeKey
+NativeHashMapTests +-- TestEntityGuid
+"IEquatable`1" "<TestEntityGuid>" <|-- TestEntityGuid
+"IComparable`1" "<TestEntityGuid>" <|-- TestEntityGuid
+NativeHashMapTests +-- NativeHashMap_CreateAndUseAfterFreeBurst
+IJob <|-- NativeHashMap_CreateAndUseAfterFreeBurst
+NativeHashMapTests +-- NativeHashMap_ForEach_Job
+IJob <|-- NativeHashMap_ForEach_Job
+NativeHashMapTests +-- NativeHashMap_Write_Job
+IJob <|-- NativeHashMap_Write_Job
+NativeHashMap_Write_Job --> "Input<int,int>" "NativeHashMap`2"
+NativeHashMapTests +-- NativeHashMap_ForEachIterator
+IJob <|-- NativeHashMap_ForEachIterator
+NativeHashMapTests +-- BurstedCustomAllocatorJob
+IJob <|-- BurstedCustomAllocatorJob
+NativeHashMapTests +-- NestedHashMap
+NestedHashMap --> "map<int,int>" "NativeHashMap`2"
+@enduml

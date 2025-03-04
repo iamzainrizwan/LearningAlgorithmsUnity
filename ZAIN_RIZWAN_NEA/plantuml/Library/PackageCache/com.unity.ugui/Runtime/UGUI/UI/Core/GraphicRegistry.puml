@@ -1,0 +1,13 @@
+@startuml
+class GraphicRegistry {
+    + {static} RegisterGraphicForCanvas(c:Canvas, graphic:Graphic) : void
+    + {static} RegisterRaycastGraphicForCanvas(c:Canvas, graphic:Graphic) : void
+    + {static} UnregisterGraphicForCanvas(c:Canvas, graphic:Graphic) : void
+    + {static} UnregisterRaycastGraphicForCanvas(c:Canvas, graphic:Graphic) : void
+    + {static} DisableGraphicForCanvas(c:Canvas, graphic:Graphic) : void
+    + {static} DisableRaycastGraphicForCanvas(c:Canvas, graphic:Graphic) : void
+    + {static} GetGraphicsForCanvas(canvas:Canvas) : IList<Graphic>
+    + {static} GetRaycastableGraphicsForCanvas(canvas:Canvas) : IList<Graphic>
+}
+GraphicRegistry --> "instance" GraphicRegistry
+@enduml

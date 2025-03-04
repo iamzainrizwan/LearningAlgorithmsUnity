@@ -1,0 +1,11 @@
+@startuml
+enum ClearFlag {
+    None= RTClearFlags.None,
+    Color= RTClearFlags.Color,
+    Depth= RTClearFlags.Depth,
+    Stencil= RTClearFlags.Stencil,
+    DepthStencil= Depth | Stencil,
+    ColorStencil= Color | Stencil,
+    All= Color | Depth | Stencil,
+}
+@enduml

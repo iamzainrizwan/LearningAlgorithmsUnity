@@ -1,0 +1,104 @@
+@startuml
+struct FullscreenBlocks {
+}
+struct FullscreenFields {
+}
+enum FullscreenMode {
+    FullScreen,
+    CustomRenderTexture,
+}
+enum FullscreenCompatibility {
+    Blit,
+    DrawProcedural,
+}
+enum FullscreenBlendMode {
+    Disabled,
+    Alpha,
+    Premultiply,
+    Additive,
+    Multiply,
+    Custom,
+}
+enum FullscreenDepthWriteMode {
+    LinearEye,
+    Linear01,
+    Raw,
+}
+class FullscreenUniforms <<static>> {
+    + {static} <<readonly>> blendModeProperty : string = "_Fullscreen_BlendMode"
+    + {static} <<readonly>> srcColorBlendProperty : string = "_Fullscreen_SrcColorBlend"
+    + {static} <<readonly>> dstColorBlendProperty : string = "_Fullscreen_DstColorBlend"
+    + {static} <<readonly>> srcAlphaBlendProperty : string = "_Fullscreen_SrcAlphaBlend"
+    + {static} <<readonly>> dstAlphaBlendProperty : string = "_Fullscreen_DstAlphaBlend"
+    + {static} <<readonly>> colorBlendOperationProperty : string = "_Fullscreen_ColorBlendOperation"
+    + {static} <<readonly>> alphaBlendOperationProperty : string = "_Fullscreen_AlphaBlendOperation"
+    + {static} <<readonly>> depthWriteProperty : string = "_Fullscreen_DepthWrite"
+    + {static} <<readonly>> depthTestProperty : string = "_Fullscreen_DepthTest"
+    + {static} <<readonly>> stencilEnableProperty : string = "_Fullscreen_Stencil"
+    + {static} <<readonly>> stencilReferenceProperty : string = "_Fullscreen_StencilReference"
+    + {static} <<readonly>> stencilReadMaskProperty : string = "_Fullscreen_StencilReadMask"
+    + {static} <<readonly>> stencilWriteMaskProperty : string = "_Fullscreen_StencilWriteMask"
+    + {static} <<readonly>> stencilComparisonProperty : string = "_Fullscreen_StencilComparison"
+    + {static} <<readonly>> stencilPassProperty : string = "_Fullscreen_StencilPass"
+    + {static} <<readonly>> stencilFailProperty : string = "_Fullscreen_StencilFail"
+    + {static} <<readonly>> stencilDepthFailProperty : string = "_Fullscreen_StencilDepthFail"
+    + {static} <<readonly>> srcColorBlend : string
+    + {static} <<readonly>> dstColorBlend : string
+    + {static} <<readonly>> srcAlphaBlend : string
+    + {static} <<readonly>> dstAlphaBlend : string
+    + {static} <<readonly>> colorBlendOperation : string
+    + {static} <<readonly>> alphaBlendOperation : string
+    + {static} <<readonly>> depthWrite : string
+    + {static} <<readonly>> depthTest : string
+    + {static} <<readonly>> stencilReference : string
+    + {static} <<readonly>> stencilReadMask : string
+    + {static} <<readonly>> stencilWriteMask : string
+    + {static} <<readonly>> stencilComparison : string
+    + {static} <<readonly>> stencilPass : string
+    + {static} <<readonly>> stencilFail : string
+    + {static} <<readonly>> stencilDepthFail : string
+}
+abstract class "FullscreenSubTarget`1"<T> {
+    + <<override>> Setup(context:TargetSetupContext) : void
+    + <<virtual>> identifier : string <<get>>
+    + <<virtual>> GetMetadataObject(graph:GraphDataReadOnly) : ScriptableObject
+    + GetRenderState() : RenderStateCollection
+    + {static} BlendModeToBlend(mode:BlendMode) : Blend
+    + {static} CompareFunctionToZTest(mode:CompareFunction) : ZTest
+    + {static} CompareFunctionToStencilString(compare:CompareFunction) : string
+    + {static} StencilOpToStencilString(op:StencilOp) : string
+    + <<virtual>> GenerateSubShader() : SubShaderDescriptor
+    + <<virtual>> GetPreGraphIncludes() : IncludeCollection
+    + <<virtual>> GetPostGraphIncludes() : IncludeCollection
+    + <<virtual>> GenerateFullscreenPass(compatibility:FullscreenCompatibility) : PassDescriptor
+    + <<override>> saveContext : object <<get>>
+    + FullscreenSubTarget()
+    + <<override>> IsNodeAllowedBySubTarget(nodeType:Type) : bool
+    + <<override>> IsActive() : bool
+    + <<override>> GetFields(context:TargetFieldContext) : void
+    + <<override>> GetActiveBlocks(context:TargetActiveBlockContext) : void
+    + <<override>> CollectShaderProperties(collector:PropertyCollector, generationMode:GenerationMode) : void
+    + CollectRenderStateShaderProperties(collector:PropertyCollector, generationMode:GenerationMode) : void
+    + <<override>> GetPropertiesGUI(context:TargetPropertyGUIContext, onChange:Action, registerUndo:Action<String>) : void
+}
+class FullscreenPropertyCollectorExtension <<static>> {
+    + {static} AddEnumProperty(collector:PropertyCollector, prop:string, value:T, hlslDeclaration:HLSLDeclaration) : void
+    + {static} AddIntProperty(collector:PropertyCollector, prop:string, value:int, hlslDeclaration:HLSLDeclaration) : void
+    + {static} AddBoolProperty(collector:PropertyCollector, prop:string, value:bool, hlslDeclaration:HLSLDeclaration) : void
+    + {static} AddFloatProperty(collector:PropertyCollector, referenceName:string, defaultValue:float, declarationType:HLSLDeclaration, generatePropertyBlock:bool) : void
+}
+class "SubTarget`1"<T> {
+}
+class "IRequiresData`1"<T> {
+}
+FullscreenBlocks o-> "color" BlockFieldDescriptor
+FullscreenBlocks o-> "eyeDepth" BlockFieldDescriptor
+FullscreenBlocks o-> "linear01Depth" BlockFieldDescriptor
+FullscreenBlocks o-> "rawDepth" BlockFieldDescriptor
+FullscreenFields o-> "depth" FieldDescriptor
+"SubTarget`1" "<T>" <|-- "FullscreenSubTarget`1"
+"IRequiresData`1" "<FullscreenData>" <|-- "FullscreenSubTarget`1"
+IHasMetadata <|-- "FullscreenSubTarget`1"
+"FullscreenSubTarget`1" --> "fullscreenData" FullscreenData
+"FullscreenSubTarget`1" o-> "Varyings" StructDescriptor
+@enduml

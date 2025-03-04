@@ -1,0 +1,12 @@
+@startuml
+class LitShader {
+    + <<override>> FillAdditionalFoldouts(materialScopesList:MaterialHeaderScopeList) : void
+    + <<override>> FindProperties(properties:MaterialProperty[]) : void
+    + <<override>> ValidateMaterial(material:Material) : void
+    + <<override>> DrawSurfaceOptions(material:Material) : void
+    + <<override>> DrawSurfaceInputs(material:Material) : void
+    + <<override>> DrawAdvancedOptions(material:Material) : void
+    + <<override>> AssignNewShaderToMaterial(material:Material, oldShader:Shader, newShader:Shader) : void
+}
+BaseShaderGUI <|-- LitShader
+@enduml

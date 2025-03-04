@@ -1,0 +1,9 @@
+@startuml
+enum BlendOp {
+    Add,
+    Sub,
+    RevSub,
+    Min,
+    Max,
+}
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+class SampleCubemapNode {
+    + <<const>> OutputSlotId : int = 0
+    + <<const>> CubemapInputId : int = 1
+    + <<const>> ViewDirInputId : int = 2
+    + <<const>> NormalInputId : int = 3
+    + <<const>> SamplerInputId : int = 5
+    + <<const>> LODInputId : int = 4
+    + <<override>> hasPreview : bool <<get>>
+    + SampleCubemapNode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<virtual>> GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + RequiresViewDirection(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresNormal(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + <<override>> OnAfterDeserialize() : void
+}
+AbstractMaterialNode <|-- SampleCubemapNode
+IGeneratesBodyCode <|-- SampleCubemapNode
+IMayRequireViewDirection <|-- SampleCubemapNode
+IMayRequireNormal <|-- SampleCubemapNode
+@enduml

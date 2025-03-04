@@ -1,0 +1,15 @@
+@startuml
+class LayoutPropertiesPreview {
+    + <<override>> Initialize(targets:UnityEngine.Object[]) : void
+    + <<override>> GetPreviewTitle() : GUIContent
+    + <<override>> HasPreviewGUI() : bool
+    + <<override>> OnPreviewGUI(r:Rect, background:GUIStyle) : void
+}
+class Styles {
+    + Styles()
+}
+ObjectPreview <|-- LayoutPropertiesPreview
+LayoutPropertiesPreview +-- Styles
+Styles o-> "labelStyle" GUIStyle
+Styles o-> "headerStyle" GUIStyle
+@enduml

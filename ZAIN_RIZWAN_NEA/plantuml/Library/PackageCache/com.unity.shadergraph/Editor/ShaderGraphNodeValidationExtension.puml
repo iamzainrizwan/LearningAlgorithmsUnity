@@ -1,0 +1,12 @@
+@startuml
+interface INodeValidationExtension {
+}
+class NodeValidation <<static>> {
+}
+enum Status {
+    Warning,
+    Error,
+    None,
+}
+INodeValidationExtension +-- Status
+@enduml

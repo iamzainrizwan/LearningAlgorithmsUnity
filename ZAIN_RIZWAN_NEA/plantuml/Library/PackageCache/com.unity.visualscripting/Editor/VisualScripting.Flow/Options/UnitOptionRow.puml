@@ -1,0 +1,24 @@
+@startuml
+class UnitOptionRow <<sealed>> {
+    + id : int <<get>> <<set>>
+    + sourceScriptGuids : string <<get>> <<set>>
+    + optionType : string <<get>> <<set>>
+    + unitType : string <<get>> <<set>>
+    + labelHuman : string <<get>> <<set>>
+    + labelProgrammer : string <<get>> <<set>>
+    + category : string <<get>> <<set>>
+    + order : int <<get>> <<set>>
+    + haystackHuman : string <<get>> <<set>>
+    + haystackProgrammer : string <<get>> <<set>>
+    + favoriteKey : string <<get>> <<set>>
+    + tag1 : string <<get>> <<set>>
+    + tag2 : string <<get>> <<set>>
+    + tag3 : string <<get>> <<set>>
+    + unit : string <<get>> <<set>>
+    + controlInputCount : int <<get>> <<set>>
+    + controlOutputCount : int <<get>> <<set>>
+    + valueInputTypes : string <<get>> <<set>>
+    + valueOutputTypes : string <<get>> <<set>>
+    + ToOption() : IUnitOption
+}
+@enduml

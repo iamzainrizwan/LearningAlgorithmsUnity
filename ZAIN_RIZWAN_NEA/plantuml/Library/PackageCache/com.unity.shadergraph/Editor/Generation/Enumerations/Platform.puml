@@ -1,0 +1,21 @@
+@startuml
+enum Platform {
+    D3D11,
+    GLCore,
+    GLES3,
+    Metal,
+    Vulkan,
+    D3D9,
+    XboxOne,
+    GameCoreXboxOne,
+    GameCoreXboxSeries,
+    Playstation,
+    Switch,
+    PS5,
+}
+class PlatformExtensions <<static>> {
+    + {static} ToShaderString(platform:Platform) : string
+}
+class PragmaRenderers <<static>> {
+}
+@enduml

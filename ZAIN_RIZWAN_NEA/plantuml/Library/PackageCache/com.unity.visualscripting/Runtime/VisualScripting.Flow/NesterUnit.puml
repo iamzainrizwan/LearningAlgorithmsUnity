@@ -1,0 +1,17 @@
+@startuml
+abstract class "NesterUnit`2"<TGraph,TMacro> {
+    + <<override>> canDefine : bool <<get>>
+    + <<override>> GetAotStubs(visited:HashSet<object>) : IEnumerable<object>
+    + {abstract} DefaultGraph() : TGraph
+}
+class "Macro`1"<T> {
+}
+class "GraphNest`2"<T1,T2> {
+}
+class "IEnumerable`1"<T> {
+}
+Unit <|-- "NesterUnit`2"
+INesterUnit <|-- "NesterUnit`2"
+"NesterUnit`2" o-> "nest<TGraph,TMacro>" "GraphNest`2"
+"NesterUnit`2" --> "deserializationDependencies<ISerializationDependency>" "IEnumerable`1"
+@enduml

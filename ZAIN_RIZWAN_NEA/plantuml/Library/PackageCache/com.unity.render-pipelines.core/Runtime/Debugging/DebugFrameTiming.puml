@@ -1,0 +1,9 @@
+@startuml
+class DebugFrameTiming {
+    + bottleneckHistorySize : int <<get>> <<set>> = 60
+    + sampleHistorySize : int <<get>> <<set>> = 30
+    + DebugFrameTiming()
+    + UpdateFrameTiming() : void
+    + RegisterDebugUI(list:List<DebugUI.Widget>) : void
+}
+@enduml

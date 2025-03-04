@@ -1,0 +1,58 @@
+@startuml
+class RemoveComponent {
+    + SetUp() : void
+    + TearDown() : void
+}
+class RemoveComponentUtilsTests {
+    + RemoveComponentAndPropagateTheDeleteToAdditionalDatas(componentToRemove:Type, componentsToAdd:Type[]) : Type[]
+}
+class RemoveAdditionalDataUtilsTests {
+    + TryGetComponentsToRemove(type:Type) : string[]
+    + RemoveAdditionalDataComponentAndPropagateToComponent(selectionAmount:int, componentToRemove:Type, componentsToAdd:Type[]) : Type[]
+}
+interface ITest {
+}
+class Apple {
+}
+class Banana {
+}
+class AdditionalApple {
+}
+class AdditionalBanana {
+}
+class AdditionalBananaColor {
+}
+class WaterMelon {
+}
+class FruitBasket {
+}
+RemoveComponent <|-- RemoveComponentUtilsTests
+RemoveComponent <|-- RemoveAdditionalDataUtilsTests
+RemoveComponent +-- ITest
+RemoveComponent +-- Apple
+MonoBehaviour <|-- Apple
+ITest <|-- Apple
+RemoveComponent +-- Banana
+MonoBehaviour <|-- Banana
+ITest <|-- Banana
+RemoveComponent +-- AdditionalApple
+MonoBehaviour <|-- AdditionalApple
+IAdditionalData <|-- AdditionalApple
+ITest <|-- AdditionalApple
+RemoveComponent +-- AdditionalBanana
+MonoBehaviour <|-- AdditionalBanana
+IAdditionalData <|-- AdditionalBanana
+ITest <|-- AdditionalBanana
+RemoveComponent +-- AdditionalBananaColor
+MonoBehaviour <|-- AdditionalBananaColor
+IAdditionalData <|-- AdditionalBananaColor
+ITest <|-- AdditionalBananaColor
+RemoveComponent +-- WaterMelon
+MonoBehaviour <|-- WaterMelon
+IAdditionalData <|-- WaterMelon
+ITest <|-- WaterMelon
+RemoveComponent +-- FruitBasket
+MonoBehaviour <|-- FruitBasket
+IAdditionalData <|-- FruitBasket
+ITest <|-- FruitBasket
+@enduml

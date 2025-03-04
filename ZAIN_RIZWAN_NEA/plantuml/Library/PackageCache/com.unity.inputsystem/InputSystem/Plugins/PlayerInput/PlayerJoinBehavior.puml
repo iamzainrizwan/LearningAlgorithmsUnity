@@ -1,0 +1,7 @@
+@startuml
+enum PlayerJoinBehavior {
+    JoinPlayersWhenButtonIsPressed,
+    JoinPlayersWhenJoinActionIsTriggered,
+    JoinPlayersManually,
+}
+@enduml

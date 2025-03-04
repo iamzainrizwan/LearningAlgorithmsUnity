@@ -1,0 +1,7 @@
+@startuml
+abstract class MarkerAction {
+    + {abstract} Execute(markers:IEnumerable<IMarker>) : bool
+    + {abstract} Validate(markers:IEnumerable<IMarker>) : ActionValidity
+}
+IAction <|-- MarkerAction
+@enduml

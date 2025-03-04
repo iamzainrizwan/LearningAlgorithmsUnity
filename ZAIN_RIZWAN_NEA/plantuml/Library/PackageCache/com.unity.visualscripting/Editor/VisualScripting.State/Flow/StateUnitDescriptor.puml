@@ -1,0 +1,8 @@
+@startuml
+class StateUnitDescriptor {
+    + StateUnitDescriptor(unit:StateUnit)
+}
+class "NesterUnitDescriptor`1"<T> {
+}
+"NesterUnitDescriptor`1" "<StateUnit>" <|-- StateUnitDescriptor
+@enduml

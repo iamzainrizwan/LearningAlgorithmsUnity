@@ -1,0 +1,19 @@
+@startuml
+class MultiplyNode {
+    + MultiplyNode()
+    + <<override>> hasPreview : bool <<get>>
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + GenerateNodeFunction(registry:FunctionRegistry, generationMode:GenerationMode) : void
+    + <<override>> EvaluateDynamicMaterialSlots(inputSlots:List<MaterialSlot>, outputSlots:List<MaterialSlot>) : void
+}
+enum MultiplyType {
+    Vector,
+    Matrix,
+    Mixed,
+}
+AbstractMaterialNode <|-- MultiplyNode
+IGeneratesBodyCode <|-- MultiplyNode
+IGeneratesFunction <|-- MultiplyNode
+MultiplyNode +-- MultiplyType
+@enduml

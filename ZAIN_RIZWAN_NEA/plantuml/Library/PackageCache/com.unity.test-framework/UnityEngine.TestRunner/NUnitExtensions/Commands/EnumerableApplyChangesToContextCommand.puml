@@ -1,0 +1,8 @@
+@startuml
+class EnumerableApplyChangesToContextCommand {
+    + EnumerableApplyChangesToContextCommand(innerCommand:TestCommand, changes:IEnumerable<IApplyToContext>)
+    + ExecuteEnumerable(context:ITestExecutionContext) : IEnumerable
+}
+ApplyChangesToContextCommand <|-- EnumerableApplyChangesToContextCommand
+IEnumerableTestMethodCommand <|-- EnumerableApplyChangesToContextCommand
+@enduml

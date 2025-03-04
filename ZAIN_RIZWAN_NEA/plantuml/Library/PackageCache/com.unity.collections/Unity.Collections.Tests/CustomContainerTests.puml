@@ -1,0 +1,15 @@
+@startuml
+struct "NativeCustomArray`1"<T> {
+    + NativeCustomArray(length:int, allocator:Allocator)
+    + Length : int <<get>>
+    + ToArray() : T[]
+    + IsCreated : bool <<get>>
+    + Dispose() : void
+}
+class "NativeCustomArrayDebugView`1"<T> <<sealed>> {
+    + NativeCustomArrayDebugView(array:NativeCustomArray<T>)
+}
+class "ReadArrayElement`1"<T> {
+}
+IDisposable <|-- "NativeCustomArray`1"
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class EnumUtility <<static>> {
+    + {static} HasFlag(value:Enum, flag:Enum) : bool
+    + {static} ValuesByNames(enumType:Type, obsolete:bool) : Dictionary<string, Enum>
+    + {static} ValuesByNames(obsolete:bool) : Dictionary<string, T>
+}
+@enduml

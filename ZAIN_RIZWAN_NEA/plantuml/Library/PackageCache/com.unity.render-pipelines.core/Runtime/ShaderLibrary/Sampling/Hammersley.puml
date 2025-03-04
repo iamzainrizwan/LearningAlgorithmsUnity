@@ -1,0 +1,22 @@
+@startuml
+class Hammersley <<static>> {
+    <<unsafe>> + {static} Initialize() : void
+    + {static} BindConstants(cmd:CommandBuffer, cs:ComputeShader) : void
+}
+struct Hammersley2dSeq16 {
+    + <<fixed>> hammersley2dSeq16 : float
+}
+struct Hammersley2dSeq32 {
+    + <<fixed>> hammersley2dSeq32 : float
+}
+struct Hammersley2dSeq64 {
+    + <<fixed>> hammersley2dSeq64 : float
+}
+struct Hammersley2dSeq256 {
+    + <<fixed>> hammersley2dSeq256 : float
+}
+Hammersley +-- Hammersley2dSeq16
+Hammersley +-- Hammersley2dSeq32
+Hammersley +-- Hammersley2dSeq64
+Hammersley +-- Hammersley2dSeq256
+@enduml

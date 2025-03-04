@@ -1,0 +1,6 @@
+@startuml
+class InputModuleComponentFactory <<static>> {
+    + {static} SetInputModuleComponentOverride(addInputModuleComponentOverride:AddInputModuleComponentDelegate) : void
+    + {static} AddInputModule(gameObject:GameObject) : BaseInputModule
+}
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+class FlowStateWidget <<sealed>> {
+    + FlowStateWidget(canvas:StateCanvas, state:FlowState)
+    + <<override>> Dispose() : void
+    + <<override>> CachePosition() : void
+    + AcceptsDragAndDrop() : bool
+    + PerformDragAndDrop() : void
+    + UpdateDragAndDrop() : void
+    + DrawDragAndDropPreview() : void
+    + ExitDragAndDrop() : void
+}
+class "NesterStateWidget`1"<T> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+class Styles <<new>> <<static>> {
+    + {static} <<readonly>> spaceAroundLineIcon : float = 5
+}
+class EventLine {
+    + EventLine(eventType:Type)
+    + GetHeight(width:float) : float
+    + Draw(position:Rect) : void
+}
+"NesterStateWidget`1" "<FlowState>" <|-- FlowStateWidget
+IDragAndDropHandler <|-- FlowStateWidget
+FlowStateWidget o-> "eventLinesPositions<EventLine,Rect>" "Dictionary`2"
+FlowStateWidget --> "dragAndDropVisualMode" DragAndDropVisualMode
+FlowStateWidget +-- Styles
+Styles --> "eventLine" GUIStyle
+FlowStateWidget +-- EventLine
+EventLine --> "content" GUIContent
+@enduml

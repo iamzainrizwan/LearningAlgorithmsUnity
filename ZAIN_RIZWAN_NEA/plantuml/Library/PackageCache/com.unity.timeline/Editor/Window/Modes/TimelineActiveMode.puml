@@ -1,0 +1,10 @@
+@startuml
+class TimelineActiveMode {
+    + TimelineActiveMode()
+    + <<override>> ShouldShowTimeCursor(state:WindowState) : bool
+    + <<override>> ShouldShowPlayRange(state:WindowState) : bool
+    + <<override>> ToolbarState(state:WindowState) : TimelineModeGUIState
+    + <<override>> TrackState(state:WindowState) : TimelineModeGUIState
+}
+TimelineMode <|-- TimelineActiveMode
+@enduml

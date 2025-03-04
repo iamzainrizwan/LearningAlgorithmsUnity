@@ -1,0 +1,6 @@
+@startuml
+class GraphEditor {
+    + GraphEditor(metadata:Metadata)
+}
+Inspector <|-- GraphEditor
+@enduml

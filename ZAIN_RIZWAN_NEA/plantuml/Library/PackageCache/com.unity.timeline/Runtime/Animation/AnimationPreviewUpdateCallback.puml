@@ -1,0 +1,7 @@
+@startuml
+class AnimationPreviewUpdateCallback {
+    + AnimationPreviewUpdateCallback(output:AnimationPlayableOutput)
+    + Evaluate() : void
+}
+ITimelineEvaluateCallback <|-- AnimationPreviewUpdateCallback
+@enduml

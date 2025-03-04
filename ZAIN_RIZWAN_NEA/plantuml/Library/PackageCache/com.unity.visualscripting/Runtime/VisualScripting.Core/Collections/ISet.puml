@@ -1,0 +1,7 @@
+@startuml
+interface "ISet`1"<T> {
+}
+class "ICollection`1"<T> {
+}
+"ICollection`1" "<T>" <|-- "ISet`1"
+@enduml

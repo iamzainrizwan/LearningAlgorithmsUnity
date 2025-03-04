@@ -1,0 +1,8 @@
+@startuml
+class EnumeratorHelper {
+    + {static} IsRunningNestedEnumerator : bool <<get>>
+    + {static} UnpackNestedEnumerators(testEnumerator:IEnumerator) : IEnumerator
+    + {static} SetEnumeratorPC(pc:int) : void
+    + {static} GetEnumeratorPC() : int
+}
+@enduml

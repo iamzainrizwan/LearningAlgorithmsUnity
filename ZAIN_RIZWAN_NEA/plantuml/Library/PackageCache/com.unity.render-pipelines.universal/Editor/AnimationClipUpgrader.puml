@@ -1,0 +1,5 @@
+@startuml
+class AnimationClipUpgrader <<static>> <<partial>> {
+    + {static} DoUpgradeAllClipsMenuItem(allUpgraders:IEnumerable<MaterialUpgrader>, progressBarName:string, knownUpgradePaths:IReadOnlyDictionary<UID, MaterialUpgrader>, filterFlags:SerializedShaderPropertyUsage) : void
+}
+@enduml

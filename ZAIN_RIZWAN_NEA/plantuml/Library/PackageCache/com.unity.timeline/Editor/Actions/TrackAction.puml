@@ -1,0 +1,7 @@
+@startuml
+abstract class TrackAction {
+    + {abstract} Execute(tracks:IEnumerable<TrackAsset>) : bool
+    + {abstract} Validate(tracks:IEnumerable<TrackAsset>) : ActionValidity
+}
+IAction <|-- TrackAction
+@enduml

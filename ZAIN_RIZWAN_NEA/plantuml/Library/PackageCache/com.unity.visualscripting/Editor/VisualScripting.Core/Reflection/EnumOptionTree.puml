@@ -1,0 +1,10 @@
+@startuml
+class EnumOptionTree {
+    + EnumOptionTree(enumType:Type)
+    + <<override>> Option(item:object) : IFuzzyOption
+    + <<override>> Root() : IEnumerable<object>
+    + <<override>> Children(item:object) : IEnumerable<object>
+    + {static} For() : EnumOptionTree
+}
+FuzzyOptionTree <|-- EnumOptionTree
+@enduml

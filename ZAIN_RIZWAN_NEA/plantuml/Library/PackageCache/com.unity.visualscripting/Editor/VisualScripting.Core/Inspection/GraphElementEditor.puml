@@ -1,0 +1,12 @@
+@startuml
+class "GraphElementEditor`1"<TGraphContext> {
+    + GraphElementEditor(metadata:Metadata)
+}
+class "GraphInspector`1"<T> {
+}
+class Styles <<static>> {
+}
+"GraphInspector`1" "<TGraphContext>" <|-- "GraphElementEditor`1"
+"GraphElementEditor`1" +-- Styles
+Styles --> "inspectorBackground" GUIStyle
+@enduml

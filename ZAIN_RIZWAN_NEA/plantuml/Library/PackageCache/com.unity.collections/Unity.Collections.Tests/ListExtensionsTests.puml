@@ -1,0 +1,10 @@
+@startuml
+class ListExtensionsTests {
+    + ListExtensions_RemoveSwapBack_Item() : void
+    + ListExtensions_RemoveSwapBack_Predicate() : void
+    + ListExtensions_RemoveAtSwapBack() : void
+    + ListExtensions_ToNativeList() : void
+    + ListExtensions_ToNativeArray() : void
+}
+CollectionsTestCommonBase <|-- ListExtensionsTests
+@enduml

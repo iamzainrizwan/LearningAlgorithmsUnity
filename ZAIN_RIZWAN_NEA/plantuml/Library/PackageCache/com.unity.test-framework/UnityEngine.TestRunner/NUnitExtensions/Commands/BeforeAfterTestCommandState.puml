@@ -1,0 +1,22 @@
+@startuml
+class BeforeAfterTestCommandState {
+    + NextBeforeStepIndex : int
+    + NextBeforeStepPc : int
+    + NextAfterStepIndex : int
+    + NextAfterStepPc : int
+    + TestHasRun : bool
+    + CurrentTestResultLabel : string
+    + CurrentTestMessage : string
+    + CurrentTestStrackTrace : string
+    + TestAfterStarted : bool
+    + Output : string
+    + StartTicks : long
+    + StartTimeOA : double
+    + ShouldRestore : bool
+    + Reset() : void
+    + StoreContext(context:UnityTestExecutionContext) : void
+    + ApplyContext(context:UnityTestExecutionContext) : void
+}
+BeforeAfterTestCommandState --> "CurrentTestResultStatus" TestStatus
+BeforeAfterTestCommandState --> "CurrentTestResultSite" FailureSite
+@enduml

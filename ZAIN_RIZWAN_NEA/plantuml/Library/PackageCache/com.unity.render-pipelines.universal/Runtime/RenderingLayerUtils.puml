@@ -1,0 +1,21 @@
+@startuml
+class RenderingLayerUtils <<static>> {
+    + {static} CombineRendererEvents(isDeferred:bool, msaaSampleCount:int, rendererEvent:Event, combinedEvent:Event) : void
+    + {static} RequireRenderingLayers(universalRenderer:UniversalRenderer, rendererFeatures:List<ScriptableRendererFeature>, msaaSampleCount:int, combinedEvent:Event, combinedMaskSize:MaskSize) : bool
+    + {static} SetupProperties(cmd:CommandBuffer, maskSize:MaskSize) : void
+    + {static} GetFormat(maskSize:MaskSize) : GraphicsFormat
+    + {static} ToValidRenderingLayers(renderingLayers:uint) : uint
+}
+enum Event {
+    DepthNormalPrePass,
+    Opaque,
+}
+enum MaskSize {
+    Bits8,
+    Bits16,
+    Bits24,
+    Bits32,
+}
+RenderingLayerUtils +-- Event
+RenderingLayerUtils +-- MaskSize
+@enduml

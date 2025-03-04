@@ -1,0 +1,37 @@
+@startuml
+enum TemporalAAQuality {
+    VeryLow= 0,
+    Low,
+    Medium,
+    High,
+    VeryHigh,
+}
+class TemporalAA <<static>> {
+}
+class ShaderConstants <<static>> {
+    + {static} <<readonly>> _TaaAccumulationTex : int
+    + {static} <<readonly>> _TaaMotionVectorTex : int
+    + {static} <<readonly>> _TaaFilterWeights : int
+    + {static} <<readonly>> _TaaFrameInfluence : int
+    + {static} <<readonly>> _TaaVarianceClampScale : int
+    + {static} <<readonly>> _CameraDepthTexture : int
+}
+class ShaderKeywords <<static>> {
+    + {static} <<readonly>> TAA_LOW_PRECISION_SOURCE : string = "TAA_LOW_PRECISION_SOURCE"
+}
+struct Settings {
+    + baseBlendFactor : float <<get>> <<set>>
+    + jitterScale : float <<get>> <<set>>
+    + mipBias : float <<get>> <<set>>
+    + varianceClampScale : float <<get>> <<set>>
+    + contrastAdaptiveSharpening : float <<get>> <<set>>
+    + {static} Create() : Settings
+}
+class TaaPassData {
+}
+TemporalAA +-- ShaderConstants
+TemporalAA +-- ShaderKeywords
+TemporalAA +-- Settings
+Settings --> "quality" TemporalAAQuality
+TemporalAA +-- TaaPassData
+@enduml

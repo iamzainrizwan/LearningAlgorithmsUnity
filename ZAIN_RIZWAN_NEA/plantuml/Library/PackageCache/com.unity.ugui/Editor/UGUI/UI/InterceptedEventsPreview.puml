@@ -1,0 +1,19 @@
+@startuml
+class InterceptedEventsPreview {
+    + <<override>> Initialize(targets:UnityEngine.Object[]) : void
+    + <<override>> GetPreviewTitle() : GUIContent
+    + <<override>> HasPreviewGUI() : bool
+    + <<override>> OnPreviewGUI(r:Rect, background:GUIStyle) : void
+}
+class ComponentInterceptedEvents {
+}
+class Styles {
+    + Styles()
+}
+ObjectPreview <|-- InterceptedEventsPreview
+InterceptedEventsPreview +-- ComponentInterceptedEvents
+ComponentInterceptedEvents --> "componentName" GUIContent
+InterceptedEventsPreview +-- Styles
+Styles o-> "labelStyle" GUIStyle
+Styles o-> "componentName" GUIStyle
+@enduml

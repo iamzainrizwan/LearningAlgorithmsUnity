@@ -1,0 +1,8 @@
+@startuml
+class DebugDisplaySettingsUI {
+    + RegisterDebug(settings:IDebugDisplaySettings) : void
+    + UnregisterDebug() : void
+    + GetReset() : Action
+}
+IDebugData <|-- DebugDisplaySettingsUI
+@enduml

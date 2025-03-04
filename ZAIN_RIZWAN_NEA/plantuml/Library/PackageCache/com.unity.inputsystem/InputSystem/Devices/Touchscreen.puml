@@ -1,0 +1,61 @@
+@startuml
+enum TouchFlags {
+    IndirectTouch= 1 << 0,
+    PrimaryTouch= 1 << 3,
+    TapPress= 1 << 4,
+    TapRelease= 1 << 5,
+    OrphanedPrimaryTouch= 1 << 6,
+    BeganInSameFrame= 1 << 7,
+}
+struct TouchState {
+    + touchId : int
+    + pressure : float
+    + phaseId : byte
+    + tapCount : byte
+    + displayIndex : byte
+    + flags : byte
+    + startTime : double
+    + isNoneEndedOrCanceled : bool <<get>>
+    + isInProgress : bool <<get>>
+    + isPrimaryTouch : bool <<get>> <<set>>
+    + isIndirectTouch : bool <<get>> <<set>>
+    + isTap : bool <<get>> <<set>>
+    + <<override>> ToString() : string
+}
+struct TouchscreenState {
+    + <<const>> MaxTouches : int = 10
+    + <<fixed>> primaryTouchData : byte
+    + <<fixed>> touchData : byte
+}
+enum TouchPhase {
+    None,
+    Began,
+    Moved,
+    Ended,
+    Canceled,
+    Stationary,
+}
+class Touchscreen {
+    + <<override>> MakeCurrent() : void
+}
+class "ReadOnlyArray`1"<T> {
+}
+IInputStateTypeInfo <|-- TouchState
+TouchState --> "Format" FourCC
+TouchState --> "position" Vector2
+TouchState --> "delta" Vector2
+TouchState --> "radius" Vector2
+TouchState --> "startPosition" Vector2
+TouchState --> "phase" TouchPhase
+TouchState --> "format" FourCC
+IInputStateTypeInfo <|-- TouchscreenState
+TouchscreenState --> "Format" FourCC
+TouchscreenState --> "format" FourCC
+Pointer <|-- Touchscreen
+IInputStateCallbackReceiver <|-- Touchscreen
+IEventMerger <|-- Touchscreen
+ICustomDeviceReset <|-- Touchscreen
+Touchscreen --> "primaryTouch" TouchControl
+Touchscreen --> "touches<TouchControl>" "ReadOnlyArray`1"
+Touchscreen --> "current" Touchscreen
+@enduml

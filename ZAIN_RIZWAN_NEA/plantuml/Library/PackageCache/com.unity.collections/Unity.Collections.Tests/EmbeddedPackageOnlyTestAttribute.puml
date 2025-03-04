@@ -1,0 +1,7 @@
+@startuml
+class EmbeddedPackageOnlyTestAttribute {
+    + ApplyToTest(test:Test) : void
+}
+NUnitAttribute <|-- EmbeddedPackageOnlyTestAttribute
+IApplyToTest <|-- EmbeddedPackageOnlyTestAttribute
+@enduml

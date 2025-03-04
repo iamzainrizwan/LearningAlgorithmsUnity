@@ -1,0 +1,9 @@
+@startuml
+class IndexerMetadata <<sealed>> {
+    + IndexerMetadata(indexer:object, parent:Metadata)
+    + indexer : object <<get>>
+    + <<override>> GetCustomAttributes(inherit:bool) : Attribute[]
+}
+Metadata <|-- IndexerMetadata
+IndexerMetadata --> "indexerProperty" PropertyInfo
+@enduml

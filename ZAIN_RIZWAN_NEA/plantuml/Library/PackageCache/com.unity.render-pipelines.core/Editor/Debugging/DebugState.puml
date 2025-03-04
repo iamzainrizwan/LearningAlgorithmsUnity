@@ -1,0 +1,58 @@
+@startuml
+abstract class DebugState {
+    + queryPath : string <<get>> <<internal set>>
+    + {abstract} GetValue() : object
+    + {abstract} SetValue(value:object, field:DebugUI.IValueField) : void
+    + <<virtual>> OnEnable() : void
+}
+class "DebugState`1"<T> {
+    + <<virtual>> value : T <<get>> <<set>>
+    + <<override>> GetValue() : object
+    + <<override>> SetValue(value:object, field:DebugUI.IValueField) : void
+    + <<override>> GetHashCode() : int
+}
+class DebugStateAttribute <<sealed>> {
+    + DebugStateAttribute(types:Type[])
+}
+class DebugStateBool <<sealed>> {
+}
+class DebugStateEnum <<sealed>> {
+    + <<override>> SetValue(value:object, field:DebugUI.IValueField) : void
+    + <<override>> OnEnable() : void
+}
+class DebugStateInt <<sealed>> {
+}
+class DebugStateObject <<sealed>> {
+    + <<override>> GetHashCode() : int
+}
+class DebugStateFlags <<sealed>> {
+    + <<override>> SetValue(value:object, field:DebugUI.IValueField) : void
+}
+class DebugStateUInt <<sealed>> {
+}
+class DebugStateFloat <<sealed>> {
+}
+class DebugStateColor <<sealed>> {
+}
+class DebugStateVector2 <<sealed>> {
+}
+class DebugStateVector3 <<sealed>> {
+}
+class DebugStateVector4 <<sealed>> {
+}
+ScriptableObject <|-- DebugState
+DebugState <|-- "DebugState`1"
+Attribute <|-- DebugStateAttribute
+"DebugState`1" "<bool>" <|-- DebugStateBool
+"DebugState`1" "<int>" <|-- DebugStateEnum
+"DebugState`1" "<int>" <|-- DebugStateInt
+"DebugState`1" "<UnityEngine.Object>" <|-- DebugStateObject
+"DebugState`1" "<Enum>" <|-- DebugStateFlags
+DebugStateFlags --> "value" Enum
+"DebugState`1" "<uint>" <|-- DebugStateUInt
+"DebugState`1" "<float>" <|-- DebugStateFloat
+"DebugState`1" "<Color>" <|-- DebugStateColor
+"DebugState`1" "<Vector2>" <|-- DebugStateVector2
+"DebugState`1" "<Vector3>" <|-- DebugStateVector3
+"DebugState`1" "<Vector4>" <|-- DebugStateVector4
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class "TestBehaviourBase`1"<T> {
+    + <<virtual>> TestSetup() : void
+    + <<virtual>> Teardown() : void
+}
+@enduml

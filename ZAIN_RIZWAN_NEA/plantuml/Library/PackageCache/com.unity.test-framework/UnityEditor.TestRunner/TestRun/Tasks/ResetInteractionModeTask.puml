@@ -1,0 +1,7 @@
+@startuml
+class ResetInteractionModeTask {
+    + ResetInteractionModeTask()
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- ResetInteractionModeTask
+@enduml

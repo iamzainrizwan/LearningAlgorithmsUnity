@@ -1,0 +1,36 @@
+@startuml
+class UniversalRenderPipelineSerializedCamera {
+    + numCameras : int <<get>>
+    + UniversalRenderPipelineSerializedCamera(serializedObject:SerializedObject, settings:CameraEditor.Settings)
+    + Update() : void
+    + Apply() : void
+    + Refresh() : void
+}
+ISerializedCamera <|-- UniversalRenderPipelineSerializedCamera
+UniversalRenderPipelineSerializedCamera --> "serializedObject" SerializedObject
+UniversalRenderPipelineSerializedCamera --> "serializedAdditionalDataObject" SerializedObject
+UniversalRenderPipelineSerializedCamera --> "projectionMatrixMode" SerializedProperty
+UniversalRenderPipelineSerializedCamera --> "dithering" SerializedProperty
+UniversalRenderPipelineSerializedCamera --> "stopNaNs" SerializedProperty
+UniversalRenderPipelineSerializedCamera --> "allowDynamicResolution" SerializedProperty
+UniversalRenderPipelineSerializedCamera --> "volumeLayerMask" SerializedProperty
+UniversalRenderPipelineSerializedCamera --> "clearDepth" SerializedProperty
+UniversalRenderPipelineSerializedCamera --> "antialiasing" SerializedProperty
+UniversalRenderPipelineSerializedCamera --> "renderShadows" SerializedProperty
+UniversalRenderPipelineSerializedCamera --> "renderDepth" SerializedProperty
+UniversalRenderPipelineSerializedCamera --> "renderOpaque" SerializedProperty
+UniversalRenderPipelineSerializedCamera --> "renderer" SerializedProperty
+UniversalRenderPipelineSerializedCamera --> "cameraType" SerializedProperty
+UniversalRenderPipelineSerializedCamera --> "cameras" SerializedProperty
+UniversalRenderPipelineSerializedCamera --> "volumeTrigger" SerializedProperty
+UniversalRenderPipelineSerializedCamera --> "volumeFrameworkUpdateMode" SerializedProperty
+UniversalRenderPipelineSerializedCamera --> "renderPostProcessing" SerializedProperty
+UniversalRenderPipelineSerializedCamera --> "antialiasingQuality" SerializedProperty
+UniversalRenderPipelineSerializedCamera --> "taaQuality" SerializedProperty
+UniversalRenderPipelineSerializedCamera --> "taaFrameInfluence" SerializedProperty
+UniversalRenderPipelineSerializedCamera --> "taaJitterScale" SerializedProperty
+UniversalRenderPipelineSerializedCamera --> "taaMipBias" SerializedProperty
+UniversalRenderPipelineSerializedCamera --> "taaVarianceClampScale" SerializedProperty
+UniversalRenderPipelineSerializedCamera --> "taaContrastAdaptiveSharpening" SerializedProperty
+UniversalRenderPipelineSerializedCamera --> "allowHDROutput" SerializedProperty
+@enduml

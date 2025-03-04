@@ -1,0 +1,15 @@
+@startuml
+class DepthNormalOnlyPass {
+    + DepthNormalOnlyPass(evt:RenderPassEvent, renderQueueRange:RenderQueueRange, layerMask:LayerMask)
+    + {static} GetGraphicsFormat() : GraphicsFormat
+    + Setup(depthHandle:RTHandle, normalHandle:RTHandle) : void
+    + Setup(depthHandle:RTHandle, normalHandle:RTHandle, decalLayerHandle:RTHandle) : void
+    + <<override>> OnCameraSetup(cmd:CommandBuffer, renderingData:RenderingData) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + <<override>> OnCameraCleanup(cmd:CommandBuffer) : void
+}
+class PassData {
+}
+ScriptableRenderPass <|-- DepthNormalOnlyPass
+DepthNormalOnlyPass +-- PassData
+@enduml

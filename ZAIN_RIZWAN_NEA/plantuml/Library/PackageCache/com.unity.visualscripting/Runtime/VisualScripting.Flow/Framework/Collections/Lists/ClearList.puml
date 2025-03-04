@@ -1,0 +1,10 @@
+@startuml
+class ClearList <<sealed>> {
+    + Clear(flow:Flow) : ControlOutput
+}
+Unit <|-- ClearList
+ClearList --> "enter" ControlInput
+ClearList --> "listInput" ValueInput
+ClearList --> "listOutput" ValueOutput
+ClearList --> "exit" ControlOutput
+@enduml

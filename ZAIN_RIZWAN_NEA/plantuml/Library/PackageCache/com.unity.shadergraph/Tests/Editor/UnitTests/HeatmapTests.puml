@@ -1,0 +1,25 @@
+@startuml
+class HeatmapTests {
+    + TestHeatmapEntries_TryGetCategory_PresentEntry_ReturnsValue() : void
+    + TestHeatmapEntries_TryGetCategory_MissingEntry_ReturnsZero() : void
+    + TestHeatmapEntries_TryGetCategory_MissingEntryNonEmpty_ReturnsZero() : void
+    + TestShaderGraphHeatmapValues_GetHeatmapKey_BuiltInNode_IsTypeName() : void
+    + TestShaderGraphHeatmapValues_GetHeatmapKey_SubGraph_IsSubGraphGuid() : void
+    + TestShaderGraphHeatmapValues_TryGetCategory_PresentBuiltInNode_ReturnsValue() : void
+    + TestShaderGraphHeatmapValues_TryGetCategory_PresentSubGraph_ReturnsValue() : void
+    + TestShaderGraphHeatmapValues_TryGetCategory_MissingNode_ReturnsDefault() : void
+    + TestShaderGraphHeatmapValues_TryGetCategory_MissingSubGraph_ReturnsDefault() : void
+    + TestShaderGraphHeatmapValues_TryGetCategory_ValueIsClampedToColorCount() : void
+}
+class TestNode {
+}
+class TemporarySubGraph {
+    + TemporarySubGraph()
+    + Dispose() : void
+}
+HeatmapTests +-- TestNode
+AbstractMaterialNode <|-- TestNode
+HeatmapTests +-- TemporarySubGraph
+IDisposable <|-- TemporarySubGraph
+TemporarySubGraph --> "Node" SubGraphNode
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+class BurstILPostProcessor {
+    + IsDebugging : bool
+    + DebuggingLevel : int
+    + <<override>> <<unsafe>> Process(compiledAssembly:ICompiledAssembly) : ILPostProcessResult
+    + <<override>> GetInstance() : ILPostProcessor
+    + <<override>> WillProcess(compiledAssembly:ICompiledAssembly) : bool
+}
+class CachedAssemblyResolver <<sealed>> {
+    + RegisterKnownLocation(path:string) : void
+    + <<override>> Resolve(name:AssemblyNameReference) : AssemblyDefinition
+}
+ILPostProcessor <|-- BurstILPostProcessor
+BurstILPostProcessor +-- CachedAssemblyResolver
+AssemblyResolver <|-- CachedAssemblyResolver
+@enduml

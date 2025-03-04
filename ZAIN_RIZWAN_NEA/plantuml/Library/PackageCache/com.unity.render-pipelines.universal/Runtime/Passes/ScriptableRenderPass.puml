@@ -1,0 +1,77 @@
+@startuml
+enum ScriptableRenderPassInput {
+    None= 0,
+    Depth= 1 << 0,
+    Normal= 1 << 1,
+    Color= 1 << 2,
+    Motion= 1 << 3,
+}
+enum RenderPassEvent {
+    BeforeRendering= 0,
+    BeforeRenderingShadows= 50,
+    AfterRenderingShadows= 100,
+    BeforeRenderingPrePasses= 150,
+    AfterRenderingPrePasses= 200,
+    BeforeRenderingGbuffer= 210,
+    AfterRenderingGbuffer= 220,
+    BeforeRenderingDeferredLights= 230,
+    AfterRenderingDeferredLights= 240,
+    BeforeRenderingOpaques= 250,
+    AfterRenderingOpaques= 300,
+    BeforeRenderingSkybox= 350,
+    AfterRenderingSkybox= 400,
+    BeforeRenderingTransparents= 450,
+    AfterRenderingTransparents= 500,
+    BeforeRenderingPostProcessing= 550,
+    AfterRenderingPostProcessing= 600,
+    AfterRendering= 1000,
+}
+enum FramebufferFetchEvent {
+    None= 0,
+    FetchGbufferInDeferred= 1,
+}
+class RenderPassEventsEnumValues <<static>> {
+}
+abstract class ScriptableRenderPass <<partial>> {
+    + requiresIntermediateTexture : bool <<get>> <<set>>
+    + ScriptableRenderPass()
+    + ConfigureInput(passInput:ScriptableRenderPassInput) : void
+    + ConfigureColorStoreAction(storeAction:RenderBufferStoreAction, attachmentIndex:uint) : void
+    + ConfigureColorStoreActions(storeActions:RenderBufferStoreAction[]) : void
+    + ConfigureDepthStoreAction(storeAction:RenderBufferStoreAction) : void
+    + ResetTarget() : void
+    + ConfigureTarget(colorAttachment:RenderTargetIdentifier, depthAttachment:RenderTargetIdentifier) : void
+    + ConfigureTarget(colorAttachment:RTHandle, depthAttachment:RTHandle) : void
+    + ConfigureTarget(colorAttachments:RenderTargetIdentifier[], depthAttachment:RenderTargetIdentifier) : void
+    + ConfigureTarget(colorAttachments:RTHandle[], depthAttachment:RTHandle) : void
+    + ConfigureTarget(colorAttachment:RenderTargetIdentifier) : void
+    + ConfigureTarget(colorAttachment:RTHandle) : void
+    + ConfigureTarget(colorAttachments:RenderTargetIdentifier[]) : void
+    + ConfigureTarget(colorAttachments:RTHandle[]) : void
+    + ConfigureClear(clearFlag:ClearFlag, clearColor:Color) : void
+    + <<virtual>> OnCameraSetup(cmd:CommandBuffer, renderingData:RenderingData) : void
+    + <<virtual>> Configure(cmd:CommandBuffer, cameraTextureDescriptor:RenderTextureDescriptor) : void
+    + <<virtual>> OnCameraCleanup(cmd:CommandBuffer) : void
+    + <<virtual>> OnFinishCameraStackRendering(cmd:CommandBuffer) : void
+    + <<virtual>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + <<virtual>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+    + Blit(cmd:CommandBuffer, source:RenderTargetIdentifier, destination:RenderTargetIdentifier, material:Material, passIndex:int) : void
+    + Blit(cmd:CommandBuffer, source:RTHandle, destination:RTHandle, material:Material, passIndex:int) : void
+    + Blit(cmd:CommandBuffer, data:RenderingData, material:Material, passIndex:int) : void
+    + Blit(cmd:CommandBuffer, data:RenderingData, source:RTHandle, material:Material, passIndex:int) : void
+    + CreateDrawingSettings(shaderTagId:ShaderTagId, renderingData:RenderingData, sortingCriteria:SortingCriteria) : DrawingSettings
+    + CreateDrawingSettings(shaderTagId:ShaderTagId, renderingData:UniversalRenderingData, cameraData:UniversalCameraData, lightData:UniversalLightData, sortingCriteria:SortingCriteria) : DrawingSettings
+    + CreateDrawingSettings(shaderTagIdList:List<ShaderTagId>, renderingData:RenderingData, sortingCriteria:SortingCriteria) : DrawingSettings
+    + CreateDrawingSettings(shaderTagIdList:List<ShaderTagId>, renderingData:UniversalRenderingData, cameraData:UniversalCameraData, lightData:UniversalLightData, sortingCriteria:SortingCriteria) : DrawingSettings
+}
+IRenderGraphRecorder <|-- ScriptableRenderPass
+ScriptableRenderPass o-> "k_CameraTarget" RTHandle
+ScriptableRenderPass --> "renderPassEvent" RenderPassEvent
+ScriptableRenderPass --> "depthAttachment" RenderTargetIdentifier
+ScriptableRenderPass --> "colorAttachmentHandle" RTHandle
+ScriptableRenderPass --> "depthAttachmentHandle" RTHandle
+ScriptableRenderPass --> "depthStoreAction" RenderBufferStoreAction
+ScriptableRenderPass --> "input" ScriptableRenderPassInput
+ScriptableRenderPass --> "clearFlag" ClearFlag
+ScriptableRenderPass --> "clearColor" Color
+@enduml

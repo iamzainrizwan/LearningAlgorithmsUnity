@@ -1,0 +1,407 @@
+@startuml
+struct double4 {
+    + x : double
+    + y : double
+    + z : double
+    + w : double
+    + double4(x:double, y:double, z:double, w:double)
+    + double4(x:double, y:double, zw:double2)
+    + double4(x:double, yz:double2, w:double)
+    + double4(x:double, yzw:double3)
+    + double4(xy:double2, z:double, w:double)
+    + double4(xy:double2, zw:double2)
+    + double4(xyz:double3, w:double)
+    + double4(xyzw:double4)
+    + double4(v:double)
+    + double4(v:bool)
+    + double4(v:bool4)
+    + double4(v:int)
+    + double4(v:int4)
+    + double4(v:uint)
+    + double4(v:uint4)
+    + double4(v:half)
+    + double4(v:half4)
+    + double4(v:float)
+    + double4(v:float4)
+    + Equals(rhs:double4) : bool
+    + <<override>> Equals(o:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+    + ToString(format:string, formatProvider:IFormatProvider) : string
+}
+class math <<static>> <<partial>> {
+    + {static} double4(x:double, y:double, z:double, w:double) : double4
+    + {static} double4(x:double, y:double, zw:double2) : double4
+    + {static} double4(x:double, yz:double2, w:double) : double4
+    + {static} double4(x:double, yzw:double3) : double4
+    + {static} double4(xy:double2, z:double, w:double) : double4
+    + {static} double4(xy:double2, zw:double2) : double4
+    + {static} double4(xyz:double3, w:double) : double4
+    + {static} double4(xyzw:double4) : double4
+    + {static} double4(v:double) : double4
+    + {static} double4(v:bool) : double4
+    + {static} double4(v:bool4) : double4
+    + {static} double4(v:int) : double4
+    + {static} double4(v:int4) : double4
+    + {static} double4(v:uint) : double4
+    + {static} double4(v:uint4) : double4
+    + {static} double4(v:half) : double4
+    + {static} double4(v:half4) : double4
+    + {static} double4(v:float) : double4
+    + {static} double4(v:float4) : double4
+    + {static} hash(v:double4) : uint
+    + {static} hashwide(v:double4) : uint4
+    + {static} shuffle(left:double4, right:double4, x:ShuffleComponent) : double
+    + {static} shuffle(left:double4, right:double4, x:ShuffleComponent, y:ShuffleComponent) : double2
+    + {static} shuffle(left:double4, right:double4, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent) : double3
+    + {static} shuffle(left:double4, right:double4, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent, w:ShuffleComponent) : double4
+}
+class "IEquatable`1"<T> {
+}
+class DebuggerProxy <<sealed>> {
+    + x : double
+    + y : double
+    + z : double
+    + w : double
+    + DebuggerProxy(v:double4)
+}
+IFormattable <|-- double4
+double4 --> "zero" double4
+double4 --> "xxxx" double4
+double4 --> "xxxy" double4
+double4 --> "xxxz" double4
+double4 --> "xxxw" double4
+double4 --> "xxyx" double4
+double4 --> "xxyy" double4
+double4 --> "xxyz" double4
+double4 --> "xxyw" double4
+double4 --> "xxzx" double4
+double4 --> "xxzy" double4
+double4 --> "xxzz" double4
+double4 --> "xxzw" double4
+double4 --> "xxwx" double4
+double4 --> "xxwy" double4
+double4 --> "xxwz" double4
+double4 --> "xxww" double4
+double4 --> "xyxx" double4
+double4 --> "xyxy" double4
+double4 --> "xyxz" double4
+double4 --> "xyxw" double4
+double4 --> "xyyx" double4
+double4 --> "xyyy" double4
+double4 --> "xyyz" double4
+double4 --> "xyyw" double4
+double4 --> "xyzx" double4
+double4 --> "xyzy" double4
+double4 --> "xyzz" double4
+double4 --> "xyzw" double4
+double4 --> "xywx" double4
+double4 --> "xywy" double4
+double4 --> "xywz" double4
+double4 --> "xyww" double4
+double4 --> "xzxx" double4
+double4 --> "xzxy" double4
+double4 --> "xzxz" double4
+double4 --> "xzxw" double4
+double4 --> "xzyx" double4
+double4 --> "xzyy" double4
+double4 --> "xzyz" double4
+double4 --> "xzyw" double4
+double4 --> "xzzx" double4
+double4 --> "xzzy" double4
+double4 --> "xzzz" double4
+double4 --> "xzzw" double4
+double4 --> "xzwx" double4
+double4 --> "xzwy" double4
+double4 --> "xzwz" double4
+double4 --> "xzww" double4
+double4 --> "xwxx" double4
+double4 --> "xwxy" double4
+double4 --> "xwxz" double4
+double4 --> "xwxw" double4
+double4 --> "xwyx" double4
+double4 --> "xwyy" double4
+double4 --> "xwyz" double4
+double4 --> "xwyw" double4
+double4 --> "xwzx" double4
+double4 --> "xwzy" double4
+double4 --> "xwzz" double4
+double4 --> "xwzw" double4
+double4 --> "xwwx" double4
+double4 --> "xwwy" double4
+double4 --> "xwwz" double4
+double4 --> "xwww" double4
+double4 --> "yxxx" double4
+double4 --> "yxxy" double4
+double4 --> "yxxz" double4
+double4 --> "yxxw" double4
+double4 --> "yxyx" double4
+double4 --> "yxyy" double4
+double4 --> "yxyz" double4
+double4 --> "yxyw" double4
+double4 --> "yxzx" double4
+double4 --> "yxzy" double4
+double4 --> "yxzz" double4
+double4 --> "yxzw" double4
+double4 --> "yxwx" double4
+double4 --> "yxwy" double4
+double4 --> "yxwz" double4
+double4 --> "yxww" double4
+double4 --> "yyxx" double4
+double4 --> "yyxy" double4
+double4 --> "yyxz" double4
+double4 --> "yyxw" double4
+double4 --> "yyyx" double4
+double4 --> "yyyy" double4
+double4 --> "yyyz" double4
+double4 --> "yyyw" double4
+double4 --> "yyzx" double4
+double4 --> "yyzy" double4
+double4 --> "yyzz" double4
+double4 --> "yyzw" double4
+double4 --> "yywx" double4
+double4 --> "yywy" double4
+double4 --> "yywz" double4
+double4 --> "yyww" double4
+double4 --> "yzxx" double4
+double4 --> "yzxy" double4
+double4 --> "yzxz" double4
+double4 --> "yzxw" double4
+double4 --> "yzyx" double4
+double4 --> "yzyy" double4
+double4 --> "yzyz" double4
+double4 --> "yzyw" double4
+double4 --> "yzzx" double4
+double4 --> "yzzy" double4
+double4 --> "yzzz" double4
+double4 --> "yzzw" double4
+double4 --> "yzwx" double4
+double4 --> "yzwy" double4
+double4 --> "yzwz" double4
+double4 --> "yzww" double4
+double4 --> "ywxx" double4
+double4 --> "ywxy" double4
+double4 --> "ywxz" double4
+double4 --> "ywxw" double4
+double4 --> "ywyx" double4
+double4 --> "ywyy" double4
+double4 --> "ywyz" double4
+double4 --> "ywyw" double4
+double4 --> "ywzx" double4
+double4 --> "ywzy" double4
+double4 --> "ywzz" double4
+double4 --> "ywzw" double4
+double4 --> "ywwx" double4
+double4 --> "ywwy" double4
+double4 --> "ywwz" double4
+double4 --> "ywww" double4
+double4 --> "zxxx" double4
+double4 --> "zxxy" double4
+double4 --> "zxxz" double4
+double4 --> "zxxw" double4
+double4 --> "zxyx" double4
+double4 --> "zxyy" double4
+double4 --> "zxyz" double4
+double4 --> "zxyw" double4
+double4 --> "zxzx" double4
+double4 --> "zxzy" double4
+double4 --> "zxzz" double4
+double4 --> "zxzw" double4
+double4 --> "zxwx" double4
+double4 --> "zxwy" double4
+double4 --> "zxwz" double4
+double4 --> "zxww" double4
+double4 --> "zyxx" double4
+double4 --> "zyxy" double4
+double4 --> "zyxz" double4
+double4 --> "zyxw" double4
+double4 --> "zyyx" double4
+double4 --> "zyyy" double4
+double4 --> "zyyz" double4
+double4 --> "zyyw" double4
+double4 --> "zyzx" double4
+double4 --> "zyzy" double4
+double4 --> "zyzz" double4
+double4 --> "zyzw" double4
+double4 --> "zywx" double4
+double4 --> "zywy" double4
+double4 --> "zywz" double4
+double4 --> "zyww" double4
+double4 --> "zzxx" double4
+double4 --> "zzxy" double4
+double4 --> "zzxz" double4
+double4 --> "zzxw" double4
+double4 --> "zzyx" double4
+double4 --> "zzyy" double4
+double4 --> "zzyz" double4
+double4 --> "zzyw" double4
+double4 --> "zzzx" double4
+double4 --> "zzzy" double4
+double4 --> "zzzz" double4
+double4 --> "zzzw" double4
+double4 --> "zzwx" double4
+double4 --> "zzwy" double4
+double4 --> "zzwz" double4
+double4 --> "zzww" double4
+double4 --> "zwxx" double4
+double4 --> "zwxy" double4
+double4 --> "zwxz" double4
+double4 --> "zwxw" double4
+double4 --> "zwyx" double4
+double4 --> "zwyy" double4
+double4 --> "zwyz" double4
+double4 --> "zwyw" double4
+double4 --> "zwzx" double4
+double4 --> "zwzy" double4
+double4 --> "zwzz" double4
+double4 --> "zwzw" double4
+double4 --> "zwwx" double4
+double4 --> "zwwy" double4
+double4 --> "zwwz" double4
+double4 --> "zwww" double4
+double4 --> "wxxx" double4
+double4 --> "wxxy" double4
+double4 --> "wxxz" double4
+double4 --> "wxxw" double4
+double4 --> "wxyx" double4
+double4 --> "wxyy" double4
+double4 --> "wxyz" double4
+double4 --> "wxyw" double4
+double4 --> "wxzx" double4
+double4 --> "wxzy" double4
+double4 --> "wxzz" double4
+double4 --> "wxzw" double4
+double4 --> "wxwx" double4
+double4 --> "wxwy" double4
+double4 --> "wxwz" double4
+double4 --> "wxww" double4
+double4 --> "wyxx" double4
+double4 --> "wyxy" double4
+double4 --> "wyxz" double4
+double4 --> "wyxw" double4
+double4 --> "wyyx" double4
+double4 --> "wyyy" double4
+double4 --> "wyyz" double4
+double4 --> "wyyw" double4
+double4 --> "wyzx" double4
+double4 --> "wyzy" double4
+double4 --> "wyzz" double4
+double4 --> "wyzw" double4
+double4 --> "wywx" double4
+double4 --> "wywy" double4
+double4 --> "wywz" double4
+double4 --> "wyww" double4
+double4 --> "wzxx" double4
+double4 --> "wzxy" double4
+double4 --> "wzxz" double4
+double4 --> "wzxw" double4
+double4 --> "wzyx" double4
+double4 --> "wzyy" double4
+double4 --> "wzyz" double4
+double4 --> "wzyw" double4
+double4 --> "wzzx" double4
+double4 --> "wzzy" double4
+double4 --> "wzzz" double4
+double4 --> "wzzw" double4
+double4 --> "wzwx" double4
+double4 --> "wzwy" double4
+double4 --> "wzwz" double4
+double4 --> "wzww" double4
+double4 --> "wwxx" double4
+double4 --> "wwxy" double4
+double4 --> "wwxz" double4
+double4 --> "wwxw" double4
+double4 --> "wwyx" double4
+double4 --> "wwyy" double4
+double4 --> "wwyz" double4
+double4 --> "wwyw" double4
+double4 --> "wwzx" double4
+double4 --> "wwzy" double4
+double4 --> "wwzz" double4
+double4 --> "wwzw" double4
+double4 --> "wwwx" double4
+double4 --> "wwwy" double4
+double4 --> "wwwz" double4
+double4 --> "wwww" double4
+double4 --> "xxx" double3
+double4 --> "xxy" double3
+double4 --> "xxz" double3
+double4 --> "xxw" double3
+double4 --> "xyx" double3
+double4 --> "xyy" double3
+double4 --> "xyz" double3
+double4 --> "xyw" double3
+double4 --> "xzx" double3
+double4 --> "xzy" double3
+double4 --> "xzz" double3
+double4 --> "xzw" double3
+double4 --> "xwx" double3
+double4 --> "xwy" double3
+double4 --> "xwz" double3
+double4 --> "xww" double3
+double4 --> "yxx" double3
+double4 --> "yxy" double3
+double4 --> "yxz" double3
+double4 --> "yxw" double3
+double4 --> "yyx" double3
+double4 --> "yyy" double3
+double4 --> "yyz" double3
+double4 --> "yyw" double3
+double4 --> "yzx" double3
+double4 --> "yzy" double3
+double4 --> "yzz" double3
+double4 --> "yzw" double3
+double4 --> "ywx" double3
+double4 --> "ywy" double3
+double4 --> "ywz" double3
+double4 --> "yww" double3
+double4 --> "zxx" double3
+double4 --> "zxy" double3
+double4 --> "zxz" double3
+double4 --> "zxw" double3
+double4 --> "zyx" double3
+double4 --> "zyy" double3
+double4 --> "zyz" double3
+double4 --> "zyw" double3
+double4 --> "zzx" double3
+double4 --> "zzy" double3
+double4 --> "zzz" double3
+double4 --> "zzw" double3
+double4 --> "zwx" double3
+double4 --> "zwy" double3
+double4 --> "zwz" double3
+double4 --> "zww" double3
+double4 --> "wxx" double3
+double4 --> "wxy" double3
+double4 --> "wxz" double3
+double4 --> "wxw" double3
+double4 --> "wyx" double3
+double4 --> "wyy" double3
+double4 --> "wyz" double3
+double4 --> "wyw" double3
+double4 --> "wzx" double3
+double4 --> "wzy" double3
+double4 --> "wzz" double3
+double4 --> "wzw" double3
+double4 --> "wwx" double3
+double4 --> "wwy" double3
+double4 --> "wwz" double3
+double4 --> "www" double3
+double4 --> "xx" double2
+double4 --> "xy" double2
+double4 --> "xz" double2
+double4 --> "xw" double2
+double4 --> "yx" double2
+double4 --> "yy" double2
+double4 --> "yz" double2
+double4 --> "yw" double2
+double4 --> "zx" double2
+double4 --> "zy" double2
+double4 --> "zz" double2
+double4 --> "zw" double2
+double4 --> "wx" double2
+double4 --> "wy" double2
+double4 --> "wz" double2
+double4 --> "ww" double2
+double4 +-- DebuggerProxy
+@enduml

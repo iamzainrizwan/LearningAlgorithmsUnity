@@ -1,0 +1,5 @@
+@startuml
+interface ISelectUnit {
+}
+IUnit <|-- ISelectUnit
+@enduml

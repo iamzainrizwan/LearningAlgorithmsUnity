@@ -1,0 +1,4 @@
+@startuml
+interface "IElementAdder`1"<TContext> {
+}
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+class SimpleController_UsingActionAsset {
+    + moveSpeed : float
+    + rotateSpeed : float
+    + burstSpeed : float
+    + Awake() : void
+    + OnEnable() : void
+    + OnDisable() : void
+    + OnGUI() : void
+    + Update() : void
+}
+MonoBehaviour <|-- SimpleController_UsingActionAsset
+SimpleController_UsingActionAsset --> "projectile" GameObject
+@enduml

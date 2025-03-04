@@ -1,0 +1,6 @@
+@startuml
+class SignalEmitterEditor {
+    + <<override>> GetMarkerOptions(marker:IMarker) : MarkerDrawOptions
+}
+MarkerEditor <|-- SignalEmitterEditor
+@enduml

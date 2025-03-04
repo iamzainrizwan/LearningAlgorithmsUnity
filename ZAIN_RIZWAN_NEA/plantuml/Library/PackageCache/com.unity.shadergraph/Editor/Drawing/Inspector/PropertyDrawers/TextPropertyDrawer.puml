@@ -1,0 +1,9 @@
+@startuml
+class TextPropertyDrawer {
+    + DrawProperty(propertyInfo:PropertyInfo, actualObject:object, attribute:InspectableAttribute) : VisualElement
+}
+IPropertyDrawer <|-- TextPropertyDrawer
+TextPropertyDrawer --> "textField" TextField
+TextPropertyDrawer --> "label" Label
+TextPropertyDrawer --> "inspectorUpdateDelegate" Action
+@enduml

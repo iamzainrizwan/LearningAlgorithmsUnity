@@ -1,0 +1,6 @@
+@startuml
+class LengthNode {
+    + LengthNode()
+}
+CodeFunctionNode <|-- LengthNode
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class CanvasSizeCorrectInAwakeAndStart {
+    + Setup() : void
+    + TestSetup() : void
+    + CanvasSizeIsCorrectInAwakeAndStart() : IEnumerator
+    + TearDown() : void
+}
+IPrebuildSetup <|-- CanvasSizeCorrectInAwakeAndStart
+@enduml

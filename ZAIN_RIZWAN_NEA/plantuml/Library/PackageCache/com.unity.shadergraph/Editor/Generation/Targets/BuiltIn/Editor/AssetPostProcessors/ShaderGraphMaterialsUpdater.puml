@@ -1,0 +1,7 @@
+@startuml
+class BuiltInShaderGraphSaveContext {
+    + updateMaterials : bool
+}
+class ShaderGraphMaterialsUpdater {
+}
+@enduml

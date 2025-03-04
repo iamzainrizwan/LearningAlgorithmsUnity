@@ -1,0 +1,10 @@
+@startuml
+class Messager {
+    +  <<event>> ReceiveMessage : EventHandler<MessageEventArgs> 
+    +  <<event>> MessagerException : EventHandler<ExceptionEventArgs> 
+    + SendMessage(target:IPEndPoint, type:MessageType, value:string) : void
+    + {static} BindTo(port:int) : Messager
+    + Dispose() : void
+}
+IDisposable <|-- Messager
+@enduml

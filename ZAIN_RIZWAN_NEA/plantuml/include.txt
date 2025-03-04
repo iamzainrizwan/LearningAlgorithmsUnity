@@ -1,0 +1,21 @@
+@startuml
+!include .\\Assets\DraggablePanel.puml
+!include .\\Assets\AgentScripts\DQN.puml
+!include .\\Assets\AgentScripts\FCNN.puml
+!include .\\Assets\AgentScripts\LearningAlgorithms.puml
+!include .\\Assets\AgentScripts\NEAT.puml
+!include .\\Assets\AgentScripts\PPO.puml
+!include .\\Assets\scripts\angletoother.puml
+!include .\\Assets\scripts\UInterfaceManager.puml
+!include .\\Assets\scripts\confirmDecision.puml
+!include .\\Assets\scripts\dropdownHandler.puml
+!include .\\Assets\scripts\FieldRangeValidator.puml
+!include .\\Assets\scripts\fieldResetter.puml
+!include .\\Assets\scripts\GameManager.puml
+!include .\\Assets\scripts\PanelMaker.puml
+!include .\\Assets\scripts\PanelManager.puml
+!include .\\Assets\scripts\playermov.puml
+!include .\\Assets\scripts\SimStatsManager.puml
+!include .\\Assets\scripts\TakeFieldsInput.puml
+!include .\\Assets\scripts\UIManager.puml
+@enduml

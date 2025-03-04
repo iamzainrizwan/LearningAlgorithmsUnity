@@ -1,0 +1,48 @@
+@startuml
+class SelectableTests {
+    + TestSetup() : void
+    + TearDown() : void
+    + SelectableArrayRemovesReferenceUponDisable() : void
+    + SettingCurrentSelectedSelectableNonInteractableShouldNullifyCurrentSelected() : void
+    + PointerEnterDownShouldMakeItSelectedGameObject() : void
+    + OnSelectShouldSetSelectedState() : void
+    + OnDeselectShouldUnsetSelectedState() : void
+    + SettingCanvasGroupNotInteractableShouldMakeSelectableNotInteractable() : void
+    + DisablingCanvasGroupShouldMakeSelectableAsInteractable() : void
+    + SettingParentCanvasGroupNotInteractableShouldMakeSelectableNotInteractable() : void
+    + SettingParentParentCanvasGroupNotInteractableShouldMakeSelectableNotInteractable() : void
+    + SettingParentParentCanvasGroupInteractableShouldMakeSelectableInteractable() : void
+    + SettingParentParentCanvasGroupNotInteractableShouldNotMakeSelectableNotInteractableIfIgnoreParentGroups() : void
+    + PointerEnterThenSetNotInteractableThenExitThenSetInteractableShouldSetStateToDefault() : void
+    + PointerEnterThenSetNotInteractableThenSetInteractableShouldStayHighlighted() : void
+    + InstantiatingSelectableUnderNotInteractableCanvasGroupShouldAlsoNotBeInteractable() : void
+    + SettingNotInteractableShouldTweenToDisabledColor() : IEnumerator
+    + SettingNotInteractableThenInteractableShouldNotTweenToDisabledColor() : IEnumerator
+    + SettingInteractableToFalseTrueFalseShouldTweenToDisabledColor() : IEnumerator
+    + SelectShouldSetSelectedObject() : void
+    + SelectWhenAlreadySelectingShouldNotSetSelectedObject() : void
+    + PointerEnterShouldHighlight() : void
+    + PointerEnterOnSelectedObjectShouldStaySelected() : void
+    + PointerEnterAndRightClickShouldHighlightNotPress() : void
+    + PointerEnterAndRightClickShouldPress() : void
+    + PointerEnterLeftClickExitShouldPress() : void
+    + PointerEnterLeftClickExitReleaseShouldSelect() : void
+    + PointerDownShouldSetSelectedObject() : void
+    + PointerLeftDownRightDownRightUpShouldNotChangeState() : void
+    + SettingNotInteractableShouldDisable() : void
+    + SettingInteractableWithNoEventSystemShouldNotCrash() : void
+    + OnPointerDownWithNoEventSystemShouldNotCrash() : void
+    + SelectWithNoEventSystemShouldNotCrash() : void
+}
+class SelectableTest {
+    + isStateNormal : bool <<get>>
+    + isStateHighlighted : bool <<get>>
+    + isStateSelected : bool <<get>>
+    + isStatePressed : bool <<get>>
+    + isStateDisabled : bool <<get>>
+    + GetSelectableAtIndex(index:int) : Selectable
+    + GetSelectableCurrentIndex() : int
+}
+SelectableTests +-- SelectableTest
+Selectable <|-- SelectableTest
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+enum Precision {
+    Inherit,
+    Single,
+    Half,
+    Graph,
+}
+enum GraphPrecision {
+    Single= 0,
+    Graph= 1,
+    Half= 2,
+}
+enum ConcretePrecision {
+    Single,
+    Half,
+}
+@enduml

@@ -1,0 +1,4 @@
+@startuml
+class EnumExtensions <<static>> {
+}
+@enduml

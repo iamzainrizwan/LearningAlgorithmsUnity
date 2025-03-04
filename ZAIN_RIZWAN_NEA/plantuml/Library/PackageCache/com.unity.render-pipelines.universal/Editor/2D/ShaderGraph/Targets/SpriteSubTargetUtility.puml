@@ -1,0 +1,9 @@
+@startuml
+class SpriteSubTargetUtility <<static>> {
+    + {static} GetDefaultRenderState(target:UniversalTarget) : RenderStateCollection
+    + {static} AddDefaultFields(context:TargetFieldContext, target:UniversalTarget) : void
+    + {static} GetDefaultActiveBlocks(context:TargetActiveBlockContext, target:UniversalTarget) : void
+    + {static} AddDefaultPropertiesGUI(context:TargetPropertyGUIContext, onChange:Action, registerUndo:Action<String>, target:UniversalTarget) : void
+    + {static} AddAlphaClipControlToPass(pass:PassDescriptor, target:UniversalTarget) : void
+}
+@enduml

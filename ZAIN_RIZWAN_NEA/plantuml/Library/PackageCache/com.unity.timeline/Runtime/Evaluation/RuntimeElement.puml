@@ -1,0 +1,11 @@
+@startuml
+abstract class RuntimeElement {
+    + intervalBit : int <<get>> <<set>>
+    + {abstract} enable : bool <<set>>
+    + {abstract} EvaluateAt(localTime:double, frameData:FrameData) : void
+    + {abstract} DisableAt(localTime:double, rootDuration:double, frameData:FrameData) : void
+}
+IInterval <|-- RuntimeElement
+RuntimeElement --> "intervalStart" Int64
+RuntimeElement --> "intervalEnd" Int64
+@enduml

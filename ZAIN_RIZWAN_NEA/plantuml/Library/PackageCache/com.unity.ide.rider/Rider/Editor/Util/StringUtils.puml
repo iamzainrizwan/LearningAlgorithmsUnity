@@ -1,0 +1,5 @@
+@startuml
+class StringUtils <<static>> {
+    + {static} NormalizePath(path:string) : string
+}
+@enduml

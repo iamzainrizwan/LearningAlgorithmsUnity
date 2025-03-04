@@ -1,0 +1,9 @@
+@startuml
+class DeltaControl {
+}
+Vector2Control <|-- DeltaControl
+DeltaControl --> "up" AxisControl
+DeltaControl --> "down" AxisControl
+DeltaControl --> "left" AxisControl
+DeltaControl --> "right" AxisControl
+@enduml

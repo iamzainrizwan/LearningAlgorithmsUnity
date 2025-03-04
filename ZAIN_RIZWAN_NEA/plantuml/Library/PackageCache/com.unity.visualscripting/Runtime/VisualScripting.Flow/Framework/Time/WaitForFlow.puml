@@ -1,0 +1,19 @@
+@startuml
+class WaitForFlow <<sealed>> {
+    + resetOnExit : bool <<get>> <<set>>
+    + inputCount : int <<get>> <<set>>
+    + CreateData() : IGraphElementData
+}
+class Data <<sealed>> {
+    + isWaitingCoroutine : bool
+}
+class "ReadOnlyCollection`1"<T> {
+}
+Unit <|-- WaitForFlow
+IGraphElementWithData <|-- WaitForFlow
+WaitForFlow --> "awaitedInputs<ControlInput>" "ReadOnlyCollection`1"
+WaitForFlow --> "reset" ControlInput
+WaitForFlow --> "exit" ControlOutput
+WaitForFlow +-- Data
+IGraphElementData <|-- Data
+@enduml

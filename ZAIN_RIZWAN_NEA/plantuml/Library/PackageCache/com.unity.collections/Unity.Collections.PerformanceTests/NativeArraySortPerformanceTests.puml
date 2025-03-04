@@ -1,0 +1,6 @@
+@startuml
+class NativeSlicePerformanceTests {
+    + NativeSlice_Performance_CopyTo() : void
+    + NativeSlice_Performance_CopyFrom() : void
+}
+@enduml

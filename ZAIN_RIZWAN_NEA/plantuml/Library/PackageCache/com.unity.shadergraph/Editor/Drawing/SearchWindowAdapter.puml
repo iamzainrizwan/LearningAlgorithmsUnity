@@ -1,0 +1,13 @@
+@startuml
+class SearchWindowAdapter {
+    + <<override>> HasDetailsPanel : bool <<get>>
+    + SearchWindowAdapter(title:string)
+    + <<override>> OnSearchResultsFilter(searchResults:IEnumerable<SearcherItem>, searchQuery:string) : SearcherItem
+}
+class SearchNodeItem {
+    + SearchNodeItem(name:string, nodeGUID:NodeEntry, synonyms:string[], help:string, children:List<SearchNodeItem>)
+}
+SearcherAdapter <|-- SearchWindowAdapter
+SearcherItem <|-- SearchNodeItem
+SearchNodeItem --> "NodeGUID" NodeEntry
+@enduml

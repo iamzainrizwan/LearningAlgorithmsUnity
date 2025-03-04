@@ -1,0 +1,31 @@
+@startuml
+class TimelineWindowAnalytics {
+    + SendPlayEvent(start:bool) : void
+    + SendAfterSequenceChangeEvent() : void
+    + SendManipulationEndedEvent() : void
+}
+class ConversionUtilities <<static>> {
+}
+struct timeline_asset_stats {
+    + asset_guid : string
+    + duration : double
+    + frame_rate : double
+    + mix_samples_count : double
+    + ripple_samples_count : double
+    + replace_samples_count : double
+    + display_format : string
+}
+struct track_asset_stats {
+    + track_type : string
+    + clip_count : int
+    + marker_count : int
+}
+class WindowAnalyticsStats {
+}
+class "List`1"<T> {
+}
+TimelineWindowAnalytics +-- timeline_asset_stats
+timeline_asset_stats --> "track_stats<track_asset_stats>" "List`1"
+TimelineWindowAnalytics +-- track_asset_stats
+TimelineWindowAnalytics +-- WindowAnalyticsStats
+@enduml

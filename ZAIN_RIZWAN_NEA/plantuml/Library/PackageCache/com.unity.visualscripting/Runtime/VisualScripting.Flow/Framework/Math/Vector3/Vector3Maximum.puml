@@ -1,0 +1,9 @@
+@startuml
+class Vector3Maximum <<sealed>> {
+    + <<override>> Operation(a:UnityEngine.Vector3, b:UnityEngine.Vector3) : UnityEngine.Vector3
+    + <<override>> Operation(values:IEnumerable<UnityEngine.Vector3>) : UnityEngine.Vector3
+}
+class "Maximum`1"<T> {
+}
+"Maximum`1" "<UnityEngine.Vector3>" <|-- Vector3Maximum
+@enduml

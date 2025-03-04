@@ -1,0 +1,51 @@
+@startuml
+enum DynamicResScalePolicyType {
+    ReturnsPercentage,
+    ReturnsMinMaxLerpFactor,
+}
+enum DynamicResScalerSlot {
+    User,
+    System,
+    Count,
+}
+class DynamicResolutionHandler {
+    + runUpscalerFilterOnFullResolution : bool <<set>> <<get>>
+    + forcingResolution : bool <<get>>
+    + GetResolvedScale() : Vector2
+    + CalculateMipBias(inputResolution:Vector2Int, outputResolution:Vector2Int, forceApply:bool) : float
+    {static} + SetDynamicResScaler(scaler:PerformDynamicRes, scalerType:DynamicResScalePolicyType) : void
+    {static} + SetSystemDynamicResScaler(scaler:PerformDynamicRes, scalerType:DynamicResScalePolicyType) : void
+    {static} + SetActiveDynamicScalerSlot(slot:DynamicResScalerSlot) : void
+    + {static} ClearSelectedCamera() : void
+    {static} + SetUpscaleFilter(camera:Camera, filter:DynamicResUpscaleFilter) : void
+    + SetCurrentCameraRequest(cameraRequest:bool) : void
+    + {static} UpdateAndUseCamera(camera:Camera, settings:GlobalDynamicResolutionSettings?, OnResolutionChange:Action) : void
+    + Update(settings:GlobalDynamicResolutionSettings, OnResolutionChange:Action) : void
+    + SoftwareDynamicResIsEnabled() : bool
+    + HardwareDynamicResIsEnabled() : bool
+    + RequestsHardwareDynamicResolution() : bool
+    + DynamicResolutionEnabled() : bool
+    + ForceSoftwareFallback() : void
+    + GetScaledSize(size:Vector2Int) : Vector2Int
+    + ApplyScalesOnSize(size:Vector2Int) : Vector2Int
+    + GetCurrentScale() : float
+    + GetLastScaledSize() : Vector2Int
+    + GetLowResMultiplier(targetLowRes:float) : float
+    + GetLowResMultiplier(targetLowRes:float, minimumThreshold:float) : float
+}
+struct ScalerContainer {
+}
+enum UpsamplerScheduleType {
+    BeforePost,
+    AfterDepthOfField,
+    AfterPost,
+}
+DynamicResolutionHandler --> "filter" DynamicResUpscaleFilter
+DynamicResolutionHandler --> "finalViewport" Vector2Int
+DynamicResolutionHandler --> "upsamplerSchedule" UpsamplerScheduleType
+DynamicResolutionHandler --> "instance" DynamicResolutionHandler
+DynamicResolutionHandler +-- ScalerContainer
+ScalerContainer --> "type" DynamicResScalePolicyType
+ScalerContainer --> "method" PerformDynamicRes
+DynamicResolutionHandler +-- UpsamplerScheduleType
+@enduml

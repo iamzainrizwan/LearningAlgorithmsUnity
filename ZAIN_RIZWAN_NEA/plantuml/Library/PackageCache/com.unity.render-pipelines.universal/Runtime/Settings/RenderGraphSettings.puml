@@ -1,0 +1,11 @@
+@startuml
+class RenderGraphSettings {
+    + version : int <<get>>
+    + enableRenderCompatibilityMode : bool <<get>> <<set>>
+}
+enum Version {
+    Initial= 0,
+}
+IRenderPipelineGraphicsSettings <|-- RenderGraphSettings
+RenderGraphSettings +-- Version
+@enduml

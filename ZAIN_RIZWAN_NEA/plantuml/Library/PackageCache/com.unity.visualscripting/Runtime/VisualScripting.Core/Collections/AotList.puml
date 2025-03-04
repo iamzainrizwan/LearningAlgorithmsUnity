@@ -1,0 +1,9 @@
+@startuml
+class AotList <<sealed>> {
+    + AotList()
+    + AotList(capacity:int)
+    + AotList(c:ICollection)
+    + {static} AotStubs() : void
+}
+ArrayList <|-- AotList
+@enduml

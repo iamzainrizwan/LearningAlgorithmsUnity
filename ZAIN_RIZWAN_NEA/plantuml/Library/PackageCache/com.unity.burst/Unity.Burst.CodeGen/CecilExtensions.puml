@@ -1,0 +1,7 @@
+@startuml
+class CecilExtensions <<static>> {
+    + {static} BuildAssemblyQualifiedName(type:TypeReference, builder:StringBuilder) : void
+    + {static} BuildReflectionFullName(type:TypeReference, builder:StringBuilder, assemblyQualified:bool) : void
+    + {static} BuildReflectionFullName(type:TypeReference, builder:StringBuilder, elementType:TypeReference, assemblyQualified:bool) : void
+}
+@enduml

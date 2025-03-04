@@ -1,0 +1,13 @@
+@startuml
+class NativeUtility <<static>> {
+    + {static} LoadModule(name:string) : void
+    + {static} UnloadModule(name:string) : void
+    + {static} Module(name:string) : ModuleScope
+}
+struct ModuleScope {
+    + ModuleScope(name:string)
+    + Dispose() : void
+}
+NativeUtility +-- ModuleScope
+IDisposable <|-- ModuleScope
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+class DropdownNode {
+    + DropdownNode()
+    + <<override>> canSetPrecision : bool <<get>>
+    + <<override>> hasPreview : bool <<get>>
+    + <<const>> OutputSlotId : int = 0
+    + <<override>> allowedInMainGraph : bool <<get>>
+    + UpdateNodeDisplayName(newDisplayName:string) : void
+    + OnEnable() : void
+    + UpdateNode() : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + GetSlotIdForPermutation(permutation:KeyValuePair<ShaderDropdown, int>) : int
+    + GetSlotIdForActiveSelection() : int
+    + OnShaderInputUpdated(modificationScope:ModificationScope) : void
+}
+AbstractMaterialNode <|-- DropdownNode
+IOnAssetEnabled <|-- DropdownNode
+IGeneratesBodyCode <|-- DropdownNode
+IShaderInputObserver <|-- DropdownNode
+DropdownNode --> "dropdown" ShaderDropdown
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class IndexedSelection {
+}
+class "SerializableSelection`1"<T> {
+}
+"SerializableSelection`1" "<int>" <|-- IndexedSelection
+@enduml

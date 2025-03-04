@@ -1,0 +1,4 @@
+@startuml
+class ProcessCommand <<static>> {
+}
+@enduml

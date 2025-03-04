@@ -1,0 +1,8 @@
+@startuml
+abstract class "BeforeAfterTestCommandBase`1"<T> {
+    + ExecuteEnumerable(context:ITestExecutionContext) : IEnumerable
+    + <<override>> Execute(context:ITestExecutionContext) : TestResult
+}
+DelegatingTestCommand <|-- "BeforeAfterTestCommandBase`1"
+IEnumerableTestMethodCommand <|-- "BeforeAfterTestCommandBase`1"
+@enduml

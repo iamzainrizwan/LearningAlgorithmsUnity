@@ -1,0 +1,13 @@
+@startuml
+abstract class LudiqRootObjectEditor {
+}
+class "OptimizedEditor`1"<T> {
+}
+class Individual {
+    + <<override>> Dispose() : void
+    + <<override>> OnGUI() : void
+}
+"OptimizedEditor`1" "<LudiqRootObjectEditor.Individual>" <|-- LudiqRootObjectEditor
+LudiqRootObjectEditor +-- Individual
+IndividualEditor <|-- Individual
+@enduml

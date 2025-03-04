@@ -1,0 +1,57 @@
+@startuml
+class TMP_SettingsEditor {
+    + OnEnable() : void
+    + <<override>> OnInspectorGUI() : void
+}
+class TMP_ResourceImporterProvider {
+    + TMP_ResourceImporterProvider()
+    + <<override>> OnGUI(searchContext:string) : void
+    + <<override>> OnDeactivate() : void
+}
+class Styles {
+}
+Editor <|-- TMP_SettingsEditor
+SettingsProvider <|-- TMP_ResourceImporterProvider
+TMP_SettingsEditor +-- Styles
+Styles o-> "defaultFontAssetLabel" GUIContent
+Styles o-> "defaultFontAssetPathLabel" GUIContent
+Styles o-> "fallbackFontAssetsLabel" GUIContent
+Styles o-> "fallbackFontAssetsListLabel" GUIContent
+Styles o-> "fallbackMaterialSettingsLabel" GUIContent
+Styles o-> "matchMaterialPresetLabel" GUIContent
+Styles o-> "hideSubTextObjectsPresetLabel" GUIContent
+Styles o-> "containerDefaultSettingsLabel" GUIContent
+Styles o-> "textMeshProLabel" GUIContent
+Styles o-> "textMeshProUiLabel" GUIContent
+Styles o-> "enableRaycastTarget" GUIContent
+Styles o-> "autoSizeContainerLabel" GUIContent
+Styles o-> "isTextObjectScaleStaticLabel" GUIContent
+Styles o-> "textComponentDefaultSettingsLabel" GUIContent
+Styles o-> "defaultFontSize" GUIContent
+Styles o-> "autoSizeRatioLabel" GUIContent
+Styles o-> "minLabel" GUIContent
+Styles o-> "maxLabel" GUIContent
+Styles o-> "textWrappingModeLabel" GUIContent
+Styles o-> "kerningLabel" GUIContent
+Styles o-> "fontFeaturesLabel" GUIContent
+Styles o-> "extraPaddingLabel" GUIContent
+Styles o-> "tintAllSpritesLabel" GUIContent
+Styles o-> "parseEscapeCharactersLabel" GUIContent
+Styles o-> "dynamicFontSystemSettingsLabel" GUIContent
+Styles o-> "getFontFeaturesAtRuntime" GUIContent
+Styles o-> "dynamicAtlasTextureGroup" GUIContent
+Styles o-> "missingGlyphLabel" GUIContent
+Styles o-> "clearDynamicDataOnBuildLabel" GUIContent
+Styles o-> "disableWarningsLabel" GUIContent
+Styles o-> "defaultSpriteAssetLabel" GUIContent
+Styles o-> "missingSpriteCharacterUnicodeLabel" GUIContent
+Styles o-> "enableEmojiSupportLabel" GUIContent
+Styles o-> "emojifallbackTextAssetsListLabel" GUIContent
+Styles o-> "spriteAssetsPathLabel" GUIContent
+Styles o-> "defaultStyleSheetLabel" GUIContent
+Styles o-> "styleSheetResourcePathLabel" GUIContent
+Styles o-> "colorGradientPresetsLabel" GUIContent
+Styles o-> "colorGradientsPathLabel" GUIContent
+Styles o-> "lineBreakingLabel" GUIContent
+Styles o-> "koreanSpecificRules" GUIContent
+@enduml

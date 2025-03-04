@@ -1,0 +1,57 @@
+@startuml
+class BuiltInBaseShaderGUI {
+    + m_FirstTimeApply : bool = true
+    <<override>> + OnGUI(materialEditor:MaterialEditor, properties:MaterialProperty[]) : void
+    + <<virtual>> OnOpenGUI(material:Material, materialEditor:MaterialEditor, properties:MaterialProperty[]) : void
+    + <<override>> AssignNewShaderToMaterial(material:Material, oldShader:Shader, newShader:Shader) : void
+    + <<override>> ValidateMaterial(material:Material) : void
+    + {static} SetupSurface(material:Material) : void
+    + {static} DoPopup(label:GUIContent, materialEditor:MaterialEditor, property:MaterialProperty, options:string[]) : void
+    + {static} DoIntPopup(label:GUIContent, materialEditor:MaterialEditor, property:MaterialProperty, options:string[], optionValues:int[]) : void
+    + {static} DrawFloatToggleProperty(styles:GUIContent, prop:MaterialProperty) : void
+}
+enum Expandable {
+    SurfaceOptions= 1 << 0,
+    SurfaceInputs= 1 << 1,
+    Advanced= 1 << 2,
+}
+enum SurfaceType {
+    Opaque,
+    Transparent,
+}
+enum BlendMode {
+    Alpha,
+    Premultiply,
+    Additive,
+    Multiply,
+}
+enum RenderFace {
+    Front= 2,
+    Back= 1,
+    Both= 0,
+}
+enum QueueControl {
+    Auto= 0,
+    UserOverride= 1,
+}
+class Styles {
+}
+ShaderGUI <|-- BuiltInBaseShaderGUI
+BuiltInBaseShaderGUI +-- Expandable
+BuiltInBaseShaderGUI +-- SurfaceType
+BuiltInBaseShaderGUI +-- BlendMode
+BuiltInBaseShaderGUI +-- RenderFace
+BuiltInBaseShaderGUI +-- QueueControl
+BuiltInBaseShaderGUI +-- Styles
+Styles o-> "SurfaceOptions" GUIContent
+Styles o-> "SurfaceInputs" GUIContent
+Styles o-> "AdvancedLabel" GUIContent
+Styles o-> "surfaceType" GUIContent
+Styles o-> "blendingMode" GUIContent
+Styles o-> "cullingText" GUIContent
+Styles o-> "zwriteText" GUIContent
+Styles o-> "ztestText" GUIContent
+Styles o-> "alphaClipText" GUIContent
+Styles o-> "queueSlider" GUIContent
+Styles o-> "queueControl" GUIContent
+@enduml

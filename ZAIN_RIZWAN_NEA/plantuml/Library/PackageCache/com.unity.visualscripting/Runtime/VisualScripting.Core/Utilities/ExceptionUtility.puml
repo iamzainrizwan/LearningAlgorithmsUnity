@@ -1,0 +1,5 @@
+@startuml
+class ExceptionUtility <<static>> {
+    + {static} Relevant(ex:Exception) : Exception
+}
+@enduml

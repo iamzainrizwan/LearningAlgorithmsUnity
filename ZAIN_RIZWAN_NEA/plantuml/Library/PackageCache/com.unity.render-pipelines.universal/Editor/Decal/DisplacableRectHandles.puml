@@ -1,0 +1,18 @@
+@startuml
+class DisplacableRectHandles {
+    + DisplacableRectHandles(baseColor:Color)
+    + DrawRect(dottedLine:bool, thickness:float, screenSpaceSize:float) : void
+    + DrawHandle() : void
+}
+enum NamedEdge {
+    Right,
+    Top,
+    Left,
+    Bottom,
+    None,
+}
+DisplacableRectHandles --> "center" Vector2
+DisplacableRectHandles --> "size" Vector2
+DisplacableRectHandles --> "baseColor" Color
+DisplacableRectHandles +-- NamedEdge
+@enduml

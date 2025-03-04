@@ -1,0 +1,16 @@
+@startuml
+class TextureXR <<static>> {
+    + {static} maxViews : int <<set>>
+    + {static} slices : int <<get>>
+    + {static} useTexArray : bool <<get>>
+    + {static} GetBlackUIntTexture() : RTHandle
+    + {static} GetClearTexture() : RTHandle
+    + {static} GetMagentaTexture() : RTHandle
+    + {static} GetBlackTexture() : RTHandle
+    + {static} GetBlackTextureArray() : RTHandle
+    + {static} GetBlackTexture3D() : RTHandle
+    + {static} GetWhiteTexture() : RTHandle
+    + {static} Initialize(cmd:CommandBuffer, clearR32_UIntShader:ComputeShader) : void
+}
+TextureXR --> "dimension" TextureDimension
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class Despawner {
+}
+MonoBehaviour <|-- Despawner
+@enduml

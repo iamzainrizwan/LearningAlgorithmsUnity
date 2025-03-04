@@ -1,0 +1,8 @@
+@startuml
+class Benchmark01 {
+    + BenchmarkType : int = 0
+}
+MonoBehaviour <|-- Benchmark01
+Benchmark01 --> "TMProFont" TMP_FontAsset
+Benchmark01 --> "TextMeshFont" Font
+@enduml

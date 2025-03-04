@@ -1,0 +1,8 @@
+@startuml
+enum StateExitReason {
+    Stop,
+    Branch,
+    AnyBranch,
+    Forced,
+}
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+class TimelineTrackErrorGUI {
+    + TimelineTrackErrorGUI(treeview:TreeViewController, treeviewGUI:TimelineTreeViewGUI, id:int, depth:int, parent:TreeViewItem, displayName:string, track:ScriptableObject, owner:PlayableAsset)
+    + <<override>> expandable : bool <<get>>
+    + <<override>> Draw(headerRect:Rect, contentRect:Rect, state:WindowState) : void
+    + <<override>> OnGraphRebuilt() : void
+}
+class Styles <<static>> {
+}
+TimelineTrackBaseGUI <|-- TimelineTrackErrorGUI
+TimelineTrackErrorGUI --> "boundingRect" Rect
+TimelineTrackErrorGUI +-- Styles
+Styles o-> "ErrorText" GUIContent
+Styles o-> "IconWarn" Texture2D
+Styles o-> "RemoveTrack" GUIContent
+Styles o-> "WarningBoxBackgroundColor" Color
+Styles o-> "WarningBoxHighlightColor" Color
+@enduml

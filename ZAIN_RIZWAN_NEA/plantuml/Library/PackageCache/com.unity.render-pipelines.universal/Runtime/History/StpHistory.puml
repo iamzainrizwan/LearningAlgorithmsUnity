@@ -1,0 +1,7 @@
+@startuml
+class StpHistory <<sealed>> {
+    + <<override>> OnCreate(owner:BufferedRTHandleSystem, typeId:uint) : void
+    + <<override>> Reset() : void
+}
+CameraHistoryItem <|-- StpHistory
+@enduml

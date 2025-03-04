@@ -1,0 +1,7 @@
+@startuml
+class Texture2DArrayPropertyDrawer {
+    + DrawProperty(propertyInfo:PropertyInfo, actualObject:object, attribute:InspectableAttribute) : VisualElement
+}
+IPropertyDrawer <|-- Texture2DArrayPropertyDrawer
+Texture2DArrayPropertyDrawer --> "inspectorUpdateDelegate" Action
+@enduml

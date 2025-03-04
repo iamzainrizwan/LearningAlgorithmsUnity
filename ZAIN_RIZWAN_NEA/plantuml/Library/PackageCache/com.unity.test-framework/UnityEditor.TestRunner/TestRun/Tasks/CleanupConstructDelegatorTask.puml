@@ -1,0 +1,6 @@
+@startuml
+class CleanupConstructDelegatorTask {
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- CleanupConstructDelegatorTask
+@enduml

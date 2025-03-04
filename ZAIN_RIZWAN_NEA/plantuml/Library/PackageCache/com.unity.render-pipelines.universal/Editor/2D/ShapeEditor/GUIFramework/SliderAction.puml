@@ -1,0 +1,11 @@
+@startuml
+class SliderAction {
+    + SliderAction(control:Control)
+}
+class "Action`3"<T1,T2,T3> {
+}
+ClickAction <|-- SliderAction
+SliderAction --> "onSliderBegin<IGUIState,Control,Vector3>" "Action`3"
+SliderAction --> "onSliderChanged<IGUIState,Control,Vector3>" "Action`3"
+SliderAction --> "onSliderEnd<IGUIState,Control,Vector3>" "Action`3"
+@enduml

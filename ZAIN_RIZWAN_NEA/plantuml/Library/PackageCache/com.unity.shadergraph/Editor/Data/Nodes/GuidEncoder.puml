@@ -1,0 +1,5 @@
+@startuml
+class GuidEncoder <<static>> {
+    + {static} Encode(guid:Guid) : string
+}
+@enduml

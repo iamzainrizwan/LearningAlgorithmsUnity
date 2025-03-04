@@ -1,0 +1,51 @@
+@startuml
+struct GPUPrefixSum {
+}
+class ShaderDefs <<static>> {
+    + <<const>> GroupSize : int = 128
+    + <<const>> ArgsBufferStride : int = 16
+    + <<const>> ArgsBufferUpper : int = 0
+    + <<const>> ArgsBufferLower : int = 8
+    + {static} DivUpGroup(value:int) : int
+    + {static} AlignUpGroup(value:int) : int
+    + {static} CalculateTotalBufferSize(maxElementCount:int, totalSize:int, levelCounts:int) : void
+}
+struct LevelOffsets {
+    + count : uint
+    + offset : uint
+    + parentOffset : uint
+}
+struct RenderGraphResources {
+    + {static} Create(newMaxElementCount:int, renderGraph:RenderGraph, builder:RenderGraphBuilder, outputIsTemp:bool) : RenderGraphResources
+}
+struct SupportResources {
+    + {static} Create(maxElementCount:int) : SupportResources
+    + {static} Load(shaderGraphResources:RenderGraphResources) : SupportResources
+    + Dispose() : void
+}
+struct DirectArgs {
+    + exclusive : bool
+    + inputCount : int
+}
+struct IndirectDirectArgs {
+    + exclusive : bool
+    + inputCountBufferByteOffset : int
+}
+struct SystemResources {
+}
+GPUPrefixSum +-- ShaderDefs
+GPUPrefixSum +-- LevelOffsets
+GPUPrefixSum +-- RenderGraphResources
+RenderGraphResources --> "output" BufferHandle
+GPUPrefixSum +-- SupportResources
+SupportResources --> "output" GraphicsBuffer
+GPUPrefixSum +-- DirectArgs
+DirectArgs --> "input" GraphicsBuffer
+DirectArgs --> "supportResources" SupportResources
+GPUPrefixSum +-- IndirectDirectArgs
+IndirectDirectArgs --> "inputCountBuffer" ComputeBuffer
+IndirectDirectArgs --> "input" GraphicsBuffer
+IndirectDirectArgs --> "supportResources" SupportResources
+GPUPrefixSum +-- SystemResources
+SystemResources --> "computeAsset" ComputeShader
+@enduml

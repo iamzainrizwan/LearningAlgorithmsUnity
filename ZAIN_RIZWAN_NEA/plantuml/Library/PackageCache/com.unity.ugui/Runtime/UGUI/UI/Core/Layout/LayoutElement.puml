@@ -1,0 +1,17 @@
+@startuml
+class LayoutElement {
+    + <<virtual>> ignoreLayout : bool <<get>> <<set>>
+    + <<virtual>> CalculateLayoutInputHorizontal() : void
+    + <<virtual>> CalculateLayoutInputVertical() : void
+    + <<virtual>> minWidth : float <<get>> <<set>>
+    + <<virtual>> minHeight : float <<get>> <<set>>
+    + <<virtual>> preferredWidth : float <<get>> <<set>>
+    + <<virtual>> preferredHeight : float <<get>> <<set>>
+    + <<virtual>> flexibleWidth : float <<get>> <<set>>
+    + <<virtual>> flexibleHeight : float <<get>> <<set>>
+    + <<virtual>> layoutPriority : int <<get>> <<set>>
+}
+UIBehaviour <|-- LayoutElement
+ILayoutElement <|-- LayoutElement
+ILayoutIgnorer <|-- LayoutElement
+@enduml

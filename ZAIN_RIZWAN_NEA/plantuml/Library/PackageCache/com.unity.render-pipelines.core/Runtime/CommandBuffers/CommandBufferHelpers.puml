@@ -1,0 +1,9 @@
+@startuml
+struct CommandBufferHelpers {
+    + {static} GetRasterCommandBuffer(baseBuffer:CommandBuffer) : RasterCommandBuffer
+    + {static} GetComputeCommandBuffer(baseBuffer:CommandBuffer) : ComputeCommandBuffer
+    + {static} GetUnsafeCommandBuffer(baseBuffer:CommandBuffer) : UnsafeCommandBuffer
+    + {static} GetNativeCommandBuffer(baseBuffer:UnsafeCommandBuffer) : CommandBuffer
+    + {static} VFXManager_ProcessCameraCommand(cam:Camera, cmd:UnsafeCommandBuffer, camXRSettings:VFXCameraXRSettings, results:CullingResults) : void
+}
+@enduml

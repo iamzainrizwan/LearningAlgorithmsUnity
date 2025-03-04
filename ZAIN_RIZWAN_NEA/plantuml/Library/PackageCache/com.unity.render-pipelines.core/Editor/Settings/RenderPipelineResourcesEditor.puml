@@ -1,0 +1,6 @@
+@startuml
+class RenderPipelineResourcesEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+Editor <|-- RenderPipelineResourcesEditor
+@enduml

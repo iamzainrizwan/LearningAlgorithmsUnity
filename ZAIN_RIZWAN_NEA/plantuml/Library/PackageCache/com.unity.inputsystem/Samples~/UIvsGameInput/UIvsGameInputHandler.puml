@@ -1,0 +1,42 @@
+@startuml
+class UIvsGameInputHandler {
+    + m_MouseLookSensitivity : float = 0.1f
+    + m_GamepadLookSpeed : float = 10f
+    + OnEnable() : void
+    + OnControlsChanged() : void
+    + Update() : void
+    + OnTopLeftClicked() : void
+    + OnBottomLeftClicked() : void
+    + OnTopRightClicked() : void
+    + OnBottomRightClicked() : void
+    + OnMenuClicked() : void
+    + OnContinueClicked() : void
+    + OnExitClicked() : void
+    + OnMenu(context:InputAction.CallbackContext) : void
+    + OnResetCamera(context:InputAction.CallbackContext) : void
+    + OnUIEngage(context:InputAction.CallbackContext) : void
+    + OnFire(context:InputAction.CallbackContext) : void
+}
+enum State {
+    InGame,
+    InGameControllingCamera,
+    InMenu,
+}
+enum ControlStyle {
+    None,
+    KeyboardMouse,
+    Touch,
+    GamepadJoystick,
+}
+MonoBehaviour <|-- UIvsGameInputHandler
+UIvsGameInputHandler --> "statusBarText" Text
+UIvsGameInputHandler --> "inGameUI" GameObject
+UIvsGameInputHandler --> "mainMenuUI" GameObject
+UIvsGameInputHandler --> "menuButton" GameObject
+UIvsGameInputHandler --> "firstButtonInMainMenu" GameObject
+UIvsGameInputHandler --> "firstNavigationSelection" GameObject
+UIvsGameInputHandler --> "playerInput" PlayerInput
+UIvsGameInputHandler --> "projectile" GameObject
+UIvsGameInputHandler +-- State
+UIvsGameInputHandler +-- ControlStyle
+@enduml

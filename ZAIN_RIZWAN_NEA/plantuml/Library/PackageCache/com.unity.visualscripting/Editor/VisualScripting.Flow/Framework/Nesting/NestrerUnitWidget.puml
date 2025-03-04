@@ -1,0 +1,8 @@
+@startuml
+class "NestrerUnitWidget`1"<TNesterUnit> {
+    + NestrerUnitWidget(canvas:FlowCanvas, unit:TNesterUnit)
+}
+class "UnitWidget`1"<T> {
+}
+"UnitWidget`1" "<TNesterUnit>" <|-- "NestrerUnitWidget`1"
+@enduml

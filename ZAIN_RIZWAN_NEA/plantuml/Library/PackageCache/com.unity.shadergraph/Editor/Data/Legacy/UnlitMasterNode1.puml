@@ -1,0 +1,23 @@
+@startuml
+class UnlitMasterNode1 {
+    + m_TwoSided : bool
+    + m_ShaderGUIOverride : string
+    + m_OverrideEnabled : bool
+}
+enum SurfaceType {
+    Opaque,
+    Transparent,
+}
+enum AlphaMode {
+    Alpha,
+    Premultiply,
+    Additive,
+    Multiply,
+}
+AbstractMaterialNode <|-- UnlitMasterNode1
+IMasterNode1 <|-- UnlitMasterNode1
+UnlitMasterNode1 --> "m_SurfaceType" SurfaceType
+UnlitMasterNode1 --> "m_AlphaMode" AlphaMode
+UnlitMasterNode1 +-- SurfaceType
+UnlitMasterNode1 +-- AlphaMode
+@enduml

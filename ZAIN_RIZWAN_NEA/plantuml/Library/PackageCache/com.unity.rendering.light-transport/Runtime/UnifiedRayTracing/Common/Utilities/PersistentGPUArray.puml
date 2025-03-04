@@ -1,0 +1,16 @@
+@startuml
+class "PersistentGpuArray`1"<Tstruct> <<sealed>> {
+    + elementCount : int <<get>>
+    + PersistentGpuArray(initialSize:int)
+    + Dispose() : void
+    + Add(element:Tstruct) : BlockAllocator.Allocation
+    + Add(elementCount:int) : BlockAllocator.Allocation[]
+    + Remove(allocation:BlockAllocator.Allocation) : void
+    + Clear() : void
+    + Set(allocation:BlockAllocator.Allocation, element:Tstruct) : void
+    + Get(allocation:BlockAllocator.Allocation) : Tstruct
+    + ModifyForEach(lambda:Func<Tstruct, Tstruct>) : void
+    + GetGpuBuffer(cmd:CommandBuffer) : ComputeBuffer
+}
+IDisposable <|-- "PersistentGpuArray`1"
+@enduml

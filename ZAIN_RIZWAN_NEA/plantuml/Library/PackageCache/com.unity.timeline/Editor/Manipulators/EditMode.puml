@@ -1,0 +1,47 @@
+@startuml
+class EditMode <<static>> {
+    + {static} ClearEditMode() : void
+    + {static} BeginTrim(item:ITimelineItem, trimDirection:TrimEdge) : void
+    + {static} TrimStart(item:ITimelineItem, time:double, affectTimeScale:bool) : void
+    + {static} TrimEnd(item:ITimelineItem, time:double, affectTimeScale:bool) : void
+    + {static} DrawTrimGUI(state:WindowState, item:TimelineItemGUI, edge:TrimEdge) : void
+    + {static} FinishTrim() : void
+    + {static} BeginMove(moveItemHandler:MoveItemHandler) : void
+    + {static} UpdateMove() : void
+    + {static} OnTrackDetach(grabbedTrackItems:IEnumerable<ItemsPerTrack>) : void
+    + {static} HandleTrackSwitch(grabbedTrackItems:IEnumerable<ItemsPerTrack>) : void
+    + {static} AllowTrackSwitch() : bool
+    + {static} AdjustStartTime(state:WindowState, itemsGroup:ItemsPerTrack, time:double) : double
+    + {static} ValidateDrag(itemsGroup:ItemsPerTrack) : bool
+    + {static} DrawMoveGUI(state:WindowState, movingItems:IEnumerable<MovingItems>) : void
+    + {static} FinishMove() : void
+    + {static} FinalizeInsertItemsAtTime(newItems:IEnumerable<ItemsPerTrack>, requestedTime:double) : void
+    + {static} PrepareItemsDelete(newItems:IEnumerable<ItemsPerTrack>) : void
+    + {static} HandleModeClutch() : void
+}
+enum EditType {
+    None= -1,
+    Mix= 0,
+    Ripple= 1,
+    Replace= 2,
+}
+interface ISubEditMode {
+}
+class "SubEditMode`3"<TMoveMode,TTrimMode,TAddDeleteMode> {
+    + SubEditMode(guiColor:Color, key:KeyCode)
+    + Reset() : void
+}
+EditMode --> "inputHandler" EditModeInputHandler
+EditMode --> "editType" EditType
+EditMode +-- EditType
+EditMode +-- ISubEditMode
+EditMode +-- "SubEditMode`3"
+ISubEditMode <|-- "SubEditMode`3"
+"SubEditMode`3" --> "moveItemMode" IMoveItemMode
+"SubEditMode`3" --> "moveItemDrawer" IMoveItemDrawer
+"SubEditMode`3" --> "trimItemMode" ITrimItemMode
+"SubEditMode`3" --> "trimItemDrawer" ITrimItemDrawer
+"SubEditMode`3" --> "addDeleteItemMode" IAddDeleteItemMode
+"SubEditMode`3" --> "color" Color
+"SubEditMode`3" --> "clutchKey" KeyCode
+@enduml

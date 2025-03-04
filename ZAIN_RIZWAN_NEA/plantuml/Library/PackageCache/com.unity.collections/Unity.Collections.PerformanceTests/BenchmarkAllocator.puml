@@ -1,0 +1,59 @@
+@startuml
+enum BenchmarkAllocatorType {
+    Managed,
+    BurstSafety,
+    BurstNoSafety,
+}
+class BenchmarkAllocatorConfig <<static>> {
+}
+interface IBenchmarkAllocator {
+    + SetParams(args:int[]) : void
+    + CreateAllocator(builtinOverride:Allocator) : void
+    + DestroyAllocator() : void
+    + Setup(workers:int, size:int, allocations:int) : void
+    + Teardown() : void
+    + Measure(workerI:int) : void
+}
+class "BenchmarkAllocatorRunner`1"<T> <<static>> {
+    + {static} <<unsafe>> Run(type:BenchmarkAllocatorType, baseSize:int, workers:int, args:int[]) : void
+}
+struct BenchmarkAllocatorUtil {
+    + Setup(workers:int, baseSize:int, growthRate:int, allocations:int) : void
+    <<unsafe>> + Teardown(allocator:AllocatorManager.AllocatorHandle) : void
+    + Teardown() : void
+}
+struct JobST {
+    + Execute() : void
+}
+struct JobBurstST {
+    + Execute() : void
+}
+struct JobSafetyBurstST {
+    + Execute() : void
+}
+struct JobMT {
+    + Execute(index:int) : void
+}
+struct JobBurstMT {
+    + Execute(index:int) : void
+}
+struct JobSafetyBurstMT {
+    + Execute(index:int) : void
+}
+class "NativeArray`1"<T> {
+}
+BenchmarkAllocatorUtil --> "AllocPtr<NativeArray<IntPtr>>" "NativeArray`1"
+BenchmarkAllocatorUtil --> "AllocSize<int>" "NativeArray`1"
+"BenchmarkAllocatorRunner`1" +-- JobST
+IJob <|-- JobST
+"BenchmarkAllocatorRunner`1" +-- JobBurstST
+IJob <|-- JobBurstST
+"BenchmarkAllocatorRunner`1" +-- JobSafetyBurstST
+IJob <|-- JobSafetyBurstST
+"BenchmarkAllocatorRunner`1" +-- JobMT
+IJobParallelFor <|-- JobMT
+"BenchmarkAllocatorRunner`1" +-- JobBurstMT
+IJobParallelFor <|-- JobBurstMT
+"BenchmarkAllocatorRunner`1" +-- JobSafetyBurstMT
+IJobParallelFor <|-- JobSafetyBurstMT
+@enduml

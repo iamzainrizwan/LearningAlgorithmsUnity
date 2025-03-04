@@ -1,0 +1,43 @@
+@startuml
+class BurstString <<static>> <<partial>> {
+}
+struct tBigInt {
+    + GetLength() : int
+    + GetBlock(idx:int) : uint
+    + SetZero() : void
+    + IsZero() : bool
+    + SetU64(val:ulong) : void
+    + SetU32(val:uint) : void
+    + GetU32() : uint
+    + m_length : int
+    + <<fixed>> m_blocks : uint
+}
+enum CutoffMode {
+    Unique,
+    TotalLength,
+    FractionLength,
+}
+enum PrintFloatFormat {
+    Positional,
+    Scientific,
+}
+struct tFloatUnion32 {
+    + IsNegative() : bool
+    + GetExponent() : uint
+    + GetMantissa() : uint
+    + m_floatingPoint : float
+    + m_integer : uint
+}
+struct tFloatUnion64 {
+    + IsNegative() : bool
+    + GetExponent() : uint
+    + GetMantissa() : ulong
+    + m_floatingPoint : double
+    + m_integer : ulong
+}
+BurstString +-- tBigInt
+BurstString +-- CutoffMode
+BurstString +-- PrintFloatFormat
+BurstString +-- tFloatUnion32
+BurstString +-- tFloatUnion64
+@enduml

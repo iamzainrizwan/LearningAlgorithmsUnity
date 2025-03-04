@@ -1,0 +1,10 @@
+@startuml
+struct SerializationData {
+    + json : string <<get>>
+    + SerializationData(json:string, objectReferences:IEnumerable<UnityObject>)
+    + SerializationData(json:string, objectReferences:UnityObject[])
+    + ToString(title:string) : string
+    + <<override>> ToString() : string
+    + ShowString(title:string) : void
+}
+@enduml

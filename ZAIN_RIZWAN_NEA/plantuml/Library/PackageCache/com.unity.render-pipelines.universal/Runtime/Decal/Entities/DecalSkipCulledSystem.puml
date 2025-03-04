@@ -1,0 +1,6 @@
+@startuml
+class DecalSkipCulledSystem {
+    + DecalSkipCulledSystem(entityManager:DecalEntityManager)
+    + Execute(camera:Camera) : void
+}
+@enduml

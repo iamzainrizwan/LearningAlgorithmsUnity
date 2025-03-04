@@ -1,0 +1,44 @@
+@startuml
+class AABB {
+    + AABB()
+    + AABB(min:float3, max:float3)
+    + Encapsulate(aabb:AABB) : void
+    + Encapsulate(point:float3) : void
+    + Contains(rhs:AABB) : bool
+    + IsValid() : bool
+}
+class BvhCheck {
+    + {static} Convert(info:MeshBuildInfo) : VertexBuffers
+    + {static} SurfaceArea(aabb:AABB) : double
+    + {static} NodeSahCost(nodeAddr:uint, nodeAabb:AABB, parentAabb:AABB) : double
+    + {static} CheckConsistency(bvhVertexBuffers:VertexBuffers, bvh:BottomLevelLevelAccelStruct, primitiveCount:uint) : double
+    + {static} CheckConsistency(bvhBuffer:GraphicsBuffer, bvhBufferOffset:uint, primitiveCount:uint) : double
+    + {static} ExtractBits(value:uint, startBit:int, count:int) : int
+    + {static} IsLeafNode(nodeAddr:uint) : bool
+    + {static} GetLeafNodeFirstPrim(nodeAddr:uint) : uint
+    + {static} GetLeafNodePrimCount(nodeAddr:uint) : uint
+}
+class VertexBuffers {
+    + vertexBufferOffset : uint = 0
+    + vertexCount : uint
+    + vertexStride : uint = 3
+    + indexBufferOffset : uint = 0
+    + indexCount : uint
+}
+class VertexBuffersCPU <<sealed>> {
+    + vertexStride : uint
+}
+struct Triangle {
+}
+AABB --> "Min" float3
+AABB --> "Max" float3
+BvhCheck +-- VertexBuffers
+VertexBuffers --> "vertices" GraphicsBuffer
+VertexBuffers --> "indices" GraphicsBuffer
+VertexBuffers o-> "indexFormat" IndexFormat
+BvhCheck +-- VertexBuffersCPU
+BvhCheck +-- Triangle
+Triangle --> "v0" float3
+Triangle --> "v1" float3
+Triangle --> "v2" float3
+@enduml

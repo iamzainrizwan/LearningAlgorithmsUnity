@@ -1,0 +1,8 @@
+@startuml
+class TextMeshSpawner {
+    + SpawnType : int = 0
+    + NumberOfNPC : int = 12
+}
+MonoBehaviour <|-- TextMeshSpawner
+TextMeshSpawner --> "TheFont" Font
+@enduml

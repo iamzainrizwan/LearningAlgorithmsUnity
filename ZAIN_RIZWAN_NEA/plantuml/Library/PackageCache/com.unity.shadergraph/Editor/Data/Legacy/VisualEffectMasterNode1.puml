@@ -1,0 +1,8 @@
+@startuml
+class VisualEffectMasterNode1 {
+    + m_Lit : bool
+    + m_AlphaTest : bool
+}
+AbstractMaterialNode <|-- VisualEffectMasterNode1
+IMasterNode1 <|-- VisualEffectMasterNode1
+@enduml

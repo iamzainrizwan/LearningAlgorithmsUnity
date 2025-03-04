@@ -1,0 +1,18 @@
+@startuml
+class UniversalCanvasSubTarget {
+    + <<override>> Setup(context:TargetSetupContext) : void
+    + <<override>> IsActive() : bool
+    + <<override>> saveContext : object <<get>>
+    + UniversalCanvasSubTarget()
+    + <<override>> GetActiveBlocks(context:TargetActiveBlockContext) : void
+    + <<override>> GetFields(context:TargetFieldContext) : void
+    + <<override>> CollectShaderProperties(collector:PropertyCollector, generationMode:GenerationMode) : void
+}
+class "CanvasSubTarget`1"<T> {
+}
+class "IRequiresData`1"<T> {
+}
+"CanvasSubTarget`1" "<UniversalTarget>" <|-- UniversalCanvasSubTarget
+"IRequiresData`1" "<CanvasData>" <|-- UniversalCanvasSubTarget
+IHasMetadata <|-- UniversalCanvasSubTarget
+@enduml

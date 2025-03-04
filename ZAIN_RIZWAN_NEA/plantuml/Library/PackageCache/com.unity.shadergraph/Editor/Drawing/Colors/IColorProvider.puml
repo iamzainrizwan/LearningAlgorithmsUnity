@@ -1,0 +1,20 @@
+@startuml
+interface IColorProvider {
+}
+abstract class ColorProviderFromCode {
+    + {abstract} GetTitle() : string
+    + {abstract} AllowCustom() : bool
+    + {abstract} ClearOnDirty() : bool
+    + <<virtual>> ApplyColor(nodeView:IShaderNodeView) : void
+    + <<virtual>> ClearColor(nodeView:IShaderNodeView) : void
+}
+abstract class ColorProviderFromStyleSheet {
+    + {abstract} GetTitle() : string
+    + {abstract} AllowCustom() : bool
+    + {abstract} ClearOnDirty() : bool
+    + <<virtual>> ApplyColor(nodeView:IShaderNodeView) : void
+    + <<virtual>> ClearColor(nodeView:IShaderNodeView) : void
+}
+IColorProvider <|-- ColorProviderFromCode
+IColorProvider <|-- ColorProviderFromStyleSheet
+@enduml

@@ -1,0 +1,30 @@
+@startuml
+class SearcherWindow {
+    + {static} Show(host:EditorWindow, items:IList<SearcherItem>, title:string, itemSelectedDelegate:Func<SearcherItem, bool>, displayPosition:Vector2, align:Alignment) : void
+    + {static} Show(host:EditorWindow, items:IList<SearcherItem>, adapter:ISearcherAdapter, itemSelectedDelegate:Func<SearcherItem, bool>, displayPosition:Vector2, analyticsDataDelegate:Action<Searcher.AnalyticsEvent>, align:Alignment) : void
+    + {static} Show(host:EditorWindow, items:IList<SearcherItem>, title:string, directoryPath:string, itemSelectedDelegate:Func<SearcherItem, bool>, displayPosition:Vector2, align:Alignment) : void
+    + {static} Show(host:EditorWindow, items:IEnumerable<SearcherItem>, adapter:ISearcherAdapter, directoryPath:string, itemSelectedDelegate:Func<SearcherItem, bool>, displayPosition:Vector2, analyticsDataDelegate:Action<Searcher.AnalyticsEvent>, align:Alignment) : void
+    + {static} Show(host:EditorWindow, searcher:Searcher, itemSelectedDelegate:Func<SearcherItem, bool>, displayPosition:Vector2, analyticsDataDelegate:Action<Searcher.AnalyticsEvent>, align:Alignment) : void
+    + {static} Show(host:EditorWindow, searcher:Searcher, itemSelectedDelegate:Func<SearcherItem, bool>, analyticsDataDelegate:Action<Searcher.AnalyticsEvent>, rect:Rect) : void
+    + {static} GetPositionWithAlignment(pos:Vector2, size:Vector2, align:Alignment) : Vector2
+}
+struct Alignment {
+    + Alignment(v:Vertical, h:Horizontal)
+}
+enum Horizontal {
+    Left= 0,
+    Center,
+    Right,
+}
+enum Vertical {
+    Top= 0,
+    Center,
+    Bottom,
+}
+EditorWindow <|-- SearcherWindow
+SearcherWindow +-- Alignment
+Alignment --> "vertical" Vertical
+Alignment --> "horizontal" Horizontal
+Alignment +-- Horizontal
+Alignment +-- Vertical
+@enduml

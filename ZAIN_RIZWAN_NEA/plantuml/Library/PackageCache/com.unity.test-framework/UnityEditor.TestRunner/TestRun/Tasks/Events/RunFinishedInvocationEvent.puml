@@ -1,0 +1,6 @@
+@startuml
+class RunFinishedInvocationEvent {
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- RunFinishedInvocationEvent
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+class TMP_DefaultControls <<static>> {
+    + {static} CreateScrollbar(resources:Resources) : GameObject
+    + {static} CreateButton(resources:Resources) : GameObject
+    + {static} CreateText(resources:Resources) : GameObject
+    + {static} CreateInputField(resources:Resources) : GameObject
+    + {static} CreateDropdown(resources:Resources) : GameObject
+}
+struct Resources {
+}
+TMP_DefaultControls +-- Resources
+Resources --> "standard" Sprite
+Resources --> "background" Sprite
+Resources --> "inputField" Sprite
+Resources --> "knob" Sprite
+Resources --> "checkmark" Sprite
+Resources --> "dropdown" Sprite
+Resources --> "mask" Sprite
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class ObjectExtension <<static>> {
+    + {static} IsSceneObject(obj:Object) : bool
+    + {static} IsPrefab(obj:Object) : bool
+}
+@enduml

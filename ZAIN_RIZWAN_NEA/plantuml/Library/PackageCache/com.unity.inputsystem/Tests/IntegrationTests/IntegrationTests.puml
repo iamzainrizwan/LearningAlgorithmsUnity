@@ -1,0 +1,8 @@
+@startuml
+class IntegrationTests {
+    + {static} PreserveMethods() : void
+    + <<virtual>> Setup() : void
+    + <<virtual>> TearDown() : void
+    + Integration_CanSendAndReceiveEvents() : void
+}
+@enduml

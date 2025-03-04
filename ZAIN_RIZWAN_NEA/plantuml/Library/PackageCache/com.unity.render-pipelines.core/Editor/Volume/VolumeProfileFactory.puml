@@ -1,0 +1,17 @@
+@startuml
+class VolumeProfileFactory <<static>> {
+    + {static} CreateVolumeProfileWithCallback(fullPath:string, callback:Action<VolumeProfile>) : void
+    + {static} CreateVolumeProfileAtPath(path:string) : VolumeProfile
+    + {static} CreateVolumeProfileAtPath(path:string, dataSource:VolumeProfile) : VolumeProfile
+    + {static} CreateVolumeProfile(scene:Scene, targetName:string) : VolumeProfile
+    + {static} CreateVolumeComponent(profile:VolumeProfile, overrides:bool, saveAsset:bool) : T
+}
+class CreateVolumeProfileAction {
+    + <<override>> Action(instanceId:int, pathName:string, resourceFile:string) : void
+}
+class CreateVolumeProfileWithCallbackAction {
+    + <<override>> Action(instanceId:int, pathName:string, resourceFile:string) : void
+}
+EndNameEditAction <|-- CreateVolumeProfileAction
+EndNameEditAction <|-- CreateVolumeProfileWithCallbackAction
+@enduml

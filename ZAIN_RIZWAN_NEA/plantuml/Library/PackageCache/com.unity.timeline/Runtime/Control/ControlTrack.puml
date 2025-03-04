@@ -1,0 +1,5 @@
+@startuml
+class ControlTrack {
+}
+TrackAsset <|-- ControlTrack
+@enduml

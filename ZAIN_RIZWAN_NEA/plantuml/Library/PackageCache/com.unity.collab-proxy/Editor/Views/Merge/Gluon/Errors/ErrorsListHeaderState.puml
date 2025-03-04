@@ -1,0 +1,10 @@
+@startuml
+enum ErrorsListColumn {
+    Path,
+    Reason,
+}
+class ErrorsListHeaderState {
+}
+MultiColumnHeaderState <|-- ErrorsListHeaderState
+ISerializationCallbackReceiver <|-- ErrorsListHeaderState
+@enduml

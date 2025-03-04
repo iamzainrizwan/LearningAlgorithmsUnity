@@ -1,0 +1,6 @@
+@startuml
+class DebugUIHandlerEnumHistory {
+    + <<override>> UpdateValueLabel() : void
+}
+DebugUIHandlerEnumField <|-- DebugUIHandlerEnumHistory
+@enduml

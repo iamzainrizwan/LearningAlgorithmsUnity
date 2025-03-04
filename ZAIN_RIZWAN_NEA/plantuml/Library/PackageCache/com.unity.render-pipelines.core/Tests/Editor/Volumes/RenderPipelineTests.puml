@@ -1,0 +1,6 @@
+@startuml
+class RenderPipelineTests {
+    + <<virtual>> Setup() : void
+    + <<virtual>> TearDown() : void
+}
+@enduml

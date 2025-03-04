@@ -1,0 +1,10 @@
+@startuml
+class ProfilingUtility <<static>> {
+    + {static} Clear() : void
+    + {static} SampleBlock(name:string) : ProfilingScope
+    + {static} BeginSample(name:string) : void
+    + {static} EndSample() : void
+}
+ProfilingUtility --> "rootSegment" ProfiledSegment
+ProfilingUtility --> "currentSegment" ProfiledSegment
+@enduml

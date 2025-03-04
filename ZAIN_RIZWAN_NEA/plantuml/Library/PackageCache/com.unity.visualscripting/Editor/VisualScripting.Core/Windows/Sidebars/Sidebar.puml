@@ -1,0 +1,20 @@
+@startuml
+class Sidebar <<sealed>> {
+    + Sidebar(sidebars:Sidebars, anchor:SidebarAnchor)
+    + show : bool <<get>>
+    + DrawLayout() : void
+    + Remove() : void
+    + GetWidth() : float
+    + OnGUI(position:Rect) : void
+    + OrderSpinner(position:Rect, panel:SidebarPanel) : void
+}
+class "List`1"<T> {
+}
+class Styles <<static>> {
+    + {static} <<readonly>> resizeGrip : float = 2f
+}
+Sidebar o-> "displayedPanels<SidebarPanel>" "List`1"
+Sidebar +-- Styles
+Styles --> "background" GUIStyle
+Styles --> "separator" GUIStyle
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+abstract class "PathComponentEditor`1"<T> {
+}
+class Contents <<static>> {
+}
+Editor <|-- "PathComponentEditor`1"
+"PathComponentEditor`1" +-- Contents
+Contents o-> "snappingLabel" GUIContent
+@enduml

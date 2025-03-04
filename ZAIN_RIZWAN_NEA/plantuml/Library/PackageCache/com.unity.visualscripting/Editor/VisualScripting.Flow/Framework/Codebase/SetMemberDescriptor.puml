@@ -1,0 +1,8 @@
+@startuml
+class SetMemberDescriptor {
+    + SetMemberDescriptor(unit:SetMember)
+}
+class "MemberUnitDescriptor`1"<T> {
+}
+"MemberUnitDescriptor`1" "<SetMember>" <|-- SetMemberDescriptor
+@enduml

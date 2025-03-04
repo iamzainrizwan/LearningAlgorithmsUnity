@@ -1,0 +1,8 @@
+@startuml
+class AutodeskInteractiveMaterialImport {
+    + <<override>> GetVersion() : uint
+    + <<override>> GetPostprocessOrder() : int
+    + OnPreprocessMaterialDescription(description:MaterialDescription, material:Material, clips:AnimationClip[]) : void
+}
+AssetPostprocessor <|-- AutodeskInteractiveMaterialImport
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class SetScriptGraph <<sealed>> {
+}
+class "SetGraph`3"<T1,T2,T3> {
+}
+"SetGraph`3" "<FlowGraph,ScriptGraphAsset,ScriptMachine>" <|-- SetScriptGraph
+SetScriptGraph --> "containerType" ScriptGraphContainerType
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class IconExportUtility <<static>> {
+    + {static} ExportTypeIcon() : void
+    + {static} ExportMessageIcon() : void
+    + {static} ExportAllEditorIcon() : void
+}
+@enduml

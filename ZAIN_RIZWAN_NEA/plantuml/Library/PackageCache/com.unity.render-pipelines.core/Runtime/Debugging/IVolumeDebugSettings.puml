@@ -1,0 +1,7 @@
+@startuml
+interface IVolumeDebugSettings {
+}
+interface IVolumeDebugSettings2 {
+}
+IVolumeDebugSettings <|-- IVolumeDebugSettings2
+@enduml

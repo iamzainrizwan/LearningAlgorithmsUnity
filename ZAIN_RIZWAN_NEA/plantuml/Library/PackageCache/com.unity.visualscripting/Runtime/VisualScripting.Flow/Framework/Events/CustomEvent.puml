@@ -1,0 +1,14 @@
+@startuml
+class CustomEvent <<sealed>> {
+    + argumentCount : int <<get>> <<set>>
+    + {static} Trigger(target:GameObject, name:string, args:object[]) : void
+}
+class "GameObjectEventUnit`1"<T> {
+}
+class "List`1"<T> {
+}
+"GameObjectEventUnit`1" "<CustomEventArgs>" <|-- CustomEvent
+CustomEvent --> "MessageListenerType" Type
+CustomEvent --> "name" ValueInput
+CustomEvent o-> "argumentPorts<ValueOutput>" "List`1"
+@enduml

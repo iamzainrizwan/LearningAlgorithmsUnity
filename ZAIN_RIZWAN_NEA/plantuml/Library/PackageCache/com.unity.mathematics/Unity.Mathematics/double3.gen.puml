@@ -1,0 +1,178 @@
+@startuml
+struct double3 {
+    + x : double
+    + y : double
+    + z : double
+    + double3(x:double, y:double, z:double)
+    + double3(x:double, yz:double2)
+    + double3(xy:double2, z:double)
+    + double3(xyz:double3)
+    + double3(v:double)
+    + double3(v:bool)
+    + double3(v:bool3)
+    + double3(v:int)
+    + double3(v:int3)
+    + double3(v:uint)
+    + double3(v:uint3)
+    + double3(v:half)
+    + double3(v:half3)
+    + double3(v:float)
+    + double3(v:float3)
+    + Equals(rhs:double3) : bool
+    + <<override>> Equals(o:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+    + ToString(format:string, formatProvider:IFormatProvider) : string
+}
+class math <<static>> <<partial>> {
+    + {static} double3(x:double, y:double, z:double) : double3
+    + {static} double3(x:double, yz:double2) : double3
+    + {static} double3(xy:double2, z:double) : double3
+    + {static} double3(xyz:double3) : double3
+    + {static} double3(v:double) : double3
+    + {static} double3(v:bool) : double3
+    + {static} double3(v:bool3) : double3
+    + {static} double3(v:int) : double3
+    + {static} double3(v:int3) : double3
+    + {static} double3(v:uint) : double3
+    + {static} double3(v:uint3) : double3
+    + {static} double3(v:half) : double3
+    + {static} double3(v:half3) : double3
+    + {static} double3(v:float) : double3
+    + {static} double3(v:float3) : double3
+    + {static} hash(v:double3) : uint
+    + {static} hashwide(v:double3) : uint3
+    + {static} shuffle(left:double3, right:double3, x:ShuffleComponent) : double
+    + {static} shuffle(left:double3, right:double3, x:ShuffleComponent, y:ShuffleComponent) : double2
+    + {static} shuffle(left:double3, right:double3, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent) : double3
+    + {static} shuffle(left:double3, right:double3, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent, w:ShuffleComponent) : double4
+}
+class "IEquatable`1"<T> {
+}
+class DebuggerProxy <<sealed>> {
+    + x : double
+    + y : double
+    + z : double
+    + DebuggerProxy(v:double3)
+}
+IFormattable <|-- double3
+double3 --> "zero" double3
+double3 --> "xxxx" double4
+double3 --> "xxxy" double4
+double3 --> "xxxz" double4
+double3 --> "xxyx" double4
+double3 --> "xxyy" double4
+double3 --> "xxyz" double4
+double3 --> "xxzx" double4
+double3 --> "xxzy" double4
+double3 --> "xxzz" double4
+double3 --> "xyxx" double4
+double3 --> "xyxy" double4
+double3 --> "xyxz" double4
+double3 --> "xyyx" double4
+double3 --> "xyyy" double4
+double3 --> "xyyz" double4
+double3 --> "xyzx" double4
+double3 --> "xyzy" double4
+double3 --> "xyzz" double4
+double3 --> "xzxx" double4
+double3 --> "xzxy" double4
+double3 --> "xzxz" double4
+double3 --> "xzyx" double4
+double3 --> "xzyy" double4
+double3 --> "xzyz" double4
+double3 --> "xzzx" double4
+double3 --> "xzzy" double4
+double3 --> "xzzz" double4
+double3 --> "yxxx" double4
+double3 --> "yxxy" double4
+double3 --> "yxxz" double4
+double3 --> "yxyx" double4
+double3 --> "yxyy" double4
+double3 --> "yxyz" double4
+double3 --> "yxzx" double4
+double3 --> "yxzy" double4
+double3 --> "yxzz" double4
+double3 --> "yyxx" double4
+double3 --> "yyxy" double4
+double3 --> "yyxz" double4
+double3 --> "yyyx" double4
+double3 --> "yyyy" double4
+double3 --> "yyyz" double4
+double3 --> "yyzx" double4
+double3 --> "yyzy" double4
+double3 --> "yyzz" double4
+double3 --> "yzxx" double4
+double3 --> "yzxy" double4
+double3 --> "yzxz" double4
+double3 --> "yzyx" double4
+double3 --> "yzyy" double4
+double3 --> "yzyz" double4
+double3 --> "yzzx" double4
+double3 --> "yzzy" double4
+double3 --> "yzzz" double4
+double3 --> "zxxx" double4
+double3 --> "zxxy" double4
+double3 --> "zxxz" double4
+double3 --> "zxyx" double4
+double3 --> "zxyy" double4
+double3 --> "zxyz" double4
+double3 --> "zxzx" double4
+double3 --> "zxzy" double4
+double3 --> "zxzz" double4
+double3 --> "zyxx" double4
+double3 --> "zyxy" double4
+double3 --> "zyxz" double4
+double3 --> "zyyx" double4
+double3 --> "zyyy" double4
+double3 --> "zyyz" double4
+double3 --> "zyzx" double4
+double3 --> "zyzy" double4
+double3 --> "zyzz" double4
+double3 --> "zzxx" double4
+double3 --> "zzxy" double4
+double3 --> "zzxz" double4
+double3 --> "zzyx" double4
+double3 --> "zzyy" double4
+double3 --> "zzyz" double4
+double3 --> "zzzx" double4
+double3 --> "zzzy" double4
+double3 --> "zzzz" double4
+double3 --> "xxx" double3
+double3 --> "xxy" double3
+double3 --> "xxz" double3
+double3 --> "xyx" double3
+double3 --> "xyy" double3
+double3 --> "xyz" double3
+double3 --> "xzx" double3
+double3 --> "xzy" double3
+double3 --> "xzz" double3
+double3 --> "yxx" double3
+double3 --> "yxy" double3
+double3 --> "yxz" double3
+double3 --> "yyx" double3
+double3 --> "yyy" double3
+double3 --> "yyz" double3
+double3 --> "yzx" double3
+double3 --> "yzy" double3
+double3 --> "yzz" double3
+double3 --> "zxx" double3
+double3 --> "zxy" double3
+double3 --> "zxz" double3
+double3 --> "zyx" double3
+double3 --> "zyy" double3
+double3 --> "zyz" double3
+double3 --> "zzx" double3
+double3 --> "zzy" double3
+double3 --> "zzz" double3
+double3 --> "xx" double2
+double3 --> "xy" double2
+double3 --> "xz" double2
+double3 --> "yx" double2
+double3 --> "yy" double2
+double3 --> "yz" double2
+double3 --> "zx" double2
+double3 --> "zy" double2
+double3 --> "zz" double2
+double3 +-- DebuggerProxy
+@enduml

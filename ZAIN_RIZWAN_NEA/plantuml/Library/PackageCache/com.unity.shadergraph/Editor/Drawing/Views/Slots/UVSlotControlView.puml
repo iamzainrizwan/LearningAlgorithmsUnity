@@ -1,0 +1,6 @@
+@startuml
+class UVSlotControlView {
+    + UVSlotControlView(slot:UVMaterialSlot)
+}
+VisualElement <|-- UVSlotControlView
+@enduml

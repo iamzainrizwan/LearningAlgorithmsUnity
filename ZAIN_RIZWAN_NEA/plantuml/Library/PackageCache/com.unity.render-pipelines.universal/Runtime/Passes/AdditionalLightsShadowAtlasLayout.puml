@@ -1,0 +1,32 @@
+@startuml
+struct AdditionalLightsShadowAtlasLayout {
+    + AdditionalLightsShadowAtlasLayout(lightData:UniversalLightData, shadowData:UniversalShadowData, cameraData:UniversalCameraData)
+    + GetTotalShadowSlicesCount() : int
+    + GetTotalShadowResolutionRequestCount() : int
+    + HasTooManyShadowMaps() : bool
+    + GetShadowSlicesScaleFactor() : int
+    + GetAtlasSize() : int
+    + HasSpaceForLight(originalVisibleLightIndex:int) : bool
+    + GetSortedShadowResolutionRequest(sortedShadowResolutionRequestIndex:int) : ShadowResolutionRequest
+    + GetSliceShadowResolutionRequest(originalVisibleLightIndex:int, sliceIndex:int) : ShadowResolutionRequest
+    + {static} ClearStaticCaches() : void
+}
+struct ShadowResolutionRequest {
+    + visibleLightIndex : ushort
+    + perLightShadowSliceIndex : ushort
+    + requestedResolution : ushort
+    + offsetX : ushort
+    + offsetY : ushort
+    + allocatedResolution : ushort
+    + softShadow : bool <<get>> <<set>>
+    + pointLightShadow : bool <<get>> <<set>>
+}
+enum SettingsOptions {
+    None= 0,
+    SoftShadow= (1 << 0),
+    PointLightShadow= (1 << 1),
+    All= 0xFFFF,
+}
+AdditionalLightsShadowAtlasLayout +-- ShadowResolutionRequest
+ShadowResolutionRequest +-- SettingsOptions
+@enduml

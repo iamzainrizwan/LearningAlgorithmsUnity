@@ -1,0 +1,19 @@
+@startuml
+class TestSettingsDeserializer {
+    + TestSettingsDeserializer(testSettingsFactory:Func<ITestSettings>)
+    + GetSettingsFromJsonFile(jsonFilePath:string) : ITestSettings
+}
+abstract class SettingsMap {
+    + Key : string <<get>>
+    + {abstract} ApplyToSettings(settings:ITestSettings, value:object) : void
+}
+class "SettingsMap`1"<T> {
+    + SettingsMap(key:string, setter:Action<ITestSettings, T>)
+    + <<override>> ApplyToSettings(settings:ITestSettings, value:object) : void
+}
+ITestSettingsDeserializer <|-- TestSettingsDeserializer
+TestSettingsDeserializer +-- SettingsMap
+SettingsMap --> "Type" Type
+TestSettingsDeserializer +-- "SettingsMap`1"
+SettingsMap <|-- "SettingsMap`1"
+@enduml

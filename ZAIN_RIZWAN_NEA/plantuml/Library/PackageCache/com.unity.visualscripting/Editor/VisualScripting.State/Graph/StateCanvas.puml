@@ -1,0 +1,21 @@
+@startuml
+class StateCanvas <<sealed>> {
+    + StateCanvas(graph:StateGraph)
+    + <<override>> ShrinkCopyGroup(copyGroup:HashSet<IGraphElement>) : void
+    + <<override>> OnToolbarGUI() : void
+    + AddState(state:IState, position:Vector2) : void
+    + <<override>> Close() : void
+    + CompleteTransitionToNewState() : void
+    + <<override>> AcceptsDragAndDrop() : bool
+    + <<override>> PerformDragAndDrop() : void
+    + <<override>> DrawDragAndDropPreview() : void
+    + isCreatingTransition : bool <<get>>
+    + StartTransition(source:IState) : void
+    + EndTransition(destination:IState) : void
+    + CancelTransition() : void
+}
+class "VisualScriptingCanvas`1"<T> {
+}
+"VisualScriptingCanvas`1" "<StateGraph>" <|-- StateCanvas
+StateCanvas --> "transitionSource" IState
+@enduml

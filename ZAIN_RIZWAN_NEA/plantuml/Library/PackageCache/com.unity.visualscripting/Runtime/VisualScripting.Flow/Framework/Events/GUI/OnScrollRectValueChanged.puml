@@ -1,0 +1,9 @@
+@startuml
+class OnScrollRectValueChanged <<sealed>> {
+}
+class "GameObjectEventUnit`1"<T> {
+}
+"GameObjectEventUnit`1" "<Vector2>" <|-- OnScrollRectValueChanged
+OnScrollRectValueChanged --> "MessageListenerType" Type
+OnScrollRectValueChanged --> "value" ValueOutput
+@enduml

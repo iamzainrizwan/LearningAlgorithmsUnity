@@ -1,0 +1,42 @@
+@startuml
+class VariablesPanel {
+    + sidebarControlHint : object <<get>>
+    + VariablesPanel(context:IGraphContext)
+    + currentSubTabIdentifier : string <<get>> <<set>>
+    + GetHeight(width:float) : float
+    + OnGUI(position:Rect) : void
+}
+class Styles <<static>> {
+}
+class Tab {
+    + Tab(panel:VariablesPanel, shortTitle:string, title:string, description:string, icon:EditorTexture, subTabs:SubTab[])
+    + enabled : bool <<get>>
+    + GetHeight(width:float) : float
+    + OnGUI(position:Rect, y:float) : void
+    + MakeFirstSubTabCurrent() : void
+}
+class SubTab {
+    + SubTab(identifier:string, tab:Tab, kind:VariableKind, declarations:VariableDeclarations, targetObject:UnityObject, save:Action, label:string, tooltip:string)
+    + identifier : string <<get>>
+    + GetHeight(width:float) : float
+    + OnGUI(position:Rect, y:float) : void
+}
+class "List`1"<T> {
+}
+ISidebarPanelContent <|-- VariablesPanel
+VariablesPanel --> "context" IGraphContext
+VariablesPanel --> "minSize" Vector2
+VariablesPanel --> "titleContent" GUIContent
+VariablesPanel +-- Styles
+Styles --> "tab" GUIStyle
+Styles --> "subTab" GUIStyle
+VariablesPanel +-- Tab
+Tab --> "panel" VariablesPanel
+Tab --> "subTabs<SubTab>" "List`1"
+Tab --> "currentSubTab" SubTab
+Tab --> "label" GUIContent
+Tab --> "header" GUIContent
+VariablesPanel +-- SubTab
+SubTab --> "tab" Tab
+SubTab --> "label" GUIContent
+@enduml

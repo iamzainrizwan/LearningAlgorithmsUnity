@@ -1,0 +1,16 @@
+@startuml
+class MeshTool {
+    + m_Radius : float = 1.5f
+    + m_Power : float = 2.0f
+}
+enum ExtrudeMethod {
+    Vertical,
+    MeshNormal,
+}
+class "List`1"<T> {
+}
+MonoBehaviour <|-- MeshTool
+MeshTool o-> "m_Filters<MeshFilter>" "List`1"
+MeshTool o-> "m_Method" ExtrudeMethod
+MeshTool +-- ExtrudeMethod
+@enduml

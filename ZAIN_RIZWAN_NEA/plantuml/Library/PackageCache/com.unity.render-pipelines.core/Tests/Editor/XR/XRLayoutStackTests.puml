@@ -1,0 +1,12 @@
+@startuml
+class XRLayoutStackTests {
+    + TearDown() : void
+    + New_ReturnsNonNullObject() : void
+    + Top_AfterNew_ReturnsCorrectObject() : void
+    + NewNTimes_ReturnsTheTopToTheLatestElement() : void
+    + Top_WithoutNew_ThrowsException() : void
+    + Release_WithoutNew_ThrowsException() : void
+    + Dispose_WithoutRelease_ThrowsException() : void
+    + CheckStackBetweenFramesReturnsTheSameXRLayout() : void
+}
+@enduml

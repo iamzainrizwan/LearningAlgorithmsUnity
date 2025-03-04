@@ -1,0 +1,178 @@
+@startuml
+struct float3 {
+    + x : float
+    + y : float
+    + z : float
+    + float3(x:float, y:float, z:float)
+    + float3(x:float, yz:float2)
+    + float3(xy:float2, z:float)
+    + float3(xyz:float3)
+    + float3(v:float)
+    + float3(v:bool)
+    + float3(v:bool3)
+    + float3(v:int)
+    + float3(v:int3)
+    + float3(v:uint)
+    + float3(v:uint3)
+    + float3(v:half)
+    + float3(v:half3)
+    + float3(v:double)
+    + float3(v:double3)
+    + Equals(rhs:float3) : bool
+    + <<override>> Equals(o:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+    + ToString(format:string, formatProvider:IFormatProvider) : string
+}
+class math <<static>> <<partial>> {
+    + {static} float3(x:float, y:float, z:float) : float3
+    + {static} float3(x:float, yz:float2) : float3
+    + {static} float3(xy:float2, z:float) : float3
+    + {static} float3(xyz:float3) : float3
+    + {static} float3(v:float) : float3
+    + {static} float3(v:bool) : float3
+    + {static} float3(v:bool3) : float3
+    + {static} float3(v:int) : float3
+    + {static} float3(v:int3) : float3
+    + {static} float3(v:uint) : float3
+    + {static} float3(v:uint3) : float3
+    + {static} float3(v:half) : float3
+    + {static} float3(v:half3) : float3
+    + {static} float3(v:double) : float3
+    + {static} float3(v:double3) : float3
+    + {static} hash(v:float3) : uint
+    + {static} hashwide(v:float3) : uint3
+    + {static} shuffle(left:float3, right:float3, x:ShuffleComponent) : float
+    + {static} shuffle(left:float3, right:float3, x:ShuffleComponent, y:ShuffleComponent) : float2
+    + {static} shuffle(left:float3, right:float3, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent) : float3
+    + {static} shuffle(left:float3, right:float3, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent, w:ShuffleComponent) : float4
+}
+class "IEquatable`1"<T> {
+}
+class DebuggerProxy <<sealed>> {
+    + x : float
+    + y : float
+    + z : float
+    + DebuggerProxy(v:float3)
+}
+IFormattable <|-- float3
+float3 --> "zero" float3
+float3 --> "xxxx" float4
+float3 --> "xxxy" float4
+float3 --> "xxxz" float4
+float3 --> "xxyx" float4
+float3 --> "xxyy" float4
+float3 --> "xxyz" float4
+float3 --> "xxzx" float4
+float3 --> "xxzy" float4
+float3 --> "xxzz" float4
+float3 --> "xyxx" float4
+float3 --> "xyxy" float4
+float3 --> "xyxz" float4
+float3 --> "xyyx" float4
+float3 --> "xyyy" float4
+float3 --> "xyyz" float4
+float3 --> "xyzx" float4
+float3 --> "xyzy" float4
+float3 --> "xyzz" float4
+float3 --> "xzxx" float4
+float3 --> "xzxy" float4
+float3 --> "xzxz" float4
+float3 --> "xzyx" float4
+float3 --> "xzyy" float4
+float3 --> "xzyz" float4
+float3 --> "xzzx" float4
+float3 --> "xzzy" float4
+float3 --> "xzzz" float4
+float3 --> "yxxx" float4
+float3 --> "yxxy" float4
+float3 --> "yxxz" float4
+float3 --> "yxyx" float4
+float3 --> "yxyy" float4
+float3 --> "yxyz" float4
+float3 --> "yxzx" float4
+float3 --> "yxzy" float4
+float3 --> "yxzz" float4
+float3 --> "yyxx" float4
+float3 --> "yyxy" float4
+float3 --> "yyxz" float4
+float3 --> "yyyx" float4
+float3 --> "yyyy" float4
+float3 --> "yyyz" float4
+float3 --> "yyzx" float4
+float3 --> "yyzy" float4
+float3 --> "yyzz" float4
+float3 --> "yzxx" float4
+float3 --> "yzxy" float4
+float3 --> "yzxz" float4
+float3 --> "yzyx" float4
+float3 --> "yzyy" float4
+float3 --> "yzyz" float4
+float3 --> "yzzx" float4
+float3 --> "yzzy" float4
+float3 --> "yzzz" float4
+float3 --> "zxxx" float4
+float3 --> "zxxy" float4
+float3 --> "zxxz" float4
+float3 --> "zxyx" float4
+float3 --> "zxyy" float4
+float3 --> "zxyz" float4
+float3 --> "zxzx" float4
+float3 --> "zxzy" float4
+float3 --> "zxzz" float4
+float3 --> "zyxx" float4
+float3 --> "zyxy" float4
+float3 --> "zyxz" float4
+float3 --> "zyyx" float4
+float3 --> "zyyy" float4
+float3 --> "zyyz" float4
+float3 --> "zyzx" float4
+float3 --> "zyzy" float4
+float3 --> "zyzz" float4
+float3 --> "zzxx" float4
+float3 --> "zzxy" float4
+float3 --> "zzxz" float4
+float3 --> "zzyx" float4
+float3 --> "zzyy" float4
+float3 --> "zzyz" float4
+float3 --> "zzzx" float4
+float3 --> "zzzy" float4
+float3 --> "zzzz" float4
+float3 --> "xxx" float3
+float3 --> "xxy" float3
+float3 --> "xxz" float3
+float3 --> "xyx" float3
+float3 --> "xyy" float3
+float3 --> "xyz" float3
+float3 --> "xzx" float3
+float3 --> "xzy" float3
+float3 --> "xzz" float3
+float3 --> "yxx" float3
+float3 --> "yxy" float3
+float3 --> "yxz" float3
+float3 --> "yyx" float3
+float3 --> "yyy" float3
+float3 --> "yyz" float3
+float3 --> "yzx" float3
+float3 --> "yzy" float3
+float3 --> "yzz" float3
+float3 --> "zxx" float3
+float3 --> "zxy" float3
+float3 --> "zxz" float3
+float3 --> "zyx" float3
+float3 --> "zyy" float3
+float3 --> "zyz" float3
+float3 --> "zzx" float3
+float3 --> "zzy" float3
+float3 --> "zzz" float3
+float3 --> "xx" float2
+float3 --> "xy" float2
+float3 --> "xz" float2
+float3 --> "yx" float2
+float3 --> "yy" float2
+float3 --> "yz" float2
+float3 --> "zx" float2
+float3 --> "zy" float2
+float3 --> "zz" float2
+float3 +-- DebuggerProxy
+@enduml

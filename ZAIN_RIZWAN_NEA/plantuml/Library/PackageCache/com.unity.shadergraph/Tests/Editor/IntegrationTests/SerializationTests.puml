@@ -1,0 +1,48 @@
+@startuml
+class SerializationTests {
+    + TestSerializationHelperCanSerializeThenDeserialize() : void
+    + TestPolymorphicSerializationPreservesTypesViaBaseClass() : void
+    + TestPolymorphicSerializationPreservesTypesViaInterface() : void
+    + TestSerializationHelperElementCanSerialize() : void
+    + TestSerializableSlotCanSerialize() : void
+}
+class DummyJsonHolder {
+    + DummyJsonHolder()
+    + DummyJsonHolder(materialSlots:List<MaterialSlot>)
+}
+interface ITestInterface {
+}
+class SimpleSerializeClass {
+    + stringValue : string
+    + intValue : int
+    + floatValue : float
+    + <<virtual>> AssertAsReference() : void
+}
+class ChildClassA {
+    + childString : string
+    + <<override>> AssertAsReference() : void
+}
+class ChildClassB {
+    + childInt : int
+    + <<override>> AssertAsReference() : void
+}
+class SerializationContainer {
+}
+class "List`1"<T> {
+}
+SerializationTests +-- DummyJsonHolder
+JsonObject <|-- DummyJsonHolder
+DummyJsonHolder o-> "testSlots<JsonData<MaterialSlot>>" "List`1"
+SerializationTests +-- ITestInterface
+SerializationTests +-- SimpleSerializeClass
+ITestInterface <|-- SimpleSerializeClass
+SimpleSerializeClass --> "instance" SimpleSerializeClass
+SerializationTests +-- ChildClassA
+SimpleSerializeClass <|-- ChildClassA
+ChildClassA --> "instance" ChildClassA
+SerializationTests +-- ChildClassB
+SimpleSerializeClass <|-- ChildClassB
+ChildClassB --> "instance" ChildClassB
+SerializationTests +-- SerializationContainer
+SerializationContainer --> "serializedElements<SerializationHelper.JSONSerializedElement>" "List`1"
+@enduml

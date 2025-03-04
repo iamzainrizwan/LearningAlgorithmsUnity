@@ -1,0 +1,9 @@
+@startuml
+enum RenderQueue {
+    Background,
+    Geometry,
+    Transparent,
+    Overlay,
+    AlphaTest,
+}
+@enduml

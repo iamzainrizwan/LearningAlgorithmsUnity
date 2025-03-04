@@ -1,0 +1,16 @@
+@startuml
+class InspectorProvider {
+    + <<override>> IsValid(metadata:Metadata) : bool
+    + HasInspector(type:Type) : bool
+}
+class XInspectorProvider <<static>> {
+    + {static} Inspector(metadata:Metadata) : Inspector
+    + {static} Inspector(metadata:Metadata) : TInspector
+    + {static} HasInspector(type:Type) : bool
+    + {static} HasInspector(metadata:Metadata) : bool
+}
+class "SingleDecoratorProvider`3"<T1,T2,T3> {
+}
+"SingleDecoratorProvider`3" "<Metadata,Inspector,InspectorAttribute>" <|-- InspectorProvider
+InspectorProvider --> "instance" InspectorProvider
+@enduml

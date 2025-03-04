@@ -1,0 +1,14 @@
+@startuml
+class PressInteraction {
+    + pressPoint : float
+    + Process(context:InputInteractionContext) : void
+    + Reset() : void
+}
+enum PressBehavior {
+    PressOnly= 0,
+    ReleaseOnly= 1,
+    PressAndRelease= 2,
+}
+IInputInteraction <|-- PressInteraction
+PressInteraction --> "behavior" PressBehavior
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class TrackModifier <<static>> {
+    + {static} DeleteTrack(timeline:TimelineAsset, track:TrackAsset) : bool
+}
+@enduml

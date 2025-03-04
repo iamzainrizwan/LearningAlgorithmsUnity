@@ -1,0 +1,14 @@
+@startuml
+class VertexJitter {
+    + AngleMultiplier : float = 1.0f
+    + SpeedMultiplier : float = 1.0f
+    + CurveScale : float = 1.0f
+}
+struct VertexAnim {
+    + angleRange : float
+    + angle : float
+    + speed : float
+}
+MonoBehaviour <|-- VertexJitter
+VertexJitter +-- VertexAnim
+@enduml

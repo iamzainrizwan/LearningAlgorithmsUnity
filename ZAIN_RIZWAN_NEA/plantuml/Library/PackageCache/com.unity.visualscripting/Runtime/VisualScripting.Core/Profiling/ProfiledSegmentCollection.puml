@@ -1,0 +1,7 @@
+@startuml
+class ProfiledSegmentCollection {
+}
+class "KeyedCollection`2"<T1,T2> {
+}
+"KeyedCollection`2" "<string,ProfiledSegment>" <|-- ProfiledSegmentCollection
+@enduml

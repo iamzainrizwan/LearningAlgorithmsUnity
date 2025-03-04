@@ -1,0 +1,53 @@
+@startuml
+class NativeBitArrayTests {
+    + NativeBitArray_Init() : void
+    + NativeBitArray_Get_Set_Long() : void
+    + NativeBitArray_Get_Set_Short() : void
+    + NativeBitArray_Get_Set_Tiny() : void
+    + <<unsafe>> NativeBitArray_Throws() : void
+    + NativeBitArray_GetBits() : void
+    + NativeBitArray_SetBits() : void
+    + NativeBitArray_Copy() : void
+    + UnsafeBitArray_Resize() : void
+    + <<unsafe>> NativeBitArray_CopyBetweenBitArrays() : void
+    + <<unsafe>> NativeBitArray_Copy_Throws() : void
+    + <<unsafe>> NativeBitArray_Find() : void
+    + <<unsafe>> NativeBitArray_Find_With_Begin_End() : void
+    + <<unsafe>> NativeBitArray_Find_Throws() : void
+    + NativeBitArray_AsNativeArray_Byte() : void
+    + NativeBitArray_AsNativeArray_Uint() : void
+    + NativeBitArray_AsNativeArray_Ulong() : void
+    + NativeBitArray_AsNativeArray_ThrowsOnSizeMismatch() : void
+    + NativeBitArray_ReadOnly() : void
+    + NativeBitArray_UseAfterFree_UsesCustomOwnerTypeName() : void
+    + NativeBitArray_AtomicSafetyHandle_AllocatorTemp_UniqueStaticSafetyIds() : void
+    + NativeBitArray_CreateAndUseAfterFreeInBurstJob_UsesCustomOwnerTypeName() : void
+    + NativeBitArray_FindWithPattern() : void
+    + NativeBitArray_FindInTinyBitArray() : void
+    + NativeBitArray_FindLastUnsetBit(numBits:int) : void
+    + NativeBitArray_CustomAllocatorTest() : void
+    + <<unsafe>> NativeBitArray_BurstedCustomAllocatorTest() : void
+}
+struct SizeMismatch128 {
+}
+struct SizeMismatch56 {
+}
+struct NativeBitArrayTestReadOnly {
+    + Execute() : void
+}
+struct NativeBitArrayCreateAndUseAfterFreeBurst {
+    + Execute() : void
+}
+struct BurstedCustomAllocatorJob {
+    + Execute() : void
+}
+CollectionsTestFixture <|-- NativeBitArrayTests
+NativeBitArrayTests +-- SizeMismatch128
+NativeBitArrayTests +-- SizeMismatch56
+NativeBitArrayTests +-- NativeBitArrayTestReadOnly
+IJob <|-- NativeBitArrayTestReadOnly
+NativeBitArrayTests +-- NativeBitArrayCreateAndUseAfterFreeBurst
+IJob <|-- NativeBitArrayCreateAndUseAfterFreeBurst
+NativeBitArrayTests +-- BurstedCustomAllocatorJob
+IJob <|-- BurstedCustomAllocatorJob
+@enduml

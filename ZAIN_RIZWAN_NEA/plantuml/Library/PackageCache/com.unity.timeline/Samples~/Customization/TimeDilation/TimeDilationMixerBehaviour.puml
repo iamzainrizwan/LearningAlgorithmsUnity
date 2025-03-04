@@ -1,0 +1,8 @@
+@startuml
+class TimeDilationMixerBehaviour {
+    + <<override>> ProcessFrame(playable:Playable, info:FrameData, playerData:object) : void
+    + <<override>> OnPlayableCreate(playable:Playable) : void
+    + <<override>> OnPlayableDestroy(playable:Playable) : void
+}
+PlayableBehaviour <|-- TimeDilationMixerBehaviour
+@enduml

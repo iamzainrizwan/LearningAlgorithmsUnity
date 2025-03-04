@@ -1,0 +1,33 @@
+@startuml
+class UniversalRendererDataEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+class Styles <<static>> {
+}
+ScriptableRendererDataEditor <|-- UniversalRendererDataEditor
+UniversalRendererDataEditor +-- Styles
+Styles o-> "RendererTitle" GUIContent
+Styles o-> "PostProcessIncluded" GUIContent
+Styles o-> "PostProcessLabel" GUIContent
+Styles o-> "FilteringSectionLabel" GUIContent
+Styles o-> "OpaqueMask" GUIContent
+Styles o-> "TransparentMask" GUIContent
+Styles o-> "RenderingSectionLabel" GUIContent
+Styles o-> "RenderingModeLabel" GUIContent
+Styles o-> "DepthPrimingModeLabel" GUIContent
+Styles o-> "DepthPrimingModeInfo" GUIContent
+Styles o-> "DepthPrimingMSAAWarning" GUIContent
+Styles o-> "CopyDepthModeLabel" GUIContent
+Styles o-> "DepthAttachmentFormat" GUIContent
+Styles o-> "DepthTextureFormat" GUIContent
+Styles o-> "RenderPassLabel" GUIContent
+Styles o-> "RenderPassSectionLabel" GUIContent
+Styles o-> "ShadowsSectionLabel" GUIContent
+Styles o-> "PostProcessingSectionLabel" GUIContent
+Styles o-> "OverridesSectionLabel" GUIContent
+Styles o-> "accurateGbufferNormalsLabel" GUIContent
+Styles o-> "defaultStencilStateLabel" GUIContent
+Styles o-> "shadowTransparentReceiveLabel" GUIContent
+Styles o-> "invalidStencilOverride" GUIContent
+Styles o-> "intermediateTextureMode" GUIContent
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class MyLoggingClassTests {
+    + YourTestGoesHere() : void
+}
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class BurstDisassembler <<partial>> {
+}
+class LLVMIRInstructionInfo {
+}
+BurstDisassembler +-- LLVMIRInstructionInfo
+@enduml

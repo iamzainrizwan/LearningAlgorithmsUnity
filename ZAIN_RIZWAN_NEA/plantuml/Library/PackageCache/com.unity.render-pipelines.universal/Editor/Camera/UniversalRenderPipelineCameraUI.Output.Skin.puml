@@ -1,0 +1,20 @@
+@startuml
+class UniversalRenderPipelineCameraUI <<static>> <<partial>> {
+}
+class Output <<partial>> {
+}
+class Styles {
+    + {static} inspectorOverlayCameraText : string
+    + {static} cameraTargetTextureMSAA : string
+    + {static} pipelineMSAACapsSupportSamples : string
+    + {static} pipelineMSAACapsDisabled : string
+    + {static} disabledHDRRenderingWithHDROutput : string
+}
+UniversalRenderPipelineCameraUI +-- Output
+Output +-- Styles
+Styles o-> "targetTextureLabel" GUIContent
+Styles o-> "allowMSAA" GUIContent
+Styles o-> "allowHDR" GUIContent
+Styles o-> "allowDynamicResolution" GUIContent
+Styles o-> "allowHDROutput" GUIContent
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class EditModeRippleUtils <<static>> {
+    + {static} Insert(itemsGroups:IEnumerable<ItemsPerTrack>) : void
+    + {static} Remove(itemsGroups:IEnumerable<ItemsPerTrack>) : void
+}
+@enduml

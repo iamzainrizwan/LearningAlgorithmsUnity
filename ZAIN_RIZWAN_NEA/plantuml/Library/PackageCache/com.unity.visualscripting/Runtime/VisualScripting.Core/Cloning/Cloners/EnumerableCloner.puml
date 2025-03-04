@@ -1,0 +1,9 @@
+@startuml
+class EnumerableCloner <<sealed>> {
+    + <<override>> Handles(type:Type) : bool
+    + <<override>> FillClone(type:Type, clone:IEnumerable, original:IEnumerable, context:CloningContext) : void
+}
+class "Cloner`1"<T> {
+}
+"Cloner`1" "<IEnumerable>" <|-- EnumerableCloner
+@enduml

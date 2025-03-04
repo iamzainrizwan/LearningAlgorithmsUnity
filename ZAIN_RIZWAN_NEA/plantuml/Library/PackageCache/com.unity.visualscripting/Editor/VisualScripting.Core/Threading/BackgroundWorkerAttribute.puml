@@ -1,0 +1,7 @@
+@startuml
+class BackgroundWorkerAttribute {
+    + BackgroundWorkerAttribute(methodName:string)
+    + methodName : string <<get>>
+}
+Attribute <|-- BackgroundWorkerAttribute
+@enduml

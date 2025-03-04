@@ -1,0 +1,7 @@
+@startuml
+class CoroutineRunner <<sealed>> {
+}
+MonoBehaviour <|-- CoroutineRunner
+ISingleton <|-- CoroutineRunner
+CoroutineRunner --> "instance" CoroutineRunner
+@enduml

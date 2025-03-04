@@ -1,0 +1,7 @@
+@startuml
+class UnitPortDefinitionUtility <<static>> {
+    + {static} Label(definition:IUnitPortDefinition) : string
+    + {static} Warnings(graph:FlowGraph, definitions:IEnumerable<IUnitPortDefinition>) : IEnumerable<Warning>
+    + {static} InvalidWarning(definition:IUnitPortDefinition) : Warning
+}
+@enduml

@@ -1,0 +1,36 @@
+@startuml
+class ChangeExposedFlagAction {
+}
+class ChangePropertyValueAction {
+}
+class ChangeDisplayNameAction {
+}
+class ChangeReferenceNameAction {
+}
+class ResetReferenceNameAction {
+}
+class DeleteShaderInputAction {
+}
+class ShaderInputViewController {
+    + <<override>> Dispose() : void
+}
+class "DataStore`1"<T> {
+}
+class "Action`1"<T> {
+}
+class "SGViewController`2"<T1,T2> {
+}
+IGraphDataAction <|-- ChangeExposedFlagAction
+ChangeExposedFlagAction --> "modifyGraphDataAction<GraphData>" "Action`1"
+IGraphDataAction <|-- ChangePropertyValueAction
+ChangePropertyValueAction --> "modifyGraphDataAction<GraphData>" "Action`1"
+IGraphDataAction <|-- ChangeDisplayNameAction
+ChangeDisplayNameAction --> "modifyGraphDataAction<GraphData>" "Action`1"
+IGraphDataAction <|-- ChangeReferenceNameAction
+ChangeReferenceNameAction --> "modifyGraphDataAction<GraphData>" "Action`1"
+IGraphDataAction <|-- ResetReferenceNameAction
+ResetReferenceNameAction --> "modifyGraphDataAction<GraphData>" "Action`1"
+IGraphDataAction <|-- DeleteShaderInputAction
+DeleteShaderInputAction --> "modifyGraphDataAction<GraphData>" "Action`1"
+"SGViewController`2" "<ShaderInput,ShaderInputViewModel>" <|-- ShaderInputViewController
+@enduml

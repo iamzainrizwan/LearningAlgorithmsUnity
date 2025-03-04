@@ -1,0 +1,6 @@
+@startuml
+class FlowMachineEditor {
+    + FlowMachineEditor(metadata:Metadata)
+}
+MachineEditor <|-- FlowMachineEditor
+@enduml

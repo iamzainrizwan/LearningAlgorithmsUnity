@@ -1,0 +1,17 @@
+@startuml
+interface IJobParallelForDefer {
+}
+class IJobParallelForDeferExtensions <<static>> {
+    + {static} EarlyJobInit() : void
+    + {static} <<unsafe>> Schedule(jobData:T, list:NativeList<U>, innerloopBatchCount:int, dependsOn:JobHandle) : JobHandle
+    + {static} <<unsafe>> ScheduleByRef(jobData:T, list:NativeList<U>, innerloopBatchCount:int, dependsOn:JobHandle) : JobHandle
+    + {static} <<unsafe>> Schedule(jobData:T, forEachCount:int*, innerloopBatchCount:int, dependsOn:JobHandle) : JobHandle
+    + {static} <<unsafe>> ScheduleByRef(jobData:T, forEachCount:int*, innerloopBatchCount:int, dependsOn:JobHandle) : JobHandle
+}
+class "JobParallelForDeferProducer`1"<T> {
+}
+struct "JobParallelForDeferProducer`1"<T> {
+    + <<unsafe>> {static} Execute(jobData:T, additionalPtr:IntPtr, bufferRangePatchData:IntPtr, ranges:JobRanges, jobIndex:int) : void
+}
+IJobParallelForDeferExtensions +-- "JobParallelForDeferProducer`1"
+@enduml

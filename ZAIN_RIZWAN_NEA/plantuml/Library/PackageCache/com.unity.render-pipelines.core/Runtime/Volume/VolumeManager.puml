@@ -1,0 +1,38 @@
+@startuml
+class VolumeManager <<sealed>> <<partial>> {
+    + GetVolumeComponentDefaultState(volumeComponentType:Type) : VolumeComponent
+    + isInitialized : bool <<get>>
+    + Initialize(globalDefaultVolumeProfile:VolumeProfile, qualityDefaultVolumeProfile:VolumeProfile) : void
+    + Deinitialize() : void
+    + SetGlobalDefaultProfile(profile:VolumeProfile) : void
+    + SetQualityDefaultProfile(profile:VolumeProfile) : void
+    + SetCustomDefaultProfiles(profiles:List<VolumeProfile>) : void
+    + OnVolumeProfileChanged(profile:VolumeProfile) : void
+    + OnVolumeComponentChanged(component:VolumeComponent) : void
+    + CreateStack() : VolumeStack
+    + ResetMainStack() : void
+    + DestroyStack(stack:VolumeStack) : void
+    + Register(volume:Volume) : void
+    + Unregister(volume:Volume) : void
+    + IsComponentActiveInMask(layerMask:LayerMask) : bool
+    + CheckDefaultVolumeState() : void
+    + CheckStack(stack:VolumeStack) : void
+    + Update(trigger:Transform, layerMask:LayerMask) : void
+    + Update(stack:VolumeStack, trigger:Transform, layerMask:LayerMask) : void
+    + GetVolumes(layerMask:LayerMask) : Volume[]
+}
+struct VolumeIsolationScope {
+    + VolumeIsolationScope(unused:bool)
+}
+class "IEnumerable`1"<T> {
+}
+class "ReadOnlyCollection`1"<T> {
+}
+VolumeManager --> "instance" VolumeManager
+VolumeManager --> "stack" VolumeStack
+VolumeManager --> "baseComponentTypes<Type>" "IEnumerable`1"
+VolumeManager --> "globalDefaultProfile" VolumeProfile
+VolumeManager --> "qualityDefaultProfile" VolumeProfile
+VolumeManager --> "customDefaultProfiles<VolumeProfile>" "ReadOnlyCollection`1"
+IDisposable <|-- VolumeIsolationScope
+@enduml

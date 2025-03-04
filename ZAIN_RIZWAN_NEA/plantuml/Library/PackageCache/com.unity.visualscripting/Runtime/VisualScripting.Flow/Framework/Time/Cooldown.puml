@@ -1,0 +1,32 @@
+@startuml
+class Cooldown <<sealed>> {
+    + CreateData() : IGraphElementData
+    + StartListening(stack:GraphStack) : void
+    + StopListening(stack:GraphStack) : void
+    + IsListening(pointer:GraphPointer) : bool
+    + Update(flow:Flow) : void
+}
+class Data <<sealed>> {
+    + remaining : float
+    + duration : float
+    + unscaled : bool
+    + isReady : bool <<get>>
+    + isListening : bool
+}
+Unit <|-- Cooldown
+IGraphElementWithData <|-- Cooldown
+IGraphEventListener <|-- Cooldown
+Cooldown --> "enter" ControlInput
+Cooldown --> "reset" ControlInput
+Cooldown --> "duration" ValueInput
+Cooldown --> "unscaledTime" ValueInput
+Cooldown --> "exitReady" ControlOutput
+Cooldown --> "exitNotReady" ControlOutput
+Cooldown --> "tick" ControlOutput
+Cooldown --> "becameReady" ControlOutput
+Cooldown --> "remainingSeconds" ValueOutput
+Cooldown --> "remainingRatio" ValueOutput
+Cooldown +-- Data
+IGraphElementData <|-- Data
+Data --> "update" Delegate
+@enduml

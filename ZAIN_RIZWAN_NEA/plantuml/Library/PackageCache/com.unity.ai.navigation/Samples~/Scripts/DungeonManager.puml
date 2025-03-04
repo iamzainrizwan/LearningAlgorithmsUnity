@@ -1,0 +1,8 @@
+@startuml
+class DungeonManager {
+    + m_Width : int = 10
+    + m_Height : int = 10
+    + m_Spacing : float = 4.0f
+}
+MonoBehaviour <|-- DungeonManager
+@enduml

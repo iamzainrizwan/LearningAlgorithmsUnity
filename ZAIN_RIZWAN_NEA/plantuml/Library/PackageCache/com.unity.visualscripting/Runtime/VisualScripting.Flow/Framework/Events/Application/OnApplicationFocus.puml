@@ -1,0 +1,7 @@
+@startuml
+class OnApplicationFocus <<sealed>> {
+}
+class "GlobalEventUnit`1"<T> {
+}
+"GlobalEventUnit`1" "<EmptyEventArgs>" <|-- OnApplicationFocus
+@enduml

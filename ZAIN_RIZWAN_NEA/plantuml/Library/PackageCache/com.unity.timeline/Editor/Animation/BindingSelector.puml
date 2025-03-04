@@ -1,0 +1,10 @@
+@startuml
+class BindingSelector {
+    + BindingSelector(window:EditorWindow, curveEditor:CurveEditor, trackGlobalTreeViewState:TreeViewState)
+    + OnGUI(targetRect:Rect) : void
+    + InitIfNeeded(rect:Rect, dataSource:CurveDataSource, isNewSelection:bool) : void
+    + RefreshCurves() : void
+    + RefreshTree() : void
+}
+BindingSelector --> "treeViewController" TreeViewController
+@enduml

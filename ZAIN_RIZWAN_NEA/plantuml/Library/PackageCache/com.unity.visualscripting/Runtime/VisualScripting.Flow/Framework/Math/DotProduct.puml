@@ -1,0 +1,9 @@
+@startuml
+abstract class "DotProduct`1"<T> {
+    + {abstract} Operation(a:T, b:T) : float
+}
+Unit <|-- "DotProduct`1"
+"DotProduct`1" --> "a" ValueInput
+"DotProduct`1" --> "b" ValueInput
+"DotProduct`1" --> "dotProduct" ValueOutput
+@enduml

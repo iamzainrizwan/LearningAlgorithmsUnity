@@ -1,0 +1,11 @@
+@startuml
+struct DualMotorRumble {
+    + lowFrequencyMotorSpeed : float <<get>>
+    + highFrequencyMotorSpeed : float <<get>>
+    + isRumbling : bool <<get>>
+    + PauseHaptics(device:InputDevice) : void
+    + ResumeHaptics(device:InputDevice) : void
+    + ResetHaptics(device:InputDevice) : void
+    + SetMotorSpeeds(device:InputDevice, lowFrequency:float, highFrequency:float) : void
+}
+@enduml

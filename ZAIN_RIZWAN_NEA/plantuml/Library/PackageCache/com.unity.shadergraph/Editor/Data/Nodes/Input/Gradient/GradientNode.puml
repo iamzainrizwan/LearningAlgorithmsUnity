@@ -1,0 +1,18 @@
+@startuml
+class GradientNode {
+    + <<const>> OutputSlotId : int = 0
+    + GradientNode()
+    + <<override>> OnBeforeSerialize() : void
+    + <<override>> hasPreview : bool <<get>>
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + <<override>> CollectPreviewMaterialProperties(properties:List<PreviewProperty>) : void
+    + <<override>> CollectShaderProperties(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + AsShaderProperty() : AbstractShaderProperty
+    + outputSlotId : int <<get>>
+}
+AbstractMaterialNode <|-- GradientNode
+IGeneratesBodyCode <|-- GradientNode
+IPropertyFromNode <|-- GradientNode
+GradientNode --> "gradient" Gradient
+@enduml

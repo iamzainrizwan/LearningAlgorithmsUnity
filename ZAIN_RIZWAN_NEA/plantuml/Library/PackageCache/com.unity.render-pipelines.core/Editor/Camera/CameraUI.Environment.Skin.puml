@@ -1,0 +1,12 @@
+@startuml
+class CameraUI <<static>> <<partial>> {
+}
+class Environment <<static>> <<partial>> {
+}
+class Styles <<static>> {
+}
+CameraUI +-- Environment
+Environment +-- Styles
+Styles o-> "header" GUIContent
+Styles o-> "volumeLayerMask" GUIContent
+@enduml

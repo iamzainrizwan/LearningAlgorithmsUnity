@@ -1,0 +1,55 @@
+@startuml
+class StickyNodeChangeEvent {
+    + {static} GetPooled(target:StickyNote, change:Change) : StickyNodeChangeEvent
+}
+class StickyNote {
+    + <<virtual>> OnStartResize() : void
+    + <<virtual>> OnResized() : void
+    + CanResizePastParentBounds() : bool
+    + FitText(onlyIfSmaller:bool) : void
+    + StickyNote(position:Rect, graph:GraphData)
+    + displayName : string <<get>>
+    + StickyNote(uiFile:string, position:Rect, graph:GraphData)
+    + BuildContextualMenu(evt:ContextualMenuPopulateEvent) : void
+    + GetInspectorContent() : PropertySheet
+    + <<override>> SetPosition(rect:Rect) : void
+    + <<override>> GetPosition() : Rect
+    + contents : string <<get>> <<set>>
+    + <<new>> title : string <<get>> <<set>>
+}
+class "EventBase`1"<T> {
+}
+enum Change {
+    title,
+    contents,
+    theme,
+    textSize,
+}
+enum Theme {
+    Classic,
+    Black,
+    Orange,
+    Green,
+    Blue,
+    Red,
+    Purple,
+    Teal,
+}
+enum TextSize {
+    Small,
+    Medium,
+    Large,
+    Huge,
+}
+"EventBase`1" "<StickyNodeChangeEvent>" <|-- StickyNodeChangeEvent
+StickyNodeChangeEvent --> "change" Change
+GraphElement <|-- StickyNote
+ISGResizable <|-- StickyNote
+StickyNote --> "userData" StickyNoteData
+StickyNote --> "theme" Theme
+StickyNote --> "textSize" TextSize
+StickyNote o-> "defaultSize" Vector2
+StickyNodeChangeEvent +-- Change
+StickyNote +-- Theme
+StickyNote +-- TextSize
+@enduml

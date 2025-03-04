@@ -1,0 +1,15 @@
+@startuml
+class TimelinePanManipulator {
+}
+class TimelineZoomManipulator {
+}
+class TimelineShortcutManipulator {
+}
+class InlineCurvesShortcutManipulator {
+}
+Manipulator <|-- TimelinePanManipulator
+Manipulator <|-- TimelineZoomManipulator
+TimelineZoomManipulator o-> "Instance" TimelineZoomManipulator
+Manipulator <|-- TimelineShortcutManipulator
+Manipulator <|-- InlineCurvesShortcutManipulator
+@enduml

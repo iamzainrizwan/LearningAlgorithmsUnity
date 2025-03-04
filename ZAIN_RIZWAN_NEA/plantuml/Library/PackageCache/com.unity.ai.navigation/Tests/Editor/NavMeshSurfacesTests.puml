@@ -1,0 +1,7 @@
+@startuml
+class NavMeshSurfacesTests {
+    + ActiveSurfaces_AddOneItemToListInEditMode_SurfaceListSetToZeroInPlayMode(option:EnterPlayModeOptions) : IEnumerator
+    + ActiveSurfaces_CreateSurfaceInEditMode_SurfaceRemainsInActiveSurfacesInPlayMode(option:EnterPlayModeOptions) : IEnumerator
+}
+DomainReloadTestBase <|-- NavMeshSurfacesTests
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class ScriptReferenceResolverSettings {
+    + OnGUI() : void
+}
+class Styles <<static>> {
+}
+ScriptReferenceResolverSettings +-- Styles
+Styles --> "defaultsButton" GUIStyle
+@enduml

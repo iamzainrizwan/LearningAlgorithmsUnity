@@ -1,0 +1,41 @@
+@startuml
+class ColorGradingLutPass {
+    + ColorGradingLutPass(evt:RenderPassEvent, data:PostProcessData)
+    + Setup(internalLut:RTHandle) : void
+    + ConfigureDescriptor(postProcessingData:PostProcessingData, descriptor:RenderTextureDescriptor, filterMode:FilterMode) : void
+    + ConfigureDescriptor(postProcessingData:UniversalPostProcessingData, descriptor:RenderTextureDescriptor, filterMode:FilterMode) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + Cleanup() : void
+}
+class PassData {
+}
+class ShaderConstants <<static>> {
+    + {static} <<readonly>> _Lut_Params : int
+    + {static} <<readonly>> _ColorBalance : int
+    + {static} <<readonly>> _ColorFilter : int
+    + {static} <<readonly>> _ChannelMixerRed : int
+    + {static} <<readonly>> _ChannelMixerGreen : int
+    + {static} <<readonly>> _ChannelMixerBlue : int
+    + {static} <<readonly>> _HueSatCon : int
+    + {static} <<readonly>> _Lift : int
+    + {static} <<readonly>> _Gamma : int
+    + {static} <<readonly>> _Gain : int
+    + {static} <<readonly>> _Shadows : int
+    + {static} <<readonly>> _Midtones : int
+    + {static} <<readonly>> _Highlights : int
+    + {static} <<readonly>> _ShaHiLimits : int
+    + {static} <<readonly>> _SplitShadows : int
+    + {static} <<readonly>> _SplitHighlights : int
+    + {static} <<readonly>> _CurveMaster : int
+    + {static} <<readonly>> _CurveRed : int
+    + {static} <<readonly>> _CurveGreen : int
+    + {static} <<readonly>> _CurveBlue : int
+    + {static} <<readonly>> _CurveHueVsHue : int
+    + {static} <<readonly>> _CurveHueVsSat : int
+    + {static} <<readonly>> _CurveLumVsSat : int
+    + {static} <<readonly>> _CurveSatVsSat : int
+}
+ScriptableRenderPass <|-- ColorGradingLutPass
+ColorGradingLutPass +-- PassData
+ColorGradingLutPass +-- ShaderConstants
+@enduml

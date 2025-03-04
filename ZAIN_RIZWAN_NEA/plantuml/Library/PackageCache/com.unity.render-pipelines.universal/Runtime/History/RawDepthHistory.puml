@@ -1,0 +1,9 @@
+@startuml
+class RawDepthHistory <<sealed>> {
+    + <<override>> OnCreate(owner:BufferedRTHandleSystem, typeId:uint) : void
+    + GetCurrentTexture(eyeIndex:int) : RTHandle
+    + GetPreviousTexture(eyeIndex:int) : RTHandle
+    + <<override>> Reset() : void
+}
+CameraHistoryItem <|-- RawDepthHistory
+@enduml

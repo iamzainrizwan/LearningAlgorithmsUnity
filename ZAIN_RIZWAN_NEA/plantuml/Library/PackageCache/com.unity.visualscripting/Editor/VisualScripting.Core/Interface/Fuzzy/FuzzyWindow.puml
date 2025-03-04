@@ -1,0 +1,53 @@
+@startuml
+class FuzzyWindow <<sealed>> {
+    + Populate(node:FuzzyOptionNode, childrenValues:IEnumerable<object>, cancellation:CancellationToken?) : void
+    + {static} Show(activatorPosition:Rect, optionTree:IFuzzyOptionTree, callback:Action<IFuzzyOption>) : void
+    + repaintDeltaTime : float <<get>>
+    + DisplayProgressBar(text:string, progress:float) : void
+    + DisplayProgressBar(progress:float) : void
+    + {static} ClearProgressBar() : void
+}
+class Styles <<static>> {
+    + {static} <<readonly>> searchFieldHeight : float = 20
+    + {static} <<readonly>> headerHeight : float = 25
+    + {static} <<readonly>> optionHeight : float = 20
+    + {static} <<readonly>> maxOptionWidth : float = 800
+}
+class Root {
+    + Root(header:GUIContent)
+}
+class SearchRoot {
+    + SearchRoot()
+}
+class FavoritesRoot {
+    + FavoritesRoot()
+}
+class "FuzzyOption`1"<T> {
+}
+EditorWindow <|-- FuzzyWindow
+FuzzyWindow --> "defaultOptionStyle" GUIStyle
+FuzzyWindow --> "instance" FuzzyWindow
+FuzzyWindow +-- Styles
+Styles --> "header" GUIStyle
+Styles --> "footerBackground" GUIStyle
+Styles --> "optionWithIcon" GUIStyle
+Styles --> "optionWithoutIcon" GUIStyle
+Styles --> "optionWithIconDim" GUIStyle
+Styles --> "optionWithoutIconDim" GUIStyle
+Styles --> "background" GUIStyle
+Styles --> "rightArrow" GUIStyle
+Styles --> "leftArrow" GUIStyle
+Styles --> "searchField" GUIStyle
+Styles --> "searchFieldCancelButton" GUIStyle
+Styles --> "searchFieldCancelButtonEmpty" GUIStyle
+Styles --> "insufficientSearch" GUIStyle
+Styles --> "check" GUIStyle
+Styles --> "star" GUIStyle
+Styles --> "favoritesIcon" EditorTexture
+FuzzyWindow +-- Root
+"FuzzyOption`1" "<object>" <|-- Root
+FuzzyWindow +-- SearchRoot
+"FuzzyOption`1" "<object>" <|-- SearchRoot
+FuzzyWindow +-- FavoritesRoot
+"FuzzyOption`1" "<object>" <|-- FavoritesRoot
+@enduml

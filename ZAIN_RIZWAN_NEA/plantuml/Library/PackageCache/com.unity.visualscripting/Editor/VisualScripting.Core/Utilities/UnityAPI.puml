@@ -1,0 +1,11 @@
+@startuml
+class UnityAPI <<static>> {
+    + {static} ProcessDelegates() : void
+    + {static} Async(action:Action) : void
+    + {static} Await(action:Action) : void
+    + {static} AwaitForever(action:Action) : void
+    + {static} Await(func:Func<T>) : T
+    + {static} AwaitForever(func:Func<T>) : T
+    + {static} Await(func:Func<T>, timeout:TimeSpan?) : T
+}
+@enduml

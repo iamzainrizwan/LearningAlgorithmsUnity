@@ -1,0 +1,10 @@
+@startuml
+class fsMetaType {
+    + HasDefaultConstructor : bool <<get>>
+    + EmitAotData() : bool
+    + CreateInstance() : object
+    + {static} Get(config:fsConfig, type:Type) : fsMetaType
+    + {static} ClearCache() : void
+}
+fsMetaType --> "ReflectedType" Type
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class UniversalRenderPipelineVolumeComponentEditor {
+    + <<override>> OnEnable() : void
+}
+VolumeComponentEditor <|-- UniversalRenderPipelineVolumeComponentEditor
+@enduml

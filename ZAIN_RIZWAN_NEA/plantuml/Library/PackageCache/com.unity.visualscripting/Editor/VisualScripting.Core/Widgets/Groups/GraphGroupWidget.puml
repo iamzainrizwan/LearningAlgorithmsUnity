@@ -1,0 +1,35 @@
+@startuml
+class GraphGroupWidget {
+    + GraphGroupWidget(canvas:ICanvas, group:GraphGroup)
+    + <<override>> CacheItem() : void
+    + <<override>> foregroundRequiresInput : bool <<get>>
+    + <<override>> zIndex : float <<get>> <<set>>
+    + <<override>> CachePosition() : void
+    + <<override>> OnViewportChange() : void
+    + <<override>> DrawForeground() : void
+    + <<override>> DrawBackground() : void
+    + <<override>> canDelete : bool <<get>>
+    + <<override>> canAlignAndDistribute : bool <<get>>
+    + <<override>> canResizeHorizontal : bool <<get>>
+    + <<override>> canResizeVertical : bool <<get>>
+    + <<override>> canSelect : bool <<get>>
+    + FocusLabel() : void
+    + <<override>> canDrag : bool <<get>>
+    + <<override>> ExpandDragGroup(dragGroup:HashSet<IGraphElement>) : void
+}
+class "GraphElementWidget`2"<T1,T2> {
+}
+class Styles <<static>> {
+    + {static} <<readonly>> headerFontSize : float = 14
+    + {static} headerHeight : float <<get>>
+    + {static} AdjustColor(color:Color, selected:bool) : Color
+}
+"GraphElementWidget`2" "<ICanvas,GraphGroup>" <|-- GraphGroupWidget
+GraphGroupWidget --> "position" Rect
+GraphGroupWidget --> "labelPosition" Rect
+GraphGroupWidget --> "hotArea" Rect
+GraphGroupWidget +-- Styles
+Styles --> "group" GUIStyle
+Styles --> "label" GUIStyle
+Styles --> "labelSelected" GUIStyle
+@enduml

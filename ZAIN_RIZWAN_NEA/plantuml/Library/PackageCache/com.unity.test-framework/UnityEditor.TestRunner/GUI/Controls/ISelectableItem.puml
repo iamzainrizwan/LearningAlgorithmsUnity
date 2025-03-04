@@ -1,0 +1,4 @@
+@startuml
+interface "ISelectableItem`1"<out T> {
+}
+@enduml

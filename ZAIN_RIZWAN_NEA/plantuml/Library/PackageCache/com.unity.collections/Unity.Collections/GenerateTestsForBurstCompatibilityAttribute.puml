@@ -1,0 +1,21 @@
+@startuml
+class BurstCompatibleAttribute {
+}
+class GenerateTestsForBurstCompatibilityAttribute {
+    + RequiredUnityDefine : string = null
+}
+class ExcludeFromBurstCompatTestingAttribute {
+    + Reason : string <<get>> <<set>>
+    + ExcludeFromBurstCompatTestingAttribute(_reason:string)
+}
+enum BurstCompatibleCompileTarget {
+    Player,
+    Editor,
+    PlayerAndEditor,
+}
+Attribute <|-- BurstCompatibleAttribute
+Attribute <|-- GenerateTestsForBurstCompatibilityAttribute
+GenerateTestsForBurstCompatibilityAttribute o-> "CompileTarget" BurstCompatibleCompileTarget
+Attribute <|-- ExcludeFromBurstCompatTestingAttribute
+GenerateTestsForBurstCompatibilityAttribute +-- BurstCompatibleCompileTarget
+@enduml

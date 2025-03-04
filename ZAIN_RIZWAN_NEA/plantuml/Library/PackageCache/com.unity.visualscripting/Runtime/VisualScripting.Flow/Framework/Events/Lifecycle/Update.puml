@@ -1,0 +1,7 @@
+@startuml
+class Update <<sealed>> {
+}
+class "MachineEventUnit`1"<T> {
+}
+"MachineEventUnit`1" "<EmptyEventArgs>" <|-- Update
+@enduml

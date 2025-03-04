@@ -1,0 +1,10 @@
+@startuml
+class RuntimeProfilerTestBase {
+    + Setup() : void
+    + TearDown() : void
+}
+class RuntimeProfilerTests {
+    + RuntimeProfilerGivesNonZeroOutput() : IEnumerator
+}
+RuntimeProfilerTestBase <|-- RuntimeProfilerTests
+@enduml

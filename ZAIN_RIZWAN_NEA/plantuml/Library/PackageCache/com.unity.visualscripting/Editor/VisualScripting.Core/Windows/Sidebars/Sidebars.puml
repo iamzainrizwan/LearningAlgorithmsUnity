@@ -1,0 +1,15 @@
+@startuml
+class Sidebars <<sealed>> {
+    + Sidebars()
+    + Feed(panelContents:IEnumerable<ISidebarPanelContent>) : void
+    + Feed(panelContent:ISidebarPanelContent) : void
+    + Remove() : void
+}
+class "List`1"<T> {
+}
+class "UnexpectedEnumValueException`1"<T> {
+}
+Sidebars --> "left" Sidebar
+Sidebars --> "right" Sidebar
+Sidebars o-> "panels<SidebarPanel>" "List`1"
+@enduml

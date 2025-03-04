@@ -1,0 +1,13 @@
+@startuml
+class TargetFieldContext {
+    + hasDotsProperties : bool <<get>>
+    + TargetFieldContext(pass:PassDescriptor, activeBlocks:List<(BlockFieldDescriptor descriptor, bool isDefaultValue)>, connectedBlocks:List<BlockFieldDescriptor>, hasDotsProperties:bool)
+    + AddField(field:FieldDescriptor, conditional:bool) : void
+}
+class "List`1"<T> {
+}
+TargetFieldContext --> "conditionalFields<ConditionalField>" "List`1"
+TargetFieldContext --> "pass" PassDescriptor
+TargetFieldContext --> "blocks<(BlockFieldDescriptor descriptor, bool isDefaultValue)>" "List`1"
+TargetFieldContext --> "connectedBlocks<BlockFieldDescriptor>" "List`1"
+@enduml

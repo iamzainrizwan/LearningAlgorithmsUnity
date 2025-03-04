@@ -1,0 +1,29 @@
+@startuml
+class BuiltInUnlitSubTarget <<sealed>> {
+    + BuiltInUnlitSubTarget()
+    + <<override>> IsActive() : bool
+    + <<override>> Setup(context:TargetSetupContext) : void
+    + <<override>> ProcessPreviewMaterial(material:Material) : void
+    + <<override>> GetFields(context:TargetFieldContext) : void
+    + <<override>> GetActiveBlocks(context:TargetActiveBlockContext) : void
+    + <<override>> CollectShaderProperties(collector:PropertyCollector, generationMode:GenerationMode) : void
+    + <<override>> GetPropertiesGUI(context:TargetPropertyGUIContext, onChange:Action, registerUndo:Action<String>) : void
+}
+class SubShaders <<static>> {
+    + {static} Unlit(target:BuiltInTarget, renderType:string, renderQueue:string) : SubShaderDescriptor
+}
+class UnlitPasses <<static>> {
+    + {static} Unlit(target:BuiltInTarget) : PassDescriptor
+}
+class UnlitKeywords <<static>> {
+    + {static} Unlit(target:BuiltInTarget) : KeywordCollection
+}
+class UnlitIncludes <<static>> {
+}
+BuiltInSubTarget <|-- BuiltInUnlitSubTarget
+BuiltInUnlitSubTarget +-- SubShaders
+BuiltInUnlitSubTarget +-- UnlitPasses
+BuiltInUnlitSubTarget +-- UnlitKeywords
+BuiltInUnlitSubTarget +-- UnlitIncludes
+UnlitIncludes o-> "Unlit" IncludeCollection
+@enduml

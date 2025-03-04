@@ -1,0 +1,13 @@
+@startuml
+class TestSlot {
+    + TestSlot()
+    + TestSlot(slotId:int, displayName:string, slotType:SlotType, stageCapability:ShaderStageCapability, hidden:bool)
+    + <<override>> isDefaultValue : bool <<get>>
+    + <<override>> AddDefaultProperty(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + <<override>> CopyDefaultValue(other:MaterialSlot) : void
+    + <<override>> CopyValuesFrom(foundSlot:MaterialSlot) : void
+}
+MaterialSlot <|-- TestSlot
+TestSlot --> "valueType" SlotValueType
+TestSlot --> "concreteValueType" ConcreteSlotValueType
+@enduml

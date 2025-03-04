@@ -1,0 +1,177 @@
+@startuml
+class STP <<static>> {
+    + {static} IsSupported() : bool
+    + {static} Jit16(frameIndex:int) : Vector2
+    + {static} Execute(renderGraph:RenderGraph, config:Config) : TextureHandle
+}
+struct PerViewConfig {
+}
+struct Config {
+    + enableHwDrs : bool
+    + enableTexArray : bool
+    + enableMotionScaling : bool
+    + nearPlane : float
+    + farPlane : float
+    + frameIndex : int
+    + hasValidHistory : bool
+    + stencilMask : int
+    + debugViewIndex : int
+    + deltaTime : float
+    + lastDeltaTime : float
+    + numActiveViews : int
+}
+enum HistoryTextureType {
+    DepthMotion,
+    Luma,
+    Convergence,
+    Feedback,
+    Count,
+}
+struct HistoryUpdateInfo {
+    + useHwDrs : bool
+    + useTexArray : bool
+}
+class HistoryContext <<sealed>> {
+    + Update(info:HistoryUpdateInfo) : bool
+    + Dispose() : void
+}
+enum StpSetupPerViewConstants {
+    Count= 8,
+}
+struct StpConstantBufferData {
+    + <<fixed>> _StpSetupPerViewConstants : float
+}
+class ShaderResources <<static>> {
+    + {static} <<readonly>> _StpConstantBufferData : int
+    + {static} <<readonly>> _StpBlueNoiseIn : int
+    + {static} <<readonly>> _StpDebugOut : int
+    + {static} <<readonly>> _StpInputColor : int
+    + {static} <<readonly>> _StpInputDepth : int
+    + {static} <<readonly>> _StpInputMotion : int
+    + {static} <<readonly>> _StpInputStencil : int
+    + {static} <<readonly>> _StpIntermediateColor : int
+    + {static} <<readonly>> _StpIntermediateConvergence : int
+    + {static} <<readonly>> _StpIntermediateWeights : int
+    + {static} <<readonly>> _StpPriorLuma : int
+    + {static} <<readonly>> _StpLuma : int
+    + {static} <<readonly>> _StpPriorDepthMotion : int
+    + {static} <<readonly>> _StpDepthMotion : int
+    + {static} <<readonly>> _StpPriorFeedback : int
+    + {static} <<readonly>> _StpFeedback : int
+    + {static} <<readonly>> _StpPriorConvergence : int
+    + {static} <<readonly>> _StpConvergence : int
+    + {static} <<readonly>> _StpOutput : int
+}
+class ShaderKeywords <<static>> {
+    + {static} <<readonly>> EnableDebugMode : string = "ENABLE_DEBUG_MODE"
+    + {static} <<readonly>> EnableLargeKernel : string = "ENABLE_LARGE_KERNEL"
+    + {static} <<readonly>> EnableStencilResponsive : string = "ENABLE_STENCIL_RESPONSIVE"
+    + {static} <<readonly>> DisableTexture2DXArray : string = "DISABLE_TEXTURE2D_X_ARRAY"
+}
+class RuntimeResources {
+    + version : int <<get>>
+}
+enum ProfileId {
+    StpSetup,
+    StpPreTaa,
+    StpTaa,
+}
+class SetupData {
+    + kernelIndex : int
+    + viewCount : int
+}
+class PreTaaData {
+    + kernelIndex : int
+    + viewCount : int
+}
+class TaaData {
+    + kernelIndex : int
+    + viewCount : int
+}
+STP +-- PerViewConfig
+PerViewConfig --> "currentProj" Matrix4x4
+PerViewConfig --> "lastProj" Matrix4x4
+PerViewConfig --> "lastLastProj" Matrix4x4
+PerViewConfig --> "currentView" Matrix4x4
+PerViewConfig --> "lastView" Matrix4x4
+PerViewConfig --> "lastLastView" Matrix4x4
+STP +-- Config
+Config --> "noiseTexture" Texture2D
+Config --> "inputColor" TextureHandle
+Config --> "inputDepth" TextureHandle
+Config --> "inputMotion" TextureHandle
+Config --> "inputStencil" TextureHandle
+Config --> "debugView" TextureHandle
+Config --> "destination" TextureHandle
+Config --> "historyContext" HistoryContext
+Config --> "currentImageSize" Vector2Int
+Config --> "priorImageSize" Vector2Int
+Config --> "outputImageSize" Vector2Int
+STP +-- HistoryTextureType
+STP +-- HistoryUpdateInfo
+HistoryUpdateInfo --> "preUpscaleSize" Vector2Int
+HistoryUpdateInfo --> "postUpscaleSize" Vector2Int
+STP +-- HistoryContext
+IDisposable <|-- HistoryContext
+STP +-- StpSetupPerViewConstants
+STP +-- StpConstantBufferData
+StpConstantBufferData --> "_StpCommonConstant" Vector4
+StpConstantBufferData --> "_StpSetupConstants0" Vector4
+StpConstantBufferData --> "_StpSetupConstants1" Vector4
+StpConstantBufferData --> "_StpSetupConstants2" Vector4
+StpConstantBufferData --> "_StpSetupConstants3" Vector4
+StpConstantBufferData --> "_StpSetupConstants4" Vector4
+StpConstantBufferData --> "_StpSetupConstants5" Vector4
+StpConstantBufferData --> "_StpDilConstants0" Vector4
+StpConstantBufferData --> "_StpTaaConstants0" Vector4
+StpConstantBufferData --> "_StpTaaConstants1" Vector4
+StpConstantBufferData --> "_StpTaaConstants2" Vector4
+StpConstantBufferData --> "_StpTaaConstants3" Vector4
+STP +-- ShaderResources
+STP +-- ShaderKeywords
+STP +-- RuntimeResources
+IRenderPipelineResources <|-- RuntimeResources
+RuntimeResources --> "setupCS" ComputeShader
+RuntimeResources --> "preTaaCS" ComputeShader
+RuntimeResources --> "taaCS" ComputeShader
+STP +-- ProfileId
+STP +-- SetupData
+SetupData --> "cs" ComputeShader
+SetupData --> "dispatchSize" Vector2Int
+SetupData --> "constantBufferData" StpConstantBufferData
+SetupData --> "noiseTexture" TextureHandle
+SetupData --> "debugView" TextureHandle
+SetupData --> "inputColor" TextureHandle
+SetupData --> "inputDepth" TextureHandle
+SetupData --> "inputMotion" TextureHandle
+SetupData --> "inputStencil" TextureHandle
+SetupData --> "intermediateColor" TextureHandle
+SetupData --> "intermediateConvergence" TextureHandle
+SetupData --> "priorDepthMotion" TextureHandle
+SetupData --> "depthMotion" TextureHandle
+SetupData --> "priorLuma" TextureHandle
+SetupData --> "luma" TextureHandle
+SetupData --> "priorFeedback" TextureHandle
+SetupData --> "priorConvergence" TextureHandle
+STP +-- PreTaaData
+PreTaaData --> "cs" ComputeShader
+PreTaaData --> "dispatchSize" Vector2Int
+PreTaaData --> "noiseTexture" TextureHandle
+PreTaaData --> "debugView" TextureHandle
+PreTaaData --> "intermediateConvergence" TextureHandle
+PreTaaData --> "intermediateWeights" TextureHandle
+PreTaaData --> "luma" TextureHandle
+PreTaaData --> "convergence" TextureHandle
+STP +-- TaaData
+TaaData --> "cs" ComputeShader
+TaaData --> "dispatchSize" Vector2Int
+TaaData --> "noiseTexture" TextureHandle
+TaaData --> "debugView" TextureHandle
+TaaData --> "intermediateColor" TextureHandle
+TaaData --> "intermediateWeights" TextureHandle
+TaaData --> "priorFeedback" TextureHandle
+TaaData --> "depthMotion" TextureHandle
+TaaData --> "convergence" TextureHandle
+TaaData --> "feedback" TextureHandle
+TaaData --> "output" TextureHandle
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class BaseInputFieldTests {
+    + CreateInputFieldAsset(prefabPath:string) : void
+}
+@enduml

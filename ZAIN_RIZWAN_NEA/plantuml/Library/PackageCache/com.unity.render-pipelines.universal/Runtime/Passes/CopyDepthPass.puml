@@ -1,0 +1,22 @@
+@startuml
+class CopyDepthPass {
+    + CopyDepthPass(evt:RenderPassEvent, copyDepthShader:Shader, shouldClear:bool, copyToDepth:bool, copyResolvedDepth:bool, customPassName:string)
+    + Setup(source:RTHandle, destination:RTHandle) : void
+    + Dispose() : void
+    + <<override>> OnCameraSetup(cmd:CommandBuffer, renderingData:RenderingData) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + <<override>> OnCameraCleanup(cmd:CommandBuffer) : void
+    + Render(renderGraph:RenderGraph, frameData:ContextContainer, destination:TextureHandle, source:TextureHandle, bindAsCameraDepth:bool, passName:string) : void
+    + Render(renderGraph:RenderGraph, destination:TextureHandle, source:TextureHandle, resourceData:UniversalResourceData, cameraData:UniversalCameraData, bindAsCameraDepth:bool, passName:string) : void
+}
+class ShaderConstants <<static>> {
+    + {static} <<readonly>> _CameraDepthAttachment : int
+    + {static} <<readonly>> _CameraDepthTexture : int
+    + {static} <<readonly>> _ZWriteShaderHandle : int
+}
+class PassData {
+}
+ScriptableRenderPass <|-- CopyDepthPass
+CopyDepthPass +-- ShaderConstants
+CopyDepthPass +-- PassData
+@enduml

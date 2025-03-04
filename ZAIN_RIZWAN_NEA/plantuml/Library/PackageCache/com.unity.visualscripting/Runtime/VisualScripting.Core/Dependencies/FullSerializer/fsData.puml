@@ -1,0 +1,48 @@
+@startuml
+enum fsDataType {
+    Array,
+    Object,
+    Double,
+    Int64,
+    Boolean,
+    String,
+    Null,
+}
+class fsData <<sealed>> {
+    + <<override>> ToString() : string
+    + fsData()
+    + fsData(boolean:bool)
+    + fsData(f:double)
+    + fsData(i:Int64)
+    + fsData(str:string)
+    + fsData(dict:Dictionary<string, fsData>)
+    + fsData(list:List<fsData>)
+    + {static} CreateDictionary() : fsData
+    + {static} CreateList() : fsData
+    + {static} CreateList(capacity:int) : fsData
+    + IsNull : bool <<get>>
+    + IsDouble : bool <<get>>
+    + IsInt64 : bool <<get>>
+    + IsBool : bool <<get>>
+    + IsString : bool <<get>>
+    + IsDictionary : bool <<get>>
+    + IsList : bool <<get>>
+    + AsDouble : double <<get>>
+    + AsBool : bool <<get>>
+    + AsString : string <<get>>
+    + <<override>> Equals(obj:object) : bool
+    + Equals(other:fsData) : bool
+    + <<override>> GetHashCode() : int
+}
+class "Dictionary`2"<T1,T2> {
+}
+class "List`1"<T> {
+}
+fsData o-> "True" fsData
+fsData o-> "False" fsData
+fsData o-> "Null" fsData
+fsData --> "Type" fsDataType
+fsData --> "AsInt64" Int64
+fsData --> "AsDictionary<string,fsData>" "Dictionary`2"
+fsData --> "AsList<fsData>" "List`1"
+@enduml

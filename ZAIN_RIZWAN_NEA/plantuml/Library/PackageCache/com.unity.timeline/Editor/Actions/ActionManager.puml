@@ -1,0 +1,28 @@
+@startuml
+class ActionManager <<static>> {
+    + {static} GetCachedAction(list:IReadOnlyList<TU>) : TU
+    + {static} GetMenuEntries(actions:IReadOnlyList<TimelineAction>, mousePos:Vector2?, menuItems:List<MenuActionItem>) : void
+    + {static} GetMenuEntries(actions:IReadOnlyList<TrackAction>, menuItems:List<MenuActionItem>) : void
+    + {static} GetMenuEntries(actions:IReadOnlyList<ClipAction>, menuItems:List<MenuActionItem>) : void
+    + {static} GetMenuEntries(actions:IReadOnlyList<MarkerAction>, menuItems:List<MenuActionItem>) : void
+    + {static} HandleShortcut(evt:Event) : bool
+    + {static} HandleShortcut(evt:Event, actions:IReadOnlyList<T>, invoke:Func<T, bool>) : bool
+    + {static} ExecuteTimelineAction(timelineAction:TimelineAction, context:ActionContext) : bool
+    + {static} ExecuteTrackAction(trackAction:TrackAction, tracks:IEnumerable<TrackAsset>) : bool
+    + {static} ExecuteClipAction(clipAction:ClipAction, clips:IEnumerable<TimelineClip>) : bool
+    + {static} ExecuteMarkerAction(markerAction:MarkerAction, markers:IEnumerable<IMarker>) : bool
+}
+class "IReadOnlyList`1"<T> {
+}
+class "HashSet`1"<T> {
+}
+ActionManager o-> "TimelineActions<TimelineAction>" "IReadOnlyList`1"
+ActionManager o-> "ClipActions<ClipAction>" "IReadOnlyList`1"
+ActionManager o-> "TrackActions<TrackAction>" "IReadOnlyList`1"
+ActionManager o-> "MarkerActions<MarkerAction>" "IReadOnlyList`1"
+ActionManager o-> "TimelineActionsWithShortcuts<TimelineAction>" "IReadOnlyList`1"
+ActionManager o-> "ClipActionsWithShortcuts<ClipAction>" "IReadOnlyList`1"
+ActionManager o-> "TrackActionsWithShortcuts<TrackAction>" "IReadOnlyList`1"
+ActionManager o-> "MarkerActionsWithShortcuts<MarkerAction>" "IReadOnlyList`1"
+ActionManager o-> "ActionsWithAutoUndo<Type>" "HashSet`1"
+@enduml

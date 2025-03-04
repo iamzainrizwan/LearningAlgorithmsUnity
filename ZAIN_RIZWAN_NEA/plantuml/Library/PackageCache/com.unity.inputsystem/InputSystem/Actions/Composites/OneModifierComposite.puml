@@ -1,0 +1,13 @@
+@startuml
+class OneModifierComposite {
+    + modifier : int
+    + binding : int
+    + <<override>> valueSizeInBytes : int <<get>>
+    + overrideModifiersNeedToBePressedFirst : bool
+    + <<override>> EvaluateMagnitude(context:InputBindingCompositeContext) : float
+    + <<override>> <<unsafe>> ReadValue(context:InputBindingCompositeContext, buffer:void*, bufferSize:int) : void
+    + <<override>> ReadValueAsObject(context:InputBindingCompositeContext) : object
+}
+InputBindingComposite <|-- OneModifierComposite
+OneModifierComposite --> "valueType" Type
+@enduml

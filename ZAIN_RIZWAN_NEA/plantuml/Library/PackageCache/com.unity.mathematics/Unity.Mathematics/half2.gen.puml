@@ -1,0 +1,67 @@
+@startuml
+struct half2 {
+    + half2(x:half, y:half)
+    + half2(xy:half2)
+    + half2(v:half)
+    + half2(v:float)
+    + half2(v:float2)
+    + half2(v:double)
+    + half2(v:double2)
+    + Equals(rhs:half2) : bool
+    + <<override>> Equals(o:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+    + ToString(format:string, formatProvider:IFormatProvider) : string
+}
+class math <<static>> <<partial>> {
+    + {static} half2(x:half, y:half) : half2
+    + {static} half2(xy:half2) : half2
+    + {static} half2(v:half) : half2
+    + {static} half2(v:float) : half2
+    + {static} half2(v:float2) : half2
+    + {static} half2(v:double) : half2
+    + {static} half2(v:double2) : half2
+    + {static} hash(v:half2) : uint
+    + {static} hashwide(v:half2) : uint2
+}
+class "IEquatable`1"<T> {
+}
+class DebuggerProxy <<sealed>> {
+    + DebuggerProxy(v:half2)
+}
+IFormattable <|-- half2
+half2 --> "x" half
+half2 --> "y" half
+half2 --> "zero" half2
+half2 --> "xxxx" half4
+half2 --> "xxxy" half4
+half2 --> "xxyx" half4
+half2 --> "xxyy" half4
+half2 --> "xyxx" half4
+half2 --> "xyxy" half4
+half2 --> "xyyx" half4
+half2 --> "xyyy" half4
+half2 --> "yxxx" half4
+half2 --> "yxxy" half4
+half2 --> "yxyx" half4
+half2 --> "yxyy" half4
+half2 --> "yyxx" half4
+half2 --> "yyxy" half4
+half2 --> "yyyx" half4
+half2 --> "yyyy" half4
+half2 --> "xxx" half3
+half2 --> "xxy" half3
+half2 --> "xyx" half3
+half2 --> "xyy" half3
+half2 --> "yxx" half3
+half2 --> "yxy" half3
+half2 --> "yyx" half3
+half2 --> "yyy" half3
+half2 --> "xx" half2
+half2 --> "xy" half2
+half2 --> "yx" half2
+half2 --> "yy" half2
+half2 +-- DebuggerProxy
+DebuggerProxy --> "x" half
+DebuggerProxy --> "y" half
+@enduml

@@ -1,0 +1,51 @@
+@startuml
+abstract class TrackAsset <<partial>> {
+    + start : double <<get>>
+    + end : double <<get>>
+    + <<sealed>> <<override>> duration : double <<get>>
+    + muted : bool <<get>> <<set>>
+    + mutedInHierarchy : bool <<get>>
+    + GetClips() : IEnumerable<TimelineClip>
+    + <<virtual>> isEmpty : bool <<get>>
+    + hasClips : bool <<get>>
+    + hasCurves : bool <<get>>
+    + isSubTrack : bool <<get>>
+    + GetChildTracks() : IEnumerable<TrackAsset>
+    + locked : bool <<get>> <<set>>
+    + lockedInHierarchy : bool <<get>>
+    + supportsNotifications : bool <<get>>
+    + CreateCurves(curvesClipName:string) : void
+    + <<virtual>> CreateTrackMixer(graph:PlayableGraph, go:GameObject, inputCount:int) : Playable
+    + <<sealed>> <<override>> CreatePlayable(graph:PlayableGraph, go:GameObject) : Playable
+    + CreateDefaultClip() : TimelineClip
+    + CreateClip() : TimelineClip
+    + DeleteClip(clip:TimelineClip) : bool
+    + CreateMarker(type:Type, time:double) : IMarker
+    + CreateMarker(time:double) : T
+    + DeleteMarker(marker:IMarker) : bool
+    + GetMarkers() : IEnumerable<IMarker>
+    + GetMarkerCount() : int
+    + GetMarker(idx:int) : IMarker
+    + <<virtual>> GatherProperties(director:PlayableDirector, driver:IPropertyCollector) : void
+    + <<virtual>> CanCreateTrackMixer() : bool
+}
+struct TransientBuildData {
+    + {static} Create() : TransientBuildData
+    + Clear() : void
+}
+class "IEnumerable`1"<T> {
+}
+class "List`1"<T> {
+}
+PlayableAsset <|-- TrackAsset
+IPropertyPreview <|-- TrackAsset
+ICurvesOwner <|-- TrackAsset
+TrackAsset --> "timelineAsset" TimelineAsset
+TrackAsset --> "parent" PlayableAsset
+TrackAsset --> "outputs<PlayableBinding>" "IEnumerable`1"
+TrackAsset --> "curves" AnimationClip
+TrackAsset +-- TransientBuildData
+TransientBuildData --> "trackList<TrackAsset>" "List`1"
+TransientBuildData --> "clipList<TimelineClip>" "List`1"
+TransientBuildData --> "markerList<IMarker>" "List`1"
+@enduml

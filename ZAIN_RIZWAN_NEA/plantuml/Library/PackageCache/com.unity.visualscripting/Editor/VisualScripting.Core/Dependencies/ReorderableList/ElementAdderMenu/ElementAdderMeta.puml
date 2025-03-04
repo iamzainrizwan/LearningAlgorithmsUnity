@@ -1,0 +1,8 @@
+@startuml
+class ElementAdderMeta <<static>> {
+    + {static} GetMenuCommandTypes(contractType:Type) : Type[]
+    + {static} GetMenuCommands(contractType:Type) : IElementAdderMenuCommand<TContext>[]
+    + {static} GetConcreteElementTypes(contractType:Type, filters:Func<Type, bool>[]) : Type[]
+    + {static} GetConcreteElementTypes(contractType:Type) : Type[]
+}
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class CommandAction {
+    + CommandAction(commandName:string)
+}
+class "Action`1"<T> {
+}
+GUIAction <|-- CommandAction
+CommandAction --> "onCommand<IGUIState>" "Action`1"
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class ExclusiveOrHandler {
+    + ExclusiveOrHandler()
+}
+BinaryOperatorHandler <|-- ExclusiveOrHandler
+@enduml

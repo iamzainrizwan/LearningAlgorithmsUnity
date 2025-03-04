@@ -1,0 +1,21 @@
+@startuml
+class ComponentHolderProtocol <<static>> {
+    + {static} IsComponentHolderType(type:Type) : bool
+    + {static} IsComponentHolder(uo:UnityObject) : bool
+    + {static} GameObject(uo:UnityObject) : GameObject
+    + {static} AddComponent(uo:UnityObject) : T
+    + {static} GetOrAddComponent(uo:UnityObject) : T
+    + {static} GetComponent(uo:UnityObject) : T
+    + {static} GetComponentInChildren(uo:UnityObject) : T
+    + {static} GetComponentInParent(uo:UnityObject) : T
+    + {static} GetComponents(uo:UnityObject) : T[]
+    + {static} GetComponentsInChildren(uo:UnityObject) : T[]
+    + {static} GetComponentsInParent(uo:UnityObject) : T[]
+    + {static} GetComponent(uo:UnityObject, type:Type) : Component
+    + {static} GetComponentInChildren(uo:UnityObject, type:Type) : Component
+    + {static} GetComponentInParent(uo:UnityObject, type:Type) : Component
+    + {static} GetComponents(uo:UnityObject, type:Type) : Component[]
+    + {static} GetComponentsInChildren(uo:UnityObject, type:Type) : Component[]
+    + {static} GetComponentsInParent(uo:UnityObject, type:Type) : Component[]
+}
+@enduml

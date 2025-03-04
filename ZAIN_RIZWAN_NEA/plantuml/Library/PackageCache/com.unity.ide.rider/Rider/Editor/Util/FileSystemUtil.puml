@@ -1,0 +1,7 @@
+@startuml
+class FileSystemUtil <<static>> {
+    + {static} GetFinalPathName(path:string) : string
+    + {static} FileNameWithoutExtension(path:string) : string
+    + {static} EditorPathExists(editorPath:string) : bool
+}
+@enduml

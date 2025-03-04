@@ -1,0 +1,7 @@
+@startuml
+class UnityObjectOwnershipUtility <<static>> {
+    + {static} CopyOwner(source:object, destination:object) : void
+    + {static} RemoveOwner(o:object) : void
+    + {static} GetOwner(o:object) : UnityObject
+}
+@enduml

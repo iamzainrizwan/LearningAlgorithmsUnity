@@ -1,0 +1,9 @@
+@startuml
+abstract class "PerSecond`1"<T> {
+    + {abstract} Operation(input:T) : T
+    + Operation(flow:Flow) : T
+}
+Unit <|-- "PerSecond`1"
+"PerSecond`1" --> "input" ValueInput
+"PerSecond`1" --> "output" ValueOutput
+@enduml

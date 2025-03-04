@@ -1,0 +1,6 @@
+@startuml
+class Greater <<sealed>> {
+}
+BinaryComparisonUnit <|-- Greater
+Greater --> "comparison" ValueOutput
+@enduml

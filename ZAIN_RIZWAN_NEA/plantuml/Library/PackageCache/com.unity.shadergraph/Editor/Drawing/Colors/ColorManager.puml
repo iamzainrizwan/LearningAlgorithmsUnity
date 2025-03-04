@@ -1,0 +1,16 @@
+@startuml
+class ColorManager {
+    + activeIndex : int <<get>>
+    + ColorManager(activeProvider:string)
+    + SetNodesDirty(nodeViews:IEnumerable<IShaderNodeView>) : void
+    + SetActiveProvider(newIndex:int, nodeViews:IEnumerable<IShaderNodeView>) : void
+    + UpdateNodeViews(nodeViews:IEnumerable<IShaderNodeView>) : void
+    + UpdateNodeView(nodeView:IShaderNodeView) : void
+    + providersCount : int <<get>>
+    + activeProviderName : string <<get>>
+    + activeSupportsCustom : bool <<get>>
+}
+class "IEnumerable`1"<T> {
+}
+ColorManager --> "providerNames<string>" "IEnumerable`1"
+@enduml

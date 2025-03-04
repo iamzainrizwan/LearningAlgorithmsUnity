@@ -1,0 +1,19 @@
+@startuml
+struct ExamplesCollections {
+    + foo() : void
+    + foo2() : void
+}
+struct MyParallelJob {
+    + Execute(i:int) : void
+}
+struct MyJob {
+    + Execute() : void
+}
+class "NativeArray`1"<T> {
+}
+ExamplesCollections +-- MyParallelJob
+IJobParallelFor <|-- MyParallelJob
+ExamplesCollections +-- MyJob
+IJob <|-- MyJob
+MyJob --> "nums<int>" "NativeArray`1"
+@enduml

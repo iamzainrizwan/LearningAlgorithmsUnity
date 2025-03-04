@@ -1,0 +1,7 @@
+@startuml
+class FixedStringMethods <<unsafe>> <<static>> <<partial>> {
+    + {static} Parse(fs:T, offset:int, output:int) : ParseError
+    + {static} Parse(fs:T, offset:int, output:uint) : ParseError
+    + {static} Parse(fs:T, offset:int, output:float, decimalSeparator:char) : ParseError
+}
+@enduml

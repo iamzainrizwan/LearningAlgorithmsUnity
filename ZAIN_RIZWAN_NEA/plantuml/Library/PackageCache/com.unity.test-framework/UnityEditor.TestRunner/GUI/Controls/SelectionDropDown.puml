@@ -1,0 +1,20 @@
+@startuml
+class SelectionDropDown {
+    + SelectionDropDown(contentProvider:ISelectionDropDownContentProvider)
+    + <<override>> OnOpen() : void
+    + <<override>> OnClose() : void
+    + <<override>> GetWindowSize() : Vector2
+    + <<override>> OnGUI(rect:Rect) : void
+}
+class Styles <<static>> {
+    + <<const>> LineHeight : float
+    + <<const>> TopMargin : float = 3f
+    + <<const>> BottomMargin : float = 1f
+    + <<const>> SeparatorHeight : float = 4f
+    + <<const>> SeparatorMargin : float = 3f
+}
+PopupWindowContent <|-- SelectionDropDown
+SelectionDropDown +-- Styles
+Styles o-> "MenuItem" GUIStyle
+Styles o-> "SeparatorColor" Color
+@enduml

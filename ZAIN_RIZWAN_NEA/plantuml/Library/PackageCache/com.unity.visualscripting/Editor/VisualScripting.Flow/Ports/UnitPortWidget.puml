@@ -1,0 +1,58 @@
+@startuml
+abstract class "UnitPortWidget`1"<TPort> {
+    + port : TPort <<get>>
+    + <<override>> FetchMetadata() : Metadata
+    + <<virtual>> FetchInspectorMetadata() : Metadata
+    + <<override>> foregroundRequiresInput : bool <<get>>
+    + wouldDisconnect : bool <<get>>
+    + willDisconnect : bool <<get>>
+    + <<override>> HandleInput() : void
+    + y : float <<get>> <<set>>
+    + <<override>> CachePosition() : void
+    + GetInnerWidth() : float
+    + GetHeight() : float
+    + <<override>> zIndex : float <<get>> <<set>>
+    + <<override>> canClip : bool <<get>>
+    + <<override>> DrawBackground() : void
+    + <<override>> DrawForeground() : void
+    + <<override>> DrawOverlay() : void
+}
+class "Widget`2"<T1,T2> {
+}
+class "IEnumerable`1"<T> {
+}
+class Styles <<static>> {
+    + <<const>> highlightScaling : float = 1f
+    + {static} <<readonly>> spaceBetweenEdgeAndHandle : float = 5
+    + {static} <<readonly>> spaceAfterEdge : float = 5
+    + {static} <<readonly>> spaceBetweenIconAndLabel : float = 5
+    + {static} <<readonly>> spaceBetweenIconAndInspector : float = 5
+    + {static} <<readonly>> spaceBetweenLabelAndInspector : float = 5
+    + {static} <<readonly>> labellessInspectorMinWidth : float = 75
+    + {static} <<readonly>> maxInspectorWidth : float = 200
+    + {static} <<readonly>> maxLabelWidth : float = 150
+    + {static} <<readonly>> iconSize : int
+}
+"Widget`2" "<FlowCanvas,TPort>" <|-- "UnitPortWidget`1"
+IUnitPortWidget <|-- "UnitPortWidget`1"
+"UnitPortWidget`1" --> "unit" IUnit
+"UnitPortWidget`1" --> "unitWidget" IUnitWidget
+"UnitPortWidget`1" --> "inspectorMetadata" Metadata
+"UnitPortWidget`1" --> "positionDependencies<IWidget>" "IEnumerable`1"
+"UnitPortWidget`1" --> "positionDependers<IWidget>" "IEnumerable`1"
+"UnitPortWidget`1" --> "position" Rect
+"UnitPortWidget`1" --> "handlePosition" Rect
+"UnitPortWidget`1" --> "labelPosition" Rect
+"UnitPortWidget`1" --> "iconPosition" Rect
+"UnitPortWidget`1" --> "inspectorPosition" Rect
+"UnitPortWidget`1" --> "identifierPosition" Rect
+"UnitPortWidget`1" --> "surroundPosition" Rect
+"UnitPortWidget`1" --> "hotArea" Rect
+"UnitPortWidget`1" --> "color" Color
+"UnitPortWidget`1" +-- Styles
+Styles o-> "handleSize" Vector2
+Styles --> "label" GUIStyle
+Styles --> "surround" GUIStyle
+Styles o-> "easierGrabOffset" RectOffset
+Styles o-> "surroundPadding" RectOffset
+@enduml

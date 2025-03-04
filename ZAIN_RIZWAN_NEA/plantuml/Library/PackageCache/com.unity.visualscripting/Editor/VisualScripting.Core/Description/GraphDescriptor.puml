@@ -1,0 +1,10 @@
+@startuml
+class "GraphDescriptor`2"<TGraph,TGraphDescription> {
+    + <<override>> Title() : string
+    + <<override>> Summary() : string
+    + <<override>> Icon() : EditorTexture
+}
+class "Descriptor`2"<T1,T2> {
+}
+"Descriptor`2" "<TGraph,TGraphDescription>" <|-- "GraphDescriptor`2"
+@enduml

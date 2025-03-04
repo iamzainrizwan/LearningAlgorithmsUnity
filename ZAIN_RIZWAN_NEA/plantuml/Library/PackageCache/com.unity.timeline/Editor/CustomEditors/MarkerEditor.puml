@@ -1,0 +1,32 @@
+@startuml
+enum MarkerUIStates {
+    None= 0,
+    Selected= 1 << 0,
+    Collapsed= 1 << 1,
+}
+struct MarkerDrawOptions {
+    + tooltip : string <<get>> <<set>>
+    + errorText : string <<get>> <<set>>
+    + <<override>> Equals(obj:object) : bool
+    + Equals(other:MarkerDrawOptions) : bool
+    + <<override>> GetHashCode() : int
+}
+struct MarkerOverlayRegion {
+    + startTime : double <<get>>
+    + endTime : double <<get>>
+    + MarkerOverlayRegion(_markerRegion:Rect, _timelineRegion:Rect, _startTime:double, _endTime:double)
+    + MarkerOverlayRegion(_markerRegion:Rect, _timelineRegion:Rect, _startTime:double, _endTime:double, _trackOffset:float)
+    + <<override>> Equals(obj:object) : bool
+    + Equals(other:MarkerOverlayRegion) : bool
+    + <<override>> GetHashCode() : int
+}
+class MarkerEditor {
+    + MarkerEditor()
+    + <<virtual>> GetMarkerOptions(marker:IMarker) : MarkerDrawOptions
+    + <<virtual>> OnCreate(marker:IMarker, clonedFrom:IMarker) : void
+    + <<virtual>> DrawOverlay(marker:IMarker, uiState:MarkerUIStates, region:MarkerOverlayRegion) : void
+}
+MarkerOverlayRegion --> "markerRegion" Rect
+MarkerOverlayRegion --> "timelineRegion" Rect
+MarkerOverlayRegion --> "trackRegion" Rect
+@enduml

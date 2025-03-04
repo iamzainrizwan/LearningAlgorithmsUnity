@@ -1,0 +1,10 @@
+@startuml
+class GetMember <<sealed>> {
+    + GetMember()
+    + GetMember(member:Member)
+    + <<override>> GetAnalyticsIdentifier() : AnalyticsIdentifier
+}
+MemberUnit <|-- GetMember
+GetMember --> "getter" Member
+GetMember --> "value" ValueOutput
+@enduml

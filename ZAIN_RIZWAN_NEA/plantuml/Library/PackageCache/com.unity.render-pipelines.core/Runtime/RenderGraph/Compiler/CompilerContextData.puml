@@ -1,0 +1,53 @@
+@startuml
+struct Name {
+    + <<readonly>> name : string
+    + <<readonly>> utf8ByteCount : int
+    + Name(name:string, computeUTF8ByteCount:bool)
+}
+class NativeListExtensions <<static>> {
+}
+class CompilerContextData {
+    + CompilerContextData(estimatedNumPasses:int)
+    + Initialize(resourceRegistry:RenderGraphResourceRegistry) : void
+    + Clear() : void
+    + UnversionedResourceData(h:ResourceHandle) : ref ResourceUnversionedData
+    + VersionedResourceData(h:ResourceHandle) : ref ResourceVersionedData
+    + Readers(h:ResourceHandle) : ReadOnlySpan<ResourceReaderData>
+    + ResourceReader(h:ResourceHandle, i:int) : ref ResourceReaderData
+    + AddToFragmentList(access:TextureAccess, listFirstIndex:int, numItems:int) : bool
+    + GetFullPassName(passId:int) : Name
+    + GetPassName(passId:int) : string
+    + GetResourceName(h:ResourceHandle) : string
+    + GetResourceVersionedName(h:ResourceHandle) : string
+    + AddToRandomAccessResourceList(h:ResourceHandle, randomWriteSlotIndex:int, preserveCounterValue:bool, listFirstIndex:int, numItems:int) : bool
+    + TagAllPasses(value:int) : void
+    + CullAllPasses(isCulled:bool) : void
+    + Dispose() : void
+}
+class "NativeList`1"<T> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+class "DynamicArray`1"<T> {
+}
+struct NativePassIterator {
+    + NativePassIterator(ctx:CompilerContextData)
+    + MoveNext() : bool
+    + GetEnumerator() : NativePassIterator
+}
+IDisposable <|-- CompilerContextData
+CompilerContextData --> "resources" ResourcesData
+CompilerContextData --> "passData<PassData>" "NativeList`1"
+CompilerContextData --> "fences<int,GraphicsFence>" "Dictionary`2"
+CompilerContextData --> "passNames<Name>" "DynamicArray`1"
+CompilerContextData --> "inputData<PassInputData>" "NativeList`1"
+CompilerContextData --> "outputData<PassOutputData>" "NativeList`1"
+CompilerContextData --> "fragmentData<PassFragmentData>" "NativeList`1"
+CompilerContextData --> "createData<ResourceHandle>" "NativeList`1"
+CompilerContextData --> "destroyData<ResourceHandle>" "NativeList`1"
+CompilerContextData --> "randomAccessResourceData<PassRandomWriteData>" "NativeList`1"
+CompilerContextData --> "nativePassData<NativePassData>" "NativeList`1"
+CompilerContextData --> "nativeSubPassData<SubPassDescriptor>" "NativeList`1"
+CompilerContextData --> "NativePasses" NativePassIterator
+CompilerContextData +-- NativePassIterator
+@enduml

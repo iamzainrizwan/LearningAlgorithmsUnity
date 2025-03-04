@@ -1,0 +1,8 @@
+@startuml
+class ActiveFolderTemplateAssetCreator {
+    + GetActiveFolderPath() : string
+    + CreateFolderWithTemplates(defaultName:string, templateNames:string[]) : void
+    + CreateScriptAssetFromTemplateFile(defaultName:string, templatePath:string) : void
+}
+IActiveFolderTemplateAssetCreator <|-- ActiveFolderTemplateAssetCreator
+@enduml

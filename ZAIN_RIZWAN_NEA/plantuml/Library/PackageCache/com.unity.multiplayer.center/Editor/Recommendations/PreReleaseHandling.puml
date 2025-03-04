@@ -1,0 +1,26 @@
+@startuml
+class PreReleaseHandling {
+    +  <<event>> OnAllChecksFinished : Action 
+    + IsReady : bool <<get>>
+    + CheckForUpdates() : void
+    + PatchPackages(toPatch:RecommendationViewData) : void
+    + PatchRecommenderSystemData() : void
+}
+abstract class PreReleaseHandlingBase {
+    + IsReady : bool <<get>>
+    +  <<event>> OnCheckFinished : Action 
+    + {abstract} PackageId : string <<get>>
+    + {abstract} MinVersion : string <<get>>
+    + CheckForUpdates() : void
+    + {abstract} PatchPackages(toPatch:RecommendationViewData) : void
+    + {abstract} PatchRecommenderSystemData() : void
+}
+class SimplePreReleaseHandling {
+    + <<override>> MinVersion : string <<get>>
+    + <<override>> PackageId : string <<get>>
+    + SimplePreReleaseHandling(packageId:string, minVersion:string)
+    + <<override>> PatchPackages(toPatch:RecommendationViewData) : void
+    + <<override>> PatchRecommenderSystemData() : void
+}
+PreReleaseHandlingBase <|-- SimplePreReleaseHandling
+@enduml

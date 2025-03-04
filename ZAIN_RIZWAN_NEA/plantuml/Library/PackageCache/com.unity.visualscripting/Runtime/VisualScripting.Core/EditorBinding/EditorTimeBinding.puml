@@ -1,0 +1,10 @@
+@startuml
+class EditorTimeBinding <<static>> {
+    + {static} frame : int <<get>>
+    + {static} time : float <<get>>
+}
+class "Func`1"<T> {
+}
+EditorTimeBinding --> "frameBinding<int>" "Func`1"
+EditorTimeBinding --> "timeBinding<float>" "Func`1"
+@enduml

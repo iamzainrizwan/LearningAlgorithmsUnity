@@ -1,0 +1,30 @@
+@startuml
+class UniversalRenderPipelineLightUI <<partial>> {
+}
+class Styles <<static>> {
+}
+UniversalRenderPipelineLightUI +-- Styles
+Styles o-> "Type" GUIContent
+Styles o-> "AreaLightShapeContent" GUIContent
+Styles o-> "SpotAngle" GUIContent
+Styles o-> "BakingWarning" GUIContent
+Styles o-> "DisabledLightWarning" GUIContent
+Styles o-> "SunSourceWarning" GUIContent
+Styles o-> "CullingMask" GUIContent
+Styles o-> "CullingMaskWarning" GUIContent
+Styles o-> "ShadowRealtimeSettings" GUIContent
+Styles o-> "ShadowStrength" GUIContent
+Styles o-> "ShadowNearPlane" GUIContent
+Styles o-> "ShadowNormalBias" GUIContent
+Styles o-> "ShadowDepthBias" GUIContent
+Styles o-> "ShadowInfo" GUIContent
+Styles o-> "ShadowResolution" GUIContent
+Styles o-> "SoftShadowQuality" GUIContent
+Styles o-> "shadowBias" GUIContent
+Styles o-> "customShadowLayers" GUIContent
+Styles o-> "ShadowLayer" GUIContent
+Styles o-> "LightCookieSize" GUIContent
+Styles o-> "LightCookieOffset" GUIContent
+Styles o-> "RenderingLayers" GUIContent
+Styles o-> "RenderingLayersDisabled" GUIContent
+@enduml

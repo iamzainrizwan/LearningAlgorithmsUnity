@@ -1,0 +1,8 @@
+@startuml
+abstract class DecalDrawSystem {
+    + DecalDrawSystem(sampler:string, entityManager:DecalEntityManager)
+    + Execute(cmd:CommandBuffer) : void
+    + Execute(cameraData:CameraData) : void
+}
+DecalDrawSystem --> "overrideMaterial" Material
+@enduml

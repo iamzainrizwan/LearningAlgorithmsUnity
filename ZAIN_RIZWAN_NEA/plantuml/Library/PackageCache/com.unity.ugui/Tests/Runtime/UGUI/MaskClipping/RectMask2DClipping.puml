@@ -1,0 +1,11 @@
+@startuml
+class RectMask2DClipping {
+    + Setup() : void
+    + TestSetup() : void
+    + Mask2DRect_CorrectClipping() : IEnumerator
+    + Mask2DRect_NonZeroPaddingMasksProperly() : void
+    + TearDown() : void
+    + OneTimeTearDown() : void
+}
+IPrebuildSetup <|-- RectMask2DClipping
+@enduml

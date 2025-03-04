@@ -1,0 +1,12 @@
+@startuml
+struct ScriptReference {
+    + fileID : int
+    + guid : string
+    + {static} Existing(type:Type) : ScriptReference
+    + {static} Manual(guid:string, fileID:int) : ScriptReference
+    + {static} Cs(csGuid:string) : ScriptReference
+    + {static} Dll(dllGuid:string, type:Type) : ScriptReference
+    + {static} Dll(dllGuid:string, @namespace:string, typeName:string) : ScriptReference
+    + <<override>> ToString() : string
+}
+@enduml

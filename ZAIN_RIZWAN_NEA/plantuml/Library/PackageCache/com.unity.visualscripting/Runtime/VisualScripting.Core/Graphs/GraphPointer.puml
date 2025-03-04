@@ -1,0 +1,50 @@
+@startuml
+abstract class GraphPointer {
+    + {abstract} AsReference() : GraphReference
+    + <<virtual>> CopyFrom(other:GraphPointer) : void
+    + depth : int <<get>>
+    + isRoot : bool <<get>>
+    + isChild : bool <<get>>
+    + EnsureDepthValid(depth:int) : void
+    + EnsureChild() : void
+    + IsWithin() : bool
+    + EnsureWithin() : void
+    + GetParent() : T
+    + hasData : bool <<get>>
+    + EnsureDataAvailable() : void
+    + GetGraphData() : T
+    + GetElementData(element:IGraphElementWithData) : T
+    + hasDebugData : bool <<get>>
+    + EnsureDebugDataAvailable() : void
+    + GetGraphDebugData() : T
+    + GetElementDebugData(element:IGraphElementWithDebugData) : T
+    + isValid : bool <<get>>
+    + EnsureValid() : void
+    + InstanceEquals(other:GraphPointer) : bool
+    + DefinitionEquals(other:GraphPointer) : bool
+    + ComputeHashCode() : int
+    + <<override>> ToString() : string
+}
+class "IEnumerable`1"<T> {
+}
+class "Func`2"<T1,T2> {
+}
+GraphPointer --> "root" IGraphRoot
+GraphPointer --> "rootObject" UnityObject
+GraphPointer --> "machine" IMachine
+GraphPointer --> "macro" IMacro
+GraphPointer --> "component" MonoBehaviour
+GraphPointer --> "gameObject" GameObject
+GraphPointer --> "self" GameObject
+GraphPointer --> "scriptableObject" ScriptableObject
+GraphPointer --> "scene" Scene
+GraphPointer --> "serializedObject" UnityObject
+GraphPointer --> "parentElementGuids<Guid>" "IEnumerable`1"
+GraphPointer --> "parent" IGraphParent
+GraphPointer --> "parentElement" IGraphParentElement
+GraphPointer --> "rootGraph" IGraph
+GraphPointer --> "graph" IGraph
+GraphPointer --> "data" IGraphData
+GraphPointer --> "fetchRootDebugDataBinding<IGraphRoot,IGraphDebugData>" "Func`2"
+GraphPointer --> "debugData" IGraphDebugData
+@enduml

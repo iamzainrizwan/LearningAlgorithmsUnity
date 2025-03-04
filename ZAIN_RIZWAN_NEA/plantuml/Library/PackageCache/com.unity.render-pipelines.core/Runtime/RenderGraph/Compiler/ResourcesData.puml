@@ -1,0 +1,46 @@
+@startuml
+struct ResourceReaderData {
+    + passId : int
+    + inputSlot : int
+}
+struct ResourceUnversionedData {
+    + <<readonly>> isImported : bool
+    + isShared : bool
+    + tag : int
+    + lastUsePassID : int
+    + lastWritePassID : int
+    + firstUsePassID : int
+    + memoryLess : bool
+    + <<readonly>> width : int
+    + <<readonly>> height : int
+    + <<readonly>> volumeDepth : int
+    + <<readonly>> msaaSamples : int
+    + <<readonly>> latestVersionNumber : int
+    + <<readonly>> clear : bool
+    + <<readonly>> discard : bool
+    + <<readonly>> bindMS : bool
+    + GetName(ctx:CompilerContextData, h:ResourceHandle) : string
+    + ResourceUnversionedData(rll:IRenderGraphResource, info:RenderTargetInfo, desc:TextureDesc, isResourceShared:bool)
+    + ResourceUnversionedData(rll:IRenderGraphResource, _:BufferDesc, isResourceShared:bool)
+    + ResourceUnversionedData(rll:IRenderGraphResource, _:RayTracingAccelerationStructureDesc, isResourceShared:bool)
+    + InitializeNullResource() : void
+}
+struct ResourceVersionedData {
+    + written : bool
+    + writePassId : int
+    + numReaders : int
+    + SetWritingPass(ctx:CompilerContextData, h:ResourceHandle, passId:int) : void
+    + RegisterReadingPass(ctx:CompilerContextData, h:ResourceHandle, passId:int, index:int) : void
+    + RemoveReadingPass(ctx:CompilerContextData, h:ResourceHandle, passId:int) : void
+}
+class ResourcesData {
+    + <<const>> MaxVersions : int = 20
+    + <<const>> MaxReaders : int = 100
+    + ResourcesData()
+    + Clear() : void
+    + Initialize(resources:RenderGraphResourceRegistry) : void
+    + {static} Index(h:ResourceHandle) : int
+    + {static} IndexReader(h:ResourceHandle, readerID:int) : int
+    + Dispose() : void
+}
+@enduml

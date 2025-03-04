@@ -1,0 +1,13 @@
+@startuml
+abstract class "DebugUIHandlerField`1"<T> {
+    + <<override>> OnSelection(fromNext:bool, previous:DebugUIHandlerWidget) : bool
+    + <<override>> OnDeselection() : void
+    + <<override>> OnAction() : void
+    + {abstract} UpdateValueLabel() : void
+}
+DebugUIHandlerWidget <|-- "DebugUIHandlerField`1"
+"DebugUIHandlerField`1" --> "nextButtonText" Text
+"DebugUIHandlerField`1" --> "previousButtonText" Text
+"DebugUIHandlerField`1" --> "nameLabel" Text
+"DebugUIHandlerField`1" --> "valueLabel" Text
+@enduml

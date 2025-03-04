@@ -1,0 +1,39 @@
+@startuml
+class TimelineAnimationUtilities {
+    + {static} ValidateOffsetAvailabitity(director:PlayableDirector, animator:Animator) : bool
+    + {static} GetPreviousClip(clip:TimelineClip) : TimelineClip
+    + {static} GetNextClip(clip:TimelineClip) : TimelineClip
+    + {static} UpdateClipOffsets(asset:AnimationPlayableAsset, track:AnimationTrack, transform:Transform, globalPosition:Vector3, globalRotation:Quaternion) : RigidTransform
+    + {static} GetTrackOffsets(track:AnimationTrack, transform:Transform) : RigidTransform
+    + {static} UpdateTrackOffset(track:AnimationTrack, transform:Transform, offsets:RigidTransform) : void
+    + {static} MatchPrevious(currentClip:TimelineClip, matchPoint:Transform, director:PlayableDirector) : void
+    + {static} MatchNext(currentClip:TimelineClip, matchPoint:Transform, director:PlayableDirector) : void
+    + {static} CreateTimeController(clip:TimelineClip) : TimelineWindowTimeControl
+    + {static} CreateTimeController(clipData:TimelineWindowTimeControl.ClipData) : TimelineWindowTimeControl
+    + {static} EditAnimationClipWithTimeController(animationClip:AnimationClip, timeController:TimelineWindowTimeControl, sourceObject:Object) : void
+    + {static} UnlinkAnimationWindowFromTracks(tracks:IEnumerable<TrackAsset>) : void
+    + {static} UnlinkAnimationWindowFromClips(timelineClips:IEnumerable<TimelineClip>) : void
+    + {static} UnlinkAnimationWindowFromAnimationClips(clips:ICollection<AnimationClip>) : void
+    + {static} UnlinkAnimationWindow() : void
+    + {static} GetAnimationWindowCurrentFrame() : int
+    + {static} SetAnimationWindowCurrentFrame(frame:int) : void
+    + {static} ConstrainCurveToBooleanValues(curve:AnimationCurve) : void
+    + {static} ConstrainCurveToRange(curve:AnimationCurve, minValue:float, maxValue:float) : void
+    + {static} IsAnimationClip(clip:TimelineClip) : bool
+}
+enum OffsetEditMode {
+    None= -1,
+    Translation= 0,
+    Rotation= 1,
+}
+struct RigidTransform {
+    + {static} Compose(pos:Vector3, rot:Quaternion) : RigidTransform
+    + {static} Mul(a:RigidTransform, b:RigidTransform) : RigidTransform
+    + {static} Inverse(a:RigidTransform) : RigidTransform
+}
+TimelineAnimationUtilities +-- OffsetEditMode
+TimelineAnimationUtilities +-- RigidTransform
+RigidTransform --> "position" Vector3
+RigidTransform --> "rotation" Quaternion
+RigidTransform --> "identity" RigidTransform
+@enduml

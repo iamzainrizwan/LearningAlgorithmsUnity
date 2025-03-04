@@ -1,0 +1,13 @@
+@startuml
+class BuiltInToURP2DMaterialUpgrader <<sealed>> {
+    + <<override>> name : string <<get>>
+    + <<override>> info : string <<get>>
+    + <<override>> priority : int <<get>>
+    + <<override>> OnInitialize(context:InitializeConverterContext, callback:Action) : void
+    + <<override>> OnRun(context:RunItemContext) : void
+    + <<override>> OnClicked(index:int) : void
+    + <<override>> OnPostRun() : void
+}
+RenderPipelineConverter <|-- BuiltInToURP2DMaterialUpgrader
+BuiltInToURP2DMaterialUpgrader --> "container" Type
+@enduml

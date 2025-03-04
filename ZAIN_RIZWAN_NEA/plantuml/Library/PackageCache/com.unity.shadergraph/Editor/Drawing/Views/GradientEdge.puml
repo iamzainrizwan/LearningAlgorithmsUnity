@@ -1,0 +1,9 @@
+@startuml
+class GradientEdge {
+    + GradientEdge()
+    + UpdateClasses(outputType:ConcreteSlotValueType, inputType:ConcreteSlotValueType) : void
+}
+Edge <|-- GradientEdge
+GradientEdge --> "inputColor" Color
+GradientEdge --> "outputColor" Color
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class fsDateConverter {
+    + <<override>> CanProcess(type:Type) : bool
+    + <<override>> TrySerialize(instance:object, serialized:fsData, storageType:Type) : fsResult
+    + <<override>> TryDeserialize(data:fsData, instance:object, storageType:Type) : fsResult
+}
+fsConverter <|-- fsDateConverter
+@enduml

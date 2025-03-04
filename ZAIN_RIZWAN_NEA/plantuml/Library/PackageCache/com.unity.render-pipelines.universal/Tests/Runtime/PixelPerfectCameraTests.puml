@@ -1,0 +1,31 @@
+@startuml
+class PixelPerfectCameraTests {
+    + CalculateCameraPropertiesProvidesCorrectResultsWithVariousInputs(testComponent:PixelPerfectCameraTestComponent, screenWidth:int, screenHeight:int, expected:CalculateCameraPropertiesResult) : void
+    + CalculateFinalBlitPixelRectStretchToFitHeightWorks() : void
+    + CalculateFinalBlitPixelRectStretchToFitWidthWorks() : void
+    + CalculateFinalBlitPixelRectCenteredWorksWithUpscaleRT() : void
+    + CalculateFinalBlitPixelRectCenteredWorksWithoutUpscaleRT() : void
+}
+class PixelPerfectCameraTestComponent {
+    + assetsPPU : int <<get>> <<set>>
+    + refResolutionX : int <<get>> <<set>>
+    + refResolutionY : int <<get>> <<set>>
+    + upscaleRT : bool <<get>> <<set>>
+    + pixelSnapping : bool <<get>> <<set>>
+    + cropFrameX : bool <<get>> <<set>>
+    + cropFrameY : bool <<get>> <<set>>
+    + stretchFill : bool <<get>> <<set>>
+}
+class CalculateCameraPropertiesResult {
+    + zoom : int
+    + useOffscreenRT : bool
+    + offscreenRTWidth : int
+    + offscreenRTHeight : int
+    + orthoSize : float
+    + unitsPerPixel : float
+}
+PixelPerfectCameraTests +-- PixelPerfectCameraTestComponent
+IPixelPerfectCamera <|-- PixelPerfectCameraTestComponent
+PixelPerfectCameraTests +-- CalculateCameraPropertiesResult
+CalculateCameraPropertiesResult --> "pixelRect" Rect
+@enduml

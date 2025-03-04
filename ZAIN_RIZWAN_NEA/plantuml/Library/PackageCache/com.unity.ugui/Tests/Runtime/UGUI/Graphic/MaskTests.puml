@@ -1,0 +1,14 @@
+@startuml
+class MaskTests {
+    + Setup() : void
+    + TestSetup() : void
+    + TearDown() : void
+    + OneTimeTearDown() : void
+    + GetModifiedMaterialReturnsOriginalMaterialWhenNoGraphicComponentIsAttached() : IEnumerator
+    + GetModifiedMaterialReturnsOriginalMaterialWhenDepthIsEightOrMore() : void
+    + GetModifiedMaterialReturnsDesiredMaterialWithSingleMask() : void
+    + GetModifiedMaterialReturnsDesiredMaterialWithMultipleMasks() : void
+    + GraphicComponentWithMaskIsMarkedAsIsMaskingGraphicWhenEnabled() : void
+}
+IPrebuildSetup <|-- MaskTests
+@enduml

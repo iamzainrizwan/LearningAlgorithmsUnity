@@ -1,0 +1,5 @@
+@startuml
+class CanvasMetaData {
+}
+ScriptableObject <|-- CanvasMetaData
+@enduml

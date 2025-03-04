@@ -1,0 +1,58 @@
+@startuml
+class CustomAllocatorTests {
+    + AllocatorHandleToAllocatorRoundTripWorks(i:int, v:int) : void
+    + AllocatorVersioningWorks() : void
+    + ReleasingChildHandlesWorks() : void
+    + <<unsafe>> ReleasingChildAllocatorsWorks() : void
+    + AllocatesAndFreesFromMono() : void
+    + AllocatesAndFreesFromBurst() : void
+    + UserDefinedAllocatorWorks() : void
+    + StackAllocatorWorks() : void
+    + CustomAllocatorNativeListWorksWithoutHandles() : void
+    + CustomAllocatorNativeListThrowsWhenAllocatorIsWrong() : void
+    + CustomAllocatorUnsafeListWorks() : void
+    + <<unsafe>> SlabAllocatorWorks() : void
+    + <<unsafe>> CollectionHelper_IsAligned() : void
+    + AllocatorManager_AllocateBlock_UsesAlignmentArgument() : void
+    + AllocatorManager_AllocateBlock_AlwaysCacheLineAligned() : void
+    + AllocatorManager_Block_DoesNotOverflow() : void
+}
+struct AllocateJob {
+    + Execute(index:int) : void
+}
+struct FreeJob {
+    + Execute(index:int) : void
+}
+struct ClearToValueAllocator {
+    + IsCustomAllocator : bool <<get>>
+    + m_clearValue : byte
+    + Initialize(ClearValue:byte, parent:T) : void
+    + <<unsafe>> Try(block:AllocatorManager.Block) : int
+    + {static} <<unsafe>> Try(state:IntPtr, block:AllocatorManager.Block) : int
+    + Dispose() : void
+}
+struct CountingAllocator {
+    + IsCustomAllocator : bool <<get>>
+    + AllocationCount : int
+    + Used : long
+    + WasUsed : bool <<get>>
+    + IsUsed : bool <<get>>
+    + Initialize() : void
+    + Try(block:AllocatorManager.Block) : int
+    + {static} <<unsafe>> Try(state:IntPtr, block:AllocatorManager.Block) : int
+    + Dispose() : void
+}
+class "NativeArray`1"<T> {
+}
+CollectionsTestCommonBase <|-- CustomAllocatorTests
+CustomAllocatorTests +-- AllocateJob
+IJobParallelFor <|-- AllocateJob
+AllocateJob --> "m_blocks<AllocatorManager.Block>" "NativeArray`1"
+CustomAllocatorTests +-- FreeJob
+IJobParallelFor <|-- FreeJob
+FreeJob --> "m_blocks<AllocatorManager.Block>" "NativeArray`1"
+CustomAllocatorTests +-- ClearToValueAllocator
+ClearToValueAllocator --> "ToAllocator" Allocator
+CustomAllocatorTests +-- CountingAllocator
+CountingAllocator --> "ToAllocator" Allocator
+@enduml

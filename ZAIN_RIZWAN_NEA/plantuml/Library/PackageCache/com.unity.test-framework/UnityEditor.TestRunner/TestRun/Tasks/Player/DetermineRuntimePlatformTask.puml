@@ -1,0 +1,6 @@
+@startuml
+class DetermineRuntimePlatformTask {
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- DetermineRuntimePlatformTask
+@enduml

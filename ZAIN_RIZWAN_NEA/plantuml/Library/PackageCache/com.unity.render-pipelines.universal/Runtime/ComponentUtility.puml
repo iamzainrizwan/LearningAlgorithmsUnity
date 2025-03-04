@@ -1,0 +1,6 @@
+@startuml
+class ComponentUtility <<static>> {
+    + {static} IsUniversalCamera(camera:Camera) : bool
+    + {static} IsUniversalLight(light:Light) : bool
+}
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class AnalyticsUtils <<static>> {
+    + <<const>> NumNetcodePackage : int = 2
+    + <<const>> NumHostingPackages : int = 1
+    + {static} GetPackagesWithAnalyticsFormat(data:RecommendationViewData, solutionToPackageData:SolutionsToRecommendedPackageViewData) : Package[]
+    + {static} GetPresetFullNames() : string[]
+    + {static} ToGameSpecs(data:AnswerData, answerIdToAnswerName:IReadOnlyDictionary<string, string>, questionIdToQuestionName:IReadOnlyDictionary<string, string>) : GameSpec[]
+    + {static} GetQuestionDisplayNames(questionnaireData:QuestionnaireData) : IReadOnlyDictionary<string, string>
+    + {static} GetAnswerDisplayNames(questionnaireData:QuestionnaireData) : IReadOnlyDictionary<string, string>
+}
+@enduml

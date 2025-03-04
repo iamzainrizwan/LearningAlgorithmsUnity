@@ -1,0 +1,15 @@
+@startuml
+enum MaterialQuality {
+    Low= 1 << 0,
+    Medium= 1 << 1,
+    High= 1 << 2,
+}
+class MaterialQualityUtilities <<static>> {
+    + {static} GetHighestQuality(levels:MaterialQuality) : MaterialQuality
+    + {static} GetClosestQuality(availableLevels:MaterialQuality, requestedLevel:MaterialQuality) : MaterialQuality
+    + {static} SetGlobalShaderKeywords(level:MaterialQuality) : void
+    + {static} SetGlobalShaderKeywords(level:MaterialQuality, cmd:CommandBuffer) : void
+    + {static} ToFirstIndex(level:MaterialQuality) : int
+    + {static} FromIndex(index:int) : MaterialQuality
+}
+@enduml

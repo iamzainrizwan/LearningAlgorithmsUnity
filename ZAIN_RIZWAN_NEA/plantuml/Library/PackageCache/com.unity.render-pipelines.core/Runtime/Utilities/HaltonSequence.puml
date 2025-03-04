@@ -1,0 +1,5 @@
+@startuml
+class HaltonSequence <<static>> {
+    + {static} Get(index:int, radix:int) : float
+}
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+class RuntimeCodebase <<static>> {
+    + {static} GetAssemblyAttributes(attributeType:Type) : IEnumerable<Attribute>
+    + {static} GetAssemblyAttributes(attributeType:Type, assemblies:IEnumerable<Assembly>) : IEnumerable<Attribute>
+    + {static} GetAssemblyAttributes(assemblies:IEnumerable<Assembly>) : IEnumerable<TAttribute>
+    + {static} GetAssemblyAttributes() : IEnumerable<TAttribute>
+    + {static} PrewarmTypeDeserialization(type:Type) : void
+    + {static} SerializeType(type:Type) : string
+    + {static} TryDeserializeType(typeName:string, type:Type) : bool
+    + {static} DeserializeType(typeName:string) : Type
+    + {static} ClearCachedTypes() : void
+    + {static} RenamedMembers(type:Type) : Dictionary<string, string>
+}
+class "IEnumerable`1"<T> {
+}
+class "HashSet`1"<T> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+RuntimeCodebase --> "types<Type>" "IEnumerable`1"
+RuntimeCodebase --> "assemblies<Assembly>" "IEnumerable`1"
+RuntimeCodebase o-> "disallowedAssemblies<string>" "HashSet`1"
+RuntimeCodebase --> "renamedNamespaces<string,string>" "Dictionary`2"
+RuntimeCodebase --> "renamedAssemblies<string,string>" "Dictionary`2"
+RuntimeCodebase --> "renamedTypes<string,Type>" "Dictionary`2"
+@enduml

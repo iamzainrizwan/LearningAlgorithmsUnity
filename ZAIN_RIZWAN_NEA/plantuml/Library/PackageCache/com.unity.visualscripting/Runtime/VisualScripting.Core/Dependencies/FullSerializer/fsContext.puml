@@ -1,0 +1,8 @@
+@startuml
+class fsContext <<sealed>> {
+    + Reset() : void
+    + Set(obj:T) : void
+    + Has() : bool
+    + Get() : T
+}
+@enduml

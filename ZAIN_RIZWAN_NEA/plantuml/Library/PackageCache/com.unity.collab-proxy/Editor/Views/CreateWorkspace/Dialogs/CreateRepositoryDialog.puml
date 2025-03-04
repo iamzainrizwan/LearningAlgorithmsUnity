@@ -1,0 +1,5 @@
+@startuml
+class CreateRepositoryDialog {
+}
+PlasticDialog <|-- CreateRepositoryDialog
+@enduml

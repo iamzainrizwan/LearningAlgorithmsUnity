@@ -1,0 +1,15 @@
+@startuml
+class VariableDeclarationInspector <<sealed>> {
+    + VariableDeclarationInspector(metadata:Metadata)
+    + OnNameGUI(namePosition:Rect) : void
+    + OnValueGUI(valuePosition:Rect) : void
+    + OnTypeGUI(position:Rect) : void
+}
+class Styles <<static>> {
+    + {static} <<readonly>> labelWidth : float
+    + {static} <<readonly>> padding : float = 2
+    + {static} <<readonly>> spacing : float
+}
+Inspector <|-- VariableDeclarationInspector
+VariableDeclarationInspector +-- Styles
+@enduml

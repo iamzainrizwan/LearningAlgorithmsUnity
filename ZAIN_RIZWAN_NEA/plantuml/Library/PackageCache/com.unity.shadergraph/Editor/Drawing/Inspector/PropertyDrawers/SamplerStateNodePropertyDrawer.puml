@@ -1,0 +1,5 @@
+@startuml
+class SamplerStateNodePropertyDrawer {
+}
+AbstractMaterialNodePropertyDrawer <|-- SamplerStateNodePropertyDrawer
+@enduml

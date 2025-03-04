@@ -1,0 +1,9 @@
+@startuml
+interface IAnalyticsIdentifiable {
+}
+class AnalyticsIdentifier {
+    + Identifier : string
+    + Namespace : string
+    + Hashcode : int
+}
+@enduml

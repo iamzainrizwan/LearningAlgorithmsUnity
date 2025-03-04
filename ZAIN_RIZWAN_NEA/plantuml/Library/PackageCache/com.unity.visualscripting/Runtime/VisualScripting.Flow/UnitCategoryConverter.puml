@@ -1,0 +1,9 @@
+@startuml
+class UnitCategoryConverter {
+    + <<override>> CreateInstance(data:fsData, storageType:Type) : object
+    + <<override>> TrySerialize(instance:object, serialized:fsData, storageType:Type) : fsResult
+    + <<override>> TryDeserialize(data:fsData, instance:object, storageType:Type) : fsResult
+}
+fsDirectConverter <|-- UnitCategoryConverter
+UnitCategoryConverter --> "ModelType" Type
+@enduml

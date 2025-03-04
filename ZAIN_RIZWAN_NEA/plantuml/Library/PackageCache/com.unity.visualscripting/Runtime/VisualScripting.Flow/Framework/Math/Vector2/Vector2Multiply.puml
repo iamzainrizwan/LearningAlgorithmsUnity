@@ -1,0 +1,8 @@
+@startuml
+class Vector2Multiply <<sealed>> {
+    + <<override>> Operation(a:Vector2, b:Vector2) : Vector2
+}
+class "Multiply`1"<T> {
+}
+"Multiply`1" "<Vector2>" <|-- Vector2Multiply
+@enduml

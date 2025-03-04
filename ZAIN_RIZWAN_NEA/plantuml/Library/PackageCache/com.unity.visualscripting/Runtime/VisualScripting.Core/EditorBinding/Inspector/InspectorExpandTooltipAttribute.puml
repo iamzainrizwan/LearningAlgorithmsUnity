@@ -1,0 +1,6 @@
+@startuml
+class InspectorExpandTooltipAttribute <<sealed>> {
+    + InspectorExpandTooltipAttribute()
+}
+Attribute <|-- InspectorExpandTooltipAttribute
+@enduml

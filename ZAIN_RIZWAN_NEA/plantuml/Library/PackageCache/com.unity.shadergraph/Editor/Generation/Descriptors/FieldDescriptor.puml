@@ -1,0 +1,16 @@
+@startuml
+class FieldDescriptor {
+    + tag : string <<get>>
+    + name : string <<get>>
+    + define : string <<get>>
+    + interpolation : string <<get>>
+    + type : string <<get>>
+    + vectorCount : int <<get>>
+    + semantic : string <<get>>
+    + preprocessor : string <<get>>
+    + FieldDescriptor(tag:string, name:string, define:string)
+    + FieldDescriptor(tag:string, name:string, define:string, type:ShaderValueType, semantic:string, preprocessor:string, subscriptOptions:StructFieldOptions, interpolation:string)
+    + FieldDescriptor(tag:string, name:string, define:string, type:string, semantic:string, preprocessor:string, subscriptOptions:StructFieldOptions, interpolation:string)
+}
+FieldDescriptor --> "subscriptOptions" StructFieldOptions
+@enduml

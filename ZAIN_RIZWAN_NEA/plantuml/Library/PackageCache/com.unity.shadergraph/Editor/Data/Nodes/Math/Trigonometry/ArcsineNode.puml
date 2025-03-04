@@ -1,0 +1,6 @@
+@startuml
+class ArcsineNode {
+    + ArcsineNode()
+}
+CodeFunctionNode <|-- ArcsineNode
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class TestJobRunner {
+    + RunJob(data:TestJobData) : string
+    + CancelRun() : bool
+    + IsRunningJob() : bool
+    + GetData() : TestJobData
+}
+ITestJobRunner <|-- TestJobRunner
+@enduml

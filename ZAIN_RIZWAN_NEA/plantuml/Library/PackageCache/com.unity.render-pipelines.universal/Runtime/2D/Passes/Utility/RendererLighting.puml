@@ -1,0 +1,12 @@
+@startuml
+class RendererLighting <<static>> {
+    + {static} CreateNormalMapRenderTexture(pass:IRenderPass2D, renderingData:RenderingData, cmd:CommandBuffer, renderScale:float) : void
+    + {static} GetBlendStyleRenderTextureDesc(pass:IRenderPass2D, renderingData:RenderingData) : RenderTextureDescriptor
+    + {static} CreateCameraSortingLayerRenderTexture(pass:IRenderPass2D, renderingData:RenderingData, cmd:CommandBuffer, downsamplingMethod:Downsampling) : void
+    + {static} RenderLightVolumes(pass:IRenderPass2D, renderingData:RenderingData, cmd:CommandBuffer, layer:LayerBatch, renderTexture:RenderTargetIdentifier, depthTexture:RenderTargetIdentifier, intermediateStoreAction:RenderBufferStoreAction, finalStoreAction:RenderBufferStoreAction, requiresRTInit:bool, lights:List<Light2D>) : void
+    + {static} ClearDirtyLighting(pass:IRenderPass2D, cmd:CommandBuffer, blendStylesUsed:uint) : void
+    + {static} RenderLights(pass:IRenderPass2D, renderingData:RenderingData, cmd:CommandBuffer, layerBatch:LayerBatch, rtDesc:RenderTextureDescriptor) : void
+    + {static} GetLightMaterial(rendererData:Renderer2DData, light:Light2D, isVolume:bool) : Material
+}
+RendererLighting o-> "k_NormalClearColor" Color
+@enduml

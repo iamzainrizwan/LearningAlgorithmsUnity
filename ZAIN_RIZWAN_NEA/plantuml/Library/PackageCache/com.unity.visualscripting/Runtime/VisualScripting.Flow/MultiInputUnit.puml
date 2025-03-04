@@ -1,0 +1,13 @@
+@startuml
+interface IMultiInputUnit {
+}
+abstract class "MultiInputUnit`1"<T> {
+    + <<virtual>> inputCount : int <<get>> <<set>>
+}
+class "ReadOnlyCollection`1"<T> {
+}
+IUnit <|-- IMultiInputUnit
+Unit <|-- "MultiInputUnit`1"
+IMultiInputUnit <|-- "MultiInputUnit`1"
+"MultiInputUnit`1" --> "multiInputs<ValueInput>" "ReadOnlyCollection`1"
+@enduml

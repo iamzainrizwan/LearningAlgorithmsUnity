@@ -1,0 +1,6 @@
+@startuml
+class Less <<sealed>> {
+}
+BinaryComparisonUnit <|-- Less
+Less --> "comparison" ValueOutput
+@enduml

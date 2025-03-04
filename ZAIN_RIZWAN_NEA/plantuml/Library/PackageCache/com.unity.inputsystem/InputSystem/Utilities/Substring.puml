@@ -1,0 +1,26 @@
+@startuml
+struct Substring {
+    + isEmpty : bool <<get>>
+    + Substring(str:string)
+    + Substring(str:string, index:int, length:int)
+    + Substring(str:string, index:int)
+    + <<override>> Equals(obj:object) : bool
+    + Equals(other:string) : bool
+    + Equals(other:Substring) : bool
+    + Equals(other:InternedString) : bool
+    + CompareTo(other:Substring) : int
+    + {static} Compare(left:Substring, right:Substring, comparison:StringComparison) : int
+    + StartsWith(str:string) : bool
+    + Substr(index:int, length:int) : string
+    + <<override>> ToString() : string
+    + <<override>> GetHashCode() : int
+    + length : int <<get>>
+    + index : int <<get>>
+}
+class "IComparable`1"<T> {
+}
+class "IEquatable`1"<T> {
+}
+"IComparable`1" "<Substring>" <|-- Substring
+"IEquatable`1" "<Substring>" <|-- Substring
+@enduml

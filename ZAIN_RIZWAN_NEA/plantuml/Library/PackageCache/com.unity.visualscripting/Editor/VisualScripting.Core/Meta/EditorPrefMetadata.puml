@@ -1,0 +1,11 @@
+@startuml
+class EditorPrefMetadata <<sealed>> {
+    + EditorPrefMetadata(configuration:PluginConfiguration, member:MemberInfo, parent:Metadata)
+    + namespacedKey : string <<get>>
+    + <<override>> exists : bool <<get>>
+    + <<override>> Load() : void
+    + <<override>> Save() : void
+    + {static} GetNamespacedKey(pluginId:string, key:string) : string
+}
+PluginConfigurationItemMetadata <|-- EditorPrefMetadata
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+abstract class RectangleTool {
+    + OnGUI(state:WindowState, rawType:EventType, mousePosition:Vector2) : void
+}
+struct TimelinePoint {
+    + TimelinePoint(state:WindowState, mousePosition:Vector2)
+    + ToPixel() : Vector2
+}
+RectangleTool +-- TimelinePoint
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+struct HashFNV1A32 {
+    + {static} Create() : HashFNV1A32
+    + Append(input:int) : void
+    + Append(input:uint) : void
+    + Append(input:bool) : void
+    + Append(input:float) : void
+    + Append(input:double) : void
+    + Append(input:Vector2) : void
+    + Append(input:Vector3) : void
+    + Append(input:Vector4) : void
+    + Append(input:T) : void
+    + Append(del:Delegate) : void
+    + value : int <<get>>
+    + <<override>> GetHashCode() : int
+}
+@enduml

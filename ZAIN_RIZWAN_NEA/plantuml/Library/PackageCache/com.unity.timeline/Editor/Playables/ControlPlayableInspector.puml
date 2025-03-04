@@ -1,0 +1,24 @@
+@startuml
+class ControlPlayableInspector {
+    + OnEnable() : void
+    + <<override>> OnInspectorGUI() : void
+    + DisablePlayOnAwake(sourceObject:GameObject) : void
+    + DisablePlayOnAwake(director:PlayableDirector) : void
+}
+class Styles <<static>> {
+}
+Editor <|-- ControlPlayableInspector
+ControlPlayableInspector +-- Styles
+Styles o-> "activationContent" GUIContent
+Styles o-> "activationDisabledContent" GUIContent
+Styles o-> "prefabContent" GUIContent
+Styles o-> "advancedContent" GUIContent
+Styles o-> "updateParticleSystemsContent" GUIContent
+Styles o-> "updatePlayableDirectorContent" GUIContent
+Styles o-> "updatePlayableDirectorDisabledContent" GUIContent
+Styles o-> "updateITimeControlContent" GUIContent
+Styles o-> "updateHierarchy" GUIContent
+Styles o-> "randomSeedContent" GUIContent
+Styles o-> "postPlayableContent" GUIContent
+Styles o-> "directorActionOnClipEndContent" GUIContent
+@enduml

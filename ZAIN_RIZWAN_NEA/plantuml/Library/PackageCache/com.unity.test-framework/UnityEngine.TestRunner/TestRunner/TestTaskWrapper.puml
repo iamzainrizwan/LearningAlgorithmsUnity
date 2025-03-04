@@ -1,0 +1,6 @@
+@startuml
+class TestTaskWrapper {
+    + TestTaskWrapper(testMethod:TestMethod)
+    + Execute(context:ITestExecutionContext) : IEnumerator
+}
+@enduml

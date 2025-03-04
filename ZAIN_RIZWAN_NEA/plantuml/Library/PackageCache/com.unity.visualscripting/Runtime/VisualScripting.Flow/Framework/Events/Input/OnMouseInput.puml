@@ -1,0 +1,10 @@
+@startuml
+class OnMouseInput <<sealed>> {
+}
+class "MachineEventUnit`1"<T> {
+}
+"MachineEventUnit`1" "<EmptyEventArgs>" <|-- OnMouseInput
+IMouseEventUnit <|-- OnMouseInput
+OnMouseInput --> "button" ValueInput
+OnMouseInput --> "action" ValueInput
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class StringFormatter {
+    + Configure(joinDelimiter:string) : void
+    + Join(args:object[]) : string
+}
+@enduml

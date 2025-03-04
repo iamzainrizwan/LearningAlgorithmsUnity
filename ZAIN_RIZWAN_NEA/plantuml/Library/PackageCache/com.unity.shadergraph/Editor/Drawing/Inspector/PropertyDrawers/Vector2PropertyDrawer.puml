@@ -1,0 +1,11 @@
+@startuml
+class Vector2PropertyDrawer {
+    + mUndoGroup : int <<get>> <<set>>
+    + Vector2PropertyDrawer()
+    + DrawProperty(propertyInfo:PropertyInfo, actualObject:object, attribute:InspectableAttribute) : VisualElement
+}
+IPropertyDrawer <|-- Vector2PropertyDrawer
+Vector2PropertyDrawer --> "preValueChangeCallback" Action
+Vector2PropertyDrawer --> "postValueChangeCallback" Action
+Vector2PropertyDrawer --> "inspectorUpdateDelegate" Action
+@enduml

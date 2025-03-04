@@ -1,0 +1,6 @@
+@startuml
+class SwapExtensionsTests {
+    + TrySwap(ints:int[], from:int, to:int) : int[]
+    + ExceptionsAreCorrect(ints:int[], from:int, to:int) : Type
+}
+@enduml

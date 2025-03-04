@@ -1,0 +1,13 @@
+@startuml
+struct LightMinMaxZJob {
+    + Execute(index:int) : void
+}
+class "Fixed2`1"<T> {
+}
+class "NativeArray`1"<T> {
+}
+IJobFor <|-- LightMinMaxZJob
+LightMinMaxZJob --> "worldToViews<float4x4>" "Fixed2`1"
+LightMinMaxZJob --> "lights<VisibleLight>" "NativeArray`1"
+LightMinMaxZJob --> "minMaxZs<float2>" "NativeArray`1"
+@enduml

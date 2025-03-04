@@ -1,0 +1,27 @@
+@startuml
+enum ColorMode {
+    Default,
+    HDR,
+}
+class ColorNode {
+    + <<const>> OutputSlotId : int = 0
+    + <<override>> latestVersion : int <<get>>
+    + ColorNode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> CollectShaderProperties(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + <<override>> GetVariableNameForSlot(slotId:int) : string
+    + <<override>> CollectPreviewMaterialProperties(properties:List<PreviewProperty>) : void
+    + AsShaderProperty() : AbstractShaderProperty
+    + outputSlotId : int <<get>>
+}
+struct Color {
+    + Color(color:UnityEngine.Color, mode:ColorMode)
+}
+AbstractMaterialNode <|-- ColorNode
+IGeneratesBodyCode <|-- ColorNode
+IPropertyFromNode <|-- ColorNode
+ColorNode --> "color" Color
+ColorNode +-- Color
+Color --> "mode" ColorMode
+@enduml

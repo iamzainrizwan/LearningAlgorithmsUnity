@@ -1,0 +1,11 @@
+@startuml
+class RemoveDictionaryItem <<sealed>> {
+    + Remove(flow:Flow) : ControlOutput
+}
+Unit <|-- RemoveDictionaryItem
+RemoveDictionaryItem --> "enter" ControlInput
+RemoveDictionaryItem --> "dictionaryInput" ValueInput
+RemoveDictionaryItem --> "dictionaryOutput" ValueOutput
+RemoveDictionaryItem --> "key" ValueInput
+RemoveDictionaryItem --> "exit" ControlOutput
+@enduml

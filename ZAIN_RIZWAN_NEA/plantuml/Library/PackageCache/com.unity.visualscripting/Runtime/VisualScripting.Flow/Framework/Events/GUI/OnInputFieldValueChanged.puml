@@ -1,0 +1,9 @@
+@startuml
+class OnInputFieldValueChanged <<sealed>> {
+}
+class "GameObjectEventUnit`1"<T> {
+}
+"GameObjectEventUnit`1" "<string>" <|-- OnInputFieldValueChanged
+OnInputFieldValueChanged --> "MessageListenerType" Type
+OnInputFieldValueChanged --> "value" ValueOutput
+@enduml

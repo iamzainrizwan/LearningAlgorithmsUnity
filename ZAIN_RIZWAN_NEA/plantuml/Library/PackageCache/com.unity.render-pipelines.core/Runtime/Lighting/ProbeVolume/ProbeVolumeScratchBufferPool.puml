@@ -1,0 +1,23 @@
+@startuml
+class ProbeVolumeScratchBufferPool {
+    + chunkSize : int <<get>>
+    + maxChunkCount : int <<get>>
+    + allocatedMemory : int <<get>>
+    + ProbeVolumeScratchBufferPool(bakingSet:ProbeVolumeBakingSet, shBands:ProbeVolumeSHBands)
+    + AllocateScratchBuffer(chunkCount:int, scratchBuffer:CellStreamingScratchBuffer, layout:CellStreamingScratchBufferLayout, allocateGraphicsBuffers:bool) : bool
+    + ReleaseScratchBuffer(scratchBuffer:CellStreamingScratchBuffer) : void
+    + Cleanup() : void
+}
+class ScratchBufferPool {
+    + chunkCount : int
+    + ScratchBufferPool(chunkCount:int)
+    + CompareTo(other:ScratchBufferPool) : int
+}
+class "IComparable`1"<T> {
+}
+class "Stack`1"<T> {
+}
+ProbeVolumeScratchBufferPool +-- ScratchBufferPool
+"IComparable`1" "<ScratchBufferPool>" <|-- ScratchBufferPool
+ScratchBufferPool o-> "pool<CellStreamingScratchBuffer>" "Stack`1"
+@enduml

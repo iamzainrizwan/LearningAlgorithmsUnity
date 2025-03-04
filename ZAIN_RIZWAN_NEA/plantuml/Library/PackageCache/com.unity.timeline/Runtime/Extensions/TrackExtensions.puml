@@ -1,0 +1,6 @@
+@startuml
+class TrackAssetExtensions <<static>> {
+    + {static} GetGroup(asset:TrackAsset) : GroupTrack
+    + {static} SetGroup(asset:TrackAsset, group:GroupTrack) : void
+}
+@enduml

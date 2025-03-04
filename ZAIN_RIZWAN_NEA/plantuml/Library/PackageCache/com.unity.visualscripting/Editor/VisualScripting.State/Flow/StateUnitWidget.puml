@@ -1,0 +1,15 @@
+@startuml
+class StateUnitWidget {
+    + StateUnitWidget(canvas:FlowCanvas, unit:StateUnit)
+    + AcceptsDragAndDrop() : bool
+    + PerformDragAndDrop() : void
+    + UpdateDragAndDrop() : void
+    + DrawDragAndDropPreview() : void
+    + ExitDragAndDrop() : void
+}
+class "NestrerUnitWidget`1"<T> {
+}
+"NestrerUnitWidget`1" "<StateUnit>" <|-- StateUnitWidget
+IDragAndDropHandler <|-- StateUnitWidget
+StateUnitWidget --> "dragAndDropVisualMode" DragAndDropVisualMode
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class FBXMaterialDescriptionPreprocessor {
+    + <<override>> GetVersion() : uint
+    + <<override>> GetPostprocessOrder() : int
+    + OnPreprocessMaterialDescription(description:MaterialDescription, material:Material, clips:AnimationClip[]) : void
+}
+AssetPostprocessor <|-- FBXMaterialDescriptionPreprocessor
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class ShaderGroup <<sealed>> {
+    + ShaderGroup()
+    + BuildContextualMenu(evt:ContextualMenuPopulateEvent) : void
+    + <<override>> AcceptsElement(element:GraphElement, reasonWhyNotAccepted:string) : bool
+}
+Group <|-- ShaderGroup
+ShaderGroup --> "userData" GroupData
+@enduml

@@ -1,0 +1,25 @@
+@startuml
+abstract class "UnitConnectionWidget`1"<TConnection> {
+    + <<override>> BeforeFrame() : void
+    + <<override>> CachePosition() : void
+    + <<override>> DrawBackground() : void
+    + <<override>> canSelect : bool <<get>>
+    + <<override>> canDrag : bool <<get>>
+    + <<override>> canDelete : bool <<get>>
+}
+class "GraphElementWidget`2"<T1,T2> {
+}
+class "IEnumerable`1"<T> {
+}
+"GraphElementWidget`2" "<FlowCanvas,TConnection>" <|-- "UnitConnectionWidget`1"
+IUnitConnectionWidget <|-- "UnitConnectionWidget`1"
+"UnitConnectionWidget`1" --> "positionDependencies<IWidget>" "IEnumerable`1"
+"UnitConnectionWidget`1" --> "sourceHandlePosition" Rect
+"UnitConnectionWidget`1" --> "destinationHandlePosition" Rect
+"UnitConnectionWidget`1" --> "sourceHandleEdgeCenter" Vector2
+"UnitConnectionWidget`1" --> "destinationHandleEdgeCenter" Vector2
+"UnitConnectionWidget`1" --> "middlePosition" Vector2
+"UnitConnectionWidget`1" --> "position" Rect
+"UnitConnectionWidget`1" --> "clippingPosition" Rect
+"UnitConnectionWidget`1" --> "color" Color
+@enduml

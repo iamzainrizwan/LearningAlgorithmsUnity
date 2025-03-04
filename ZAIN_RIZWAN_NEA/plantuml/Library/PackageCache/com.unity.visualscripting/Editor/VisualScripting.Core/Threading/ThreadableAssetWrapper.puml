@@ -1,0 +1,7 @@
+@startuml
+class "ThreadableAssetWrapper`1"<T> <<sealed>> {
+    + ThreadableAssetWrapper(asset:T)
+    + asset : T <<get>>
+    + name : string <<get>>
+}
+@enduml

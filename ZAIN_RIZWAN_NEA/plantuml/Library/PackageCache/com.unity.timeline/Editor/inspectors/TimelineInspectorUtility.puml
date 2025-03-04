@@ -1,0 +1,27 @@
+@startuml
+enum InputEvent {
+    None= 0,
+    DragEnter= 1,
+    DragExit= 2,
+    Drag= 4,
+    KeyboardInput= 8,
+}
+class InputEventMethods <<static>> {
+    + {static} InputHasBegun(evt:InputEvent) : bool
+}
+class TimelineInspectorUtility <<static>> {
+    + {static} TimeField(property:SerializedProperty, label:GUIContent, readOnly:bool, frameRate:double, minValue:double, maxValue:double, inputEvent:InputEvent) : void
+    + {static} TimeField(rect:Rect, property:SerializedProperty, label:GUIContent, readOnly:bool, frameRate:double, minValue:double, maxValue:double, inputEvent:InputEvent) : void
+    + {static} TimeFieldUsingTimeReference(label:GUIContent, time:double, readOnly:bool, showMixed:bool, frameRate:double, minValue:double, maxValue:double, inputEvent:InputEvent) : double
+    + {static} DurationFieldUsingTimeReference(label:GUIContent, start:double, end:double, readOnly:bool, showMixed:bool, frameRate:double, minValue:double, maxValue:double, inputEvent:InputEvent) : double
+    + {static} TimeField(rect:Rect, label:GUIContent, time:double, readOnly:bool, showMixed:bool, frameRate:double, minValue:double, maxValue:double, inputEvent:InputEvent) : double
+    + {static} TimeField(label:GUIContent, time:double, readOnly:bool, showMixed:bool, frameRate:double, minValue:double, maxValue:double, inputEvent:InputEvent) : double
+    + {static} GetInspectorForObjects(objects:UnityEngine.Object[], previousEditor:Editor) : Editor
+    + {static} FindExposedReferenceTableFrom(context:UnityEngine.Object) : SerializedProperty
+}
+class Styles <<static>> {
+}
+TimelineInspectorUtility +-- Styles
+Styles o-> "SecondsPrefix" GUIContent
+Styles o-> "FramesPrefix" GUIContent
+@enduml

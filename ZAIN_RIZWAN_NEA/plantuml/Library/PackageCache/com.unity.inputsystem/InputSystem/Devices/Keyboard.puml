@@ -1,0 +1,272 @@
+@startuml
+struct KeyboardState {
+    + <<fixed>> keys : byte
+    + KeyboardState(pressedKeys:Key[])
+    + Set(key:Key, state:bool) : void
+    + Press(key:Key) : void
+    + Release(key:Key) : void
+}
+enum Key {
+    None,
+    Space,
+    Enter,
+    Tab,
+    Backquote,
+    Quote,
+    Semicolon,
+    Comma,
+    Period,
+    Slash,
+    Backslash,
+    LeftBracket,
+    RightBracket,
+    Minus,
+    Equals,
+    A,
+    B,
+    C,
+    D,
+    E,
+    F,
+    G,
+    H,
+    I,
+    J,
+    K,
+    L,
+    M,
+    N,
+    O,
+    P,
+    Q,
+    R,
+    S,
+    T,
+    U,
+    V,
+    W,
+    X,
+    Y,
+    Z,
+    Digit1,
+    Digit2,
+    Digit3,
+    Digit4,
+    Digit5,
+    Digit6,
+    Digit7,
+    Digit8,
+    Digit9,
+    Digit0,
+    LeftShift,
+    RightShift,
+    LeftAlt,
+    RightAlt,
+    AltGr= RightAlt,
+    LeftCtrl,
+    RightCtrl,
+    LeftMeta,
+    RightMeta,
+    LeftWindows= LeftMeta,
+    RightWindows= RightMeta,
+    LeftApple= LeftMeta,
+    RightApple= RightMeta,
+    LeftCommand= LeftMeta,
+    RightCommand= RightMeta,
+    ContextMenu,
+    Escape,
+    LeftArrow,
+    RightArrow,
+    UpArrow,
+    DownArrow,
+    Backspace,
+    PageDown,
+    PageUp,
+    Home,
+    End,
+    Insert,
+    Delete,
+    CapsLock,
+    NumLock,
+    PrintScreen,
+    ScrollLock,
+    Pause,
+    NumpadEnter,
+    NumpadDivide,
+    NumpadMultiply,
+    NumpadPlus,
+    NumpadMinus,
+    NumpadPeriod,
+    NumpadEquals,
+    Numpad0,
+    Numpad1,
+    Numpad2,
+    Numpad3,
+    Numpad4,
+    Numpad5,
+    Numpad6,
+    Numpad7,
+    Numpad8,
+    Numpad9,
+    F1,
+    F2,
+    F3,
+    F4,
+    F5,
+    F6,
+    F7,
+    F8,
+    F9,
+    F10,
+    F11,
+    F12,
+    OEM1,
+    OEM2,
+    OEM3,
+    OEM4,
+    OEM5,
+    IMESelected,
+}
+class Keyboard {
+    + <<const>> KeyCount : int
+    + SetIMEEnabled(enabled:bool) : void
+    + SetIMECursorPosition(position:Vector2) : void
+    + keyboardLayout : string <<get>> <<protected set>>
+    + <<override>> MakeCurrent() : void
+    + OnTextInput(character:char) : void
+    + FindKeyOnCurrentKeyboardLayout(displayName:string) : KeyControl
+    + OnIMECompositionChanged(compositionString:IMECompositionString) : void
+}
+class "Action`1"<T> {
+}
+class "ReadOnlyArray`1"<T> {
+}
+IInputStateTypeInfo <|-- KeyboardState
+KeyboardState --> "Format" FourCC
+KeyboardState --> "format" FourCC
+InputDevice <|-- Keyboard
+ITextInputReceiver <|-- Keyboard
+Keyboard --> "anyKey" AnyKeyControl
+Keyboard --> "spaceKey" KeyControl
+Keyboard --> "enterKey" KeyControl
+Keyboard --> "tabKey" KeyControl
+Keyboard --> "backquoteKey" KeyControl
+Keyboard --> "quoteKey" KeyControl
+Keyboard --> "semicolonKey" KeyControl
+Keyboard --> "commaKey" KeyControl
+Keyboard --> "periodKey" KeyControl
+Keyboard --> "slashKey" KeyControl
+Keyboard --> "backslashKey" KeyControl
+Keyboard --> "leftBracketKey" KeyControl
+Keyboard --> "rightBracketKey" KeyControl
+Keyboard --> "minusKey" KeyControl
+Keyboard --> "equalsKey" KeyControl
+Keyboard --> "aKey" KeyControl
+Keyboard --> "bKey" KeyControl
+Keyboard --> "cKey" KeyControl
+Keyboard --> "dKey" KeyControl
+Keyboard --> "eKey" KeyControl
+Keyboard --> "fKey" KeyControl
+Keyboard --> "gKey" KeyControl
+Keyboard --> "hKey" KeyControl
+Keyboard --> "iKey" KeyControl
+Keyboard --> "jKey" KeyControl
+Keyboard --> "kKey" KeyControl
+Keyboard --> "lKey" KeyControl
+Keyboard --> "mKey" KeyControl
+Keyboard --> "nKey" KeyControl
+Keyboard --> "oKey" KeyControl
+Keyboard --> "pKey" KeyControl
+Keyboard --> "qKey" KeyControl
+Keyboard --> "rKey" KeyControl
+Keyboard --> "sKey" KeyControl
+Keyboard --> "tKey" KeyControl
+Keyboard --> "uKey" KeyControl
+Keyboard --> "vKey" KeyControl
+Keyboard --> "wKey" KeyControl
+Keyboard --> "xKey" KeyControl
+Keyboard --> "yKey" KeyControl
+Keyboard --> "zKey" KeyControl
+Keyboard --> "digit1Key" KeyControl
+Keyboard --> "digit2Key" KeyControl
+Keyboard --> "digit3Key" KeyControl
+Keyboard --> "digit4Key" KeyControl
+Keyboard --> "digit5Key" KeyControl
+Keyboard --> "digit6Key" KeyControl
+Keyboard --> "digit7Key" KeyControl
+Keyboard --> "digit8Key" KeyControl
+Keyboard --> "digit9Key" KeyControl
+Keyboard --> "digit0Key" KeyControl
+Keyboard --> "leftShiftKey" KeyControl
+Keyboard --> "rightShiftKey" KeyControl
+Keyboard --> "leftAltKey" KeyControl
+Keyboard --> "rightAltKey" KeyControl
+Keyboard --> "leftCtrlKey" KeyControl
+Keyboard --> "rightCtrlKey" KeyControl
+Keyboard --> "leftMetaKey" KeyControl
+Keyboard --> "rightMetaKey" KeyControl
+Keyboard --> "leftWindowsKey" KeyControl
+Keyboard --> "rightWindowsKey" KeyControl
+Keyboard --> "leftAppleKey" KeyControl
+Keyboard --> "rightAppleKey" KeyControl
+Keyboard --> "leftCommandKey" KeyControl
+Keyboard --> "rightCommandKey" KeyControl
+Keyboard --> "contextMenuKey" KeyControl
+Keyboard --> "escapeKey" KeyControl
+Keyboard --> "leftArrowKey" KeyControl
+Keyboard --> "rightArrowKey" KeyControl
+Keyboard --> "upArrowKey" KeyControl
+Keyboard --> "downArrowKey" KeyControl
+Keyboard --> "backspaceKey" KeyControl
+Keyboard --> "pageDownKey" KeyControl
+Keyboard --> "pageUpKey" KeyControl
+Keyboard --> "homeKey" KeyControl
+Keyboard --> "endKey" KeyControl
+Keyboard --> "insertKey" KeyControl
+Keyboard --> "deleteKey" KeyControl
+Keyboard --> "capsLockKey" KeyControl
+Keyboard --> "scrollLockKey" KeyControl
+Keyboard --> "numLockKey" KeyControl
+Keyboard --> "printScreenKey" KeyControl
+Keyboard --> "pauseKey" KeyControl
+Keyboard --> "numpadEnterKey" KeyControl
+Keyboard --> "numpadDivideKey" KeyControl
+Keyboard --> "numpadMultiplyKey" KeyControl
+Keyboard --> "numpadMinusKey" KeyControl
+Keyboard --> "numpadPlusKey" KeyControl
+Keyboard --> "numpadPeriodKey" KeyControl
+Keyboard --> "numpadEqualsKey" KeyControl
+Keyboard --> "numpad0Key" KeyControl
+Keyboard --> "numpad1Key" KeyControl
+Keyboard --> "numpad2Key" KeyControl
+Keyboard --> "numpad3Key" KeyControl
+Keyboard --> "numpad4Key" KeyControl
+Keyboard --> "numpad5Key" KeyControl
+Keyboard --> "numpad6Key" KeyControl
+Keyboard --> "numpad7Key" KeyControl
+Keyboard --> "numpad8Key" KeyControl
+Keyboard --> "numpad9Key" KeyControl
+Keyboard --> "f1Key" KeyControl
+Keyboard --> "f2Key" KeyControl
+Keyboard --> "f3Key" KeyControl
+Keyboard --> "f4Key" KeyControl
+Keyboard --> "f5Key" KeyControl
+Keyboard --> "f6Key" KeyControl
+Keyboard --> "f7Key" KeyControl
+Keyboard --> "f8Key" KeyControl
+Keyboard --> "f9Key" KeyControl
+Keyboard --> "f10Key" KeyControl
+Keyboard --> "f11Key" KeyControl
+Keyboard --> "f12Key" KeyControl
+Keyboard --> "oem1Key" KeyControl
+Keyboard --> "oem2Key" KeyControl
+Keyboard --> "oem3Key" KeyControl
+Keyboard --> "oem4Key" KeyControl
+Keyboard --> "oem5Key" KeyControl
+Keyboard --> "shiftKey" ButtonControl
+Keyboard --> "ctrlKey" ButtonControl
+Keyboard --> "altKey" ButtonControl
+Keyboard --> "imeSelected" ButtonControl
+Keyboard --> "allKeys<KeyControl>" "ReadOnlyArray`1"
+Keyboard --> "current" Keyboard
+@enduml

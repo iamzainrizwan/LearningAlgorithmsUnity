@@ -1,0 +1,60 @@
+@startuml
+struct DataStreamReader {
+    + DataStreamReader(array:NativeArray<byte>)
+    + {static} IsLittleEndian : bool <<get>>
+    + <<readonly>> HasFailedReads : bool <<get>>
+    + <<readonly>> Length : int <<get>>
+    + <<readonly>> IsCreated : bool <<get>>
+    + ReadBytes(array:NativeArray<byte>) : void
+    + ReadBytes(span:Span<byte>) : void
+    + GetBytesRead() : int
+    + GetBitsRead() : int
+    + SeekSet(pos:int) : void
+    + ReadByte() : byte
+    + ReadShort() : short
+    + ReadUShort() : ushort
+    + ReadInt() : int
+    + ReadUInt() : uint
+    + ReadLong() : long
+    + ReadULong() : ulong
+    + Flush() : void
+    + ReadShortNetworkByteOrder() : short
+    + ReadUShortNetworkByteOrder() : ushort
+    + ReadIntNetworkByteOrder() : int
+    + ReadUIntNetworkByteOrder() : uint
+    + ReadFloat() : float
+    + ReadDouble() : double
+    + ReadPackedUInt(model:StreamCompressionModel) : uint
+    + ReadRawBits(numbits:int) : uint
+    + ReadPackedULong(model:StreamCompressionModel) : ulong
+    + ReadPackedInt(model:StreamCompressionModel) : int
+    + ReadPackedLong(model:StreamCompressionModel) : long
+    + ReadPackedFloat(model:StreamCompressionModel) : float
+    + ReadPackedDouble(model:StreamCompressionModel) : double
+    + ReadPackedIntDelta(baseline:int, model:StreamCompressionModel) : int
+    + ReadPackedUIntDelta(baseline:uint, model:StreamCompressionModel) : uint
+    + ReadPackedLongDelta(baseline:long, model:StreamCompressionModel) : long
+    + ReadPackedULongDelta(baseline:ulong, model:StreamCompressionModel) : ulong
+    + ReadPackedFloatDelta(baseline:float, model:StreamCompressionModel) : float
+    + ReadPackedDoubleDelta(baseline:double, model:StreamCompressionModel) : double
+    + <<unsafe>> ReadFixedString32() : FixedString32Bytes
+    + <<unsafe>> ReadFixedString64() : FixedString64Bytes
+    + <<unsafe>> ReadFixedString128() : FixedString128Bytes
+    + <<unsafe>> ReadFixedString512() : FixedString512Bytes
+    + <<unsafe>> ReadFixedString4096() : FixedString4096Bytes
+    + ReadFixedString(array:NativeArray<byte>) : ushort
+    + <<unsafe>> ReadPackedFixedString32Delta(baseline:FixedString32Bytes, model:StreamCompressionModel) : FixedString32Bytes
+    + <<unsafe>> ReadPackedFixedString64Delta(baseline:FixedString64Bytes, model:StreamCompressionModel) : FixedString64Bytes
+    + <<unsafe>> ReadPackedFixedString128Delta(baseline:FixedString128Bytes, model:StreamCompressionModel) : FixedString128Bytes
+    + <<unsafe>> ReadPackedFixedString512Delta(baseline:FixedString512Bytes, model:StreamCompressionModel) : FixedString512Bytes
+    + <<unsafe>> ReadPackedFixedString4096Delta(baseline:FixedString4096Bytes, model:StreamCompressionModel) : FixedString4096Bytes
+    + ReadPackedFixedStringDelta(data:NativeArray<byte>, baseData:NativeArray<byte>, model:StreamCompressionModel) : ushort
+}
+struct Context {
+    + m_ReadByteIndex : int
+    + m_BitIndex : int
+    + m_BitBuffer : ulong
+    + m_FailedReads : int
+}
+DataStreamReader +-- Context
+@enduml

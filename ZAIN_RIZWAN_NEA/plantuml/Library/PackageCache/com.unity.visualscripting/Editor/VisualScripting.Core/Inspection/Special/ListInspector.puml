@@ -1,0 +1,12 @@
+@startuml
+class ListInspector {
+    + ListInspector(metadata:Metadata)
+    + <<override>> GetAdaptiveWidth() : float
+}
+class ProjectAssemblyOptionsListInspector {
+    + ProjectAssemblyOptionsListInspector(metadata:Metadata)
+    + <<override>> GetAdaptiveWidth() : float
+}
+Inspector <|-- ListInspector
+Inspector <|-- ProjectAssemblyOptionsListInspector
+@enduml

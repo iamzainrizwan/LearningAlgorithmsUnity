@@ -1,0 +1,25 @@
+@startuml
+struct ExampleCustomAllocator {
+    + IsCustomAllocator : bool <<get>>
+    + IsAutoDispose : bool <<get>>
+    + Dispose() : void
+    + <<unsafe>> Try(block:AllocatorManager.Block) : int
+    + {static} <<unsafe>> AllocatorFunction(customAllocatorPtr:IntPtr, block:AllocatorManager.Block) : int
+    + InitialValue : byte <<get>>
+    + AllocationCount : int <<get>>
+    + Initialize(initialValue:byte) : void
+}
+struct ExampleCustomAllocatorStruct {
+    + ExampleCustomAllocatorStruct(initialValue:byte)
+    + Dispose() : void
+    + UseCustomAllocator(nativeArray:NativeArray<int>, nativeList:NativeList<int>) : void
+    + AllocationCount : int <<get>>
+    + UseCustomAllocatorHandle(nativeArray:NativeArray<int>, nativeList:NativeList<int>) : void
+}
+class ExampleCustomAllocatorStructUsage {
+    + UseCustomAllocator_Works() : void
+    + UseCustomAllocatorHandle_Works() : void
+    + CustomAllocatorHandle_MultiThreadWorks() : void
+}
+ExampleCustomAllocator --> "ToAllocator" Allocator
+@enduml

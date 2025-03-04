@@ -1,0 +1,127 @@
+@startuml
+enum JobRunType {
+    Schedule,
+    ScheduleByRef,
+    Run,
+    RunByRef,
+}
+interface IJobTest {
+}
+interface IJobTestInherit {
+}
+class IJobTestExtensions <<static>> {
+    + {static} EarlyJobInit() : void
+    + {static} <<unsafe>> ScheduleTest(jobData:T, dataForProducer:NativeArray<byte>, dependsOn:JobHandle) : JobHandle
+}
+interface IJobTestInheritWithProducer {
+}
+class IJobTestInheritProducerExtensions <<static>> {
+    + {static} EarlyJobInit() : void
+    <<unsafe>> + {static} Schedule(jobData:T, empty:bool, dependsOn:JobHandle) : JobHandle
+}
+struct "MyGenericResizeJob`1"<T> {
+    + m_ListLength : int
+    + Execute() : void
+}
+struct "MyGenericJobDefer`1"<T> {
+    + m_Value : T
+    + Execute(index:int) : void
+}
+struct "GenericContainerResizeJob`2"<T,U> {
+    + m_ListLength : int
+    + m_GenericList : T
+    + Execute() : void
+}
+struct "GenericContainerJobDefer`2"<T,U> {
+    + m_Value : U
+    + m_GenericList : T
+    + Execute(index:int) : void
+}
+class JobTests {
+    + ScheduleGenericContainerJob(container:T, value:U) : void
+    + ValidateContainerSafetyInGenericJob_ContainerIsGenericParameter() : void
+    + GenericScheduleJobPair(value:T) : void
+    + ScheduleGenericJobPairFloat() : void
+    + ScheduleGenericJobPairDouble() : void
+    + ScheduleGenericJobPairInt() : void
+    + SchedulingGenericJobFromGenericContextUnsafelyThrows() : void
+    + ForEach_Scheduling_With_Dependencies() : void
+    + ForEach_Scheduling_With_Zero_Size() : void
+    + Deallocate_Temp_NativeArray_From_Job() : void
+    + Deallocate_Persistent_NativeArray_From_Job() : void
+    + <<unsafe>> IJobParallelForDefer_LargeJobStruct_ScheduleRefWorks(countMode:IterationCountMode) : void
+    + InheritInterfaceJobWorks() : void
+    + InheritInterfaceWithProducerJobWorks() : void
+}
+class "JobTestProducer`1"<T> {
+}
+struct "JobTestWrapper`1"<T> {
+}
+struct "JobTestProducer`1"<T> {
+    + <<unsafe>> {static} Execute(jobWrapper:JobTestWrapper<T>, additionalPtr:IntPtr, bufferRangePatchData:IntPtr, ranges:JobRanges, jobIndex:int) : void
+}
+struct "JobTestWrapper`1"<T> {
+}
+struct "JobTestProducer`1"<T> {
+    + <<unsafe>> {static} Execute(jobWrapper:JobTestWrapper<T>, additionalPtr:IntPtr, bufferRangePatchData:IntPtr, ranges:JobRanges, jobIndex:int) : void
+}
+class "NativeList`1"<T> {
+}
+class "INativeList`1"<T> {
+}
+struct DontReferenceThisTypeOutsideOfThisTest {
+    + v : int
+}
+struct EmptyComputeParallelForJob {
+    + Execute(i:int) : void
+}
+struct LargeJobParallelForDefer {
+    + Execute(index:int) : void
+}
+enum IterationCountMode {
+    List,
+    Pointer,
+}
+struct InheritJob {
+    + Execute() : void
+}
+struct InheritWithProducerJob {
+    + Execute() : void
+    + Execute(empty:bool) : void
+}
+class "NativeArray`1"<T> {
+}
+IJob <|-- IJobTestInherit
+IJob <|-- IJobTestInheritWithProducer
+IJob <|-- "MyGenericResizeJob`1"
+"MyGenericResizeJob`1" --> "m_GenericList<T>" "NativeList`1"
+IJobParallelForDefer <|-- "MyGenericJobDefer`1"
+"MyGenericJobDefer`1" --> "m_GenericList<T>" "NativeList`1"
+IJob <|-- "GenericContainerResizeJob`2"
+IJobParallelForDefer <|-- "GenericContainerJobDefer`2"
+JobTestsFixture <|-- JobTests
+IJobTestExtensions +-- "JobTestWrapper`1"
+IJobTestExtensions +-- "JobTestProducer`1"
+IJobTestInheritProducerExtensions +-- "JobTestWrapper`1"
+IJobTestInheritProducerExtensions +-- "JobTestProducer`1"
+JobTests +-- DontReferenceThisTypeOutsideOfThisTest
+JobTests +-- EmptyComputeParallelForJob
+IJobParallelFor <|-- EmptyComputeParallelForJob
+JobTests +-- LargeJobParallelForDefer
+IJobParallelForDefer <|-- LargeJobParallelForDefer
+LargeJobParallelForDefer --> "StrA" FixedString4096Bytes
+LargeJobParallelForDefer --> "StrB" FixedString4096Bytes
+LargeJobParallelForDefer --> "StrC" FixedString4096Bytes
+LargeJobParallelForDefer --> "StrD" FixedString4096Bytes
+LargeJobParallelForDefer --> "TotalLengths<int>" "NativeArray`1"
+LargeJobParallelForDefer --> "Unused<float>" "NativeList`1"
+JobTests +-- IterationCountMode
+JobTests +-- InheritJob
+IJobTestInherit <|-- InheritJob
+InheritJob --> "List1<int>" "NativeList`1"
+InheritJob --> "List2<int>" "NativeList`1"
+JobTests +-- InheritWithProducerJob
+IJobTestInheritWithProducer <|-- InheritWithProducerJob
+InheritWithProducerJob --> "List1<int>" "NativeList`1"
+InheritWithProducerJob --> "List2<int>" "NativeList`1"
+@enduml

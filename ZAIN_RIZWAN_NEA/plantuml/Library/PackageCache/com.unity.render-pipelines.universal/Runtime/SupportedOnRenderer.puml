@@ -1,0 +1,7 @@
+@startuml
+class SupportedOnRendererAttribute {
+    + SupportedOnRendererAttribute(renderer:Type)
+    + SupportedOnRendererAttribute(renderers:Type[])
+}
+Attribute <|-- SupportedOnRendererAttribute
+@enduml

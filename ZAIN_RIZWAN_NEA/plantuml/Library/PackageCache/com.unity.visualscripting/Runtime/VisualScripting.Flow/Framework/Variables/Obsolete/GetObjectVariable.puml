@@ -1,0 +1,9 @@
+@startuml
+class GetObjectVariable <<sealed>> {
+    + GetObjectVariable()
+    + GetObjectVariable(name:string)
+}
+GetVariableUnit <|-- GetObjectVariable
+IObjectVariableUnit <|-- GetObjectVariable
+GetObjectVariable --> "source" ValueInput
+@enduml

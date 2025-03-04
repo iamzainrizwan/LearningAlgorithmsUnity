@@ -1,0 +1,7 @@
+@startuml
+class EarlyInitHelpers {
+    + {static} FlushEarlyInits() : void
+    + {static} AddEarlyInitFunction(func:EarlyInitFunction) : void
+    + {static} JobReflectionDataCreationFailed(ex:Exception) : void
+}
+@enduml

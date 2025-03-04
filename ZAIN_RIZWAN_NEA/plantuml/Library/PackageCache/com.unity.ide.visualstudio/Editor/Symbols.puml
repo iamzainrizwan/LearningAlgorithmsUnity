@@ -1,0 +1,5 @@
+@startuml
+class Symbols <<static>> {
+    + {static} IsPortableSymbolFile(pdbFile:string) : bool
+}
+@enduml

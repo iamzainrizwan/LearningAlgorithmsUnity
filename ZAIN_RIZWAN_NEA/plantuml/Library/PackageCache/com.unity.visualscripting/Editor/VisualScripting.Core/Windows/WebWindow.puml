@@ -1,0 +1,10 @@
+@startuml
+class WebWindow <<sealed>> {
+    + uri : string <<get>> <<set>>
+    + Reload() : void
+    + {static} Show(titleContent:GUIContent, uri:string) : void
+    + {static} Show(title:string, uri:string) : void
+}
+EditorWindow <|-- WebWindow
+WebWindow --> "instance" WebWindow
+@enduml

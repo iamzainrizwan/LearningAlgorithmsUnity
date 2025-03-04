@@ -1,0 +1,14 @@
+@startuml
+class ReferenceEqualityComparer {
+    + {static} GetHashCode(a:object) : int
+}
+class "ReferenceEqualityComparer`1"<T> {
+    + {static} GetHashCode(a:T) : int
+}
+class "IEqualityComparer`1"<T> {
+}
+"IEqualityComparer`1" "<object>" <|-- ReferenceEqualityComparer
+ReferenceEqualityComparer o-> "Instance" ReferenceEqualityComparer
+"IEqualityComparer`1" "<T>" <|-- "ReferenceEqualityComparer`1"
+"ReferenceEqualityComparer`1" o-> "Instance<T>" "ReferenceEqualityComparer`1"
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+class NativeRingQueueTests {
+    + NativeRingQueue_UseAfterFree_UsesCustomOwnerTypeName() : void
+    + NativeRingQueue_AtomicSafetyHandle_AllocatorTemp_UniqueStaticSafetyIds() : void
+    + NativeRingQueue_CreateAndUseAfterFreeInBurstJob_UsesCustomOwnerTypeName() : void
+    + NativeRingQueue_UseInJob() : void
+}
+struct NativeRingQueueCreateAndUseAfterFreeBurst {
+    + Execute() : void
+}
+struct NativeRingQueueUseInJob {
+    + Execute() : void
+}
+class "NativeRingQueue`1"<T> {
+}
+NativeRingQueueTests +-- NativeRingQueueCreateAndUseAfterFreeBurst
+IJob <|-- NativeRingQueueCreateAndUseAfterFreeBurst
+NativeRingQueueTests +-- NativeRingQueueUseInJob
+IJob <|-- NativeRingQueueUseInJob
+NativeRingQueueUseInJob --> "Test<int>" "NativeRingQueue`1"
+@enduml

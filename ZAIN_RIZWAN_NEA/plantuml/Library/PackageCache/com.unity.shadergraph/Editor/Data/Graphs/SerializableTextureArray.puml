@@ -1,0 +1,20 @@
+@startuml
+class SerializableTextureArray <<sealed>> {
+    + OnBeforeSerialize() : void
+    + OnAfterDeserialize() : void
+}
+class TextureHelper {
+}
+class MinimalTextureHelper {
+}
+struct MinimalTextureRef {
+    + guid : string
+}
+ISerializationCallbackReceiver <|-- SerializableTextureArray
+SerializableTextureArray --> "textureArray" Texture2DArray
+SerializableTextureArray +-- TextureHelper
+TextureHelper --> "textureArray" Texture2DArray
+SerializableTextureArray +-- MinimalTextureHelper
+MinimalTextureHelper --> "textureArray" MinimalTextureRef
+MinimalTextureHelper +-- MinimalTextureRef
+@enduml

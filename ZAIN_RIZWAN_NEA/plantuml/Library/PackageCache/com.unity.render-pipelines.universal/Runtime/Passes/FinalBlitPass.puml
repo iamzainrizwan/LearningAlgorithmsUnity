@@ -1,0 +1,31 @@
+@startuml
+class FinalBlitPass {
+    + FinalBlitPass(evt:RenderPassEvent, blitMaterial:Material, blitHDRMaterial:Material)
+    + Dispose() : void
+    + Setup(baseDescriptor:RenderTextureDescriptor, colorHandle:RenderTargetHandle) : void
+    + Setup(baseDescriptor:RenderTextureDescriptor, colorHandle:RTHandle) : void
+    + <<override>> OnCameraSetup(cmd:CommandBuffer, renderingData:RenderingData) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+}
+class BlitPassNames <<static>> {
+    + <<const>> NearestSampler : string = "NearestDebugDraw"
+    + <<const>> BilinearSampler : string = "BilinearDebugDraw"
+}
+enum BlitType {
+    Core= 0,
+    HDR= 1,
+    Count= 2,
+}
+struct BlitMaterialData {
+    + nearestSamplerPass : int
+    + bilinearSamplerPass : int
+}
+class PassData {
+}
+ScriptableRenderPass <|-- FinalBlitPass
+FinalBlitPass +-- BlitPassNames
+FinalBlitPass +-- BlitType
+FinalBlitPass +-- BlitMaterialData
+BlitMaterialData --> "material" Material
+FinalBlitPass +-- PassData
+@enduml

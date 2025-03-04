@@ -1,0 +1,7 @@
+@startuml
+class TypeSerializer <<static>> {
+    + {static} ResolveType(th:SerializableType) : Type
+    + {static} GenerateTypeHandle() : SerializableType
+    + {static} GenerateTypeHandle(t:Type) : SerializableType
+}
+@enduml

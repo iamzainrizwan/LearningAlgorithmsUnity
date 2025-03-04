@@ -1,0 +1,8 @@
+@startuml
+class IsSavedVariableDefined <<sealed>> {
+    + IsSavedVariableDefined()
+    + IsSavedVariableDefined(defaultName:string)
+}
+IsVariableDefinedUnit <|-- IsSavedVariableDefined
+ISavedVariableUnit <|-- IsSavedVariableDefined
+@enduml

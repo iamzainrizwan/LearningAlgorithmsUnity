@@ -1,0 +1,6 @@
+@startuml
+class EditorLinqUtility <<static>> {
+    + {static} Cancellable(source:IEnumerable<T>, cancellation:CancellationToken) : IEnumerable<T>
+    + {static} Cancellable(source:IEnumerable<T>, cancellation:CancellationToken, cancel:Action) : IEnumerable<T>
+}
+@enduml

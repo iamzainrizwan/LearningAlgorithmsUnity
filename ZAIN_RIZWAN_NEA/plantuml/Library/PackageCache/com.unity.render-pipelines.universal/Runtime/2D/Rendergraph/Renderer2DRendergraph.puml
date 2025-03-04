@@ -1,0 +1,10 @@
+@startuml
+class Renderer2D <<sealed>> <<partial>> {
+    + <<override>> OnBeginRenderGraphFrame() : void
+    + <<override>> OnEndRenderGraphFrame() : void
+}
+struct ImportResourceSummary {
+}
+ScriptableRenderer <|-- Renderer2D
+Renderer2D +-- ImportResourceSummary
+@enduml

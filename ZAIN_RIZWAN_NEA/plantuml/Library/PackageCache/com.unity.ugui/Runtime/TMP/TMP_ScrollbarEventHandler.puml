@@ -1,0 +1,12 @@
+@startuml
+class TMP_ScrollbarEventHandler {
+    + isSelected : bool
+    + OnPointerClick(eventData:PointerEventData) : void
+    + OnSelect(eventData:BaseEventData) : void
+    + OnDeselect(eventData:BaseEventData) : void
+}
+MonoBehaviour <|-- TMP_ScrollbarEventHandler
+IPointerClickHandler <|-- TMP_ScrollbarEventHandler
+ISelectHandler <|-- TMP_ScrollbarEventHandler
+IDeselectHandler <|-- TMP_ScrollbarEventHandler
+@enduml

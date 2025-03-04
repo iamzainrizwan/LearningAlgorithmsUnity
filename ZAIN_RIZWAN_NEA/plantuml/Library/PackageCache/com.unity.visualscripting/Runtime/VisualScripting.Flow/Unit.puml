@@ -1,0 +1,57 @@
+@startuml
+abstract class Unit {
+    + <<virtual>> CreateDebugData() : IGraphElementDebugData
+    + <<override>> AfterAdd() : void
+    + <<override>> BeforeRemove() : void
+    + <<override>> Instantiate(instance:GraphReference) : void
+    + <<override>> Uninstantiate(instance:GraphReference) : void
+    + <<virtual>> canDefine : bool <<get>>
+    + failedToDefine : bool <<get>>
+    + isDefined : bool <<get>>
+    + EnsureDefined() : void
+    + Define() : void
+    + RemoveUnconnectedInvalidPorts() : void
+    +  <<event>> onPortsChanged : Action 
+    + PortsChanged() : void
+    + Disconnect() : void
+    + <<virtual>> isControlRoot : bool <<get>> <<protected set>> = false
+    + <<override>> GetAnalyticsIdentifier() : AnalyticsIdentifier
+}
+class "GraphElement`1"<T> {
+}
+class DebugData {
+    + lastInvokeFrame : int <<get>> <<set>>
+    + lastInvokeTime : float <<get>> <<set>>
+}
+class "IUnitPortCollection`1"<T> {
+}
+class "IEnumerable`1"<T> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+class "IConnectionCollection`3"<T1,T2,T3> {
+}
+"GraphElement`1" "<FlowGraph>" <|-- Unit
+IUnit <|-- Unit
+Unit --> "controlInputs<ControlInput>" "IUnitPortCollection`1"
+Unit --> "controlOutputs<ControlOutput>" "IUnitPortCollection`1"
+Unit --> "valueInputs<ValueInput>" "IUnitPortCollection`1"
+Unit --> "valueOutputs<ValueOutput>" "IUnitPortCollection`1"
+Unit --> "invalidInputs<InvalidInput>" "IUnitPortCollection`1"
+Unit --> "invalidOutputs<InvalidOutput>" "IUnitPortCollection`1"
+Unit --> "inputs<IUnitInputPort>" "IEnumerable`1"
+Unit --> "outputs<IUnitOutputPort>" "IEnumerable`1"
+Unit --> "validInputs<IUnitInputPort>" "IEnumerable`1"
+Unit --> "validOutputs<IUnitOutputPort>" "IEnumerable`1"
+Unit --> "ports<IUnitPort>" "IEnumerable`1"
+Unit --> "invalidPorts<IUnitPort>" "IEnumerable`1"
+Unit --> "validPorts<IUnitPort>" "IEnumerable`1"
+Unit --> "defaultValues<string,object>" "Dictionary`2"
+Unit --> "relations<IUnitRelation,IUnitPort,IUnitPort>" "IConnectionCollection`3"
+Unit --> "connections<IUnitConnection>" "IEnumerable`1"
+Unit --> "position" Vector2
+Unit --> "definitionException" Exception
+Unit +-- DebugData
+IUnitDebugData <|-- DebugData
+DebugData --> "runtimeException" Exception
+@enduml

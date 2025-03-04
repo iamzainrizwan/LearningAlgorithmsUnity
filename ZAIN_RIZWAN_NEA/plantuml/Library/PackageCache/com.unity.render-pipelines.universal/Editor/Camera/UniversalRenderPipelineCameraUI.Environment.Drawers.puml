@@ -1,0 +1,15 @@
+@startuml
+class UniversalRenderPipelineCameraUI <<static>> <<partial>> {
+}
+class "CoreEditorDrawer`1"<T> {
+}
+class Environment <<partial>> {
+}
+enum BackgroundType {
+    Skybox= 0,
+    SolidColor,
+    DontCare,
+}
+UniversalRenderPipelineCameraUI +-- Environment
+Environment +-- BackgroundType
+@enduml

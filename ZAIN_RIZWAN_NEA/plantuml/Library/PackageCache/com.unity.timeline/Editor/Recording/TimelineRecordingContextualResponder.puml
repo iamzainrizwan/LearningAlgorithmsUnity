@@ -1,0 +1,21 @@
+@startuml
+class TimelineRecordingContextualResponder {
+    + TimelineRecordingContextualResponder(_state:WindowState)
+    + HasAnyCandidates() : bool
+    + HasAnyCurves() : bool
+    + AddCandidateKeys() : void
+    + AddAnimatedKeys() : void
+    + IsAnimatable(modifications:PropertyModification[]) : bool
+    + IsEditable(targetObject:Object) : bool
+    + KeyExists(modifications:PropertyModification[]) : bool
+    + CandidateExists(modifications:PropertyModification[]) : bool
+    + CurveExists(modifications:PropertyModification[]) : bool
+    + AddKey(modifications:PropertyModification[]) : void
+    + RemoveKey(modifications:PropertyModification[]) : void
+    + RemoveCurve(modifications:PropertyModification[]) : void
+    + GoToNextKeyframe(modifications:PropertyModification[]) : void
+    + GoToPreviousKeyframe(modifications:PropertyModification[]) : void
+}
+IAnimationContextualResponder <|-- TimelineRecordingContextualResponder
+TimelineRecordingContextualResponder --> "state" WindowState
+@enduml

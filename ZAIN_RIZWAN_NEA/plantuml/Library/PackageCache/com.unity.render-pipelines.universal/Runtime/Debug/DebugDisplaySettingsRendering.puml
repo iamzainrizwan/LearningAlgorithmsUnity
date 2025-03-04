@@ -1,0 +1,81 @@
+@startuml
+enum DebugWireframeMode {
+    None,
+    Wireframe,
+    SolidWireframe,
+    ShadedWireframe,
+}
+class DebugDisplaySettingsRendering {
+    + overdraw : bool <<get>> <<set>>
+    + maxOverdrawCount : int <<get>> <<set>> = 10
+    + fullScreenDebugModeOutputSizeScreenPercent : int <<get>> <<set>> = 50
+    + mipDebugStatusShowCode : bool <<get>> <<set>> = false
+    + mipDebugOpacity : float <<get>> <<set>> = 1.0f
+    + mipDebugRecentUpdateCooldown : float <<get>> <<set>> = 3.0f
+    + mipDebugMaterialTextureSlot : int <<get>> <<set>> = 0
+    + showInfoForAllSlots : bool <<get>> <<set>> = true
+    + enableMsaa : bool <<get>> <<set>> = true
+    + enableHDR : bool <<get>> <<set>> = true
+    + validationRangeMin : float <<get>> <<set>> = 0.0f
+    + validationRangeMax : float <<get>> <<set>> = 1.0f
+    + AreAnySettingsActive : bool <<get>>
+    + IsPostProcessingAllowed : bool <<get>>
+    + IsLightingActive : bool <<get>>
+    + TryGetScreenClearColor(color:Color) : bool
+}
+enum TaaDebugMode {
+    None= 0,
+    ShowRawFrame,
+    ShowRawFrameNoJitter,
+    ShowClampedHistory,
+}
+class Strings <<static>> {
+    + <<const>> RangeValidationSettingsContainerName : string = "Pixel Range Settings"
+}
+class WidgetFactory <<static>> {
+}
+class SettingsPanel {
+    + SettingsPanel(data:DebugDisplaySettingsRendering)
+}
+class "DebugDisplaySettingsPanel`1"<T> {
+}
+IDebugDisplaySettingsData <|-- DebugDisplaySettingsRendering
+DebugDisplaySettingsRendering --> "wireframeMode" DebugWireframeMode
+DebugDisplaySettingsRendering --> "overdrawMode" DebugOverdrawMode
+DebugDisplaySettingsRendering o-> "fullScreenDebugMode" DebugFullScreenMode
+DebugDisplaySettingsRendering o-> "mipInfoMode" DebugMipInfoMode
+DebugDisplaySettingsRendering o-> "mipDebugStatusMode" DebugMipMapStatusMode
+DebugDisplaySettingsRendering o-> "mipDebugTerrainTexture" DebugMipMapModeTerrainTexture
+DebugDisplaySettingsRendering o-> "postProcessingDebugMode" DebugPostProcessingMode
+DebugDisplaySettingsRendering o-> "taaDebugMode" TaaDebugMode
+DebugDisplaySettingsRendering --> "validationMode" DebugValidationMode
+DebugDisplaySettingsRendering o-> "validationChannels" PixelValidationChannels
+DebugDisplaySettingsRendering +-- TaaDebugMode
+DebugDisplaySettingsRendering +-- Strings
+Strings o-> "MapOverlays" NameAndTooltip
+Strings o-> "StpDebugViews" NameAndTooltip
+Strings o-> "MapSize" NameAndTooltip
+Strings o-> "AdditionalWireframeModes" NameAndTooltip
+Strings o-> "WireframeNotSupportedWarning" NameAndTooltip
+Strings o-> "OverdrawMode" NameAndTooltip
+Strings o-> "MaxOverdrawCount" NameAndTooltip
+Strings o-> "MipMapDisableMipCaching" NameAndTooltip
+Strings o-> "MipMapDebugView" NameAndTooltip
+Strings o-> "MipMapDebugOpacity" NameAndTooltip
+Strings o-> "MipMapMaterialTextureSlot" NameAndTooltip
+Strings o-> "MipMapTerrainTexture" NameAndTooltip
+Strings o-> "MipMapDisplayStatusCodes" NameAndTooltip
+Strings o-> "MipMapActivityTimespan" NameAndTooltip
+Strings o-> "MipMapCombinePerMaterial" NameAndTooltip
+Strings o-> "PostProcessing" NameAndTooltip
+Strings o-> "MSAA" NameAndTooltip
+Strings o-> "HDR" NameAndTooltip
+Strings o-> "TaaDebugMode" NameAndTooltip
+Strings o-> "PixelValidationMode" NameAndTooltip
+Strings o-> "Channels" NameAndTooltip
+Strings o-> "ValueRangeMin" NameAndTooltip
+Strings o-> "ValueRangeMax" NameAndTooltip
+DebugDisplaySettingsRendering +-- WidgetFactory
+DebugDisplaySettingsRendering +-- SettingsPanel
+"DebugDisplaySettingsPanel`1" "<DebugDisplaySettingsRendering>" <|-- SettingsPanel
+@enduml

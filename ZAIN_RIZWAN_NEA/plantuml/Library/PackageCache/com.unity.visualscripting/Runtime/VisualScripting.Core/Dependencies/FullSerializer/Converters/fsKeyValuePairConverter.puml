@@ -1,0 +1,10 @@
+@startuml
+class fsKeyValuePairConverter {
+    + <<override>> CanProcess(type:Type) : bool
+    + <<override>> RequestCycleSupport(storageType:Type) : bool
+    + <<override>> RequestInheritanceSupport(storageType:Type) : bool
+    + <<override>> TryDeserialize(data:fsData, instance:object, storageType:Type) : fsResult
+    + <<override>> TrySerialize(instance:object, serialized:fsData, storageType:Type) : fsResult
+}
+fsConverter <|-- fsKeyValuePairConverter
+@enduml

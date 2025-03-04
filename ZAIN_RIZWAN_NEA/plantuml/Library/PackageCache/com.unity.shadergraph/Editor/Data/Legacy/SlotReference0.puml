@@ -1,0 +1,6 @@
+@startuml
+class SlotReference0 {
+    + m_SlotId : int
+    + m_NodeGUIDSerialized : string
+}
+@enduml

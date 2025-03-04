@@ -1,0 +1,18 @@
+@startuml
+class BoltFlowConfiguration <<sealed>> {
+    + <<override>> header : string <<get>>
+    + updateNodesAutomatically : bool <<get>> <<set>> = false
+    + predictPotentialNullReferences : bool <<get>> <<set>> = true
+    + predictPotentialMissingComponents : bool <<get>> <<set>> = true
+    + showConnectionValues : bool <<get>> <<set>> = true
+    + predictConnectionValues : bool <<get>> <<set>> = false
+    + hidePortLabels : bool <<get>> <<set>> = true
+    + animateControlConnections : bool <<get>> <<set>> = true
+    + animateValueConnections : bool <<get>> <<set>> = true
+    + skipContextMenu : bool <<get>> <<set>> = false
+}
+class "HashSet`1"<T> {
+}
+PluginConfiguration <|-- BoltFlowConfiguration
+BoltFlowConfiguration o-> "favoriteUnitOptions<string>" "HashSet`1"
+@enduml

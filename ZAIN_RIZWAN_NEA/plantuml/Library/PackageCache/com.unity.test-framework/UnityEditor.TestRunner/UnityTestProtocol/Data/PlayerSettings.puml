@@ -1,0 +1,19 @@
+@startuml
+class PlayerSettings {
+    + ScriptingBackend : string
+    + MtRendering : bool
+    + GraphicsJobs : bool
+    + GpuSkinning : bool
+    + GraphicsApi : string
+    + Batchmode : string
+    + StereoRenderingPath : string
+    + RenderThreadingMode : string
+    + AndroidMinimumSdkVersion : string
+    + AndroidTargetSdkVersion : string
+    + ScriptingRuntimeVersion : string
+    + AndroidTargetArchitecture : string
+    + StripEngineCode : bool
+    + PlayerSettings(scriptingBackend:string, gpuSkinning:bool, graphicsApi:string, batchmode:string, stereoRenderingPath:string, renderThreadingMode:string, androidTargetSdkVersion:string, androidMinimumSdkVersion:string, graphicsJobs:bool, mtRendering:bool)
+    + PlayerSettings()
+}
+@enduml

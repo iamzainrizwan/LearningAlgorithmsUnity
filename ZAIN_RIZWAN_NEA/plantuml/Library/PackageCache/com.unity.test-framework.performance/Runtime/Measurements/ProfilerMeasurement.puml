@@ -1,0 +1,8 @@
+@startuml
+struct ProfilerMeasurement {
+    + ProfilerMeasurement(sampleGroups:SampleGroup[])
+    + ProfilerMeasurement(profilerMarkers:string[])
+    + Dispose() : void
+}
+IDisposable <|-- ProfilerMeasurement
+@enduml

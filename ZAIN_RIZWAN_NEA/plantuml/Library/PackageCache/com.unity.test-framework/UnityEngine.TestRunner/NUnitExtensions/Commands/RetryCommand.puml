@@ -1,0 +1,9 @@
+@startuml
+class RetryCommand {
+    + RetryCommand(innerCommand:TestCommand)
+    + <<override>> Execute(context:ITestExecutionContext) : TestResult
+    + ExecuteEnumerable(context:ITestExecutionContext) : IEnumerable
+}
+DelegatingTestCommand <|-- RetryCommand
+IEnumerableTestMethodCommand <|-- RetryCommand
+@enduml

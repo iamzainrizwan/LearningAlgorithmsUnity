@@ -1,0 +1,26 @@
+@startuml
+struct InputEventListener {
+    + Subscribe(observer:IObserver<InputEventPtr>) : IDisposable
+}
+class "IObservable`1"<T> {
+}
+class "Action`2"<T1,T2> {
+}
+class ObserverState {
+    + ObserverState()
+}
+class DisposableObserver {
+    + Dispose() : void
+}
+class "InlinedArray`1"<T> {
+}
+class "IObserver`1"<T> {
+}
+"IObservable`1" "<InputEventPtr>" <|-- InputEventListener
+InputEventListener +-- ObserverState
+ObserverState --> "observers<IObserver<InputEventPtr>>" "InlinedArray`1"
+ObserverState --> "onEventDelegate<InputEventPtr,InputDevice>" "Action`2"
+InputEventListener +-- DisposableObserver
+IDisposable <|-- DisposableObserver
+DisposableObserver --> "observer<InputEventPtr>" "IObserver`1"
+@enduml

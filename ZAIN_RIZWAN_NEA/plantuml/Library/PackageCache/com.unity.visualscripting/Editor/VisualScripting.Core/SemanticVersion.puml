@@ -1,0 +1,22 @@
+@startuml
+struct SemanticVersion {
+    + <<readonly>> major : int
+    + <<readonly>> minor : int
+    + <<readonly>> patch : int
+    + <<readonly>> label : string
+    + <<readonly>> increment : int
+    + SemanticVersion(major:int, minor:int, patch:int, label:string, increment:int)
+    + SemanticVersion(semVerString:string)
+    + <<override>> ToString() : string
+    + {static} Parse(s:string) : SemanticVersion
+    + {static} TryParse(s:string, result:SemanticVersion) : bool
+    + CompareTo(other:SemanticVersion) : int
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + IsUnset() : bool
+}
+class "IComparable`1"<T> {
+}
+"IComparable`1" "<SemanticVersion>" <|-- SemanticVersion
+SemanticVersion --> "semanticLabel" SemanticLabel
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+class RemoteTestData {
+    + id : string
+    + name : string
+    + fullName : string
+    + testCaseCount : int
+    + ChildIndex : int
+    + hasChildren : bool
+    + isSuite : bool
+    + testCaseTimeout : int
+    + IsTestAssembly : bool
+    + Description : string
+    + SkipReason : string
+    + ParentId : string
+    + UniqueName : string
+    + ParentUniqueName : string
+    + ParentFullName : string
+}
+RemoteTestData --> "RunState" RunState
+@enduml

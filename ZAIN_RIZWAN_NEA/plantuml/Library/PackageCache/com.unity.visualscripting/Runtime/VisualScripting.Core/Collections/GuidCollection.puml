@@ -1,0 +1,11 @@
+@startuml
+class "GuidCollection`1"<T> {
+    + <<new>> TryGetValue(key:Guid, value:T) : bool
+}
+class "KeyedCollection`2"<T1,T2> {
+}
+class "IKeyedCollection`2"<T1,T2> {
+}
+"KeyedCollection`2" "<Guid,T>" <|-- "GuidCollection`1"
+"IKeyedCollection`2" "<Guid,T>" <|-- "GuidCollection`1"
+@enduml

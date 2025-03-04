@@ -1,0 +1,8 @@
+@startuml
+class GraphContextAttribute <<sealed>> {
+    + GraphContextAttribute(type:Type)
+}
+Attribute <|-- GraphContextAttribute
+IDecoratorAttribute <|-- GraphContextAttribute
+GraphContextAttribute --> "type" Type
+@enduml

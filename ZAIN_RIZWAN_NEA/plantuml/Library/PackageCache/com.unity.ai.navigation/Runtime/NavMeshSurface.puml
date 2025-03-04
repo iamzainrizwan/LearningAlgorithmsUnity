@@ -1,0 +1,35 @@
+@startuml
+enum CollectObjects {
+    All= 0,
+    Volume= 1,
+    Children= 2,
+    MarkedWithModifier= 3,
+}
+class NavMeshSurface {
+    + agentTypeID : int <<get>> <<set>>
+    + defaultArea : int <<get>> <<set>>
+    + ignoreNavMeshAgent : bool <<get>> <<set>>
+    + ignoreNavMeshObstacle : bool <<get>> <<set>>
+    + overrideTileSize : bool <<get>> <<set>>
+    + tileSize : int <<get>> <<set>>
+    + overrideVoxelSize : bool <<get>> <<set>>
+    + voxelSize : float <<get>> <<set>>
+    + minRegionArea : float <<get>> <<set>>
+    + buildHeightMesh : bool <<get>> <<set>>
+    + AddData() : void
+    + RemoveData() : void
+    + GetBuildSettings() : NavMeshBuildSettings
+    + BuildNavMesh() : void
+    + UpdateNavMesh(data:NavMeshData) : AsyncOperation
+}
+class "List`1"<T> {
+}
+MonoBehaviour <|-- NavMeshSurface
+NavMeshSurface --> "collectObjects" CollectObjects
+NavMeshSurface --> "size" Vector3
+NavMeshSurface --> "center" Vector3
+NavMeshSurface --> "layerMask" LayerMask
+NavMeshSurface --> "useGeometry" NavMeshCollectGeometry
+NavMeshSurface --> "navMeshData" NavMeshData
+NavMeshSurface --> "activeSurfaces<NavMeshSurface>" "List`1"
+@enduml

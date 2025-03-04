@@ -1,0 +1,6 @@
+@startuml
+class SerializableEnum {
+    + SerializableEnum(enumType:Type)
+}
+SerializableEnum --> "value" Enum
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+class CanvasShaderGUI {
+    + m_FirstTimeApply : bool = true
+    <<override>> + OnGUI(materialEditor:MaterialEditor, properties:MaterialProperty[]) : void
+    + <<virtual>> OnOpenGUI(material:Material, materialEditor:MaterialEditor, properties:MaterialProperty[]) : void
+    + <<override>> AssignNewShaderToMaterial(material:Material, oldShader:Shader, newShader:Shader) : void
+    + <<override>> ValidateMaterial(material:Material) : void
+    + {static} SetupSurface(material:Material) : void
+}
+enum Expandable {
+    SurfaceOptions= 1 << 0,
+    SurfaceInputs= 1 << 1,
+}
+class Styles {
+}
+ShaderGUI <|-- CanvasShaderGUI
+CanvasShaderGUI +-- Expandable
+CanvasShaderGUI +-- Styles
+Styles o-> "SurfaceOptions" GUIContent
+Styles o-> "SurfaceInputs" GUIContent
+@enduml

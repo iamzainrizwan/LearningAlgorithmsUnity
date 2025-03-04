@@ -1,0 +1,8 @@
+@startuml
+class LegacyStyleProjectGeneration {
+    + LegacyStyleProjectGeneration(tempDirectory:string, assemblyNameProvider:IAssemblyNameProvider, fileIoProvider:IFileIO, guidGenerator:IGUIDGenerator)
+    + LegacyStyleProjectGeneration(tempDirectory:string)
+    + LegacyStyleProjectGeneration()
+}
+ProjectGeneration <|-- LegacyStyleProjectGeneration
+@enduml

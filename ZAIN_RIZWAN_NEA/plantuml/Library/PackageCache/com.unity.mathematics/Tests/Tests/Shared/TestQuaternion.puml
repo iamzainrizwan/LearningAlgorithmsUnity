@@ -1,0 +1,34 @@
+@startuml
+class TestQuaternion {
+    + {static} quaternion_basic_constructors() : void
+    + {static} quaternion_construct_from_matrix() : void
+    + {static} quaternion_construct_from_matrix3x3_torture() : void
+    + {static} quaternion_construct_from_matrix4x4_torture() : void
+    + {static} quaternion_axis_angle() : void
+    + {static} quaternion_axis_angle_consistency() : void
+    + {static} euler_to_quaternion() : void
+    + {static} quaternion_rotateX() : void
+    + {static} quaternion_rotateY() : void
+    + {static} quaternion_rotateZ() : void
+    + {static} quaternion_conjugate() : void
+    + {static} quaternion_inverse() : void
+    + {static} quaternion_dot() : void
+    + {static} quaternion_nlerp() : void
+    + {static} quaternion_slerp() : void
+    + {static} quaternion_mul_vector() : void
+    + {static} quaternion_log_exp_identity() : void
+    + {static} quaternion_log_exp_rotation() : void
+    + {static} quaternion_unitlog_unitexp_rotation() : void
+    + {static} quaternion_look_rotation() : void
+    + {static} quaternion_look_rotation_safe() : void
+    + {static} quaternion_EqualsObjectOverride() : void
+    + {static} quaternion_angle() : void
+    + {static} quaternion_rotation_from_3x3_identity() : void
+    + {static} quaternion_rotation_from_3x3_with_uniform_scale() : void
+    + {static} quaternion_rotation_from_3x3_with_nonuniform_scale() : void
+    + {static} quaternion_rotation_from_3x3_with_negative_scale_x() : void
+    + {static} quaternion_rotation_from_3x3_with_negative_scale_y() : void
+    + {static} quaternion_rotation_from_3x3_with_negative_scale_z() : void
+    + {static} quaternion_rotation_from_3x3_with_negative_nonuniform_scale() : void
+}
+@enduml

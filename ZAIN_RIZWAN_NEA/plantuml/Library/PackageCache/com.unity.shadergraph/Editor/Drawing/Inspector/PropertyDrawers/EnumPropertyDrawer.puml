@@ -1,0 +1,7 @@
+@startuml
+class EnumPropertyDrawer {
+    + DrawProperty(propertyInfo:PropertyInfo, actualObject:object, attribute:InspectableAttribute) : VisualElement
+}
+IPropertyDrawer <|-- EnumPropertyDrawer
+EnumPropertyDrawer --> "inspectorUpdateDelegate" Action
+@enduml

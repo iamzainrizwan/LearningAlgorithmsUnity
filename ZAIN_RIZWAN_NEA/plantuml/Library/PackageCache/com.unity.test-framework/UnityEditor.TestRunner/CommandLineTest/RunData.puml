@@ -1,0 +1,13 @@
+@startuml
+class RunData {
+    + IsRunning : bool <<get>> <<set>>
+    + RunId : string <<get>> <<set>>
+    + RunErrorMessage : string <<get>> <<set>>
+}
+class "ScriptableSingleton`1"<T> {
+}
+"ScriptableSingleton`1" "<RunData>" <|-- RunData
+IRunData <|-- RunData
+RunData --> "ExecutionSettings" ExecutionSettings
+RunData --> "RunState" TestRunState
+@enduml

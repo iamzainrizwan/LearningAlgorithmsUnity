@@ -1,0 +1,40 @@
+@startuml
+class LogarithmicDrawer {
+    + <<override>> OnGUI(position:Rect, property:SerializedProperty, label:GUIContent) : void
+}
+class ProbeVolumeBakingSetEditor {
+    + <<override>> UseDefaultMargins() : bool
+    + <<override>> OnInspectorGUI() : void
+}
+class Styles <<static>> {
+    + {static} <<readonly>> msgProbeFreeze : string = "Some scene(s) in this Baking Set are not currently loaded in the Hierarchy. Set Probe Positions to Don't Recalculate to not break compatibility with already baked scenarios."
+    + {static} <<readonly>> simplificationLevelsHighWarning : string = " Using this many brick sizes will result in high memory usage and can cause instabilities."
+    + {static} <<readonly>> maskTooltip : string = "The Rendering Layers for this mask."
+}
+PropertyDrawer <|-- LogarithmicDrawer
+Editor <|-- ProbeVolumeBakingSetEditor
+ProbeVolumeBakingSetEditor +-- Styles
+Styles o-> "scenariosTitle" GUIContent
+Styles o-> "placementTitle" GUIContent
+Styles o-> "invaliditySettingsTitle" GUIContent
+Styles o-> "skyOcclusionSettingsTitle" GUIContent
+Styles o-> "renderingLayersTitle" GUIContent
+Styles o-> "keepSamePlacement" GUIContent
+Styles o-> "emptyLabel" GUIContent
+Styles o-> "probeOffset" GUIContent
+Styles o-> "maxDistanceBetweenProbes" GUIContent
+Styles o-> "minDistanceBetweenProbes" GUIContent
+Styles o-> "indexDimensions" GUIContent
+Styles o-> "minRendererVolumeSize" GUIContent
+Styles o-> "renderersLayerMask" GUIContent
+Styles o-> "rendererFilterSettings" GUIContent
+Styles o-> "skyOcclusion" GUIContent
+Styles o-> "skyOcclusionBakingSamples" GUIContent
+Styles o-> "skyOcclusionBakingBounces" GUIContent
+Styles o-> "skyOcclusionAverageAlbedo" GUIContent
+Styles o-> "skyOcclusionShadingDirection" GUIContent
+Styles o-> "cpuLightmapperNotSupportedWarning" GUIContent
+Styles o-> "resetDilation" GUIContent
+Styles o-> "resetVirtualOffset" GUIContent
+Styles o-> "renderingLayerMasks" GUIContent
+@enduml

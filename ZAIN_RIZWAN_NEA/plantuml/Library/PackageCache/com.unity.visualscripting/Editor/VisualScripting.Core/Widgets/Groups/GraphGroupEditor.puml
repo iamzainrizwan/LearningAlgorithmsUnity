@@ -1,0 +1,10 @@
+@startuml
+class GraphGroupEditor <<sealed>> {
+    + GraphGroupEditor(metadata:Metadata)
+}
+class Styles <<static>> {
+}
+Inspector <|-- GraphGroupEditor
+GraphGroupEditor +-- Styles
+Styles --> "inspectorPadding" RectOffset
+@enduml

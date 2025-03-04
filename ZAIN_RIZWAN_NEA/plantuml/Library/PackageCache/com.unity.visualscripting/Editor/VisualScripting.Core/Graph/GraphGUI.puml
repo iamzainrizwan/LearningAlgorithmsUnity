@@ -1,0 +1,66 @@
+@startuml
+class GraphGUI <<static>> {
+    + <<const>> MinZoomForControls : float = 0.7f
+    + <<const>> MinZoom : float = 0.1f
+    + <<const>> MaxZoom : float = 1
+    + <<const>> ZoomSteps : float = 0.05f
+    + {static} GetNodeStyle(shape:NodeShape, color:NodeColor) : GUIStyle
+    + {static} Node(position:Rect, shape:NodeShape, color:NodeColor, selected:bool) : void
+    + {static} Node(position:Rect, shape:NodeShape, mix:NodeColorMix, selected:bool) : void
+    + {static} GetNodeEdgeToOuterPosition(edgePosition:Rect, shape:NodeShape) : Rect
+    + {static} GetNodeEdgeToInnerPosition(edgePosition:Rect, shape:NodeShape) : Rect
+    + {static} GetNodeOuterToEdgePosition(outerPosition:Rect, shape:NodeShape) : Rect
+    + {static} GetNodeInnerToEdgePosition(innerPosition:Rect, shape:NodeShape) : Rect
+    + {static} DrawBackground(position:Rect) : void
+    + {static} SnapToGrid(position:float) : float
+    + {static} SnapToGrid(position:Vector2) : Vector2
+    + {static} SnapToGrid(position:Rect, resize:bool) : Rect
+    + {static} DrawGrid(scroll:Vector2, position:Rect, zoom:float) : void
+    + {static} GetConnectionEdge(start:Vector2, end:Vector2, startEdge:Edge, endEdge:Edge) : void
+    + {static} GetHorizontalConnectionEdge(start:Vector2, end:Vector2, startEdge:Edge, endEdge:Edge) : void
+    + {static} ArrowTexture(destinationEdge:Edge) : EditorTexture
+    + {static} DrawConnectionArrow(color:Color, start:Vector2, end:Vector2, startEdge:Edge, endEdge:Edge, relativeBend:float, minBend:float) : void
+    + {static} GetPointOnConnection(t:float, start:Vector2, end:Vector2, startEdge:Edge, endEdge:Edge?, relativeBend:float, minBend:float) : Vector2
+    + {static} DrawConnection(color:Color, start:Vector2, end:Vector2, startEdge:Edge, endEdge:Edge?, cap:Texture, capSize:Vector2, relativeBend:float, minBend:float, thickness:float) : void
+    + {static} PositionOverlaps(canvas:ICanvas, widget:IGraphElementWidget, threshold:float) : bool
+    + {static} LineIntersectionPoint(start1:Vector2, end1:Vector2, start2:Vector2, end2:Vector2) : Vector2?
+    + {static} SizeProjection(size:Vector2, spreadOrigin:Vector2, spreadAxis:Vector2) : float
+    + {static} CalculateArea(widgets:IEnumerable<IGraphElementWidget>) : Rect
+    + {static} DrawDragAndDropPreviewLabel(position:Vector2, content:GUIContent) : void
+    + {static} DrawDragAndDropPreviewLabel(position:Vector2, content:string) : void
+    + {static} DrawDragAndDropPreviewLabel(position:Vector2, content:string, icon:EditorTexture) : void
+    + {static} UpdateDroplets(canvas:ICanvas, droplets:List<float>, lastEntryFrame:int, lastEntryTime:float, dropTime:float, discreteThreshold:float, continuousDelay:float, trickleDuration:float) : void
+}
+class Styles <<static>> {
+    + {static} <<readonly>> majorGridGroup : int = 10
+    + {static} <<readonly>> minorGridSpacing : float = 12
+    + {static} <<readonly>> majorGridThickness : float = 1
+    + {static} <<readonly>> minorGridThickness : float = 1
+    + {static} <<readonly>> dimAlpha : float
+}
+class "Dictionary`2"<T1,T2> {
+}
+struct NodeColorComparer {
+    + Equals(x:NodeColor, y:NodeColor) : bool
+    + GetHashCode(obj:NodeColor) : int
+}
+class "IEqualityComparer`1"<T> {
+}
+GraphGUI --> "e" Event
+GraphGUI +-- Styles
+Styles o-> "background" GUIStyle
+Styles o-> "majorGridColor" Color
+Styles o-> "minorGridColor" Color
+Styles --> "squares<NodeColor,GUIStyle>" "Dictionary`2"
+Styles --> "hexes<NodeColor,GUIStyle>" "Dictionary`2"
+Styles --> "coordinatesLabel" GUIStyle
+Styles --> "dragAndDropPreviewBackground" GUIStyle
+Styles --> "dragAndDropPreviewText" GUIStyle
+Styles --> "arrowUp" EditorTexture
+Styles --> "arrowRight" EditorTexture
+Styles --> "arrowDown" EditorTexture
+Styles --> "arrowLeft" EditorTexture
+Styles --> "lockIcon" GUIContent
+Styles +-- NodeColorComparer
+"IEqualityComparer`1" "<NodeColor>" <|-- NodeColorComparer
+@enduml

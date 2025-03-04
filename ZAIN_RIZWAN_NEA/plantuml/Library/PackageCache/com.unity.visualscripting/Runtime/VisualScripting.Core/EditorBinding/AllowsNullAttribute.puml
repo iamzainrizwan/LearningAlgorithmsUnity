@@ -1,0 +1,6 @@
+@startuml
+class AllowsNullAttribute <<sealed>> {
+    + AllowsNullAttribute()
+}
+Attribute <|-- AllowsNullAttribute
+@enduml

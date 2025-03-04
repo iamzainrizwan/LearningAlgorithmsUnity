@@ -1,0 +1,9 @@
+@startuml
+class PrecisionColors {
+    + <<override>> GetTitle() : string
+    + <<override>> AllowCustom() : bool
+    + <<override>> ClearOnDirty() : bool
+    + <<override>> ClearColor(nodeView:IShaderNodeView) : void
+}
+ColorProviderFromStyleSheet <|-- PrecisionColors
+@enduml

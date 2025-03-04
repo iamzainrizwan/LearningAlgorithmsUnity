@@ -1,0 +1,34 @@
+@startuml
+struct ClipBackgroundRegion {
+    + startTime : double <<get>>
+    + endTime : double <<get>>
+    + ClipBackgroundRegion(_position:Rect, _startTime:double, _endTime:double)
+    + <<override>> Equals(obj:object) : bool
+    + Equals(other:ClipBackgroundRegion) : bool
+    + <<override>> GetHashCode() : int
+}
+struct ClipDrawOptions {
+    + errorText : string <<get>> <<set>>
+    + displayClipName : bool <<get>> <<set>>
+    + hideScaleIndicator : bool <<get>> <<set>>
+    + tooltip : string <<get>> <<set>>
+    + <<override>> Equals(obj:object) : bool
+    + Equals(other:ClipDrawOptions) : bool
+    + <<override>> GetHashCode() : int
+}
+class ClipEditor {
+    + ClipEditor()
+    + <<virtual>> GetClipOptions(clip:TimelineClip) : ClipDrawOptions
+    + <<virtual>> DrawBackground(clip:TimelineClip, region:ClipBackgroundRegion) : void
+    + <<virtual>> OnCreate(clip:TimelineClip, track:TrackAsset, clonedFrom:TimelineClip) : void
+    + GetErrorText(clip:TimelineClip) : string
+    + GetDefaultHighlightColor(clip:TimelineClip) : Color
+    + <<virtual>> OnClipChanged(clip:TimelineClip) : void
+    + <<virtual>> GetSubTimelines(clip:TimelineClip, director:PlayableDirector, subTimelines:List<PlayableDirector>) : void
+}
+class "IEnumerable`1"<T> {
+}
+ClipBackgroundRegion --> "position" Rect
+ClipDrawOptions --> "highlightColor" Color
+ClipDrawOptions --> "icons<Texture2D>" "IEnumerable`1"
+@enduml

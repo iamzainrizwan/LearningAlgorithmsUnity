@@ -1,0 +1,11 @@
+@startuml
+class AnyStateWidget {
+    + AnyStateWidget(canvas:StateCanvas, state:AnyState)
+    + <<override>> canToggleStart : bool <<get>>
+    + <<override>> canForceEnter : bool <<get>>
+    + <<override>> canForceExit : bool <<get>>
+}
+class "StateWidget`1"<T> {
+}
+"StateWidget`1" "<AnyState>" <|-- AnyStateWidget
+@enduml

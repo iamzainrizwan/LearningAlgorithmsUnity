@@ -1,0 +1,8 @@
+@startuml
+class RenamedNamespaceAttribute <<sealed>> {
+    + RenamedNamespaceAttribute(previousName:string, newName:string)
+    + previousName : string <<get>>
+    + newName : string <<get>>
+}
+Attribute <|-- RenamedNamespaceAttribute
+@enduml

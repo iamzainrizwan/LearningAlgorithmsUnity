@@ -1,0 +1,7 @@
+@startuml
+class FasterThan500msAttribute {
+    + Wrap(command:TestCommand) : TestCommand
+}
+NUnitAttribute <|-- FasterThan500msAttribute
+IWrapTestMethod <|-- FasterThan500msAttribute
+@enduml

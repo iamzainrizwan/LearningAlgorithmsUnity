@@ -1,0 +1,5 @@
+@startuml
+class NoLeaksOnEnterLeavePlaymode {
+    + NoResourceLeaks() : IEnumerator
+}
+@enduml

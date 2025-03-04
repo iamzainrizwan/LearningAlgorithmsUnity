@@ -1,0 +1,4 @@
+@startuml
+class TableViewOperations <<static>> {
+}
+@enduml

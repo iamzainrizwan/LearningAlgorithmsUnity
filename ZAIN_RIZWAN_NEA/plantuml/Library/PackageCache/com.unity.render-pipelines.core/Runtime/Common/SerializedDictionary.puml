@@ -1,0 +1,24 @@
+@startuml
+class "SerializedDictionaryDebugView`2"<K,V> <<sealed>> {
+    + SerializedDictionaryDebugView(dictionary:IDictionary<K, V>)
+}
+class "SerializedDictionary`2"<K,V> {
+    + <<override>> SerializeKey(key:K) : K
+    + <<override>> SerializeValue(val:V) : V
+    + <<override>> DeserializeKey(key:K) : K
+    + <<override>> DeserializeValue(val:V) : V
+}
+abstract class "SerializedDictionary`4"<K,V,SK,SV> {
+    + {abstract} SerializeKey(key:K) : SK
+    + {abstract} SerializeValue(value:V) : SV
+    + {abstract} DeserializeKey(serializedKey:SK) : K
+    + {abstract} DeserializeValue(serializedValue:SV) : V
+    + OnBeforeSerialize() : void
+    + OnAfterDeserialize() : void
+}
+class "Dictionary`2"<T1,T2> {
+}
+"SerializedDictionary`4" "<K,V,K,V>" <|-- "SerializedDictionary`2"
+"Dictionary`2" "<K,V>" <|-- "SerializedDictionary`4"
+ISerializationCallbackReceiver <|-- "SerializedDictionary`4"
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+class BlackboardGroupInfo {
+}
+class SGBlackboard {
+    + OnControllerChanged(e:SGControllerChangedEvent) : void
+    + OnControllerEvent(e:SGControllerEvent) : void
+    + SetCurrentVariantUsage(currentVariantCount:int, maxVariantCount:int) : void
+    + <<override>> windowTitle : string <<get>>
+    + <<override>> elementName : string <<get>>
+    + <<override>> styleName : string <<get>>
+    + <<override>> UxmlName : string <<get>>
+    + <<override>> layoutKey : string <<get>>
+    + SGBlackboard(viewModel:BlackboardViewModel, controller:BlackboardController)
+    + OnDragEnterEvent(evt:DragEnterEvent) : void
+    + OnDragExitedEvent(evt:DragExitedEvent) : void
+    + <<override>> Dispose() : void
+}
+class "ISGControlledElement`1"<T> {
+}
+GraphSubWindow <|-- SGBlackboard
+"ISGControlledElement`1" "<BlackboardController>" <|-- SGBlackboard
+SGBlackboard --> "m_VariantExceededHelpBox" VisualElement
+SGBlackboard --> "controller" BlackboardController
+@enduml

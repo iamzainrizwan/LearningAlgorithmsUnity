@@ -1,0 +1,7 @@
+@startuml
+class LudiqEditorUtility <<static>> {
+}
+class "OverrideStack`1"<T> {
+}
+LudiqEditorUtility o-> "editedObject<UnityObject>" "OverrideStack`1"
+@enduml

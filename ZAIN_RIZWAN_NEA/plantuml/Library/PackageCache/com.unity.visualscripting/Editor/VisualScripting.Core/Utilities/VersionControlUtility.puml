@@ -1,0 +1,5 @@
+@startuml
+class VersionControlUtility <<static>> {
+    + {static} Unlock(path:string) : void
+}
+@enduml

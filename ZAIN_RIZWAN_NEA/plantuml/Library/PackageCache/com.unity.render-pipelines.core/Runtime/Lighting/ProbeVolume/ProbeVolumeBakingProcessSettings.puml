@@ -1,0 +1,28 @@
+@startuml
+struct ProbeDilationSettings {
+    + enableDilation : bool
+    + dilationDistance : float
+    + dilationValidityThreshold : float
+    + dilationIterations : int
+    + squaredDistWeighting : bool
+}
+struct VirtualOffsetSettings {
+    + useVirtualOffset : bool
+    + validityThreshold : float
+    + outOfGeoOffset : float
+    + searchMultiplier : float
+    + rayOriginBias : float
+}
+struct ProbeVolumeBakingProcessSettings {
+}
+enum SettingsVersion {
+    Initial,
+    ThreadedVirtualOffset,
+    Max,
+    Current= Max - 1,
+}
+VirtualOffsetSettings --> "collisionMask" LayerMask
+ProbeVolumeBakingProcessSettings --> "dilationSettings" ProbeDilationSettings
+ProbeVolumeBakingProcessSettings --> "virtualOffsetSettings" VirtualOffsetSettings
+ProbeVolumeBakingProcessSettings +-- SettingsVersion
+@enduml

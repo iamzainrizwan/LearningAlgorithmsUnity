@@ -1,0 +1,18 @@
+@startuml
+class EditorAssetResourceProvider <<sealed>> {
+    + root : string <<get>>
+    + EditorAssetResourceProvider(root:string)
+    + GetAllFiles() : IEnumerable<string>
+    + GetFiles(path:string) : IEnumerable<string>
+    + GetDirectories(path:string) : IEnumerable<string>
+    + GetPersonalPath(path:string, width:float) : string
+    + GetProfessionalPath(path:string, width:float) : string
+    + FileExists(path:string) : bool
+    + DirectoryExists(path:string) : bool
+    + NormalizePath(path:string) : string
+    + DebugPath(path:string) : string
+    + LoadAsset(path:string) : T
+    + LoadTexture(path:string, options:CreateTextureOptions) : Texture2D
+}
+IResourceProvider <|-- EditorAssetResourceProvider
+@enduml

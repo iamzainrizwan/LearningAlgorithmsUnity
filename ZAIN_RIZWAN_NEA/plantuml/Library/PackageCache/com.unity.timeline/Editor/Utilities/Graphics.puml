@@ -1,0 +1,14 @@
+@startuml
+class Graphics <<static>> {
+    + {static} ShadowLabel(rect:Rect, text:string, style:GUIStyle, textColor:Color, shadowColor:Color) : void
+    + {static} ShadowLabel(rect:Rect, content:GUIContent, style:GUIStyle, textColor:Color, shadowColor:Color) : void
+    + {static} DrawLine(p1:Vector3, p2:Vector3, color:Color) : void
+    + {static} DrawPolygonAA(color:Color, vertices:Vector3[]) : void
+    + {static} DrawDottedLine(p1:Vector3, p2:Vector3, segmentsLength:float, col:Color) : void
+    + {static} DrawLineAtTime(state:WindowState, time:double, color:Color, dotted:bool) : void
+    + {static} DrawTextureRepeated(area:Rect, texture:Texture) : void
+    + {static} DrawShadow(clientRect:Rect) : void
+    + {static} DrawBackgroundRect(state:WindowState, rect:Rect, subSequenceMode:bool) : void
+    + {static} CalculateTextBoxSize(trackRect:Rect, font:GUIStyle, content:GUIContent, padding:float) : Rect
+}
+@enduml

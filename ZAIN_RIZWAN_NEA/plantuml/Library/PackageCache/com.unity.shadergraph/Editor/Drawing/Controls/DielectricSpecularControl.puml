@@ -1,0 +1,12 @@
+@startuml
+class DielectricSpecularControlAttribute {
+    + DielectricSpecularControlAttribute()
+    + InstantiateControl(node:AbstractMaterialNode, propertyInfo:PropertyInfo) : VisualElement
+}
+class DielectricSpecularControlView {
+    + DielectricSpecularControlView(node:AbstractMaterialNode, propertyInfo:PropertyInfo)
+}
+Attribute <|-- DielectricSpecularControlAttribute
+IControlAttribute <|-- DielectricSpecularControlAttribute
+VisualElement <|-- DielectricSpecularControlView
+@enduml

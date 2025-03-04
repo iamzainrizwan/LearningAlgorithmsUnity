@@ -1,0 +1,16 @@
+@startuml
+abstract class RenderPipelineConverter {
+    + {abstract} name : string <<get>>
+    + {abstract} info : string <<get>>
+    + <<virtual>> isEnabled : bool <<get>>
+    + <<virtual>> priority : int <<get>>
+    + <<virtual>> needsIndexing : bool <<get>>
+    + <<virtual>> OnClicked(index:int) : void
+    + <<virtual>> category : string <<get>>
+    + {abstract} OnInitialize(context:InitializeConverterContext, callback:Action) : void
+    + <<virtual>> OnPreRun() : void
+    + {abstract} OnRun(context:RunItemContext) : void
+    + <<virtual>> OnPostRun() : void
+}
+RenderPipelineConverter --> "container" Type
+@enduml

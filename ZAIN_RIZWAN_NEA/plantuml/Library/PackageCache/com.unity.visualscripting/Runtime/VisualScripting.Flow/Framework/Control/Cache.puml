@@ -1,0 +1,9 @@
+@startuml
+class Cache <<sealed>> {
+}
+Unit <|-- Cache
+Cache --> "enter" ControlInput
+Cache --> "input" ValueInput
+Cache --> "output" ValueOutput
+Cache --> "exit" ControlOutput
+@enduml

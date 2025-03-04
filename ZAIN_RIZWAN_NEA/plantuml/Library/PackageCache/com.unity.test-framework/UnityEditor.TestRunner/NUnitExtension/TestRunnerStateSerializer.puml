@@ -1,0 +1,12 @@
+@startuml
+class TestRunnerStateSerializer {
+    + ShouldRestore() : bool
+    + SaveContext() : void
+    + RestoreContext() : void
+    + CanRestoreFromScriptableObject(requestedType:Type) : bool
+    + RestoreScriptableObjectInstance() : ScriptableObject
+    + CanRestoreFromJson(requestedType:Type) : bool
+    + RestoreClassFromJson(instance:object) : void
+}
+IStateSerializer <|-- TestRunnerStateSerializer
+@enduml

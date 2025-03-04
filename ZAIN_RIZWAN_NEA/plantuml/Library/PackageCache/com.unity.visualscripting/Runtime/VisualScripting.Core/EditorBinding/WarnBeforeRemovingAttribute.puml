@@ -1,0 +1,8 @@
+@startuml
+class WarnBeforeRemovingAttribute <<sealed>> {
+    + WarnBeforeRemovingAttribute(warningTitle:string, warningMessage:string)
+    + warningTitle : string <<get>>
+    + warningMessage : string <<get>>
+}
+Attribute <|-- WarnBeforeRemovingAttribute
+@enduml

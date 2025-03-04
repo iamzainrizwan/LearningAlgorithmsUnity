@@ -1,0 +1,9 @@
+@startuml
+class "MonoBehaviourTest`1"<T> {
+    + component : T <<get>>
+    + MonoBehaviourTest(dontDestroyOnLoad:bool)
+    + <<override>> keepWaiting : bool <<get>>
+}
+CustomYieldInstruction <|-- "MonoBehaviourTest`1"
+"MonoBehaviourTest`1" --> "gameObject" GameObject
+@enduml

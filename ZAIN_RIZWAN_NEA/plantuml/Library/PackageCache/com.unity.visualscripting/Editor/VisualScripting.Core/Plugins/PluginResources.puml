@@ -1,0 +1,24 @@
+@startuml
+class PluginResources {
+    + <<virtual>> Initialize() : void
+    + <<virtual>> LateInitialize() : void
+    + LoadAsset(path:string, required:bool) : T
+    + LoadTexture(path:string, options:CreateTextureOptions, required:bool) : EditorTexture
+    + LoadTexture(path:string, resolutions:TextureResolution[], options:CreateTextureOptions, required:bool) : EditorTexture
+    + LoadIcon(path:string, required:bool) : EditorTexture
+    + {static} LoadSharedIcon(path:string, required:bool) : EditorTexture
+}
+class "ReadOnlyCollection`1"<T> {
+}
+class "IEnumerable`1"<T> {
+}
+IPluginModule <|-- PluginResources
+PluginResources --> "plugin" Plugin
+PluginResources --> "migrations<PluginMigration>" "ReadOnlyCollection`1"
+PluginResources --> "pendingMigrations<PluginMigration>" "IEnumerable`1"
+PluginResources --> "defaultProvider" IResourceProvider
+PluginResources --> "providers<IResourceProvider>" "IEnumerable`1"
+PluginResources --> "assetBundleResourceProvider" AssetBundleResourceProvider
+PluginResources --> "assembly" AssemblyResourceProvider
+PluginResources --> "editorAssets" EditorAssetResourceProvider
+@enduml

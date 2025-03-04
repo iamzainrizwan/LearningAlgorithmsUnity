@@ -1,0 +1,6 @@
+@startuml
+class SpaceFillingCurves <<static>> {
+    + {static} EncodeMorton2D(coord:uint2) : uint
+    + {static} DecodeMorton2D(code:uint) : uint2
+}
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class LogEvent {
+    + Message : string <<get>> <<set>>
+    + StackTrace : string <<get>> <<set>>
+    + IsHandled : bool <<get>> <<set>>
+    + <<override>> ToString() : string
+}
+LogEvent --> "LogType" LogType
+@enduml

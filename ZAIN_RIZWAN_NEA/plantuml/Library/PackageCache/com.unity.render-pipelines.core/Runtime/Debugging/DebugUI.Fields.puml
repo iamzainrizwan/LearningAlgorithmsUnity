@@ -1,0 +1,155 @@
+@startuml
+class DebugUI <<partial>> {
+}
+abstract class "Field`1"<T> {
+    + <<virtual>> ValidateValue(value:T) : T
+    + GetValue() : T
+    + SetValue(value:object) : void
+    + <<virtual>> SetValue(value:T) : void
+}
+class BoolField {
+}
+class HistoryBoolField {
+    + historyDepth : int <<get>>
+    + GetHistoryValue(historyIndex:int) : bool
+}
+class IntField {
+    + incStep : int = 1
+    + intStepMult : int = 10
+    + <<override>> ValidateValue(value:int) : int
+}
+class UIntField {
+    + incStep : uint = 1u
+    + intStepMult : uint = 10u
+    + <<override>> ValidateValue(value:uint) : uint
+}
+class FloatField {
+    + incStep : float = 0.1f
+    + incStepMult : float = 10f
+    + decimals : int = 3
+    + <<override>> ValidateValue(value:float) : float
+}
+abstract class "EnumField`1"<T> {
+}
+class EnumField {
+    + currentIndex : int <<get>> <<set>>
+    + <<override>> SetValue(value:int) : void
+}
+class ObjectPopupField {
+}
+class HistoryEnumField {
+    + historyDepth : int <<get>>
+    + GetHistoryValue(historyIndex:int) : int
+}
+class BitField {
+}
+class MaskField {
+    + Fill(names:string[]) : void
+    + <<override>> SetValue(value:uint) : void
+}
+class ColorField {
+    + hdr : bool = false
+    + showAlpha : bool = true
+    + showPicker : bool = true
+    + incStep : float = 0.025f
+    + incStepMult : float = 5f
+    + decimals : int = 3
+    + <<override>> ValidateValue(value:Color) : Color
+}
+class Vector2Field {
+    + incStep : float = 0.025f
+    + incStepMult : float = 10f
+    + decimals : int = 3
+}
+class Vector3Field {
+    + incStep : float = 0.025f
+    + incStepMult : float = 10f
+    + decimals : int = 3
+}
+class Vector4Field {
+    + incStep : float = 0.025f
+    + incStepMult : float = 10f
+    + decimals : int = 3
+}
+class ObjectField {
+}
+class ObjectListField {
+}
+class MessageBox {
+    + message : string <<get>>
+}
+class RuntimeDebugShadersMessageBox {
+    + RuntimeDebugShadersMessageBox()
+}
+class "Func`1"<T> {
+}
+class "Action`1"<T> {
+}
+class "Action`2"<T1,T2> {
+}
+enum Style {
+    Info,
+    Warning,
+    Error,
+}
+DebugUI +-- "Field`1"
+Widget <|-- "Field`1"
+IValueField <|-- "Field`1"
+"Field`1" --> "getter<T>" "Func`1"
+"Field`1" --> "setter<T>" "Action`1"
+"Field`1" --> "onValueChanged<Field<T>,T>" "Action`2"
+DebugUI +-- BoolField
+"Field`1" "<bool>" <|-- BoolField
+DebugUI +-- HistoryBoolField
+BoolField <|-- HistoryBoolField
+DebugUI +-- IntField
+"Field`1" "<int>" <|-- IntField
+IntField --> "min<int>" "Func`1"
+IntField --> "max<int>" "Func`1"
+DebugUI +-- UIntField
+"Field`1" "<uint>" <|-- UIntField
+UIntField --> "min<uint>" "Func`1"
+UIntField --> "max<uint>" "Func`1"
+DebugUI +-- FloatField
+"Field`1" "<float>" <|-- FloatField
+FloatField --> "min<float>" "Func`1"
+FloatField --> "max<float>" "Func`1"
+DebugUI +-- "EnumField`1"
+"Field`1" "<T>" <|-- "EnumField`1"
+DebugUI +-- EnumField
+"EnumField`1" "<int>" <|-- EnumField
+EnumField --> "getIndex<int>" "Func`1"
+EnumField --> "setIndex<int>" "Action`1"
+EnumField --> "autoEnum" Type
+DebugUI +-- ObjectPopupField
+"Field`1" "<Object>" <|-- ObjectPopupField
+ObjectPopupField --> "getObjects<IEnumerable<Object>>" "Func`1"
+DebugUI +-- HistoryEnumField
+EnumField <|-- HistoryEnumField
+DebugUI +-- BitField
+"EnumField`1" "<Enum>" <|-- BitField
+BitField --> "enumType" Type
+DebugUI +-- MaskField
+"EnumField`1" "<uint>" <|-- MaskField
+DebugUI +-- ColorField
+"Field`1" "<Color>" <|-- ColorField
+DebugUI +-- Vector2Field
+"Field`1" "<Vector2>" <|-- Vector2Field
+DebugUI +-- Vector3Field
+"Field`1" "<Vector3>" <|-- Vector3Field
+DebugUI +-- Vector4Field
+"Field`1" "<Vector4>" <|-- Vector4Field
+DebugUI +-- ObjectField
+"Field`1" "<Object>" <|-- ObjectField
+ObjectField o-> "type" Type
+DebugUI +-- ObjectListField
+"Field`1" "<Object[]>" <|-- ObjectListField
+ObjectListField o-> "type" Type
+DebugUI +-- MessageBox
+Widget <|-- MessageBox
+MessageBox o-> "style" Style
+MessageBox o-> "messageCallback<string>" "Func`1"
+DebugUI +-- RuntimeDebugShadersMessageBox
+MessageBox <|-- RuntimeDebugShadersMessageBox
+MessageBox +-- Style
+@enduml

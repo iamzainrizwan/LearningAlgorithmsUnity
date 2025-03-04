@@ -1,0 +1,18 @@
+@startuml
+class CallbacksDelegator {
+    + CallbacksDelegator(callbacksProvider:Func<ICallbacks[]>, adaptorFactory:ITestAdaptorFactory)
+    + RunStarted(testsToRun:ITest) : void
+    + RunStartedRemotely(testsToRunData:byte[]) : void
+    + RunFinished(testResults:ITestResult) : void
+    + RunFinishedRemotely(testResultsData:byte[]) : void
+    + RunFailed(failureMessage:string) : void
+    + TestStarted(test:ITest) : void
+    + TestStartedRemotely(testStartedData:byte[]) : void
+    + TestFinished(result:ITestResult) : void
+    + TestFinishedRemotely(testResultsData:byte[]) : void
+    + TestTreeRebuild(test:ITest) : void
+    + SetTestRunFilter(filter:ITestFilter) : void
+}
+ICallbacksDelegator <|-- CallbacksDelegator
+CallbacksDelegator --> "instance" CallbacksDelegator
+@enduml

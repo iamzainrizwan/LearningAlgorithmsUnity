@@ -1,0 +1,8 @@
+@startuml
+class DropdownSeparator {
+    + DropdownSeparator()
+    + DropdownSeparator(path:string)
+    + path : string <<get>> <<set>>
+}
+DropdownOption <|-- DropdownSeparator
+@enduml

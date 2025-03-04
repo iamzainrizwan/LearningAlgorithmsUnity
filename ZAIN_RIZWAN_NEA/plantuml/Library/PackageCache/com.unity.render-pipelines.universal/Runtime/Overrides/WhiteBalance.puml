@@ -1,0 +1,10 @@
+@startuml
+class WhiteBalance <<sealed>> {
+    + IsActive() : bool
+    + IsTileCompatible() : bool
+}
+VolumeComponent <|-- WhiteBalance
+IPostProcessComponent <|-- WhiteBalance
+WhiteBalance o-> "temperature" ClampedFloatParameter
+WhiteBalance o-> "tint" ClampedFloatParameter
+@enduml

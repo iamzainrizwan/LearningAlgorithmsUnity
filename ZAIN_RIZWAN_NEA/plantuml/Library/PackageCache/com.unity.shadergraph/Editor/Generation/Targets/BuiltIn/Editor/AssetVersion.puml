@@ -1,0 +1,6 @@
+@startuml
+class AssetVersion {
+    + version : int
+}
+ScriptableObject <|-- AssetVersion
+@enduml

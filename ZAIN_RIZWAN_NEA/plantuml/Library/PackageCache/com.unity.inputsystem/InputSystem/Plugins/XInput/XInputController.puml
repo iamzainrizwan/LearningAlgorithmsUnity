@@ -1,0 +1,41 @@
+@startuml
+class XInputController {
+}
+enum DeviceType {
+    Gamepad= 0x00,
+}
+enum DeviceSubType {
+    Unknown= 0x00,
+    Gamepad= 0x01,
+    Wheel= 0x02,
+    ArcadeStick= 0x03,
+    FlightStick= 0x04,
+    DancePad= 0x05,
+    Guitar= 0x06,
+    GuitarAlternate= 0x07,
+    DrumKit= 0x08,
+    GuitarBass= 0x0B,
+    ArcadePad= 0x13,
+}
+enum DeviceFlags {
+    ForceFeedbackSupported= 0x01,
+    Wireless= 0x02,
+    VoiceSupported= 0x04,
+    PluginModulesSupported= 0x08,
+    NoNavigation= 0x10,
+}
+struct Capabilities {
+}
+Gamepad <|-- XInputController
+XInputController --> "menu" ButtonControl
+XInputController --> "view" ButtonControl
+XInputController --> "subType" DeviceSubType
+XInputController --> "flags" DeviceFlags
+XInputController +-- DeviceType
+XInputController +-- DeviceSubType
+XInputController +-- DeviceFlags
+XInputController +-- Capabilities
+Capabilities --> "type" DeviceType
+Capabilities --> "subType" DeviceSubType
+Capabilities --> "flags" DeviceFlags
+@enduml

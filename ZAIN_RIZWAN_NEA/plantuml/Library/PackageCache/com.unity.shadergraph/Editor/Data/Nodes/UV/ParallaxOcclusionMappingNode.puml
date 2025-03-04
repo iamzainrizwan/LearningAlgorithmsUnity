@@ -1,0 +1,18 @@
+@startuml
+class ParallaxOcclusionMappingNode {
+    + ParallaxOcclusionMappingNode()
+    + <<override>> hasPreview : bool <<get>>
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> Setup() : void
+    + GenerateNodeFunction(registry:FunctionRegistry, generationMode:GenerationMode) : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + RequiresViewDirection(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresMeshUV(channel:UVChannel, stageCapability:ShaderStageCapability) : bool
+}
+AbstractMaterialNode <|-- ParallaxOcclusionMappingNode
+IGeneratesBodyCode <|-- ParallaxOcclusionMappingNode
+IGeneratesFunction <|-- ParallaxOcclusionMappingNode
+IMayRequireViewDirection <|-- ParallaxOcclusionMappingNode
+IMayRequireMeshUV <|-- ParallaxOcclusionMappingNode
+ParallaxOcclusionMappingNode --> "channel" Channel
+@enduml

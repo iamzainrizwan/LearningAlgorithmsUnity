@@ -1,0 +1,14 @@
+@startuml
+enum PerformanceBottleneck {
+    Indeterminate,
+    PresentLimited,
+    CPU,
+    GPU,
+    Balanced,
+}
+struct BottleneckHistogram {
+}
+class BottleneckHistory {
+    + BottleneckHistory(initialCapacity:int)
+}
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+enum RotationUnit {
+    Radians,
+    Degrees,
+}
+class RotateNode {
+    + RotateNode()
+}
+CodeFunctionNode <|-- RotateNode
+RotateNode --> "unit" RotationUnit
+@enduml

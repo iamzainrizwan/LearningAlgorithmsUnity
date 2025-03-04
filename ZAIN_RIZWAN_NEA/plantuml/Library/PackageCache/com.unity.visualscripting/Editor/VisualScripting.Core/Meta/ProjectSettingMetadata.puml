@@ -1,0 +1,9 @@
+@startuml
+class ProjectSettingMetadata <<sealed>> {
+    + ProjectSettingMetadata(configuration:PluginConfiguration, member:MemberInfo, parent:Metadata)
+    + <<override>> exists : bool <<get>>
+    + <<override>> Load() : void
+    + <<override>> Save() : void
+}
+PluginConfigurationItemMetadata <|-- ProjectSettingMetadata
+@enduml

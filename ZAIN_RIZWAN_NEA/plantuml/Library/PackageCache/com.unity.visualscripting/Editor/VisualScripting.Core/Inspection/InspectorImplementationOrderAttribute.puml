@@ -1,0 +1,7 @@
+@startuml
+class InspectorImplementationOrderAttribute {
+    + InspectorImplementationOrderAttribute(order:int)
+    + order : int <<get>>
+}
+Attribute <|-- InspectorImplementationOrderAttribute
+@enduml

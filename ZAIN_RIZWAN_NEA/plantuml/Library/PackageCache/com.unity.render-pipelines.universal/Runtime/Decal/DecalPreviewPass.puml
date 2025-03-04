@@ -1,0 +1,11 @@
+@startuml
+class DecalPreviewPass {
+    + DecalPreviewPass()
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+class PassData {
+}
+ScriptableRenderPass <|-- DecalPreviewPass
+DecalPreviewPass +-- PassData
+@enduml

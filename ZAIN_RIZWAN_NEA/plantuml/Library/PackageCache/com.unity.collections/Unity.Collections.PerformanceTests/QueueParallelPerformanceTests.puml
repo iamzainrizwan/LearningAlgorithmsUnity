@@ -1,0 +1,28 @@
+@startuml
+class QueueParallelUtil <<static>> {
+    {static} + AllocInt(container:NativeQueue<int>, capacity:int, addValues:bool) : void
+    {static} + AllocBclContainer(capacity:int, addValues:bool) : object
+}
+struct QueueParallelEnqueueGrow {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(worker:int, threadId:int) : void
+    + MeasureUnsafeContainer(worker:int, threadId:int) : void
+    + MeasureBclContainer(container:object, worker:int) : void
+}
+struct QueueParallelEnqueue {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(worker:int, threadId:int) : void
+    + MeasureUnsafeContainer(worker:int, threadId:int) : void
+    + MeasureBclContainer(container:object, worker:int) : void
+}
+class QueueParallelWriter {
+    + <<unsafe>> EnqueueGrow(workers:int, insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Enqueue(workers:int, insertions:int, type:BenchmarkContainerType) : void
+}
+IBenchmarkContainerParallel <|-- QueueParallelEnqueueGrow
+IBenchmarkContainerParallel <|-- QueueParallelEnqueue
+@enduml

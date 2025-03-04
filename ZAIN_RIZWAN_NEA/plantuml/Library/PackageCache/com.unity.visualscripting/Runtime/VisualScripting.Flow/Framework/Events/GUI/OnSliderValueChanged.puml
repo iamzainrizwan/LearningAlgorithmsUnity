@@ -1,0 +1,9 @@
+@startuml
+class OnSliderValueChanged <<sealed>> {
+}
+class "GameObjectEventUnit`1"<T> {
+}
+"GameObjectEventUnit`1" "<float>" <|-- OnSliderValueChanged
+OnSliderValueChanged --> "MessageListenerType" Type
+OnSliderValueChanged --> "value" ValueOutput
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class ParametrizedIgnoreCommand {
+    + Reason : string <<get>>
+    + ParametrizedIgnoreCommand(command:TestCommand, arguments:object[], reason:string)
+    + <<override>> Execute(context:ITestExecutionContext) : TestResult
+}
+TestCommand <|-- ParametrizedIgnoreCommand
+@enduml

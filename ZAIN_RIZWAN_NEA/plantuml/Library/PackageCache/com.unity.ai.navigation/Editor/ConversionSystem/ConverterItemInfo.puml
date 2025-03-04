@@ -1,0 +1,6 @@
+@startuml
+struct ConverterItemInfo {
+    + index : int <<get>> <<internal set>>
+}
+ConverterItemInfo --> "descriptor" ConverterItemDescriptor
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+class DecalDrawDBufferSystem {
+    + DecalDrawDBufferSystem(entityManager:DecalEntityManager)
+}
+class DBufferRenderPass {
+    + DBufferRenderPass(dBufferClear:Material, settings:DBufferSettings, drawSystem:DecalDrawDBufferSystem, decalLayers:bool)
+    + Dispose() : void
+    + Setup(cameraData:CameraData) : void
+    + Setup(cameraData:CameraData, depthTextureHandle:RTHandle) : void
+    + <<override>> OnCameraSetup(cmd:CommandBuffer, renderingData:RenderingData) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+    + <<override>> OnCameraCleanup(cmd:CommandBuffer) : void
+}
+class PassData {
+}
+DecalDrawSystem <|-- DecalDrawDBufferSystem
+ScriptableRenderPass <|-- DBufferRenderPass
+DBufferRenderPass +-- PassData
+@enduml

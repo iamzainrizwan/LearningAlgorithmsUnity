@@ -1,0 +1,11 @@
+@startuml
+class CameraUI <<static>> <<partial>> {
+}
+class Rendering <<static>> <<partial>> {
+    + {static} Drawer_Rendering_StopNaNs(p:ISerializedCamera, owner:Editor) : void
+    + {static} Drawer_Rendering_Dithering(p:ISerializedCamera, owner:Editor) : void
+    + {static} Drawer_Rendering_CullingMask(p:ISerializedCamera, owner:Editor) : void
+    + {static} Drawer_Rendering_OcclusionCulling(p:ISerializedCamera, owner:Editor) : void
+}
+CameraUI +-- Rendering
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+class ScrollRectStableLayout {
+    + Setup() : void
+    + TestSetup() : void
+    + ScrollRect_StableWhenStatic() : IEnumerator
+    + TearDown() : void
+    + OneTimeTearDown() : void
+}
+IPrebuildSetup <|-- ScrollRectStableLayout
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class FontCollection {
+    + FontCollection(load:Func<FontVariant, Font>)
+}
+@enduml

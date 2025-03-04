@@ -1,0 +1,29 @@
+@startuml
+struct JoystickState {
+    + buttons : int
+}
+class Joystick {
+    + <<override>> MakeCurrent() : void
+}
+enum Button {
+    HatSwitchUp,
+    HatSwitchDown,
+    HatSwitchLeft,
+    HatSwitchRight,
+    Trigger,
+}
+class "ReadOnlyArray`1"<T> {
+}
+IInputStateTypeInfo <|-- JoystickState
+JoystickState --> "kFormat" FourCC
+JoystickState --> "stick" Vector2
+JoystickState --> "format" FourCC
+InputDevice <|-- Joystick
+Joystick --> "trigger" ButtonControl
+Joystick --> "stick" StickControl
+Joystick --> "twist" AxisControl
+Joystick --> "hatswitch" Vector2Control
+Joystick --> "current" Joystick
+Joystick --> "all<Joystick>" "ReadOnlyArray`1"
+JoystickState +-- Button
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+enum BlendStyle {
+    LightTex0,
+    LightTex1,
+    LightTex2,
+    LightTex3,
+}
+class LightTextureNode {
+    + LightTextureNode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> GetVariableNameForSlot(slotId:int) : string
+    + GenerateNodeFunction(registry:FunctionRegistry, generationMode:GenerationMode) : void
+    + <<override>> CollectShaderProperties(properties:PropertyCollector, generationMode:GenerationMode) : void
+}
+AbstractMaterialNode <|-- LightTextureNode
+IGeneratesFunction <|-- LightTextureNode
+LightTextureNode --> "blendStyle" BlendStyle
+@enduml

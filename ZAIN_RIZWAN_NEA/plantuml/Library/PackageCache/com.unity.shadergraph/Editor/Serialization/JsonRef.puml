@@ -1,0 +1,12 @@
+@startuml
+struct "JsonRef`1"<T> {
+    + value : T <<get>>
+    + OnBeforeSerialize() : void
+    + OnAfterDeserialize() : void
+    + Equals(other:JsonRef<T>) : bool
+    + Equals(other:T) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+ISerializationCallbackReceiver <|-- "JsonRef`1"
+@enduml

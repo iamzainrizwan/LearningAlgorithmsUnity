@@ -1,0 +1,24 @@
+@startuml
+class ChangelogPage {
+    + ChangelogPage(changelog:PluginChangelog, showPluginName:bool)
+}
+struct Change {
+}
+class "Dictionary`2"<T1,T2> {
+}
+class Styles <<static>> {
+}
+Page <|-- ChangelogPage
+ChangelogPage o-> "changeTypesColors<string,Color>" "Dictionary`2"
+ChangelogPage +-- Change
+Change --> "type" GUIContent
+Change --> "content" GUIContent
+ChangelogPage +-- Styles
+Styles --> "background" GUIStyle
+Styles --> "plugin" GUIStyle
+Styles --> "version" GUIStyle
+Styles --> "description" GUIStyle
+Styles --> "changeType" GUIStyle
+Styles --> "changeContent" GUIStyle
+Styles --> "bullet" GUIStyle
+@enduml

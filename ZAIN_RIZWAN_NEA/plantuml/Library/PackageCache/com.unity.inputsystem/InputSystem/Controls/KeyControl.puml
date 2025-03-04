@@ -1,0 +1,7 @@
+@startuml
+class KeyControl {
+    + scanCode : int <<get>>
+}
+ButtonControl <|-- KeyControl
+KeyControl --> "keyCode" Key
+@enduml

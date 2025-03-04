@@ -1,0 +1,5 @@
+@startuml
+class CurvesOwnerInspectorHelper <<static>> {
+    + {static} PreparePlayableAsset(wrapper:ICurvesOwnerInspectorWrapper) : void
+}
+@enduml

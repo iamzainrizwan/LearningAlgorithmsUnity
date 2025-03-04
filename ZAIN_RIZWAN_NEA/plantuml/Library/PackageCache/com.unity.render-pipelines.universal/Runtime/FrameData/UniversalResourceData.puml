@@ -1,0 +1,26 @@
+@startuml
+class UniversalResourceData {
+    + isActiveTargetBackBuffer : bool <<get>>
+    + <<override>> Reset() : void
+}
+UniversalResourceDataBase <|-- UniversalResourceData
+UniversalResourceData --> "activeColorTexture" TextureHandle
+UniversalResourceData --> "activeDepthTexture" TextureHandle
+UniversalResourceData --> "backBufferColor" TextureHandle
+UniversalResourceData --> "backBufferDepth" TextureHandle
+UniversalResourceData --> "cameraColor" TextureHandle
+UniversalResourceData --> "cameraDepth" TextureHandle
+UniversalResourceData --> "mainShadowsTexture" TextureHandle
+UniversalResourceData --> "additionalShadowsTexture" TextureHandle
+UniversalResourceData --> "cameraOpaqueTexture" TextureHandle
+UniversalResourceData --> "cameraDepthTexture" TextureHandle
+UniversalResourceData --> "cameraNormalsTexture" TextureHandle
+UniversalResourceData --> "motionVectorColor" TextureHandle
+UniversalResourceData --> "motionVectorDepth" TextureHandle
+UniversalResourceData --> "internalColorLut" TextureHandle
+UniversalResourceData --> "afterPostProcessColor" TextureHandle
+UniversalResourceData --> "overlayUITexture" TextureHandle
+UniversalResourceData --> "renderingLayersTexture" TextureHandle
+UniversalResourceData --> "dBufferDepth" TextureHandle
+UniversalResourceData --> "ssaoTexture" TextureHandle
+@enduml

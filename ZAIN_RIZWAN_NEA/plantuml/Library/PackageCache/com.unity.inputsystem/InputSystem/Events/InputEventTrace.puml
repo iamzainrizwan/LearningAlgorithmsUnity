@@ -1,0 +1,82 @@
+@startuml
+class InputEventTrace <<sealed>> <<unsafe>> {
+    + deviceId : int <<get>> <<set>>
+    + enabled : bool <<get>>
+    + recordFrameMarkers : bool <<get>> <<set>>
+    + eventCount : long <<get>>
+    + totalEventSizeInBytes : long <<get>>
+    + allocatedSizeInBytes : long <<get>>
+    + maxSizeInBytes : long <<get>>
+    + InputEventTrace(device:InputDevice, bufferSizeInBytes:long, growBuffer:bool, maxBufferSizeInBytes:long, growIncrementSizeInBytes:long)
+    + InputEventTrace(bufferSizeInBytes:long, growBuffer:bool, maxBufferSizeInBytes:long, growIncrementSizeInBytes:long)
+    + WriteTo(filePath:string) : void
+    + WriteTo(stream:Stream) : void
+    + ReadFrom(filePath:string) : void
+    + ReadFrom(stream:Stream) : void
+    + {static} LoadFrom(filePath:string) : InputEventTrace
+    + {static} LoadFrom(stream:Stream) : InputEventTrace
+    + Replay() : ReplayController
+    + Resize(newBufferSize:long, newMaxBufferSize:long) : bool
+    + Clear() : void
+    + Enable() : void
+    + Disable() : void
+    + GetNextEvent(current:InputEventPtr) : bool
+    + GetEnumerator() : IEnumerator<InputEventPtr>
+    + Dispose() : void
+}
+class "IEnumerable`1"<T> {
+}
+class "ReadOnlyArray`1"<T> {
+}
+class "Func`3"<T1,T2,T3> {
+}
+class "Action`1"<T> {
+}
+class Enumerator {
+    + Enumerator(trace:InputEventTrace)
+    + Dispose() : void
+    + MoveNext() : bool
+    + Reset() : void
+}
+enum FileFlags {
+    FixedUpdate= 1 << 0,
+}
+class ReplayController {
+    + finished : bool <<get>>
+    + paused : bool <<get>> <<set>>
+    + position : int <<get>>
+    + Dispose() : void
+    + WithDeviceMappedFromTo(recordedDevice:InputDevice, playbackDevice:InputDevice) : ReplayController
+    + WithDeviceMappedFromTo(recordedDeviceId:int, playbackDeviceId:int) : ReplayController
+    + WithAllDevicesMappedToNewInstances() : ReplayController
+    + OnFinished(action:Action) : ReplayController
+    + OnEvent(action:Action<InputEventPtr>) : ReplayController
+    + PlayOneEvent() : ReplayController
+    + Rewind() : ReplayController
+    + PlayAllFramesOneByOne() : ReplayController
+    + PlayAllEvents() : ReplayController
+    + PlayAllEventsAccordingToTimestamps() : ReplayController
+}
+struct DeviceInfo {
+    + deviceId : int <<get>> <<set>>
+    + layout : string <<get>> <<set>>
+    + stateSizeInBytes : int <<get>> <<set>>
+}
+class "IEnumerator`1"<T> {
+}
+IDisposable <|-- InputEventTrace
+"IEnumerable`1" "<InputEventPtr>" <|-- InputEventTrace
+InputEventTrace --> "FrameMarkerEvent" FourCC
+InputEventTrace --> "deviceInfos<DeviceInfo>" "ReadOnlyArray`1"
+InputEventTrace --> "onFilterEvent<InputEventPtr,InputDevice,bool>" "Func`3"
+InputEventTrace +-- Enumerator
+"IEnumerator`1" "<InputEventPtr>" <|-- Enumerator
+Enumerator --> "Current" InputEventPtr
+InputEventTrace +-- FileFlags
+InputEventTrace +-- ReplayController
+IDisposable <|-- ReplayController
+ReplayController --> "trace" InputEventTrace
+ReplayController --> "createdDevices<InputDevice>" "IEnumerable`1"
+InputEventTrace +-- DeviceInfo
+DeviceInfo --> "stateFormat" FourCC
+@enduml

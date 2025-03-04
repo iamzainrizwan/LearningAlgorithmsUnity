@@ -1,0 +1,7 @@
+@startuml
+class SearcherControl {
+    + SearcherControl()
+    + Setup(searcher:Searcher, selectionCallback:Action<SearcherItem>, analyticsDataCallback:Action<Searcher.AnalyticsEvent>, searchResultsFilterCallback:Func<IEnumerable<SearcherItem>, string, SearcherItem>) : void
+}
+VisualElement <|-- SearcherControl
+@enduml

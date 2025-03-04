@@ -1,0 +1,7 @@
+@startuml
+struct Spline {
+    + isOpenEnded : bool
+}
+IShape <|-- Spline
+Spline o-> "empty" Spline
+@enduml

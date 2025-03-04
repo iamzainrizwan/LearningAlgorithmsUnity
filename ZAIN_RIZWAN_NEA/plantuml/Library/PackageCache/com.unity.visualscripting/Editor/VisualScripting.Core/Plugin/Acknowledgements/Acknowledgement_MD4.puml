@@ -1,0 +1,11 @@
+@startuml
+class Acknowledgement_MD4 {
+    + Acknowledgement_MD4(plugin:Plugin)
+    + <<override>> title : string <<get>>
+    + <<override>> author : string <<get>>
+    + <<override>> copyrightYear : int? <<get>>
+    + <<override>> url : string <<get>>
+    + <<override>> licenseText : string <<get>>
+}
+PluginAcknowledgement <|-- Acknowledgement_MD4
+@enduml

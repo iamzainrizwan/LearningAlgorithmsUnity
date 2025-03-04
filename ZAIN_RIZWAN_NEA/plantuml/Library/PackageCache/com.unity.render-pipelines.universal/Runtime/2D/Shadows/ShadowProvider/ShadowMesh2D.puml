@@ -1,0 +1,21 @@
+@startuml
+class ShadowMesh2D {
+    + trimEdge : float <<get>> <<set>>
+    + <<override>> SetShape(vertices:NativeArray<Vector3>, indices:NativeArray<int>, radii:NativeArray<float>, transform:Matrix4x4, windingOrder:ShadowShape2D.WindingOrder, allowTriming:bool, createInteriorGeometry:bool) : void
+    + <<override>> SetShape(vertices:NativeArray<Vector3>, indices:NativeArray<int>, outlineTopology:ShadowShape2D.OutlineTopology, windingOrder:ShadowShape2D.WindingOrder, allowTrimming:bool, createInteriorGeometry:bool) : void
+    + SetShapeWithLines(vertices:NativeArray<Vector3>, indices:NativeArray<int>, allowTrimming:bool) : void
+    + <<override>> SetFlip(flipX:bool, flipY:bool) : void
+    + <<override>> GetFlip(flipX:bool, flipY:bool) : void
+    + <<override>> SetDefaultTrim(trim:float) : void
+    + UpdateBoundingSphere(transform:Transform) : void
+}
+enum EdgeProcessing {
+    None,
+    Clipping,
+}
+ShadowShape2D <|-- ShadowMesh2D
+ShadowMesh2D --> "mesh" Mesh
+ShadowMesh2D --> "boundingSphere" BoundingSphere
+ShadowMesh2D --> "edgeProcessing" EdgeProcessing
+ShadowMesh2D +-- EdgeProcessing
+@enduml

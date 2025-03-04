@@ -1,0 +1,4 @@
+@startuml
+class QueryVisualElementsExtensions <<static>> {
+}
+@enduml

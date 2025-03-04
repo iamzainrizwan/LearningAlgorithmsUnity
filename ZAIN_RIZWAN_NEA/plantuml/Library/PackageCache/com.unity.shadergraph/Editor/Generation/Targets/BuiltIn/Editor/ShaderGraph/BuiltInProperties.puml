@@ -1,0 +1,46 @@
+@startuml
+class Property <<static>> {
+    + {static} SpecularWorkflowMode() : string
+    + {static} Surface() : string
+    + {static} Blend() : string
+    + {static} AlphaClip() : string
+    + {static} SrcBlend() : string
+    + {static} DstBlend() : string
+    + {static} ZWrite() : string
+    + {static} ZWriteControl() : string
+    + {static} ZTest() : string
+    + {static} Cull() : string
+    + {static} CastShadows() : string
+    + {static} ReceiveShadows() : string
+    + {static} QueueOffset() : string
+    + {static} QueueControl() : string
+    + {static} <<readonly>> SG_SpecularWorkflowMode : string = "_BUILTIN_WorkflowMode"
+    + {static} <<readonly>> SG_Surface : string = "_BUILTIN_Surface"
+    + {static} <<readonly>> SG_Blend : string = "_BUILTIN_Blend"
+    + {static} <<readonly>> SG_AlphaClip : string = "_BUILTIN_AlphaClip"
+    + {static} <<readonly>> SG_SrcBlend : string = "_BUILTIN_SrcBlend"
+    + {static} <<readonly>> SG_DstBlend : string = "_BUILTIN_DstBlend"
+    + {static} <<readonly>> SG_ZWrite : string = "_BUILTIN_ZWrite"
+    + {static} <<readonly>> SG_ZWriteControl : string = "_BUILTIN_ZWriteControl"
+    + {static} <<readonly>> SG_ZTest : string = "_BUILTIN_ZTest"
+    + {static} <<readonly>> SG_Cull : string = "_BUILTIN_CullMode"
+    + {static} <<readonly>> SG_CastShadows : string = "_BUILTIN_CastShadows"
+    + {static} <<readonly>> SG_ReceiveShadows : string = "_BUILTIN_ReceiveShadows"
+    + {static} <<readonly>> SG_QueueOffset : string = "_BUILTIN_QueueOffset"
+    + {static} <<readonly>> SG_QueueControl : string = "_BUILTIN_QueueControl"
+    + {static} <<readonly>> EmissionMap : string = "_EmissionMap"
+    + {static} <<readonly>> EmissionColor : string = "_EmissionColor"
+    + {static} WorkflowModeProperty(workflowModeDefault:WorkflowMode) : Vector1ShaderProperty
+}
+class Keyword <<static>> {
+    + {static} <<readonly>> SG_ReceiveShadowsOff : string = "_BUILTIN_RECEIVE_SHADOWS_OFF"
+    + {static} <<readonly>> SG_Emission : string = "_BUILTIN_EMISSION"
+    + {static} <<readonly>> SG_AlphaTestOn : string = "_BUILTIN_ALPHATEST_ON"
+    + {static} <<readonly>> SG_AlphaClip : string = "_BUILTIN_AlphaClip"
+    + {static} <<readonly>> SG_SurfaceTypeTransparent : string = "_BUILTIN_SURFACE_TYPE_TRANSPARENT"
+    + {static} <<readonly>> SG_AlphaPremultiplyOn : string = "_BUILTIN_ALPHAPREMULTIPLY_ON"
+    + {static} <<readonly>> SG_AlphaModulateOn : string = "_BUILTIN_ALPHAMODULATE_ON"
+}
+class BuiltInMaterialInspectorUtilities <<static>> {
+}
+@enduml

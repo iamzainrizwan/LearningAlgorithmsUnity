@@ -1,0 +1,14 @@
+@startuml
+class StyleClasses <<static>> {
+    + <<const>> QuestionView : string = "question-view"
+    + <<const>> MandatoryQuestion : string = "mandatory-question"
+    + <<const>> QuestionText : string = "question-text"
+    + <<const>> QuestionSection : string = "question-section"
+    + <<const>> QuestionSectionNoScrollbar : string = "question-section__no-scrollbar"
+    + <<const>> NextStepButton : string = "next-step-button"
+    + <<const>> MainSplitView : string = "main-split-view"
+    + <<const>> MainSplitViewRight : string = "main-split-view-right"
+    + <<const>> MainSplitViewLeft : string = "main-split-view-left"
+    + <<const>> ViewHeadline : string = "view-headline"
+}
+@enduml

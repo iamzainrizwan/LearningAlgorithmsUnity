@@ -1,0 +1,12 @@
+@startuml
+interface IVariableUnitOption {
+}
+abstract class "VariableUnitOption`1"<TVariableUnit> {
+    + <<virtual>> Kind() : string
+    + <<override>> SearchResultLabel(query:string) : string
+}
+class "UnitOption`1"<T> {
+}
+"UnitOption`1" "<TVariableUnit>" <|-- "VariableUnitOption`1"
+IVariableUnitOption <|-- "VariableUnitOption`1"
+@enduml

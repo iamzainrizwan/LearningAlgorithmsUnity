@@ -1,0 +1,11 @@
+@startuml
+class NestedCanvas {
+    + Setup() : void
+    + WorldCanvas_CanFindCameraAfterDisablingAndEnablingRootCanvas() : IEnumerator
+    + WorldCanvas_CanFindTheSameCameraAfterDisablingAndEnablingRootCanvas() : IEnumerator
+    + NestedCanvasHasProperInheritedAlpha() : IEnumerator
+    + TearDown() : void
+    + OneTimeTearDown() : void
+}
+IPrebuildSetup <|-- NestedCanvas
+@enduml

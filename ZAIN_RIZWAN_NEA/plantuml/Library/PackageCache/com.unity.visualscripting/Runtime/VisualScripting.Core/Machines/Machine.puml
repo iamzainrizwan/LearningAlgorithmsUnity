@@ -1,0 +1,20 @@
+@startuml
+abstract class "Machine`2"<TGraph,TMacro> {
+    + graph : TGraph <<get>>
+    + GetAotStubs(visited:HashSet<object>) : IEnumerable<object>
+    + isDescriptionValid : bool <<get>> <<set>>
+    + GetReference() : GraphPointer
+    + <<virtual>> InstantiateNest() : void
+    + <<virtual>> UninstantiateNest() : void
+    + <<virtual>> TriggerUnityEvent(name:string) : void
+    + {abstract} DefaultGraph() : TGraph
+}
+class "Macro`1"<T> {
+}
+class "GraphNest`2"<T1,T2> {
+}
+LudiqBehaviour <|-- "Machine`2"
+IMachine <|-- "Machine`2"
+"Machine`2" o-> "nest<TGraph,TMacro>" "GraphNest`2"
+"Machine`2" --> "graphData" IGraphData
+@enduml

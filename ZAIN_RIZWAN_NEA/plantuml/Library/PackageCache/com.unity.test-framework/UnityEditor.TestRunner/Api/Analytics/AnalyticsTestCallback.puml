@@ -1,0 +1,10 @@
+@startuml
+class AnalyticsTestCallback {
+    + AnalyticsTestCallback(runFinishedCallback:Action<ITestResultAdaptor>)
+    + RunStarted(testsToRun:ITestAdaptor) : void
+    + RunFinished(result:ITestResultAdaptor) : void
+    + TestStarted(test:ITestAdaptor) : void
+    + TestFinished(result:ITestResultAdaptor) : void
+}
+ICallbacks <|-- AnalyticsTestCallback
+@enduml

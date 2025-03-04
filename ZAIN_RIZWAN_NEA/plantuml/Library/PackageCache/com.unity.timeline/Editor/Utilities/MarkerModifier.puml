@@ -1,0 +1,7 @@
+@startuml
+class MarkerModifier <<static>> {
+    + {static} DeleteMarker(marker:IMarker) : void
+    + {static} CloneMarkersToParent(markers:IEnumerable<IMarker>, parent:TrackAsset) : IEnumerable<IMarker>
+    + {static} CloneMarkerToParent(marker:IMarker, parent:TrackAsset) : IMarker
+}
+@enduml

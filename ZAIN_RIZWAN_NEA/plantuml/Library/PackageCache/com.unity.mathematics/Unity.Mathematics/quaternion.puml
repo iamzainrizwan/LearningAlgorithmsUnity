@@ -1,0 +1,66 @@
+@startuml
+struct quaternion {
+    + quaternion(x:float, y:float, z:float, w:float)
+    + quaternion(value:float4)
+    + quaternion(m:float3x3)
+    + quaternion(m:float4x4)
+    + {static} AxisAngle(axis:float3, angle:float) : quaternion
+    + {static} EulerXYZ(xyz:float3) : quaternion
+    + {static} EulerXZY(xyz:float3) : quaternion
+    + {static} EulerYXZ(xyz:float3) : quaternion
+    + {static} EulerYZX(xyz:float3) : quaternion
+    + {static} EulerZXY(xyz:float3) : quaternion
+    + {static} EulerZYX(xyz:float3) : quaternion
+    + {static} EulerXYZ(x:float, y:float, z:float) : quaternion
+    + {static} EulerXZY(x:float, y:float, z:float) : quaternion
+    + {static} EulerYXZ(x:float, y:float, z:float) : quaternion
+    + {static} EulerYZX(x:float, y:float, z:float) : quaternion
+    + {static} EulerZXY(x:float, y:float, z:float) : quaternion
+    + {static} EulerZYX(x:float, y:float, z:float) : quaternion
+    + {static} Euler(xyz:float3, order:RotationOrder) : quaternion
+    + {static} Euler(x:float, y:float, z:float, order:RotationOrder) : quaternion
+    + {static} RotateX(angle:float) : quaternion
+    + {static} RotateY(angle:float) : quaternion
+    + {static} RotateZ(angle:float) : quaternion
+    + {static} LookRotation(forward:float3, up:float3) : quaternion
+    + {static} LookRotationSafe(forward:float3, up:float3) : quaternion
+    + Equals(x:quaternion) : bool
+    + <<override>> Equals(x:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+    + ToString(format:string, formatProvider:IFormatProvider) : string
+}
+class math <<static>> <<partial>> {
+    + {static} quaternion(x:float, y:float, z:float, w:float) : quaternion
+    + {static} quaternion(value:float4) : quaternion
+    + {static} quaternion(m:float3x3) : quaternion
+    + {static} quaternion(m:float4x4) : quaternion
+    + {static} conjugate(q:quaternion) : quaternion
+    + {static} inverse(q:quaternion) : quaternion
+    + {static} dot(a:quaternion, b:quaternion) : float
+    + {static} length(q:quaternion) : float
+    + {static} lengthsq(q:quaternion) : float
+    + {static} normalize(q:quaternion) : quaternion
+    + {static} normalizesafe(q:quaternion) : quaternion
+    + {static} normalizesafe(q:quaternion, defaultvalue:quaternion) : quaternion
+    + {static} unitexp(q:quaternion) : quaternion
+    + {static} exp(q:quaternion) : quaternion
+    + {static} unitlog(q:quaternion) : quaternion
+    + {static} log(q:quaternion) : quaternion
+    + {static} mul(a:quaternion, b:quaternion) : quaternion
+    + {static} mul(q:quaternion, v:float3) : float3
+    + {static} rotate(q:quaternion, v:float3) : float3
+    + {static} nlerp(q1:quaternion, q2:quaternion, t:float) : quaternion
+    + {static} slerp(q1:quaternion, q2:quaternion, t:float) : quaternion
+    + {static} angle(q1:quaternion, q2:quaternion) : float
+    + {static} rotation(m:float3x3) : quaternion
+    + {static} hash(q:quaternion) : uint
+    + {static} hashwide(q:quaternion) : uint4
+    + {static} forward(q:quaternion) : float3
+}
+class "IEquatable`1"<T> {
+}
+IFormattable <|-- quaternion
+quaternion --> "value" float4
+quaternion o-> "identity" quaternion
+@enduml

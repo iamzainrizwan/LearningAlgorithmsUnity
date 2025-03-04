@@ -1,0 +1,37 @@
+@startuml
+class ProbeVolumeRuntimeResources {
+    + version : int <<get>>
+}
+class ProbeVolumeDebugResources {
+    + version : int <<get>>
+}
+class ProbeVolumeBakingResources {
+    + version : int <<get>>
+}
+class ProbeVolumeGlobalSettings {
+    + version : int <<get>>
+    + probeVolumeDisableStreamingAssets : bool <<get>> <<set>>
+}
+IRenderPipelineResources <|-- ProbeVolumeRuntimeResources
+ProbeVolumeRuntimeResources --> "probeVolumeBlendStatesCS" ComputeShader
+ProbeVolumeRuntimeResources --> "probeVolumeUploadDataCS" ComputeShader
+ProbeVolumeRuntimeResources --> "probeVolumeUploadDataL2CS" ComputeShader
+IRenderPipelineResources <|-- ProbeVolumeDebugResources
+ProbeVolumeDebugResources --> "probeVolumeDebugShader" Shader
+ProbeVolumeDebugResources --> "probeVolumeFragmentationDebugShader" Shader
+ProbeVolumeDebugResources --> "probeVolumeSamplingDebugShader" Shader
+ProbeVolumeDebugResources --> "probeVolumeOffsetDebugShader" Shader
+ProbeVolumeDebugResources --> "probeSamplingDebugMesh" Mesh
+ProbeVolumeDebugResources --> "numbersDisplayTex" Texture2D
+IRenderPipelineResources <|-- ProbeVolumeBakingResources
+ProbeVolumeBakingResources --> "dilationShader" ComputeShader
+ProbeVolumeBakingResources --> "subdivideSceneCS" ComputeShader
+ProbeVolumeBakingResources --> "voxelizeSceneShader" Shader
+ProbeVolumeBakingResources --> "traceVirtualOffsetCS" ComputeShader
+ProbeVolumeBakingResources --> "traceVirtualOffsetRT" RayTracingShader
+ProbeVolumeBakingResources --> "skyOcclusionCS" ComputeShader
+ProbeVolumeBakingResources --> "skyOcclusionRT" RayTracingShader
+ProbeVolumeBakingResources --> "renderingLayerCS" ComputeShader
+ProbeVolumeBakingResources --> "renderingLayerRT" RayTracingShader
+IRenderPipelineGraphicsSettings <|-- ProbeVolumeGlobalSettings
+@enduml

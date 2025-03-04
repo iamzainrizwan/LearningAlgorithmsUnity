@@ -1,0 +1,7 @@
+@startuml
+class ScalarAbsolute <<sealed>> {
+}
+class "Absolute`1"<T> {
+}
+"Absolute`1" "<float>" <|-- ScalarAbsolute
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+class MaterialEditorExtension <<static>> {
+    + {static} IntShaderProperty(editor:MaterialEditor, prop:MaterialProperty, label:GUIContent, transform:System.Func<int, int>) : void
+    + {static} IntSliderShaderProperty(editor:MaterialEditor, prop:MaterialProperty, label:GUIContent) : void
+    + {static} IntSliderShaderProperty(editor:MaterialEditor, prop:MaterialProperty, min:int, max:int, label:GUIContent) : void
+    + {static} MinFloatShaderProperty(editor:MaterialEditor, prop:MaterialProperty, label:GUIContent, min:float) : void
+    + {static} Vector3ShaderProperty(editor:MaterialEditor, prop:MaterialProperty, label:GUIContent) : void
+    + {static} PopupShaderProperty(editor:MaterialEditor, prop:MaterialProperty, label:GUIContent, displayedOptions:string[]) : int
+    + {static} IntPopupShaderProperty(editor:MaterialEditor, prop:MaterialProperty, label:string, displayedOptions:string[], optionValues:int[]) : int
+    + {static} MinMaxShaderProperty(editor:MaterialEditor, min:MaterialProperty, max:MaterialProperty, minLimit:float, maxLimit:float, label:GUIContent) : void
+    + {static} MinMaxShaderProperty(editor:MaterialEditor, remapProp:MaterialProperty, minLimit:float, maxLimit:float, label:GUIContent) : void
+}
+@enduml

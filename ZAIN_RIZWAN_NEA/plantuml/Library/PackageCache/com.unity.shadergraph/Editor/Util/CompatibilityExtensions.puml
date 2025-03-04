@@ -1,0 +1,12 @@
+@startuml
+class CompatibilityExtensions <<static>> {
+    + {static} MarkDirtyRepaint(element:VisualElement) : void
+    + {static} CaptureMouse(element:VisualElement) : void
+    + {static} ReleaseMouse(element:VisualElement) : void
+    + {static} OnToggleChanged(toggle:Toggle, callback:EventCallback<ChangeEvent<bool>>) : void
+}
+class TrickleDownEnum <<static>> {
+}
+TrickleDownEnum o-> "NoTrickleDown" Capture
+TrickleDownEnum o-> "TrickleDown" Capture
+@enduml

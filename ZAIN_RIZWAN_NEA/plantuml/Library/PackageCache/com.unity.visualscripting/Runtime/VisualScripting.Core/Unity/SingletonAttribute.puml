@@ -1,0 +1,10 @@
+@startuml
+class SingletonAttribute <<sealed>> {
+    + SingletonAttribute()
+    + Persistent : bool <<get>> <<set>>
+    + Automatic : bool <<get>> <<set>>
+    + Name : string <<get>> <<set>>
+}
+Attribute <|-- SingletonAttribute
+SingletonAttribute --> "HideFlags" HideFlags
+@enduml

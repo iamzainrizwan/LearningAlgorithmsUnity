@@ -1,0 +1,16 @@
+@startuml
+class DebugUIHandlerBitField {
+    + <<override>> OnSelection(fromNext:bool, previous:DebugUIHandlerWidget) : bool
+    + <<override>> OnDeselection() : void
+    + <<override>> OnIncrement(fast:bool) : void
+    + <<override>> OnDecrement(fast:bool) : void
+    + <<override>> OnAction() : void
+    + <<override>> Next() : DebugUIHandlerWidget
+}
+class "List`1"<T> {
+}
+DebugUIHandlerWidget <|-- DebugUIHandlerBitField
+DebugUIHandlerBitField --> "nameLabel" Text
+DebugUIHandlerBitField --> "valueToggle" UIFoldout
+DebugUIHandlerBitField --> "toggles<DebugUIHandlerIndirectToggle>" "List`1"
+@enduml

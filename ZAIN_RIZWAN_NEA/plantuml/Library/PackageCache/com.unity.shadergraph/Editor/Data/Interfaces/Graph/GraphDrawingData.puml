@@ -1,0 +1,10 @@
+@startuml
+class GraphDrawingData {
+    + OnBeforeSerialize() : void
+    + OnAfterDeserialize() : void
+}
+class "IEnumerable`1"<T> {
+}
+ISerializationCallbackReceiver <|-- GraphDrawingData
+GraphDrawingData --> "selection<Guid>" "IEnumerable`1"
+@enduml

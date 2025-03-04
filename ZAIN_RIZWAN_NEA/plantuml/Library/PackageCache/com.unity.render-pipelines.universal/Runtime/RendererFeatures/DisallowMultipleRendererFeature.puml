@@ -1,0 +1,7 @@
+@startuml
+class DisallowMultipleRendererFeature {
+    + customTitle : string <<get>>
+    + DisallowMultipleRendererFeature(customTitle:string)
+}
+Attribute <|-- DisallowMultipleRendererFeature
+@enduml

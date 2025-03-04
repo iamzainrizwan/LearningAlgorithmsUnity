@@ -1,0 +1,9 @@
+@startuml
+class PropertySheet {
+    + PropertySheet(header:Label)
+}
+VisualElement <|-- PropertySheet
+PropertySheet --> "contentContainer" VisualElement
+PropertySheet --> "warningContainer" VisualElement
+PropertySheet --> "headerContainer" VisualElement
+@enduml

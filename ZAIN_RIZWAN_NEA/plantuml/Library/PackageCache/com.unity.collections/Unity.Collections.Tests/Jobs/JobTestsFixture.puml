@@ -1,0 +1,37 @@
+@startuml
+class JobTestsFixtureBasic {
+    + <<virtual>> OneTimeSetUp() : void
+    + <<virtual>> OneTimeTearDown() : void
+    + Teardown() : void
+}
+class JobTestsFixture {
+    + Init() : void
+    + ExpectOutputSumOfInput0And1() : void
+    + ExpectOutputSumOfInput0And1And2() : void
+    + Cleanup() : void
+}
+struct SumDataParallelForJob {
+    + Execute(i:int) : void
+}
+struct CopyAndDestroyNativeArrayParallelForJob {
+    + Execute(i:int) : void
+}
+class "NativeArray`1"<T> {
+}
+JobTestsFixtureBasic <|-- JobTestsFixture
+JobTestsFixture --> "data" SumDataParallelForJob
+JobTestsFixture --> "input0<int>" "NativeArray`1"
+JobTestsFixture --> "input1<int>" "NativeArray`1"
+JobTestsFixture --> "input2<int>" "NativeArray`1"
+JobTestsFixture --> "output<int>" "NativeArray`1"
+JobTestsFixture --> "output2<int>" "NativeArray`1"
+JobTestsFixture +-- SumDataParallelForJob
+IJobParallelFor <|-- SumDataParallelForJob
+SumDataParallelForJob --> "input0<int>" "NativeArray`1"
+SumDataParallelForJob --> "input1<int>" "NativeArray`1"
+SumDataParallelForJob --> "output<int>" "NativeArray`1"
+JobTestsFixture +-- CopyAndDestroyNativeArrayParallelForJob
+IJobParallelFor <|-- CopyAndDestroyNativeArrayParallelForJob
+CopyAndDestroyNativeArrayParallelForJob --> "input<int>" "NativeArray`1"
+CopyAndDestroyNativeArrayParallelForJob --> "output<int>" "NativeArray`1"
+@enduml

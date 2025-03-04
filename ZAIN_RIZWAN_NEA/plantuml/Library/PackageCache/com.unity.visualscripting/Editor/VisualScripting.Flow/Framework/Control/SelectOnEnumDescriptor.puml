@@ -1,0 +1,8 @@
+@startuml
+class SelectOnEnumDescriptor {
+    + SelectOnEnumDescriptor(unit:SelectOnEnum)
+}
+class "UnitDescriptor`1"<T> {
+}
+"UnitDescriptor`1" "<SelectOnEnum>" <|-- SelectOnEnumDescriptor
+@enduml

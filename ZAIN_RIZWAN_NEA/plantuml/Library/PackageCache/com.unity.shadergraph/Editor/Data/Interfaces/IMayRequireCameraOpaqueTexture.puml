@@ -1,0 +1,7 @@
+@startuml
+interface IMayRequireCameraOpaqueTexture {
+}
+class MayRequireCameraOpaqueTextureExtensions <<static>> {
+    + {static} RequiresCameraOpaqueTexture(slot:MaterialSlot) : bool
+}
+@enduml

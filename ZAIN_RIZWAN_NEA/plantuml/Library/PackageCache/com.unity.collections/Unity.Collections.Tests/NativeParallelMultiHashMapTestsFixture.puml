@@ -1,0 +1,29 @@
+@startuml
+class NativeParallelMultiHashMapTestsFixture {
+}
+struct MultiHashMapSimpleWriteJob {
+    + Execute() : void
+}
+struct MultiHashMapWriteParallelForJob {
+    + keyMod : int
+    + Execute(i:int) : void
+}
+struct MultiHashMapReadParallelForJob {
+    + keyMod : int
+    + Execute(i:int) : void
+}
+class "NativeArray`1"<T> {
+}
+class "NativeParallelMultiHashMap`2"<T1,T2> {
+}
+CollectionsTestFixture <|-- NativeParallelMultiHashMapTestsFixture
+NativeParallelMultiHashMapTestsFixture +-- MultiHashMapSimpleWriteJob
+IJob <|-- MultiHashMapSimpleWriteJob
+NativeParallelMultiHashMapTestsFixture +-- MultiHashMapWriteParallelForJob
+IJobParallelFor <|-- MultiHashMapWriteParallelForJob
+MultiHashMapWriteParallelForJob --> "status<int>" "NativeArray`1"
+NativeParallelMultiHashMapTestsFixture +-- MultiHashMapReadParallelForJob
+IJobParallelFor <|-- MultiHashMapReadParallelForJob
+MultiHashMapReadParallelForJob --> "hashMap<int,int>" "NativeParallelMultiHashMap`2"
+MultiHashMapReadParallelForJob --> "values<int>" "NativeArray`1"
+@enduml

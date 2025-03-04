@@ -1,0 +1,7 @@
+@startuml
+class CreateBootstrapSceneTask {
+    + CreateBootstrapSceneTask(mIncludeTestController:bool, saveScene:bool, sceneSetup:NewSceneSetup)
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- CreateBootstrapSceneTask
+@enduml

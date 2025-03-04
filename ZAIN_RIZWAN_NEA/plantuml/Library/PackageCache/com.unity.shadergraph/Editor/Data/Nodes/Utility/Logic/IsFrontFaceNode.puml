@@ -1,0 +1,13 @@
+@startuml
+class IsFrontFaceNode {
+    + IsFrontFaceNode()
+    + <<override>> hasPreview : bool <<get>>
+    + <<const>> OutputSlotId : int = 0
+    + <<override>> UpdateNodeAfterDeserialization() : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + RequiresFaceSign(stageCapability:ShaderStageCapability) : bool
+}
+AbstractMaterialNode <|-- IsFrontFaceNode
+IGeneratesBodyCode <|-- IsFrontFaceNode
+IMayRequireFaceSign <|-- IsFrontFaceNode
+@enduml

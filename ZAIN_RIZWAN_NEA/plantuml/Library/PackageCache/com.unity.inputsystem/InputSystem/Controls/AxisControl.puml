@@ -1,0 +1,30 @@
+@startuml
+class AxisControl {
+    + clampMin : float
+    + clampMax : float
+    + clampConstant : float
+    + invert : bool
+    + normalize : bool
+    + normalizeMin : float
+    + normalizeMax : float
+    + normalizeZero : float
+    + scale : bool
+    + scaleFactor : float
+    + AxisControl()
+    + <<override>> <<unsafe>> ReadUnprocessedValueFromState(statePtr:void*) : float
+    + <<override>> <<unsafe>> WriteValueIntoState(value:float, statePtr:void*) : void
+    + <<override>> <<unsafe>> CompareValue(firstStatePtr:void*, secondStatePtr:void*) : bool
+    + <<override>> <<unsafe>> EvaluateMagnitude(statePtr:void*) : float
+}
+class "InputControl`1"<T> {
+}
+enum Clamp {
+    None= 0,
+    BeforeNormalize= 1,
+    AfterNormalize= 2,
+    ToConstantBeforeNormalize= 3,
+}
+"InputControl`1" "<float>" <|-- AxisControl
+AxisControl --> "clamp" Clamp
+AxisControl +-- Clamp
+@enduml

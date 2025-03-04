@@ -1,0 +1,16 @@
+@startuml
+enum Preset {
+    None,
+    Adventure,
+    Shooter,
+    Racing,
+    TurnBased,
+    Simulation,
+    Strategy,
+    Sports,
+    RolePlaying,
+    Async,
+    Fighting,
+    Sandbox,
+}
+@enduml

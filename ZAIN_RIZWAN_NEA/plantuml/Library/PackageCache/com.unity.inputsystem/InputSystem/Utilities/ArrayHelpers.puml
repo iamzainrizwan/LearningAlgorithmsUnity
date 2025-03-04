@@ -1,0 +1,51 @@
+@startuml
+class ArrayHelpers <<static>> {
+    + {static} LengthSafe(array:TValue[]) : int
+    + {static} Clear(array:TValue[]) : void
+    + {static} Clear(array:TValue[], count:int) : void
+    + {static} Clear(array:TValue[], count:int) : void
+    + {static} EnsureCapacity(array:TValue[], count:int, capacity:int, capacityIncrement:int) : void
+    + {static} DuplicateWithCapacity(array:TValue[], count:int, capacity:int, capacityIncrement:int) : void
+    + {static} Contains(array:TValue[], value:TValue) : bool
+    + {static} ContainsReference(array:TValue[], value:TValue) : bool
+    + {static} ContainsReference(array:TFirst[], count:int, value:TSecond) : bool
+    + {static} ContainsReference(array:TFirst[], startIndex:int, count:int, value:TSecond) : bool
+    + {static} HaveDuplicateReferences(first:TFirst[], index:int, count:int) : bool
+    + {static} HaveEqualElements(first:TValue[], second:TValue[], count:int) : bool
+    + {static} IndexOf(array:TValue[], value:TValue, startIndex:int, count:int) : int
+    + {static} IndexOf(array:TValue[], predicate:Predicate<TValue>) : int
+    + {static} IndexOf(array:TValue[], predicate:Predicate<TValue>, startIndex:int, count:int) : int
+    + {static} IndexOfReference(array:TFirst[], value:TSecond, count:int) : int
+    + {static} IndexOfReference(array:TFirst[], value:TSecond, startIndex:int, count:int) : int
+    + {static} IndexOfValue(array:TValue[], value:TValue, startIndex:int, count:int) : int
+    + {static} <<unsafe>> Resize(array:NativeArray<TValue>, newSize:int, allocator:Allocator) : void
+    + {static} Append(array:TValue[], value:TValue) : int
+    + {static} Append(array:TValue[], values:IEnumerable<TValue>) : int
+    + {static} AppendToImmutable(array:TValue[], values:TValue[]) : int
+    + {static} AppendWithCapacity(array:TValue[], count:int, value:TValue, capacityIncrement:int) : int
+    + {static} AppendListWithCapacity(array:TValue[], length:int, values:TValues, capacityIncrement:int) : int
+    + {static} AppendWithCapacity(array:NativeArray<TValue>, count:int, value:TValue, capacityIncrement:int, allocator:Allocator) : int
+    + {static} InsertAt(array:TValue[], index:int, value:TValue) : void
+    + {static} InsertAtWithCapacity(array:TValue[], count:int, index:int, value:TValue, capacityIncrement:int) : void
+    + {static} PutAtIfNotSet(array:TValue[], index:int, valueFn:Func<TValue>) : void
+    + {static} GrowBy(array:TValue[], count:int) : int
+    + {static} <<unsafe>> GrowBy(array:NativeArray<TValue>, count:int, allocator:Allocator) : int
+    + {static} GrowWithCapacity(array:TValue[], count:int, growBy:int, capacityIncrement:int) : int
+    + {static} GrowWithCapacity(array:NativeArray<TValue>, count:int, growBy:int, capacityIncrement:int, allocator:Allocator) : int
+    + {static} Join(value:TValue, values:TValue[]) : TValue[]
+    + {static} Merge(first:TValue[], second:TValue[]) : TValue[]
+    + {static} Merge(first:TValue[], second:TValue[], comparer:IEqualityComparer<TValue>) : TValue[]
+    + {static} EraseAt(array:TValue[], index:int) : void
+    + {static} EraseAtWithCapacity(array:TValue[], count:int, index:int) : void
+    + {static} <<unsafe>> EraseAtWithCapacity(array:NativeArray<TValue>, count:int, index:int) : void
+    + {static} Erase(array:TValue[], value:TValue) : bool
+    + {static} EraseAtByMovingTail(array:TValue[], count:int, index:int) : void
+    + {static} Copy(array:TValue[]) : TValue[]
+    + {static} Clone(array:TValue[]) : TValue[]
+    + {static} Select(array:TOld[], converter:Func<TOld, TNew>) : TNew[]
+    + {static} MoveSlice(array:TValue[], sourceIndex:int, destinationIndex:int, count:int) : void
+    + {static} EraseSliceWithCapacity(array:TValue[], length:int, index:int, count:int) : void
+    + {static} SwapElements(array:TValue[], index1:int, index2:int) : void
+    + {static} SwapElements(array:NativeArray<TValue>, index1:int, index2:int) : void
+}
+@enduml

@@ -1,0 +1,62 @@
+@startuml
+class DecalEntityIndexer {
+    + IsValid(decalEntity:DecalEntity) : bool
+    + CreateDecalEntity(arrayIndex:int, chunkIndex:int) : DecalEntity
+    + DestroyDecalEntity(decalEntity:DecalEntity) : void
+    + GetItem(decalEntity:DecalEntity) : DecalEntityItem
+    + UpdateIndex(decalEntity:DecalEntity, newArrayIndex:int) : void
+    + RemapChunkIndices(remaper:List<int>) : void
+    + Clear() : void
+}
+struct DecalEntity {
+    + index : int
+    + version : int
+}
+class DecalEntityChunk {
+    + <<override>> Push() : void
+    + <<override>> RemoveAtSwapBack(entityIndex:int) : void
+    + <<override>> SetCapacity(newCapacity:int) : void
+    + <<override>> Dispose() : void
+}
+class DecalEntityManager {
+    + chunkCount : int
+    + DecalEntityManager()
+    + IsValid(decalEntity:DecalEntity) : bool
+    + CreateDecalEntity(decalProjector:DecalProjector) : DecalEntity
+    + UpdateAllDecalEntitiesData() : void
+    + UpdateDecalEntityData(decalEntity:DecalEntity, decalProjector:DecalProjector) : void
+    + DestroyDecalEntity(decalEntity:DecalEntity) : void
+    + Update() : void
+    + Dispose() : void
+}
+struct DecalEntityItem {
+    + chunkIndex : int
+    + arrayIndex : int
+    + version : int
+}
+class "NativeArray`1"<T> {
+}
+class "List`1"<T> {
+}
+struct CombinedChunks {
+    + previousChunkIndex : int
+    + valid : bool
+}
+DecalChunk <|-- DecalEntityChunk
+DecalEntityChunk --> "material" Material
+DecalEntityChunk --> "decalEntities<DecalEntity>" "NativeArray`1"
+DecalEntityChunk --> "transformAccessArray" TransformAccessArray
+IDisposable <|-- DecalEntityManager
+DecalEntityManager o-> "entityChunks<DecalEntityChunk>" "List`1"
+DecalEntityManager o-> "cachedChunks<DecalCachedChunk>" "List`1"
+DecalEntityManager o-> "culledChunks<DecalCulledChunk>" "List`1"
+DecalEntityManager o-> "drawCallChunks<DecalDrawCallChunk>" "List`1"
+DecalEntityManager --> "errorMaterial" Material
+DecalEntityManager --> "decalProjectorMesh" Mesh
+DecalEntityIndexer +-- DecalEntityItem
+DecalEntityManager +-- CombinedChunks
+CombinedChunks --> "entityChunk" DecalEntityChunk
+CombinedChunks --> "cachedChunk" DecalCachedChunk
+CombinedChunks --> "culledChunk" DecalCulledChunk
+CombinedChunks --> "drawCallChunk" DecalDrawCallChunk
+@enduml

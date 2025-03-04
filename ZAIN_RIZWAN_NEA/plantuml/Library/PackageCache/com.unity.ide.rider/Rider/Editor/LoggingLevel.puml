@@ -1,0 +1,11 @@
+@startuml
+enum LoggingLevel {
+    OFF,
+    FATAL,
+    ERROR,
+    WARN,
+    INFO,
+    VERBOSE,
+    TRACE,
+}
+@enduml

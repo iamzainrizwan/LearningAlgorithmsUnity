@@ -1,0 +1,9 @@
+@startuml
+class BackupSettings {
+    + OnGUI() : void
+}
+class Styles <<static>> {
+}
+BackupSettings +-- Styles
+Styles --> "defaultsButton" GUIStyle
+@enduml

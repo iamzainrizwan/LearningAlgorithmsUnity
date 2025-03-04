@@ -1,0 +1,27 @@
+@startuml
+class TextEditorTests {
+    + TestSetup() : void
+    + SetText_MovesCursorAndSelectIndicesToNextCodePointIndexIfInvalid() : void
+    + SetCursorAndSelectIndices_MovesToNextCodePointIndexIfInvalid(text:string, codePointIndices:int[]) : void
+    + DeleteWordBack_DeletesBackToPreviousWordStart(text:string, wordStartIndices:int[], wordEndIndices:int[]) : void
+    + DeleteWordForward_DeletesForwardToNextWordStart(text:string, wordStartIndices:int[], wordEndIndices:int[]) : void
+    + Delete_RemovesCodePointRightOfCursor(text:string, codePointIndices:int[]) : void
+    + Backspace_RemovesCodePointLeftOfCursor(text:string, codePointIndices:int[]) : void
+    + MoveRight_SkipsInvalidCodePointIndices(text:string, codePointIndices:int[]) : void
+    + MoveLeft_SkipsInvalidCodePointIndices(text:string, codePointIndices:int[]) : void
+    + MoveLineStart_MovesCursorAfterPreviousLineFeed(text:string, lineStartIndices:int[]) : void
+    + MoveLineEnd_MovesCursorBeforeNextLineFeed(text:string, lineEndIndices:int[]) : void
+    + MoveTextStart_MovesCursorToStartOfText() : void
+    + MoveTextEnd_MovesCursorToEndOfText() : void
+    + SelectLeft_ExpandSelectionToPreviousCodePoint(text:string, codePointIndices:int[]) : void
+    + SelectRight_ExpandSelectionToNextCodePoint(text:string, codePointIndices:int[]) : void
+    + MoveWordRight_MovesCursorToNextWordEnd(text:string, wordStartIndices:int[], wordEndIndices:int[]) : void
+    + MoveToStartOfNextWord_MovesCursorToNextWordStart(text:string, wordStartIndices:int[], wordEndIndices:int[]) : void
+    + MoveToEndOfPreviousWord_MovesCursorToPreviousWordStart(text:string, wordStartIndices:int[], wordEndIndices:int[]) : void
+    + FindStartOfNextWord_ReturnsIndexOfNextWordStart(text:string, wordStartIndices:int[], wordEndIndices:int[]) : void
+    + MoveWordLeft_MovesCursorToPreviousWordStart(text:string, wordStartIndices:int[], wordEndIndices:int[]) : void
+    + SelectCurrentWord(text:string, expectedCursorIndices:int[], expectedSelectIndices:int[]) : void
+    + HandleKeyEvent_WithControlAKeyDownEvent_MovesCursorToStartOfLineOnMacOS_SelectsAllElsewhere() : void
+    + HandleKeyEvent_WithCommandAKeyDownEvent_SelectsAllOnMacOS() : void
+}
+@enduml

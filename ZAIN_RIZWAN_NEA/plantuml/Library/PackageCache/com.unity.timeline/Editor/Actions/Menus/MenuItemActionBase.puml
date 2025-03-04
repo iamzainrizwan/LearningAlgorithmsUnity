@@ -1,0 +1,16 @@
+@startuml
+enum ActionValidity {
+    Valid,
+    NotApplicable,
+    Invalid,
+}
+struct MenuActionItem {
+    + category : string
+    + entryName : string
+    + shortCut : string
+    + priority : int
+    + isActiveInMode : bool
+    + isChecked : bool
+}
+MenuActionItem --> "state" ActionValidity
+@enduml

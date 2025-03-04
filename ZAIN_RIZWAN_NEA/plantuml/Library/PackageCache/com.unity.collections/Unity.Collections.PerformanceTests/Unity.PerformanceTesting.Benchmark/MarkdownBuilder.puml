@@ -1,0 +1,31 @@
+@startuml
+class MarkdownBuilder {
+    + Append(text:string) : MarkdownBuilder
+    + AppendLine(text:string) : MarkdownBuilder
+    + AppendLines(lines:string[]) : MarkdownBuilder
+    + AppendLines(line:string, optLines:string[]) : MarkdownBuilder
+    + Header(level:int, text:string) : MarkdownBuilder
+    + HorizontalLine() : MarkdownBuilder
+    + Br() : MarkdownBuilder
+    + BrParagraph() : MarkdownBuilder
+    + Italic(text:string) : MarkdownBuilder
+    + Bold(text:string) : MarkdownBuilder
+    + BoldItalic(text:string) : MarkdownBuilder
+    + Code(text:string) : MarkdownBuilder
+    + Link(url:string) : MarkdownBuilder
+    + Link(url:string, name:string) : MarkdownBuilder
+    + Link(url:string, name:string, tooltip:string) : MarkdownBuilder
+    + LinkHeader(headerName:string) : MarkdownBuilder
+    + ListItem(zeroBasedDepth:int) : MarkdownBuilder
+    + ListItem(zeroBasedDepth:int, text:string) : MarkdownBuilder
+    + BeginBlock() : MarkdownBuilder
+    + EndBlock() : MarkdownBuilder
+    + TableHeader(alignRightFirst:bool, columnName:string, alignRightOthers:bool, optColumnNames:string[]) : MarkdownBuilder
+    + TableRow(columnData:string, optColumnData:string[]) : MarkdownBuilder
+    + Note(title:string, descLine:string, optDescLines:string[]) : MarkdownBuilder
+    + Note(title:string, descLines:string[]) : MarkdownBuilder
+    + Note(descLines:string[]) : MarkdownBuilder
+    + <<override>> ToString() : string
+    + Save(path:string) : void
+}
+@enduml

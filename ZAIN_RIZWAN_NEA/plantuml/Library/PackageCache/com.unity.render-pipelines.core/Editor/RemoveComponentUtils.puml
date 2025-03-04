@@ -1,0 +1,8 @@
+@startuml
+class RemoveComponentUtils <<static>> {
+    + {static} ComponentDependencies(component:Component) : IEnumerable<Component>
+    + {static} CanRemoveComponent(component:Component, dependencies:IEnumerable<Component>) : bool
+    + {static} RemoveComponent(component:Component, dependencies:IEnumerable<Component>) : bool
+    + {static} RemoveComponent(comp:Component) : void
+}
+@enduml

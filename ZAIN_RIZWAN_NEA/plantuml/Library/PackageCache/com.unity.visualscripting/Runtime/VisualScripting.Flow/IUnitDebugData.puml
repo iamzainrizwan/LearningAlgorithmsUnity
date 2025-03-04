@@ -1,0 +1,5 @@
+@startuml
+interface IUnitDebugData {
+}
+IGraphElementDebugData <|-- IUnitDebugData
+@enduml

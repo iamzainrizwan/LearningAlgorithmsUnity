@@ -1,0 +1,8 @@
+@startuml
+class CollectionsUnsafeUtilityPostProcessor {
+    + <<override>> GetInstance() : ILPostProcessor
+    + <<override>> WillProcess(compiledAssembly:ICompiledAssembly) : bool
+    + <<override>> Process(compiledAssembly:ICompiledAssembly) : ILPostProcessResult
+}
+ILPostProcessor <|-- CollectionsUnsafeUtilityPostProcessor
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class WaitWhileUnit {
+}
+WaitUnit <|-- WaitWhileUnit
+WaitWhileUnit --> "condition" ValueInput
+@enduml

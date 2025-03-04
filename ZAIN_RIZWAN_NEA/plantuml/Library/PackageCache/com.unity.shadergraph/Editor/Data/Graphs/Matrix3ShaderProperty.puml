@@ -1,0 +1,9 @@
+@startuml
+class Matrix3ShaderProperty {
+    + Matrix3ShaderProperty()
+    + <<override>> latestVersion : int <<get>>
+    + <<override>> OnAfterDeserialize(json:string) : void
+}
+MatrixShaderProperty <|-- Matrix3ShaderProperty
+Matrix3ShaderProperty --> "propertyType" PropertyType
+@enduml

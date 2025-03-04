@@ -1,0 +1,13 @@
+@startuml
+class ColorAdjustments <<sealed>> {
+    + IsActive() : bool
+    + IsTileCompatible() : bool
+}
+VolumeComponent <|-- ColorAdjustments
+IPostProcessComponent <|-- ColorAdjustments
+ColorAdjustments o-> "postExposure" FloatParameter
+ColorAdjustments o-> "contrast" ClampedFloatParameter
+ColorAdjustments o-> "colorFilter" ColorParameter
+ColorAdjustments o-> "hueShift" ClampedFloatParameter
+ColorAdjustments o-> "saturation" ClampedFloatParameter
+@enduml

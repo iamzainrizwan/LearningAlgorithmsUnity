@@ -1,0 +1,11 @@
+@startuml
+class CharacterLimitValidation {
+    + LimitCanNotBeNegative() : void
+    + TextLengthShorterThanLimit() : void
+    + TextLengthEqualToLimit() : void
+    + TextLengthGreaterThanLimit() : void
+}
+class "TestBehaviourBase`1"<T> {
+}
+"TestBehaviourBase`1" "<UnityEngine.UI.InputField>" <|-- CharacterLimitValidation
+@enduml

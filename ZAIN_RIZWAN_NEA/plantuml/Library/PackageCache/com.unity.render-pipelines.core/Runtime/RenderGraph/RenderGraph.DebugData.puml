@@ -1,0 +1,93 @@
+@startuml
+class RenderGraph <<partial>> {
+}
+class DebugData {
+    + DebugData()
+    + isNRPCompiler : bool
+    + Clear() : void
+}
+class "List`1"<T> {
+}
+struct PassData {
+    + name : string
+    + culled : bool
+    + async : bool
+    + nativeSubPassIndex : int
+    + syncToPassIndex : int
+    + syncFromPassIndex : int
+    + generateDebugData : bool
+}
+class BufferResourceData {
+    + count : int
+    + stride : int
+}
+class TextureResourceData {
+    + width : int
+    + height : int
+    + depth : int
+    + bindMS : bool
+    + samples : int
+    + clearBuffer : bool
+}
+struct ResourceData {
+    + name : string
+    + imported : bool
+    + creationPassIndex : int
+    + releasePassIndex : int
+    + memoryless : bool
+}
+class PassScriptInfo {
+    + filePath : string
+    + line : int
+}
+class NRPInfo {
+    + width : int
+    + height : int
+    + volumeDepth : int
+    + samples : int
+    + hasDepth : bool
+}
+class NativeRenderPassInfo {
+    + passBreakReasoning : string
+}
+class AttachmentInfo {
+    + resourceName : string
+    + attachmentIndex : int
+    + loadAction : string
+    + loadReason : string
+    + storeAction : string
+    + storeReason : string
+    + storeMsaaReason : string
+}
+struct PassCompatibilityInfo {
+    + message : string
+    + isCompatible : bool
+}
+class "Dictionary`2"<T1,T2> {
+}
+RenderGraph +-- DebugData
+DebugData o-> "passList<PassData>" "List`1"
+DebugData +-- PassData
+PassData --> "type" RenderGraphPassType
+PassData --> "nrpInfo" NRPInfo
+PassData --> "scriptInfo" PassScriptInfo
+DebugData +-- BufferResourceData
+DebugData +-- TextureResourceData
+TextureResourceData --> "format" GraphicsFormat
+DebugData +-- ResourceData
+ResourceData --> "consumerList<int>" "List`1"
+ResourceData --> "producerList<int>" "List`1"
+ResourceData --> "textureData" TextureResourceData
+ResourceData --> "bufferData" BufferResourceData
+DebugData +-- PassScriptInfo
+PassData +-- NRPInfo
+NRPInfo --> "nativePassInfo" NativeRenderPassInfo
+NRPInfo o-> "textureFBFetchList<int>" "List`1"
+NRPInfo o-> "setGlobals<int>" "List`1"
+NRPInfo +-- NativeRenderPassInfo
+NativeRenderPassInfo --> "attachmentInfos<AttachmentInfo>" "List`1"
+NativeRenderPassInfo --> "passCompatibility<int,PassCompatibilityInfo>" "Dictionary`2"
+NativeRenderPassInfo --> "mergedPassIds<int>" "List`1"
+NativeRenderPassInfo +-- AttachmentInfo
+NativeRenderPassInfo +-- PassCompatibilityInfo
+@enduml

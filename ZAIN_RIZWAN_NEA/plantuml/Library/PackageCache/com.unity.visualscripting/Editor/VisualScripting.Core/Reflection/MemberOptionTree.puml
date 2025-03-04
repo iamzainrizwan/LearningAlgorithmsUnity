@@ -1,0 +1,39 @@
+@startuml
+class MemberOptionTree {
+    + MemberOptionTree(types:IEnumerable<Type>, memberFilter:MemberFilter, memberTypeFilter:TypeFilter, direction:ActionDirection)
+    + MemberOptionTree(target:UnityObject, memberFilter:MemberFilter, memberTypeFilter:TypeFilter, direction:ActionDirection)
+    + <<override>> Prewarm() : void
+    + <<override>> Option(item:object) : IFuzzyOption
+    + <<override>> Root() : IEnumerable<object>
+    + <<override>> Children(parent:object) : IEnumerable<object>
+    + <<override>> searchable : bool <<get>> = true
+    + <<override>> OrderedSearchResults(query:string, cancellation:CancellationToken) : IEnumerable<object>
+    + <<override>> SearchResultLabel(item:object, query:string) : string
+    + <<override>> FavoritesLabel(item:object) : string
+    + <<override>> CanFavorite(item:object) : bool
+    + <<override>> OnFavoritesChange() : void
+}
+enum RootMode {
+    Members,
+    Types,
+    Namespaces,
+}
+class "ICollection`1"<T> {
+}
+class Favorites {
+    + Favorites(tree:MemberOptionTree)
+    + Count : int <<get>>
+    + IsReadOnly : bool <<get>>
+    + GetEnumerator() : IEnumerator<object>
+    + Contains(item:object) : bool
+    + Add(item:object) : void
+    + Remove(item:object) : bool
+    + Clear() : void
+    + CopyTo(array:object[], arrayIndex:int) : void
+}
+FuzzyOptionTree <|-- MemberOptionTree
+MemberOptionTree --> "favorites<object>" "ICollection`1"
+MemberOptionTree +-- RootMode
+MemberOptionTree +-- Favorites
+"ICollection`1" "<object>" <|-- Favorites
+@enduml

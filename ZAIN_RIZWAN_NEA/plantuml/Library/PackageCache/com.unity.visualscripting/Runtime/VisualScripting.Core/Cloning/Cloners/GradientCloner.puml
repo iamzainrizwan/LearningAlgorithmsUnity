@@ -1,0 +1,10 @@
+@startuml
+class GradientCloner <<sealed>> {
+    + <<override>> Handles(type:Type) : bool
+    + <<override>> ConstructClone(type:Type, original:Gradient) : Gradient
+    + <<override>> FillClone(type:Type, clone:Gradient, original:Gradient, context:CloningContext) : void
+}
+class "Cloner`1"<T> {
+}
+"Cloner`1" "<Gradient>" <|-- GradientCloner
+@enduml

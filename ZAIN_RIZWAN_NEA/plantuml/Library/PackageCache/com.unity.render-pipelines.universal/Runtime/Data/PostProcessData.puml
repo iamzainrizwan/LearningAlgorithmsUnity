@@ -1,0 +1,31 @@
+@startuml
+class PostProcessData {
+}
+class ShaderResources <<sealed>> {
+}
+class TextureResources <<sealed>> {
+}
+ScriptableObject <|-- PostProcessData
+PostProcessData --> "shaders" ShaderResources
+PostProcessData --> "textures" TextureResources
+PostProcessData +-- ShaderResources
+ShaderResources --> "stopNanPS" Shader
+ShaderResources --> "subpixelMorphologicalAntialiasingPS" Shader
+ShaderResources --> "gaussianDepthOfFieldPS" Shader
+ShaderResources --> "bokehDepthOfFieldPS" Shader
+ShaderResources --> "cameraMotionBlurPS" Shader
+ShaderResources --> "paniniProjectionPS" Shader
+ShaderResources --> "lutBuilderLdrPS" Shader
+ShaderResources --> "lutBuilderHdrPS" Shader
+ShaderResources --> "bloomPS" Shader
+ShaderResources --> "temporalAntialiasingPS" Shader
+ShaderResources --> "LensFlareDataDrivenPS" Shader
+ShaderResources --> "LensFlareScreenSpacePS" Shader
+ShaderResources --> "scalingSetupPS" Shader
+ShaderResources --> "easuPS" Shader
+ShaderResources --> "uberPostPS" Shader
+ShaderResources --> "finalPostPassPS" Shader
+PostProcessData +-- TextureResources
+TextureResources --> "smaaAreaTex" Texture2D
+TextureResources --> "smaaSearchTex" Texture2D
+@enduml

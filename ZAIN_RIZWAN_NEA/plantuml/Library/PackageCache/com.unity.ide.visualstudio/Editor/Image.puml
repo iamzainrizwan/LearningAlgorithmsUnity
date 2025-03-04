@@ -1,0 +1,7 @@
+@startuml
+class Image <<sealed>> {
+    + {static} IsAssembly(file:string) : bool
+    + {static} IsAssembly(stream:Stream) : bool
+}
+IDisposable <|-- Image
+@enduml

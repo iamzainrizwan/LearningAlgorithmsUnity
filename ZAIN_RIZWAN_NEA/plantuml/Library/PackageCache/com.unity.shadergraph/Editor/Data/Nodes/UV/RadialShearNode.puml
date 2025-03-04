@@ -1,0 +1,6 @@
+@startuml
+class RadialShearNode {
+    + RadialShearNode()
+}
+CodeFunctionNode <|-- RadialShearNode
+@enduml

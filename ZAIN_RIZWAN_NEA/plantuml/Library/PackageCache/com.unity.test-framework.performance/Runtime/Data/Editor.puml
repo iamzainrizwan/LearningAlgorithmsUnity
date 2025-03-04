@@ -1,0 +1,8 @@
+@startuml
+class Editor {
+    + Version : string
+    + Branch : string
+    + Changeset : string
+    + Date : int
+}
+@enduml

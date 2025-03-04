@@ -1,0 +1,16 @@
+@startuml
+enum ModificationScope {
+    Nothing= 0,
+    Node= 1,
+    Graph= 2,
+    Topological= 3,
+    Layout= 4,
+}
+class NodeExtensions <<static>> {
+    + {static} GetSlots(node:AbstractMaterialNode) : IEnumerable<T>
+    + {static} GetInputSlots(node:AbstractMaterialNode) : IEnumerable<T>
+    + {static} GetInputSlots(node:AbstractMaterialNode, startingSlot:MaterialSlot) : IEnumerable<T>
+    + {static} GetOutputSlots(node:AbstractMaterialNode) : IEnumerable<T>
+    + {static} GetOutputSlots(node:AbstractMaterialNode, startingSlot:MaterialSlot) : IEnumerable<T>
+}
+@enduml

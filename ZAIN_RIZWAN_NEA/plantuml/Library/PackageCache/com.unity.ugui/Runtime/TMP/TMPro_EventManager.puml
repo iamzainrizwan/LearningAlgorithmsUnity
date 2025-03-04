@@ -1,0 +1,44 @@
+@startuml
+enum Compute_DistanceTransform_EventTypes {
+    Processing,
+    Completed,
+}
+class TMPro_EventManager <<static>> {
+    + {static} ON_MATERIAL_PROPERTY_CHANGED(isChanged:bool, mat:Material) : void
+    + {static} ON_FONT_PROPERTY_CHANGED(isChanged:bool, obj:Object) : void
+    + {static} ON_SPRITE_ASSET_PROPERTY_CHANGED(isChanged:bool, obj:Object) : void
+    + {static} ON_TEXTMESHPRO_PROPERTY_CHANGED(isChanged:bool, obj:Object) : void
+    + {static} ON_DRAG_AND_DROP_MATERIAL_CHANGED(sender:GameObject, currentMaterial:Material, newMaterial:Material) : void
+    + {static} ON_TEXT_STYLE_PROPERTY_CHANGED(isChanged:bool) : void
+    + {static} ON_COLOR_GRADIENT_PROPERTY_CHANGED(obj:Object) : void
+    + {static} ON_TEXT_CHANGED(obj:Object) : void
+    + {static} ON_TMP_SETTINGS_CHANGED() : void
+    + {static} ON_RESOURCES_LOADED() : void
+    + {static} ON_TEXTMESHPRO_UGUI_PROPERTY_CHANGED(isChanged:bool, obj:Object) : void
+    + {static} ON_COMPUTE_DT_EVENT(Sender:object, e:Compute_DT_EventArgs) : void
+}
+class Compute_DT_EventArgs {
+    + ProgressPercentage : float
+    + Compute_DT_EventArgs(type:Compute_DistanceTransform_EventTypes, progress:float)
+    + Compute_DT_EventArgs(type:Compute_DistanceTransform_EventTypes, colors:Color[])
+}
+class "FastAction`2"<T1,T2> {
+}
+class "FastAction`3"<T1,T2,T3> {
+}
+class "FastAction`1"<T> {
+}
+TMPro_EventManager o-> "COMPUTE_DT_EVENT<object,Compute_DT_EventArgs>" "FastAction`2"
+TMPro_EventManager o-> "MATERIAL_PROPERTY_EVENT<bool,Material>" "FastAction`2"
+TMPro_EventManager o-> "FONT_PROPERTY_EVENT<bool,Object>" "FastAction`2"
+TMPro_EventManager o-> "SPRITE_ASSET_PROPERTY_EVENT<bool,Object>" "FastAction`2"
+TMPro_EventManager o-> "TEXTMESHPRO_PROPERTY_EVENT<bool,Object>" "FastAction`2"
+TMPro_EventManager o-> "DRAG_AND_DROP_MATERIAL_EVENT<GameObject,Material,Material>" "FastAction`3"
+TMPro_EventManager o-> "TEXT_STYLE_PROPERTY_EVENT<bool>" "FastAction`1"
+TMPro_EventManager o-> "COLOR_GRADIENT_PROPERTY_EVENT<Object>" "FastAction`1"
+TMPro_EventManager o-> "TMP_SETTINGS_PROPERTY_EVENT" FastAction
+TMPro_EventManager o-> "RESOURCE_LOAD_EVENT" FastAction
+TMPro_EventManager o-> "TEXTMESHPRO_UGUI_PROPERTY_EVENT<bool,Object>" "FastAction`2"
+TMPro_EventManager o-> "TEXT_CHANGED_EVENT<Object>" "FastAction`1"
+Compute_DT_EventArgs --> "EventType" Compute_DistanceTransform_EventTypes
+@enduml

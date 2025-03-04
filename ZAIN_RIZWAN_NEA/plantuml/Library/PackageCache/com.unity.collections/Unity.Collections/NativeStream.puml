@@ -1,0 +1,62 @@
+@startuml
+struct NativeStream {
+    + NativeStream(bufferCount:int, allocator:AllocatorManager.AllocatorHandle)
+    + {static} ScheduleConstruct(stream:NativeStream, bufferCount:NativeList<T>, dependency:JobHandle, allocator:AllocatorManager.AllocatorHandle) : JobHandle
+    + {static} ScheduleConstruct(stream:NativeStream, bufferCount:NativeArray<int>, dependency:JobHandle, allocator:AllocatorManager.AllocatorHandle) : JobHandle
+    + <<readonly>> IsEmpty() : bool
+    + <<readonly>> IsCreated : bool <<get>>
+    + <<readonly>> ForEachCount : int <<get>>
+    + AsReader() : Reader
+    + AsWriter() : Writer
+    + Count() : int
+    + ToNativeArray(allocator:AllocatorManager.AllocatorHandle) : NativeArray<T>
+    + Dispose() : void
+    + Dispose(inputDeps:JobHandle) : JobHandle
+}
+struct NativeStreamDispose {
+    + Dispose() : void
+}
+struct NativeStreamDisposeJob {
+    + Execute() : void
+}
+struct ConstructJobList {
+    + Execute() : void
+}
+struct ConstructJob {
+    + Execute() : void
+}
+struct Writer {
+    + ForEachCount : int <<get>>
+    + PatchMinMaxRange(foreEachIndex:int) : void
+    + BeginForEachIndex(foreachIndex:int) : void
+    + EndForEachIndex() : void
+    + Write(value:T) : void
+    + Allocate() : ref T
+    + Allocate(size:int) : byte*
+}
+struct Reader {
+    + BeginForEachIndex(foreachIndex:int) : int
+    + EndForEachIndex() : void
+    + ForEachCount : int <<get>>
+    + RemainingItemCount : int <<get>>
+    + ReadUnsafePtr(size:int) : byte*
+    + Read() : ref T
+    + Peek() : ref T
+    + Count() : int
+}
+class "NativeArray`1"<T> {
+}
+INativeDisposable <|-- NativeStream
+NativeStreamDispose --> "m_StreamData" UnsafeStream
+IJob <|-- NativeStreamDisposeJob
+NativeStreamDisposeJob --> "Data" NativeStreamDispose
+NativeStream +-- ConstructJobList
+IJob <|-- ConstructJobList
+ConstructJobList --> "Container" NativeStream
+NativeStream +-- ConstructJob
+IJob <|-- ConstructJob
+ConstructJob --> "Container" NativeStream
+ConstructJob --> "Length<int>" "NativeArray`1"
+NativeStream +-- Writer
+NativeStream +-- Reader
+@enduml

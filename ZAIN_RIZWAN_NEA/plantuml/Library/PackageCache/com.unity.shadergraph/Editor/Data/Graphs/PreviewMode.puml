@@ -1,0 +1,7 @@
+@startuml
+enum PreviewMode {
+    Inherit,
+    Preview2D,
+    Preview3D,
+}
+@enduml

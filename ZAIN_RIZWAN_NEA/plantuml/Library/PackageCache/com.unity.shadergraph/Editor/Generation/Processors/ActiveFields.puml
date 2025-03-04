@@ -1,0 +1,76 @@
+@startuml
+interface IActiveFields {
+}
+interface IActiveFieldsSet {
+}
+class FieldNamePairStorage {
+    + FieldNamePairStorage()
+    + Union(other:FieldNamePairStorage) : IEnumerable<FieldDescriptor>
+    + Contains(fieldDescriptor:FieldDescriptor) : bool
+    + Contains(fieldName:string) : bool
+    + Add(fieldDescriptor:FieldDescriptor) : bool
+}
+class ActiveFields <<sealed>> {
+}
+class "ISet`1"<T> {
+}
+class "IEnumerable`1"<T> {
+}
+class "KeywordDependentCollection`7"<T1,T2,T3,T4,T5,T6,T7> {
+}
+struct ForPermutationIndex {
+    + instanceCount : int <<get>>
+    + permutationIndex : int <<get>>
+    + Add(field:FieldDescriptor) : bool
+    + Contains(field:FieldDescriptor) : bool
+    + Contains(value:string) : bool
+    + AddAll(field:FieldDescriptor) : void
+}
+struct Base {
+    + instanceCount : int <<get>>
+    + permutationIndex : int <<get>>
+    + Add(field:FieldDescriptor) : bool
+    + Contains(field:FieldDescriptor) : bool
+    + Contains(value:string) : bool
+    + AddAll(field:FieldDescriptor) : void
+}
+struct All {
+    + instanceCount : int <<get>>
+    + AddAll(field:FieldDescriptor) : void
+}
+struct AllPermutations {
+    + instanceCount : int <<get>>
+    + AddAll(field:FieldDescriptor) : void
+}
+struct NoPermutation {
+    + instanceCount : int <<get>>
+    + permutationIndex : int <<get>>
+    + Add(field:FieldDescriptor) : bool
+    + Contains(field:FieldDescriptor) : bool
+    + Contains(value:string) : bool
+    + AddAll(field:FieldDescriptor) : void
+}
+FieldNamePairStorage --> "fields<FieldDescriptor>" "IEnumerable`1"
+"KeywordDependentCollection`7" "<FieldNamePairStorage,ActiveFields.All,ActiveFields.AllPermutations,ActiveFields.ForPermutationIndex,ActiveFields.Base,IActiveFields,IActiveFieldsSet>" <|-- ActiveFields
+ActiveFields +-- ForPermutationIndex
+IActiveFields <|-- ForPermutationIndex
+IActiveFieldsSet <|-- ForPermutationIndex
+ForPermutationIndex --> "instances<IActiveFields>" "IEnumerable`1"
+ForPermutationIndex --> "fields<FieldDescriptor>" "IEnumerable`1"
+ActiveFields +-- Base
+IActiveFields <|-- Base
+IActiveFieldsSet <|-- Base
+Base --> "fields<FieldDescriptor>" "IEnumerable`1"
+Base --> "instances<IActiveFields>" "IEnumerable`1"
+ActiveFields +-- All
+IActiveFieldsSet <|-- All
+All --> "instances<IActiveFields>" "IEnumerable`1"
+ActiveFields +-- AllPermutations
+IActiveFieldsSet <|-- AllPermutations
+AllPermutations --> "instances<IActiveFields>" "IEnumerable`1"
+ActiveFields +-- NoPermutation
+IActiveFields <|-- NoPermutation
+IActiveFieldsSet <|-- NoPermutation
+NoPermutation --> "fields<FieldDescriptor>" "IEnumerable`1"
+NoPermutation --> "instances<IActiveFields>" "IEnumerable`1"
+@enduml

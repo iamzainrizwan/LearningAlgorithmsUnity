@@ -1,0 +1,10 @@
+@startuml
+class InspectorLabelAttribute <<sealed>> {
+    + InspectorLabelAttribute(text:string)
+    + InspectorLabelAttribute(text:string, tooltip:string)
+    + text : string <<get>>
+    + tooltip : string <<get>>
+}
+Attribute <|-- InspectorLabelAttribute
+InspectorLabelAttribute --> "image" Texture
+@enduml

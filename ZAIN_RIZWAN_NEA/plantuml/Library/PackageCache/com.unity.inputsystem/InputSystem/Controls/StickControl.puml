@@ -1,0 +1,9 @@
+@startuml
+class StickControl {
+}
+Vector2Control <|-- StickControl
+StickControl --> "up" ButtonControl
+StickControl --> "down" ButtonControl
+StickControl --> "left" ButtonControl
+StickControl --> "right" ButtonControl
+@enduml

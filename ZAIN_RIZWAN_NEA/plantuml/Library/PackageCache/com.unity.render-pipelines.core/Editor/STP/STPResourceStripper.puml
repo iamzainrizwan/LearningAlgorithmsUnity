@@ -1,0 +1,9 @@
+@startuml
+class STPResourceStripper {
+    + active : bool <<get>>
+    + CanRemoveSettings(resources:STP.RuntimeResources) : bool
+}
+class "IRenderPipelineGraphicsSettingsStripper`1"<T> {
+}
+"IRenderPipelineGraphicsSettingsStripper`1" "<STP.RuntimeResources>" <|-- STPResourceStripper
+@enduml

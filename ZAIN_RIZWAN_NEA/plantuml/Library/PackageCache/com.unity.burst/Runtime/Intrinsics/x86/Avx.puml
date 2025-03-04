@@ -1,0 +1,233 @@
+@startuml
+class X86 <<unsafe>> <<static>> <<partial>> {
+}
+class Avx <<static>> {
+    + {static} IsAvxSupported : bool <<get>>
+    + {static} mm256_add_pd(a:v256, b:v256) : v256
+    + {static} mm256_add_ps(a:v256, b:v256) : v256
+    + {static} mm256_addsub_pd(a:v256, b:v256) : v256
+    + {static} mm256_addsub_ps(a:v256, b:v256) : v256
+    + {static} mm256_and_pd(a:v256, b:v256) : v256
+    + {static} mm256_and_ps(a:v256, b:v256) : v256
+    + {static} mm256_andnot_pd(a:v256, b:v256) : v256
+    + {static} mm256_andnot_ps(a:v256, b:v256) : v256
+    + {static} mm256_blend_pd(a:v256, b:v256, imm8:int) : v256
+    + {static} mm256_blend_ps(a:v256, b:v256, imm8:int) : v256
+    + {static} mm256_blendv_pd(a:v256, b:v256, mask:v256) : v256
+    + {static} mm256_blendv_ps(a:v256, b:v256, mask:v256) : v256
+    + {static} mm256_div_pd(a:v256, b:v256) : v256
+    + {static} mm256_div_ps(a:v256, b:v256) : v256
+    + {static} mm256_dp_ps(a:v256, b:v256, imm8:int) : v256
+    + {static} mm256_hadd_pd(a:v256, b:v256) : v256
+    + {static} mm256_hadd_ps(a:v256, b:v256) : v256
+    + {static} mm256_hsub_pd(a:v256, b:v256) : v256
+    + {static} mm256_hsub_ps(a:v256, b:v256) : v256
+    + {static} mm256_max_pd(a:v256, b:v256) : v256
+    + {static} mm256_max_ps(a:v256, b:v256) : v256
+    + {static} mm256_min_pd(a:v256, b:v256) : v256
+    + {static} mm256_min_ps(a:v256, b:v256) : v256
+    + {static} mm256_mul_pd(a:v256, b:v256) : v256
+    + {static} mm256_mul_ps(a:v256, b:v256) : v256
+    + {static} mm256_or_pd(a:v256, b:v256) : v256
+    + {static} mm256_or_ps(a:v256, b:v256) : v256
+    + {static} mm256_shuffle_pd(a:v256, b:v256, imm8:int) : v256
+    + {static} mm256_shuffle_ps(a:v256, b:v256, imm8:int) : v256
+    + {static} mm256_sub_pd(a:v256, b:v256) : v256
+    + {static} mm256_sub_ps(a:v256, b:v256) : v256
+    + {static} mm256_xor_pd(a:v256, b:v256) : v256
+    + {static} mm256_xor_ps(a:v256, b:v256) : v256
+    + {static} cmp_pd(a:v128, b:v128, imm8:int) : v128
+    + {static} mm256_cmp_pd(a:v256, b:v256, imm8:int) : v256
+    + {static} cmp_ps(a:v128, b:v128, imm8:int) : v128
+    + {static} mm256_cmp_ps(a:v256, b:v256, imm8:int) : v256
+    + {static} cmp_sd(a:v128, b:v128, imm8:int) : v128
+    + {static} cmp_ss(a:v128, b:v128, imm8:int) : v128
+    + {static} mm256_cvtepi32_pd(a:v128) : v256
+    + {static} mm256_cvtepi32_ps(a:v256) : v256
+    + {static} mm256_cvtpd_ps(a:v256) : v128
+    + {static} mm256_cvtps_epi32(a:v256) : v256
+    + {static} mm256_cvtps_pd(a:v128) : v256
+    + {static} mm256_cvttpd_epi32(a:v256) : v128
+    + {static} mm256_cvtpd_epi32(a:v256) : v128
+    + {static} mm256_cvttps_epi32(a:v256) : v256
+    + {static} mm256_cvtss_f32(a:v256) : float
+    + {static} mm256_extractf128_ps(a:v256, imm8:int) : v128
+    + {static} mm256_extractf128_pd(a:v256, imm8:int) : v128
+    + {static} mm256_extractf128_si256(a:v256, imm8:int) : v128
+    + {static} mm256_zeroall() : void
+    + {static} mm256_zeroupper() : void
+    + {static} permutevar_ps(a:v128, b:v128) : v128
+    + {static} mm256_permutevar_ps(a:v256, b:v256) : v256
+    + {static} permute_ps(a:v128, imm8:int) : v128
+    + {static} mm256_permute_ps(a:v256, imm8:int) : v256
+    + {static} permutevar_pd(a:v128, b:v128) : v128
+    + {static} mm256_permutevar_pd(a:v256, b:v256) : v256
+    + {static} mm256_permute_pd(a:v256, imm8:int) : v256
+    + {static} permute_pd(a:v128, imm8:int) : v128
+    + {static} mm256_permute2f128_ps(a:v256, b:v256, imm8:int) : v256
+    + {static} mm256_permute2f128_pd(a:v256, b:v256, imm8:int) : v256
+    + {static} mm256_permute2f128_si256(a:v256, b:v256, imm8:int) : v256
+    + {static} mm256_broadcast_ss(ptr:void*) : v256
+    + {static} broadcast_ss(ptr:void*) : v128
+    + {static} mm256_broadcast_sd(ptr:void*) : v256
+    + {static} mm256_broadcast_ps(ptr:void*) : v256
+    + {static} mm256_broadcast_pd(ptr:void*) : v256
+    + {static} mm256_insertf128_ps(a:v256, b:v128, imm8:int) : v256
+    + {static} mm256_insertf128_pd(a:v256, b:v128, imm8:int) : v256
+    + {static} mm256_insertf128_si256(a:v256, b:v128, imm8:int) : v256
+    + {static} mm256_load_ps(ptr:void*) : v256
+    + {static} mm256_store_ps(ptr:void*, val:v256) : void
+    + {static} mm256_load_pd(ptr:void*) : v256
+    + {static} mm256_store_pd(ptr:void*, a:v256) : void
+    + {static} mm256_loadu_pd(ptr:void*) : v256
+    + {static} mm256_storeu_pd(ptr:void*, a:v256) : void
+    + {static} mm256_loadu_ps(ptr:void*) : v256
+    + {static} mm256_storeu_ps(ptr:void*, a:v256) : void
+    + {static} mm256_load_si256(ptr:void*) : v256
+    + {static} mm256_store_si256(ptr:void*, v:v256) : void
+    + {static} mm256_loadu_si256(ptr:void*) : v256
+    + {static} mm256_storeu_si256(ptr:void*, v:v256) : void
+    + {static} mm256_loadu2_m128(hiaddr:void*, loaddr:void*) : v256
+    + {static} mm256_loadu2_m128d(hiaddr:void*, loaddr:void*) : v256
+    + {static} mm256_loadu2_m128i(hiaddr:void*, loaddr:void*) : v256
+    + {static} mm256_set_m128(hi:v128, lo:v128) : v256
+    + {static} mm256_storeu2_m128(hiaddr:void*, loaddr:void*, val:v256) : void
+    + {static} mm256_storeu2_m128d(hiaddr:void*, loaddr:void*, val:v256) : void
+    + {static} mm256_storeu2_m128i(hiaddr:void*, loaddr:void*, val:v256) : void
+    + {static} maskload_pd(mem_addr:void*, mask:v128) : v128
+    + {static} mm256_maskload_pd(mem_addr:void*, mask:v256) : v256
+    + {static} maskstore_pd(mem_addr:void*, mask:v128, a:v128) : void
+    + {static} mm256_maskstore_pd(mem_addr:void*, mask:v256, a:v256) : void
+    + {static} maskload_ps(mem_addr:void*, mask:v128) : v128
+    + {static} mm256_maskload_ps(mem_addr:void*, mask:v256) : v256
+    + {static} maskstore_ps(mem_addr:void*, mask:v128, a:v128) : void
+    + {static} mm256_maskstore_ps(mem_addr:void*, mask:v256, a:v256) : void
+    + {static} mm256_movehdup_ps(a:v256) : v256
+    + {static} mm256_moveldup_ps(a:v256) : v256
+    + {static} mm256_movedup_pd(a:v256) : v256
+    + {static} mm256_lddqu_si256(mem_addr:void*) : v256
+    + {static} mm256_stream_si256(mem_addr:void*, a:v256) : void
+    + {static} mm256_stream_pd(mem_addr:void*, a:v256) : void
+    + {static} mm256_stream_ps(mem_addr:void*, a:v256) : void
+    + {static} mm256_rcp_ps(a:v256) : v256
+    + {static} mm256_rsqrt_ps(a:v256) : v256
+    + {static} mm256_sqrt_pd(a:v256) : v256
+    + {static} mm256_sqrt_ps(a:v256) : v256
+    + {static} mm256_round_pd(a:v256, rounding:int) : v256
+    + {static} mm256_ceil_pd(val:v256) : v256
+    + {static} mm256_floor_pd(val:v256) : v256
+    + {static} mm256_round_ps(a:v256, rounding:int) : v256
+    + {static} mm256_ceil_ps(val:v256) : v256
+    + {static} mm256_floor_ps(val:v256) : v256
+    + {static} mm256_unpackhi_pd(a:v256, b:v256) : v256
+    + {static} mm256_unpacklo_pd(a:v256, b:v256) : v256
+    + {static} mm256_unpackhi_ps(a:v256, b:v256) : v256
+    + {static} mm256_unpacklo_ps(a:v256, b:v256) : v256
+    + {static} mm256_testz_si256(a:v256, b:v256) : int
+    + {static} mm256_testc_si256(a:v256, b:v256) : int
+    + {static} mm256_testnzc_si256(a:v256, b:v256) : int
+    + {static} mm256_testz_pd(a:v256, b:v256) : int
+    + {static} mm256_testc_pd(a:v256, b:v256) : int
+    + {static} mm256_testnzc_pd(a:v256, b:v256) : int
+    + {static} testz_pd(a:v128, b:v128) : int
+    + {static} testc_pd(a:v128, b:v128) : int
+    + {static} testnzc_pd(a:v128, b:v128) : int
+    + {static} mm256_testz_ps(a:v256, b:v256) : int
+    + {static} mm256_testc_ps(a:v256, b:v256) : int
+    + {static} mm256_testnzc_ps(a:v256, b:v256) : int
+    + {static} testz_ps(a:v128, b:v128) : int
+    + {static} testc_ps(a:v128, b:v128) : int
+    + {static} testnzc_ps(a:v128, b:v128) : int
+    + {static} mm256_movemask_pd(a:v256) : int
+    + {static} mm256_movemask_ps(a:v256) : int
+    + {static} mm256_setzero_pd() : v256
+    + {static} mm256_setzero_ps() : v256
+    + {static} mm256_setzero_si256() : v256
+    + {static} mm256_set_pd(d:double, c:double, b:double, a:double) : v256
+    + {static} mm256_set_ps(e7:float, e6:float, e5:float, e4:float, e3:float, e2:float, e1:float, e0:float) : v256
+    + {static} mm256_set_epi8(e31_:byte, e30_:byte, e29_:byte, e28_:byte, e27_:byte, e26_:byte, e25_:byte, e24_:byte, e23_:byte, e22_:byte, e21_:byte, e20_:byte, e19_:byte, e18_:byte, e17_:byte, e16_:byte, e15_:byte, e14_:byte, e13_:byte, e12_:byte, e11_:byte, e10_:byte, e9_:byte, e8_:byte, e7_:byte, e6_:byte, e5_:byte, e4_:byte, e3_:byte, e2_:byte, e1_:byte, e0_:byte) : v256
+    + {static} mm256_set_epi16(e15_:short, e14_:short, e13_:short, e12_:short, e11_:short, e10_:short, e9_:short, e8_:short, e7_:short, e6_:short, e5_:short, e4_:short, e3_:short, e2_:short, e1_:short, e0_:short) : v256
+    + {static} mm256_set_epi32(e7:int, e6:int, e5:int, e4:int, e3:int, e2:int, e1:int, e0:int) : v256
+    + {static} mm256_set_epi64x(e3:long, e2:long, e1:long, e0:long) : v256
+    + {static} mm256_set_m128d(hi:v128, lo:v128) : v256
+    + {static} mm256_set_m128i(hi:v128, lo:v128) : v256
+    + {static} mm256_setr_pd(d:double, c:double, b:double, a:double) : v256
+    + {static} mm256_setr_ps(e7:float, e6:float, e5:float, e4:float, e3:float, e2:float, e1:float, e0:float) : v256
+    + {static} mm256_setr_epi8(e31_:byte, e30_:byte, e29_:byte, e28_:byte, e27_:byte, e26_:byte, e25_:byte, e24_:byte, e23_:byte, e22_:byte, e21_:byte, e20_:byte, e19_:byte, e18_:byte, e17_:byte, e16_:byte, e15_:byte, e14_:byte, e13_:byte, e12_:byte, e11_:byte, e10_:byte, e9_:byte, e8_:byte, e7_:byte, e6_:byte, e5_:byte, e4_:byte, e3_:byte, e2_:byte, e1_:byte, e0_:byte) : v256
+    + {static} mm256_setr_epi16(e15_:short, e14_:short, e13_:short, e12_:short, e11_:short, e10_:short, e9_:short, e8_:short, e7_:short, e6_:short, e5_:short, e4_:short, e3_:short, e2_:short, e1_:short, e0_:short) : v256
+    + {static} mm256_setr_epi32(e7:int, e6:int, e5:int, e4:int, e3:int, e2:int, e1:int, e0:int) : v256
+    + {static} mm256_setr_epi64x(e3:long, e2:long, e1:long, e0:long) : v256
+    + {static} mm256_setr_m128(hi:v128, lo:v128) : v256
+    + {static} mm256_setr_m128d(hi:v128, lo:v128) : v256
+    + {static} mm256_setr_m128i(hi:v128, lo:v128) : v256
+    + {static} mm256_set1_pd(a:double) : v256
+    + {static} mm256_set1_ps(a:float) : v256
+    + {static} mm256_set1_epi8(a:byte) : v256
+    + {static} mm256_set1_epi16(a:short) : v256
+    + {static} mm256_set1_epi32(a:int) : v256
+    + {static} mm256_set1_epi64x(a:long) : v256
+    + {static} mm256_castpd_ps(a:v256) : v256
+    + {static} mm256_castps_pd(a:v256) : v256
+    + {static} mm256_castps_si256(a:v256) : v256
+    + {static} mm256_castpd_si256(a:v256) : v256
+    + {static} mm256_castsi256_ps(a:v256) : v256
+    + {static} mm256_castsi256_pd(a:v256) : v256
+    + {static} mm256_castps256_ps128(a:v256) : v128
+    + {static} mm256_castpd256_pd128(a:v256) : v128
+    + {static} mm256_castsi256_si128(a:v256) : v128
+    + {static} mm256_castps128_ps256(a:v128) : v256
+    + {static} mm256_castpd128_pd256(a:v128) : v256
+    + {static} mm256_castsi128_si256(a:v128) : v256
+    + {static} undefined_ps() : v128
+    + {static} undefined_pd() : v128
+    + {static} undefined_si128() : v128
+    + {static} mm256_undefined_ps() : v256
+    + {static} mm256_undefined_pd() : v256
+    + {static} mm256_undefined_si256() : v256
+    + {static} mm256_zextps128_ps256(a:v128) : v256
+    + {static} mm256_zextpd128_pd256(a:v128) : v256
+    + {static} mm256_zextsi128_si256(a:v128) : v256
+    + {static} mm256_insert_epi8(a:v256, i:int, index:int) : v256
+    + {static} mm256_insert_epi16(a:v256, i:int, index:int) : v256
+    + {static} mm256_insert_epi32(a:v256, i:int, index:int) : v256
+    + {static} mm256_insert_epi64(a:v256, i:long, index:int) : v256
+    + {static} mm256_extract_epi32(a:v256, index:int) : int
+    + {static} mm256_extract_epi64(a:v256, index:int) : long
+}
+enum CMP {
+    EQ_OQ= 0x00,
+    LT_OS= 0x01,
+    LE_OS= 0x02,
+    UNORD_Q= 0x03,
+    NEQ_UQ= 0x04,
+    NLT_US= 0x05,
+    NLE_US= 0x06,
+    ORD_Q= 0x07,
+    EQ_UQ= 0x08,
+    NGE_US= 0x09,
+    NGT_US= 0x0A,
+    FALSE_OQ= 0x0B,
+    NEQ_OQ= 0x0C,
+    GE_OS= 0x0D,
+    GT_OS= 0x0E,
+    TRUE_UQ= 0x0F,
+    EQ_OS= 0x10,
+    LT_OQ= 0x11,
+    LE_OQ= 0x12,
+    UNORD_S= 0x13,
+    NEQ_US= 0x14,
+    NLT_UQ= 0x15,
+    NLE_UQ= 0x16,
+    ORD_S= 0x17,
+    EQ_US= 0x18,
+    NGE_UQ= 0x19,
+    NGT_UQ= 0x1A,
+    FALSE_OS= 0x1B,
+    NEQ_OS= 0x1C,
+    GE_OQ= 0x1D,
+    GT_OQ= 0x1E,
+    TRUE_US= 0x1F,
+}
+X86 +-- Avx
+Avx +-- CMP
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+class Matrix2Node {
+    + <<const>> OutputSlotId : int = 0
+    + Matrix2Node()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> CollectShaderProperties(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + <<override>> CollectPreviewMaterialProperties(properties:List<PreviewProperty>) : void
+    + <<override>> GetVariableNameForSlot(slotId:int) : string
+    + AsShaderProperty() : AbstractShaderProperty
+    + outputSlotId : int <<get>>
+}
+AbstractMaterialNode <|-- Matrix2Node
+IGeneratesBodyCode <|-- Matrix2Node
+IPropertyFromNode <|-- Matrix2Node
+Matrix2Node --> "row0" Vector2
+Matrix2Node --> "row1" Vector2
+@enduml

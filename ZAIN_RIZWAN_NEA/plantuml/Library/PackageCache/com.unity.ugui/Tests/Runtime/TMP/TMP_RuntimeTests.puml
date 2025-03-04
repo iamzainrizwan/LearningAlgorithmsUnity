@@ -1,0 +1,17 @@
+@startuml
+class TMP_RuntimeTests {
+    + Setup() : void
+    + {static} TestCases_Parsing_TextInfo_WordWrapDisabled() : IEnumerable<object[]>
+    + Parsing_TextInfo_WordWrapDisabled(sourceTextIndex:int, characterCount:int, spaceCount:int, wordCount:int, lineCount:int) : void
+    + {static} TestCases_Parsing_TextInfo_WordWrapEnabled() : IEnumerable<object[]>
+    + Parsing_TextInfo_WordWrapEnabled(sourceTextIndex:int, characterCount:int, spaceCount:int, wordCount:int, lineCount:int) : void
+    + {static} TestCases_Parsing_TextInfo_AlignmentTopJustified() : IEnumerable<object[]>
+    + Parsing_TextInfo_AlignmentTopJustified(sourceTextIndex:int, characterCount:int, spaceCount:int, wordCount:int, lineCount:int) : void
+    + {static} TestCases_Parsing_TextInfo_RichText() : IEnumerable<object[]>
+    + Parsing_TextInfo_RichText(sourceTextIndex:int, characterCount:int, spaceCount:int, wordCount:int, lineCount:int) : void
+    + {static} TestCases_MultiLineNewline_OnLastLine_WhenPressedEnter_Caret_ShouldNotGoto_NextLine() : IEnumerable<object[]>
+    + MultiLineNewline_OnLastLine_WhenPressedEnter_Caret_ShouldNotGoto_NextLine(lineLimit:int, expectedLineCount:int) : void
+    + {static} TestCases_MultiLineNewLine_NegativeOrZeroLineLimit_AddsNewLine() : IEnumerable<object[]>
+    + MultiLineNewLine_NegativeOrZeroLineLimit_AddsNewLine(lineLimitValue:int, lineLimitApplied:int, extraKeyDownEventCount:int) : void
+}
+@enduml

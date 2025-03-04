@@ -1,0 +1,17 @@
+@startuml
+class IncludeCollection {
+    + IncludeCollection()
+    + Add(includes:IncludeCollection) : IncludeCollection
+    + Add(includePath:string, location:IncludeLocation) : IncludeCollection
+    + Add(includePath:string, location:IncludeLocation, shouldIncludeWithPragmas:bool) : IncludeCollection
+    + Add(includePath:string, location:IncludeLocation, fieldCondition:FieldCondition) : IncludeCollection
+    + Add(includePath:string, location:IncludeLocation, fieldCondition:FieldCondition, shouldIncludeWithPragmas:bool) : IncludeCollection
+    + Add(includePath:string, location:IncludeLocation, fieldConditions:FieldCondition[]) : IncludeCollection
+    + Add(includePath:string, location:IncludeLocation, fieldConditions:FieldCondition[], shouldIncludeWithPragmas:bool) : IncludeCollection
+    + AddInternal(includeGUID:string, includePath:string, location:IncludeLocation, fieldConditions:FieldCondition[], shouldIncludeWithPragmas:bool) : IncludeCollection
+    + GetEnumerator() : IEnumerator<IncludeDescriptor>
+}
+class "IEnumerable`1"<T> {
+}
+"IEnumerable`1" "<IncludeDescriptor>" <|-- IncludeCollection
+@enduml

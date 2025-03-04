@@ -1,0 +1,12 @@
+@startuml
+class PortInputView {
+    + PortInputView(slot:MaterialSlot)
+    + UpdateSlot(newSlot:MaterialSlot) : void
+    + UpdateSlotType() : void
+    + Dispose() : void
+}
+GraphElement <|-- PortInputView
+IDisposable <|-- PortInputView
+PortInputView --> "edgeColor" Color
+PortInputView --> "slot" MaterialSlot
+@enduml

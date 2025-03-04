@@ -1,0 +1,11 @@
+@startuml
+interface IUTF8Bytes {
+}
+class FixedStringUtils <<unsafe>> <<static>> {
+}
+struct UintFloatUnion {
+    + uintValue : uint
+    + floatValue : float
+}
+FixedStringUtils +-- UintFloatUnion
+@enduml

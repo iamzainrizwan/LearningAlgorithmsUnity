@@ -1,0 +1,6 @@
+@startuml
+class RectMask2DEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+Editor <|-- RectMask2DEditor
+@enduml

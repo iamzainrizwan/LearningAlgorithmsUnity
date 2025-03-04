@@ -1,0 +1,14 @@
+@startuml
+class ScreenPositionNode {
+    + ScreenPositionNode()
+    + <<override>> hasPreview : bool <<get>>
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+}
+AbstractMaterialNode <|-- ScreenPositionNode
+IGeneratesBodyCode <|-- ScreenPositionNode
+IMayRequireScreenPosition <|-- ScreenPositionNode
+IMayRequireNDCPosition <|-- ScreenPositionNode
+IMayRequirePixelPosition <|-- ScreenPositionNode
+ScreenPositionNode --> "screenSpaceType" ScreenSpaceType
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+class JobTests_CombineDependencies {
+    + CombineDependenciesWorks() : void
+    + DeepCombineDependencies(depth:int, arraySize:int) : void
+    + DeepCombineDependenciesWorks() : void
+}
+struct ArrayJob1 {
+    + Execute() : void
+}
+struct ArrayJob2 {
+    + Execute() : void
+}
+class "NativeArray`1"<T> {
+}
+JobTestsFixtureBasic <|-- JobTests_CombineDependencies
+JobTests_CombineDependencies +-- ArrayJob1
+IJob <|-- ArrayJob1
+ArrayJob1 --> "data<int>" "NativeArray`1"
+JobTests_CombineDependencies +-- ArrayJob2
+IJob <|-- ArrayJob2
+ArrayJob2 --> "a<int>" "NativeArray`1"
+ArrayJob2 --> "b<int>" "NativeArray`1"
+@enduml

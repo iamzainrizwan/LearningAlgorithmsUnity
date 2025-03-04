@@ -1,0 +1,32 @@
+@startuml
+class DQNHyperparameters {
+    + lr : float = 0.001f
+    + gamma : float = 0.99f
+    + explorationProbInit : float = 1.0f
+    + explorationProbDecay : float = 0.005f
+    + batchSize : int = 32
+    + memoryBufferSize : int = 2000
+}
+class DQN {
+    + inputs : int <<get>> <<set>>
+    + outputs : int <<get>> <<set>>
+    + explorationProb : float
+    + DQN(input_hyperparameters:DQNHyperparameters)
+    + ComputeAction(state:NDArray) : bool[]
+    + UpdateExplorationProbability() : void
+    + Train() : void
+}
+class Epsiode {
+    + reward : float
+    + done : bool
+}
+class "List`1"<T> {
+}
+Hyperparameters <|-- DQNHyperparameters
+DQN --> "hyperparameters" DQNHyperparameters
+DQN --> "model" DQNModel
+DQN o-> "memoryBuffer<Epsiode>" "List`1"
+DQN +-- Epsiode
+Epsiode --> "currentState" NDArray
+Epsiode --> "nextState" NDArray
+@enduml

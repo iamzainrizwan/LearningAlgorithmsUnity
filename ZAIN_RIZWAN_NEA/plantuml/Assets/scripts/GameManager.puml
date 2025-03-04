@@ -1,0 +1,30 @@
+@startuml
+class GameManager {
+    + forceMultiplier : float = 100
+    + jumpMultiplier : float = 0.04f
+    + rotationMultiplier : float = 10
+    + gameRunning : bool = false
+    + roundPaused : bool = false
+    + pausingEnabled : bool = false
+    + pauseInterval : int = 0
+    + totalRounds : int
+    + filepath : string
+    + InitaliseSimulation(simulationParams:string[], taggerParams:string[], runnerParams:string[]) : void
+    + UpdateRound() : void
+}
+MonoBehaviour <|-- GameManager
+GameManager --> "runnerObject" GameObject
+GameManager --> "runnerFoot" Transform
+GameManager --> "taggerObject" GameObject
+GameManager --> "taggerFoot" Transform
+GameManager --> "runnerSpawn" Transform
+GameManager --> "taggerSpawn" Transform
+GameManager --> "groundedLayers" LayerMask
+GameManager --> "simStatsManager" SimStatsManager
+GameManager --> "uIController" UInterfaceManager
+GameManager --> "roundText" TMP_Text
+GameManager --> "roundPausedText" TMP_Text
+GameManager --> "gameStatusText" TMP_Text
+GameManager --> "taggerAlgorithm" LearningAlgorithm
+GameManager --> "runnerAlgorithm" LearningAlgorithm
+@enduml

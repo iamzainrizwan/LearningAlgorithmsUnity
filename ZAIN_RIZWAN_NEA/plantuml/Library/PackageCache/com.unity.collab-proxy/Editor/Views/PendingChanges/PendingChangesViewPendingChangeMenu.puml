@@ -1,0 +1,10 @@
+@startuml
+class PendingChangesViewPendingChangeMenu {
+}
+interface IMetaMenuOperations {
+}
+interface IAdvancedUndoMenuOperations {
+}
+PendingChangesViewPendingChangeMenu +-- IMetaMenuOperations
+PendingChangesViewPendingChangeMenu +-- IAdvancedUndoMenuOperations
+@enduml

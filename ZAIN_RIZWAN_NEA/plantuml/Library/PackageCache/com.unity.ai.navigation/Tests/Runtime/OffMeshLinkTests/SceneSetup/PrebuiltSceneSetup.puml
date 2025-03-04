@@ -1,0 +1,8 @@
+@startuml
+abstract class PrebuiltSceneSetup {
+    + Setup() : void
+    + Cleanup() : void
+}
+IPrebuildSetup <|-- PrebuiltSceneSetup
+IPostBuildCleanup <|-- PrebuiltSceneSetup
+@enduml

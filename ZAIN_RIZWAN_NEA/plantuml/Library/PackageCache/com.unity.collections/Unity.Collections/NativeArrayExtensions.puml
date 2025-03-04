@@ -1,0 +1,18 @@
+@startuml
+class NativeArrayExtensions <<unsafe>> <<static>> {
+    + {static} Contains(array:NativeArray<T>, value:U) : bool
+    + {static} IndexOf(array:NativeArray<T>, value:U) : int
+    + {static} Contains(array:NativeArray<T>.ReadOnly, value:U) : bool
+    + {static} IndexOf(array:NativeArray<T>.ReadOnly, value:U) : int
+    + {static} Contains(ptr:void*, length:int, value:U) : bool
+    + {static} IndexOf(ptr:void*, length:int, value:U) : int
+    + {static} CopyFrom(container:NativeArray<T>, other:NativeList<T>) : void
+    + {static} CopyFrom(container:NativeArray<T>, other:NativeHashSet<T>) : void
+    + {static} CopyFrom(container:NativeArray<T>, other:UnsafeHashSet<T>) : void
+    + {static} Reinterpret(array:NativeArray<T>) : NativeArray<U>
+    + {static} ArraysEqual(container:NativeArray<T>, other:NativeArray<T>) : bool
+}
+struct "NativeArrayStaticId`1"<T> {
+}
+NativeArrayExtensions +-- "NativeArrayStaticId`1"
+@enduml

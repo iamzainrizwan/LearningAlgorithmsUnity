@@ -1,0 +1,29 @@
+@startuml
+class JobsILPostProcessor <<partial>> {
+    + <<override>> Process(compiledAssembly:ICompiledAssembly) : ILPostProcessResult
+    + <<override>> GetInstance() : ILPostProcessor
+    + <<override>> WillProcess(compiledAssembly:ICompiledAssembly) : bool
+}
+class PostProcessorReflectionImporterProvider {
+    + GetReflectionImporter(module:ModuleDefinition) : IReflectionImporter
+}
+class PostProcessorReflectionImporter {
+    + PostProcessorReflectionImporter(module:ModuleDefinition)
+    + <<override>> ImportReference(reference:AssemblyName) : AssemblyNameReference
+}
+class "HashSet`1"<T> {
+}
+class PostProcessorAssemblyResolver {
+    + PostProcessorAssemblyResolver(compiledAssembly:ICompiledAssembly)
+    + Dispose() : void
+    + Resolve(name:AssemblyNameReference) : AssemblyDefinition
+    + Resolve(name:AssemblyNameReference, parameters:ReaderParameters) : AssemblyDefinition
+    + AddAssemblyDefinitionBeingOperatedOn(assemblyDefinition:AssemblyDefinition) : void
+}
+ILPostProcessor <|-- JobsILPostProcessor
+JobsILPostProcessor --> "Defines<string>" "HashSet`1"
+IReflectionImporterProvider <|-- PostProcessorReflectionImporterProvider
+DefaultReflectionImporter <|-- PostProcessorReflectionImporter
+JobsILPostProcessor +-- PostProcessorAssemblyResolver
+IAssemblyResolver <|-- PostProcessorAssemblyResolver
+@enduml

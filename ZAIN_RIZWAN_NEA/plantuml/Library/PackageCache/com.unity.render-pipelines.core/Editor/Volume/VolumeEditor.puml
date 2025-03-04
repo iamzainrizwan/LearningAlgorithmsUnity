@@ -1,0 +1,23 @@
+@startuml
+class VolumeEditor <<sealed>> {
+    + <<override>> CreateInspectorGUI() : VisualElement
+}
+class Styles <<static>> {
+    + {static} <<readonly>> isGlobalDropdownTooltip : string
+}
+Editor <|-- VolumeEditor
+VolumeEditor +-- Styles
+Styles o-> "addBoxCollider" GUIContent
+Styles o-> "sphereBoxCollider" GUIContent
+Styles o-> "capsuleBoxCollider" GUIContent
+Styles o-> "meshBoxCollider" GUIContent
+Styles o-> "addColliderFixMessage" GUIContent
+Styles o-> "disableColliderFixMessage" GUIContent
+Styles o-> "enableColliderFixMessage" GUIContent
+Styles o-> "newLabel" GUIContent
+Styles o-> "saveLabel" GUIContent
+Styles o-> "cloneLabel" GUIContent
+Styles o-> "enableAll" GUIContent
+Styles o-> "disableAll" GUIContent
+Styles o-> "removeAll" GUIContent
+@enduml

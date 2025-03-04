@@ -1,0 +1,40 @@
+@startuml
+class ProjectGeneration {
+    + ProjectDirectory : string <<get>>
+    + ProjectDirectoryWithSlash : string <<get>>
+    + ProjectGeneration()
+    + ProjectGeneration(projectDirectory:string)
+    + ProjectGeneration(projectDirectory:string, assemblyNameProvider:IAssemblyNameProvider, fileIoProvider:IFileIO, guidGenerator:IGUIDGenerator)
+    + SyncIfNeeded(affectedFiles:IEnumerable<string>, reimportedFiles:IEnumerable<string>, checkProjectFiles:bool) : bool
+    + Sync() : void
+    + HasSolutionBeenGenerated() : bool
+    + HasValidExtension(file:string) : bool
+    + {static} GetAssetPostprocessorTypes() : Type[]
+    + SolutionFile() : string
+    + {static} GetNoWarn(codes:List<string>) : IEnumerable<string>
+}
+class "FilePathTrie`1"<TData> {
+    + Insert(filePath:string, data:TData) : void
+    + FindClosestMatch(filePath:string) : TData
+}
+enum ScriptingLanguage {
+    None,
+    CSharp,
+}
+class AssemblyUsage {
+    + AddProjectAssembly(assembly:Assembly) : void
+    + AddPrecompiledAssembly(assembly:Assembly) : void
+    + IsProjectAssembly(assembly:Assembly) : bool
+    + IsPrecompiledAssembly(assembly:Assembly) : bool
+}
+class TrieNode {
+}
+class "Dictionary`2"<T1,T2> {
+}
+IGenerator <|-- ProjectGeneration
+ProjectGeneration +-- ScriptingLanguage
+ProjectGeneration +-- AssemblyUsage
+"FilePathTrie`1" +-- TrieNode
+TrieNode --> "Children<string,TrieNode>" "Dictionary`2"
+TrieNode --> "Data" TData
+@enduml

@@ -1,0 +1,70 @@
+@startuml
+class UniversalRenderPipeline <<sealed>> <<partial>> {
+    + <<const>> k_ShaderTagName : string = "UniversalPipeline"
+    + {static} maxShadowBias : float <<get>>
+    + {static} minRenderScale : float <<get>>
+    + {static} maxRenderScale : float <<get>>
+    + {static} maxNumIterationsEnclosingSphere : int <<get>>
+    + {static} maxPerObjectLights : int <<get>>
+    + {static} maxVisibleAdditionalLights : int <<get>>
+    + <<override>> ToString() : string
+    + UniversalRenderPipeline(asset:UniversalRenderPipelineAsset)
+    + {static} RenderSingleCamera(context:ScriptableRenderContext, camera:Camera) : void
+}
+class CameraMetadataCache <<static>> {
+    + {static} GetCached(camera:Camera) : CameraMetadataCacheEntry
+}
+class Profiling <<static>> {
+}
+struct CameraRenderingScope {
+    + CameraRenderingScope(context:ScriptableRenderContext, camera:Camera)
+    + Dispose() : void
+}
+struct ContextRenderingScope {
+    + ContextRenderingScope(context:ScriptableRenderContext, cameras:List<Camera>)
+    + Dispose() : void
+}
+class SingleCameraRequest {
+    + mipLevel : int = 0
+    + slice : int = 0
+}
+class CameraMetadataCacheEntry {
+    + name : string
+}
+class Pipeline <<static>> {
+}
+class Renderer <<static>> {
+}
+class Context <<static>> {
+}
+RenderPipeline <|-- UniversalRenderPipeline
+UniversalRenderPipeline --> "defaultSettings" RenderPipelineGlobalSettings
+UniversalRenderPipeline +-- CameraMetadataCache
+UniversalRenderPipeline +-- Profiling
+UniversalRenderPipeline +-- CameraRenderingScope
+IDisposable <|-- CameraRenderingScope
+UniversalRenderPipeline +-- ContextRenderingScope
+IDisposable <|-- ContextRenderingScope
+UniversalRenderPipeline +-- SingleCameraRequest
+SingleCameraRequest o-> "destination" RenderTexture
+SingleCameraRequest o-> "face" CubemapFace
+CameraMetadataCache +-- CameraMetadataCacheEntry
+CameraMetadataCacheEntry --> "sampler" ProfilingSampler
+Profiling +-- Pipeline
+Pipeline o-> "initializeCameraData" ProfilingSampler
+Pipeline o-> "initializeStackedCameraData" ProfilingSampler
+Pipeline o-> "initializeAdditionalCameraData" ProfilingSampler
+Pipeline o-> "initializeRenderingData" ProfilingSampler
+Pipeline o-> "initializeShadowData" ProfilingSampler
+Pipeline o-> "initializeLightData" ProfilingSampler
+Pipeline o-> "buildAdditionalLightsShadowAtlasLayout" ProfilingSampler
+Pipeline o-> "getPerObjectLightFlags" ProfilingSampler
+Pipeline o-> "getMainLightIndex" ProfilingSampler
+Pipeline o-> "setupPerFrameShaderConstants" ProfilingSampler
+Pipeline o-> "setupPerCameraShaderConstants" ProfilingSampler
+Pipeline +-- Renderer
+Renderer o-> "setupCullingParameters" ProfilingSampler
+Renderer o-> "setup" ProfilingSampler
+Pipeline +-- Context
+Context o-> "submit" ProfilingSampler
+@enduml

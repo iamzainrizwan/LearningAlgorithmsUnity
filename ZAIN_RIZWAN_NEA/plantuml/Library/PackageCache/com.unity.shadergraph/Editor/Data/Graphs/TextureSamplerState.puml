@@ -1,0 +1,30 @@
+@startuml
+class TextureSamplerState {
+    + {static} BuildSamplerStateName(filter:FilterMode, wrap:WrapMode, aniso:Anisotropic) : string
+    + defaultPropertyName : string <<get>>
+}
+enum FilterMode {
+    Linear,
+    Point,
+    Trilinear,
+}
+enum WrapMode {
+    Repeat,
+    Clamp,
+    Mirror,
+    MirrorOnce,
+}
+enum Anisotropic {
+    None,
+    x2,
+    x4,
+    x8,
+    x16,
+}
+TextureSamplerState --> "filter" FilterMode
+TextureSamplerState --> "wrap" WrapMode
+TextureSamplerState --> "anisotropic" Anisotropic
+TextureSamplerState +-- FilterMode
+TextureSamplerState +-- WrapMode
+TextureSamplerState +-- Anisotropic
+@enduml

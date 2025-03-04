@@ -1,0 +1,20 @@
+@startuml
+class SimStatsManager {
+    + runnerReward : float
+    + taggerReward : float
+    + taggerRoundsWon : int
+    + runnerRoundsWon : int
+    + lastRoundWinnerName : string
+    + isActive : bool = false
+    + UpdateStatsPanel() : void
+    + ToggleStatsPanel() : void
+}
+MonoBehaviour <|-- SimStatsManager
+SimStatsManager --> "gameManager" GameManager
+SimStatsManager --> "toggleButton" Button
+SimStatsManager --> "taggerColumn" TMP_Text
+SimStatsManager --> "runnerColumn" TMP_Text
+SimStatsManager --> "taggerScore" TMP_Text
+SimStatsManager --> "runnerScore" TMP_Text
+SimStatsManager --> "lastRoundWinner" TMP_Text
+@enduml

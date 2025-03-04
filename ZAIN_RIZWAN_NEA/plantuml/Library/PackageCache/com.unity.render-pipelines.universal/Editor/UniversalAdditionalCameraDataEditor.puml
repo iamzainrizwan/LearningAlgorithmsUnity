@@ -1,0 +1,6 @@
+@startuml
+class UniversalAdditionalCameraDataEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+Editor <|-- UniversalAdditionalCameraDataEditor
+@enduml

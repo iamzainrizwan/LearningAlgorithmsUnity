@@ -1,0 +1,12 @@
+@startuml
+class CSharpNameUtility <<static>> {
+    + {static} CSharpName(member:MemberInfo, direction:ActionDirection) : string
+    + {static} CSharpName(type:Type, includeGenericParameters:bool) : string
+    + {static} CSharpFullName(type:Type, includeGenericParameters:bool) : string
+    + {static} CSharpUniqueName(type:Type, includeGenericParameters:bool) : string
+    + {static} CSharpFileName(type:Type, includeNamespace:bool, includeGenericParameters:bool) : string
+}
+class "Dictionary`2"<T1,T2> {
+}
+CSharpNameUtility o-> "operators<string,string>" "Dictionary`2"
+@enduml

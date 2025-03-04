@@ -1,0 +1,7 @@
+@startuml
+class UnityOnPointerExitMessageListener <<sealed>> {
+    + OnPointerExit(eventData:PointerEventData) : void
+}
+MessageListener <|-- UnityOnPointerExitMessageListener
+IPointerExitHandler <|-- UnityOnPointerExitMessageListener
+@enduml

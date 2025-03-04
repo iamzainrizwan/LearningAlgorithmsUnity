@@ -1,0 +1,8 @@
+@startuml
+class OnBecameVisible <<sealed>> {
+}
+class "GameObjectEventUnit`1"<T> {
+}
+"GameObjectEventUnit`1" "<EmptyEventArgs>" <|-- OnBecameVisible
+OnBecameVisible --> "MessageListenerType" Type
+@enduml

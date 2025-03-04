@@ -1,0 +1,12 @@
+@startuml
+struct TextEvent {
+    + <<const>> Type : int = 0x54455854
+    + character : int
+    + {static} <<unsafe>> From(eventPtr:InputEventPtr) : TextEvent*
+    + {static} Create(deviceId:int, character:char, time:double) : TextEvent
+    + {static} Create(deviceId:int, character:int, time:double) : TextEvent
+}
+IInputEventTypeInfo <|-- TextEvent
+TextEvent --> "baseEvent" InputEvent
+TextEvent --> "typeStatic" FourCC
+@enduml

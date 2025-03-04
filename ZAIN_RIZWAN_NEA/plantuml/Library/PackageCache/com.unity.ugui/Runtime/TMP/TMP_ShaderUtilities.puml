@@ -1,0 +1,81 @@
+@startuml
+class ShaderUtilities <<static>> {
+    + {static} ID_MainTex : int
+    + {static} ID_FaceTex : int
+    + {static} ID_FaceColor : int
+    + {static} ID_FaceDilate : int
+    + {static} ID_Shininess : int
+    + {static} ID_OutlineOffset1 : int
+    + {static} ID_OutlineOffset2 : int
+    + {static} ID_OutlineOffset3 : int
+    + {static} ID_OutlineMode : int
+    + {static} ID_IsoPerimeter : int
+    + {static} ID_Softness : int
+    + {static} ID_UnderlayColor : int
+    + {static} ID_UnderlayOffsetX : int
+    + {static} ID_UnderlayOffsetY : int
+    + {static} ID_UnderlayDilate : int
+    + {static} ID_UnderlaySoftness : int
+    + {static} ID_UnderlayOffset : int
+    + {static} ID_UnderlayIsoPerimeter : int
+    + {static} ID_WeightNormal : int
+    + {static} ID_WeightBold : int
+    + {static} ID_OutlineTex : int
+    + {static} ID_OutlineWidth : int
+    + {static} ID_OutlineSoftness : int
+    + {static} ID_OutlineColor : int
+    + {static} ID_Outline2Color : int
+    + {static} ID_Outline2Width : int
+    + {static} ID_Padding : int
+    + {static} ID_GradientScale : int
+    + {static} ID_ScaleX : int
+    + {static} ID_ScaleY : int
+    + {static} ID_PerspectiveFilter : int
+    + {static} ID_Sharpness : int
+    + {static} ID_TextureWidth : int
+    + {static} ID_TextureHeight : int
+    + {static} ID_BevelAmount : int
+    + {static} ID_GlowColor : int
+    + {static} ID_GlowOffset : int
+    + {static} ID_GlowPower : int
+    + {static} ID_GlowOuter : int
+    + {static} ID_GlowInner : int
+    + {static} ID_LightAngle : int
+    + {static} ID_EnvMap : int
+    + {static} ID_EnvMatrix : int
+    + {static} ID_EnvMatrixRotation : int
+    + {static} ID_MaskCoord : int
+    + {static} ID_ClipRect : int
+    + {static} ID_MaskSoftnessX : int
+    + {static} ID_MaskSoftnessY : int
+    + {static} ID_VertexOffsetX : int
+    + {static} ID_VertexOffsetY : int
+    + {static} ID_UseClipRect : int
+    + {static} ID_StencilID : int
+    + {static} ID_StencilOp : int
+    + {static} ID_StencilComp : int
+    + {static} ID_StencilReadMask : int
+    + {static} ID_StencilWriteMask : int
+    + {static} ID_ShaderFlags : int
+    + {static} ID_ScaleRatio_A : int
+    + {static} ID_ScaleRatio_B : int
+    + {static} ID_ScaleRatio_C : int
+    + {static} Keyword_Bevel : string = "BEVEL_ON"
+    + {static} Keyword_Glow : string = "GLOW_ON"
+    + {static} Keyword_Underlay : string = "UNDERLAY_ON"
+    + {static} Keyword_Ratios : string = "RATIOS_OFF"
+    + {static} Keyword_MASK_SOFT : string = "MASK_SOFT"
+    + {static} Keyword_MASK_HARD : string = "MASK_HARD"
+    + {static} Keyword_MASK_TEX : string = "MASK_TEX"
+    + {static} Keyword_Outline : string = "OUTLINE_ON"
+    + {static} ShaderTag_ZTestMode : string = "unity_GUIZTestMode"
+    + {static} ShaderTag_CullMode : string = "_CullMode"
+    + {static} isInitialized : bool = false
+    + {static} GetShaderPropertyIDs() : void
+    + {static} UpdateShaderRatios(mat:Material) : void
+    + {static} GetFontExtent(material:Material) : Vector4
+    + {static} IsMaskingEnabled(material:Material) : bool
+    + {static} GetPadding(material:Material, enableExtraPadding:bool, isBold:bool) : float
+    + {static} GetPadding(materials:Material[], enableExtraPadding:bool, isBold:bool) : float
+}
+@enduml

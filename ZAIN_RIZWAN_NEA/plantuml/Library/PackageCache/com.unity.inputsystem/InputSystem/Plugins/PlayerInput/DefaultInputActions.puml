@@ -1,0 +1,67 @@
+@startuml
+class DefaultInputActions {
+    + @DefaultInputActions()
+    + Dispose() : void
+    + Contains(action:InputAction) : bool
+    + GetEnumerator() : IEnumerator<InputAction>
+    + Enable() : void
+    + Disable() : void
+    + FindAction(actionNameOrId:string, throwIfNotFound:bool) : InputAction
+    + FindBinding(bindingMask:InputBinding, action:InputAction) : int
+}
+class "ReadOnlyArray`1"<T> {
+}
+class "IEnumerable`1"<T> {
+}
+struct PlayerActions {
+    + PlayerActions(wrapper:@DefaultInputActions)
+    + Get() : InputActionMap
+    + Enable() : void
+    + Disable() : void
+    + enabled : bool <<get>>
+    + SetCallbacks(instance:IPlayerActions) : void
+}
+struct UIActions {
+    + UIActions(wrapper:@DefaultInputActions)
+    + Get() : InputActionMap
+    + Enable() : void
+    + Disable() : void
+    + enabled : bool <<get>>
+    + SetCallbacks(instance:IUIActions) : void
+}
+interface IPlayerActions {
+}
+interface IUIActions {
+}
+IInputActionCollection2 <|-- DefaultInputActions
+IDisposable <|-- DefaultInputActions
+DefaultInputActions --> "asset" InputActionAsset
+DefaultInputActions --> "bindingMask" InputBinding
+DefaultInputActions --> "devices<InputDevice>" "ReadOnlyArray`1"
+DefaultInputActions --> "controlSchemes<InputControlScheme>" "ReadOnlyArray`1"
+DefaultInputActions --> "bindings<InputBinding>" "IEnumerable`1"
+DefaultInputActions --> "@Player" PlayerActions
+DefaultInputActions --> "@UI" UIActions
+DefaultInputActions --> "KeyboardMouseScheme" InputControlScheme
+DefaultInputActions --> "GamepadScheme" InputControlScheme
+DefaultInputActions --> "TouchScheme" InputControlScheme
+DefaultInputActions --> "JoystickScheme" InputControlScheme
+DefaultInputActions --> "XRScheme" InputControlScheme
+DefaultInputActions +-- PlayerActions
+PlayerActions --> "@Move" InputAction
+PlayerActions --> "@Look" InputAction
+PlayerActions --> "@Fire" InputAction
+DefaultInputActions +-- UIActions
+UIActions --> "@Navigate" InputAction
+UIActions --> "@Submit" InputAction
+UIActions --> "@Cancel" InputAction
+UIActions --> "@Point" InputAction
+UIActions --> "@Click" InputAction
+UIActions --> "@ScrollWheel" InputAction
+UIActions --> "@MiddleClick" InputAction
+UIActions --> "@RightClick" InputAction
+UIActions --> "@TrackedDevicePosition" InputAction
+UIActions --> "@TrackedDeviceOrientation" InputAction
+DefaultInputActions +-- IPlayerActions
+DefaultInputActions +-- IUIActions
+@enduml

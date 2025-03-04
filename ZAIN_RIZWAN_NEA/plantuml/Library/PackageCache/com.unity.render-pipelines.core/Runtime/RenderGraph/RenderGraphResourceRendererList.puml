@@ -1,0 +1,17 @@
+@startuml
+enum RendererListHandleType {
+    Renderers,
+    Legacy,
+}
+struct RendererListHandle {
+    + IsValid() : bool
+}
+struct RendererListResource {
+}
+struct RendererListLegacyResource {
+    + isActive : bool
+}
+RendererListResource --> "desc" RendererListParams
+RendererListResource --> "rendererList" CoreRendererList
+RendererListLegacyResource --> "rendererList" CoreRendererList
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+class GraphData <<sealed>> <<partial>> {
+}
+class GraphSetup <<static>> {
+    + {static} SetupNode(node:AbstractMaterialNode) : void
+    + {static} SetupGraph(graph:GraphData) : void
+}
+ISerializationCallbackReceiver <|-- GraphData
+GraphData +-- GraphSetup
+@enduml

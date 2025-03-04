@@ -1,0 +1,17 @@
+@startuml
+abstract class SearcherTestsBase {
+    + Init() : void
+    + Cleanup() : void
+}
+class SearcherTests {
+    + {static} SingleTermCases() : IEnumerable<object[]>
+    + {static} MultipleTermCases() : IEnumerable<object[]>
+    + SingleTermSearch(term:string, expectedResultCount:int) : void
+    + MultipleTermsSearch(term:string, expectedResultCount:int) : void
+}
+class MatchTests {
+    + Match(path:string, query:string, expectedResult:bool) : void
+    + MatchWithFilter(items:List<SearcherItem>, query:string, filter:Func<string, SearcherItem, bool>, expectedResult:List<SearcherItem>) : void
+}
+SearcherTestsBase <|-- SearcherTests
+@enduml

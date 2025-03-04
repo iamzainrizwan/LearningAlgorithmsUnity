@@ -1,0 +1,84 @@
+@startuml
+class LensFlareDataSRPEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+class Styles <<static>> {
+    + <<const>> sizeWidth : int = 47
+    + <<const>> sizeOffset : int = 5
+    + {static} <<readonly>> headerHeight : int
+    + {static} <<readonly>> cathegorySpacing : int = 5
+    + <<const>> footerSeparatorHeight : int = 5
+    + <<const>> thumbnailSizeWidth : int = 72
+    + <<const>> thumbnailSizeHeight : int = 72
+    + <<const>> iconMargin : int = 6
+    + <<const>> horiwontalSpaceBetweenThumbnailAndInspector : int = 5
+    + <<const>> shrinkingLabel : int = 10
+    {static} + <<readonly>> typeCathegory : string
+    {static} + <<readonly>> noiseCathegory : string
+    {static} + <<readonly>> colorCathegory : string
+    {static} + <<readonly>> cutoffCathegory : string
+    {static} + <<readonly>> transformCathegory : string
+    {static} + <<readonly>> axisTransformCathegory : string
+    {static} + <<readonly>> radialDistortionCathegory : string
+    {static} + <<readonly>> multipleElementsCathegory : string
+}
+class TextureCacheElement {
+    + hash : int = 0
+}
+Editor <|-- LensFlareDataSRPEditor
+LensFlareDataSRPEditor +-- Styles
+Styles o-> "elementBackgroundColor" Color
+Styles o-> "mainHeader" GUIContent
+Styles o-> "elementHeader" GUIContent
+Styles o-> "type" GUIContent
+Styles o-> "flareTexture" GUIContent
+Styles o-> "preserveAspectRatio" GUIContent
+Styles o-> "gradient" GUIContent
+Styles o-> "fallOff" GUIContent
+Styles o-> "sideCount" GUIContent
+Styles o-> "sdfRoundness" GUIContent
+Styles o-> "inverseSDF" GUIContent
+Styles o-> "shapeCutOffSpeed" GUIContent
+Styles o-> "shapeCutOffRadius" GUIContent
+Styles o-> "lensFlareDataSRP" GUIContent
+Styles o-> "noiseAmplitude" GUIContent
+Styles o-> "noiseFrequency" GUIContent
+Styles o-> "noiseSpeed" GUIContent
+Styles o-> "ringThickness" GUIContent
+Styles o-> "tintColorType" GUIContent
+Styles o-> "tint" GUIContent
+Styles o-> "tintRadial" GUIContent
+Styles o-> "tintAngular" GUIContent
+Styles o-> "modulateByLightColor" GUIContent
+Styles o-> "intensity" GUIContent
+Styles o-> "blendMode" GUIContent
+Styles o-> "positionOffset" GUIContent
+Styles o-> "autoRotate" GUIContent
+Styles o-> "rotation" GUIContent
+Styles o-> "sizeXY" GUIContent
+Styles o-> "uniformScale" GUIContent
+Styles o-> "position" GUIContent
+Styles o-> "angularOffset" GUIContent
+Styles o-> "translationScale" GUIContent
+Styles o-> "enableDistortion" GUIContent
+Styles o-> "targetSizeDistortion" GUIContent
+Styles o-> "distortionCurve" GUIContent
+Styles o-> "distortionRelativeToCenter" GUIContent
+Styles o-> "allowMultipleElement" GUIContent
+Styles o-> "count" GUIContent
+Styles o-> "distribution" GUIContent
+Styles o-> "lengthSpread" GUIContent
+Styles o-> "seed" GUIContent
+Styles o-> "intensityVariation" GUIContent
+Styles o-> "colorGradient" GUIContent
+Styles o-> "positionVariation" GUIContent
+Styles o-> "rotationVariation" GUIContent
+Styles o-> "scaleVariation" GUIContent
+Styles o-> "positionCurve" GUIContent
+Styles o-> "scaleCurve" GUIContent
+Styles o-> "uniformAngleCurve" GUIContent
+Styles o-> "uniformAngle" GUIContent
+Styles --> "blueFocusedBoldLabel" GUIStyle
+LensFlareDataSRPEditor +-- TextureCacheElement
+TextureCacheElement o-> "computedTexture" Texture2D
+@enduml

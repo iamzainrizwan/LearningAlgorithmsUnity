@@ -1,0 +1,7 @@
+@startuml
+class PlayerLauncherContextSettings {
+    + PlayerLauncherContextSettings(overloadSettings:ITestRunSettings)
+    + Dispose() : void
+}
+IDisposable <|-- PlayerLauncherContextSettings
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+class SampleTexture2DLODNode {
+    + <<const>> OutputSlotRGBAId : int = 0
+    + <<const>> OutputSlotRId : int = 5
+    + <<const>> OutputSlotGId : int = 6
+    + <<const>> OutputSlotBId : int = 7
+    + <<const>> OutputSlotAId : int = 8
+    + <<const>> TextureInputId : int = 1
+    + <<const>> UVInputId : int = 2
+    + <<const>> SamplerInputId : int = 3
+    + <<const>> LODInputId : int = 4
+    + <<override>> hasPreview : bool <<get>>
+    + SampleTexture2DLODNode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> Setup() : void
+    + <<virtual>> GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + RequiresMeshUV(channel:UVChannel, stageCapability:ShaderStageCapability) : bool
+}
+AbstractMaterialNode <|-- SampleTexture2DLODNode
+IGeneratesBodyCode <|-- SampleTexture2DLODNode
+IMayRequireMeshUV <|-- SampleTexture2DLODNode
+SampleTexture2DLODNode --> "textureType" TextureType
+SampleTexture2DLODNode --> "normalMapSpace" NormalMapSpace
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class PlatformSpecificSetupTask {
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- PlatformSpecificSetupTask
+@enduml

@@ -1,0 +1,71 @@
+@startuml
+struct TMP_Vertex {
+}
+struct TMP_Offset {
+    + left : float <<get>> <<set>>
+    + right : float <<get>> <<set>>
+    + top : float <<get>> <<set>>
+    + bottom : float <<get>> <<set>>
+    + horizontal : float <<get>> <<set>>
+    + vertical : float <<get>> <<set>>
+    + TMP_Offset(left:float, right:float, top:float, bottom:float)
+    + TMP_Offset(horizontal:float, vertical:float)
+    + <<override>> GetHashCode() : int
+    + <<override>> Equals(obj:object) : bool
+    + Equals(other:TMP_Offset) : bool
+}
+struct HighlightState {
+    + HighlightState(color:Color32, padding:TMP_Offset)
+    + <<override>> GetHashCode() : int
+    + <<override>> Equals(obj:object) : bool
+    + Equals(other:HighlightState) : bool
+}
+struct TMP_CharacterInfo {
+    + character : char
+    + index : int
+    + stringLength : int
+    + materialReferenceIndex : int
+    + isUsingAlternateTypeface : bool
+    + pointSize : float
+    + lineNumber : int
+    + pageNumber : int
+    + vertexIndex : int
+    + origin : float
+    + xAdvance : float
+    + ascender : float
+    + baseLine : float
+    + descender : float
+    + aspectRatio : float
+    + scale : float
+    + underlineVertexIndex : int
+    + strikethroughVertexIndex : int
+    + isVisible : bool
+}
+TMP_Vertex --> "position" Vector3
+TMP_Vertex --> "uv" Vector4
+TMP_Vertex --> "uv2" Vector2
+TMP_Vertex --> "color" Color32
+TMP_Vertex --> "zero" TMP_Vertex
+TMP_Offset --> "zero" TMP_Offset
+HighlightState --> "color" Color32
+HighlightState --> "padding" TMP_Offset
+TMP_CharacterInfo --> "elementType" TMP_TextElementType
+TMP_CharacterInfo --> "textElement" TMP_TextElement
+TMP_CharacterInfo --> "alternativeGlyph" Glyph
+TMP_CharacterInfo --> "fontAsset" TMP_FontAsset
+TMP_CharacterInfo --> "material" Material
+TMP_CharacterInfo --> "vertex_BL" TMP_Vertex
+TMP_CharacterInfo --> "vertex_TL" TMP_Vertex
+TMP_CharacterInfo --> "vertex_TR" TMP_Vertex
+TMP_CharacterInfo --> "vertex_BR" TMP_Vertex
+TMP_CharacterInfo --> "topLeft" Vector3
+TMP_CharacterInfo --> "bottomLeft" Vector3
+TMP_CharacterInfo --> "topRight" Vector3
+TMP_CharacterInfo --> "bottomRight" Vector3
+TMP_CharacterInfo --> "color" Color32
+TMP_CharacterInfo --> "underlineColor" Color32
+TMP_CharacterInfo --> "strikethroughColor" Color32
+TMP_CharacterInfo --> "highlightColor" Color32
+TMP_CharacterInfo --> "highlightState" HighlightState
+TMP_CharacterInfo --> "style" FontStyles
+@enduml

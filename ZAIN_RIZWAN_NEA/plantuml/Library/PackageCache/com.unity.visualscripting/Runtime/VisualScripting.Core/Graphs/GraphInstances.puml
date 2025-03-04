@@ -1,0 +1,8 @@
+@startuml
+class GraphInstances <<static>> {
+    + {static} Instantiate(instance:GraphReference) : void
+    + {static} Uninstantiate(instance:GraphReference) : void
+    + {static} OfPooled(graph:IGraph) : HashSet<GraphReference>
+    + {static} ChildrenOfPooled(parent:IGraphParent) : HashSet<GraphReference>
+}
+@enduml

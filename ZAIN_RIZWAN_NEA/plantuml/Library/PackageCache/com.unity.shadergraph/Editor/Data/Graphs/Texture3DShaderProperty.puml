@@ -1,0 +1,9 @@
+@startuml
+class Texture3DShaderProperty <<sealed>> {
+    + modifiable : bool <<get>> <<set>>
+}
+class "AbstractShaderProperty`1"<T> {
+}
+"AbstractShaderProperty`1" "<SerializableTexture>" <|-- Texture3DShaderProperty
+Texture3DShaderProperty --> "propertyType" PropertyType
+@enduml

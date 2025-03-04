@@ -1,0 +1,8 @@
+@startuml
+struct SearchCriteria {
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+class BurstStringSearch <<static>> {
+}
+@enduml

@@ -1,0 +1,34 @@
+@startuml
+class WindowConstants <<static>> {
+    + <<const>> timeAreaYPosition : float = 19.0f
+    + <<const>> timeAreaHeight : float = 22.0f
+    + <<const>> timeAreaMinWidth : float = 50.0f
+    + <<const>> timeAreaShownRangePadding : float = 5.0f
+    + <<const>> markerRowHeight : float = 18.0f
+    + <<const>> markerRowYPosition : float
+    + <<const>> defaultHeaderWidth : float = 315.0f
+    + <<const>> defaultBindingAreaWidth : float = 40.0f
+    + <<const>> minHeaderWidth : float = 195.0f
+    + <<const>> maxHeaderWidth : float = 650.0f
+    + <<const>> headerSplitterWidth : float = 6.0f
+    + <<const>> headerSplitterVisualWidth : float = 2.0f
+    + <<const>> maxTimeAreaScaling : float = 90000.0f
+    + <<const>> timeCodeWidth : float = 100.0f
+    + <<const>> sliderWidth : float = 15
+    + <<const>> shadowUnderTimelineHeight : float = 15.0f
+    + <<const>> createButtonWidth : float = 70.0f
+    + <<const>> selectorWidth : float = 23.0f
+    + <<const>> cogButtonWidth : float = 25.0f
+    + <<const>> trackHeaderBindingHeight : float = 18.0f
+    + <<const>> trackHeaderButtonSize : float = 16.0f
+    + <<const>> trackHeaderButtonPadding : float = 2.0f
+    + <<const>> trackBindingMaxSize : float = 300.0f
+    + <<const>> trackBindingPadding : float = 5.0f
+    + <<const>> trackInsertionMarkerHeight : float = 1f
+    + <<const>> trackResizeHandleHeight : float = 7f
+    + <<const>> inlineCurveContentPadding : float = 2.0f
+    + <<const>> playControlsWidth : float = 300
+    + <<const>> autoPanPaddingInPixels : int = 50
+    + <<const>> overlayTextPadding : float = 40.0f
+}
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class GroupTrack {
+}
+class "IEnumerable`1"<T> {
+}
+TrackAsset <|-- GroupTrack
+GroupTrack --> "outputs<PlayableBinding>" "IEnumerable`1"
+@enduml

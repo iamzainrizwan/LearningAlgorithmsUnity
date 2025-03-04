@@ -1,0 +1,11 @@
+@startuml
+enum TileSize {
+    _8= 8,
+    _16= 16,
+    _32= 32,
+    _64= 64,
+}
+class TileSizeExtensions <<static>> {
+    + {static} IsValid(tileSize:TileSize) : bool
+}
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class CoreBuildData {
+    + buildingPlayerForRenderPipeline : bool <<get>> = false
+    + Dispose() : void
+}
+class "List`1"<T> {
+}
+IDisposable <|-- CoreBuildData
+CoreBuildData --> "instance" CoreBuildData
+CoreBuildData o-> "currentRenderPipelineAssetType" Type
+CoreBuildData o-> "renderPipelineAssets<RenderPipelineAsset>" "List`1"
+@enduml

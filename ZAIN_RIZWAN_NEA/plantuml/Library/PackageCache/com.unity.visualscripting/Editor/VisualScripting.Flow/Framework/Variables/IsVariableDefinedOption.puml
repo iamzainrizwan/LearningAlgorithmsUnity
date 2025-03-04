@@ -1,0 +1,10 @@
+@startuml
+class IsVariableDefinedOption {
+    + IsVariableDefinedOption()
+    + IsVariableDefinedOption(kind:VariableKind, defaultName:string)
+    + <<override>> SearchResultLabel(query:string) : string
+}
+class "UnifiedVariableUnitOption`1"<T> {
+}
+"UnifiedVariableUnitOption`1" "<IsVariableDefined>" <|-- IsVariableDefinedOption
+@enduml

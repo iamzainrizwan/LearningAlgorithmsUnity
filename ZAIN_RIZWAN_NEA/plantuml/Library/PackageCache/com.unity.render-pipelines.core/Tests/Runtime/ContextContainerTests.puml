@@ -1,0 +1,25 @@
+@startuml
+class TestData {
+    + x : int
+    + y : float
+    + z : bool
+    + <<override>> Reset() : void
+}
+class OtherTestData {
+    + <<override>> Reset() : void
+}
+class ContextContainerTests {
+    + FirstCreationOfData() : void
+    + SetUp() : void
+    + ReuseData() : void
+    + GetData() : void
+    + ContainsData() : void
+    + ReuseList() : void
+    + CreateMemoryAlloc() : void
+}
+class "List`1"<T> {
+}
+ContextItem <|-- TestData
+ContextItem <|-- OtherTestData
+OtherTestData o-> "list<int>" "List`1"
+@enduml

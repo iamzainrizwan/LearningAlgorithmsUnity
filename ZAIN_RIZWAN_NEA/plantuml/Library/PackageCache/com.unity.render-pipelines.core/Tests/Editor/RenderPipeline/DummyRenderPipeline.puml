@@ -1,0 +1,5 @@
+@startuml
+class DummyRenderPipeline {
+}
+RenderPipeline <|-- DummyRenderPipeline
+@enduml

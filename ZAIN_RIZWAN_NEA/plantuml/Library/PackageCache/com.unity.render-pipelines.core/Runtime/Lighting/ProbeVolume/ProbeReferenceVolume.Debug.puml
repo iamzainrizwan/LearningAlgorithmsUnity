@@ -1,0 +1,88 @@
+@startuml
+enum DebugProbeShadingMode {
+    SH,
+    SHL0,
+    SHL0L1,
+    Validity,
+    ValidityOverDilationThreshold,
+    RenderingLayerMasks,
+    InvalidatedByAdjustmentVolumes,
+    Size,
+    SkyOcclusionSH,
+    SkyDirection,
+    ProbeOcclusion,
+}
+enum ProbeSamplingDebugUpdate {
+    Never,
+    Once,
+    Always,
+}
+class ProbeSamplingDebugData {
+    + forceScreenCenterCoordinates : bool = false
+    + shortcutPressed : bool = false
+}
+class ProbeVolumeDebug {
+    + drawProbes : bool
+    + drawBricks : bool
+    + drawCells : bool
+    + realtimeSubdivision : bool
+    + subdivisionCellUpdatePerFrame : int = 4
+    + subdivisionDelayInSeconds : float = 1
+    + probeSize : float = 0.3f
+    + subdivisionViewCullingDistance : float = 500.0f
+    + probeCullingDistance : float = 200.0f
+    + maxSubdivToVisualize : int
+    + minSubdivToVisualize : int = 0
+    + exposureCompensation : float
+    + drawProbeSamplingDebug : bool = false
+    + probeSamplingDebugSize : float = 0.3f
+    + debugWithSamplingNoise : bool = false
+    + samplingRenderingLayer : uint
+    + drawVirtualOffsetPush : bool
+    + offsetSize : float = 0.025f
+    + freezeStreaming : bool
+    + displayCellStreamingScore : bool
+    + displayIndexFragmentation : bool
+    + otherStateIndex : int = 0
+    + verboseStreamingLog : bool
+    + debugStreaming : bool = false
+    + autoDrawProbes : bool = true
+    + isolationProbeDebug : bool = true
+    + visibleLayers : byte
+    + ProbeVolumeDebug()
+    + GetReset() : Action
+}
+class ProbeVolumeDebugColorPreferences {
+}
+class ProbeReferenceVolume <<partial>> {
+    + {static} <<readonly>> k_DebugPanelName : string = "Probe Volumes"
+    + RenderDebug(camera:Camera, exposureTexture:Texture) : void
+    + RenderDebug(camera:Camera, options:ProbeVolumesOptions, exposureTexture:Texture) : void
+    + IsProbeSamplingDebugEnabled() : bool
+    + GetProbeSamplingDebugResources(camera:Camera, resultBuffer:GraphicsBuffer, coords:Vector2) : bool
+    + RenderFragmentationOverlay(renderGraph:RenderGraph, colorBuffer:TextureHandle, depthBuffer:TextureHandle, debugOverlay:DebugOverlay) : void
+}
+class CellInstancedDebugProbes {
+}
+class RenderFragmentationOverlayPassData {
+    + chunkCount : int
+}
+class "List`1"<T> {
+}
+ProbeSamplingDebugData o-> "update" ProbeSamplingDebugUpdate
+ProbeSamplingDebugData o-> "coordinates" Vector2
+ProbeSamplingDebugData o-> "camera" Camera
+ProbeSamplingDebugData --> "positionNormalBuffer" GraphicsBuffer
+IDebugData <|-- ProbeVolumeDebug
+ProbeVolumeDebug --> "probeShading" DebugProbeShadingMode
+ProbeVolumeDebug --> "currentOffset" Vector3
+ProbeReferenceVolume +-- CellInstancedDebugProbes
+CellInstancedDebugProbes --> "probeBuffers<Matrix4x4[]>" "List`1"
+CellInstancedDebugProbes --> "offsetBuffers<Matrix4x4[]>" "List`1"
+CellInstancedDebugProbes --> "props<MaterialPropertyBlock>" "List`1"
+ProbeReferenceVolume +-- RenderFragmentationOverlayPassData
+RenderFragmentationOverlayPassData --> "debugFragmentationMaterial" Material
+RenderFragmentationOverlayPassData --> "debugFragmentationData" ComputeBuffer
+RenderFragmentationOverlayPassData --> "colorBuffer" TextureHandle
+RenderFragmentationOverlayPassData --> "depthBuffer" TextureHandle
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+class ScreenSpaceAmbientOcclusionPass {
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+    + <<override>> OnCameraSetup(cmd:CommandBuffer, renderingData:RenderingData) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + <<override>> OnCameraCleanup(cmd:CommandBuffer) : void
+    + Dispose() : void
+}
+enum BlurTypes {
+    Bilateral,
+    Gaussian,
+    Kawase,
+}
+enum ShaderPasses {
+    AmbientOcclusion= 0,
+    BilateralBlurHorizontal= 1,
+    BilateralBlurVertical= 2,
+    BilateralBlurFinal= 3,
+    BilateralAfterOpaque= 4,
+    GaussianBlurHorizontal= 5,
+    GaussianBlurVertical= 6,
+    GaussianAfterOpaque= 7,
+    KawaseBlur= 8,
+    KawaseAfterOpaque= 9,
+}
+struct SSAOMaterialParams {
+}
+class SSAOPassData {
+}
+ScriptableRenderPass <|-- ScreenSpaceAmbientOcclusionPass
+ScreenSpaceAmbientOcclusionPass +-- BlurTypes
+ScreenSpaceAmbientOcclusionPass +-- ShaderPasses
+ScreenSpaceAmbientOcclusionPass +-- SSAOMaterialParams
+ScreenSpaceAmbientOcclusionPass +-- SSAOPassData
+@enduml

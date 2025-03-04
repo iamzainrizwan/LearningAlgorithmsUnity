@@ -1,0 +1,8 @@
+@startuml
+class Vector4Subtract <<sealed>> {
+    + <<override>> Operation(a:Vector4, b:Vector4) : Vector4
+}
+class "Subtract`1"<T> {
+}
+"Subtract`1" "<Vector4>" <|-- Vector4Subtract
+@enduml

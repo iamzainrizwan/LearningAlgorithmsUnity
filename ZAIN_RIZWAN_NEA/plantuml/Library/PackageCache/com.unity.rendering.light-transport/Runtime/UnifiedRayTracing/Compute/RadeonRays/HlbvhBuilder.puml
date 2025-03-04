@@ -1,0 +1,28 @@
+@startuml
+struct BottomLevelLevelAccelStruct {
+    + bvhOffset : uint
+    + bvhLeavesOffset : uint
+}
+class HlbvhBuilder {
+    + HlbvhBuilder(shaders:RadeonRaysShaders)
+    + GetScratchDataSizeInDwords(triangleCount:uint) : uint
+    + {static} GetBvhNodeCount(leafCount:uint) : uint
+    + GetResultDataSizeInDwords(triangleCount:uint) : uint
+    + Execute(cmd:CommandBuffer, vertices:GraphicsBuffer, verticesOffset:int, vertexStride:uint, indices:GraphicsBuffer, indicesOffset:int, baseIndex:int, indexFormat:IndexFormat, triangleCount:uint, scratch:GraphicsBuffer, result:BottomLevelLevelAccelStruct) : void
+}
+struct ScratchBufferLayout {
+    + PrimitiveRefs : uint
+    + MortonCodes : uint
+    + SortedPrimitiveRefs : uint
+    + SortedMortonCodes : uint
+    + SortMemory : uint
+    + Aabb : uint
+    + LeafParents : uint
+    + InternalNodeRange : uint
+    + TotalSize : uint
+    + {static} Create(triangleCount:uint) : ScratchBufferLayout
+}
+BottomLevelLevelAccelStruct --> "bvh" GraphicsBuffer
+BottomLevelLevelAccelStruct --> "bvhLeaves" GraphicsBuffer
+HlbvhBuilder +-- ScratchBufferLayout
+@enduml

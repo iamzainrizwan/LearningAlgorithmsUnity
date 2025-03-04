@@ -1,0 +1,7 @@
+@startuml
+class NavMeshModifierTests {
+    + ActiveModifiers_AddOneItemToListInEditMode_ModifierListSetToZeroInPlayMode(option:EnterPlayModeOptions) : IEnumerator
+    + ActiveModifiers_CreateModifierInEditMode_ModifierRemainsInActiveModifiersInPlayMode(option:EnterPlayModeOptions) : IEnumerator
+}
+DomainReloadTestBase <|-- NavMeshModifierTests
+@enduml

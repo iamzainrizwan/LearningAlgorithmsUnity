@@ -1,0 +1,45 @@
+@startuml
+struct float3x4 {
+    + float3x4(c0:float3, c1:float3, c2:float3, c3:float3)
+    + float3x4(m00:float, m01:float, m02:float, m03:float, m10:float, m11:float, m12:float, m13:float, m20:float, m21:float, m22:float, m23:float)
+    + float3x4(v:float)
+    + float3x4(v:bool)
+    + float3x4(v:bool3x4)
+    + float3x4(v:int)
+    + float3x4(v:int3x4)
+    + float3x4(v:uint)
+    + float3x4(v:uint3x4)
+    + float3x4(v:double)
+    + float3x4(v:double3x4)
+    + Equals(rhs:float3x4) : bool
+    + <<override>> Equals(o:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+    + ToString(format:string, formatProvider:IFormatProvider) : string
+}
+class math <<static>> <<partial>> {
+    + {static} float3x4(c0:float3, c1:float3, c2:float3, c3:float3) : float3x4
+    + {static} float3x4(m00:float, m01:float, m02:float, m03:float, m10:float, m11:float, m12:float, m13:float, m20:float, m21:float, m22:float, m23:float) : float3x4
+    + {static} float3x4(v:float) : float3x4
+    + {static} float3x4(v:bool) : float3x4
+    + {static} float3x4(v:bool3x4) : float3x4
+    + {static} float3x4(v:int) : float3x4
+    + {static} float3x4(v:int3x4) : float3x4
+    + {static} float3x4(v:uint) : float3x4
+    + {static} float3x4(v:uint3x4) : float3x4
+    + {static} float3x4(v:double) : float3x4
+    + {static} float3x4(v:double3x4) : float3x4
+    + {static} transpose(v:float3x4) : float4x3
+    + {static} fastinverse(m:float3x4) : float3x4
+    + {static} hash(v:float3x4) : uint
+    + {static} hashwide(v:float3x4) : uint3
+}
+class "IEquatable`1"<T> {
+}
+IFormattable <|-- float3x4
+float3x4 --> "c0" float3
+float3x4 --> "c1" float3
+float3x4 --> "c2" float3
+float3x4 --> "c3" float3
+float3x4 --> "zero" float3x4
+@enduml

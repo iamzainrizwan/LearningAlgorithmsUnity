@@ -1,0 +1,18 @@
+@startuml
+class Once <<sealed>> {
+    + CreateData() : IGraphElementData
+    + Enter(flow:Flow) : ControlOutput
+    + Reset(flow:Flow) : ControlOutput
+}
+class Data <<sealed>> {
+    + executed : bool
+}
+Unit <|-- Once
+IGraphElementWithData <|-- Once
+Once --> "enter" ControlInput
+Once --> "reset" ControlInput
+Once --> "once" ControlOutput
+Once --> "after" ControlOutput
+Once +-- Data
+IGraphElementData <|-- Data
+@enduml

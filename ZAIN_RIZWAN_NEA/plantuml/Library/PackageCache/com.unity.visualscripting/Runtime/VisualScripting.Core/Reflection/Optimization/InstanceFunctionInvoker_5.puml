@@ -1,0 +1,11 @@
+@startuml
+class "InstanceFunctionInvoker`7"<TTarget,TParam0,TParam1,TParam2,TParam3,TParam4,TResult> <<sealed>> {
+    + InstanceFunctionInvoker(methodInfo:MethodInfo)
+    + <<override>> Invoke(target:object, args:object[]) : object
+    + <<override>> Invoke(target:object, arg0:object, arg1:object, arg2:object, arg3:object, arg4:object) : object
+    + InvokeUnsafe(target:object, arg0:object, arg1:object, arg2:object, arg3:object, arg4:object) : object
+}
+class "InstanceFunctionInvokerBase`2"<T1,T2> {
+}
+"InstanceFunctionInvokerBase`2" "<TTarget,TResult>" <|-- "InstanceFunctionInvoker`7"
+@enduml

@@ -1,0 +1,34 @@
+@startuml
+class DebugHandler {
+    + AreAnySettingsActive : bool <<get>>
+    + IsPostProcessingAllowed : bool <<get>>
+    + IsLightingActive : bool <<get>>
+    + TryGetScreenClearColor(color:Color) : bool
+    + Dispose() : void
+}
+class DebugRendererLists {
+    + DebugRendererLists(debugHandler:DebugHandler, filteringSettings:FilteringSettings)
+}
+class DebugFinalValidationPassData {
+    + isFinalPass : bool
+    + resolveFinalTarget : bool
+    + isActiveForCamera : bool
+    + hasDebugRenderTarget : bool
+    + debugTexturePropertyId : int
+    + debugRenderTargetSupportsStereo : int
+}
+class DebugSetupPassData {
+    + isActiveForCamera : bool
+}
+IDebugDisplaySettingsQuery <|-- DebugHandler
+DebugHandler +-- DebugFinalValidationPassData
+DebugFinalValidationPassData --> "debugRenderTargetHandle" TextureHandle
+DebugFinalValidationPassData --> "debugRenderTargetPixelRect" Vector4
+DebugFinalValidationPassData --> "debugRenderTargetRangeRemap" Vector4
+DebugFinalValidationPassData --> "debugFontTextureHandle" TextureHandle
+DebugFinalValidationPassData --> "renderingSettings" DebugDisplaySettingsRendering
+DebugHandler +-- DebugSetupPassData
+DebugSetupPassData --> "materialSettings" DebugDisplaySettingsMaterial
+DebugSetupPassData --> "renderingSettings" DebugDisplaySettingsRendering
+DebugSetupPassData --> "lightingSettings" DebugDisplaySettingsLighting
+@enduml

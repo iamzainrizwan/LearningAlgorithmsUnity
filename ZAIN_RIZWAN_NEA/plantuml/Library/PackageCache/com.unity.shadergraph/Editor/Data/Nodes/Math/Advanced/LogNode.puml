@@ -1,0 +1,12 @@
+@startuml
+enum LogBase {
+    BaseE,
+    Base2,
+    Base10,
+}
+class LogNode {
+    + LogNode()
+}
+CodeFunctionNode <|-- LogNode
+LogNode --> "logBase" LogBase
+@enduml

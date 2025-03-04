@@ -1,0 +1,8 @@
+@startuml
+class PropertyRow {
+    + PropertyRow(label:VisualElement)
+}
+VisualElement <|-- PropertyRow
+PropertyRow --> "contentContainer" VisualElement
+PropertyRow --> "label" VisualElement
+@enduml

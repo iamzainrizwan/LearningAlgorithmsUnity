@@ -1,0 +1,51 @@
+@startuml
+class TimelineAttributesExamples_HideAPI {
+}
+class LightTrack {
+}
+class SimpleMenuAction {
+    + <<override>> Validate(actionContext:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class MenuActionWithPriority {
+    + <<override>> Validate(actionContext:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class MenuActionInsideSubMenu {
+    + <<override>> Validate(actionContext:ActionContext) : ActionValidity
+    + <<override>> Execute(actionContext:ActionContext) : bool
+}
+class ShortcutAction {
+    + <<override>> Validate(_:ActionContext) : ActionValidity
+    + <<override>> Execute(_:ActionContext) : bool
+    + {static} HandleShortCut(args:ShortcutArguments) : void
+}
+class SetNameToTypeAction {
+    + <<override>> Validate(items:IEnumerable<TrackAsset>) : ActionValidity
+    + <<override>> Execute(items:IEnumerable<TrackAsset>) : bool
+}
+class MyMarker {
+}
+class MyCustomClipEditor {
+}
+class MyCustomClip {
+    + <<override>> CreatePlayable(graph:PlayableGraph, owner:GameObject) : Playable
+}
+TimelineAttributesExamples_HideAPI +-- LightTrack
+TrackAsset <|-- LightTrack
+TimelineAttributesExamples_HideAPI +-- SimpleMenuAction
+TimelineAction <|-- SimpleMenuAction
+TimelineAttributesExamples_HideAPI +-- MenuActionWithPriority
+TimelineAction <|-- MenuActionWithPriority
+TimelineAttributesExamples_HideAPI +-- MenuActionInsideSubMenu
+TimelineAction <|-- MenuActionInsideSubMenu
+TimelineAttributesExamples_HideAPI +-- ShortcutAction
+TimelineAction <|-- ShortcutAction
+TimelineAttributesExamples_HideAPI +-- SetNameToTypeAction
+TrackAction <|-- SetNameToTypeAction
+TimelineAttributesExamples_HideAPI +-- MyMarker
+TimelineAttributesExamples_HideAPI +-- MyCustomClipEditor
+ClipEditor <|-- MyCustomClipEditor
+TimelineAttributesExamples_HideAPI +-- MyCustomClip
+PlayableAsset <|-- MyCustomClip
+@enduml

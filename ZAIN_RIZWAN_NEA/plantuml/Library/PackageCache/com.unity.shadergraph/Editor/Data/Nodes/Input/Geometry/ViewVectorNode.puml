@@ -1,0 +1,13 @@
+@startuml
+class ViewVectorNode {
+    + ViewVectorNode()
+    + <<override>> hasPreview : bool <<get>>
+}
+class "List`1"<T> {
+}
+CodeFunctionNode <|-- ViewVectorNode
+ViewVectorNode --> "validSpaces<CoordinateSpace>" "List`1"
+ViewVectorNode --> "spacePopup" PopupList
+ViewVectorNode --> "space" CoordinateSpace
+ViewVectorNode --> "previewMode" PreviewMode
+@enduml

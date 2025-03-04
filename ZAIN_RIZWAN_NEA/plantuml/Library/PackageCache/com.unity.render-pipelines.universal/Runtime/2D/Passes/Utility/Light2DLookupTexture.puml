@@ -1,0 +1,9 @@
+@startuml
+class Light2DLookupTexture <<static>> {
+    + {static} GetLightLookupTexture_Rendergraph() : RTHandle
+    + {static} GetFallOffLookupTexture_Rendergraph() : RTHandle
+    + {static} Release() : void
+    + {static} GetLightLookupTexture() : Texture
+    + {static} GetFalloffLookupTexture() : Texture
+}
+@enduml

@@ -1,0 +1,30 @@
+@startuml
+class Icons <<static>> {
+    + {static} Load() : void
+    + {static} Icon(type:Type) : EditorTexture
+    + {static} Icon(member:MemberInfo, direction:ActionDirection) : EditorTexture
+    + {static} Icon(@enum:Enum) : EditorTexture
+    + {static} Icon(@namespace:Namespace) : EditorTexture
+    + {static} Type(type:Type) : EditorTexture
+    + {static} Icon(obj:UnityObject) : EditorTexture
+    + {static} Member(member:MemberInfo, direction:ActionDirection) : EditorTexture
+    + {static} Enum(@enum:Enum) : EditorTexture
+    + {static} Namespace(@namespace:Namespace) : EditorTexture
+}
+class Language <<static>> {
+}
+Icons +-- Language
+Language --> "method" LanguageIconSet
+Language --> "@namespace" LanguageIconSet
+Language --> "@class" LanguageIconSet
+Language --> "@interface" LanguageIconSet
+Language --> "@struct" LanguageIconSet
+Language --> "@enum" LanguageIconSet
+Language --> "primitive" LanguageIconSet
+Language --> "field" LanguageIconSet
+Language --> "property" LanguageIconSet
+Language --> "extensionMethod" LanguageIconSet
+Language --> "constructor" LanguageIconSet
+Language --> "@const" LanguageIconSet
+Language --> "favorite" LanguageIconSet
+@enduml

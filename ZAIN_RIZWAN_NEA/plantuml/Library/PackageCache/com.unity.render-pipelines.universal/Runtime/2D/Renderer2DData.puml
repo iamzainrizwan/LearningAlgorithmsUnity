@@ -1,0 +1,12 @@
+@startuml
+class Renderer2DData <<partial>> {
+    + hdrEmulationScale : float <<get>>
+}
+enum Renderer2DDefaultMaterialType {
+    Lit,
+    Unlit,
+    Custom,
+}
+ScriptableRendererData <|-- Renderer2DData
+Renderer2DData +-- Renderer2DDefaultMaterialType
+@enduml

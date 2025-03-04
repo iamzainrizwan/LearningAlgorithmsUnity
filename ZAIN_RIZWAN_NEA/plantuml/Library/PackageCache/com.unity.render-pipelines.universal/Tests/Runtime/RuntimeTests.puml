@@ -1,0 +1,7 @@
+@startuml
+class RuntimeTests {
+    + Setup() : void
+    + Cleanup() : void
+    + PipelineHasCorrectColorSpace() : IEnumerator
+}
+@enduml

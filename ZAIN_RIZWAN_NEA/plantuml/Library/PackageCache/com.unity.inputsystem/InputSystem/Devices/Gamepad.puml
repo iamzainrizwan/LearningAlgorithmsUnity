@@ -1,0 +1,76 @@
+@startuml
+struct GamepadState {
+    + buttons : uint
+    + leftTrigger : float
+    + rightTrigger : float
+    + GamepadState(buttons:GamepadButton[])
+    + WithButton(button:GamepadButton, value:bool) : GamepadState
+}
+enum GamepadButton {
+    DpadUp= 0,
+    DpadDown= 1,
+    DpadLeft= 2,
+    DpadRight= 3,
+    North= 4,
+    East= 5,
+    South= 6,
+    West= 7,
+    LeftStick= 8,
+    RightStick= 9,
+    LeftShoulder= 10,
+    RightShoulder= 11,
+    Start= 12,
+    Select= 13,
+    LeftTrigger= 32,
+    RightTrigger= 33,
+    X= West,
+    Y= North,
+    A= South,
+    B= East,
+    Cross= South,
+    Square= West,
+    Triangle= North,
+    Circle= East,
+}
+class Gamepad {
+    + <<override>> MakeCurrent() : void
+    + <<virtual>> PauseHaptics() : void
+    + <<virtual>> ResumeHaptics() : void
+    + <<virtual>> ResetHaptics() : void
+    + <<virtual>> SetMotorSpeeds(lowFrequency:float, highFrequency:float) : void
+}
+class "ReadOnlyArray`1"<T> {
+}
+IInputStateTypeInfo <|-- GamepadState
+GamepadState --> "Format" FourCC
+GamepadState --> "leftStick" Vector2
+GamepadState --> "rightStick" Vector2
+GamepadState --> "format" FourCC
+InputDevice <|-- Gamepad
+IDualMotorRumble <|-- Gamepad
+Gamepad --> "buttonWest" ButtonControl
+Gamepad --> "buttonNorth" ButtonControl
+Gamepad --> "buttonSouth" ButtonControl
+Gamepad --> "buttonEast" ButtonControl
+Gamepad --> "leftStickButton" ButtonControl
+Gamepad --> "rightStickButton" ButtonControl
+Gamepad --> "startButton" ButtonControl
+Gamepad --> "selectButton" ButtonControl
+Gamepad --> "dpad" DpadControl
+Gamepad --> "leftShoulder" ButtonControl
+Gamepad --> "rightShoulder" ButtonControl
+Gamepad --> "leftStick" StickControl
+Gamepad --> "rightStick" StickControl
+Gamepad --> "leftTrigger" ButtonControl
+Gamepad --> "rightTrigger" ButtonControl
+Gamepad --> "aButton" ButtonControl
+Gamepad --> "bButton" ButtonControl
+Gamepad --> "xButton" ButtonControl
+Gamepad --> "yButton" ButtonControl
+Gamepad --> "triangleButton" ButtonControl
+Gamepad --> "squareButton" ButtonControl
+Gamepad --> "circleButton" ButtonControl
+Gamepad --> "crossButton" ButtonControl
+Gamepad --> "current" Gamepad
+Gamepad --> "all<Gamepad>" "ReadOnlyArray`1"
+@enduml

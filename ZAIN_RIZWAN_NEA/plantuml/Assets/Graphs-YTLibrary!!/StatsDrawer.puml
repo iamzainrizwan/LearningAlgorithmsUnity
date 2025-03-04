@@ -1,0 +1,9 @@
+@startuml
+class StatsDrawer {
+    + filepath : string
+    + ParseStats() : void
+}
+MonoBehaviour <|-- StatsDrawer
+StatsDrawer --> "dropdown" TMP_Dropdown
+StatsDrawer --> "graphHandler" GraphHandler
+@enduml

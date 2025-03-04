@@ -1,0 +1,9 @@
+@startuml
+class SynchronousFilter {
+    + <<new>> ToXml(recursive:bool) : TNode
+    + <<override>> AddToXml(parentNode:TNode, recursive:bool) : TNode
+    + <<override>> Match(test:ITest) : bool
+    + <<override>> Pass(test:ITest) : bool
+}
+NonExplicitFilter <|-- SynchronousFilter
+@enduml

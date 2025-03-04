@@ -1,0 +1,29 @@
+@startuml
+class DescriptorProvider <<sealed>> {
+    + <<override>> IsValid(described:object) : bool
+    + Dispose() : void
+    + AddListener(describable:object, onDescriptionChange:Action) : void
+    + RemoveListener(describable:object, onDescriptionChange:Action) : void
+    + ClearListeners() : void
+    + TriggerDescriptionChange(describable:object) : void
+    + Describe(describable:object) : void
+    + DescribeAll() : void
+    + Descriptor(target:object) : IDescriptor
+    + Descriptor(target:object) : TDescriptor
+    + Description(target:object) : IDescription
+    + Description(target:object) : TDescription
+}
+class XDescriptorProvider <<static>> {
+    + {static} Describe(target:object) : void
+    + {static} HasDescriptor(target:object) : bool
+    + {static} Descriptor(target:object) : IDescriptor
+    + {static} Descriptor(target:object) : TDescriptor
+    + {static} Description(target:object) : IDescription
+    + {static} Description(target:object) : TDescription
+}
+class "SingleDecoratorProvider`3"<T1,T2,T3> {
+}
+"SingleDecoratorProvider`3" "<object,IDescriptor,DescriptorAttribute>" <|-- DescriptorProvider
+IDisposable <|-- DescriptorProvider
+DescriptorProvider --> "instance" DescriptorProvider
+@enduml

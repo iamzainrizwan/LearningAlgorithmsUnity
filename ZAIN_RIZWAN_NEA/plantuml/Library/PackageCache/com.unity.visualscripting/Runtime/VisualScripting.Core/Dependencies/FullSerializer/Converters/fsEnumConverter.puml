@@ -1,0 +1,11 @@
+@startuml
+class fsEnumConverter {
+    + <<override>> CanProcess(type:Type) : bool
+    + <<override>> RequestCycleSupport(storageType:Type) : bool
+    + <<override>> RequestInheritanceSupport(storageType:Type) : bool
+    + <<override>> CreateInstance(data:fsData, storageType:Type) : object
+    + <<override>> TrySerialize(instance:object, serialized:fsData, storageType:Type) : fsResult
+    + <<override>> TryDeserialize(data:fsData, instance:object, storageType:Type) : fsResult
+}
+fsConverter <|-- fsEnumConverter
+@enduml

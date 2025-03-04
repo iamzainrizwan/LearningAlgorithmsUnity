@@ -1,0 +1,23 @@
+@startuml
+class MultiInputUnitAlphabeticDescriptor {
+    + MultiInputUnitAlphabeticDescriptor(unit:IMultiInputUnit)
+}
+class MultiInputUnitAlphabeticOption {
+    + MultiInputUnitAlphabeticOption()
+    + MultiInputUnitAlphabeticOption(unit:IMultiInputUnit)
+}
+class "Minimum`1"<T> {
+}
+class "Maximum`1"<T> {
+}
+class "Sum`1"<T> {
+}
+class "Average`1"<T> {
+}
+class "UnitDescriptor`1"<T> {
+}
+class "UnitOption`1"<T> {
+}
+"UnitDescriptor`1" "<IMultiInputUnit>" <|-- MultiInputUnitAlphabeticDescriptor
+"UnitOption`1" "<IMultiInputUnit>" <|-- MultiInputUnitAlphabeticOption
+@enduml

@@ -1,0 +1,47 @@
+@startuml
+class TimelineTrackGUI {
+    + <<override>> expandable : bool <<get>>
+    + inlineCurvesSelected : bool <<get>>
+    + locked : bool <<get>>
+    + showMarkers : bool <<get>>
+    + muted : bool <<get>>
+    + heightExtension : int <<get>> <<set>>
+    + TimelineTrackGUI(tv:TreeViewController, w:TimelineTreeViewGUI, id:int, depth:int, parent:TreeViewItem, displayName:string, sequenceActor:TrackAsset)
+    + <<override>> GetVerticalSpacingBetweenTracks() : float
+    + <<override>> Draw(headerRect:Rect, contentRect:Rect, state:WindowState) : void
+    + <<override>> GetHeight(state:WindowState) : float
+    + <<override>> OnGraphRebuilt() : void
+    + SelectCurves() : void
+    + ValidateCurvesSelection() : void
+}
+struct TrackDrawData {
+    + m_AllowsRecording : bool
+    + m_ShowTrackBindings : bool
+    + m_HasBinding : bool
+    + m_IsSubTrack : bool
+    + m_HasMarkers : bool
+}
+class Styles <<static>> {
+}
+class "List`1"<T> {
+}
+TimelineGroupGUI <|-- TimelineTrackGUI
+IClipCurveEditorOwner <|-- TimelineTrackGUI
+IRowGUI <|-- TimelineTrackGUI
+TimelineTrackGUI --> "clipCurveEditor" ClipCurveEditor
+TimelineTrackGUI --> "clips<TimelineClipGUI>" "List`1"
+TimelineTrackGUI +-- TrackDrawData
+TrackDrawData --> "m_Binding" PlayableBinding
+TrackDrawData --> "m_TrackBinding" Object
+TrackDrawData --> "m_TrackIcon" Texture
+TimelineTrackGUI +-- Styles
+Styles o-> "trackCurvesBtnOnTooltip" GUIContent
+Styles o-> "trackCurvesBtnOffTooltip" GUIContent
+Styles o-> "trackMarkerBtnOnTooltip" GUIContent
+Styles o-> "trackMarkerBtnOffTooltip" GUIContent
+Styles o-> "kActiveRecordButtonTooltip" GUIContent
+Styles o-> "kInactiveRecordButtonTooltip" GUIContent
+Styles o-> "kIgnorePreviewRecordButtonTooltip" GUIContent
+Styles o-> "kDisabledRecordButtonTooltip" GUIContent
+Styles o-> "kProblemIcon" Texture2D
+@enduml

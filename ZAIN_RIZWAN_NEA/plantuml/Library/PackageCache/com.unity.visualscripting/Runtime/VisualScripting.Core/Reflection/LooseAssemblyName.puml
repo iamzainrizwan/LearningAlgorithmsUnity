@@ -1,0 +1,9 @@
+@startuml
+struct LooseAssemblyName {
+    + <<readonly>> name : string
+    + LooseAssemblyName(name:string)
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+}
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+interface INativeDisposable {
+}
+class CollectionHelper <<static>> {
+    + <<const>> CacheLineSize : int
+    + {static} Log2Floor(value:int) : int
+    + {static} Log2Ceil(value:int) : int
+    + {static} Align(size:int, alignmentPowerOfTwo:int) : int
+    + {static} Align(size:ulong, alignmentPowerOfTwo:ulong) : ulong
+    + {static} <<unsafe>> IsAligned(p:void*, alignmentPowerOfTwo:int) : bool
+    + {static} IsAligned(offset:ulong, alignmentPowerOfTwo:int) : bool
+    + {static} IsPowerOfTwo(value:int) : bool
+    + {static} <<unsafe>> Hash(ptr:void*, bytes:int) : uint
+    + {static} CreateNativeArray(length:int, allocator:U, options:NativeArrayOptions) : NativeArray<T>
+    + {static} CreateNativeArray(length:int, allocator:AllocatorManager.AllocatorHandle, options:NativeArrayOptions) : NativeArray<T>
+    + {static} CreateNativeArray(array:NativeArray<T>, allocator:AllocatorManager.AllocatorHandle) : NativeArray<T>
+    + {static} CreateNativeArray(array:T[], allocator:AllocatorManager.AllocatorHandle) : NativeArray<T>
+    + {static} CreateNativeArray(array:T[], allocator:U) : NativeArray<T>
+    + {static} DisposeNativeArray(nativeArray:NativeArray<T>, allocator:AllocatorManager.AllocatorHandle) : void
+    + {static} Dispose(nativeArray:NativeArray<T>) : void
+    + {static} <<unsafe>> ConvertExistingDataToNativeArray(dataPointer:void*, length:int, allocator:AllocatorManager.AllocatorHandle, setTempMemoryHandle:bool) : NativeArray<T>
+    + {static} <<unsafe>> ConvertExistingNativeListToNativeArray(nativeList:NativeList<T>, length:int, allocator:AllocatorManager.AllocatorHandle) : NativeArray<T>
+    + {static} CreateNativeParallelMultiHashMap(length:int, allocator:U) : NativeParallelMultiHashMap<TKey, TValue>
+    + {static} CheckReflectionDataCorrect(reflectionData:IntPtr) : void
+}
+struct LongDoubleUnion {
+}
+struct DummyJob {
+    + Execute() : void
+}
+IDisposable <|-- INativeDisposable
+CollectionHelper +-- LongDoubleUnion
+CollectionHelper +-- DummyJob
+IJob <|-- DummyJob
+@enduml

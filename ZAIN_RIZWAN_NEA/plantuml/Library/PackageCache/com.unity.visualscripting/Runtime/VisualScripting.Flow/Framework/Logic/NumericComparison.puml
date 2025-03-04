@@ -1,0 +1,12 @@
+@startuml
+class NumericComparison <<sealed>> {
+}
+Unit <|-- NumericComparison
+NumericComparison --> "a" ValueInput
+NumericComparison --> "b" ValueInput
+NumericComparison --> "aLessThanB" ValueOutput
+NumericComparison --> "aLessThanOrEqualToB" ValueOutput
+NumericComparison --> "aEqualToB" ValueOutput
+NumericComparison --> "aGreaterThanOrEqualToB" ValueOutput
+NumericComparison --> "aGreatherThanB" ValueOutput
+@enduml

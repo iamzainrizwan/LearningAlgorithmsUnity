@@ -1,0 +1,9 @@
+@startuml
+class UsageAnalytics <<sealed>> {
+    + {static} CollectAndSend() : void
+}
+struct UsageAnalyticsData {
+    + productVersion : string
+}
+UsageAnalytics +-- UsageAnalyticsData
+@enduml

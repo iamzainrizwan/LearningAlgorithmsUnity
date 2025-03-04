@@ -1,0 +1,9 @@
+@startuml
+class OnKeyboardInput <<sealed>> {
+}
+class "MachineEventUnit`1"<T> {
+}
+"MachineEventUnit`1" "<EmptyEventArgs>" <|-- OnKeyboardInput
+OnKeyboardInput --> "key" ValueInput
+OnKeyboardInput --> "action" ValueInput
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+class TMP_TextParsingUtilities {
+    + {static} GetHashCode(s:string) : int
+    + {static} GetHashCodeCaseSensitive(s:string) : int
+    + {static} ToLowerASCIIFast(c:char) : char
+    + {static} ToUpperASCIIFast(c:char) : char
+    + {static} ToUpperASCIIFast(c:uint) : uint
+    + {static} ToLowerASCIIFast(c:uint) : uint
+    + {static} IsHighSurrogate(c:uint) : bool
+    + {static} IsLowSurrogate(c:uint) : bool
+}
+TMP_TextParsingUtilities --> "instance" TMP_TextParsingUtilities
+@enduml

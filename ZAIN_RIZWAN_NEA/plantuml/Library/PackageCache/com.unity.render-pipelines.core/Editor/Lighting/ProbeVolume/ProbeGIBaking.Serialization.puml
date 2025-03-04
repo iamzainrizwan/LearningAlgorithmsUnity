@@ -1,0 +1,27 @@
+@startuml
+class AdaptiveProbeVolumes <<partial>> {
+}
+struct CellCounts {
+    + bricksCount : int
+    + chunksCount : int
+    + Add(o:CellCounts) : void
+}
+struct CellChunkData {
+    + scenarioValid : bool
+}
+class "NativeArray`1"<T> {
+}
+AdaptiveProbeVolumes +-- CellCounts
+AdaptiveProbeVolumes +-- CellChunkData
+CellChunkData --> "shL0L1RxData<ushort>" "NativeArray`1"
+CellChunkData --> "shL1GL1RyData<byte>" "NativeArray`1"
+CellChunkData --> "shL1BL1RzData<byte>" "NativeArray`1"
+CellChunkData --> "shL2Data_0<byte>" "NativeArray`1"
+CellChunkData --> "shL2Data_1<byte>" "NativeArray`1"
+CellChunkData --> "shL2Data_2<byte>" "NativeArray`1"
+CellChunkData --> "shL2Data_3<byte>" "NativeArray`1"
+CellChunkData --> "validityNeighMaskData<byte>" "NativeArray`1"
+CellChunkData --> "skyOcclusionDataL0L1<ushort>" "NativeArray`1"
+CellChunkData --> "skyShadingDirectionIndices<byte>" "NativeArray`1"
+CellChunkData --> "probeOcclusion<byte>" "NativeArray`1"
+@enduml

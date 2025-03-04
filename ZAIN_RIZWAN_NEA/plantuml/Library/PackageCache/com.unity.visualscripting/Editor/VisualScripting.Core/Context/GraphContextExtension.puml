@@ -1,0 +1,15 @@
+@startuml
+abstract class "GraphContextExtension`1"<TGraphContext> {
+    + context : TGraphContext <<get>>
+    + <<virtual>> AcceptsDragAndDrop() : bool
+    + <<virtual>> PerformDragAndDrop() : void
+    + <<virtual>> UpdateDragAndDrop() : void
+    + <<virtual>> DrawDragAndDropPreview() : void
+    + <<virtual>> ExitDragAndDrop() : void
+}
+class "IEnumerable`1"<T> {
+}
+IGraphContextExtension <|-- "GraphContextExtension`1"
+"GraphContextExtension`1" --> "contextMenuItems<GraphContextMenuItem>" "IEnumerable`1"
+"GraphContextExtension`1" --> "dragAndDropVisualMode" DragAndDropVisualMode
+@enduml

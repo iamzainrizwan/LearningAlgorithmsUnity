@@ -1,0 +1,30 @@
+@startuml
+class Arm <<unsafe>> <<static>> <<partial>> {
+}
+class Neon <<unsafe>> <<partial>> {
+    + {static} IsNeonCryptoSupported : bool <<get>>
+    + {static} vsha1cq_u32(a0:v128, a1:UInt32, a2:v128) : v128
+    + {static} vsha1pq_u32(a0:v128, a1:UInt32, a2:v128) : v128
+    + {static} vsha1mq_u32(a0:v128, a1:UInt32, a2:v128) : v128
+    + {static} vsha1h_u32(a0:UInt32) : UInt32
+    + {static} vsha1su0q_u32(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vsha1su1q_u32(a0:v128, a1:v128) : v128
+    + {static} vsha256hq_u32(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vsha256h2q_u32(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vsha256su0q_u32(a0:v128, a1:v128) : v128
+    + {static} vsha256su1q_u32(a0:v128, a1:v128, a2:v128) : v128
+    + {static} __crc32b(a0:UInt32, a1:Byte) : UInt32
+    + {static} __crc32h(a0:UInt32, a1:UInt16) : UInt32
+    + {static} __crc32w(a0:UInt32, a1:UInt32) : UInt32
+    + {static} __crc32d(a0:UInt32, a1:UInt64) : UInt32
+    + {static} __crc32cb(a0:UInt32, a1:Byte) : UInt32
+    + {static} __crc32ch(a0:UInt32, a1:UInt16) : UInt32
+    + {static} __crc32cw(a0:UInt32, a1:UInt32) : UInt32
+    + {static} __crc32cd(a0:UInt32, a1:UInt64) : UInt32
+    + {static} vaeseq_u8(a0:v128, a1:v128) : v128
+    + {static} vaesdq_u8(a0:v128, a1:v128) : v128
+    + {static} vaesmcq_u8(a0:v128) : v128
+    + {static} vaesimcq_u8(a0:v128) : v128
+}
+Arm +-- Neon
+@enduml

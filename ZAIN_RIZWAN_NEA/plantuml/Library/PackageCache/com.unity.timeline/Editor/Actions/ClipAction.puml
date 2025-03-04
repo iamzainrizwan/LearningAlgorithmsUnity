@@ -1,0 +1,7 @@
+@startuml
+abstract class ClipAction {
+    + {abstract} Execute(clips:IEnumerable<TimelineClip>) : bool
+    + {abstract} Validate(clips:IEnumerable<TimelineClip>) : ActionValidity
+}
+IAction <|-- ClipAction
+@enduml

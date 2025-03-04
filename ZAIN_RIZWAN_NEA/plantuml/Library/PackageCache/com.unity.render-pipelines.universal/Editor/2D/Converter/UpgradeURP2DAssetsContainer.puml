@@ -1,0 +1,7 @@
+@startuml
+class UpgradeURP2DAssetsContainer <<sealed>> {
+    + <<override>> name : string <<get>>
+    + <<override>> info : string <<get>>
+}
+RenderPipelineConverterContainer <|-- UpgradeURP2DAssetsContainer
+@enduml

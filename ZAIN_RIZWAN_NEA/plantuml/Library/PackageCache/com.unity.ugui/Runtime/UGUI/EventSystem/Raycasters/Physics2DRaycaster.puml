@@ -1,0 +1,6 @@
+@startuml
+class Physics2DRaycaster {
+    + <<override>> Raycast(eventData:PointerEventData, resultAppendList:List<RaycastResult>) : void
+}
+PhysicsRaycaster <|-- Physics2DRaycaster
+@enduml

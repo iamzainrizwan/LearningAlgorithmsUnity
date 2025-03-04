@@ -1,0 +1,10 @@
+@startuml
+struct SetSamplingFrequencyCommand {
+    + frequency : float
+    + {static} Create(frequency:float) : SetSamplingFrequencyCommand
+}
+IInputDeviceCommandInfo <|-- SetSamplingFrequencyCommand
+SetSamplingFrequencyCommand --> "Type" FourCC
+SetSamplingFrequencyCommand --> "baseCommand" InputDeviceCommand
+SetSamplingFrequencyCommand --> "typeStatic" FourCC
+@enduml

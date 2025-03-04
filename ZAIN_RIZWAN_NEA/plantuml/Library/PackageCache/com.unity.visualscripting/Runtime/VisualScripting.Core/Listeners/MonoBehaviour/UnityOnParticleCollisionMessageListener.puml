@@ -1,0 +1,5 @@
+@startuml
+class UnityOnParticleCollisionMessageListener <<sealed>> {
+}
+MessageListener <|-- UnityOnParticleCollisionMessageListener
+@enduml

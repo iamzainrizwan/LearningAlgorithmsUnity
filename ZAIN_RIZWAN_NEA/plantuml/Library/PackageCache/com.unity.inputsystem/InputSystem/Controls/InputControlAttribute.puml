@@ -1,0 +1,26 @@
+@startuml
+class InputControlAttribute <<sealed>> {
+    + layout : string <<get>> <<set>>
+    + variants : string <<get>> <<set>>
+    + name : string <<get>> <<set>>
+    + format : string <<get>> <<set>>
+    + usage : string <<get>> <<set>>
+    + parameters : string <<get>> <<set>>
+    + processors : string <<get>> <<set>>
+    + alias : string <<get>> <<set>>
+    + useStateFrom : string <<get>> <<set>>
+    + bit : uint <<get>> <<set>>
+    + offset : uint <<get>> <<set>>
+    + sizeInBits : uint <<get>> <<set>>
+    + arraySize : int <<get>> <<set>>
+    + displayName : string <<get>> <<set>>
+    + shortDisplayName : string <<get>> <<set>>
+    + noisy : bool <<get>> <<set>>
+    + synthetic : bool <<get>> <<set>>
+    + dontReset : bool <<get>> <<set>>
+    + defaultState : object <<get>> <<set>>
+    + minValue : object <<get>> <<set>>
+    + maxValue : object <<get>> <<set>>
+}
+PropertyAttribute <|-- InputControlAttribute
+@enduml

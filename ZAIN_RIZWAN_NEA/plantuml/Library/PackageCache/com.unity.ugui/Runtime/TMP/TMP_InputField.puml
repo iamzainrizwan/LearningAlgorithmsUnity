@@ -1,0 +1,176 @@
+@startuml
+class TMP_InputField {
+    + <<virtual>> shouldActivateOnSelect : bool <<set>> <<get>>
+    + shouldHideMobileInput : bool <<get>> <<set>>
+    + shouldHideSoftKeyboard : bool <<get>> <<set>>
+    + text : string <<get>> <<set>>
+    + SetTextWithoutNotify(input:string) : void
+    + isFocused : bool <<get>>
+    + caretBlinkRate : float <<get>> <<set>>
+    + caretWidth : int <<get>> <<set>>
+    + scrollSensitivity : float <<get>> <<set>>
+    + customCaretColor : bool <<get>> <<set>>
+    + characterLimit : int <<get>> <<set>>
+    + pointSize : float <<get>> <<set>>
+    + onFocusSelectAll : bool <<get>> <<set>>
+    + resetOnDeActivation : bool <<get>> <<set>>
+    + keepTextSelectionVisible : bool <<get>> <<set>>
+    + restoreOriginalTextOnEscape : bool <<get>> <<set>>
+    + isRichTextEditingAllowed : bool <<get>> <<set>>
+    + lineLimit : int <<get>> <<set>>
+    + isAlert : bool
+    + readOnly : bool <<get>> <<set>>
+    + richText : bool <<get>> <<set>>
+    + multiLine : bool <<get>>
+    + asteriskChar : char <<get>> <<set>>
+    + wasCanceled : bool <<get>>
+    + caretPosition : int <<get>> <<set>>
+    + selectionAnchorPosition : int <<get>> <<set>>
+    + selectionFocusPosition : int <<get>> <<set>>
+    + stringPosition : int <<get>> <<set>>
+    + selectionStringAnchorPosition : int <<get>> <<set>>
+    + selectionStringFocusPosition : int <<get>> <<set>>
+    + MoveTextEnd(shift:bool) : void
+    + MoveTextStart(shift:bool) : void
+    + MoveToEndOfLine(shift:bool, ctrl:bool) : void
+    + MoveToStartOfLine(shift:bool, ctrl:bool) : void
+    + <<virtual>> OnBeginDrag(eventData:PointerEventData) : void
+    + <<virtual>> OnDrag(eventData:PointerEventData) : void
+    + <<virtual>> OnEndDrag(eventData:PointerEventData) : void
+    + <<override>> OnPointerDown(eventData:PointerEventData) : void
+    + ProcessEvent(e:Event) : void
+    + <<virtual>> OnUpdateSelected(eventData:BaseEventData) : void
+    + <<virtual>> OnScroll(eventData:PointerEventData) : void
+    + ForceLabelUpdate() : void
+    + <<virtual>> Rebuild(update:CanvasUpdate) : void
+    + <<virtual>> LayoutComplete() : void
+    + <<virtual>> GraphicUpdateComplete() : void
+    + ActivateInputField() : void
+    + <<override>> OnSelect(eventData:BaseEventData) : void
+    + <<virtual>> OnPointerClick(eventData:PointerEventData) : void
+    + OnControlClick() : void
+    + ReleaseSelection() : void
+    + DeactivateInputField(clearSelection:bool) : void
+    + <<override>> OnDeselect(eventData:BaseEventData) : void
+    + <<virtual>> OnSubmit(eventData:BaseEventData) : void
+    + <<virtual>> OnCancel(eventData:BaseEventData) : void
+    + <<override>> OnMove(eventData:AxisEventData) : void
+    + <<virtual>> CalculateLayoutInputHorizontal() : void
+    + <<virtual>> CalculateLayoutInputVertical() : void
+    + <<virtual>> minWidth : float <<get>>
+    + <<virtual>> preferredWidth : float <<get>>
+    + <<virtual>> flexibleWidth : float <<get>>
+    + <<virtual>> minHeight : float <<get>>
+    + <<virtual>> preferredHeight : float <<get>>
+    + <<virtual>> flexibleHeight : float <<get>>
+    + <<virtual>> layoutPriority : int <<get>>
+    + SetGlobalPointSize(pointSize:float) : void
+    + SetGlobalFontAsset(fontAsset:TMP_FontAsset) : void
+}
+class SetPropertyUtility <<static>> {
+    + {static} SetColor(currentValue:Color, newValue:Color) : bool
+    + {static} SetEquatableStruct(currentValue:T, newValue:T) : bool
+    + {static} SetStruct(currentValue:T, newValue:T) : bool
+    + {static} SetClass(currentValue:T, newValue:T) : bool
+}
+enum ContentType {
+    Standard,
+    Autocorrected,
+    IntegerNumber,
+    DecimalNumber,
+    Alphanumeric,
+    Name,
+    EmailAddress,
+    Password,
+    Pin,
+    Custom,
+}
+enum InputType {
+    Standard,
+    AutoCorrect,
+    Password,
+}
+enum CharacterValidation {
+    None,
+    Digit,
+    Integer,
+    Decimal,
+    Alphanumeric,
+    Name,
+    Regex,
+    EmailAddress,
+    CustomValidator,
+}
+enum LineType {
+    SingleLine,
+    MultiLineSubmit,
+    MultiLineNewline,
+}
+class SubmitEvent {
+}
+class OnChangeEvent {
+}
+class SelectionEvent {
+}
+class TextSelectionEvent {
+}
+class TouchScreenKeyboardEvent {
+}
+enum EditState {
+    Continue,
+    Finish,
+}
+class "UnityEvent`1"<T> {
+}
+class "UnityEvent`3"<T1,T2,T3> {
+}
+Selectable <|-- TMP_InputField
+IUpdateSelectedHandler <|-- TMP_InputField
+IBeginDragHandler <|-- TMP_InputField
+IDragHandler <|-- TMP_InputField
+IEndDragHandler <|-- TMP_InputField
+IPointerClickHandler <|-- TMP_InputField
+ISubmitHandler <|-- TMP_InputField
+ICancelHandler <|-- TMP_InputField
+ICanvasElement <|-- TMP_InputField
+ILayoutElement <|-- TMP_InputField
+IScrollHandler <|-- TMP_InputField
+TMP_InputField --> "textViewport" RectTransform
+TMP_InputField --> "textComponent" TMP_Text
+TMP_InputField --> "placeholder" Graphic
+TMP_InputField --> "verticalScrollbar" Scrollbar
+TMP_InputField --> "caretColor" Color
+TMP_InputField --> "selectionColor" Color
+TMP_InputField --> "onEndEdit" SubmitEvent
+TMP_InputField --> "onSubmit" SubmitEvent
+TMP_InputField --> "onSelect" SelectionEvent
+TMP_InputField --> "onDeselect" SelectionEvent
+TMP_InputField --> "onTextSelection" TextSelectionEvent
+TMP_InputField --> "onEndTextSelection" TextSelectionEvent
+TMP_InputField --> "onValueChanged" OnChangeEvent
+TMP_InputField --> "onTouchScreenKeyboardStatusChanged" TouchScreenKeyboardEvent
+TMP_InputField --> "onValidateInput" OnValidateInput
+TMP_InputField --> "fontAsset" TMP_FontAsset
+TMP_InputField --> "contentType" ContentType
+TMP_InputField --> "lineType" LineType
+TMP_InputField --> "inputType" InputType
+TMP_InputField --> "touchScreenKeyboard" TouchScreenKeyboard
+TMP_InputField --> "keyboardType" TouchScreenKeyboardType
+TMP_InputField --> "characterValidation" CharacterValidation
+TMP_InputField --> "inputValidator" TMP_InputValidator
+TMP_InputField +-- ContentType
+TMP_InputField +-- InputType
+TMP_InputField +-- CharacterValidation
+TMP_InputField +-- LineType
+TMP_InputField +-- SubmitEvent
+"UnityEvent`1" "<string>" <|-- SubmitEvent
+TMP_InputField +-- OnChangeEvent
+"UnityEvent`1" "<string>" <|-- OnChangeEvent
+TMP_InputField +-- SelectionEvent
+"UnityEvent`1" "<string>" <|-- SelectionEvent
+TMP_InputField +-- TextSelectionEvent
+"UnityEvent`3" "<string,int,int>" <|-- TextSelectionEvent
+TMP_InputField +-- TouchScreenKeyboardEvent
+"UnityEvent`1" "<TouchScreenKeyboard.Status>" <|-- TouchScreenKeyboardEvent
+TMP_InputField +-- EditState
+@enduml

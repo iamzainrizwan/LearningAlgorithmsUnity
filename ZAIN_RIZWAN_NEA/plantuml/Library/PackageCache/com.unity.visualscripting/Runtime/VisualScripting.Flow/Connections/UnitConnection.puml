@@ -1,0 +1,18 @@
+@startuml
+abstract class "UnitConnection`2"<TSourcePort,TDestinationPort> {
+    + <<virtual>> CreateDebugData() : IGraphElementDebugData
+    + {abstract} source : TSourcePort <<get>>
+    + {abstract} destination : TDestinationPort <<get>>
+    + <<override>> dependencyOrder : int <<get>>
+    + {abstract} sourceExists : bool <<get>>
+    + {abstract} destinationExists : bool <<get>>
+    + <<override>> HandleDependencies() : bool
+    + <<override>> GetAnalyticsIdentifier() : AnalyticsIdentifier
+}
+class "GraphElement`1"<T> {
+}
+class "IConnection`2"<T1,T2> {
+}
+"GraphElement`1" "<FlowGraph>" <|-- "UnitConnection`2"
+"IConnection`2" "<TSourcePort,TDestinationPort>" <|-- "UnitConnection`2"
+@enduml

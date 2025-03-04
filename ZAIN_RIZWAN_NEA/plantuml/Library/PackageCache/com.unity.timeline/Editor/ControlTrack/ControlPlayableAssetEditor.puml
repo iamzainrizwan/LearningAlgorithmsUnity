@@ -1,0 +1,8 @@
+@startuml
+class ControlPlayableAssetEditor {
+    + <<override>> GetClipOptions(clip:TimelineClip) : ClipDrawOptions
+    + <<override>> OnCreate(clip:TimelineClip, track:TrackAsset, clonedFrom:TimelineClip) : void
+    + <<override>> GetSubTimelines(clip:TimelineClip, director:PlayableDirector, subTimelines:List<PlayableDirector>) : void
+}
+ClipEditor <|-- ControlPlayableAssetEditor
+@enduml

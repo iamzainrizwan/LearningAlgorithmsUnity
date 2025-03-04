@@ -1,0 +1,8 @@
+@startuml
+class TMP_Character {
+    + TMP_Character()
+    + TMP_Character(unicode:uint, glyph:Glyph)
+    + TMP_Character(unicode:uint, fontAsset:TMP_FontAsset, glyph:Glyph)
+}
+TMP_TextElement <|-- TMP_Character
+@enduml

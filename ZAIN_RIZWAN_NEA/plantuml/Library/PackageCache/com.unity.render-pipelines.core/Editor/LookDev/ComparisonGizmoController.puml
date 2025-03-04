@@ -1,0 +1,15 @@
+@startuml
+class ComparisonGizmoController {
+    + ComparisonGizmoController(switcher:SwitchableCameraController)
+    + UpdateGizmoState(state:ComparisonGizmoState) : void
+}
+enum Selected {
+    None,
+    NodeFirstView,
+    NodeSecondView,
+    PlaneSeparator,
+    Fader,
+}
+Manipulator <|-- ComparisonGizmoController
+ComparisonGizmoController +-- Selected
+@enduml

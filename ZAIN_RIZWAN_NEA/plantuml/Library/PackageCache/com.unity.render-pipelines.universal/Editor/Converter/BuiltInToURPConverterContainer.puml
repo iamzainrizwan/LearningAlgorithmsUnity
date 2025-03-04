@@ -1,0 +1,8 @@
+@startuml
+class BuiltInToURPConverterContainer <<sealed>> {
+    + <<override>> name : string <<get>>
+    + <<override>> info : string <<get>>
+    + <<override>> priority : int <<get>>
+}
+RenderPipelineConverterContainer <|-- BuiltInToURPConverterContainer
+@enduml

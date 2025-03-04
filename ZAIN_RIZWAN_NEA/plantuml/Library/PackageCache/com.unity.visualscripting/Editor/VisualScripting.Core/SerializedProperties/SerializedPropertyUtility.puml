@@ -1,0 +1,17 @@
+@startuml
+class SerializedPropertyUtility <<static>> {
+    + {static} HasCustomDrawer(type:Type) : bool
+    + {static} CreateTemporaryProperty(type:Type) : SerializedProperty
+    + {static} DestroyTemporaryProperty(property:SerializedProperty) : void
+    + {static} GetPropertyHash(property:SerializedProperty) : int
+    + {static} FindPropertyRelativeOrFail(property:SerializedProperty, path:string) : SerializedProperty
+    + {static} FindPropertyOrFail(serializedObject:SerializedObject, path:string) : SerializedProperty
+    + {static} FixedPropertyPath(property:SerializedProperty) : string
+    + {static} PropertyPathParts(property:SerializedProperty) : string[]
+    + {static} IsPropertyIndexer(propertyPart:string, fieldName:string, index:int) : bool
+    + {static} GetUnderlyingValue(property:SerializedProperty) : object
+    + {static} GetUnderlyingType(property:SerializedProperty) : Type
+    + {static} GetUnderlyingField(property:SerializedProperty) : FieldInfo
+    + {static} SetUnderlyingValue(property:SerializedProperty, value:object) : void
+}
+@enduml

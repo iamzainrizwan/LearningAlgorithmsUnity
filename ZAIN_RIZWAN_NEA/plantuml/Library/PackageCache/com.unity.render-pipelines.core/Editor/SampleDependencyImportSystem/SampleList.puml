@@ -1,0 +1,9 @@
+@startuml
+class SampleInformation {
+    + displayName : string
+    + description : string
+    + path : string
+}
+class SampleList {
+}
+@enduml

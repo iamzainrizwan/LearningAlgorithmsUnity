@@ -1,0 +1,30 @@
+@startuml
+class DebugDisplayGPUResidentDrawer {
+    + occluderDebugViewEnable : bool = false
+    + AreAnySettingsActive : bool <<get>>
+    + IsPostProcessingAllowed : bool <<get>>
+    + IsLightingActive : bool <<get>>
+    + TryGetScreenClearColor(color:Color) : bool
+}
+class Strings <<static>> {
+    + <<const>> drawerSettingsContainerName : string = "GPU Resident Drawer Settings"
+    + <<const>> occlusionCullingTitle : string = "Occlusion Culling"
+}
+class SettingsPanel {
+    + <<override>> PanelName : string <<get>>
+    + SettingsPanel(data:DebugDisplayGPUResidentDrawer)
+}
+IDebugDisplaySettingsData <|-- DebugDisplayGPUResidentDrawer
+DebugDisplayGPUResidentDrawer +-- Strings
+Strings o-> "displayBatcherStats" NameAndTooltip
+Strings o-> "occlusionTestOverlayEnable" NameAndTooltip
+Strings o-> "occlusionTestOverlayCountVisible" NameAndTooltip
+Strings o-> "overrideOcclusionTestToAlwaysPass" NameAndTooltip
+Strings o-> "occluderContextStats" NameAndTooltip
+Strings o-> "occluderDebugViewEnable" NameAndTooltip
+Strings o-> "occluderDebugViewIndex" NameAndTooltip
+Strings o-> "occluderDebugViewRangeMin" NameAndTooltip
+Strings o-> "occluderDebugViewRangeMax" NameAndTooltip
+DebugDisplayGPUResidentDrawer +-- SettingsPanel
+DebugDisplaySettingsPanel <|-- SettingsPanel
+@enduml

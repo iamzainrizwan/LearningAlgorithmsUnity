@@ -1,0 +1,19 @@
+@startuml
+struct TouchHistory {
+    + GetEnumerator() : IEnumerator<Touch>
+    + Count : int <<get>>
+}
+class "IReadOnlyList`1"<T> {
+}
+class Enumerator {
+    + MoveNext() : bool
+    + Reset() : void
+    + Dispose() : void
+}
+class "IEnumerator`1"<T> {
+}
+"IReadOnlyList`1" "<Touch>" <|-- TouchHistory
+TouchHistory +-- Enumerator
+"IEnumerator`1" "<Touch>" <|-- Enumerator
+Enumerator --> "Current" Touch
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+abstract class "Assigner`2"<TTarget,TAssignee> {
+    + target : TTarget <<get>>
+    + assignee : TAssignee <<get>>
+    + isDirty : bool <<get>> <<set>> = true
+    + Validate() : void
+    + <<virtual>> ValueChanged() : void
+}
+IAssigner <|-- "Assigner`2"
+@enduml

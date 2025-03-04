@@ -1,0 +1,9 @@
+@startuml
+class OnMouseOver <<sealed>> {
+}
+class "GameObjectEventUnit`1"<T> {
+}
+"GameObjectEventUnit`1" "<EmptyEventArgs>" <|-- OnMouseOver
+IMouseEventUnit <|-- OnMouseOver
+OnMouseOver --> "MessageListenerType" Type
+@enduml

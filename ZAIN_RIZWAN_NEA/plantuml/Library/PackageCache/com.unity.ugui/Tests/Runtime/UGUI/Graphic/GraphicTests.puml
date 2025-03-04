@@ -1,0 +1,18 @@
+@startuml
+class GraphicTests {
+    + Setup() : void
+    + TestSetup() : void
+    + TearDown() : void
+    + OneTimeTearDown() : void
+    + SettingDirtyOnActiveGraphicCallsCallbacks() : void
+    + OnEnableLeavesGraphicInExpectedState() : void
+    + OnEnableTwiceLeavesGraphicInExpectedState() : void
+    + OnDisableLeavesGraphicInExpectedState() : void
+    + OnPopulateMeshWorksAsExpected() : void
+    + OnDidApplyAnimationPropertiesSetsAllDirty() : void
+    + MakingGraphicNonRaycastableRemovesGraphicFromProperLists() : void
+    + OnEnableLeavesNonRaycastGraphicInExpectedState() : void
+    + SettingRaycastTargetOnDisabledGraphicDoesntAddItRaycastList() : void
+}
+IPrebuildSetup <|-- GraphicTests
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+struct HeatmapEntry {
+    + HeatmapEntry(nodeName:string, category:int)
+}
+class HeatmapEntries {
+    + TryGetCategory(nodeTypeName:string, heatValue:int) : bool
+}
+class ShaderGraphHeatmapValues {
+    + TryGetCategoryColor(node:AbstractMaterialNode, color:Color) : bool
+    + PopulateNodesFromProject() : void
+    + ContainsAllApplicableNodes() : bool
+}
+class "List`1"<T> {
+}
+HeatmapEntries --> "Entries<HeatmapEntry>" "List`1"
+ScriptableObject <|-- ShaderGraphHeatmapValues
+@enduml

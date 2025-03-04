@@ -1,0 +1,28 @@
+@startuml
+class BindingTreeViewDataSource {
+    + <<const>> RootID : int
+    + <<const>> GroupID : int
+    + BindingTreeViewDataSource(treeView:TreeViewController, clip:AnimationClip, curveDataSource:CurveDataSource)
+    + <<override>> FetchData() : void
+    + UpdateData() : void
+}
+struct BindingGroup {
+    + <<readonly>> GroupName : string
+    + <<readonly>> Path : string
+    + BindingGroup(path:string, groupName:string, type:Type)
+    + groupDisplayName : string <<get>>
+    + Equals(other:BindingGroup) : bool
+    + CompareTo(other:BindingGroup) : int
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+class "IEquatable`1"<T> {
+}
+class "IComparable`1"<T> {
+}
+TreeViewDataSource <|-- BindingTreeViewDataSource
+BindingTreeViewDataSource +-- BindingGroup
+"IEquatable`1" "<BindingGroup>" <|-- BindingGroup
+"IComparable`1" "<BindingGroup>" <|-- BindingGroup
+BindingGroup --> "Type" Type
+@enduml

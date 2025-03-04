@@ -1,0 +1,25 @@
+@startuml
+class Paths <<static>> {
+    + {static} assets : string <<get>>
+    + {static} editor : string <<get>>
+    + {static} editorContents : string <<get>>
+    + {static} project : string <<get>>
+    + {static} projectName : string <<get>>
+    + {static} projectSettings : string <<get>>
+    + {static} editorDefaultResources : string <<get>>
+    + {static} backups : string <<get>>
+    + {static} SyncUnitySolution() : void
+    + {static} runtimeAssemblyFirstPassProject : string <<get>>
+    + {static} runtimeAssemblySecondPassProject : string <<get>>
+    + {static} editorAssemblyFirstPassProject : string <<get>>
+    + {static} editorAssemblySecondPassProject : string <<get>>
+    + <<const>> MsBuildDownloadLink : string = "https://aka.ms/vs/15/release/vs_buildtools.exe"
+    + {static} msBuild : string <<get>>
+    + {static} xBuild : string <<get>>
+    + {static} roslynCompiler : string <<get>>
+    + {static} projectBuilder : string <<get>>
+}
+class "IEnumerable`1"<T> {
+}
+Paths --> "assemblyProjects<string>" "IEnumerable`1"
+@enduml

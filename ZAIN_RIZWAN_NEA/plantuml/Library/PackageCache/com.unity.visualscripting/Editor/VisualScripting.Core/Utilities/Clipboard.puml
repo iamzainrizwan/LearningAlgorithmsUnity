@@ -1,0 +1,14 @@
+@startuml
+class Clipboard {
+    + containsData : bool <<get>>
+    + Clear() : void
+    + Copy(value:object) : void
+    + CanPaste(type:Type) : bool
+    + CanPaste() : bool
+    + Paste() : T
+    + Paste() : object
+    + Paste(type:Type) : object
+}
+Clipboard --> "data" SerializationData
+Clipboard --> "dataType" Type
+@enduml

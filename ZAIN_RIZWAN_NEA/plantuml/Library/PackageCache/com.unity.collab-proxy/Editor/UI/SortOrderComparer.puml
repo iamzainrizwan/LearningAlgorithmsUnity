@@ -1,0 +1,7 @@
+@startuml
+class "SortOrderComparer`1"<T> {
+}
+class "IComparer`1"<T> {
+}
+"IComparer`1" "<T>" <|-- "SortOrderComparer`1"
+@enduml

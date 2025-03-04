@@ -1,0 +1,8 @@
+@startuml
+class FieldExtensions <<static>> {
+    + {static} HasPreprocessor(descriptor:FieldDescriptor) : bool
+    + {static} HasSemantic(descriptor:FieldDescriptor) : bool
+    + {static} HasFlag(descriptor:FieldDescriptor, options:StructFieldOptions) : bool
+    + {static} ToFieldString(descriptor:FieldDescriptor) : string
+}
+@enduml

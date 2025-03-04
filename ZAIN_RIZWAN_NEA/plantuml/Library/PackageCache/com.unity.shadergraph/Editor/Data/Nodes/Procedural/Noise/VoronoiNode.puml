@@ -1,0 +1,29 @@
+@startuml
+class VoronoiNode {
+    + <<override>> latestVersion : int <<get>>
+    + <<const>> UVSlotId : int = 0
+    + <<const>> AngleOffsetSlotId : int = 1
+    + <<const>> CellDensitySlotId : int = 2
+    + <<const>> OutSlotId : int = 3
+    + <<const>> CellsSlotId : int = 4
+    + VoronoiNode()
+    + <<override>> hasPreview : bool <<get>>
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + RequiresMeshUV(channel:UVChannel, stageCapability:ShaderStageCapability) : bool
+    + <<override>> OnAfterMultiDeserialize(json:string) : void
+}
+class "IEnumerable`1"<T> {
+}
+enum HashType {
+    Deterministic,
+    LegacySine,
+}
+AbstractMaterialNode <|-- VoronoiNode
+IGeneratesBodyCode <|-- VoronoiNode
+IGeneratesFunction <|-- VoronoiNode
+IMayRequireMeshUV <|-- VoronoiNode
+VoronoiNode --> "allowedNodeVersions<int>" "IEnumerable`1"
+VoronoiNode --> "hashType" HashType
+VoronoiNode +-- HashType
+@enduml

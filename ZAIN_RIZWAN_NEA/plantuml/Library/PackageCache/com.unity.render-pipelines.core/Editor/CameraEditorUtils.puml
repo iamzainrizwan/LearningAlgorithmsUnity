@@ -1,0 +1,7 @@
+@startuml
+class CameraEditorUtils <<static>> {
+    + {static} DrawCameraSceneViewOverlay(target:Object, sceneView:SceneView, previewCameraGetter:GetPreviewCamera) : void
+    + {static} IsViewPortRectValidToRender(normalizedViewPortRect:Rect) : bool
+}
+CameraEditorUtils --> "GUITextureBlit2SRGBMaterial" Material
+@enduml

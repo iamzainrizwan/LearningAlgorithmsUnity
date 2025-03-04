@@ -1,0 +1,7 @@
+@startuml
+class UnityOnSubmitMessageListener <<sealed>> {
+    + OnSubmit(eventData:BaseEventData) : void
+}
+MessageListener <|-- UnityOnSubmitMessageListener
+ISubmitHandler <|-- UnityOnSubmitMessageListener
+@enduml

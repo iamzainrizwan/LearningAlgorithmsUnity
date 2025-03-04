@@ -1,0 +1,10 @@
+@startuml
+class SignalAssetInspector {
+    + {static} CreateNewSignal() : void
+}
+class DoCreateSignalAsset {
+    + <<override>> Action(instanceId:int, pathName:string, resourceFile:string) : void
+}
+Editor <|-- SignalAssetInspector
+SignalAssetInspector +-- DoCreateSignalAsset
+@enduml

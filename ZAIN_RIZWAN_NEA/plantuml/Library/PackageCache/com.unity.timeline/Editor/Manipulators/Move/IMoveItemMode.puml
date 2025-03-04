@@ -1,0 +1,6 @@
+@startuml
+interface IMoveItemMode {
+}
+interface IMoveItemDrawer {
+}
+@enduml

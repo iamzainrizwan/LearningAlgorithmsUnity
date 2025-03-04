@@ -1,0 +1,12 @@
+@startuml
+struct NeededTransform {
+    + NeededTransform(from:NeededCoordinateSpace, to:NeededCoordinateSpace)
+}
+interface IMayRequireTransform {
+}
+NeededTransform --> "None" NeededTransform
+NeededTransform --> "ObjectToWorld" NeededTransform
+NeededTransform --> "WorldToObject" NeededTransform
+NeededTransform --> "from" NeededCoordinateSpace
+NeededTransform --> "to" NeededCoordinateSpace
+@enduml

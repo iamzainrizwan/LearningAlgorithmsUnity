@@ -1,0 +1,12 @@
+@startuml
+abstract class DecalChunk {
+    + count : int <<get>> <<protected set>>
+    + capacity : int <<get>> <<protected set>>
+    + <<virtual>> Push() : void
+    + {abstract} RemoveAtSwapBack(index:int) : void
+    + {abstract} SetCapacity(capacity:int) : void
+    + <<virtual>> Dispose() : void
+}
+IDisposable <|-- DecalChunk
+DecalChunk --> "currentJobHandle" JobHandle
+@enduml

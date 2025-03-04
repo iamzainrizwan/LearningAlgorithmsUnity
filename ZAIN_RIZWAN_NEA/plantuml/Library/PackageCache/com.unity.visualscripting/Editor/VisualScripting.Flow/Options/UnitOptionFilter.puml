@@ -1,0 +1,39 @@
+@startuml
+class UnitOptionFilter <<sealed>> {
+    + UnitOptionFilter(@default:bool)
+    + NoControlInput : bool <<get>> <<set>>
+    + SingleControlInput : bool <<get>> <<set>>
+    + MultipleControlInputs : bool <<get>> <<set>>
+    + NoValueInput : bool <<get>> <<set>>
+    + SingleValueInput : bool <<get>> <<set>>
+    + MultipleValueInputs : bool <<get>> <<set>>
+    + NoControlOutput : bool <<get>> <<set>>
+    + SingleControlOutput : bool <<get>> <<set>>
+    + MultipleControlOutputs : bool <<get>> <<set>>
+    + NoValueOutput : bool <<get>> <<set>>
+    + SingleValueOutput : bool <<get>> <<set>>
+    + MultipleValueOutputs : bool <<get>> <<set>>
+    + Normals : bool <<get>> <<set>>
+    + NoConnection : bool <<get>> <<set>>
+    + Self : bool <<get>> <<set>>
+    + Events : bool <<get>> <<set>>
+    + Literals : bool <<get>> <<set>>
+    + Variables : bool <<get>> <<set>>
+    + Members : bool <<get>> <<set>>
+    + Nesters : bool <<get>> <<set>>
+    + Expose : bool <<get>> <<set>>
+    + Obsolete : bool <<get>> <<set>>
+    + AllowSelfNestedGraph : bool <<get>> <<set>>
+    + GraphHashCode : int <<get>> <<set>>
+    + Clone() : UnitOptionFilter
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + ValidateOption(option:IUnitOption) : bool
+    + <<override>> ToString() : string
+}
+ICloneable <|-- UnitOptionFilter
+UnitOptionFilter --> "CompatibleInputType" Type
+UnitOptionFilter --> "CompatibleOutputType" Type
+UnitOptionFilter --> "Any" UnitOptionFilter
+UnitOptionFilter --> "None" UnitOptionFilter
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class NavMeshLink <<partial>> {
+    + autoUpdatePositions : bool <<get>> <<set>>
+    + biDirectional : bool <<get>> <<set>>
+    + costOverride : float <<get>> <<set>>
+    + UpdatePositions() : void
+}
+@enduml

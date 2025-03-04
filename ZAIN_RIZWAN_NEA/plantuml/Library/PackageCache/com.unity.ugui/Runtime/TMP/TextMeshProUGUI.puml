@@ -1,0 +1,31 @@
+@startuml
+class TextMeshProUGUI {
+    + <<override>> autoSizeTextContainer : bool <<get>> <<set>>
+    + CalculateLayoutInputHorizontal() : void
+    + CalculateLayoutInputVertical() : void
+    + <<override>> SetVerticesDirty() : void
+    + <<override>> SetLayoutDirty() : void
+    + <<override>> SetMaterialDirty() : void
+    + <<override>> SetAllDirty() : void
+    + <<override>> Rebuild(update:CanvasUpdate) : void
+    + <<override>> GetModifiedMaterial(baseMaterial:Material) : Material
+    + <<override>> RecalculateClipping() : void
+    + <<override>> Cull(clipRect:Rect, validRect:bool) : void
+    + <<override>> UpdateMeshPadding() : void
+    + <<override>> ForceMeshUpdate(ignoreActiveState:bool, forceTextReparsing:bool) : void
+    + <<override>> GetTextInfo(text:string) : TMP_TextInfo
+    + <<override>> ClearMesh() : void
+    + <<override>>  <<event>> OnPreRenderText : Action<TMP_TextInfo> 
+    + <<override>> UpdateGeometry(mesh:Mesh, index:int) : void
+    + <<override>> UpdateVertexData(flags:TMP_VertexDataUpdateFlags) : void
+    + <<override>> UpdateVertexData() : void
+    + UpdateFontAsset() : void
+    + <<override>> ComputeMarginSize() : void
+}
+TMP_Text <|-- TextMeshProUGUI
+ILayoutElement <|-- TextMeshProUGUI
+TextMeshProUGUI --> "materialForRendering" Material
+TextMeshProUGUI --> "mesh" Mesh
+TextMeshProUGUI --> "canvasRenderer" CanvasRenderer
+TextMeshProUGUI --> "maskOffset" Vector4
+@enduml

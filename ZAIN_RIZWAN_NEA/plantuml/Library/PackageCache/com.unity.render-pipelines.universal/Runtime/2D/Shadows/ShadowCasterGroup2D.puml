@@ -1,0 +1,9 @@
+@startuml
+abstract class ShadowCasterGroup2D {
+    + GetShadowCasters() : List<ShadowCaster2D>
+    + GetShadowGroup() : int
+    + RegisterShadowCaster2D(shadowCaster2D:ShadowCaster2D) : void
+    + UnregisterShadowCaster2D(shadowCaster2D:ShadowCaster2D) : void
+}
+MonoBehaviour <|-- ShadowCasterGroup2D
+@enduml

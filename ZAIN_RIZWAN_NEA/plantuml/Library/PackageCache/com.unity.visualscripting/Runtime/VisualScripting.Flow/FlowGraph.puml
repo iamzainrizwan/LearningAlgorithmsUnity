@@ -1,0 +1,37 @@
+@startuml
+class FlowGraph <<sealed>> {
+    + FlowGraph()
+    + <<override>> CreateData() : IGraphData
+    + StartListening(stack:GraphStack) : void
+    + StopListening(stack:GraphStack) : void
+    + IsListening(pointer:GraphPointer) : bool
+    + GetDynamicVariableNames(kind:VariableKind, reference:GraphReference) : IEnumerable<string>
+    +  <<event>> onPortDefinitionsChanged : Action 
+    + PortDefinitionsChanged() : void
+    + {static} WithInputOutput() : FlowGraph
+    + {static} WithStartUpdate() : FlowGraph
+}
+class "GraphElementCollection`1"<T> {
+}
+class "GraphConnectionCollection`3"<T1,T2,T3> {
+}
+class "UnitPortDefinitionCollection`1"<T> {
+}
+class "IEnumerable`1"<T> {
+}
+Graph <|-- FlowGraph
+IGraphWithVariables <|-- FlowGraph
+IGraphEventListener <|-- FlowGraph
+FlowGraph --> "variables" VariableDeclarations
+FlowGraph --> "units<IUnit>" "GraphElementCollection`1"
+FlowGraph --> "controlConnections<ControlConnection,ControlOutput,ControlInput>" "GraphConnectionCollection`3"
+FlowGraph --> "valueConnections<ValueConnection,ValueOutput,ValueInput>" "GraphConnectionCollection`3"
+FlowGraph --> "invalidConnections<InvalidConnection,IUnitOutputPort,IUnitInputPort>" "GraphConnectionCollection`3"
+FlowGraph --> "groups<GraphGroup>" "GraphElementCollection`1"
+FlowGraph --> "sticky<StickyNote>" "GraphElementCollection`1"
+FlowGraph --> "controlInputDefinitions<ControlInputDefinition>" "UnitPortDefinitionCollection`1"
+FlowGraph --> "controlOutputDefinitions<ControlOutputDefinition>" "UnitPortDefinitionCollection`1"
+FlowGraph --> "valueInputDefinitions<ValueInputDefinition>" "UnitPortDefinitionCollection`1"
+FlowGraph --> "valueOutputDefinitions<ValueOutputDefinition>" "UnitPortDefinitionCollection`1"
+FlowGraph --> "validPortDefinitions<IUnitPortDefinition>" "IEnumerable`1"
+@enduml

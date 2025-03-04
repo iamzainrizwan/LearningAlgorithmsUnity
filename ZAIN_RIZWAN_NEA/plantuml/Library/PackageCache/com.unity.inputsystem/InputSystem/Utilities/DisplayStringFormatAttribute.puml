@@ -1,0 +1,7 @@
+@startuml
+class DisplayStringFormatAttribute {
+    + formatString : string <<get>> <<set>>
+    + DisplayStringFormatAttribute(formatString:string)
+}
+Attribute <|-- DisplayStringFormatAttribute
+@enduml

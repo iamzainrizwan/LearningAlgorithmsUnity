@@ -1,0 +1,22 @@
+@startuml
+class ValueExpression {
+    + ValueExpression(value:object, type:ValueType)
+    + ValueExpression(value:object)
+    + ValueExpression(value:string)
+    + ValueExpression(value:int)
+    + ValueExpression(value:float)
+    + ValueExpression(value:DateTime)
+    + ValueExpression(value:bool)
+    + Value : object <<get>> <<set>>
+    + <<override>> Accept(visitor:LogicalExpressionVisitor) : void
+}
+enum ValueType {
+    Integer,
+    String,
+    DateTime,
+    Float,
+    Boolean,
+}
+LogicalExpression <|-- ValueExpression
+ValueExpression --> "Type" ValueType
+@enduml

@@ -1,0 +1,162 @@
+@startuml
+struct half3 {
+    + half3(x:half, y:half, z:half)
+    + half3(x:half, yz:half2)
+    + half3(xy:half2, z:half)
+    + half3(xyz:half3)
+    + half3(v:half)
+    + half3(v:float)
+    + half3(v:float3)
+    + half3(v:double)
+    + half3(v:double3)
+    + Equals(rhs:half3) : bool
+    + <<override>> Equals(o:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+    + ToString(format:string, formatProvider:IFormatProvider) : string
+}
+class math <<static>> <<partial>> {
+    + {static} half3(x:half, y:half, z:half) : half3
+    + {static} half3(x:half, yz:half2) : half3
+    + {static} half3(xy:half2, z:half) : half3
+    + {static} half3(xyz:half3) : half3
+    + {static} half3(v:half) : half3
+    + {static} half3(v:float) : half3
+    + {static} half3(v:float3) : half3
+    + {static} half3(v:double) : half3
+    + {static} half3(v:double3) : half3
+    + {static} hash(v:half3) : uint
+    + {static} hashwide(v:half3) : uint3
+}
+class "IEquatable`1"<T> {
+}
+class DebuggerProxy <<sealed>> {
+    + DebuggerProxy(v:half3)
+}
+IFormattable <|-- half3
+half3 --> "x" half
+half3 --> "y" half
+half3 --> "z" half
+half3 --> "zero" half3
+half3 --> "xxxx" half4
+half3 --> "xxxy" half4
+half3 --> "xxxz" half4
+half3 --> "xxyx" half4
+half3 --> "xxyy" half4
+half3 --> "xxyz" half4
+half3 --> "xxzx" half4
+half3 --> "xxzy" half4
+half3 --> "xxzz" half4
+half3 --> "xyxx" half4
+half3 --> "xyxy" half4
+half3 --> "xyxz" half4
+half3 --> "xyyx" half4
+half3 --> "xyyy" half4
+half3 --> "xyyz" half4
+half3 --> "xyzx" half4
+half3 --> "xyzy" half4
+half3 --> "xyzz" half4
+half3 --> "xzxx" half4
+half3 --> "xzxy" half4
+half3 --> "xzxz" half4
+half3 --> "xzyx" half4
+half3 --> "xzyy" half4
+half3 --> "xzyz" half4
+half3 --> "xzzx" half4
+half3 --> "xzzy" half4
+half3 --> "xzzz" half4
+half3 --> "yxxx" half4
+half3 --> "yxxy" half4
+half3 --> "yxxz" half4
+half3 --> "yxyx" half4
+half3 --> "yxyy" half4
+half3 --> "yxyz" half4
+half3 --> "yxzx" half4
+half3 --> "yxzy" half4
+half3 --> "yxzz" half4
+half3 --> "yyxx" half4
+half3 --> "yyxy" half4
+half3 --> "yyxz" half4
+half3 --> "yyyx" half4
+half3 --> "yyyy" half4
+half3 --> "yyyz" half4
+half3 --> "yyzx" half4
+half3 --> "yyzy" half4
+half3 --> "yyzz" half4
+half3 --> "yzxx" half4
+half3 --> "yzxy" half4
+half3 --> "yzxz" half4
+half3 --> "yzyx" half4
+half3 --> "yzyy" half4
+half3 --> "yzyz" half4
+half3 --> "yzzx" half4
+half3 --> "yzzy" half4
+half3 --> "yzzz" half4
+half3 --> "zxxx" half4
+half3 --> "zxxy" half4
+half3 --> "zxxz" half4
+half3 --> "zxyx" half4
+half3 --> "zxyy" half4
+half3 --> "zxyz" half4
+half3 --> "zxzx" half4
+half3 --> "zxzy" half4
+half3 --> "zxzz" half4
+half3 --> "zyxx" half4
+half3 --> "zyxy" half4
+half3 --> "zyxz" half4
+half3 --> "zyyx" half4
+half3 --> "zyyy" half4
+half3 --> "zyyz" half4
+half3 --> "zyzx" half4
+half3 --> "zyzy" half4
+half3 --> "zyzz" half4
+half3 --> "zzxx" half4
+half3 --> "zzxy" half4
+half3 --> "zzxz" half4
+half3 --> "zzyx" half4
+half3 --> "zzyy" half4
+half3 --> "zzyz" half4
+half3 --> "zzzx" half4
+half3 --> "zzzy" half4
+half3 --> "zzzz" half4
+half3 --> "xxx" half3
+half3 --> "xxy" half3
+half3 --> "xxz" half3
+half3 --> "xyx" half3
+half3 --> "xyy" half3
+half3 --> "xyz" half3
+half3 --> "xzx" half3
+half3 --> "xzy" half3
+half3 --> "xzz" half3
+half3 --> "yxx" half3
+half3 --> "yxy" half3
+half3 --> "yxz" half3
+half3 --> "yyx" half3
+half3 --> "yyy" half3
+half3 --> "yyz" half3
+half3 --> "yzx" half3
+half3 --> "yzy" half3
+half3 --> "yzz" half3
+half3 --> "zxx" half3
+half3 --> "zxy" half3
+half3 --> "zxz" half3
+half3 --> "zyx" half3
+half3 --> "zyy" half3
+half3 --> "zyz" half3
+half3 --> "zzx" half3
+half3 --> "zzy" half3
+half3 --> "zzz" half3
+half3 --> "xx" half2
+half3 --> "xy" half2
+half3 --> "xz" half2
+half3 --> "yx" half2
+half3 --> "yy" half2
+half3 --> "yz" half2
+half3 --> "zx" half2
+half3 --> "zy" half2
+half3 --> "zz" half2
+half3 +-- DebuggerProxy
+DebuggerProxy --> "x" half
+DebuggerProxy --> "y" half
+DebuggerProxy --> "z" half
+@enduml

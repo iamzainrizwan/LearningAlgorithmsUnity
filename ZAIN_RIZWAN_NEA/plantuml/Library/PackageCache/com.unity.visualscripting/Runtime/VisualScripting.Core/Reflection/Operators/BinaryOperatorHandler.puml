@@ -1,0 +1,18 @@
+@startuml
+abstract class BinaryOperatorHandler {
+    + <<virtual>> Operate(leftOperand:object, rightOperand:object) : object
+}
+struct OperatorQuery {
+    + OperatorQuery(leftType:Type, rightType:Type)
+    + Equals(other:OperatorQuery) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+class "IEquatable`1"<T> {
+}
+OperatorHandler <|-- BinaryOperatorHandler
+BinaryOperatorHandler +-- OperatorQuery
+"IEquatable`1" "<OperatorQuery>" <|-- OperatorQuery
+OperatorQuery --> "leftType" Type
+OperatorQuery --> "rightType" Type
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+abstract class "Angle`1"<T> {
+    + {abstract} Operation(a:T, b:T) : float
+}
+Unit <|-- "Angle`1"
+"Angle`1" --> "a" ValueInput
+"Angle`1" --> "b" ValueInput
+"Angle`1" --> "angle" ValueOutput
+@enduml

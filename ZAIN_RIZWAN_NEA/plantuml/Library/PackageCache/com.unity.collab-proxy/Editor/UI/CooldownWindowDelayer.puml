@@ -1,0 +1,6 @@
+@startuml
+class CooldownWindowDelayer {
+    + CooldownWindowDelayer(action:Action, cooldownSeconds:double)
+    + Ping() : void
+}
+@enduml

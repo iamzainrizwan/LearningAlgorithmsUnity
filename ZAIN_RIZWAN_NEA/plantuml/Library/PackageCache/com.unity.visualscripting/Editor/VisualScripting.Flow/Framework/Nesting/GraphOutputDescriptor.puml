@@ -1,0 +1,8 @@
+@startuml
+class GraphOutputDescriptor {
+    + GraphOutputDescriptor(unit:GraphOutput)
+}
+class "UnitDescriptor`1"<T> {
+}
+"UnitDescriptor`1" "<GraphOutput>" <|-- GraphOutputDescriptor
+@enduml

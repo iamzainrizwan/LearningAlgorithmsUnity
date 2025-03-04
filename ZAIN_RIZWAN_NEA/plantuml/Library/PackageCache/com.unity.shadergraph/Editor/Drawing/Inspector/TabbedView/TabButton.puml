@@ -1,0 +1,24 @@
+@startuml
+class TabButton <<partial>> {
+    + IsCloseable : bool <<get>> <<set>>
+    + TargetId : string <<get>>
+    +  <<event>> OnSelect : Action<TabButton> 
+    +  <<event>> OnClose : Action<TabButton> 
+    + TabButton()
+    + TabButton(text:string, target:VisualElement)
+    + Select() : void
+    + Deselect() : void
+}
+class UxmlFactory <<new>> {
+}
+class UxmlTraits <<new>> {
+    + <<override>> Init(ve:VisualElement, bag:IUxmlAttributes, cc:CreationContext) : void
+}
+class "UxmlFactory`2"<T1,T2> {
+}
+VisualElement <|-- TabButton
+TabButton --> "Target" VisualElement
+TabButton +-- UxmlFactory
+"UxmlFactory`2" "<TabButton,UxmlTraits>" <|-- UxmlFactory
+TabButton +-- UxmlTraits
+@enduml

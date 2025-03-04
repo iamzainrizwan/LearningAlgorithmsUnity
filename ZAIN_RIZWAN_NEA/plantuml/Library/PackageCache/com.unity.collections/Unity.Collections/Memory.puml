@@ -1,0 +1,13 @@
+@startuml
+struct Memory {
+}
+struct Unmanaged {
+}
+struct Array {
+}
+struct Array {
+}
+Memory +-- Unmanaged
+Memory +-- Array
+Unmanaged +-- Array
+@enduml

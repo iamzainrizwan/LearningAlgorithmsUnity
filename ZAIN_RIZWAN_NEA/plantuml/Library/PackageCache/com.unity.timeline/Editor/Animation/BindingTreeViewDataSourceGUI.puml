@@ -1,0 +1,10 @@
+@startuml
+class BindingTreeViewGUI {
+    + parentWidth : float <<get>> <<set>>
+    + BindingTreeViewGUI(treeView:TreeViewController)
+    + <<override>> OnRowGUI(rowRect:Rect, node:TreeViewItem, row:int, selected:bool, focused:bool) : void
+    + <<override>> BeginRename(item:TreeViewItem, delay:float) : bool
+    + <<override>> GetTotalSize() : Vector2
+}
+TreeViewGUI <|-- BindingTreeViewGUI
+@enduml

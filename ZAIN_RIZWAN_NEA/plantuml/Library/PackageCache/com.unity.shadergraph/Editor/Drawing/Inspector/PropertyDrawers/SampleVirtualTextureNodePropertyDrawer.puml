@@ -1,0 +1,7 @@
+@startuml
+class SampleVirtualTextureNodePropertyDrawer {
+    + DrawProperty(propertyInfo:PropertyInfo, actualObject:object, attribute:InspectableAttribute) : VisualElement
+}
+IPropertyDrawer <|-- SampleVirtualTextureNodePropertyDrawer
+SampleVirtualTextureNodePropertyDrawer --> "inspectorUpdateDelegate" Action
+@enduml

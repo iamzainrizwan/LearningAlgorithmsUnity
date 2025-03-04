@@ -1,0 +1,5 @@
+@startuml
+class StyleManager <<static>> {
+    + {static} UssStyleForType(type:Type) : GUIStyle
+}
+@enduml

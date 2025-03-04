@@ -1,0 +1,8 @@
+@startuml
+class InvokeMemberDescriptor {
+    + InvokeMemberDescriptor(unit:InvokeMember)
+}
+class "MemberUnitDescriptor`1"<T> {
+}
+"MemberUnitDescriptor`1" "<InvokeMember>" <|-- InvokeMemberDescriptor
+@enduml

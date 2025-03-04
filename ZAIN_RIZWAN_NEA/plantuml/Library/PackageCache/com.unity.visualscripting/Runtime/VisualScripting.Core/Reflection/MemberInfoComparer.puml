@@ -1,0 +1,9 @@
+@startuml
+class MemberInfoComparer {
+    + <<override>> Equals(x:MemberInfo, y:MemberInfo) : bool
+    + <<override>> GetHashCode(obj:MemberInfo) : int
+}
+class "EqualityComparer`1"<T> {
+}
+"EqualityComparer`1" "<MemberInfo>" <|-- MemberInfoComparer
+@enduml

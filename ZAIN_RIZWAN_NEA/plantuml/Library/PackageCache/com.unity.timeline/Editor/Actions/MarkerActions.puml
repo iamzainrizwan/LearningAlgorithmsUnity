@@ -1,0 +1,7 @@
+@startuml
+class CopyMarkersToClipboard {
+    + <<override>> Validate(markers:IEnumerable<IMarker>) : ActionValidity
+    + <<override>> Execute(markers:IEnumerable<IMarker>) : bool
+}
+MarkerAction <|-- CopyMarkersToClipboard
+@enduml

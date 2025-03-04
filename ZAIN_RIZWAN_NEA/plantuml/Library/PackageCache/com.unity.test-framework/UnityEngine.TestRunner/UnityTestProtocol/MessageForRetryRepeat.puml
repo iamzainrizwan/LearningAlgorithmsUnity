@@ -1,0 +1,12 @@
+@startuml
+class MessageForRetryRepeat {
+    + type : string
+    + time : ulong
+    + version : int
+    + phase : string
+    + processId : int
+    + MessageForRetryRepeat()
+    + AddTimeStamp() : void
+    + <<override>> ToString() : string
+}
+@enduml

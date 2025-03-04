@@ -1,0 +1,37 @@
+@startuml
+class TypeUtility <<static>> {
+    + {static} IsConcretePlayableAsset(t:Type) : bool
+    + {static} AllClipTypes() : IEnumerable<Type>
+    + {static} AllTrackTypes() : IEnumerable<Type>
+    + {static} GetVisiblePlayableAssetsHandledByTrack(trackType:Type) : IEnumerable<Type>
+    + {static} GetPlayableAssetsHandledByTrack(trackType:Type) : IEnumerable<Type>
+    + {static} GetTrackBindingAttribute(trackType:Type) : TrackBindingTypeAttribute
+    + {static} TrackHasClipForObject(trackType:Type, obj:Object) : bool
+    + {static} MarkerTypesWithFieldForObject(obj:Object) : IEnumerable<Type>
+    + {static} GetTrackTypesForObject(obj:Object) : IEnumerable<Type>
+    + {static} IsTrackCreatableFromObject(obj:Object, trackType:Type) : bool
+    + {static} GetTracksCreatableFromObject(obj:Object) : IEnumerable<Type>
+    + {static} GetAssetTypesForObject(trackType:Type, obj:Object) : IEnumerable<Type>
+    + {static} GetAllMarkerTypes() : IEnumerable<Type>
+    + {static} GetUserMarkerTypes() : IEnumerable<Type>
+    + {static} GetBuiltInMarkerTypes() : IEnumerable<Type>
+    + {static} DoesTrackSupportMarkerType(track:TrackAsset, type:Type) : bool
+    + {static} IsHiddenInMenu(type:Type) : bool
+    + {static} ObjectReferencesForType(type:Type) : IEnumerable<ObjectReference>
+    + {static} HasOverrideMethod(t:System.Type, name:string) : bool
+    + {static} IsBuiltIn(t:System.Type) : bool
+}
+class TimelineTypeComparer {
+    + Compare(x:Type, y:Type) : int
+}
+struct ObjectReference {
+    + isSceneReference : bool
+}
+class "IComparer`1"<T> {
+}
+TypeUtility +-- TimelineTypeComparer
+"IComparer`1" "<Type>" <|-- TimelineTypeComparer
+TimelineTypeComparer o-> "Instance" TimelineTypeComparer
+TypeUtility +-- ObjectReference
+ObjectReference --> "type" Type
+@enduml

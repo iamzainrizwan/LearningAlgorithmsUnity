@@ -1,0 +1,20 @@
+@startuml
+abstract class LayoutGroup {
+    + <<virtual>> CalculateLayoutInputHorizontal() : void
+    + {abstract} CalculateLayoutInputVertical() : void
+    + <<virtual>> minWidth : float <<get>>
+    + <<virtual>> preferredWidth : float <<get>>
+    + <<virtual>> flexibleWidth : float <<get>>
+    + <<virtual>> minHeight : float <<get>>
+    + <<virtual>> preferredHeight : float <<get>>
+    + <<virtual>> flexibleHeight : float <<get>>
+    + <<virtual>> layoutPriority : int <<get>>
+    + {abstract} SetLayoutHorizontal() : void
+    + {abstract} SetLayoutVertical() : void
+}
+UIBehaviour <|-- LayoutGroup
+ILayoutElement <|-- LayoutGroup
+ILayoutGroup <|-- LayoutGroup
+LayoutGroup --> "padding" RectOffset
+LayoutGroup --> "childAlignment" TextAnchor
+@enduml

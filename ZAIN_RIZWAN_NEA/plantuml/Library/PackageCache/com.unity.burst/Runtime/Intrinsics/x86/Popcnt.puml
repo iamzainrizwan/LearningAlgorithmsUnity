@@ -1,0 +1,10 @@
+@startuml
+class X86 <<unsafe>> <<static>> <<partial>> {
+}
+class Popcnt <<static>> {
+    + {static} IsPopcntSupported : bool <<get>>
+    + {static} popcnt_u32(v:uint) : int
+    + {static} popcnt_u64(v:ulong) : int
+}
+X86 +-- Popcnt
+@enduml

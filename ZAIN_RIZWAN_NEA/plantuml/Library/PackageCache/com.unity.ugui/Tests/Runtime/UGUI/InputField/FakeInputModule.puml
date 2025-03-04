@@ -1,0 +1,6 @@
+@startuml
+class FakeInputModule {
+    + <<override>> Process() : void
+}
+BaseInputModule <|-- FakeInputModule
+@enduml

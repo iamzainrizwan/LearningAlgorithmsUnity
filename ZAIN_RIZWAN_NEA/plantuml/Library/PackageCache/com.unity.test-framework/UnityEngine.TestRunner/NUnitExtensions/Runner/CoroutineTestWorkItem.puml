@@ -1,0 +1,7 @@
+@startuml
+class CoroutineTestWorkItem {
+    + CoroutineTestWorkItem(test:TestMethod, filter:ITestFilter)
+}
+UnityWorkItem <|-- CoroutineTestWorkItem
+CoroutineTestWorkItem --> "monoBehaviourCoroutineRunner" MonoBehaviour
+@enduml

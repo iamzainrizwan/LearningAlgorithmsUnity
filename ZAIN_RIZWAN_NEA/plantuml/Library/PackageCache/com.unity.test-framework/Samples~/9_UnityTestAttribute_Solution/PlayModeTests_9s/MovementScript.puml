@@ -1,0 +1,6 @@
+@startuml
+class MovementScript {
+}
+MonoBehaviour <|-- MovementScript
+MovementScript --> "velocity" Vector3
+@enduml

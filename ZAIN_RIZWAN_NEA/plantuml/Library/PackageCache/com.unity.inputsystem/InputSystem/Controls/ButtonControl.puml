@@ -1,0 +1,12 @@
+@startuml
+class ButtonControl {
+    + pressPoint : float
+    + pressPointOrDefault : float <<get>>
+    + ButtonControl()
+    + <<new>> IsValueConsideredPressed(value:float) : bool
+    + isPressed : bool <<get>>
+    + wasPressedThisFrame : bool <<get>>
+    + wasReleasedThisFrame : bool <<get>>
+}
+AxisControl <|-- ButtonControl
+@enduml

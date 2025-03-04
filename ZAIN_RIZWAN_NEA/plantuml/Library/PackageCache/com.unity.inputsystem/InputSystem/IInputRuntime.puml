@@ -1,0 +1,11 @@
+@startuml
+interface IInputRuntime <<unsafe>> {
+}
+class InputRuntime <<static>> {
+    + {static} s_CurrentTimeOffsetToRealtimeSinceStartup : double
+}
+class InputRuntimeExtensions <<static>> {
+    + {static} <<unsafe>> DeviceCommand(runtime:IInputRuntime, deviceId:int, command:TCommand) : long
+}
+InputRuntime --> "s_Instance" IInputRuntime
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class TimeDilationTrack {
+    + <<override>> CreateTrackMixer(graph:PlayableGraph, go:GameObject, inputCount:int) : Playable
+}
+TrackAsset <|-- TimeDilationTrack
+@enduml

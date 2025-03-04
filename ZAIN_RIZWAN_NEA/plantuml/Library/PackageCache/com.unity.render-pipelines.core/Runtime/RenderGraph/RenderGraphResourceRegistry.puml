@@ -1,0 +1,32 @@
+@startuml
+struct RenderTargetInfo {
+    + width : int
+    + height : int
+    + volumeDepth : int
+    + msaaSamples : int
+    + bindMS : bool
+}
+struct ImportResourceParams {
+    + clearOnFirstUse : bool
+    + discardOnLastUse : bool
+}
+class RenderGraphResourceRegistry {
+}
+class RenderGraphResourcesData {
+    + sharedResourcesCount : int
+    + RenderGraphResourcesData()
+    + Clear(onException:bool, frameIndex:int) : void
+    + Cleanup() : void
+    + PurgeUnusedGraphicsResources(frameIndex:int) : void
+    + AddNewRenderGraphResource(outRes:ResType, pooledResource:bool) : int
+}
+class "DynamicArray`1"<T> {
+}
+RenderTargetInfo --> "format" GraphicsFormat
+ImportResourceParams --> "clearColor" Color
+RenderGraphResourceRegistry +-- RenderGraphResourcesData
+RenderGraphResourcesData o-> "resourceArray<IRenderGraphResource>" "DynamicArray`1"
+RenderGraphResourcesData --> "pool" IRenderGraphResourcePool
+RenderGraphResourcesData --> "createResourceCallback" ResourceCreateCallback
+RenderGraphResourcesData --> "releaseResourceCallback" ResourceCallback
+@enduml

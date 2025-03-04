@@ -1,0 +1,30 @@
+@startuml
+struct InputBindingCompositeContext {
+    + EvaluateMagnitude(partNumber:int) : float
+    + <<unsafe>> ReadValue(partNumber:int) : TValue
+    + <<unsafe>> ReadValue(partNumber:int, sourceControl:InputControl) : TValue
+    + <<unsafe>> ReadValue(partNumber:int, comparer:TComparer) : TValue
+    + <<unsafe>> ReadValue(partNumber:int, sourceControl:InputControl, comparer:TComparer) : TValue
+    + <<unsafe>> ReadValueAsButton(partNumber:int) : bool
+    + <<unsafe>> ReadValue(partNumber:int, buffer:void*, bufferSize:int) : void
+    + ReadValueAsObject(partNumber:int) : object
+    + GetPressTime(partNumber:int) : double
+}
+struct PartBinding {
+    + part : int <<get>> <<set>>
+}
+class "IEnumerable`1"<T> {
+}
+struct "DefaultComparer`1"<TValue> {
+    + Compare(x:TValue, y:TValue) : int
+}
+class "IComparer`1"<T> {
+}
+class "IComparable`1"<T> {
+}
+InputBindingCompositeContext --> "controls<PartBinding>" "IEnumerable`1"
+InputBindingCompositeContext +-- PartBinding
+PartBinding --> "control" InputControl
+InputBindingCompositeContext +-- "DefaultComparer`1"
+"IComparer`1" "<TValue>" <|-- "DefaultComparer`1"
+@enduml

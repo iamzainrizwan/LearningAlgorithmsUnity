@@ -1,0 +1,56 @@
+@startuml
+enum ShaderFeatures {
+    None= 0,
+    MainLight= (1 << 0),
+    MainLightShadows= (1 << 1),
+    AdditionalLights= (1 << 2),
+    AdditionalLightShadows= (1 << 3),
+    VertexLighting= (1 << 4),
+    SoftShadows= (1 << 5),
+    MixedLighting= (1 << 6),
+    TerrainHoles= (1 << 7),
+    DeferredShading= (1 << 8),
+    DeferredWithAccurateGbufferNormals= (1 << 9),
+    DeferredWithoutAccurateGbufferNormals= (1 << 10),
+    ScreenSpaceOcclusion= (1 << 11),
+    ScreenSpaceShadows= (1 << 12),
+    ReflectionProbeBlending= (1 << 13),
+    ReflectionProbeBoxProjection= (1 << 14),
+}
+class ShaderKeywordStrings <<static>> {
+    + {static} <<readonly>> MainLightShadows : string = "_MAIN_LIGHT_SHADOWS"
+    + {static} <<readonly>> MainLightShadowCascades : string = "_MAIN_LIGHT_SHADOWS_CASCADE"
+    + {static} <<readonly>> MainLightShadowScreen : string = "_MAIN_LIGHT_SHADOWS_SCREEN"
+    + {static} <<readonly>> AdditionalLightsVertex : string = "_ADDITIONAL_LIGHTS_VERTEX"
+    + {static} <<readonly>> AdditionalLightsPixel : string = "_ADDITIONAL_LIGHTS"
+    + {static} <<readonly>> AdditionalLightShadows : string = "_ADDITIONAL_LIGHT_SHADOWS"
+    + {static} <<readonly>> ReflectionProbeBlending : string = "_REFLECTION_PROBE_BLENDING"
+    + {static} <<readonly>> ReflectionProbeBoxProjection : string = "_REFLECTION_PROBE_BOX_PROJECTION"
+    + {static} <<readonly>> SoftShadows : string = "_SHADOWS_SOFT"
+    + {static} <<readonly>> CastingPunctualLightShadow : string = "_CASTING_PUNCTUAL_LIGHT_SHADOW"
+    + {static} <<readonly>> MixedLightingSubtractive : string = "_MIXED_LIGHTING_SUBTRACTIVE"
+    + {static} <<readonly>> LightmapShadowMixing : string = "LIGHTMAP_SHADOW_MIXING"
+    + {static} <<readonly>> ShadowsShadowMask : string = "SHADOWS_SHADOWMASK"
+    + {static} <<readonly>> ScreenSpaceOcclusion : string = "_SCREEN_SPACE_OCCLUSION"
+    + {static} <<readonly>> _GBUFFER_NORMALS_OCT : string = "_GBUFFER_NORMALS_OCT"
+    + {static} <<readonly>> LIGHTMAP_ON : string = "LIGHTMAP_ON"
+    + {static} <<readonly>> DYNAMICLIGHTMAP_ON : string = "DYNAMICLIGHTMAP_ON"
+    + {static} <<readonly>> _ALPHATEST_ON : string = "_ALPHATEST_ON"
+    + {static} <<readonly>> DIRLIGHTMAP_COMBINED : string = "DIRLIGHTMAP_COMBINED"
+    + {static} <<readonly>> EDITOR_VISUALIZATION : string = "EDITOR_VISUALIZATION"
+}
+class ShaderPreprocessor {
+    + {static} <<readonly>> kPassNameGBuffer : string = "BuiltIn Deferred"
+    + callbackOrder : int <<get>>
+    + OnProcessShader(shader:Shader, snippetData:ShaderSnippetData, compilerDataList:IList<ShaderCompilerData>) : void
+}
+class ShaderBuildPreprocessor {
+    + callbackOrder : int <<get>>
+    + OnPreprocessBuild(report:BuildReport) : void
+}
+class "List`1"<T> {
+}
+IPreprocessShaders <|-- ShaderPreprocessor
+IPreprocessBuildWithReport <|-- ShaderBuildPreprocessor
+ShaderBuildPreprocessor --> "supportedFeaturesList<ShaderFeatures>" "List`1"
+@enduml

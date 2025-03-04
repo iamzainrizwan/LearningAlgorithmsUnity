@@ -1,0 +1,13 @@
+@startuml
+class DisplayInfoAttribute {
+    + name : string
+    + order : int
+}
+class AdditionalPropertyAttribute {
+}
+class HideInDebugUIAttribute {
+}
+Attribute <|-- DisplayInfoAttribute
+Attribute <|-- AdditionalPropertyAttribute
+Attribute <|-- HideInDebugUIAttribute
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+interface IMayRequireViewDirection {
+}
+class MayRequireViewDirectionExtensions <<static>> {
+    + {static} RequiresViewDirection(slot:MaterialSlot) : NeededCoordinateSpace
+}
+@enduml

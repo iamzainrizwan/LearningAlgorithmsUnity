@@ -1,0 +1,9 @@
+@startuml
+class RenderGraphUtilsResourcesStripper {
+    + active : bool <<get>>
+    + CanRemoveSettings(settings:RenderGraphUtilsResources) : bool
+}
+class "IRenderPipelineGraphicsSettingsStripper`1"<T> {
+}
+"IRenderPipelineGraphicsSettingsStripper`1" "<RenderGraphUtilsResources>" <|-- RenderGraphUtilsResourcesStripper
+@enduml

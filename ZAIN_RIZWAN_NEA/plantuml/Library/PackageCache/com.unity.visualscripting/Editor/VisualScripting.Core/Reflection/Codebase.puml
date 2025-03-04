@@ -1,0 +1,35 @@
+@startuml
+class Codebase <<static>> {
+    + {static} SerializeType(type:Type) : string
+    + {static} TryDeserializeType(typeName:string, type:Type) : bool
+    + {static} DeserializeType(typeName:string) : Type
+    + {static} SerializeMember(member:Member) : string
+    + {static} DeserializeMember(memberData:string) : Member
+    + {static}  <<event>> settingsChanged : Action 
+    + {static} GetTypeSet(typeSet:TypeSet) : ReadOnlyCollection<Type>
+    + {static} GetTypeSetFromAttribute(attributeProvider:IAttributeProvider, fallback:TypeSet) : ReadOnlyCollection<Type>
+    + {static} IsEditorType(type:Type) : bool
+    + {static} IsRuntimeType(type:Type) : bool
+    + {static} IsInternalType(type:Type) : bool
+    + {static} UpdateSettings() : void
+    + {static} Subset(types:IEnumerable<Type>, memberFilter:MemberFilter, memberTypeFilter:TypeFilter) : CodebaseSubset
+    + {static} Subset(typeSet:IEnumerable<Type>, typeFilter:TypeFilter, memberFilter:MemberFilter, memberTypeFilter:TypeFilter) : CodebaseSubset
+}
+class "ReadOnlyCollection`1"<T> {
+}
+Codebase --> "assemblies<Assembly>" "ReadOnlyCollection`1"
+Codebase --> "runtimeAssemblies<Assembly>" "ReadOnlyCollection`1"
+Codebase --> "editorAssemblies<Assembly>" "ReadOnlyCollection`1"
+Codebase --> "ludiqAssemblies<Assembly>" "ReadOnlyCollection`1"
+Codebase --> "ludiqRuntimeAssemblies<Assembly>" "ReadOnlyCollection`1"
+Codebase --> "ludiqEditorAssemblies<Assembly>" "ReadOnlyCollection`1"
+Codebase --> "settingsAssemblies<Assembly>" "ReadOnlyCollection`1"
+Codebase --> "types<Type>" "ReadOnlyCollection`1"
+Codebase --> "runtimeTypes<Type>" "ReadOnlyCollection`1"
+Codebase --> "editorTypes<Type>" "ReadOnlyCollection`1"
+Codebase --> "ludiqTypes<Type>" "ReadOnlyCollection`1"
+Codebase --> "ludiqRuntimeTypes<Type>" "ReadOnlyCollection`1"
+Codebase --> "ludiqEditorTypes<Type>" "ReadOnlyCollection`1"
+Codebase --> "settingsAssembliesTypes<Type>" "ReadOnlyCollection`1"
+Codebase --> "settingsTypes<Type>" "ReadOnlyCollection`1"
+@enduml

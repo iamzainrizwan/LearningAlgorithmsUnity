@@ -1,0 +1,6 @@
+@startuml
+class EventMachineEditor {
+    + EventMachineEditor(metadata:Metadata)
+}
+MachineEditor <|-- EventMachineEditor
+@enduml

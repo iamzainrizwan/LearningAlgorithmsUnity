@@ -1,0 +1,16 @@
+@startuml
+class RecommenderSystemUnitTests {
+    + Cleanup() : void
+    + TestEmptyQuestionnaireAndAnswer_ThrowsArgumentException() : void
+    + TestEmptyQuestionnaire_ThrowsArgumentException() : void
+    + TestEmptyAnswer_ReturnsNull() : void
+    + TestGetRecommendationForMatchingAnswers_NothingNull() : void
+    + TestSolutionToPackageViewData_NothingNull() : void
+    + TestGetRecommendationForMatchingAnswers_OnlyOneMainArchitecturePerCategory() : void
+    + TestGetSolutionsToRecommendedPackageViewData_AllSelectionsHaveSameCount() : void
+    + RecommendationData_AllHostingOverridesExistInNetcodeData(hostingModel:PossibleSolution) : void
+    + RecommendationData_NetcodeSolutionsHaveRecommendationDataForAllPackages(netcode:PossibleSolution) : void
+    + TestAdaptRecommendationToNetcodeSelection_SelectBackAndForthDoesNotChangeRecommendations() : void
+    + TestAdaptIncompatibility_AllValuesMatch() : void
+}
+@enduml

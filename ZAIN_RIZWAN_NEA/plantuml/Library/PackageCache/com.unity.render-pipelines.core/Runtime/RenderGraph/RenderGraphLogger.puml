@@ -1,0 +1,15 @@
+@startuml
+struct RenderGraphLogIndent {
+    + RenderGraphLogIndent(logger:RenderGraphLogger, indentation:int)
+    + Dispose() : void
+}
+class RenderGraphLogger {
+    + Initialize(logName:string) : void
+    + IncrementIndentation(value:int) : void
+    + DecrementIndentation(value:int) : void
+    + LogLine(format:string, args:object[]) : void
+    + GetLog(logName:string) : string
+    + GetAllLogs() : string
+}
+IDisposable <|-- RenderGraphLogIndent
+@enduml

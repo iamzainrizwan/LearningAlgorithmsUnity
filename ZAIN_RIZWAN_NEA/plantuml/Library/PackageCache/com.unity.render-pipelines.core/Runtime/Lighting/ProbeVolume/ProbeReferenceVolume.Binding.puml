@@ -1,0 +1,24 @@
+@startuml
+class ProbeReferenceVolume <<partial>> {
+    + BindAPVRuntimeResources(cmdBuffer:CommandBuffer, isProbeVolumeEnabled:bool) : void
+    + UpdateShaderVariablesProbeVolumes(cmd:CommandBuffer, probeVolumeOptions:ProbeVolumesOptions, taaFrameIndex:int, supportRenderingLayers:bool) : bool
+}
+class ShaderIDs <<static>> {
+    + {static} <<readonly>> _APVResIndex : int
+    + {static} <<readonly>> _APVResCellIndices : int
+    + {static} <<readonly>> _APVResL0_L1Rx : int
+    + {static} <<readonly>> _APVResL1G_L1Ry : int
+    + {static} <<readonly>> _APVResL1B_L1Rz : int
+    + {static} <<readonly>> _APVResL2_0 : int
+    + {static} <<readonly>> _APVResL2_1 : int
+    + {static} <<readonly>> _APVResL2_2 : int
+    + {static} <<readonly>> _APVResL2_3 : int
+    + {static} <<readonly>> _APVProbeOcclusion : int
+    + {static} <<readonly>> _APVResValidity : int
+    + {static} <<readonly>> _SkyOcclusionTexL0L1 : int
+    + {static} <<readonly>> _SkyShadingDirectionIndicesTex : int
+    + {static} <<readonly>> _SkyPrecomputedDirections : int
+    + {static} <<readonly>> _AntiLeakData : int
+}
+ProbeReferenceVolume +-- ShaderIDs
+@enduml

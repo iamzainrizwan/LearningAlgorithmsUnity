@@ -1,0 +1,46 @@
+@startuml
+enum BenchmarkContainerType {
+    Native,
+    NativeBurstSafety,
+    NativeBurstNoSafety,
+    Unsafe,
+    UnsafeBurstSafety,
+    UnsafeBurstNoSafety,
+}
+class BenchmarkContainerConfig <<static>> {
+    + <<const>> BCL : int
+    + <<const>> kMenuItemIndividual : string = "DOTS/Unity.Collections/Generate Individual Container Benchmark/"
+}
+interface IBenchmarkContainer {
+    + SetParams(capacity:int, args:int[]) : void
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+class "BenchmarkContainerRunner`1"<T> <<static>> {
+    + {static} <<unsafe>> Run(capacity:int, type:BenchmarkContainerType, args:int[]) : void
+}
+struct NativeJobBurstST {
+    + Execute() : void
+}
+struct NativeJobSafetyBurstST {
+    + Execute() : void
+}
+struct UnsafeJobBurstST {
+    + Execute() : void
+}
+struct UnsafeJobSafetyBurstST {
+    + Execute() : void
+}
+"BenchmarkContainerRunner`1" +-- NativeJobBurstST
+IJob <|-- NativeJobBurstST
+"BenchmarkContainerRunner`1" +-- NativeJobSafetyBurstST
+IJob <|-- NativeJobSafetyBurstST
+"BenchmarkContainerRunner`1" +-- UnsafeJobBurstST
+IJob <|-- UnsafeJobBurstST
+"BenchmarkContainerRunner`1" +-- UnsafeJobSafetyBurstST
+IJob <|-- UnsafeJobSafetyBurstST
+@enduml

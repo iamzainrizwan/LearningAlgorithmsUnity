@@ -1,0 +1,9 @@
+@startuml
+class ConstructorInfoStubWriter {
+    + ConstructorInfoStubWriter(constructorInfo:ConstructorInfo)
+    + <<override>> GetStubStatements() : IEnumerable<CodeStatement>
+}
+class "MethodBaseStubWriter`1"<T> {
+}
+"MethodBaseStubWriter`1" "<ConstructorInfo>" <|-- ConstructorInfoStubWriter
+@enduml

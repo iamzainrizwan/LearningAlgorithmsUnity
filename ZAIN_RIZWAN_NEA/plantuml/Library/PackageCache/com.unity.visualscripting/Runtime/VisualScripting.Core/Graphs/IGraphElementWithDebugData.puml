@@ -1,0 +1,5 @@
+@startuml
+interface IGraphElementWithDebugData {
+}
+IGraphElement <|-- IGraphElementWithDebugData
+@enduml

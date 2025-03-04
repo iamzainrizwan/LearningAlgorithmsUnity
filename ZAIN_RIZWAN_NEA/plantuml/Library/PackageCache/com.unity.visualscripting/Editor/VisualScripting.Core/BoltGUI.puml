@@ -1,0 +1,6 @@
+@startuml
+class BoltGUI <<static>> {
+    + {static} GetVariableFieldHeight(label:GUIContent, value:string, direction:ActionDirection) : float
+    + {static} VariableField(position:Rect, label:GUIContent, value:string, direction:ActionDirection) : string
+}
+@enduml

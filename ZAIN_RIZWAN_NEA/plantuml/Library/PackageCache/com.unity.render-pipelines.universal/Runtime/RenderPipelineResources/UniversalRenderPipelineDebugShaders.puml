@@ -1,0 +1,9 @@
+@startuml
+class UniversalRenderPipelineDebugShaders {
+    + version : int <<get>>
+}
+IRenderPipelineResources <|-- UniversalRenderPipelineDebugShaders
+UniversalRenderPipelineDebugShaders --> "debugReplacementPS" Shader
+UniversalRenderPipelineDebugShaders --> "hdrDebugViewPS" Shader
+UniversalRenderPipelineDebugShaders --> "probeVolumeSamplingDebugComputeShader" ComputeShader
+@enduml

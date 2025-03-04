@@ -1,0 +1,7 @@
+@startuml
+class "AsyncOperation`1"<T> {
+    + {static} Run(producer:Func<T>, exceptionHandler:Func<Exception, T>, finalHandler:Action) : AsyncOperation<T>
+    + Result : T <<get>>
+}
+"AsyncOperation`1" --> "Exception" Exception
+@enduml

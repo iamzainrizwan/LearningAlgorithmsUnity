@@ -1,0 +1,20 @@
+@startuml
+class Vector4MaterialSlot {
+    + Vector4MaterialSlot()
+    + Vector4MaterialSlot(slotId:int, displayName:string, shaderOutputName:string, slotType:SlotType, value:Vector4, stageCapability:ShaderStageCapability, label1:string, label2:string, label3:string, label4:string, hidden:bool)
+    + <<override>> isDefaultValue : bool <<get>>
+    + <<override>> InstantiateControl() : VisualElement
+    + <<override>> AddDefaultProperty(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + <<override>> GetPreviewProperties(properties:List<PreviewProperty>, name:string) : void
+    + <<override>> CopyValuesFrom(foundSlot:MaterialSlot) : void
+    + <<override>> CopyDefaultValue(other:MaterialSlot) : void
+}
+class "IMaterialSlotHasValue`1"<T> {
+}
+MaterialSlot <|-- Vector4MaterialSlot
+"IMaterialSlotHasValue`1" "<Vector4>" <|-- Vector4MaterialSlot
+Vector4MaterialSlot --> "defaultValue" Vector4
+Vector4MaterialSlot --> "value" Vector4
+Vector4MaterialSlot --> "valueType" SlotValueType
+Vector4MaterialSlot --> "concreteValueType" ConcreteSlotValueType
+@enduml

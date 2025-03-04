@@ -1,0 +1,9 @@
+@startuml
+class WarpTextExample {
+    + AngleMultiplier : float = 1.0f
+    + SpeedMultiplier : float = 1.0f
+    + CurveScale : float = 1.0f
+}
+MonoBehaviour <|-- WarpTextExample
+WarpTextExample o-> "VertexCurve" AnimationCurve
+@enduml

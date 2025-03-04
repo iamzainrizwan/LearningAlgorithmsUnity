@@ -1,0 +1,37 @@
+@startuml
+class UniversalSpriteUnlitSubTarget <<sealed>> {
+    + UniversalSpriteUnlitSubTarget()
+    + <<override>> IsActive() : bool
+    + <<override>> Setup(context:TargetSetupContext) : void
+    + <<override>> GetFields(context:TargetFieldContext) : void
+    + <<override>> GetActiveBlocks(context:TargetActiveBlockContext) : void
+    + <<override>> GetPropertiesGUI(context:TargetPropertyGUIContext, onChange:Action, registerUndo:Action<String>) : void
+    + TryUpgradeFromMasterNode(masterNode:IMasterNode1, blockMap:Dictionary<BlockFieldDescriptor, int>) : bool
+}
+class SubShaders <<static>> {
+    + {static} SpriteUnlit(target:UniversalTarget) : SubShaderDescriptor
+}
+class SpriteUnlitPasses <<static>> {
+    + {static} Unlit(target:UniversalTarget) : PassDescriptor
+    + {static} Forward(target:UniversalTarget) : PassDescriptor
+}
+class SpriteUnlitBlockMasks <<static>> {
+}
+class SpriteUnlitRequiredFields <<static>> {
+}
+class SpriteUnlitKeywords <<static>> {
+}
+class SpriteUnlitIncludes <<static>> {
+}
+UniversalSubTarget <|-- UniversalSpriteUnlitSubTarget
+ILegacyTarget <|-- UniversalSpriteUnlitSubTarget
+UniversalSpriteUnlitSubTarget +-- SubShaders
+UniversalSpriteUnlitSubTarget +-- SpriteUnlitPasses
+UniversalSpriteUnlitSubTarget +-- SpriteUnlitBlockMasks
+UniversalSpriteUnlitSubTarget +-- SpriteUnlitRequiredFields
+SpriteUnlitRequiredFields o-> "Unlit" FieldCollection
+UniversalSpriteUnlitSubTarget +-- SpriteUnlitKeywords
+SpriteUnlitKeywords o-> "Unlit" KeywordCollection
+UniversalSpriteUnlitSubTarget +-- SpriteUnlitIncludes
+SpriteUnlitIncludes o-> "Unlit" IncludeCollection
+@enduml

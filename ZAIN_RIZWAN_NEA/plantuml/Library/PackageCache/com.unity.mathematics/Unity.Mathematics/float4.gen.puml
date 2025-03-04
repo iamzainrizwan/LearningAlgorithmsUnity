@@ -1,0 +1,407 @@
+@startuml
+struct float4 {
+    + x : float
+    + y : float
+    + z : float
+    + w : float
+    + float4(x:float, y:float, z:float, w:float)
+    + float4(x:float, y:float, zw:float2)
+    + float4(x:float, yz:float2, w:float)
+    + float4(x:float, yzw:float3)
+    + float4(xy:float2, z:float, w:float)
+    + float4(xy:float2, zw:float2)
+    + float4(xyz:float3, w:float)
+    + float4(xyzw:float4)
+    + float4(v:float)
+    + float4(v:bool)
+    + float4(v:bool4)
+    + float4(v:int)
+    + float4(v:int4)
+    + float4(v:uint)
+    + float4(v:uint4)
+    + float4(v:half)
+    + float4(v:half4)
+    + float4(v:double)
+    + float4(v:double4)
+    + Equals(rhs:float4) : bool
+    + <<override>> Equals(o:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+    + ToString(format:string, formatProvider:IFormatProvider) : string
+}
+class math <<static>> <<partial>> {
+    + {static} float4(x:float, y:float, z:float, w:float) : float4
+    + {static} float4(x:float, y:float, zw:float2) : float4
+    + {static} float4(x:float, yz:float2, w:float) : float4
+    + {static} float4(x:float, yzw:float3) : float4
+    + {static} float4(xy:float2, z:float, w:float) : float4
+    + {static} float4(xy:float2, zw:float2) : float4
+    + {static} float4(xyz:float3, w:float) : float4
+    + {static} float4(xyzw:float4) : float4
+    + {static} float4(v:float) : float4
+    + {static} float4(v:bool) : float4
+    + {static} float4(v:bool4) : float4
+    + {static} float4(v:int) : float4
+    + {static} float4(v:int4) : float4
+    + {static} float4(v:uint) : float4
+    + {static} float4(v:uint4) : float4
+    + {static} float4(v:half) : float4
+    + {static} float4(v:half4) : float4
+    + {static} float4(v:double) : float4
+    + {static} float4(v:double4) : float4
+    + {static} hash(v:float4) : uint
+    + {static} hashwide(v:float4) : uint4
+    + {static} shuffle(left:float4, right:float4, x:ShuffleComponent) : float
+    + {static} shuffle(left:float4, right:float4, x:ShuffleComponent, y:ShuffleComponent) : float2
+    + {static} shuffle(left:float4, right:float4, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent) : float3
+    + {static} shuffle(left:float4, right:float4, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent, w:ShuffleComponent) : float4
+}
+class "IEquatable`1"<T> {
+}
+class DebuggerProxy <<sealed>> {
+    + x : float
+    + y : float
+    + z : float
+    + w : float
+    + DebuggerProxy(v:float4)
+}
+IFormattable <|-- float4
+float4 --> "zero" float4
+float4 --> "xxxx" float4
+float4 --> "xxxy" float4
+float4 --> "xxxz" float4
+float4 --> "xxxw" float4
+float4 --> "xxyx" float4
+float4 --> "xxyy" float4
+float4 --> "xxyz" float4
+float4 --> "xxyw" float4
+float4 --> "xxzx" float4
+float4 --> "xxzy" float4
+float4 --> "xxzz" float4
+float4 --> "xxzw" float4
+float4 --> "xxwx" float4
+float4 --> "xxwy" float4
+float4 --> "xxwz" float4
+float4 --> "xxww" float4
+float4 --> "xyxx" float4
+float4 --> "xyxy" float4
+float4 --> "xyxz" float4
+float4 --> "xyxw" float4
+float4 --> "xyyx" float4
+float4 --> "xyyy" float4
+float4 --> "xyyz" float4
+float4 --> "xyyw" float4
+float4 --> "xyzx" float4
+float4 --> "xyzy" float4
+float4 --> "xyzz" float4
+float4 --> "xyzw" float4
+float4 --> "xywx" float4
+float4 --> "xywy" float4
+float4 --> "xywz" float4
+float4 --> "xyww" float4
+float4 --> "xzxx" float4
+float4 --> "xzxy" float4
+float4 --> "xzxz" float4
+float4 --> "xzxw" float4
+float4 --> "xzyx" float4
+float4 --> "xzyy" float4
+float4 --> "xzyz" float4
+float4 --> "xzyw" float4
+float4 --> "xzzx" float4
+float4 --> "xzzy" float4
+float4 --> "xzzz" float4
+float4 --> "xzzw" float4
+float4 --> "xzwx" float4
+float4 --> "xzwy" float4
+float4 --> "xzwz" float4
+float4 --> "xzww" float4
+float4 --> "xwxx" float4
+float4 --> "xwxy" float4
+float4 --> "xwxz" float4
+float4 --> "xwxw" float4
+float4 --> "xwyx" float4
+float4 --> "xwyy" float4
+float4 --> "xwyz" float4
+float4 --> "xwyw" float4
+float4 --> "xwzx" float4
+float4 --> "xwzy" float4
+float4 --> "xwzz" float4
+float4 --> "xwzw" float4
+float4 --> "xwwx" float4
+float4 --> "xwwy" float4
+float4 --> "xwwz" float4
+float4 --> "xwww" float4
+float4 --> "yxxx" float4
+float4 --> "yxxy" float4
+float4 --> "yxxz" float4
+float4 --> "yxxw" float4
+float4 --> "yxyx" float4
+float4 --> "yxyy" float4
+float4 --> "yxyz" float4
+float4 --> "yxyw" float4
+float4 --> "yxzx" float4
+float4 --> "yxzy" float4
+float4 --> "yxzz" float4
+float4 --> "yxzw" float4
+float4 --> "yxwx" float4
+float4 --> "yxwy" float4
+float4 --> "yxwz" float4
+float4 --> "yxww" float4
+float4 --> "yyxx" float4
+float4 --> "yyxy" float4
+float4 --> "yyxz" float4
+float4 --> "yyxw" float4
+float4 --> "yyyx" float4
+float4 --> "yyyy" float4
+float4 --> "yyyz" float4
+float4 --> "yyyw" float4
+float4 --> "yyzx" float4
+float4 --> "yyzy" float4
+float4 --> "yyzz" float4
+float4 --> "yyzw" float4
+float4 --> "yywx" float4
+float4 --> "yywy" float4
+float4 --> "yywz" float4
+float4 --> "yyww" float4
+float4 --> "yzxx" float4
+float4 --> "yzxy" float4
+float4 --> "yzxz" float4
+float4 --> "yzxw" float4
+float4 --> "yzyx" float4
+float4 --> "yzyy" float4
+float4 --> "yzyz" float4
+float4 --> "yzyw" float4
+float4 --> "yzzx" float4
+float4 --> "yzzy" float4
+float4 --> "yzzz" float4
+float4 --> "yzzw" float4
+float4 --> "yzwx" float4
+float4 --> "yzwy" float4
+float4 --> "yzwz" float4
+float4 --> "yzww" float4
+float4 --> "ywxx" float4
+float4 --> "ywxy" float4
+float4 --> "ywxz" float4
+float4 --> "ywxw" float4
+float4 --> "ywyx" float4
+float4 --> "ywyy" float4
+float4 --> "ywyz" float4
+float4 --> "ywyw" float4
+float4 --> "ywzx" float4
+float4 --> "ywzy" float4
+float4 --> "ywzz" float4
+float4 --> "ywzw" float4
+float4 --> "ywwx" float4
+float4 --> "ywwy" float4
+float4 --> "ywwz" float4
+float4 --> "ywww" float4
+float4 --> "zxxx" float4
+float4 --> "zxxy" float4
+float4 --> "zxxz" float4
+float4 --> "zxxw" float4
+float4 --> "zxyx" float4
+float4 --> "zxyy" float4
+float4 --> "zxyz" float4
+float4 --> "zxyw" float4
+float4 --> "zxzx" float4
+float4 --> "zxzy" float4
+float4 --> "zxzz" float4
+float4 --> "zxzw" float4
+float4 --> "zxwx" float4
+float4 --> "zxwy" float4
+float4 --> "zxwz" float4
+float4 --> "zxww" float4
+float4 --> "zyxx" float4
+float4 --> "zyxy" float4
+float4 --> "zyxz" float4
+float4 --> "zyxw" float4
+float4 --> "zyyx" float4
+float4 --> "zyyy" float4
+float4 --> "zyyz" float4
+float4 --> "zyyw" float4
+float4 --> "zyzx" float4
+float4 --> "zyzy" float4
+float4 --> "zyzz" float4
+float4 --> "zyzw" float4
+float4 --> "zywx" float4
+float4 --> "zywy" float4
+float4 --> "zywz" float4
+float4 --> "zyww" float4
+float4 --> "zzxx" float4
+float4 --> "zzxy" float4
+float4 --> "zzxz" float4
+float4 --> "zzxw" float4
+float4 --> "zzyx" float4
+float4 --> "zzyy" float4
+float4 --> "zzyz" float4
+float4 --> "zzyw" float4
+float4 --> "zzzx" float4
+float4 --> "zzzy" float4
+float4 --> "zzzz" float4
+float4 --> "zzzw" float4
+float4 --> "zzwx" float4
+float4 --> "zzwy" float4
+float4 --> "zzwz" float4
+float4 --> "zzww" float4
+float4 --> "zwxx" float4
+float4 --> "zwxy" float4
+float4 --> "zwxz" float4
+float4 --> "zwxw" float4
+float4 --> "zwyx" float4
+float4 --> "zwyy" float4
+float4 --> "zwyz" float4
+float4 --> "zwyw" float4
+float4 --> "zwzx" float4
+float4 --> "zwzy" float4
+float4 --> "zwzz" float4
+float4 --> "zwzw" float4
+float4 --> "zwwx" float4
+float4 --> "zwwy" float4
+float4 --> "zwwz" float4
+float4 --> "zwww" float4
+float4 --> "wxxx" float4
+float4 --> "wxxy" float4
+float4 --> "wxxz" float4
+float4 --> "wxxw" float4
+float4 --> "wxyx" float4
+float4 --> "wxyy" float4
+float4 --> "wxyz" float4
+float4 --> "wxyw" float4
+float4 --> "wxzx" float4
+float4 --> "wxzy" float4
+float4 --> "wxzz" float4
+float4 --> "wxzw" float4
+float4 --> "wxwx" float4
+float4 --> "wxwy" float4
+float4 --> "wxwz" float4
+float4 --> "wxww" float4
+float4 --> "wyxx" float4
+float4 --> "wyxy" float4
+float4 --> "wyxz" float4
+float4 --> "wyxw" float4
+float4 --> "wyyx" float4
+float4 --> "wyyy" float4
+float4 --> "wyyz" float4
+float4 --> "wyyw" float4
+float4 --> "wyzx" float4
+float4 --> "wyzy" float4
+float4 --> "wyzz" float4
+float4 --> "wyzw" float4
+float4 --> "wywx" float4
+float4 --> "wywy" float4
+float4 --> "wywz" float4
+float4 --> "wyww" float4
+float4 --> "wzxx" float4
+float4 --> "wzxy" float4
+float4 --> "wzxz" float4
+float4 --> "wzxw" float4
+float4 --> "wzyx" float4
+float4 --> "wzyy" float4
+float4 --> "wzyz" float4
+float4 --> "wzyw" float4
+float4 --> "wzzx" float4
+float4 --> "wzzy" float4
+float4 --> "wzzz" float4
+float4 --> "wzzw" float4
+float4 --> "wzwx" float4
+float4 --> "wzwy" float4
+float4 --> "wzwz" float4
+float4 --> "wzww" float4
+float4 --> "wwxx" float4
+float4 --> "wwxy" float4
+float4 --> "wwxz" float4
+float4 --> "wwxw" float4
+float4 --> "wwyx" float4
+float4 --> "wwyy" float4
+float4 --> "wwyz" float4
+float4 --> "wwyw" float4
+float4 --> "wwzx" float4
+float4 --> "wwzy" float4
+float4 --> "wwzz" float4
+float4 --> "wwzw" float4
+float4 --> "wwwx" float4
+float4 --> "wwwy" float4
+float4 --> "wwwz" float4
+float4 --> "wwww" float4
+float4 --> "xxx" float3
+float4 --> "xxy" float3
+float4 --> "xxz" float3
+float4 --> "xxw" float3
+float4 --> "xyx" float3
+float4 --> "xyy" float3
+float4 --> "xyz" float3
+float4 --> "xyw" float3
+float4 --> "xzx" float3
+float4 --> "xzy" float3
+float4 --> "xzz" float3
+float4 --> "xzw" float3
+float4 --> "xwx" float3
+float4 --> "xwy" float3
+float4 --> "xwz" float3
+float4 --> "xww" float3
+float4 --> "yxx" float3
+float4 --> "yxy" float3
+float4 --> "yxz" float3
+float4 --> "yxw" float3
+float4 --> "yyx" float3
+float4 --> "yyy" float3
+float4 --> "yyz" float3
+float4 --> "yyw" float3
+float4 --> "yzx" float3
+float4 --> "yzy" float3
+float4 --> "yzz" float3
+float4 --> "yzw" float3
+float4 --> "ywx" float3
+float4 --> "ywy" float3
+float4 --> "ywz" float3
+float4 --> "yww" float3
+float4 --> "zxx" float3
+float4 --> "zxy" float3
+float4 --> "zxz" float3
+float4 --> "zxw" float3
+float4 --> "zyx" float3
+float4 --> "zyy" float3
+float4 --> "zyz" float3
+float4 --> "zyw" float3
+float4 --> "zzx" float3
+float4 --> "zzy" float3
+float4 --> "zzz" float3
+float4 --> "zzw" float3
+float4 --> "zwx" float3
+float4 --> "zwy" float3
+float4 --> "zwz" float3
+float4 --> "zww" float3
+float4 --> "wxx" float3
+float4 --> "wxy" float3
+float4 --> "wxz" float3
+float4 --> "wxw" float3
+float4 --> "wyx" float3
+float4 --> "wyy" float3
+float4 --> "wyz" float3
+float4 --> "wyw" float3
+float4 --> "wzx" float3
+float4 --> "wzy" float3
+float4 --> "wzz" float3
+float4 --> "wzw" float3
+float4 --> "wwx" float3
+float4 --> "wwy" float3
+float4 --> "wwz" float3
+float4 --> "www" float3
+float4 --> "xx" float2
+float4 --> "xy" float2
+float4 --> "xz" float2
+float4 --> "xw" float2
+float4 --> "yx" float2
+float4 --> "yy" float2
+float4 --> "yz" float2
+float4 --> "yw" float2
+float4 --> "zx" float2
+float4 --> "zy" float2
+float4 --> "zz" float2
+float4 --> "zw" float2
+float4 --> "wx" float2
+float4 --> "wy" float2
+float4 --> "wz" float2
+float4 --> "ww" float2
+float4 +-- DebuggerProxy
+@enduml

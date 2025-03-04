@@ -1,0 +1,7 @@
+@startuml
+class FrameLimiterUtility {
+    + FrameLimiterUtility(fpsLimit:uint)
+    + SetFPSLimit(fpsLimit:uint) : void
+    + IsWithinFPSLimit() : bool
+}
+@enduml

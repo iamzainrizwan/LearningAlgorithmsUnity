@@ -1,0 +1,17 @@
+@startuml
+class SimpleController_UsingActions {
+    + moveSpeed : float
+    + rotateSpeed : float
+    + burstSpeed : float
+    + Awake() : void
+    + OnEnable() : void
+    + OnDisable() : void
+    + OnGUI() : void
+    + Update() : void
+}
+MonoBehaviour <|-- SimpleController_UsingActions
+SimpleController_UsingActions --> "projectile" GameObject
+SimpleController_UsingActions --> "moveAction" InputAction
+SimpleController_UsingActions --> "lookAction" InputAction
+SimpleController_UsingActions --> "fireAction" InputAction
+@enduml

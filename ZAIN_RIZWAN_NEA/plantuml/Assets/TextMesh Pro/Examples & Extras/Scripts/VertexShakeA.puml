@@ -1,0 +1,9 @@
+@startuml
+class VertexShakeA {
+    + AngleMultiplier : float = 1.0f
+    + SpeedMultiplier : float = 1.0f
+    + ScaleMultiplier : float = 1.0f
+    + RotationMultiplier : float = 1.0f
+}
+MonoBehaviour <|-- VertexShakeA
+@enduml

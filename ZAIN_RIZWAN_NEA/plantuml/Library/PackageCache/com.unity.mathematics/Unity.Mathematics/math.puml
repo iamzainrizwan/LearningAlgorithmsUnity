@@ -1,0 +1,839 @@
+@startuml
+class math <<static>> <<partial>> {
+    + <<const>> E_DBL : double = 2.71828182845904523536
+    + <<const>> LOG2E_DBL : double = 1.44269504088896340736
+    + <<const>> LOG10E_DBL : double = 0.434294481903251827651
+    + <<const>> LN2_DBL : double = 0.693147180559945309417
+    + <<const>> LN10_DBL : double = 2.30258509299404568402
+    + <<const>> PI_DBL : double = 3.14159265358979323846
+    + <<const>> PI2_DBL : double
+    + <<const>> PIHALF_DBL : double
+    + <<const>> TAU_DBL : double
+    + <<const>> TODEGREES_DBL : double = 57.29577951308232
+    + <<const>> TORADIANS_DBL : double = 0.017453292519943296
+    + <<const>> SQRT2_DBL : double = 1.41421356237309504880
+    + <<const>> EPSILON_DBL : double = 2.22044604925031308085e-16
+    + <<const>> INFINITY_DBL : double
+    + <<const>> NAN_DBL : double
+    + <<const>> FLT_MIN_NORMAL : float = 1.175494351e-38F
+    + <<const>> DBL_MIN_NORMAL : double = 2.2250738585072014e-308
+    + <<const>> E : float
+    + <<const>> LOG2E : float
+    + <<const>> LOG10E : float
+    + <<const>> LN2 : float
+    + <<const>> LN10 : float
+    + <<const>> PI : float
+    + <<const>> PI2 : float
+    + <<const>> PIHALF : float
+    + <<const>> TAU : float
+    + <<const>> TODEGREES : float
+    + <<const>> TORADIANS : float
+    + <<const>> SQRT2 : float
+    + <<const>> EPSILON : float = 1.1920928955078125e-7f
+    + <<const>> INFINITY : float
+    + <<const>> NAN : float
+    + {static} asint(x:uint) : int
+    + {static} asint(x:uint2) : int2
+    + {static} asint(x:uint3) : int3
+    + {static} asint(x:uint4) : int4
+    + {static} asint(x:float) : int
+    + {static} asint(x:float2) : int2
+    + {static} asint(x:float3) : int3
+    + {static} asint(x:float4) : int4
+    + {static} asuint(x:int) : uint
+    + {static} asuint(x:int2) : uint2
+    + {static} asuint(x:int3) : uint3
+    + {static} asuint(x:int4) : uint4
+    + {static} asuint(x:float) : uint
+    + {static} asuint(x:float2) : uint2
+    + {static} asuint(x:float3) : uint3
+    + {static} asuint(x:float4) : uint4
+    + {static} aslong(x:ulong) : long
+    + {static} aslong(x:double) : long
+    + {static} asulong(x:long) : ulong
+    + {static} asulong(x:double) : ulong
+    + {static} asfloat(x:int) : float
+    + {static} asfloat(x:int2) : float2
+    + {static} asfloat(x:int3) : float3
+    + {static} asfloat(x:int4) : float4
+    + {static} asfloat(x:uint) : float
+    + {static} asfloat(x:uint2) : float2
+    + {static} asfloat(x:uint3) : float3
+    + {static} asfloat(x:uint4) : float4
+    + {static} bitmask(value:bool4) : int
+    + {static} asdouble(x:long) : double
+    + {static} asdouble(x:ulong) : double
+    + {static} isfinite(x:float) : bool
+    + {static} isfinite(x:float2) : bool2
+    + {static} isfinite(x:float3) : bool3
+    + {static} isfinite(x:float4) : bool4
+    + {static} isfinite(x:double) : bool
+    + {static} isfinite(x:double2) : bool2
+    + {static} isfinite(x:double3) : bool3
+    + {static} isfinite(x:double4) : bool4
+    + {static} isinf(x:float) : bool
+    + {static} isinf(x:float2) : bool2
+    + {static} isinf(x:float3) : bool3
+    + {static} isinf(x:float4) : bool4
+    + {static} isinf(x:double) : bool
+    + {static} isinf(x:double2) : bool2
+    + {static} isinf(x:double3) : bool3
+    + {static} isinf(x:double4) : bool4
+    + {static} isnan(x:float) : bool
+    + {static} isnan(x:float2) : bool2
+    + {static} isnan(x:float3) : bool3
+    + {static} isnan(x:float4) : bool4
+    + {static} isnan(x:double) : bool
+    + {static} isnan(x:double2) : bool2
+    + {static} isnan(x:double3) : bool3
+    + {static} isnan(x:double4) : bool4
+    + {static} ispow2(x:int) : bool
+    + {static} ispow2(x:int2) : bool2
+    + {static} ispow2(x:int3) : bool3
+    + {static} ispow2(x:int4) : bool4
+    + {static} ispow2(x:uint) : bool
+    + {static} ispow2(x:uint2) : bool2
+    + {static} ispow2(x:uint3) : bool3
+    + {static} ispow2(x:uint4) : bool4
+    + {static} min(x:int, y:int) : int
+    + {static} min(x:int2, y:int2) : int2
+    + {static} min(x:int3, y:int3) : int3
+    + {static} min(x:int4, y:int4) : int4
+    + {static} min(x:uint, y:uint) : uint
+    + {static} min(x:uint2, y:uint2) : uint2
+    + {static} min(x:uint3, y:uint3) : uint3
+    + {static} min(x:uint4, y:uint4) : uint4
+    + {static} min(x:long, y:long) : long
+    + {static} min(x:ulong, y:ulong) : ulong
+    + {static} min(x:float, y:float) : float
+    + {static} min(x:float2, y:float2) : float2
+    + {static} min(x:float3, y:float3) : float3
+    + {static} min(x:float4, y:float4) : float4
+    + {static} min(x:double, y:double) : double
+    + {static} min(x:double2, y:double2) : double2
+    + {static} min(x:double3, y:double3) : double3
+    + {static} min(x:double4, y:double4) : double4
+    + {static} max(x:int, y:int) : int
+    + {static} max(x:int2, y:int2) : int2
+    + {static} max(x:int3, y:int3) : int3
+    + {static} max(x:int4, y:int4) : int4
+    + {static} max(x:uint, y:uint) : uint
+    + {static} max(x:uint2, y:uint2) : uint2
+    + {static} max(x:uint3, y:uint3) : uint3
+    + {static} max(x:uint4, y:uint4) : uint4
+    + {static} max(x:long, y:long) : long
+    + {static} max(x:ulong, y:ulong) : ulong
+    + {static} max(x:float, y:float) : float
+    + {static} max(x:float2, y:float2) : float2
+    + {static} max(x:float3, y:float3) : float3
+    + {static} max(x:float4, y:float4) : float4
+    + {static} max(x:double, y:double) : double
+    + {static} max(x:double2, y:double2) : double2
+    + {static} max(x:double3, y:double3) : double3
+    + {static} max(x:double4, y:double4) : double4
+    + {static} lerp(start:float, end:float, t:float) : float
+    + {static} lerp(start:float2, end:float2, t:float) : float2
+    + {static} lerp(start:float3, end:float3, t:float) : float3
+    + {static} lerp(start:float4, end:float4, t:float) : float4
+    + {static} lerp(start:float2, end:float2, t:float2) : float2
+    + {static} lerp(start:float3, end:float3, t:float3) : float3
+    + {static} lerp(start:float4, end:float4, t:float4) : float4
+    + {static} lerp(start:double, end:double, t:double) : double
+    + {static} lerp(start:double2, end:double2, t:double) : double2
+    + {static} lerp(start:double3, end:double3, t:double) : double3
+    + {static} lerp(start:double4, end:double4, t:double) : double4
+    + {static} lerp(start:double2, end:double2, t:double2) : double2
+    + {static} lerp(start:double3, end:double3, t:double3) : double3
+    + {static} lerp(start:double4, end:double4, t:double4) : double4
+    + {static} unlerp(start:float, end:float, x:float) : float
+    + {static} unlerp(start:float2, end:float2, x:float2) : float2
+    + {static} unlerp(start:float3, end:float3, x:float3) : float3
+    + {static} unlerp(start:float4, end:float4, x:float4) : float4
+    + {static} unlerp(start:double, end:double, x:double) : double
+    + {static} unlerp(start:double2, end:double2, x:double2) : double2
+    + {static} unlerp(start:double3, end:double3, x:double3) : double3
+    + {static} unlerp(start:double4, end:double4, x:double4) : double4
+    + {static} remap(srcStart:float, srcEnd:float, dstStart:float, dstEnd:float, x:float) : float
+    + {static} remap(srcStart:float2, srcEnd:float2, dstStart:float2, dstEnd:float2, x:float2) : float2
+    + {static} remap(srcStart:float3, srcEnd:float3, dstStart:float3, dstEnd:float3, x:float3) : float3
+    + {static} remap(srcStart:float4, srcEnd:float4, dstStart:float4, dstEnd:float4, x:float4) : float4
+    + {static} remap(srcStart:double, srcEnd:double, dstStart:double, dstEnd:double, x:double) : double
+    + {static} remap(srcStart:double2, srcEnd:double2, dstStart:double2, dstEnd:double2, x:double2) : double2
+    + {static} remap(srcStart:double3, srcEnd:double3, dstStart:double3, dstEnd:double3, x:double3) : double3
+    + {static} remap(srcStart:double4, srcEnd:double4, dstStart:double4, dstEnd:double4, x:double4) : double4
+    + {static} mad(mulA:int, mulB:int, addC:int) : int
+    + {static} mad(mulA:int2, mulB:int2, addC:int2) : int2
+    + {static} mad(mulA:int3, mulB:int3, addC:int3) : int3
+    + {static} mad(mulA:int4, mulB:int4, addC:int4) : int4
+    + {static} mad(mulA:uint, mulB:uint, addC:uint) : uint
+    + {static} mad(mulA:uint2, mulB:uint2, addC:uint2) : uint2
+    + {static} mad(mulA:uint3, mulB:uint3, addC:uint3) : uint3
+    + {static} mad(mulA:uint4, mulB:uint4, addC:uint4) : uint4
+    + {static} mad(mulA:long, mulB:long, addC:long) : long
+    + {static} mad(mulA:ulong, mulB:ulong, addC:ulong) : ulong
+    + {static} mad(mulA:float, mulB:float, addC:float) : float
+    + {static} mad(mulA:float2, mulB:float2, addC:float2) : float2
+    + {static} mad(mulA:float3, mulB:float3, addC:float3) : float3
+    + {static} mad(mulA:float4, mulB:float4, addC:float4) : float4
+    + {static} mad(mulA:double, mulB:double, addC:double) : double
+    + {static} mad(mulA:double2, mulB:double2, addC:double2) : double2
+    + {static} mad(mulA:double3, mulB:double3, addC:double3) : double3
+    + {static} mad(mulA:double4, mulB:double4, addC:double4) : double4
+    + {static} clamp(valueToClamp:int, lowerBound:int, upperBound:int) : int
+    + {static} clamp(valueToClamp:int2, lowerBound:int2, upperBound:int2) : int2
+    + {static} clamp(valueToClamp:int3, lowerBound:int3, upperBound:int3) : int3
+    + {static} clamp(valueToClamp:int4, lowerBound:int4, upperBound:int4) : int4
+    + {static} clamp(valueToClamp:uint, lowerBound:uint, upperBound:uint) : uint
+    + {static} clamp(valueToClamp:uint2, lowerBound:uint2, upperBound:uint2) : uint2
+    + {static} clamp(valueToClamp:uint3, lowerBound:uint3, upperBound:uint3) : uint3
+    + {static} clamp(valueToClamp:uint4, lowerBound:uint4, upperBound:uint4) : uint4
+    + {static} clamp(valueToClamp:long, lowerBound:long, upperBound:long) : long
+    + {static} clamp(valueToClamp:ulong, lowerBound:ulong, upperBound:ulong) : ulong
+    + {static} clamp(valueToClamp:float, lowerBound:float, upperBound:float) : float
+    + {static} clamp(valueToClamp:float2, lowerBound:float2, upperBound:float2) : float2
+    + {static} clamp(valueToClamp:float3, lowerBound:float3, upperBound:float3) : float3
+    + {static} clamp(valueToClamp:float4, lowerBound:float4, upperBound:float4) : float4
+    + {static} clamp(valueToClamp:double, lowerBound:double, upperBound:double) : double
+    + {static} clamp(valueToClamp:double2, lowerBound:double2, upperBound:double2) : double2
+    + {static} clamp(valueToClamp:double3, lowerBound:double3, upperBound:double3) : double3
+    + {static} clamp(valueToClamp:double4, lowerBound:double4, upperBound:double4) : double4
+    + {static} saturate(x:float) : float
+    + {static} saturate(x:float2) : float2
+    + {static} saturate(x:float3) : float3
+    + {static} saturate(x:float4) : float4
+    + {static} saturate(x:double) : double
+    + {static} saturate(x:double2) : double2
+    + {static} saturate(x:double3) : double3
+    + {static} saturate(x:double4) : double4
+    + {static} abs(x:int) : int
+    + {static} abs(x:int2) : int2
+    + {static} abs(x:int3) : int3
+    + {static} abs(x:int4) : int4
+    + {static} abs(x:long) : long
+    + {static} abs(x:float) : float
+    + {static} abs(x:float2) : float2
+    + {static} abs(x:float3) : float3
+    + {static} abs(x:float4) : float4
+    + {static} abs(x:double) : double
+    + {static} abs(x:double2) : double2
+    + {static} abs(x:double3) : double3
+    + {static} abs(x:double4) : double4
+    + {static} dot(x:int, y:int) : int
+    + {static} dot(x:int2, y:int2) : int
+    + {static} dot(x:int3, y:int3) : int
+    + {static} dot(x:int4, y:int4) : int
+    + {static} dot(x:uint, y:uint) : uint
+    + {static} dot(x:uint2, y:uint2) : uint
+    + {static} dot(x:uint3, y:uint3) : uint
+    + {static} dot(x:uint4, y:uint4) : uint
+    + {static} dot(x:float, y:float) : float
+    + {static} dot(x:float2, y:float2) : float
+    + {static} dot(x:float3, y:float3) : float
+    + {static} dot(x:float4, y:float4) : float
+    + {static} dot(x:double, y:double) : double
+    + {static} dot(x:double2, y:double2) : double
+    + {static} dot(x:double3, y:double3) : double
+    + {static} dot(x:double4, y:double4) : double
+    + {static} tan(x:float) : float
+    + {static} tan(x:float2) : float2
+    + {static} tan(x:float3) : float3
+    + {static} tan(x:float4) : float4
+    + {static} tan(x:double) : double
+    + {static} tan(x:double2) : double2
+    + {static} tan(x:double3) : double3
+    + {static} tan(x:double4) : double4
+    + {static} tanh(x:float) : float
+    + {static} tanh(x:float2) : float2
+    + {static} tanh(x:float3) : float3
+    + {static} tanh(x:float4) : float4
+    + {static} tanh(x:double) : double
+    + {static} tanh(x:double2) : double2
+    + {static} tanh(x:double3) : double3
+    + {static} tanh(x:double4) : double4
+    + {static} atan(x:float) : float
+    + {static} atan(x:float2) : float2
+    + {static} atan(x:float3) : float3
+    + {static} atan(x:float4) : float4
+    + {static} atan(x:double) : double
+    + {static} atan(x:double2) : double2
+    + {static} atan(x:double3) : double3
+    + {static} atan(x:double4) : double4
+    + {static} atan2(y:float, x:float) : float
+    + {static} atan2(y:float2, x:float2) : float2
+    + {static} atan2(y:float3, x:float3) : float3
+    + {static} atan2(y:float4, x:float4) : float4
+    + {static} atan2(y:double, x:double) : double
+    + {static} atan2(y:double2, x:double2) : double2
+    + {static} atan2(y:double3, x:double3) : double3
+    + {static} atan2(y:double4, x:double4) : double4
+    + {static} cos(x:float) : float
+    + {static} cos(x:float2) : float2
+    + {static} cos(x:float3) : float3
+    + {static} cos(x:float4) : float4
+    + {static} cos(x:double) : double
+    + {static} cos(x:double2) : double2
+    + {static} cos(x:double3) : double3
+    + {static} cos(x:double4) : double4
+    + {static} cosh(x:float) : float
+    + {static} cosh(x:float2) : float2
+    + {static} cosh(x:float3) : float3
+    + {static} cosh(x:float4) : float4
+    + {static} cosh(x:double) : double
+    + {static} cosh(x:double2) : double2
+    + {static} cosh(x:double3) : double3
+    + {static} cosh(x:double4) : double4
+    + {static} acos(x:float) : float
+    + {static} acos(x:float2) : float2
+    + {static} acos(x:float3) : float3
+    + {static} acos(x:float4) : float4
+    + {static} acos(x:double) : double
+    + {static} acos(x:double2) : double2
+    + {static} acos(x:double3) : double3
+    + {static} acos(x:double4) : double4
+    + {static} sin(x:float) : float
+    + {static} sin(x:float2) : float2
+    + {static} sin(x:float3) : float3
+    + {static} sin(x:float4) : float4
+    + {static} sin(x:double) : double
+    + {static} sin(x:double2) : double2
+    + {static} sin(x:double3) : double3
+    + {static} sin(x:double4) : double4
+    + {static} sinh(x:float) : float
+    + {static} sinh(x:float2) : float2
+    + {static} sinh(x:float3) : float3
+    + {static} sinh(x:float4) : float4
+    + {static} sinh(x:double) : double
+    + {static} sinh(x:double2) : double2
+    + {static} sinh(x:double3) : double3
+    + {static} sinh(x:double4) : double4
+    + {static} asin(x:float) : float
+    + {static} asin(x:float2) : float2
+    + {static} asin(x:float3) : float3
+    + {static} asin(x:float4) : float4
+    + {static} asin(x:double) : double
+    + {static} asin(x:double2) : double2
+    + {static} asin(x:double3) : double3
+    + {static} asin(x:double4) : double4
+    + {static} floor(x:float) : float
+    + {static} floor(x:float2) : float2
+    + {static} floor(x:float3) : float3
+    + {static} floor(x:float4) : float4
+    + {static} floor(x:double) : double
+    + {static} floor(x:double2) : double2
+    + {static} floor(x:double3) : double3
+    + {static} floor(x:double4) : double4
+    + {static} ceil(x:float) : float
+    + {static} ceil(x:float2) : float2
+    + {static} ceil(x:float3) : float3
+    + {static} ceil(x:float4) : float4
+    + {static} ceil(x:double) : double
+    + {static} ceil(x:double2) : double2
+    + {static} ceil(x:double3) : double3
+    + {static} ceil(x:double4) : double4
+    + {static} round(x:float) : float
+    + {static} round(x:float2) : float2
+    + {static} round(x:float3) : float3
+    + {static} round(x:float4) : float4
+    + {static} round(x:double) : double
+    + {static} round(x:double2) : double2
+    + {static} round(x:double3) : double3
+    + {static} round(x:double4) : double4
+    + {static} trunc(x:float) : float
+    + {static} trunc(x:float2) : float2
+    + {static} trunc(x:float3) : float3
+    + {static} trunc(x:float4) : float4
+    + {static} trunc(x:double) : double
+    + {static} trunc(x:double2) : double2
+    + {static} trunc(x:double3) : double3
+    + {static} trunc(x:double4) : double4
+    + {static} frac(x:float) : float
+    + {static} frac(x:float2) : float2
+    + {static} frac(x:float3) : float3
+    + {static} frac(x:float4) : float4
+    + {static} frac(x:double) : double
+    + {static} frac(x:double2) : double2
+    + {static} frac(x:double3) : double3
+    + {static} frac(x:double4) : double4
+    + {static} rcp(x:float) : float
+    + {static} rcp(x:float2) : float2
+    + {static} rcp(x:float3) : float3
+    + {static} rcp(x:float4) : float4
+    + {static} rcp(x:double) : double
+    + {static} rcp(x:double2) : double2
+    + {static} rcp(x:double3) : double3
+    + {static} rcp(x:double4) : double4
+    + {static} sign(x:int) : int
+    + {static} sign(x:int2) : int2
+    + {static} sign(x:int3) : int3
+    + {static} sign(x:int4) : int4
+    + {static} sign(x:float) : float
+    + {static} sign(x:float2) : float2
+    + {static} sign(x:float3) : float3
+    + {static} sign(x:float4) : float4
+    + {static} sign(x:double) : double
+    + {static} sign(x:double2) : double2
+    + {static} sign(x:double3) : double3
+    + {static} sign(x:double4) : double4
+    + {static} pow(x:float, y:float) : float
+    + {static} pow(x:float2, y:float2) : float2
+    + {static} pow(x:float3, y:float3) : float3
+    + {static} pow(x:float4, y:float4) : float4
+    + {static} pow(x:double, y:double) : double
+    + {static} pow(x:double2, y:double2) : double2
+    + {static} pow(x:double3, y:double3) : double3
+    + {static} pow(x:double4, y:double4) : double4
+    + {static} exp(x:float) : float
+    + {static} exp(x:float2) : float2
+    + {static} exp(x:float3) : float3
+    + {static} exp(x:float4) : float4
+    + {static} exp(x:double) : double
+    + {static} exp(x:double2) : double2
+    + {static} exp(x:double3) : double3
+    + {static} exp(x:double4) : double4
+    + {static} exp2(x:float) : float
+    + {static} exp2(x:float2) : float2
+    + {static} exp2(x:float3) : float3
+    + {static} exp2(x:float4) : float4
+    + {static} exp2(x:double) : double
+    + {static} exp2(x:double2) : double2
+    + {static} exp2(x:double3) : double3
+    + {static} exp2(x:double4) : double4
+    + {static} exp10(x:float) : float
+    + {static} exp10(x:float2) : float2
+    + {static} exp10(x:float3) : float3
+    + {static} exp10(x:float4) : float4
+    + {static} exp10(x:double) : double
+    + {static} exp10(x:double2) : double2
+    + {static} exp10(x:double3) : double3
+    + {static} exp10(x:double4) : double4
+    + {static} log(x:float) : float
+    + {static} log(x:float2) : float2
+    + {static} log(x:float3) : float3
+    + {static} log(x:float4) : float4
+    + {static} log(x:double) : double
+    + {static} log(x:double2) : double2
+    + {static} log(x:double3) : double3
+    + {static} log(x:double4) : double4
+    + {static} log2(x:float) : float
+    + {static} log2(x:float2) : float2
+    + {static} log2(x:float3) : float3
+    + {static} log2(x:float4) : float4
+    + {static} log2(x:double) : double
+    + {static} log2(x:double2) : double2
+    + {static} log2(x:double3) : double3
+    + {static} log2(x:double4) : double4
+    + {static} log10(x:float) : float
+    + {static} log10(x:float2) : float2
+    + {static} log10(x:float3) : float3
+    + {static} log10(x:float4) : float4
+    + {static} log10(x:double) : double
+    + {static} log10(x:double2) : double2
+    + {static} log10(x:double3) : double3
+    + {static} log10(x:double4) : double4
+    + {static} fmod(x:float, y:float) : float
+    + {static} fmod(x:float2, y:float2) : float2
+    + {static} fmod(x:float3, y:float3) : float3
+    + {static} fmod(x:float4, y:float4) : float4
+    + {static} fmod(x:double, y:double) : double
+    + {static} fmod(x:double2, y:double2) : double2
+    + {static} fmod(x:double3, y:double3) : double3
+    + {static} fmod(x:double4, y:double4) : double4
+    + {static} modf(x:float, i:float) : float
+    + {static} modf(x:float2, i:float2) : float2
+    + {static} modf(x:float3, i:float3) : float3
+    + {static} modf(x:float4, i:float4) : float4
+    + {static} modf(x:double, i:double) : double
+    + {static} modf(x:double2, i:double2) : double2
+    + {static} modf(x:double3, i:double3) : double3
+    + {static} modf(x:double4, i:double4) : double4
+    + {static} sqrt(x:float) : float
+    + {static} sqrt(x:float2) : float2
+    + {static} sqrt(x:float3) : float3
+    + {static} sqrt(x:float4) : float4
+    + {static} sqrt(x:double) : double
+    + {static} sqrt(x:double2) : double2
+    + {static} sqrt(x:double3) : double3
+    + {static} sqrt(x:double4) : double4
+    + {static} rsqrt(x:float) : float
+    + {static} rsqrt(x:float2) : float2
+    + {static} rsqrt(x:float3) : float3
+    + {static} rsqrt(x:float4) : float4
+    + {static} rsqrt(x:double) : double
+    + {static} rsqrt(x:double2) : double2
+    + {static} rsqrt(x:double3) : double3
+    + {static} rsqrt(x:double4) : double4
+    + {static} normalize(x:float2) : float2
+    + {static} normalize(x:float3) : float3
+    + {static} normalize(x:float4) : float4
+    + {static} normalize(x:double2) : double2
+    + {static} normalize(x:double3) : double3
+    + {static} normalize(x:double4) : double4
+    {static} + normalizesafe(x:float2, defaultvalue:float2) : float2
+    {static} + normalizesafe(x:float3, defaultvalue:float3) : float3
+    {static} + normalizesafe(x:float4, defaultvalue:float4) : float4
+    {static} + normalizesafe(x:double2, defaultvalue:double2) : double2
+    {static} + normalizesafe(x:double3, defaultvalue:double3) : double3
+    {static} + normalizesafe(x:double4, defaultvalue:double4) : double4
+    + {static} length(x:float) : float
+    + {static} length(x:float2) : float
+    + {static} length(x:float3) : float
+    + {static} length(x:float4) : float
+    + {static} length(x:double) : double
+    + {static} length(x:double2) : double
+    + {static} length(x:double3) : double
+    + {static} length(x:double4) : double
+    + {static} lengthsq(x:float) : float
+    + {static} lengthsq(x:float2) : float
+    + {static} lengthsq(x:float3) : float
+    + {static} lengthsq(x:float4) : float
+    + {static} lengthsq(x:double) : double
+    + {static} lengthsq(x:double2) : double
+    + {static} lengthsq(x:double3) : double
+    + {static} lengthsq(x:double4) : double
+    + {static} distance(x:float, y:float) : float
+    + {static} distance(x:float2, y:float2) : float
+    + {static} distance(x:float3, y:float3) : float
+    + {static} distance(x:float4, y:float4) : float
+    + {static} distance(x:double, y:double) : double
+    + {static} distance(x:double2, y:double2) : double
+    + {static} distance(x:double3, y:double3) : double
+    + {static} distance(x:double4, y:double4) : double
+    + {static} distancesq(x:float, y:float) : float
+    + {static} distancesq(x:float2, y:float2) : float
+    + {static} distancesq(x:float3, y:float3) : float
+    + {static} distancesq(x:float4, y:float4) : float
+    + {static} distancesq(x:double, y:double) : double
+    + {static} distancesq(x:double2, y:double2) : double
+    + {static} distancesq(x:double3, y:double3) : double
+    + {static} distancesq(x:double4, y:double4) : double
+    + {static} cross(x:float3, y:float3) : float3
+    + {static} cross(x:double3, y:double3) : double3
+    + {static} smoothstep(xMin:float, xMax:float, x:float) : float
+    + {static} smoothstep(xMin:float2, xMax:float2, x:float2) : float2
+    + {static} smoothstep(xMin:float3, xMax:float3, x:float3) : float3
+    + {static} smoothstep(xMin:float4, xMax:float4, x:float4) : float4
+    + {static} smoothstep(xMin:double, xMax:double, x:double) : double
+    + {static} smoothstep(xMin:double2, xMax:double2, x:double2) : double2
+    + {static} smoothstep(xMin:double3, xMax:double3, x:double3) : double3
+    + {static} smoothstep(xMin:double4, xMax:double4, x:double4) : double4
+    + {static} any(x:bool2) : bool
+    + {static} any(x:bool3) : bool
+    + {static} any(x:bool4) : bool
+    + {static} any(x:int2) : bool
+    + {static} any(x:int3) : bool
+    + {static} any(x:int4) : bool
+    + {static} any(x:uint2) : bool
+    + {static} any(x:uint3) : bool
+    + {static} any(x:uint4) : bool
+    + {static} any(x:float2) : bool
+    + {static} any(x:float3) : bool
+    + {static} any(x:float4) : bool
+    + {static} any(x:double2) : bool
+    + {static} any(x:double3) : bool
+    + {static} any(x:double4) : bool
+    + {static} all(x:bool2) : bool
+    + {static} all(x:bool3) : bool
+    + {static} all(x:bool4) : bool
+    + {static} all(x:int2) : bool
+    + {static} all(x:int3) : bool
+    + {static} all(x:int4) : bool
+    + {static} all(x:uint2) : bool
+    + {static} all(x:uint3) : bool
+    + {static} all(x:uint4) : bool
+    + {static} all(x:float2) : bool
+    + {static} all(x:float3) : bool
+    + {static} all(x:float4) : bool
+    + {static} all(x:double2) : bool
+    + {static} all(x:double3) : bool
+    + {static} all(x:double4) : bool
+    + {static} select(falseValue:int, trueValue:int, test:bool) : int
+    + {static} select(falseValue:int2, trueValue:int2, test:bool) : int2
+    + {static} select(falseValue:int3, trueValue:int3, test:bool) : int3
+    + {static} select(falseValue:int4, trueValue:int4, test:bool) : int4
+    + {static} select(falseValue:int2, trueValue:int2, test:bool2) : int2
+    + {static} select(falseValue:int3, trueValue:int3, test:bool3) : int3
+    + {static} select(falseValue:int4, trueValue:int4, test:bool4) : int4
+    + {static} select(falseValue:uint, trueValue:uint, test:bool) : uint
+    + {static} select(falseValue:uint2, trueValue:uint2, test:bool) : uint2
+    + {static} select(falseValue:uint3, trueValue:uint3, test:bool) : uint3
+    + {static} select(falseValue:uint4, trueValue:uint4, test:bool) : uint4
+    + {static} select(falseValue:uint2, trueValue:uint2, test:bool2) : uint2
+    + {static} select(falseValue:uint3, trueValue:uint3, test:bool3) : uint3
+    + {static} select(falseValue:uint4, trueValue:uint4, test:bool4) : uint4
+    + {static} select(falseValue:long, trueValue:long, test:bool) : long
+    + {static} select(falseValue:ulong, trueValue:ulong, test:bool) : ulong
+    + {static} select(falseValue:float, trueValue:float, test:bool) : float
+    + {static} select(falseValue:float2, trueValue:float2, test:bool) : float2
+    + {static} select(falseValue:float3, trueValue:float3, test:bool) : float3
+    + {static} select(falseValue:float4, trueValue:float4, test:bool) : float4
+    + {static} select(falseValue:float2, trueValue:float2, test:bool2) : float2
+    + {static} select(falseValue:float3, trueValue:float3, test:bool3) : float3
+    + {static} select(falseValue:float4, trueValue:float4, test:bool4) : float4
+    + {static} select(falseValue:double, trueValue:double, test:bool) : double
+    + {static} select(falseValue:double2, trueValue:double2, test:bool) : double2
+    + {static} select(falseValue:double3, trueValue:double3, test:bool) : double3
+    + {static} select(falseValue:double4, trueValue:double4, test:bool) : double4
+    + {static} select(falseValue:double2, trueValue:double2, test:bool2) : double2
+    + {static} select(falseValue:double3, trueValue:double3, test:bool3) : double3
+    + {static} select(falseValue:double4, trueValue:double4, test:bool4) : double4
+    + {static} step(threshold:float, x:float) : float
+    + {static} step(threshold:float2, x:float2) : float2
+    + {static} step(threshold:float3, x:float3) : float3
+    + {static} step(threshold:float4, x:float4) : float4
+    + {static} step(threshold:double, x:double) : double
+    + {static} step(threshold:double2, x:double2) : double2
+    + {static} step(threshold:double3, x:double3) : double3
+    + {static} step(threshold:double4, x:double4) : double4
+    + {static} reflect(i:float2, n:float2) : float2
+    + {static} reflect(i:float3, n:float3) : float3
+    + {static} reflect(i:float4, n:float4) : float4
+    + {static} reflect(i:double2, n:double2) : double2
+    + {static} reflect(i:double3, n:double3) : double3
+    + {static} reflect(i:double4, n:double4) : double4
+    + {static} refract(i:float2, n:float2, indexOfRefraction:float) : float2
+    + {static} refract(i:float3, n:float3, indexOfRefraction:float) : float3
+    + {static} refract(i:float4, n:float4, indexOfRefraction:float) : float4
+    + {static} refract(i:double2, n:double2, indexOfRefraction:double) : double2
+    + {static} refract(i:double3, n:double3, indexOfRefraction:double) : double3
+    + {static} refract(i:double4, n:double4, indexOfRefraction:double) : double4
+    + {static} project(a:float2, ontoB:float2) : float2
+    + {static} project(a:float3, ontoB:float3) : float3
+    + {static} project(a:float4, ontoB:float4) : float4
+    + {static} projectsafe(a:float2, ontoB:float2, defaultValue:float2) : float2
+    + {static} projectsafe(a:float3, ontoB:float3, defaultValue:float3) : float3
+    + {static} projectsafe(a:float4, ontoB:float4, defaultValue:float4) : float4
+    + {static} project(a:double2, ontoB:double2) : double2
+    + {static} project(a:double3, ontoB:double3) : double3
+    + {static} project(a:double4, ontoB:double4) : double4
+    + {static} projectsafe(a:double2, ontoB:double2, defaultValue:double2) : double2
+    + {static} projectsafe(a:double3, ontoB:double3, defaultValue:double3) : double3
+    + {static} projectsafe(a:double4, ontoB:double4, defaultValue:double4) : double4
+    + {static} faceforward(n:float2, i:float2, ng:float2) : float2
+    + {static} faceforward(n:float3, i:float3, ng:float3) : float3
+    + {static} faceforward(n:float4, i:float4, ng:float4) : float4
+    + {static} faceforward(n:double2, i:double2, ng:double2) : double2
+    + {static} faceforward(n:double3, i:double3, ng:double3) : double3
+    + {static} faceforward(n:double4, i:double4, ng:double4) : double4
+    + {static} sincos(x:float, s:float, c:float) : void
+    + {static} sincos(x:float2, s:float2, c:float2) : void
+    + {static} sincos(x:float3, s:float3, c:float3) : void
+    + {static} sincos(x:float4, s:float4, c:float4) : void
+    + {static} sincos(x:double, s:double, c:double) : void
+    + {static} sincos(x:double2, s:double2, c:double2) : void
+    + {static} sincos(x:double3, s:double3, c:double3) : void
+    + {static} sincos(x:double4, s:double4, c:double4) : void
+    + {static} countbits(x:int) : int
+    + {static} countbits(x:int2) : int2
+    + {static} countbits(x:int3) : int3
+    + {static} countbits(x:int4) : int4
+    + {static} countbits(x:uint) : int
+    + {static} countbits(x:uint2) : int2
+    + {static} countbits(x:uint3) : int3
+    + {static} countbits(x:uint4) : int4
+    + {static} countbits(x:ulong) : int
+    + {static} countbits(x:long) : int
+    + {static} lzcnt(x:int) : int
+    + {static} lzcnt(x:int2) : int2
+    + {static} lzcnt(x:int3) : int3
+    + {static} lzcnt(x:int4) : int4
+    + {static} lzcnt(x:uint) : int
+    + {static} lzcnt(x:uint2) : int2
+    + {static} lzcnt(x:uint3) : int3
+    + {static} lzcnt(x:uint4) : int4
+    + {static} lzcnt(x:long) : int
+    + {static} lzcnt(x:ulong) : int
+    + {static} tzcnt(x:int) : int
+    + {static} tzcnt(x:int2) : int2
+    + {static} tzcnt(x:int3) : int3
+    + {static} tzcnt(x:int4) : int4
+    + {static} tzcnt(x:uint) : int
+    + {static} tzcnt(x:uint2) : int2
+    + {static} tzcnt(x:uint3) : int3
+    + {static} tzcnt(x:uint4) : int4
+    + {static} tzcnt(x:long) : int
+    + {static} tzcnt(x:ulong) : int
+    + {static} reversebits(x:int) : int
+    + {static} reversebits(x:int2) : int2
+    + {static} reversebits(x:int3) : int3
+    + {static} reversebits(x:int4) : int4
+    + {static} reversebits(x:uint) : uint
+    + {static} reversebits(x:uint2) : uint2
+    + {static} reversebits(x:uint3) : uint3
+    + {static} reversebits(x:uint4) : uint4
+    + {static} reversebits(x:long) : long
+    + {static} reversebits(x:ulong) : ulong
+    + {static} rol(x:int, n:int) : int
+    + {static} rol(x:int2, n:int) : int2
+    + {static} rol(x:int3, n:int) : int3
+    + {static} rol(x:int4, n:int) : int4
+    + {static} rol(x:uint, n:int) : uint
+    + {static} rol(x:uint2, n:int) : uint2
+    + {static} rol(x:uint3, n:int) : uint3
+    + {static} rol(x:uint4, n:int) : uint4
+    + {static} rol(x:long, n:int) : long
+    + {static} rol(x:ulong, n:int) : ulong
+    + {static} ror(x:int, n:int) : int
+    + {static} ror(x:int2, n:int) : int2
+    + {static} ror(x:int3, n:int) : int3
+    + {static} ror(x:int4, n:int) : int4
+    + {static} ror(x:uint, n:int) : uint
+    + {static} ror(x:uint2, n:int) : uint2
+    + {static} ror(x:uint3, n:int) : uint3
+    + {static} ror(x:uint4, n:int) : uint4
+    + {static} ror(x:long, n:int) : long
+    + {static} ror(x:ulong, n:int) : ulong
+    + {static} ceilpow2(x:int) : int
+    + {static} ceilpow2(x:int2) : int2
+    + {static} ceilpow2(x:int3) : int3
+    + {static} ceilpow2(x:int4) : int4
+    + {static} ceilpow2(x:uint) : uint
+    + {static} ceilpow2(x:uint2) : uint2
+    + {static} ceilpow2(x:uint3) : uint3
+    + {static} ceilpow2(x:uint4) : uint4
+    + {static} ceilpow2(x:long) : long
+    + {static} ceilpow2(x:ulong) : ulong
+    + {static} ceillog2(x:int) : int
+    + {static} ceillog2(x:int2) : int2
+    + {static} ceillog2(x:int3) : int3
+    + {static} ceillog2(x:int4) : int4
+    + {static} ceillog2(x:uint) : int
+    + {static} ceillog2(x:uint2) : int2
+    + {static} ceillog2(x:uint3) : int3
+    + {static} ceillog2(x:uint4) : int4
+    + {static} floorlog2(x:int) : int
+    + {static} floorlog2(x:int2) : int2
+    + {static} floorlog2(x:int3) : int3
+    + {static} floorlog2(x:int4) : int4
+    + {static} floorlog2(x:uint) : int
+    + {static} floorlog2(x:uint2) : int2
+    + {static} floorlog2(x:uint3) : int3
+    + {static} floorlog2(x:uint4) : int4
+    + {static} radians(x:float) : float
+    + {static} radians(x:float2) : float2
+    + {static} radians(x:float3) : float3
+    + {static} radians(x:float4) : float4
+    + {static} radians(x:double) : double
+    + {static} radians(x:double2) : double2
+    + {static} radians(x:double3) : double3
+    + {static} radians(x:double4) : double4
+    + {static} degrees(x:float) : float
+    + {static} degrees(x:float2) : float2
+    + {static} degrees(x:float3) : float3
+    + {static} degrees(x:float4) : float4
+    + {static} degrees(x:double) : double
+    + {static} degrees(x:double2) : double2
+    + {static} degrees(x:double3) : double3
+    + {static} degrees(x:double4) : double4
+    + {static} cmin(x:int2) : int
+    + {static} cmin(x:int3) : int
+    + {static} cmin(x:int4) : int
+    + {static} cmin(x:uint2) : uint
+    + {static} cmin(x:uint3) : uint
+    + {static} cmin(x:uint4) : uint
+    + {static} cmin(x:float2) : float
+    + {static} cmin(x:float3) : float
+    + {static} cmin(x:float4) : float
+    + {static} cmin(x:double2) : double
+    + {static} cmin(x:double3) : double
+    + {static} cmin(x:double4) : double
+    + {static} cmax(x:int2) : int
+    + {static} cmax(x:int3) : int
+    + {static} cmax(x:int4) : int
+    + {static} cmax(x:uint2) : uint
+    + {static} cmax(x:uint3) : uint
+    + {static} cmax(x:uint4) : uint
+    + {static} cmax(x:float2) : float
+    + {static} cmax(x:float3) : float
+    + {static} cmax(x:float4) : float
+    + {static} cmax(x:double2) : double
+    + {static} cmax(x:double3) : double
+    + {static} cmax(x:double4) : double
+    + {static} csum(x:int2) : int
+    + {static} csum(x:int3) : int
+    + {static} csum(x:int4) : int
+    + {static} csum(x:uint2) : uint
+    + {static} csum(x:uint3) : uint
+    + {static} csum(x:uint4) : uint
+    + {static} csum(x:float2) : float
+    + {static} csum(x:float3) : float
+    + {static} csum(x:float4) : float
+    + {static} csum(x:double2) : double
+    + {static} csum(x:double3) : double
+    + {static} csum(x:double4) : double
+    + {static} square(x:float) : float
+    + {static} square(x:float2) : float2
+    + {static} square(x:float3) : float3
+    + {static} square(x:float4) : float4
+    + {static} square(x:double) : double
+    + {static} square(x:double2) : double2
+    + {static} square(x:double3) : double3
+    + {static} square(x:double4) : double4
+    + {static} square(x:int) : int
+    + {static} square(x:int2) : int2
+    + {static} square(x:int3) : int3
+    + {static} square(x:int4) : int4
+    + {static} square(x:uint) : uint
+    + {static} square(x:uint2) : uint2
+    + {static} square(x:uint3) : uint3
+    + {static} square(x:uint4) : uint4
+    + {static} <<unsafe>> compress(output:int*, index:int, val:int4, mask:bool4) : int
+    + {static} <<unsafe>> compress(output:uint*, index:int, val:uint4, mask:bool4) : int
+    + {static} <<unsafe>> compress(output:float*, index:int, val:float4, mask:bool4) : int
+    + {static} f16tof32(x:uint) : float
+    + {static} f16tof32(x:uint2) : float2
+    + {static} f16tof32(x:uint3) : float3
+    + {static} f16tof32(x:uint4) : float4
+    + {static} f32tof16(x:float) : uint
+    + {static} f32tof16(x:float2) : uint2
+    + {static} f32tof16(x:float3) : uint3
+    + {static} f32tof16(x:float4) : uint4
+    + {static} orthonormal_basis(normal:float3, basis1:float3, basis2:float3) : void
+    + {static} orthonormal_basis(normal:double3, basis1:double3, basis2:double3) : void
+    + {static} chgsign(x:float, y:float) : float
+    + {static} chgsign(x:float2, y:float2) : float2
+    + {static} chgsign(x:float3, y:float3) : float3
+    + {static} chgsign(x:float4, y:float4) : float4
+    + {static} <<unsafe>> hash(pBuffer:void*, numBytes:int, seed:uint) : uint
+    + {static} up() : float3
+    + {static} down() : float3
+    + {static} forward() : float3
+    + {static} back() : float3
+    + {static} left() : float3
+    + {static} right() : float3
+    + {static} EulerXYZ(q:quaternion) : float3
+    + {static} EulerXZY(q:quaternion) : float3
+    + {static} EulerYXZ(q:quaternion) : float3
+    + {static} EulerYZX(q:quaternion) : float3
+    + {static} EulerZXY(q:quaternion) : float3
+    + {static} EulerZYX(q:quaternion) : float3
+    + {static} Euler(q:quaternion, order:math.RotationOrder) : float3
+    + {static} mulScale(m:float3x3, s:float3) : float3x3
+    + {static} scaleMul(s:float3, m:float3x3) : float3x3
+}
+enum RotationOrder {
+    XYZ,
+    XZY,
+    YXZ,
+    YZX,
+    ZXY,
+    ZYX,
+    Default= ZXY,
+}
+enum ShuffleComponent {
+    LeftX,
+    LeftY,
+    LeftZ,
+    LeftW,
+    RightX,
+    RightY,
+    RightZ,
+    RightW,
+}
+struct LongDoubleUnion {
+    + longValue : long
+    + doubleValue : double
+}
+math +-- RotationOrder
+math +-- ShuffleComponent
+math +-- LongDoubleUnion
+@enduml

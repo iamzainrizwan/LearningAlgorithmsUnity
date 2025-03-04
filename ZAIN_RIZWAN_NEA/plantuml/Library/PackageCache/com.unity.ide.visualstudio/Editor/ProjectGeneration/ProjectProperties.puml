@@ -1,0 +1,16 @@
+@startuml
+class ProjectProperties {
+    + ProjectGuid : string <<get>> <<set>>
+    + LangVersion : string <<get>> <<set>> = "latest"
+    + AssemblyName : string <<get>> <<set>>
+    + RootNamespace : string <<get>> <<set>>
+    + OutputPath : string <<get>> <<set>>
+    + RulesetPath : string <<get>> <<set>>
+    + AnalyzerConfigPath : string <<get>> <<set>>
+    + Unsafe : bool <<get>> <<set>> = false
+    + FlavoringProjectType : string <<get>> <<set>>
+    + FlavoringBuildTarget : string <<get>> <<set>>
+    + FlavoringUnityVersion : string <<get>> <<set>>
+    + FlavoringPackageVersion : string <<get>> <<set>>
+}
+@enduml

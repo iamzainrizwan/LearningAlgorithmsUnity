@@ -1,0 +1,20 @@
+@startuml
+interface ICameraUpdater {
+}
+class CameraState {
+    + viewSize : float <<get>> <<set>>
+    + distanceFromPivot : float <<get>>
+    + fieldOfView : float <<get>>
+    + farClip : float <<get>>
+    + nearClip : float <<get>>
+    + UpdateCamera(camera:Camera) : void
+    + Reset() : void
+}
+ICameraUpdater <|-- CameraState
+CameraState o-> "pivot" Vector3
+CameraState o-> "rotation" Quaternion
+CameraState --> "position" Vector3
+CameraState --> "forward" Vector3
+CameraState --> "up" Vector3
+CameraState --> "right" Vector3
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class OnEnable <<sealed>> {
+}
+class "MachineEventUnit`1"<T> {
+}
+"MachineEventUnit`1" "<EmptyEventArgs>" <|-- OnEnable
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+class TrackAssetInspector {
+    + <<override>> OnInspectorGUI() : void
+    + <<virtual>> OnEnable() : void
+}
+class TrackCurvesWrapper {
+    + lastCurveVersion : int <<get>> <<set>>
+    + lastEvalTime : double <<get>> <<set>>
+    + TrackCurvesWrapper(track:TrackAsset)
+    + ToLocalTime(time:double) : double
+}
+Editor <|-- TrackAssetInspector
+TrackAssetInspector +-- TrackCurvesWrapper
+ICurvesOwnerInspectorWrapper <|-- TrackCurvesWrapper
+TrackCurvesWrapper --> "curvesOwner" ICurvesOwner
+TrackCurvesWrapper --> "serializedPlayableAsset" SerializedObject
+@enduml

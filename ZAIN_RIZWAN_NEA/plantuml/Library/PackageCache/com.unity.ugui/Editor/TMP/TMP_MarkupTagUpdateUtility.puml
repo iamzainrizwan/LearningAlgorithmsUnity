@@ -1,0 +1,15 @@
+@startuml
+class TMP_MarkupTagUpdateUtility {
+    + {static} ToUpperFast(c:char) : char
+    + {static} GetHashCodeCaseInSensitive(s:string) : int
+}
+struct MarkupTagDescriptor {
+    + name : string
+    + tag : string
+    + description : string
+    + MarkupTagDescriptor(name:string, tag:string, description:string)
+    + MarkupTagDescriptor(name:string)
+}
+TMP_MarkupTagUpdateUtility +-- MarkupTagDescriptor
+MarkupTagDescriptor o-> "linefeed" MarkupTagDescriptor
+@enduml

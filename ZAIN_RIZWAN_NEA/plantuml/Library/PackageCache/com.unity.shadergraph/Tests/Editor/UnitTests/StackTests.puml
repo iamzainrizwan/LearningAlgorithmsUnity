@@ -1,0 +1,9 @@
+@startuml
+class StackTests {
+    + RunBeforeAnyTests() : void
+    + CanAddBlockNodeToContext() : void
+    + CanRemoveBlockNodeFromContext() : void
+    + CanInsertBlockNodeToContext() : void
+    + CanFilterBlockNodeByShaderStage() : void
+}
+@enduml

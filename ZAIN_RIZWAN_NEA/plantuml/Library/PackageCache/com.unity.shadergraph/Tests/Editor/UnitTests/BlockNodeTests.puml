@@ -1,0 +1,12 @@
+@startuml
+class BlockNodeTests {
+    + RunBeforeAnyTests() : void
+    + CanGatherBlockDescriptors() : void
+    + CanInitializeBlockNode() : void
+    + CanCreateSlotFromBlockDescriptor() : void
+    + CanCreateSlotFromCustomSlotBlockDescriptor() : void
+    + CanGetRequirementsFromBlockNode() : void
+    + CanSerializeDescriptor() : void
+    + CanGetBlockIndex() : void
+}
+@enduml

@@ -1,0 +1,50 @@
+@startuml
+class TestJobData {
+    + guid : string
+    + startTime : string
+    + taskPC : int
+    + isRunning : bool
+    + undoGroup : int
+    + isHandledByRunner : bool
+    + InitTestScenePath : string
+    + TargetRuntimePlatform : RuntimePlatform?
+    + UserApplicationIdleTime : int
+    + UserInteractionMode : int
+    + TestJobData(settings:ExecutionSettings)
+    + OnBeforeSerialize() : void
+    + OnAfterDeserialize() : void
+}
+class "Stack`1"<T> {
+}
+class SavedProjectSettings {
+    + runInBackgroundValue : bool
+    + consoleErrorPaused : bool
+}
+ISerializationCallbackReceiver <|-- TestJobData
+TestJobData o-> "taskInfoStack<TaskInfo>" "Stack`1"
+TestJobData --> "executionSettings" ExecutionSettings
+TestJobData o-> "runProgress" RunProgress
+TestJobData --> "editModeRunner" EditModeRunner
+TestJobData --> "setUpTearDownState" BeforeAfterTestCommandState
+TestJobData --> "outerUnityTestActionState" BeforeAfterTestCommandState
+TestJobData --> "testRunnerStateSerializer" TestRunnerStateSerializer
+TestJobData --> "enumerableTestState" EnumerableTestState
+TestJobData --> "testProgress" TestProgress
+TestJobData --> "testTree" ITest
+TestJobData --> "testFilter" ITestFilter
+TestJobData --> "TestStartedEvent" TestStartedEvent
+TestJobData --> "TestFinishedEvent" TestFinishedEvent
+TestJobData --> "RunStartedEvent" RunStartedEvent
+TestJobData --> "RunFinishedEvent" RunFinishedEvent
+TestJobData --> "Context" UnityTestExecutionContext
+TestJobData --> "ConstructDelegator" ConstructDelegator
+TestJobData --> "TestResults" ITestResult
+TestJobData --> "InitTestScene" Scene
+TestJobData --> "PlayerBuildOptions" BuildPlayerOptions
+TestJobData --> "PlaymodeTestsController" PlaymodeTestsController
+TestJobData --> "PlayModeSettings" PlaymodeTestsControllerSettings
+TestJobData --> "PlatformSpecificSetup" PlatformSpecificSetup
+TestJobData --> "RetryRepeatState" EnumerableTestState
+TestJobData --> "OriginalProjectSettings" SavedProjectSettings
+TestJobData +-- SavedProjectSettings
+@enduml

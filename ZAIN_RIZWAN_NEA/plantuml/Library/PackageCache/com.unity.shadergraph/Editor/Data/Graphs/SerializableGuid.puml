@@ -1,0 +1,10 @@
+@startuml
+class SerializableGuid {
+    + SerializableGuid()
+    + SerializableGuid(guid:Guid)
+    + <<virtual>> OnBeforeSerialize() : void
+    + <<virtual>> OnAfterDeserialize() : void
+}
+ISerializationCallbackReceiver <|-- SerializableGuid
+SerializableGuid --> "guid" Guid
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class IsExeAvailable <<static>> {
+}
+class PlasticInstallPath <<static>> {
+}
+class Plastic {
+}
+class Gluon {
+}
+PlasticInstallPath +-- Plastic
+PlasticInstallPath +-- Gluon
+@enduml

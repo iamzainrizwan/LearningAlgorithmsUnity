@@ -1,0 +1,16 @@
+@startuml
+abstract class BaseInputModule {
+    + {abstract} Process() : void
+    + <<virtual>> IsPointerOverGameObject(pointerId:int) : bool
+    + <<virtual>> ShouldActivateModule() : bool
+    + <<virtual>> DeactivateModule() : void
+    + <<virtual>> ActivateModule() : void
+    + <<virtual>> UpdateModule() : void
+    + <<virtual>> IsModuleSupported() : bool
+    + <<virtual>> ConvertUIToolkitPointerId(sourcePointerData:PointerEventData) : int
+    + <<virtual>> ConvertPointerEventScrollDeltaToTicks(scrollDelta:Vector2) : Vector2
+}
+UIBehaviour <|-- BaseInputModule
+BaseInputModule --> "input" BaseInput
+BaseInputModule --> "inputOverride" BaseInput
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class DistanceNode {
+    + DistanceNode()
+}
+CodeFunctionNode <|-- DistanceNode
+@enduml

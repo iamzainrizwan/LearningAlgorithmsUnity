@@ -1,0 +1,13 @@
+@startuml
+class RandomInstancing {
+    + m_PoolSize : int = 250
+    + m_InstancesPerTile : int = 10
+    + m_RandomPosition : bool = true
+    + m_RandomOrientation : bool = true
+    + m_Height : float
+    + m_BaseHash : int = 347652783
+    + m_Size : float = 100.0f
+}
+MonoBehaviour <|-- RandomInstancing
+RandomInstancing --> "m_Prefab" GameObject
+@enduml

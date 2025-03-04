@@ -1,0 +1,6 @@
+@startuml
+class OrHandler {
+    + OrHandler()
+}
+BinaryOperatorHandler <|-- OrHandler
+@enduml

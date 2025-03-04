@@ -1,0 +1,40 @@
+@startuml
+class UnsafeHashMapTests {
+    + UnsafeHashMap_ForEach(n:int) : void
+    + UnsafeHashMap_ForEach_FixedStringKey() : void
+    + UnsafeHashMap_ForEach_Throws_Job_Iterator() : void
+    + UnsafeHashMap_ForEach_From_Job(n:int) : void
+    + UnsafeHashMap_EnumeratorDoesNotReturnRemovedElementsTest() : void
+    + UnsafeHashMap_EnumeratorInfiniteIterationTest() : void
+    + UnsafeHashMap_CustomAllocatorTest() : void
+    + <<unsafe>> UnsafeHashMap_BurstedCustomAllocatorTest() : void
+    + UnsafeHashMap_TryAdd_TryGetValue_Clear() : void
+    + UnsafeHashMap_Key_Collisions() : void
+    + UnsafeHashMap_SupportsAutomaticCapacityChange() : void
+    + UnsafeHashMap_SameKey() : void
+    + UnsafeHashMap_IsEmpty() : void
+    + UnsafeHashMap_EmptyCapacity() : void
+    + UnsafeHashMap_Remove() : void
+    + UnsafeHashMap_RemoveOnEmptyMap_DoesNotThrow() : void
+    + UnsafeHashMap_TryAddScalability() : void
+    + <<unsafe>> UnsafeHashMap_TrimExcess() : void
+    + UnsafeHashMap_IndexerAdd_ResizesContainer() : void
+}
+struct UnsafeHashMap_ForEachIterator {
+    + Execute() : void
+}
+struct UnsafeHashMap_ForEach_Job {
+    + Num : int
+    + Execute() : void
+}
+struct BurstedCustomAllocatorJob {
+    + Execute() : void
+}
+CollectionsTestCommonBase <|-- UnsafeHashMapTests
+UnsafeHashMapTests +-- UnsafeHashMap_ForEachIterator
+IJob <|-- UnsafeHashMap_ForEachIterator
+UnsafeHashMapTests +-- UnsafeHashMap_ForEach_Job
+IJob <|-- UnsafeHashMap_ForEach_Job
+UnsafeHashMapTests +-- BurstedCustomAllocatorJob
+IJob <|-- BurstedCustomAllocatorJob
+@enduml

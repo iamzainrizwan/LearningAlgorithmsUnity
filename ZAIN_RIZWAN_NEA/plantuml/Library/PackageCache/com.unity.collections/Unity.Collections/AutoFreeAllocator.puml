@@ -1,0 +1,24 @@
+@startuml
+struct "ArrayOfArrays`1"<T> {
+    + Length : int <<get>>
+    + Capacity : int <<get>>
+    + ArrayOfArrays(capacityInElements:int, backingAllocatorHandle:AllocatorManager.AllocatorHandle, log2BlockSizeInElements:int)
+    + LockfreeAdd(t:T) : void
+    + Rewind() : void
+    + Clear() : void
+    + Dispose() : void
+    + RemoveAtSwapBack(elementIndex:int) : void
+    + TrimExcess() : void
+}
+struct AutoFreeAllocator {
+    <<unsafe>> + Update() : void
+    <<unsafe>> + Initialize(backingAllocatorHandle:AllocatorManager.AllocatorHandle) : void
+    <<unsafe>> + FreeAll() : void
+    + Dispose() : void
+    + Try(block:AllocatorManager.Block) : int
+    + IsCustomAllocator : bool <<get>>
+    + IsAutoDispose : bool <<get>>
+}
+IDisposable <|-- "ArrayOfArrays`1"
+AutoFreeAllocator --> "ToAllocator" Allocator
+@enduml

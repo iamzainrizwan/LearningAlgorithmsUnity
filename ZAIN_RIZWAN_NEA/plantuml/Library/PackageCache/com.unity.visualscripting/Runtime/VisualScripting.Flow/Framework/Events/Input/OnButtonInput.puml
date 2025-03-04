@@ -1,0 +1,9 @@
+@startuml
+class OnButtonInput <<sealed>> {
+}
+class "MachineEventUnit`1"<T> {
+}
+"MachineEventUnit`1" "<EmptyEventArgs>" <|-- OnButtonInput
+OnButtonInput --> "buttonName" ValueInput
+OnButtonInput --> "action" ValueInput
+@enduml

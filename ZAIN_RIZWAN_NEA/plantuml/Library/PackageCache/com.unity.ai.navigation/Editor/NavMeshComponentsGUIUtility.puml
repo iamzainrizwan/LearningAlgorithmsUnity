@@ -1,0 +1,8 @@
+@startuml
+class NavMeshComponentsGUIUtility <<static>> {
+    + {static} AreaPopup(labelName:string, areaProperty:SerializedProperty) : void
+    + {static} AgentTypePopup(labelName:string, agentTypeID:SerializedProperty) : void
+    + {static} AgentMaskPopup(labelName:string, agentMask:SerializedProperty) : void
+    + {static} CreateAndSelectGameObject(suggestedName:string, parent:GameObject) : GameObject
+}
+@enduml

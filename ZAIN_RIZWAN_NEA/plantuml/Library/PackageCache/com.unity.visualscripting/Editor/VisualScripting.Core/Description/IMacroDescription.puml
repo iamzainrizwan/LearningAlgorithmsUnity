@@ -1,0 +1,5 @@
+@startuml
+interface IMacroDescription {
+}
+IDescription <|-- IMacroDescription
+@enduml

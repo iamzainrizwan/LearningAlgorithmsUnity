@@ -1,0 +1,46 @@
+@startuml
+class RecommenderSystemData {
+    + TargetUnityVersion : string
+    + IsHostingModelCompatibleWithNetcode(netcode:PossibleSolution, hostingModel:PossibleSolution, reason:string) : bool
+}
+struct SolutionSelection {
+    + SolutionSelection(netcode:PossibleSolution, hostingModel:PossibleSolution)
+}
+class RecommendedSolution {
+    + Title : string
+    + MainPackageId : string
+    + DocUrl : string
+    + ShortDescription : string
+}
+class IncompatibleSolution {
+    + Reason : string
+    + IncompatibleSolution(solution:PossibleSolution, reason:string)
+}
+class RecommendedPackage {
+    + PackageId : string
+    + Reason : string
+    + RecommendedPackage(packageId:string, type:RecommendationType, reason:string)
+}
+class PackageDetails {
+    + Id : string
+    + Name : string
+    + ShortDescription : string
+    + DocsUrl : string
+    + PreReleaseVersion : string
+    + PackageDetails(id:string, name:string, shortDescription:string, docsUrl:string, additionalPackages:string[])
+}
+class Utils <<static>> {
+    + {static} ToDictionary(array:T[], keySelector:Func<T, TKey>) : Dictionary<TKey, T>
+    + {static} ToDictionary(solutions:RecommendedSolution[]) : Dictionary<SolutionSelection, string>
+    + {static} UpdateIncompatibilityInSolutions(solutions:RecommendedSolution[], netcode:PossibleSolution, hostingModel:PossibleSolution, newIsCompatible:bool, reason:string) : void
+}
+class "Dictionary`2"<T1,T2> {
+}
+RecommenderSystemData --> "PackageDetailsById<string,PackageDetails>" "Dictionary`2"
+RecommenderSystemData --> "SolutionsByType<PossibleSolution,RecommendedSolution>" "Dictionary`2"
+SolutionSelection --> "Netcode" PossibleSolution
+SolutionSelection --> "HostingModel" PossibleSolution
+RecommendedSolution --> "Type" PossibleSolution
+IncompatibleSolution --> "Solution" PossibleSolution
+RecommendedPackage --> "Type" RecommendationType
+@enduml

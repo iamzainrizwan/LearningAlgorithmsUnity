@@ -1,0 +1,6 @@
+@startuml
+class LessThanOrEqualHandler {
+    + LessThanOrEqualHandler()
+}
+BinaryOperatorHandler <|-- LessThanOrEqualHandler
+@enduml

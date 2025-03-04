@@ -1,0 +1,9 @@
+@startuml
+class PanelMaker {
+    + headerText : string
+    + bodyText : string
+    + CreatePanel() : void
+}
+MonoBehaviour <|-- PanelMaker
+PanelMaker --> "panelManager" PanelManager
+@enduml

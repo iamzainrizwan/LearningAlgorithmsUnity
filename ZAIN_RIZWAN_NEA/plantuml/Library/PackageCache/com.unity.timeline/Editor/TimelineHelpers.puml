@@ -1,0 +1,41 @@
+@startuml
+class TimelineHelpers <<static>> {
+    + {static} CloneExposedReferences(clone:ScriptableObject, sourceTable:IExposedPropertyTable, destTable:IExposedPropertyTable) : void
+    + {static} CloneReferencedPlayableAsset(original:ScriptableObject, sourceTable:IExposedPropertyTable, destTable:IExposedPropertyTable, newOwner:Object) : ScriptableObject
+    + {static} Clone(clip:TimelineClip, sourceTable:IExposedPropertyTable, destTable:IExposedPropertyTable, time:double, newOwner:PlayableAsset) : TimelineClip
+    + {static} Clone(parent:PlayableAsset, trackAsset:TrackAsset, sourceTable:IExposedPropertyTable, destTable:IExposedPropertyTable, assetOwner:PlayableAsset) : TrackAsset
+    + {static} DuplicateItemsUsingCurrentEditMode(sourceTable:IExposedPropertyTable, destTable:IExposedPropertyTable, items:ItemsPerTrack, targetParent:TrackAsset, candidateTime:double, undoOperation:string) : IEnumerable<ITimelineItem>
+    + {static} DuplicateItemsUsingCurrentEditMode(sourceTable:IExposedPropertyTable, destTable:IExposedPropertyTable, items:IEnumerable<ItemsPerTrack>, candidateTime:double, undoOperation:string) : IEnumerable<ITimelineItem>
+    + {static} GetCustomDrawer(trackType:Type) : Type
+    + {static} HaveSameContainerAsset(assetA:Object, assetB:Object) : bool
+    + {static} SaveAnimClipIntoObject(clip:AnimationClip, asset:Object) : void
+    + {static} AddRequiredComponent(go:GameObject, asset:TrackAsset) : Component
+    + {static} GetTrackCategoryName(trackType:System.Type) : string
+    + {static} GetItemCategoryName(itemType:System.Type) : string
+    + {static} GetTrackMenuName(trackType:System.Type) : string
+    + {static} GetLoopDuration(clip:TimelineClip) : double
+    + {static} GetClipAssetEndTime(clip:TimelineClip) : double
+    + {static} HasUsableAssetDuration(clip:TimelineClip) : bool
+    + {static} GetLoopTimes(clip:TimelineClip) : double[]
+    + {static} GetCandidateTime(mousePosition:Vector2?, trackAssets:TrackAsset[]) : double
+    + {static} CreateClipOnTrack(asset:Object, parentTrack:TrackAsset, state:WindowState) : TimelineClip
+    + {static} CreateClipOnTrack(asset:Object, parentTrack:TrackAsset, candidateTime:double) : TimelineClip
+    + {static} CreateClipOnTrack(playableAssetType:Type, parentTrack:TrackAsset, state:WindowState) : TimelineClip
+    + {static} CreateClipOnTrack(playableAssetType:Type, parentTrack:TrackAsset, candidateTime:double) : TimelineClip
+    + {static} CreateClipOnTrack(asset:Object, parentTrack:TrackAsset, candidateTime:double, state:WindowState) : TimelineClip
+    + {static} CreateClipOnTrack(playableAssetType:Type, assignableObject:Object, parentTrack:TrackAsset, candidateTime:double) : TimelineClip
+    + {static} CreateClipOnTrack(playableAssetType:Type, assignableObject:Object, parentTrack:TrackAsset, candidateTime:double, state:WindowState) : TimelineClip
+    + {static} CreateClipOnTrackFromPlayableAsset(asset:IPlayableAsset, parentTrack:TrackAsset, candidateTime:double) : TimelineClip
+    + {static} CreateClipsFromObjects(assetType:Type, targetTrack:TrackAsset, candidateTime:double, objects:IEnumerable<Object>) : void
+    + {static} CreateMarkersFromObjects(assetType:Type, targetTrack:TrackAsset, candidateTime:double, objects:IEnumerable<Object>) : void
+    + {static} CreateMarkerOnTrack(markerType:Type, assignableObject:Object, parentTrack:TrackAsset, candidateTime:double) : IMarker
+    + {static} CreateClipsFromTypes(assetTypes:IEnumerable<Type>, targetTrack:TrackAsset, candidateTime:double) : void
+    + {static} FrameItems(items:IEnumerable<ITimelineItem>) : void
+    + {static} Frame(state:WindowState, start:double, end:double) : void
+    + {static} RangeSelect(totalCollection:IList<T>, currentSelection:IList<T>, clickedItem:T, selector:Action<T>, remover:Action<T>) : void
+    + {static} CreateTrack(asset:TimelineAsset, type:Type, parent:TrackAsset, name:string) : TrackAsset
+    + {static} CreateTrack(type:Type, parent:TrackAsset, name:string) : TrackAsset
+    + {static} CreateTrack(asset:TimelineAsset, parent:TrackAsset, name:string) : T
+    + {static} CreateTrack(parent:TrackAsset, name:string) : T
+}
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+interface ITimelineItem {
+}
+interface ITrimmable {
+}
+interface IBlendable {
+}
+class "IEquatable`1"<T> {
+}
+"IEquatable`1" "<ITimelineItem>" <|-- ITimelineItem
+ITimelineItem <|-- ITrimmable
+ITimelineItem <|-- IBlendable
+@enduml

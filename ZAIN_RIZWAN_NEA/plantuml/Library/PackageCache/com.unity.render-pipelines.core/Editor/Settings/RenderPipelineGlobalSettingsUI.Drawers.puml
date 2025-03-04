@@ -1,0 +1,5 @@
+@startuml
+class RenderPipelineGlobalSettingsUI <<static>> <<partial>> {
+    + {static} DrawVolumeProfileAssetField(volumeProfileSerializedProperty:SerializedProperty, volumeProfileLabel:GUIContent, getOrCreateVolumeProfile:Func<VolumeProfile>, labelFoldoutExpanded:bool) : VolumeProfile
+}
+@enduml

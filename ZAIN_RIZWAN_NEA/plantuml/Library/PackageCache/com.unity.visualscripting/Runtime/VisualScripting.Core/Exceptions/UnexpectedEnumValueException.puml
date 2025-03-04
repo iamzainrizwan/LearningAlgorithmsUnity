@@ -1,0 +1,7 @@
+@startuml
+class "UnexpectedEnumValueException`1"<T> {
+    + UnexpectedEnumValueException(value:T)
+    + Value : T <<get>>
+}
+Exception <|-- "UnexpectedEnumValueException`1"
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class XRGraphicsAutomatedTests <<static>> {
+    + {static} enabled : bool <<get>>
+    + {static} running : bool = false
+}
+@enduml

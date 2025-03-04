@@ -1,0 +1,17 @@
+@startuml
+struct "SharedStatic`1"<T> {
+    + {static} GetOrCreate(alignment:uint) : SharedStatic<T>
+    + {static} GetOrCreate(alignment:uint) : SharedStatic<T>
+    + {static} GetOrCreateUnsafe(alignment:uint, hashCode:long, subHashCode:long) : SharedStatic<T>
+    + {static} GetOrCreatePartiallyUnsafeWithHashCode(alignment:uint, hashCode:long) : SharedStatic<T>
+    + {static} GetOrCreatePartiallyUnsafeWithSubHashCode(alignment:uint, subHashCode:long) : SharedStatic<T>
+    + {static} GetOrCreate(contextType:Type, alignment:uint) : SharedStatic<T>
+    + {static} GetOrCreate(contextType:Type, subContextType:Type, alignment:uint) : SharedStatic<T>
+}
+class SharedStatic <<static>> {
+    + {static} <<unsafe>> GetOrCreateSharedStaticInternal(getHashCode64:long, getSubHashCode64:long, sizeOf:uint, alignment:uint) : void*
+}
+class PreserveAttribute {
+}
+SharedStatic +-- PreserveAttribute
+@enduml

@@ -1,0 +1,36 @@
+@startuml
+class TypeUtility <<static>> {
+    + {static} IsBasic(type:Type) : bool
+    + {static} IsNumeric(type:Type) : bool
+    + {static} IsNumericConstruct(type:Type) : bool
+    + {static} Namespace(type:Type) : Namespace
+    + {static} Instantiator(type:Type, nonPublic:bool) : Func<object>
+    + {static} Instantiator(type:Type, nonPublic:bool, parameterTypes:Type[]) : Func<object[], object>
+    + {static} TryInstantiate(type:Type, nonPublic:bool, args:object[]) : object
+    + {static} Instantiate(type:Type, nonPublic:bool, args:object[]) : object
+    + {static} Default(type:Type) : object
+    + {static} PseudoDefault(type:Type) : object
+    + {static} IsStatic(type:Type) : bool
+    + {static} IsAbstract(type:Type) : bool
+    + {static} IsConcrete(type:Type) : bool
+    + {static} GetInterfaces(type:Type, includeInherited:bool) : IEnumerable<Type>
+    + {static} BaseTypeAndInterfaces(type:Type, inheritedInterfaces:bool) : IEnumerable<Type>
+    + {static} Hierarchy(type:Type) : IEnumerable<Type>
+    + {static} AndBaseTypeAndInterfaces(type:Type) : IEnumerable<Type>
+    + {static} AndInterfaces(type:Type) : IEnumerable<Type>
+    + {static} AndHierarchy(type:Type) : IEnumerable<Type>
+    + {static} GetListElementType(listType:Type, allowNonGeneric:bool) : Type
+    + {static} GetEnumerableElementType(enumerableType:Type, allowNonGeneric:bool) : Type
+    + {static} GetDictionaryItemType(dictionaryType:Type, allowNonGeneric:bool, genericArgumentIndex:int) : Type
+    + {static} GetDictionaryKeyType(dictionaryType:Type, allowNonGeneric:bool) : Type
+    + {static} GetDictionaryValueType(dictionaryType:Type, allowNonGeneric:bool) : Type
+    + {static} IsNullable(type:Type) : bool
+    + {static} IsReferenceType(type:Type) : bool
+    + {static} IsStruct(type:Type) : bool
+    + {static} IsAssignableFrom(type:Type, value:object) : bool
+    + {static} CanMakeGenericTypeVia(openConstructedType:Type, closedConstructedType:Type) : bool
+    + {static} MakeGenericTypeVia(openConstructedType:Type, closedConstructedType:Type, resolvedGenericParameters:Dictionary<Type, Type>, safe:bool) : Type
+    + {static} ToShortString(o:object, maxLength:int) : string
+    + {static} GetTypesSafely(assembly:Assembly) : IEnumerable<Type>
+}
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class BooleanShaderProperty <<sealed>> {
+}
+class "AbstractShaderProperty`1"<T> {
+}
+"AbstractShaderProperty`1" "<bool>" <|-- BooleanShaderProperty
+BooleanShaderProperty --> "propertyType" PropertyType
+@enduml

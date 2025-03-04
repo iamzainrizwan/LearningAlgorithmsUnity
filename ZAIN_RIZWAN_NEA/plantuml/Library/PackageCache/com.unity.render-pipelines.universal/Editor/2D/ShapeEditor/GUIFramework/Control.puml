@@ -1,0 +1,15 @@
+@startuml
+abstract class Control {
+    + name : string <<get>>
+    + ID : int <<get>>
+    + actionID : int <<get>>
+    + Control(name:string)
+    + GetControl(guiState:IGUIState) : void
+    + BeginLayout(guiState:IGUIState) : void
+    + Layout(guiState:IGUIState) : void
+    + EndLayout(guiState:IGUIState) : void
+    + Repaint(guiState:IGUIState) : void
+}
+Control --> "layoutData" LayoutData
+Control --> "hotLayoutData" LayoutData
+@enduml

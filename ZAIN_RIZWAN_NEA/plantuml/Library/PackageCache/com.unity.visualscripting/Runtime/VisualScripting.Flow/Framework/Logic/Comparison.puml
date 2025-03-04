@@ -1,0 +1,14 @@
+@startuml
+class Comparison <<sealed>> {
+    + numeric : bool <<get>> <<set>> = true
+}
+Unit <|-- Comparison
+Comparison --> "a" ValueInput
+Comparison --> "b" ValueInput
+Comparison --> "aLessThanB" ValueOutput
+Comparison --> "aLessThanOrEqualToB" ValueOutput
+Comparison --> "aEqualToB" ValueOutput
+Comparison --> "aNotEqualToB" ValueOutput
+Comparison --> "aGreaterThanOrEqualToB" ValueOutput
+Comparison --> "aGreatherThanB" ValueOutput
+@enduml

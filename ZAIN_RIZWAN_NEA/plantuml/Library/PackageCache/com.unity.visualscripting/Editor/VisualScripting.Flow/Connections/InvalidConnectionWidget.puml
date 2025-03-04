@@ -1,0 +1,9 @@
+@startuml
+class InvalidConnectionWidget <<sealed>> {
+    + InvalidConnectionWidget(canvas:FlowCanvas, connection:InvalidConnection)
+}
+class "UnitConnectionWidget`1"<T> {
+}
+"UnitConnectionWidget`1" "<InvalidConnection>" <|-- InvalidConnectionWidget
+InvalidConnectionWidget --> "color" Color
+@enduml

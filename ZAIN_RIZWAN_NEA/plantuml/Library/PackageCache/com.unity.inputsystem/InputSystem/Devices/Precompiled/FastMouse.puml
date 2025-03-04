@@ -1,0 +1,6 @@
+@startuml
+class FastMouse <<partial>> {
+    + <<const>> metadata : string = "AutoWindowSpace;Vector2;Delta;Button;Axis;Digital;Integer;Mouse;Pointer"
+    + FastMouse()
+}
+@enduml

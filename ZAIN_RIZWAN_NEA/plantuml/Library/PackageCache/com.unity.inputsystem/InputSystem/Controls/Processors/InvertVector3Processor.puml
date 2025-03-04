@@ -1,0 +1,12 @@
+@startuml
+class InvertVector3Processor {
+    + invertX : bool = true
+    + invertY : bool = true
+    + invertZ : bool = true
+    + <<override>> Process(value:Vector3, control:InputControl) : Vector3
+    + <<override>> ToString() : string
+}
+class "InputProcessor`1"<T> {
+}
+"InputProcessor`1" "<Vector3>" <|-- InvertVector3Processor
+@enduml

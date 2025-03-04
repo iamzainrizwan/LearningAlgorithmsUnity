@@ -1,0 +1,4 @@
+@startuml
+class PlasticApp <<static>> {
+}
+@enduml

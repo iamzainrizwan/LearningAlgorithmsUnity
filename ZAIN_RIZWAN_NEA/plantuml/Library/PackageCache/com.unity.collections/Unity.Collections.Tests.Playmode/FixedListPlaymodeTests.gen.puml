@@ -1,0 +1,32 @@
+@startuml
+class FixedListPlaymodeTests {
+    + FixedListPlaymode_AreCollectionsChecksEnabled() : IEnumerator
+    + FixedList32BytePlaymode_GenericHasExpectedCapacity() : IEnumerator
+    + FixedList64BytePlaymode_GenericHasExpectedCapacity() : IEnumerator
+    + FixedList128BytePlaymode_GenericHasExpectedCapacity() : IEnumerator
+    + FixedList32BytePlaymode_HasExpectedCapacity() : IEnumerator
+    + FixedList64BytePlaymode_HasExpectedCapacity() : IEnumerator
+    + FixedList64BytePlaymode_To_FixedList32Byte() : IEnumerator
+    + FixedList128BytePlaymode_HasExpectedCapacity() : IEnumerator
+    + FixedList128BytePlaymode_To_FixedList32Byte() : IEnumerator
+    + FixedList128BytePlaymode_To_FixedList64Byte() : IEnumerator
+    + FixedList32IntPlaymode_GenericHasExpectedCapacity() : IEnumerator
+    + FixedList64IntPlaymode_GenericHasExpectedCapacity() : IEnumerator
+    + FixedList128IntPlaymode_GenericHasExpectedCapacity() : IEnumerator
+    + FixedList32IntPlaymode_HasExpectedCapacity() : IEnumerator
+    + FixedList64IntPlaymode_HasExpectedCapacity() : IEnumerator
+    + FixedList64IntPlaymode_To_FixedList32Int() : IEnumerator
+    + FixedList128IntPlaymode_HasExpectedCapacity() : IEnumerator
+    + FixedList128IntPlaymode_To_FixedList32Int() : IEnumerator
+    + FixedList128IntPlaymode_To_FixedList64Int() : IEnumerator
+    + FixedList32FloatPlaymode_GenericHasExpectedCapacity() : IEnumerator
+    + FixedList64FloatPlaymode_GenericHasExpectedCapacity() : IEnumerator
+    + FixedList128FloatPlaymode_GenericHasExpectedCapacity() : IEnumerator
+    + FixedList32FloatPlaymode_HasExpectedCapacity() : IEnumerator
+    + FixedList64FloatPlaymode_HasExpectedCapacity() : IEnumerator
+    + FixedList64FloatPlaymode_To_FixedList32Float() : IEnumerator
+    + FixedList128FloatPlaymode_HasExpectedCapacity() : IEnumerator
+    + FixedList128FloatPlaymode_To_FixedList32Float() : IEnumerator
+    + FixedList128FloatPlaymode_To_FixedList64Float() : IEnumerator
+}
+@enduml

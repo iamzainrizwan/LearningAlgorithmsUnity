@@ -1,0 +1,32 @@
+@startuml
+struct PreviewProperty {
+    + name : string <<get>> <<set>>
+    + PreviewProperty(type:PropertyType)
+    + floatValue : float <<get>> <<set>>
+    + booleanValue : bool <<get>> <<set>>
+    + SetValueOnMaterialPropertyBlock(mat:MaterialPropertyBlock) : void
+}
+struct ClassData {
+}
+struct StructData {
+    + floatValue : float
+    + booleanValue : bool
+}
+PreviewProperty --> "propType" PropertyType
+PreviewProperty --> "colorValue" Color
+PreviewProperty --> "textureValue" Texture
+PreviewProperty --> "cubemapValue" Cubemap
+PreviewProperty --> "gradientValue" Gradient
+PreviewProperty --> "vtProperty" VirtualTextureShaderProperty
+PreviewProperty --> "vector4Value" Vector4
+PreviewProperty --> "matrixValue" Matrix4x4
+PreviewProperty +-- ClassData
+ClassData --> "textureValue" Texture
+ClassData --> "cubemapValue" Cubemap
+ClassData --> "gradientValue" Gradient
+ClassData --> "vtProperty" VirtualTextureShaderProperty
+PreviewProperty +-- StructData
+StructData --> "colorValue" Color
+StructData --> "vector4Value" Vector4
+StructData --> "matrixValue" Matrix4x4
+@enduml

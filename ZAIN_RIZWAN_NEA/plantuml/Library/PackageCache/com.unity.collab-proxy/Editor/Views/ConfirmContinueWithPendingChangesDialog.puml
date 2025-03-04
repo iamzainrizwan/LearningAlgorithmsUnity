@@ -1,0 +1,12 @@
+@startuml
+class ContinueWithPendingChangesQuestionerBuilder {
+    + Get(title:string, explanation:string) : IContinueWithPendingChangesQuestioner
+}
+class ContinueWithPendingChangesQuestioner {
+    + ContinueWithPendingChanges() : bool
+}
+class ConfirmContinueWithPendingChangesDialog {
+}
+IContinueWithPendingChangesQuestioner <|-- ContinueWithPendingChangesQuestioner
+PlasticDialog <|-- ConfirmContinueWithPendingChangesDialog
+@enduml

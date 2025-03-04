@@ -1,0 +1,54 @@
+@startuml
+class BuiltInLitSubTarget <<sealed>> {
+    + BuiltInLitSubTarget()
+    + <<override>> IsActive() : bool
+    + <<override>> Setup(context:TargetSetupContext) : void
+    + <<override>> ProcessPreviewMaterial(material:Material) : void
+    + <<override>> GetFields(context:TargetFieldContext) : void
+    + <<override>> GetActiveBlocks(context:TargetActiveBlockContext) : void
+    + <<override>> CollectShaderProperties(collector:PropertyCollector, generationMode:GenerationMode) : void
+    + <<override>> GetPropertiesGUI(context:TargetPropertyGUIContext, onChange:Action, registerUndo:Action<String>) : void
+}
+class SubShaders <<static>> {
+    + {static} Lit(target:BuiltInTarget, renderType:string, renderQueue:string) : SubShaderDescriptor
+}
+class LitPasses <<static>> {
+    + {static} Forward(target:BuiltInTarget) : PassDescriptor
+    + {static} ForwardAdd(target:BuiltInTarget) : PassDescriptor
+    + {static} ForwardOnly(target:BuiltInTarget) : PassDescriptor
+    + {static} Deferred(target:BuiltInTarget) : PassDescriptor
+    + {static} Meta(target:BuiltInTarget) : PassDescriptor
+}
+class LitBlockMasks <<static>> {
+}
+class LitRequiredFields <<static>> {
+}
+class LitKeywords <<static>> {
+}
+class LitIncludes <<static>> {
+}
+BuiltInSubTarget <|-- BuiltInLitSubTarget
+BuiltInLitSubTarget --> "workflowMode" WorkflowMode
+BuiltInLitSubTarget --> "normalDropOffSpace" NormalDropOffSpace
+BuiltInLitSubTarget +-- SubShaders
+BuiltInLitSubTarget +-- LitPasses
+BuiltInLitSubTarget +-- LitBlockMasks
+BuiltInLitSubTarget +-- LitRequiredFields
+LitRequiredFields o-> "Forward" FieldCollection
+LitRequiredFields o-> "GBuffer" FieldCollection
+LitRequiredFields o-> "DepthNormals" FieldCollection
+LitRequiredFields o-> "Meta" FieldCollection
+BuiltInLitSubTarget +-- LitKeywords
+LitKeywords o-> "GBufferNormalsOct" KeywordDescriptor
+LitKeywords o-> "ScreenSpaceAmbientOcclusion" KeywordDescriptor
+LitKeywords o-> "Forward" KeywordCollection
+LitKeywords o-> "ForwardAdd" KeywordCollection
+LitKeywords o-> "Deferred" KeywordCollection
+LitKeywords o-> "Meta" KeywordCollection
+BuiltInLitSubTarget +-- LitIncludes
+LitIncludes o-> "Forward" IncludeCollection
+LitIncludes o-> "ForwardAdd" IncludeCollection
+LitIncludes o-> "Deferred" IncludeCollection
+LitIncludes o-> "GBuffer" IncludeCollection
+LitIncludes o-> "Meta" IncludeCollection
+@enduml

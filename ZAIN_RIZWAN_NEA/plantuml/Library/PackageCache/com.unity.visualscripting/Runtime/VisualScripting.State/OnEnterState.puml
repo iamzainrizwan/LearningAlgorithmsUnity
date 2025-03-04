@@ -1,0 +1,7 @@
+@startuml
+class OnEnterState {
+}
+class "ManualEventUnit`1"<T> {
+}
+"ManualEventUnit`1" "<EmptyEventArgs>" <|-- OnEnterState
+@enduml

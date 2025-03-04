@@ -1,0 +1,10 @@
+@startuml
+class UnitConnectionStyles <<static>> {
+    + {static} <<readonly>> minBend : float = 15
+    + {static} <<readonly>> relativeBend : float
+}
+UnitConnectionStyles o-> "activeColor" Color
+UnitConnectionStyles o-> "highlightColor" Color
+UnitConnectionStyles o-> "invalidColor" Color
+UnitConnectionStyles o-> "disconnectColor" Color
+@enduml

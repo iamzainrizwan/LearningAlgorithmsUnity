@@ -1,0 +1,15 @@
+@startuml
+class ClearSelection {
+}
+class ItemSelection <<static>> {
+    + {static} CanClearSelection(evt:Event) : bool
+    + {static} RangeSelectItems(lastItemToSelect:ITimelineItem) : void
+    + {static} HandleSingleSelection(evt:Event) : ISelectable
+    + {static} HandleItemSelection(evt:Event, item:ISelectable) : void
+}
+class SelectAndMoveItem {
+    + <<override>> Overlay(evt:Event, state:WindowState) : void
+}
+Manipulator <|-- ClearSelection
+Manipulator <|-- SelectAndMoveItem
+@enduml

@@ -1,0 +1,42 @@
+@startuml
+abstract class "StateWidget`1"<TState> {
+    + <<virtual>> canForceEnter : bool <<get>>
+    + <<virtual>> canForceExit : bool <<get>>
+    + <<virtual>> canToggleStart : bool <<get>>
+    + <<override>> BeforeFrame() : void
+    + <<override>> HandleInput() : void
+    + <<override>> CachePosition() : void
+    + <<override>> DrawForeground() : void
+    + <<override>> canSelect : bool <<get>>
+    + <<override>> canDrag : bool <<get>>
+    + <<override>> ExpandDragGroup(dragGroup:HashSet<IGraphElement>) : void
+    + <<override>> canDelete : bool <<get>>
+    + <<override>> canResizeHorizontal : bool <<get>>
+    + <<override>> ExpandCopyGroup(copyGroup:HashSet<IGraphElement>) : void
+}
+class "NodeWidget`2"<T1,T2> {
+}
+class "IEnumerable`1"<T> {
+}
+class Styles <<static>> {
+    + {static} <<readonly>> spaceBeforeContent : float = 5
+    + {static} <<readonly>> spaceBetweenTitleAndSummary : float = 0
+    + {static} <<readonly>> enterFadeDuration : float = 0.5f
+    + {static} <<readonly>> contentRevealSpeed : float = 15
+}
+"NodeWidget`2" "<StateCanvas,TState>" <|-- "StateWidget`1"
+IStateWidget <|-- "StateWidget`1"
+"StateWidget`1" --> "positionDependers<IWidget>" "IEnumerable`1"
+"StateWidget`1" --> "titlePosition" Rect
+"StateWidget`1" --> "summaryPosition" Rect
+"StateWidget`1" --> "contentOuterPosition" Rect
+"StateWidget`1" --> "contentBackgroundPosition" Rect
+"StateWidget`1" --> "contentInnerPosition" Rect
+"StateWidget`1" --> "position" Rect
+"StateWidget`1" +-- Styles
+Styles --> "title" GUIStyle
+Styles --> "summary" GUIStyle
+Styles --> "titleInverted" GUIStyle
+Styles --> "summaryInverted" GUIStyle
+Styles --> "contentBackground" GUIStyle
+@enduml

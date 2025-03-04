@@ -1,0 +1,18 @@
+@startuml
+interface fsISerializationCallbacks {
+}
+class fsSerializationCallbackProcessor {
+    + <<override>> CanProcess(type:Type) : bool
+    + <<override>> OnBeforeSerialize(storageType:Type, instance:object) : void
+    + <<override>> OnAfterSerialize(storageType:Type, instance:object, data:fsData) : void
+    + <<override>> OnBeforeDeserializeAfterInstanceCreation(storageType:Type, instance:object, data:fsData) : void
+    + <<override>> OnAfterDeserialize(storageType:Type, instance:object) : void
+}
+class fsSerializationCallbackReceiverProcessor {
+    + <<override>> CanProcess(type:Type) : bool
+    + <<override>> OnBeforeSerialize(storageType:Type, instance:object) : void
+    + <<override>> OnAfterDeserialize(storageType:Type, instance:object) : void
+}
+fsObjectProcessor <|-- fsSerializationCallbackProcessor
+fsObjectProcessor <|-- fsSerializationCallbackReceiverProcessor
+@enduml

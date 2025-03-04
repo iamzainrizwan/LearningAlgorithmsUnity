@@ -1,0 +1,9 @@
+@startuml
+class RunProgress {
+    + <<const>> progressPrTask : float = 0.0075f
+    + progressPrTest : float
+    + progress : float
+    + stageName : string
+    + stepName : string
+}
+@enduml

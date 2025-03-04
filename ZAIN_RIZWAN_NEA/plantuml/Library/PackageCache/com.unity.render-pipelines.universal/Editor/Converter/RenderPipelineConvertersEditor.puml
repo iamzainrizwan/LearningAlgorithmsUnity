@@ -1,0 +1,44 @@
+@startuml
+enum Status {
+    Pending,
+    Warning,
+    Error,
+    Success,
+}
+class ConverterItemState {
+    + isActive : bool
+    + message : string
+}
+class ConverterState {
+    + isEnabled : bool
+    + isActive : bool
+    + isLoading : bool
+    + isInitialized : bool
+    + pending : int
+    + warnings : int
+    + errors : int
+    + success : int
+    + isActiveAndEnabled : bool <<get>>
+    + requiresInitialization : bool <<get>>
+}
+struct ConverterItems {
+}
+class RenderPipelineConvertersEditor {
+    + {static} ShowWindow() : void
+    + CreateGUI() : void
+}
+class "List`1"<T> {
+}
+struct AnalyticContextInfo {
+    + converter_id : string
+    + items_count : int
+}
+ConverterItemState --> "status" Status
+ConverterState o-> "items<ConverterItemState>" "List`1"
+ConverterItems --> "itemDescriptors<ConverterItemDescriptor>" "List`1"
+EditorWindow <|-- RenderPipelineConvertersEditor
+RenderPipelineConvertersEditor --> "converterEditorAsset" VisualTreeAsset
+RenderPipelineConvertersEditor --> "converterItem" VisualTreeAsset
+RenderPipelineConvertersEditor --> "converterWidgetMainAsset" VisualTreeAsset
+RenderPipelineConvertersEditor +-- AnalyticContextInfo
+@enduml

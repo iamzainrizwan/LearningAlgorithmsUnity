@@ -1,0 +1,85 @@
+@startuml
+class RenderGraphUtils <<static>> <<partial>> {
+    + {static} CanAddCopyPassMSAA() : bool
+    + {static} AddCopyPass(graph:RenderGraph, source:TextureHandle, destination:TextureHandle, sourceSlice:int, destinationSlice:int, sourceMip:int, destinationMip:int, passName:string, file:string, line:int) : void
+    + {static} AddBlitPass(graph:RenderGraph, source:TextureHandle, destination:TextureHandle, scale:Vector2, offset:Vector2, sourceSlice:int, destinationSlice:int, numSlices:int, sourceMip:int, destinationMip:int, numMips:int, filterMode:BlitFilterMode, passName:string, file:string, line:int) : void
+    + {static} AddBlitPass(graph:RenderGraph, blitParameters:BlitMaterialParameters, passName:string, file:string, line:int) : void
+}
+class CopyPassData {
+    + isMSAA : bool
+}
+enum BlitFilterMode {
+    ClampNearest,
+    ClampBilinear,
+}
+class BlitPassData {
+    + sourceSlice : int
+    + destinationSlice : int
+    + numSlices : int
+    + sourceMip : int
+    + destinationMip : int
+    + numMips : int
+}
+enum FullScreenGeometryType {
+    Mesh,
+    ProceduralTriangle,
+    ProceduralQuad,
+}
+struct BlitMaterialParameters {
+    + BlitMaterialParameters(source:TextureHandle, destination:TextureHandle, material:Material, shaderPass:int)
+    + BlitMaterialParameters(source:TextureHandle, destination:TextureHandle, scale:Vector2, offset:Vector2, material:Material, shaderPass:int)
+    + BlitMaterialParameters(source:TextureHandle, destination:TextureHandle, material:Material, shaderPass:int, mpb:MaterialPropertyBlock, destinationSlice:int, destinationMip:int, numSlices:int, numMips:int, sourceSlice:int, sourceMip:int, geometry:FullScreenGeometryType, sourceTexturePropertyID:int, sourceSlicePropertyID:int, sourceMipPropertyID:int)
+    + BlitMaterialParameters(source:TextureHandle, destination:TextureHandle, scale:Vector2, offset:Vector2, material:Material, shaderPass:int, mpb:MaterialPropertyBlock, destinationSlice:int, destinationMip:int, numSlices:int, numMips:int, sourceSlice:int, sourceMip:int, geometry:FullScreenGeometryType, sourceTexturePropertyID:int, sourceSlicePropertyID:int, sourceMipPropertyID:int, scaleBiasPropertyID:int)
+    + BlitMaterialParameters(source:TextureHandle, destination:TextureHandle, material:Material, shaderPass:int, mpb:MaterialPropertyBlock, geometry:FullScreenGeometryType, sourceTexturePropertyID:int, sourceSlicePropertyID:int, sourceMipPropertyID:int)
+    + BlitMaterialParameters(source:TextureHandle, destination:TextureHandle, scale:Vector2, offset:Vector2, material:Material, shaderPass:int, mpb:MaterialPropertyBlock, geometry:FullScreenGeometryType, sourceTexturePropertyID:int, sourceSlicePropertyID:int, sourceMipPropertyID:int, scaleBiasPropertyID:int)
+    + sourceSlice : int
+    + destinationSlice : int
+    + numSlices : int
+    + sourceMip : int
+    + destinationMip : int
+    + numMips : int
+    + shaderPass : int
+    + sourceTexturePropertyID : int
+    + sourceSlicePropertyID : int
+    + sourceMipPropertyID : int
+    + scaleBiasPropertyID : int
+}
+class BlitMaterialPassData {
+    + sourceTexturePropertyID : int
+    + shaderPass : int
+    + sourceSlice : int
+    + destinationSlice : int
+    + numSlices : int
+    + sourceMip : int
+    + destinationMip : int
+    + numMips : int
+    + sourceSlicePropertyID : int
+    + sourceMipPropertyID : int
+    + scaleBiasPropertyID : int
+}
+RenderGraphUtils +-- CopyPassData
+RenderGraphUtils +-- BlitFilterMode
+RenderGraphUtils +-- BlitPassData
+BlitPassData --> "source" TextureHandle
+BlitPassData --> "destination" TextureHandle
+BlitPassData --> "scale" Vector2
+BlitPassData --> "offset" Vector2
+BlitPassData --> "filterMode" BlitFilterMode
+RenderGraphUtils +-- FullScreenGeometryType
+RenderGraphUtils +-- BlitMaterialParameters
+BlitMaterialParameters --> "source" TextureHandle
+BlitMaterialParameters --> "destination" TextureHandle
+BlitMaterialParameters --> "scale" Vector2
+BlitMaterialParameters --> "offset" Vector2
+BlitMaterialParameters --> "material" Material
+BlitMaterialParameters --> "propertyBlock" MaterialPropertyBlock
+BlitMaterialParameters --> "geometry" FullScreenGeometryType
+RenderGraphUtils +-- BlitMaterialPassData
+BlitMaterialPassData --> "source" TextureHandle
+BlitMaterialPassData --> "destination" TextureHandle
+BlitMaterialPassData --> "scale" Vector2
+BlitMaterialPassData --> "offset" Vector2
+BlitMaterialPassData --> "material" Material
+BlitMaterialPassData --> "propertyBlock" MaterialPropertyBlock
+BlitMaterialPassData --> "geometry" FullScreenGeometryType
+@enduml

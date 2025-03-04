@@ -1,0 +1,7 @@
+@startuml
+class PortKeyAttribute {
+    + PortKeyAttribute(key:string)
+    + key : string <<get>>
+}
+Attribute <|-- PortKeyAttribute
+@enduml

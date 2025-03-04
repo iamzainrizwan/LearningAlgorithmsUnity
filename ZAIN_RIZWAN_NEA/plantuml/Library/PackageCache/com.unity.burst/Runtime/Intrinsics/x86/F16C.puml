@@ -1,0 +1,12 @@
+@startuml
+class X86 <<unsafe>> <<static>> <<partial>> {
+}
+class F16C <<static>> {
+    + {static} IsF16CSupported : bool <<get>>
+    + {static} cvtph_ps(a:v128) : v128
+    + {static} mm256_cvtph_ps(a:v128) : v256
+    + {static} cvtps_ph(a:v128, rounding:int) : v128
+    + {static} mm256_cvtps_ph(a:v256, rounding:int) : v128
+}
+X86 +-- F16C
+@enduml

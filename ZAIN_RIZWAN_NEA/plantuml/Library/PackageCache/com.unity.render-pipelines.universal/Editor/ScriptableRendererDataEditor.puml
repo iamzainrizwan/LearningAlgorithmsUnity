@@ -1,0 +1,13 @@
+@startuml
+class ScriptableRendererDataEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+class Styles {
+}
+Editor <|-- ScriptableRendererDataEditor
+ScriptableRendererDataEditor +-- Styles
+Styles o-> "RenderFeatures" GUIContent
+Styles o-> "PassNameField" GUIContent
+Styles o-> "MissingFeature" GUIContent
+Styles --> "BoldLabelSimple" GUIStyle
+@enduml

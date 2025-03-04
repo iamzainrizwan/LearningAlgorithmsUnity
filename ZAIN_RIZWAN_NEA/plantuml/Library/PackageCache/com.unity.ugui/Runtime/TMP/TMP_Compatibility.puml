@@ -1,0 +1,19 @@
+@startuml
+class TMP_Compatibility <<static>> {
+    + {static} ConvertTextAlignmentEnumValues(oldValue:TextAlignmentOptions) : TextAlignmentOptions
+}
+enum AnchorPositions {
+    TopLeft,
+    Top,
+    TopRight,
+    Left,
+    Center,
+    Right,
+    BottomLeft,
+    Bottom,
+    BottomRight,
+    BaseLine,
+    None,
+}
+TMP_Compatibility +-- AnchorPositions
+@enduml

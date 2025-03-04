@@ -1,0 +1,12 @@
+@startuml
+struct float2 {
+}
+struct float3 {
+}
+struct float4 {
+}
+struct quaternion {
+}
+struct float4x4 {
+}
+@enduml

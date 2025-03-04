@@ -1,0 +1,7 @@
+@startuml
+class PendingChangesViewMenu {
+}
+interface IGetSelectedNodes {
+}
+PendingChangesViewMenu +-- IGetSelectedNodes
+@enduml

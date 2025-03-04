@@ -1,0 +1,8 @@
+@startuml
+class TMPro_CreateObjectMenu <<static>> {
+    + {static} AddButton(menuCommand:MenuCommand) : void
+    + {static} AddDropdown(menuCommand:MenuCommand) : void
+    + {static} CreateNewUI() : GameObject
+    + {static} GetOrCreateCanvasGameObject() : GameObject
+}
+@enduml

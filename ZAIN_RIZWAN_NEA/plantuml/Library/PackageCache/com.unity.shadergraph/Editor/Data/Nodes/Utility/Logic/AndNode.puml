@@ -1,0 +1,7 @@
+@startuml
+class AndNode {
+    + AndNode()
+    + <<override>> hasPreview : bool <<get>>
+}
+CodeFunctionNode <|-- AndNode
+@enduml

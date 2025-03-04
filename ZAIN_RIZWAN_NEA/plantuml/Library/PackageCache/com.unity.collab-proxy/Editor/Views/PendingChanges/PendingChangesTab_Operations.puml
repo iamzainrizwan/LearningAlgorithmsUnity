@@ -1,0 +1,4 @@
+@startuml
+class PendingChangesTab <<partial>> {
+}
+@enduml

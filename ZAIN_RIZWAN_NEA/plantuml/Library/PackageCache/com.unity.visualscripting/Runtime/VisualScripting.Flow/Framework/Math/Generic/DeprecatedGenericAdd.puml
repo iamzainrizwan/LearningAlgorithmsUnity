@@ -1,0 +1,8 @@
+@startuml
+class DeprecatedGenericAdd <<sealed>> {
+    + <<override>> Operation(a:object, b:object) : object
+}
+class "Add`1"<T> {
+}
+"Add`1" "<object>" <|-- DeprecatedGenericAdd
+@enduml

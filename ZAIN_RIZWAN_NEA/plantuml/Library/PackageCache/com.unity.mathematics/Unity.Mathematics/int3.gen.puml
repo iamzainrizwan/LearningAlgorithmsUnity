@@ -1,0 +1,174 @@
+@startuml
+struct int3 {
+    + x : int
+    + y : int
+    + z : int
+    + int3(x:int, y:int, z:int)
+    + int3(x:int, yz:int2)
+    + int3(xy:int2, z:int)
+    + int3(xyz:int3)
+    + int3(v:int)
+    + int3(v:bool)
+    + int3(v:bool3)
+    + int3(v:uint)
+    + int3(v:uint3)
+    + int3(v:float)
+    + int3(v:float3)
+    + int3(v:double)
+    + int3(v:double3)
+    + Equals(rhs:int3) : bool
+    + <<override>> Equals(o:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+    + ToString(format:string, formatProvider:IFormatProvider) : string
+}
+class math <<static>> <<partial>> {
+    + {static} int3(x:int, y:int, z:int) : int3
+    + {static} int3(x:int, yz:int2) : int3
+    + {static} int3(xy:int2, z:int) : int3
+    + {static} int3(xyz:int3) : int3
+    + {static} int3(v:int) : int3
+    + {static} int3(v:bool) : int3
+    + {static} int3(v:bool3) : int3
+    + {static} int3(v:uint) : int3
+    + {static} int3(v:uint3) : int3
+    + {static} int3(v:float) : int3
+    + {static} int3(v:float3) : int3
+    + {static} int3(v:double) : int3
+    + {static} int3(v:double3) : int3
+    + {static} hash(v:int3) : uint
+    + {static} hashwide(v:int3) : uint3
+    + {static} shuffle(left:int3, right:int3, x:ShuffleComponent) : int
+    + {static} shuffle(left:int3, right:int3, x:ShuffleComponent, y:ShuffleComponent) : int2
+    + {static} shuffle(left:int3, right:int3, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent) : int3
+    + {static} shuffle(left:int3, right:int3, x:ShuffleComponent, y:ShuffleComponent, z:ShuffleComponent, w:ShuffleComponent) : int4
+}
+class "IEquatable`1"<T> {
+}
+class DebuggerProxy <<sealed>> {
+    + x : int
+    + y : int
+    + z : int
+    + DebuggerProxy(v:int3)
+}
+IFormattable <|-- int3
+int3 --> "zero" int3
+int3 --> "xxxx" int4
+int3 --> "xxxy" int4
+int3 --> "xxxz" int4
+int3 --> "xxyx" int4
+int3 --> "xxyy" int4
+int3 --> "xxyz" int4
+int3 --> "xxzx" int4
+int3 --> "xxzy" int4
+int3 --> "xxzz" int4
+int3 --> "xyxx" int4
+int3 --> "xyxy" int4
+int3 --> "xyxz" int4
+int3 --> "xyyx" int4
+int3 --> "xyyy" int4
+int3 --> "xyyz" int4
+int3 --> "xyzx" int4
+int3 --> "xyzy" int4
+int3 --> "xyzz" int4
+int3 --> "xzxx" int4
+int3 --> "xzxy" int4
+int3 --> "xzxz" int4
+int3 --> "xzyx" int4
+int3 --> "xzyy" int4
+int3 --> "xzyz" int4
+int3 --> "xzzx" int4
+int3 --> "xzzy" int4
+int3 --> "xzzz" int4
+int3 --> "yxxx" int4
+int3 --> "yxxy" int4
+int3 --> "yxxz" int4
+int3 --> "yxyx" int4
+int3 --> "yxyy" int4
+int3 --> "yxyz" int4
+int3 --> "yxzx" int4
+int3 --> "yxzy" int4
+int3 --> "yxzz" int4
+int3 --> "yyxx" int4
+int3 --> "yyxy" int4
+int3 --> "yyxz" int4
+int3 --> "yyyx" int4
+int3 --> "yyyy" int4
+int3 --> "yyyz" int4
+int3 --> "yyzx" int4
+int3 --> "yyzy" int4
+int3 --> "yyzz" int4
+int3 --> "yzxx" int4
+int3 --> "yzxy" int4
+int3 --> "yzxz" int4
+int3 --> "yzyx" int4
+int3 --> "yzyy" int4
+int3 --> "yzyz" int4
+int3 --> "yzzx" int4
+int3 --> "yzzy" int4
+int3 --> "yzzz" int4
+int3 --> "zxxx" int4
+int3 --> "zxxy" int4
+int3 --> "zxxz" int4
+int3 --> "zxyx" int4
+int3 --> "zxyy" int4
+int3 --> "zxyz" int4
+int3 --> "zxzx" int4
+int3 --> "zxzy" int4
+int3 --> "zxzz" int4
+int3 --> "zyxx" int4
+int3 --> "zyxy" int4
+int3 --> "zyxz" int4
+int3 --> "zyyx" int4
+int3 --> "zyyy" int4
+int3 --> "zyyz" int4
+int3 --> "zyzx" int4
+int3 --> "zyzy" int4
+int3 --> "zyzz" int4
+int3 --> "zzxx" int4
+int3 --> "zzxy" int4
+int3 --> "zzxz" int4
+int3 --> "zzyx" int4
+int3 --> "zzyy" int4
+int3 --> "zzyz" int4
+int3 --> "zzzx" int4
+int3 --> "zzzy" int4
+int3 --> "zzzz" int4
+int3 --> "xxx" int3
+int3 --> "xxy" int3
+int3 --> "xxz" int3
+int3 --> "xyx" int3
+int3 --> "xyy" int3
+int3 --> "xyz" int3
+int3 --> "xzx" int3
+int3 --> "xzy" int3
+int3 --> "xzz" int3
+int3 --> "yxx" int3
+int3 --> "yxy" int3
+int3 --> "yxz" int3
+int3 --> "yyx" int3
+int3 --> "yyy" int3
+int3 --> "yyz" int3
+int3 --> "yzx" int3
+int3 --> "yzy" int3
+int3 --> "yzz" int3
+int3 --> "zxx" int3
+int3 --> "zxy" int3
+int3 --> "zxz" int3
+int3 --> "zyx" int3
+int3 --> "zyy" int3
+int3 --> "zyz" int3
+int3 --> "zzx" int3
+int3 --> "zzy" int3
+int3 --> "zzz" int3
+int3 --> "xx" int2
+int3 --> "xy" int2
+int3 --> "xz" int2
+int3 --> "yx" int2
+int3 --> "yy" int2
+int3 --> "yz" int2
+int3 --> "zx" int2
+int3 --> "zy" int2
+int3 --> "zz" int2
+int3 +-- DebuggerProxy
+@enduml

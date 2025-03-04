@@ -1,0 +1,12 @@
+@startuml
+class URPBuildData {
+    + buildingPlayerForUniversalRenderPipeline : bool <<get>>
+    + URPBuildData(buildTarget:BuildTarget, isDevelopmentBuild:bool)
+    + Dispose() : void
+}
+class "List`1"<T> {
+}
+IDisposable <|-- URPBuildData
+URPBuildData --> "instance" URPBuildData
+URPBuildData o-> "renderPipelineAssets<UniversalRenderPipelineAsset>" "List`1"
+@enduml

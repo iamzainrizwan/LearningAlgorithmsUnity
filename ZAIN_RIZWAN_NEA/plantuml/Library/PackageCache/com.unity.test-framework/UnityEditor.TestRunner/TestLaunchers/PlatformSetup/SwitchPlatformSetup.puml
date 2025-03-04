@@ -1,0 +1,10 @@
+@startuml
+class SwitchPlatformSetup {
+    + Setup() : void
+    + PostBuildAction() : void
+    + PostSuccessfulBuildAction() : void
+    + PostSuccessfulLaunchAction() : void
+    + CleanUp() : void
+}
+IPlatformSetup <|-- SwitchPlatformSetup
+@enduml

@@ -1,0 +1,30 @@
+@startuml
+abstract class MetadataCollectionAdaptor {
+    + <<virtual>> BeginGUI() : void
+    + <<virtual>> EndGUI() : void
+    + <<virtual>> DrawItemBackground(position:Rect, index:int) : void
+    + GetItemHeight(index:int) : float
+    + {abstract} GetItemHeight(width:float, index:int) : float
+    + {abstract} DrawItem(position:Rect, index:int) : void
+    + {abstract} GetItemAdaptiveWidth(index:int) : float
+    + GetAdaptiveWidth() : float
+    + GetHeight(width:float, label:GUIContent) : float
+    + Field(position:Rect, label:GUIContent) : bool
+    + {abstract} Count : int <<get>>
+    + {abstract} CanDrag(index:int) : bool
+    + {abstract} CanRemove(index:int) : bool
+    + {abstract} Add() : void
+    + {abstract} Insert(index:int) : void
+    + {abstract} Duplicate(index:int) : void
+    + {abstract} Remove(index:int) : void
+    + {abstract} Move(sourceIndex:int, destIndex:int) : void
+    + {abstract} Clear() : void
+}
+enum WidthMode {
+    Thin,
+    Wide,
+    Edge,
+}
+IReorderableListAdaptor <|-- MetadataCollectionAdaptor
+MetadataCollectionAdaptor +-- WidthMode
+@enduml

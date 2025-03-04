@@ -1,0 +1,8 @@
+@startuml
+interface IDebugDisplaySettingsPanel {
+}
+interface IDebugDisplaySettingsPanelDisposable {
+}
+IDebugDisplaySettingsPanel <|-- IDebugDisplaySettingsPanelDisposable
+IDisposable <|-- IDebugDisplaySettingsPanelDisposable
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+abstract class "UnitInputPortWidget`1"<TPort> {
+}
+class "UnitPortWidget`1"<T> {
+}
+"UnitPortWidget`1" "<TPort>" <|-- "UnitInputPortWidget`1"
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+class EditModeInputHandler {
+    + EditModeInputHandler()
+    + ProcessMove(action:InputEvent, value:double) : void
+    + ProcessTrim(action:InputEvent, value:double, stretch:bool) : void
+    + SetValueForEdge(items:IEnumerable<ITimelineItem>, edge:AttractedEdge, value:double) : void
+    + OnGUI(state:WindowState, evt:Event) : void
+}
+interface IInputHandler {
+}
+class TrimInputHandler {
+    + stretch : bool <<get>> <<set>>
+    + OnEnterDrag(items:IEnumerable<ITimelineItem>, state:WindowState) : void
+    + OnDrag(endValue:double, state:WindowState) : void
+    + OnExitDrag() : void
+    + OnSetValue(items:IEnumerable<ITimelineItem>, endValue:double, state:WindowState) : void
+    + OnGUI(state:WindowState) : void
+}
+class MoveInputHandler {
+    + OnEnterDrag(items:IEnumerable<ITimelineItem>, state:WindowState) : void
+    + OnDrag(value:double, state:WindowState) : void
+    + OnExitDrag() : void
+    + OnSetValue(items:IEnumerable<ITimelineItem>, value:double, state:WindowState) : void
+    + OnGUI(evt:Event) : void
+    + {static} SetValueForEdge(items:IEnumerable<ITimelineItem>, edge:AttractedEdge, value:double, state:WindowState) : void
+}
+EditModeInputHandler +-- IInputHandler
+EditModeInputHandler +-- TrimInputHandler
+IInputHandler <|-- TrimInputHandler
+EditModeInputHandler +-- MoveInputHandler
+IInputHandler <|-- MoveInputHandler
+@enduml

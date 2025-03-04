@@ -1,0 +1,11 @@
+@startuml
+interface IGetNodePropertyDrawerPropertyData {
+}
+class AbstractMaterialNodePropertyDrawer {
+    + GetPropertyData(setNodesAsDirtyCallback:Action, updateNodeViewsCallback:Action) : void
+    + DrawProperty(propertyInfo:PropertyInfo, actualObject:object, attribute:InspectableAttribute) : VisualElement
+}
+IPropertyDrawer <|-- AbstractMaterialNodePropertyDrawer
+IGetNodePropertyDrawerPropertyData <|-- AbstractMaterialNodePropertyDrawer
+AbstractMaterialNodePropertyDrawer --> "inspectorUpdateDelegate" Action
+@enduml

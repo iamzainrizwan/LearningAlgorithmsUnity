@@ -1,0 +1,11 @@
+@startuml
+class MultiplayerCenterWindow {
+    + CurrentTab : int <<get>>
+    + {static} OpenWindow() : void
+    + RequestShowGettingStartedTabAfterDomainReload() : void
+    + OnBeforeSerialize() : void
+    + OnAfterDeserialize() : void
+}
+EditorWindow <|-- MultiplayerCenterWindow
+ISerializationCallbackReceiver <|-- MultiplayerCenterWindow
+@enduml

@@ -1,0 +1,68 @@
+@startuml
+enum UniversalResource {
+    BackBufferColor,
+    BackBufferDepth,
+    CameraColor,
+    CameraDepth,
+    MainShadowsTexture,
+    AdditionalShadowsTexture,
+    GBuffer0,
+    GBuffer1,
+    GBuffer2,
+    GBuffer3,
+    GBuffer4,
+    GBuffer5,
+    GBuffer6,
+    CameraOpaqueTexture,
+    CameraDepthTexture,
+    CameraNormalsTexture,
+    MotionVectorColor,
+    MotionVectorDepth,
+    InternalColorLut,
+    DebugScreenColor,
+    DebugScreenDepth,
+    AfterPostProcessColor,
+    OverlayUITexture,
+    RenderingLayersTexture,
+    DBuffer0,
+    DBuffer1,
+    DBuffer2,
+    DBufferDepth,
+    SSAOTexture,
+}
+class UniversalRenderer <<sealed>> <<partial>> {
+    + {static} CreateRenderGraphTexture(renderGraph:RenderGraph, desc:RenderTextureDescriptor, name:string, clear:bool, filterMode:FilterMode, wrapMode:TextureWrapMode) : TextureHandle
+    + <<override>> OnBeginRenderGraphFrame() : void
+    + <<override>> OnEndRenderGraphFrame() : void
+    + <<override>> supportsGPUOcclusion : bool <<get>>
+}
+class RenderGraphUtils <<static>> {
+    + {static} SetGlobalTexture(graph:RenderGraph, nameId:int, handle:TextureHandle, passName:string, file:string, line:int) : void
+}
+class ClearTargetsPass {
+}
+enum DepthCopySchedule {
+    DuringPrepass,
+    AfterPrepass,
+    AfterGBuffer,
+    AfterOpaques,
+    AfterSkybox,
+    AfterTransparents,
+    None,
+}
+enum ColorCopySchedule {
+    AfterSkybox,
+    None,
+}
+struct TextureCopySchedules {
+}
+class PassData {
+}
+class PassData {
+}
+UniversalRenderer +-- DepthCopySchedule
+UniversalRenderer +-- ColorCopySchedule
+UniversalRenderer +-- TextureCopySchedules
+RenderGraphUtils +-- PassData
+ClearTargetsPass +-- PassData
+@enduml

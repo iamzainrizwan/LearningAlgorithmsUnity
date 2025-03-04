@@ -1,0 +1,7 @@
+@startuml
+class ProbeVolumesOptionsEditor <<sealed>> {
+    + <<override>> OnEnable() : void
+    + <<override>> OnInspectorGUI() : void
+}
+VolumeComponentEditor <|-- ProbeVolumesOptionsEditor
+@enduml

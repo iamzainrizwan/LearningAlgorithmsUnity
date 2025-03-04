@@ -1,0 +1,6 @@
+@startuml
+abstract class "SidebarPanelWindow`1"<TPanelContent> {
+    + panel : TPanelContent <<get>> <<set>>
+}
+LudiqEditorWindow <|-- "SidebarPanelWindow`1"
+@enduml

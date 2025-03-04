@@ -1,0 +1,9 @@
+@startuml
+class DebugUIHandlerValueTuple {
+    + <<override>> OnSelection(fromNext:bool, previous:DebugUIHandlerWidget) : bool
+    + <<override>> OnDeselection() : void
+}
+DebugUIHandlerWidget <|-- DebugUIHandlerValueTuple
+DebugUIHandlerValueTuple --> "nameLabel" Text
+DebugUIHandlerValueTuple --> "valueLabel" Text
+@enduml

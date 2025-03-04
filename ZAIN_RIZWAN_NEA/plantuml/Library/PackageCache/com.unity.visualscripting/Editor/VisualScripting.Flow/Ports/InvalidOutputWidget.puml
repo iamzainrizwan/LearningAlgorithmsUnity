@@ -1,0 +1,8 @@
+@startuml
+class InvalidOutputWidget {
+    + InvalidOutputWidget(canvas:FlowCanvas, port:InvalidOutput)
+}
+class "UnitOutputPortWidget`1"<T> {
+}
+"UnitOutputPortWidget`1" "<InvalidOutput>" <|-- InvalidOutputWidget
+@enduml

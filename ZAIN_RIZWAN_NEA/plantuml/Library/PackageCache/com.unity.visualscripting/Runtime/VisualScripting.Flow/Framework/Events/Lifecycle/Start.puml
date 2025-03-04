@@ -1,0 +1,7 @@
+@startuml
+class Start <<sealed>> {
+}
+class "MachineEventUnit`1"<T> {
+}
+"MachineEventUnit`1" "<EmptyEventArgs>" <|-- Start
+@enduml

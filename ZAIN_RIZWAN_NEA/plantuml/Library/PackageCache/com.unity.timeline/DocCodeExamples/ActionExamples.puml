@@ -1,0 +1,32 @@
+@startuml
+class ActionExamples_HideAPI {
+}
+class SampleClipAction {
+    + <<override>> Validate(clip:IEnumerable<TimelineClip>) : ActionValidity
+    + <<override>> Execute(items:IEnumerable<TimelineClip>) : bool
+    + {static} HandleShortCut(args:ShortcutArguments) : void
+}
+class SampleMarkerAction {
+    + <<override>> Validate(markers:IEnumerable<IMarker>) : ActionValidity
+    + <<override>> Execute(items:IEnumerable<IMarker>) : bool
+    + {static} HandleShortCut(args:ShortcutArguments) : void
+}
+class SampleTrackAction {
+    + <<override>> Validate(tracks:IEnumerable<TrackAsset>) : ActionValidity
+    + <<override>> Execute(tracks:IEnumerable<TrackAsset>) : bool
+    + {static} HandleShortCut(args:ShortcutArguments) : void
+}
+class SampleTimelineAction {
+    + <<override>> Validate(context:ActionContext) : ActionValidity
+    + <<override>> Execute(context:ActionContext) : bool
+    + {static} HandleShortCut(args:ShortcutArguments) : void
+}
+ActionExamples_HideAPI +-- SampleClipAction
+ClipAction <|-- SampleClipAction
+ActionExamples_HideAPI +-- SampleMarkerAction
+MarkerAction <|-- SampleMarkerAction
+ActionExamples_HideAPI +-- SampleTrackAction
+TrackAction <|-- SampleTrackAction
+ActionExamples_HideAPI +-- SampleTimelineAction
+TimelineAction <|-- SampleTimelineAction
+@enduml

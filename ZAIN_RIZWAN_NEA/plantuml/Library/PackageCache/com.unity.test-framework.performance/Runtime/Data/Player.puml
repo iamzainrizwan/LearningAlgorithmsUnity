@@ -1,0 +1,24 @@
+@startuml
+class Player {
+    + Development : bool
+    + ScreenWidth : int
+    + ScreenHeight : int
+    + ScreenRefreshRate : int
+    + Fullscreen : bool
+    + Vsync : int
+    + AntiAliasing : int
+    + Batchmode : bool
+    + RenderThreadingMode : string
+    + GpuSkinning : bool
+    + Platform : string
+    + ColorSpace : string
+    + AnisotropicFiltering : string
+    + BlendWeights : string
+    + GraphicsApi : string
+    + ScriptingBackend : string
+    + AndroidTargetSdkVersion : string
+    + AndroidBuildSystem : string
+    + BuildTarget : string
+    + StereoRenderingPath : string
+}
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+struct EdgeDictionary {
+    + GetOutsideEdges(vertices:NativeArray<Vector3>, indices:NativeArray<int>) : NativeArray<ShadowEdge>
+}
+class EdgeComparer {
+    + Equals(edge0:ShadowEdge, edge1:ShadowEdge) : bool
+    + GetHashCode(edge:ShadowEdge) : int
+}
+class "IEqualityComparer`1"<T> {
+}
+IEdgeStore <|-- EdgeDictionary
+EdgeDictionary +-- EdgeComparer
+"IEqualityComparer`1" "<ShadowEdge>" <|-- EdgeComparer
+@enduml

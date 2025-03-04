@@ -1,0 +1,10 @@
+@startuml
+class "SelectableItemContent`1"<T> {
+    + SelectableItemContent(itemValue:T, displayName:string)
+    + Value : T <<get>>
+    + DisplayName : string <<get>>
+}
+class "ISelectableItem`1"<T> {
+}
+"ISelectableItem`1" "<T>" <|-- "SelectableItemContent`1"
+@enduml

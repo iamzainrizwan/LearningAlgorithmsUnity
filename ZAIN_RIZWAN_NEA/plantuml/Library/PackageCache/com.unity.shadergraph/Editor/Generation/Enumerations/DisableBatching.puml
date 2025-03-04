@@ -1,0 +1,7 @@
+@startuml
+enum DisableBatching {
+    True,
+    False,
+    LODFading,
+}
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class VolumeRequiresRendererFeatures <<sealed>> {
+    + VolumeRequiresRendererFeatures(featureTypes:Type[])
+}
+Attribute <|-- VolumeRequiresRendererFeatures
+@enduml

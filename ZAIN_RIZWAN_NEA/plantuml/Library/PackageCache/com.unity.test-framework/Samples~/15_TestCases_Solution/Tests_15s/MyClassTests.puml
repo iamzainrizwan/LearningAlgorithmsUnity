@@ -1,0 +1,13 @@
+@startuml
+class MyClassTests {
+    + AddCalculatesCorrectValue(valueA:int, valueB:int, expectedResult:int) : void
+    + AddAsyncCalculatesCorrectValue(addCase:AddCase) : IEnumerator
+}
+struct AddCase {
+    + valueA : int
+    + valueB : int
+    + expectedResult : int
+    + <<override>> ToString() : string
+}
+MyClassTests +-- AddCase
+@enduml

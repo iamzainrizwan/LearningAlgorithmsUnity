@@ -1,0 +1,21 @@
+@startuml
+class ColorUtils <<static>> {
+    {static} + s_LightMeterCalibrationConstant : float = 12.5f
+    {static} + s_LensAttenuation : float = 0.65f
+    {static} + lensImperfectionExposureScale : float <<get>>
+    + {static} StandardIlluminantY(x:float) : float
+    + {static} CIExyToLMS(x:float, y:float) : Vector3
+    + {static} ColorBalanceToLMSCoeffs(temperature:float, tint:float) : Vector3
+    + {static} PrepareShadowsMidtonesHighlights(inShadows:Vector4, inMidtones:Vector4, inHighlights:Vector4) : (Vector4, Vector4, Vector4)
+    + {static} PrepareLiftGammaGain(inLift:Vector4, inGamma:Vector4, inGain:Vector4) : (Vector4, Vector4, Vector4)
+    + {static} PrepareSplitToning(inShadows:Vector4, inHighlights:Vector4, balance:float) : (Vector4, Vector4)
+    + {static} Luminance(color:Color) : float
+    + {static} ComputeEV100(aperture:float, shutterSpeed:float, ISO:float) : float
+    + {static} ConvertEV100ToExposure(EV100:float) : float
+    + {static} ConvertExposureToEV100(exposure:float) : float
+    + {static} ComputeEV100FromAvgLuminance(avgLuminance:float) : float
+    + {static} ComputeISO(aperture:float, shutterSpeed:float, targetEV100:float) : float
+    + {static} ToHex(c:Color) : uint
+    + {static} ToRGBA(hex:uint) : Color
+}
+@enduml

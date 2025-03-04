@@ -1,0 +1,17 @@
+@startuml
+class Expose <<sealed>> {
+    + Expose()
+    + Expose(type:Type)
+    + instance : bool <<get>> <<set>> = true
+    + @static : bool <<get>> <<set>> = true
+    + <<override>> canDefine : bool <<get>>
+    + <<override>> GetAotStubs(visited:HashSet<object>) : IEnumerable<object>
+}
+class "Dictionary`2"<T1,T2> {
+}
+Unit <|-- Expose
+IAotStubbable <|-- Expose
+Expose --> "type" Type
+Expose --> "target" ValueInput
+Expose --> "members<ValueOutput,Member>" "Dictionary`2"
+@enduml

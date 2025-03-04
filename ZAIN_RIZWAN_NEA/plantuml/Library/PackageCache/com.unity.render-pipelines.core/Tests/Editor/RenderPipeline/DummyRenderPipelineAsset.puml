@@ -1,0 +1,7 @@
+@startuml
+class DummyRenderPipelineAsset {
+}
+class "RenderPipelineAsset`1"<T> {
+}
+"RenderPipelineAsset`1" "<DummyRenderPipeline>" <|-- DummyRenderPipelineAsset
+@enduml

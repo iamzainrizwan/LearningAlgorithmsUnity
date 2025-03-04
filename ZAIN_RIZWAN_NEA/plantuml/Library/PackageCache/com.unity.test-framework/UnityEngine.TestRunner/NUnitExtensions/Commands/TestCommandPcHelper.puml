@@ -1,0 +1,6 @@
+@startuml
+class TestCommandPcHelper {
+    + <<virtual>> SetEnumeratorPC(enumerator:IEnumerator, pc:int) : void
+    + <<virtual>> GetEnumeratorPC(enumerator:IEnumerator) : int
+}
+@enduml

@@ -1,0 +1,50 @@
+@startuml
+class InputActionRebindingExtensions <<partial>> {
+    + {static} GetParameterValue(action:InputAction, name:string, bindingMask:InputBinding) : PrimitiveValue?
+    + {static} GetParameterValue(action:InputAction, name:string, bindingIndex:int) : PrimitiveValue?
+    + {static} <<unsafe>> GetParameterValue(action:InputAction, expr:Expression<Func<TObject, TValue>>, bindingMask:InputBinding) : TValue?
+    + {static} ApplyParameterOverride(action:InputAction, expr:Expression<Func<TObject, TValue>>, value:TValue, bindingMask:InputBinding) : void
+    + {static} ApplyParameterOverride(actionMap:InputActionMap, expr:Expression<Func<TObject, TValue>>, value:TValue, bindingMask:InputBinding) : void
+    + {static} ApplyParameterOverride(asset:InputActionAsset, expr:Expression<Func<TObject, TValue>>, value:TValue, bindingMask:InputBinding) : void
+    + {static} ApplyParameterOverride(actionMap:InputActionMap, name:string, value:PrimitiveValue, bindingMask:InputBinding) : void
+    + {static} ApplyParameterOverride(asset:InputActionAsset, name:string, value:PrimitiveValue, bindingMask:InputBinding) : void
+    + {static} ApplyParameterOverride(action:InputAction, name:string, value:PrimitiveValue, bindingMask:InputBinding) : void
+    + {static} ApplyParameterOverride(action:InputAction, name:string, value:PrimitiveValue, bindingIndex:int) : void
+}
+struct Parameter {
+    + instance : object
+    + bindingIndex : int
+}
+struct ParameterEnumerable {
+    + ParameterEnumerable(state:InputActionState, parameter:ParameterOverride, mapIndex:int)
+    + GetEnumerator() : ParameterEnumerator
+}
+struct ParameterEnumerator {
+    + ParameterEnumerator(state:InputActionState, parameter:ParameterOverride, mapIndex:int)
+    + MoveNext() : bool
+    + <<unsafe>> Reset() : void
+    + Dispose() : void
+}
+struct ParameterOverride {
+    + objectRegistrationName : string
+    + parameter : string
+    + ParameterOverride(parameterName:string, bindingMask:InputBinding, value:PrimitiveValue)
+    + ParameterOverride(objectRegistrationName:string, parameterName:string, bindingMask:InputBinding, value:PrimitiveValue)
+    + {static} Find(actionMap:InputActionMap, binding:InputBinding, parameterName:string, objectRegistrationName:string) : ParameterOverride?
+}
+class "IEnumerable`1"<T> {
+}
+class "IEnumerator`1"<T> {
+}
+InputActionRebindingExtensions +-- Parameter
+Parameter --> "field" FieldInfo
+InputActionRebindingExtensions +-- ParameterEnumerable
+"IEnumerable`1" "<Parameter>" <|-- ParameterEnumerable
+InputActionRebindingExtensions +-- ParameterEnumerator
+"IEnumerator`1" "<Parameter>" <|-- ParameterEnumerator
+ParameterEnumerator --> "Current" Parameter
+InputActionRebindingExtensions +-- ParameterOverride
+ParameterOverride --> "bindingMask" InputBinding
+ParameterOverride --> "value" PrimitiveValue
+ParameterOverride --> "objectType" Type
+@enduml

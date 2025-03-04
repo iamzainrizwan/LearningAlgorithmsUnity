@@ -1,0 +1,11 @@
+@startuml
+struct "NoAllocEnumerator`1"<T> {
+    + NoAllocEnumerator(list:IList<T>)
+    + Dispose() : void
+    + MoveNext() : bool
+    + Current : T <<get>>
+}
+class "IEnumerator`1"<T> {
+}
+"IEnumerator`1" "<T>" <|-- "NoAllocEnumerator`1"
+@enduml

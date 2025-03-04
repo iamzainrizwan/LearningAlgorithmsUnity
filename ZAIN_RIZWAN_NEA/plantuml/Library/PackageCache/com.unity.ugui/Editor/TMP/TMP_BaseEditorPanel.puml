@@ -1,0 +1,14 @@
+@startuml
+abstract class TMP_BaseEditorPanel {
+    + selAlignGridA : int
+    + selAlignGridB : int
+    + <<override>> OnInspectorGUI() : void
+    + OnSceneGUI() : void
+}
+struct Foldout {
+    + {static} extraSettings : bool = false
+    + {static} materialInspector : bool = true
+}
+Editor <|-- TMP_BaseEditorPanel
+TMP_BaseEditorPanel +-- Foldout
+@enduml

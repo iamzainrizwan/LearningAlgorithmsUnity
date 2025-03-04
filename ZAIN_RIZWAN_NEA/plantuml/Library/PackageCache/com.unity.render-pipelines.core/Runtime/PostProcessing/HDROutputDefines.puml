@@ -1,0 +1,21 @@
+@startuml
+enum HDRRangeReduction {
+    None,
+    Reinhard,
+    BT2390,
+    ACES1000Nits,
+    ACES2000Nits,
+    ACES4000Nits,
+}
+enum HDRColorspace {
+    Rec709,
+    Rec2020,
+    P3D65,
+}
+enum HDREncoding {
+    Linear= TransferFunction.Linear,
+    PQ= TransferFunction.PQ,
+    Gamma22= TransferFunction.Gamma22,
+    sRGB= TransferFunction.sRGB,
+}
+@enduml

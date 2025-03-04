@@ -1,0 +1,6 @@
+@startuml
+class ErrorsListView {
+    + <<override>> GetRows() : IList<TreeViewItem>
+}
+TreeView <|-- ErrorsListView
+@enduml

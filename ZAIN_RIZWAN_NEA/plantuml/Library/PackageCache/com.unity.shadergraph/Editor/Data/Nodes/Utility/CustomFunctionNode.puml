@@ -1,0 +1,42 @@
+@startuml
+class CustomFunctionNode {
+    + <<override>> latestVersion : int <<get>>
+    + CustomFunctionNode()
+    + <<override>> hasPreview : bool <<get>>
+    + functionName : string <<get>> <<set>>
+    + hlslFunctionName : string <<get>>
+    + {static} defaultFunctionName : string <<get>>
+    + functionSource : string <<get>> <<set>>
+    + functionSourceUsePragmas : bool <<get>> <<set>>
+    + functionBody : string <<get>> <<set>>
+    + {static} defaultFunctionBody : string <<get>>
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + GenerateNodeFunction(registry:FunctionRegistry, generationMode:GenerationMode) : void
+    + <<override>> ValidateNode() : void
+    + Reload(changedFileDependencyGUIDs:HashSet<string>) : bool
+    + {static} UpgradeFunctionSource(functionSource:string) : string
+    + <<override>> OnAfterDeserialize() : void
+    + <<override>> OnAfterMultiDeserialize(json:string) : void
+    + RequiresTransform(stageCapability:ShaderStageCapability) : NeededTransform[]
+}
+class "IEnumerable`1"<T> {
+}
+class MinimalCustomFunctionNode {
+    + GetSourceAssetDependencies(assetCollection:AssetCollection) : void
+}
+enum SourceFileStatus {
+    Empty,
+    DoesNotExist,
+    Invalid,
+    Valid,
+}
+AbstractMaterialNode <|-- CustomFunctionNode
+IGeneratesBodyCode <|-- CustomFunctionNode
+IGeneratesFunction <|-- CustomFunctionNode
+IMayRequireTransform <|-- CustomFunctionNode
+CustomFunctionNode --> "allowedNodeVersions<int>" "IEnumerable`1"
+CustomFunctionNode --> "sourceType" HlslSourceType
+CustomFunctionNode +-- MinimalCustomFunctionNode
+IHasDependencies <|-- MinimalCustomFunctionNode
+CustomFunctionNode +-- SourceFileStatus
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+struct ObjectReferenceField {
+    + propertyPath : string
+    + isSceneReference : bool
+    + {static} FindObjectReferences(type:System.Type) : ObjectReferenceField[]
+    + {static} FindObjectReferences() : ObjectReferenceField[]
+    + Find(sourceObject:ScriptableObject, context:Object) : Object
+    + IsAssignable(obj:Object) : bool
+    + Assign(scriptableObject:ScriptableObject, value:Object, exposedTable:IExposedPropertyTable) : bool
+}
+@enduml

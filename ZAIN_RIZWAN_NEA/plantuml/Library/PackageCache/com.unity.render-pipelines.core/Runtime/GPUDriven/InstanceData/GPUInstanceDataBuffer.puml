@@ -1,0 +1,59 @@
+@startuml
+struct GPUInstanceComponentDesc {
+    + propertyID : int
+    + byteSize : int
+    + isOverriden : bool
+    + isPerInstance : bool
+    + GPUInstanceComponentDesc(inPropertyID:int, inByteSize:int, inIsOverriden:bool, inPerInstance:bool, inInstanceType:InstanceType, inComponentType:InstanceComponentGroup)
+}
+class GPUInstanceDataBuffer {
+    + {static} NextVersion() : int
+    + byteSize : int
+    + perInstanceComponentCount : int
+    + version : int
+    + layoutVersion : int
+    + valid : bool <<get>>
+    + GetPropertyIndex(propertyID:int, assertOnFail:bool) : int
+    + GetGpuAddress(strName:string, assertOnFail:bool) : int
+    + GetGpuAddress(propertyID:int, assertOnFail:bool) : int
+    + CPUInstanceToGPUInstance(instance:InstanceHandle) : GPUInstanceIndex
+    + <<unsafe>> GPUInstanceToCPUInstance(gpuInstanceIndex:GPUInstanceIndex) : InstanceHandle
+    + CPUInstanceArrayToGPUInstanceArray(instances:NativeArray<InstanceHandle>, gpuInstanceIndices:NativeArray<GPUInstanceIndex>) : void
+    + Dispose() : void
+    + AsReadOnly() : ReadOnly
+}
+class "NativeArray`1"<T> {
+}
+class "NativeParallelHashMap`2"<T1,T2> {
+}
+struct ReadOnly {
+    + ReadOnly(buffer:GPUInstanceDataBuffer)
+    + CPUInstanceToGPUInstance(instance:InstanceHandle) : GPUInstanceIndex
+    + CPUInstanceArrayToGPUInstanceArray(instances:NativeArray<InstanceHandle>, gpuInstanceIndices:NativeArray<GPUInstanceIndex>) : void
+}
+struct ConvertCPUInstancesToGPUInstancesJob {
+    + <<const>> k_BatchSize : int = 512
+    + Execute(index:int) : void
+}
+GPUInstanceComponentDesc --> "instanceType" InstanceType
+GPUInstanceComponentDesc --> "componentGroup" InstanceComponentGroup
+IDisposable <|-- GPUInstanceDataBuffer
+GPUInstanceDataBuffer --> "instanceNumInfo" InstanceNumInfo
+GPUInstanceDataBuffer --> "instancesNumPrefixSum<int>" "NativeArray`1"
+GPUInstanceDataBuffer --> "instancesSpan<int>" "NativeArray`1"
+GPUInstanceDataBuffer --> "gpuBuffer" GraphicsBuffer
+GPUInstanceDataBuffer --> "validComponentsIndicesGpuBuffer" GraphicsBuffer
+GPUInstanceDataBuffer --> "componentAddressesGpuBuffer" GraphicsBuffer
+GPUInstanceDataBuffer --> "componentInstanceIndexRangesGpuBuffer" GraphicsBuffer
+GPUInstanceDataBuffer --> "componentByteCountsGpuBuffer" GraphicsBuffer
+GPUInstanceDataBuffer --> "descriptions<GPUInstanceComponentDesc>" "NativeArray`1"
+GPUInstanceDataBuffer --> "defaultMetadata<MetadataValue>" "NativeArray`1"
+GPUInstanceDataBuffer --> "gpuBufferComponentAddress<int>" "NativeArray`1"
+GPUInstanceDataBuffer --> "nameToMetadataMap<int,int>" "NativeParallelHashMap`2"
+GPUInstanceDataBuffer +-- ReadOnly
+GPUInstanceDataBuffer +-- ConvertCPUInstancesToGPUInstancesJob
+IJobParallelFor <|-- ConvertCPUInstancesToGPUInstancesJob
+ConvertCPUInstancesToGPUInstancesJob --> "instancesNumPrefixSum<int>" "NativeArray`1"
+ConvertCPUInstancesToGPUInstancesJob --> "instances<InstanceHandle>" "NativeArray`1"
+ConvertCPUInstancesToGPUInstancesJob --> "gpuInstanceIndices<GPUInstanceIndex>" "NativeArray`1"
+@enduml

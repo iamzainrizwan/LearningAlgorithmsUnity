@@ -1,0 +1,9 @@
+@startuml
+class NoActiveCameraInSceneDoesNotCrashEditor {
+    + Setup() : void
+    + TestSetup() : void
+    + EditorShouldNotCrashWithoutActiveCamera() : IEnumerator
+    + TearDown() : void
+}
+IPrebuildSetup <|-- NoActiveCameraInSceneDoesNotCrashEditor
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class PlayerCallbacks {
+    + RunStarted(testsToRun:ITest) : void
+    + RunFinished(testResults:ITestResult) : void
+    + TestStarted(test:ITest) : void
+    + TestFinished(result:ITestResult) : void
+}
+ITestRunCallback <|-- PlayerCallbacks
+@enduml

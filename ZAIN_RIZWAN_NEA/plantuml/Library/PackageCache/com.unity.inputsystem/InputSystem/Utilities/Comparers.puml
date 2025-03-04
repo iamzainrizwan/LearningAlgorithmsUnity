@@ -1,0 +1,12 @@
+@startuml
+struct Vector2MagnitudeComparer {
+    + Compare(x:Vector2, y:Vector2) : int
+}
+struct Vector3MagnitudeComparer {
+    + Compare(x:Vector3, y:Vector3) : int
+}
+class "IComparer`1"<T> {
+}
+"IComparer`1" "<Vector2>" <|-- Vector2MagnitudeComparer
+"IComparer`1" "<Vector3>" <|-- Vector3MagnitudeComparer
+@enduml

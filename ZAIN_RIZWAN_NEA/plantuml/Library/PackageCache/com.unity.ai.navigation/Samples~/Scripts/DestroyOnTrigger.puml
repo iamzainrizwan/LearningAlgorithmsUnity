@@ -1,0 +1,6 @@
+@startuml
+class DestroyOnTrigger {
+    + m_Tag : string = "Player"
+}
+MonoBehaviour <|-- DestroyOnTrigger
+@enduml

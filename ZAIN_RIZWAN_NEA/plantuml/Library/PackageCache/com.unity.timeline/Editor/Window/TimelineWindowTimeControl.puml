@@ -1,0 +1,44 @@
+@startuml
+class TimelineWindowTimeControl {
+    + Init(animState:AnimationWindowState, clip:TimelineClip) : void
+    + Init(animState:AnimationWindowState, clip:ClipData) : void
+    + <<override>> OnEnable() : void
+    + OnDisable() : void
+    + <<override>> GoToTime(newTime:float) : void
+    + <<override>> GoToFrame(frame:int) : void
+    + <<override>> StartScrubTime() : void
+    + <<override>> EndScrubTime() : void
+    + <<override>> ScrubTime(newTime:float) : void
+    + <<override>> GoToPreviousFrame() : void
+    + <<override>> GoToNextFrame() : void
+    + <<override>> GoToPreviousKeyframe() : void
+    + <<override>> GoToNextKeyframe() : void
+    + <<override>> GoToFirstKeyframe() : void
+    + <<override>> GoToLastKeyframe() : void
+    + <<override>> canPlay : bool <<get>>
+    + <<override>> playing : bool <<get>>
+    + <<override>> StartPlayback() : bool
+    + <<override>> StopPlayback() : void
+    + <<override>> PlaybackUpdate() : bool
+    + <<override>> canRecord : bool <<get>>
+    + <<override>> recording : bool <<get>>
+    + <<override>> canPreview : bool <<get>>
+    + <<override>> previewing : bool <<get>>
+    + <<override>> StartRecording(targetObject:Object) : bool
+    + <<override>> StopRecording() : void
+    + <<override>> OnSelectionChanged() : void
+    + <<override>> ResampleAnimation() : void
+    + <<override>> StartPreview() : bool
+    + <<override>> StopPreview() : void
+    + <<override>> ProcessCandidates() : void
+    + <<override>> ClearCandidates() : void
+}
+struct ClipData {
+    + start : double
+    + duration : double
+}
+IAnimationWindowControl <|-- TimelineWindowTimeControl
+TimelineWindowTimeControl --> "time" AnimationKeyTime
+TimelineWindowTimeControl +-- ClipData
+ClipData --> "track" TrackAsset
+@enduml

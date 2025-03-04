@@ -1,0 +1,10 @@
+@startuml
+class "MachineDescriptor`2"<TMachine,TMachineDescription> {
+    + <<override>> Title() : string
+    + <<override>> Summary() : string
+    + <<override>> Icon() : EditorTexture
+}
+class "Descriptor`2"<T1,T2> {
+}
+"Descriptor`2" "<TMachine,TMachineDescription>" <|-- "MachineDescriptor`2"
+@enduml

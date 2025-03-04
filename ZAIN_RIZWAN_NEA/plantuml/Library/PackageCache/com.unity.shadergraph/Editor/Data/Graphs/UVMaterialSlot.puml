@@ -1,0 +1,14 @@
+@startuml
+class UVMaterialSlot {
+    + <<override>> isDefaultValue : bool <<get>>
+    + UVMaterialSlot()
+    + UVMaterialSlot(slotId:int, displayName:string, shaderOutputName:string, channel:UVChannel, stageCapability:ShaderStageCapability, hidden:bool)
+    + <<override>> InstantiateControl() : VisualElement
+    + <<override>> GetDefaultValue(generationMode:GenerationMode) : string
+    + RequiresMeshUV(channel:UVChannel, stageCapability:ShaderStageCapability) : bool
+    + <<override>> CopyValuesFrom(foundSlot:MaterialSlot) : void
+}
+Vector2MaterialSlot <|-- UVMaterialSlot
+IMayRequireMeshUV <|-- UVMaterialSlot
+UVMaterialSlot --> "channel" UVChannel
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class UnityWorkItemDataHolder {
+}
+class "List`1"<T> {
+}
+UnityWorkItemDataHolder o-> "alreadyStartedTests<string>" "List`1"
+UnityWorkItemDataHolder --> "alreadyExecutedTests<string>" "List`1"
+@enduml

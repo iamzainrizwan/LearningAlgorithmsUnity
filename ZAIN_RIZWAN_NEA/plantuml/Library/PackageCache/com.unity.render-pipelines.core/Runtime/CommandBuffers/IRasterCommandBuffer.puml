@@ -1,0 +1,52 @@
+@startuml
+interface IRasterCommandBuffer {
+    + ClearRenderTarget(clearDepth:bool, clearColor:bool, backgroundColor:Color) : void
+    + ClearRenderTarget(clearDepth:bool, clearColor:bool, backgroundColor:Color, depth:float) : void
+    + ClearRenderTarget(clearDepth:bool, clearColor:bool, backgroundColor:Color, depth:float, stencil:uint) : void
+    + ClearRenderTarget(clearFlags:RTClearFlags, backgroundColor:Color, depth:float, stencil:uint) : void
+    + ClearRenderTarget(clearFlags:RTClearFlags, backgroundColors:Color[], depth:float, stencil:uint) : void
+    + SetInstanceMultiplier(multiplier:uint) : void
+    + SetFoveatedRenderingMode(foveatedRenderingMode:FoveatedRenderingMode) : void
+    + SetWireframe(enable:bool) : void
+    + ConfigureFoveatedRendering(platformData:IntPtr) : void
+    + DrawMesh(mesh:Mesh, matrix:Matrix4x4, material:Material, submeshIndex:int, shaderPass:int, properties:MaterialPropertyBlock) : void
+    + DrawMesh(mesh:Mesh, matrix:Matrix4x4, material:Material, submeshIndex:int, shaderPass:int) : void
+    + DrawMesh(mesh:Mesh, matrix:Matrix4x4, material:Material, submeshIndex:int) : void
+    + DrawMesh(mesh:Mesh, matrix:Matrix4x4, material:Material) : void
+    + DrawMultipleMeshes(matrices:Matrix4x4[], meshes:Mesh[], subsetIndices:int[], count:int, material:Material, shaderPass:int, properties:MaterialPropertyBlock) : void
+    + DrawRenderer(renderer:Renderer, material:Material, submeshIndex:int, shaderPass:int) : void
+    + DrawRenderer(renderer:Renderer, material:Material, submeshIndex:int) : void
+    + DrawRenderer(renderer:Renderer, material:Material) : void
+    + DrawRendererList(rendererList:RendererList) : void
+    + DrawProcedural(matrix:Matrix4x4, material:Material, shaderPass:int, topology:MeshTopology, vertexCount:int, instanceCount:int, properties:MaterialPropertyBlock) : void
+    + DrawProcedural(matrix:Matrix4x4, material:Material, shaderPass:int, topology:MeshTopology, vertexCount:int, instanceCount:int) : void
+    + DrawProcedural(matrix:Matrix4x4, material:Material, shaderPass:int, topology:MeshTopology, vertexCount:int) : void
+    + DrawProcedural(indexBuffer:GraphicsBuffer, matrix:Matrix4x4, material:Material, shaderPass:int, topology:MeshTopology, indexCount:int, instanceCount:int, properties:MaterialPropertyBlock) : void
+    + DrawProcedural(indexBuffer:GraphicsBuffer, matrix:Matrix4x4, material:Material, shaderPass:int, topology:MeshTopology, indexCount:int, instanceCount:int) : void
+    + DrawProcedural(indexBuffer:GraphicsBuffer, matrix:Matrix4x4, material:Material, shaderPass:int, topology:MeshTopology, indexCount:int) : void
+    + DrawProceduralIndirect(matrix:Matrix4x4, material:Material, shaderPass:int, topology:MeshTopology, bufferWithArgs:ComputeBuffer, argsOffset:int, properties:MaterialPropertyBlock) : void
+    + DrawProceduralIndirect(matrix:Matrix4x4, material:Material, shaderPass:int, topology:MeshTopology, bufferWithArgs:ComputeBuffer, argsOffset:int) : void
+    + DrawProceduralIndirect(matrix:Matrix4x4, material:Material, shaderPass:int, topology:MeshTopology, bufferWithArgs:ComputeBuffer) : void
+    + DrawProceduralIndirect(indexBuffer:GraphicsBuffer, matrix:Matrix4x4, material:Material, shaderPass:int, topology:MeshTopology, bufferWithArgs:ComputeBuffer, argsOffset:int, properties:MaterialPropertyBlock) : void
+    + DrawProceduralIndirect(indexBuffer:GraphicsBuffer, matrix:Matrix4x4, material:Material, shaderPass:int, topology:MeshTopology, bufferWithArgs:ComputeBuffer, argsOffset:int) : void
+    + DrawProceduralIndirect(indexBuffer:GraphicsBuffer, matrix:Matrix4x4, material:Material, shaderPass:int, topology:MeshTopology, bufferWithArgs:ComputeBuffer) : void
+    + DrawProceduralIndirect(matrix:Matrix4x4, material:Material, shaderPass:int, topology:MeshTopology, bufferWithArgs:GraphicsBuffer, argsOffset:int, properties:MaterialPropertyBlock) : void
+    + DrawProceduralIndirect(matrix:Matrix4x4, material:Material, shaderPass:int, topology:MeshTopology, bufferWithArgs:GraphicsBuffer, argsOffset:int) : void
+    + DrawProceduralIndirect(matrix:Matrix4x4, material:Material, shaderPass:int, topology:MeshTopology, bufferWithArgs:GraphicsBuffer) : void
+    + DrawProceduralIndirect(indexBuffer:GraphicsBuffer, matrix:Matrix4x4, material:Material, shaderPass:int, topology:MeshTopology, bufferWithArgs:GraphicsBuffer, argsOffset:int, properties:MaterialPropertyBlock) : void
+    + DrawProceduralIndirect(indexBuffer:GraphicsBuffer, matrix:Matrix4x4, material:Material, shaderPass:int, topology:MeshTopology, bufferWithArgs:GraphicsBuffer, argsOffset:int) : void
+    + DrawProceduralIndirect(indexBuffer:GraphicsBuffer, matrix:Matrix4x4, material:Material, shaderPass:int, topology:MeshTopology, bufferWithArgs:GraphicsBuffer) : void
+    + DrawMeshInstanced(mesh:Mesh, submeshIndex:int, material:Material, shaderPass:int, matrices:Matrix4x4[], count:int, properties:MaterialPropertyBlock) : void
+    + DrawMeshInstanced(mesh:Mesh, submeshIndex:int, material:Material, shaderPass:int, matrices:Matrix4x4[], count:int) : void
+    + DrawMeshInstanced(mesh:Mesh, submeshIndex:int, material:Material, shaderPass:int, matrices:Matrix4x4[]) : void
+    + DrawMeshInstancedProcedural(mesh:Mesh, submeshIndex:int, material:Material, shaderPass:int, count:int, properties:MaterialPropertyBlock) : void
+    + DrawMeshInstancedIndirect(mesh:Mesh, submeshIndex:int, material:Material, shaderPass:int, bufferWithArgs:ComputeBuffer, argsOffset:int, properties:MaterialPropertyBlock) : void
+    + DrawMeshInstancedIndirect(mesh:Mesh, submeshIndex:int, material:Material, shaderPass:int, bufferWithArgs:ComputeBuffer, argsOffset:int) : void
+    + DrawMeshInstancedIndirect(mesh:Mesh, submeshIndex:int, material:Material, shaderPass:int, bufferWithArgs:ComputeBuffer) : void
+    + DrawMeshInstancedIndirect(mesh:Mesh, submeshIndex:int, material:Material, shaderPass:int, bufferWithArgs:GraphicsBuffer, argsOffset:int, properties:MaterialPropertyBlock) : void
+    + DrawMeshInstancedIndirect(mesh:Mesh, submeshIndex:int, material:Material, shaderPass:int, bufferWithArgs:GraphicsBuffer, argsOffset:int) : void
+    + DrawMeshInstancedIndirect(mesh:Mesh, submeshIndex:int, material:Material, shaderPass:int, bufferWithArgs:GraphicsBuffer) : void
+    + DrawOcclusionMesh(normalizedCamViewport:RectInt) : void
+}
+IBaseCommandBuffer <|-- IRasterCommandBuffer
+@enduml

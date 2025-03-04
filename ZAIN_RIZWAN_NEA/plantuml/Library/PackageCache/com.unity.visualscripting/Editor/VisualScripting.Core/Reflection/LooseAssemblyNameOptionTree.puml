@@ -1,0 +1,11 @@
+@startuml
+class LooseAssemblyNameOptionTree {
+    + LooseAssemblyNameOptionTree()
+    + <<override>> searchable : bool <<get>> = true
+    + <<override>> Root() : IEnumerable<object>
+    + <<override>> Children(parent:object) : IEnumerable<object>
+    + <<override>> SearchResults(query:string, cancellation:CancellationToken) : IEnumerable<ISearchResult>
+    + <<override>> SearchResultLabel(item:object, query:string) : string
+}
+FuzzyOptionTree <|-- LooseAssemblyNameOptionTree
+@enduml

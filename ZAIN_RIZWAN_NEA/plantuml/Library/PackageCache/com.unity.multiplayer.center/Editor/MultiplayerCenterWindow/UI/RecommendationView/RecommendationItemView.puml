@@ -1,0 +1,21 @@
+@startuml
+class RecommendationItemView {
+    + FeatureId : string <<get>> <<set>>
+    + RecommendationItemView(isRadio:bool)
+    + UpdateData(package:RecommendedPackageViewData) : void
+    + SetRecommendedBadgeVisible(value:bool) : void
+}
+class RecommendationBadge {
+    + SetRecommendationType(value:RecommendationType) : void
+    + RecommendationBadge()
+}
+class PreReleaseBadge {
+    + PreReleaseBadge()
+}
+class "Action`2"<T1,T2> {
+}
+VisualElement <|-- RecommendationItemView
+RecommendationItemView --> "OnUserChangedSelection<RecommendationItemView,bool>" "Action`2"
+Label <|-- RecommendationBadge
+Label <|-- PreReleaseBadge
+@enduml

@@ -1,0 +1,36 @@
+@startuml
+struct Tessellator {
+}
+struct TestHullPointL {
+    + Test(h:UHull, p:float2, t:float) : bool
+}
+struct TestHullPointU {
+    + Test(h:UHull, p:float2, t:float) : bool
+}
+struct TestHullEventLe {
+    + Test(h:UHull, p:UEvent, t:float) : bool
+}
+struct TestHullEventE {
+    + Test(h:UHull, p:UEvent, t:float) : bool
+}
+struct TestEdgePointE {
+    + Test(h:int2, p:int2, t:float) : bool
+}
+struct TestCellE {
+    + Test(h:int3, p:int3, t:float) : bool
+}
+class "ICondition2`2"<T1,T2> {
+}
+Tessellator +-- TestHullPointL
+"ICondition2`2" "<UHull,float2>" <|-- TestHullPointL
+Tessellator +-- TestHullPointU
+"ICondition2`2" "<UHull,float2>" <|-- TestHullPointU
+Tessellator +-- TestHullEventLe
+"ICondition2`2" "<UHull,UEvent>" <|-- TestHullEventLe
+Tessellator +-- TestHullEventE
+"ICondition2`2" "<UHull,UEvent>" <|-- TestHullEventE
+Tessellator +-- TestEdgePointE
+"ICondition2`2" "<int2,int2>" <|-- TestEdgePointE
+Tessellator +-- TestCellE
+"ICondition2`2" "<int3,int3>" <|-- TestCellE
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+interface IGraphElementAnalysis {
+}
+IAnalysis <|-- IGraphElementAnalysis
+@enduml

@@ -1,0 +1,61 @@
+@startuml
+class UniversalLitSubTarget <<sealed>> {
+    + <<override>> latestVersion : int <<get>>
+    + UniversalLitSubTarget()
+    + clearCoat : bool <<get>> <<set>>
+    + blendModePreserveSpecular : bool <<get>> <<set>>
+    + <<override>> IsActive() : bool
+    + <<override>> Setup(context:TargetSetupContext) : void
+    + <<override>> ProcessPreviewMaterial(material:Material) : void
+    + <<override>> GetFields(context:TargetFieldContext) : void
+    + <<override>> GetActiveBlocks(context:TargetActiveBlockContext) : void
+    + <<override>> CollectShaderProperties(collector:PropertyCollector, generationMode:GenerationMode) : void
+    + <<override>> GetPropertiesGUI(context:TargetPropertyGUIContext, onChange:Action, registerUndo:Action<String>) : void
+    + TryUpgradeFromMasterNode(masterNode:IMasterNode1, blockMap:Dictionary<BlockFieldDescriptor, int>) : bool
+}
+class SubShaders <<static>> {
+    + {static} LitSubShader(target:UniversalTarget, workflowMode:WorkflowMode, renderType:string, renderQueue:string, disableBatchingTag:string, complexLit:bool, blendModePreserveSpecular:bool) : SubShaderDescriptor
+}
+class LitPasses <<static>> {
+    + {static} Forward(target:UniversalTarget, workflowMode:WorkflowMode, blendModePreserveSpecular:bool, pragmas:PragmaCollection, keywords:KeywordCollection) : PassDescriptor
+    + {static} ForwardOnly(target:UniversalTarget, workflowMode:WorkflowMode, complexLit:bool, blendModePreserveSpecular:bool, vertexBlocks:BlockFieldDescriptor[], pixelBlocks:BlockFieldDescriptor[], pragmas:PragmaCollection, keywords:KeywordCollection) : PassDescriptor
+    + {static} GBuffer(target:UniversalTarget, workflowMode:WorkflowMode, blendModePreserveSpecular:bool) : PassDescriptor
+    + {static} Meta(target:UniversalTarget) : PassDescriptor
+    + {static} _2D(target:UniversalTarget) : PassDescriptor
+    + {static} DepthNormal(target:UniversalTarget) : PassDescriptor
+    + {static} DepthNormalOnly(target:UniversalTarget) : PassDescriptor
+}
+class LitBlockMasks <<static>> {
+}
+class LitRequiredFields <<static>> {
+}
+class LitDefines <<static>> {
+}
+class LitKeywords <<static>> {
+}
+class LitIncludes <<static>> {
+}
+UniversalSubTarget <|-- UniversalLitSubTarget
+ILegacyTarget <|-- UniversalLitSubTarget
+UniversalLitSubTarget --> "workflowMode" WorkflowMode
+UniversalLitSubTarget --> "normalDropOffSpace" NormalDropOffSpace
+UniversalLitSubTarget +-- SubShaders
+UniversalLitSubTarget +-- LitPasses
+UniversalLitSubTarget +-- LitBlockMasks
+UniversalLitSubTarget +-- LitRequiredFields
+LitRequiredFields o-> "Forward" FieldCollection
+LitRequiredFields o-> "GBuffer" FieldCollection
+LitRequiredFields o-> "Meta" FieldCollection
+UniversalLitSubTarget +-- LitDefines
+LitDefines o-> "ClearCoat" KeywordDescriptor
+LitDefines o-> "SpecularSetup" KeywordDescriptor
+UniversalLitSubTarget +-- LitKeywords
+LitKeywords o-> "ReceiveShadowsOff" KeywordDescriptor
+LitKeywords o-> "Forward" KeywordCollection
+LitKeywords o-> "GBuffer" KeywordCollection
+UniversalLitSubTarget +-- LitIncludes
+LitIncludes o-> "Forward" IncludeCollection
+LitIncludes o-> "GBuffer" IncludeCollection
+LitIncludes o-> "Meta" IncludeCollection
+LitIncludes o-> "_2D" IncludeCollection
+@enduml

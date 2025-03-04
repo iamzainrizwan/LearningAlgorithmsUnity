@@ -1,0 +1,10 @@
+@startuml
+class Render2DLightingPass {
+    + Render2DLightingPass(rendererData:Renderer2DData, blitMaterial:Material, samplingMaterial:Material, fallOffLookup:Texture2D)
+    + {static} GetCameraSortingLayerBoundsIndex(rendererData:Renderer2DData) : short
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + Dispose() : void
+}
+ScriptableRenderPass <|-- Render2DLightingPass
+IRenderPass2D <|-- Render2DLightingPass
+@enduml

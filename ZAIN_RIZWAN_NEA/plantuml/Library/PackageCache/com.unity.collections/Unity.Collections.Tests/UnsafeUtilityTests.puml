@@ -1,0 +1,44 @@
+@startuml
+class UnsafeUtilityTests {
+    + ReinterpretUIntFloat() : void
+    + ReinterpretUInt4Float() : void
+    + ReinterpretFloatUint4() : void
+    + MismatchThrows1() : void
+    + MismatchThrows2() : void
+    + AliasCanBeDisposed() : void
+    + CannotUseAliasAfterSourceIsDisposed() : void
+    + MutabilityWorks() : void
+    + UnsafeUtility_AlignOf() : void
+    + <<unsafe>> UnsafeUtility_MemSwap() : void
+    + <<unsafe>> UnsafeUtility_MemSwap_DoesThrow_Overlapped() : void
+    + <<unsafe>> UnsafeUtility_ReadArrayElementBoundsChecked_Works() : void
+    + <<unsafe>> UnsafeUtility_WriteArrayElementBoundsChecked_Works() : void
+    + <<unsafe>> UnsafeUtility_AsRefAddressOfIn_Works() : void
+}
+struct DummyVec {
+    + A : uint
+    + B : uint
+    + C : uint
+    + D : uint
+}
+struct AlignOfX {
+}
+struct AlignOfY {
+}
+struct AlignOfZ {
+}
+struct AlignOfW {
+}
+struct BoolLong {
+}
+struct BoolPtr {
+}
+CollectionsTestCommonBase <|-- UnsafeUtilityTests
+UnsafeUtilityTests +-- DummyVec
+UnsafeUtilityTests +-- AlignOfX
+UnsafeUtilityTests +-- AlignOfY
+UnsafeUtilityTests +-- AlignOfZ
+UnsafeUtilityTests +-- AlignOfW
+UnsafeUtilityTests +-- BoolLong
+UnsafeUtilityTests +-- BoolPtr
+@enduml

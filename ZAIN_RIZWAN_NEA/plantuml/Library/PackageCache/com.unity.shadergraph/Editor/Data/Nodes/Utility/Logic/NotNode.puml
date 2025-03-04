@@ -1,0 +1,7 @@
+@startuml
+class NotNode {
+    + NotNode()
+    + <<override>> hasPreview : bool <<get>>
+}
+CodeFunctionNode <|-- NotNode
+@enduml

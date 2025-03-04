@@ -1,0 +1,40 @@
+@startuml
+enum ScriptingLanguage {
+    None,
+    CSharp,
+}
+interface IGenerator {
+}
+class ProjectGeneration {
+    + {static} <<readonly>> MSBuildNamespaceUri : string = "http://schemas.microsoft.com/developer/msbuild/2003"
+    + ProjectDirectory : string <<get>>
+    + ProjectGeneration()
+    + ProjectGeneration(tempDirectory:string)
+    + ProjectGeneration(tempDirectory:string, assemblyNameProvider:IAssemblyNameProvider, fileIoProvider:IFileIO, guidGenerator:IGUIDGenerator)
+    + SyncIfNeeded(affectedFiles:IEnumerable<string>, reimportedFiles:IEnumerable<string>) : bool
+    + Sync() : void
+    + HasSolutionBeenGenerated() : bool
+    + IsSupportedFile(path:string) : bool
+    + GenerateAndWriteSolutionAndProjects() : void
+    + ProjectFile(assembly:Assembly) : string
+    + SolutionFile() : string
+}
+class SolutionGuidGenerator <<static>> {
+    + {static} GuidForProject(projectName:string) : string
+    + {static} GuidForSolution(projectName:string, language:ScriptingLanguage) : string
+}
+enum IncludeAssetTag {
+    Compile,
+    None,
+}
+enum ProjectType {
+    GamePlugins= 3,
+    Game= 1,
+    EditorPlugins= 7,
+    Editor= 5,
+}
+IGenerator <|-- ProjectGeneration
+ProjectGeneration --> "AssemblyNameProvider" IAssemblyNameProvider
+ProjectGeneration +-- IncludeAssetTag
+ProjectGeneration +-- ProjectType
+@enduml

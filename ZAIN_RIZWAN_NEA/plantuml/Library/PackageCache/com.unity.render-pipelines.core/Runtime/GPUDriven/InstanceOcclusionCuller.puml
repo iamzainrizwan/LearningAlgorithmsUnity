@@ -1,0 +1,144 @@
+@startuml
+struct OccluderDerivedData {
+    + {static} FromParameters(occluderSubviewUpdate:OccluderSubviewUpdate) : OccluderDerivedData
+}
+struct OccluderHandles {
+    + IsValid() : bool
+    + UseForOcclusionTest(builder:IBaseRenderGraphBuilder) : void
+    + UseForOccluderUpdate(builder:IBaseRenderGraphBuilder) : void
+}
+enum InstanceOcclusionTestDebugCounter {
+    Occluded,
+    NotOccluded,
+    Count,
+}
+struct IndirectInstanceInfo {
+    + drawOffsetAndSplitMask : int
+    + instanceIndexAndCrossFade : int
+}
+struct IndirectDrawInfo {
+    + indexCount : uint
+    + firstIndex : uint
+    + baseVertex : uint
+    + firstInstanceGlobalIndex : uint
+    + maxInstanceCount : uint
+}
+struct IndirectBufferAllocInfo {
+    + drawAllocIndex : int
+    + drawCount : int
+    + instanceAllocIndex : int
+    + instanceCount : int
+    + IsEmpty() : bool
+    + IsWithinLimits(limits:IndirectBufferLimits) : bool
+    + GetExtraDrawInfoSlotIndex() : int
+}
+struct IndirectBufferContext {
+    + occluderVersion : int
+    + subviewMask : int
+    + IndirectBufferContext(cullingJobHandle:JobHandle)
+    + Matches(bufferState:BufferState, occluderVersion:int, subviewMask:int) : bool
+}
+struct OccluderMipBounds {
+}
+struct OccluderContext {
+    + <<const>> k_FirstDepthMipIndex : int = 3
+    + <<const>> k_MaxOccluderMips : int
+    + <<const>> k_MaxSilhouettePlanes : int
+    + <<const>> k_MaxSubviewsPerView : int
+    + version : int
+    + subviewCount : int <<get>>
+    + subviewValidMask : int
+    + IsSubviewValid(subviewIndex:int) : bool
+    + occlusionDebugOverlaySize : int
+    + debugNeedsClear : bool
+    + Dispose() : void
+    + CreateFarDepthPyramid(cmd:ComputeCommandBuffer, occluderParams:OccluderParameters, occluderSubviewUpdates:ReadOnlySpan<OccluderSubviewUpdate>, occluderHandles:OccluderHandles, silhouettePlanes:NativeArray<Plane>, occluderDepthPyramidCS:ComputeShader, occluderDepthDownscaleKernel:int) : void
+    + Import(renderGraph:RenderGraph) : OccluderHandles
+    + PrepareOccluders(occluderParams:OccluderParameters) : void
+}
+enum IndirectAllocator {
+    NextInstanceIndex,
+    NextDrawIndex,
+    Count,
+}
+struct IndirectBufferLimits {
+    + maxInstanceCount : int
+    + maxDrawCount : int
+}
+struct InstanceOcclusionTestSubviewSettings {
+    + testCount : int
+    + occluderSubviewIndices : int
+    + occluderSubviewMask : int
+    + cullingSplitIndices : int
+    + cullingSplitMask : int
+    + {static} FromSpan(subviewOcclusionTests:ReadOnlySpan<SubviewOcclusionTest>) : InstanceOcclusionTestSubviewSettings
+}
+struct IndirectBufferContextHandles {
+    + UseForOcclusionTest(builder:IBaseRenderGraphBuilder) : void
+}
+struct IndirectBufferContextStorage {
+    + ImportBuffers(renderGraph:RenderGraph) : IndirectBufferContextHandles
+    + Init() : void
+    + Dispose() : void
+    + ClearContextsAndGrowBuffers() : void
+    + TryAllocateContext(viewID:int) : int
+    + TryGetContextIndex(viewID:int) : int
+    + GetAllocInfoSubArray(contextIndex:int) : NativeArray<IndirectBufferAllocInfo>
+    + GetAllocInfo(contextIndex:int) : IndirectBufferAllocInfo
+    + CopyFromStaging(cmd:CommandBuffer, allocInfo:IndirectBufferAllocInfo) : void
+    + GetLimits(contextIndex:int) : IndirectBufferLimits
+    + GetBufferContext(contextIndex:int) : IndirectBufferContext
+    + SetBufferContext(contextIndex:int, ctx:IndirectBufferContext) : void
+}
+enum BufferState {
+    Pending,
+    Zeroed,
+    NoOcclusionTest,
+    AllInstancesOcclusionTested,
+    OccludedInstancesReTested,
+}
+class ShaderIDs <<static>> {
+    + {static} <<readonly>> _SrcDepth : int
+    + {static} <<readonly>> _DstDepth : int
+    + {static} <<readonly>> OccluderDepthPyramidConstants : int
+}
+class "NativeArray`1"<T> {
+}
+OccluderDerivedData --> "viewProjMatrix" Matrix4x4
+OccluderDerivedData --> "viewOriginWorldSpace" Vector4
+OccluderDerivedData --> "radialDirWorldSpace" Vector4
+OccluderDerivedData --> "facingDirWorldSpace" Vector4
+OccluderHandles --> "occluderDepthPyramid" TextureHandle
+OccluderHandles --> "occlusionDebugOverlay" BufferHandle
+IndirectBufferContext --> "cullingJobHandle" JobHandle
+IndirectBufferContext --> "bufferState" BufferState
+OccluderMipBounds --> "offset" Vector2Int
+OccluderMipBounds --> "size" Vector2Int
+IDisposable <|-- OccluderContext
+OccluderContext --> "depthBufferSize" Vector2Int
+OccluderContext --> "subviewData<OccluderDerivedData>" "NativeArray`1"
+OccluderContext --> "occluderMipBounds<OccluderMipBounds>" "NativeArray`1"
+OccluderContext --> "occluderMipLayoutSize" Vector2Int
+OccluderContext --> "occluderDepthPyramidSize" Vector2Int
+OccluderContext --> "occluderDepthPyramid" RTHandle
+OccluderContext --> "occlusionDebugOverlay" GraphicsBuffer
+OccluderContext --> "constantBuffer" ComputeBuffer
+OccluderContext --> "constantBufferData<OccluderDepthPyramidConstants>" "NativeArray`1"
+OccluderContext --> "depthBufferSizeInOccluderPixels" Vector2
+IndirectBufferContextHandles --> "instanceBuffer" BufferHandle
+IndirectBufferContextHandles --> "instanceInfoBuffer" BufferHandle
+IndirectBufferContextHandles --> "argsBuffer" BufferHandle
+IndirectBufferContextHandles --> "drawInfoBuffer" BufferHandle
+IDisposable <|-- IndirectBufferContextStorage
+IndirectBufferContextStorage --> "instanceBuffer" GraphicsBuffer
+IndirectBufferContextStorage --> "instanceInfoBuffer" GraphicsBuffer
+IndirectBufferContextStorage --> "argsBuffer" GraphicsBuffer
+IndirectBufferContextStorage --> "drawInfoBuffer" GraphicsBuffer
+IndirectBufferContextStorage --> "visibleInstanceBufferHandle" GraphicsBufferHandle
+IndirectBufferContextStorage --> "indirectArgsBufferHandle" GraphicsBufferHandle
+IndirectBufferContextStorage --> "instanceInfoGlobalArray<IndirectInstanceInfo>" "NativeArray`1"
+IndirectBufferContextStorage --> "drawInfoGlobalArray<IndirectDrawInfo>" "NativeArray`1"
+IndirectBufferContextStorage --> "allocationCounters<int>" "NativeArray`1"
+IndirectBufferContext +-- BufferState
+OccluderContext +-- ShaderIDs
+@enduml

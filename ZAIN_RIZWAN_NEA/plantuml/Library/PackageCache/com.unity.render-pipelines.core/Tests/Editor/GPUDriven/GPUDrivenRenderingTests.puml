@@ -1,0 +1,42 @@
+@startuml
+class OnLoad {
+}
+class GPUDrivenRenderingTests {
+    + SubmitCameraRenderRequest(camera:Camera) : void
+    + OneTimeSetup() : void
+    + OneTimeTearDown() : void
+    + OnSetup() : void
+    + OnTearDown() : void
+    + TestInstanceCullingBatcherAddRemove() : void
+    + TestInstanceCullingTier0() : void
+    + TestSceneViewHiddenRenderersCullingTier0() : void
+    + TestMultipleMetadata() : void
+    + TestCPULODSelection() : void
+    + TestCPULODCrossfade() : void
+    + TestGpuDrivenSmallMeshCulling() : void
+    + TestInstanceDataBuffer() : void
+    + TestGrowInstanceDataBuffer() : void
+    + TestInstanceData() : void
+    + TestStaticBatching() : void
+    + TestDisallowGPUDrivenRendering() : void
+    + TestUnsupportedCallbacks() : void
+    + TestForceRenderingOff() : void
+    + TestSimpleSpeedTree() : void
+}
+class BoxedCounter {
+    + Value : int <<get>> <<set>>
+}
+class OnWillRenderObjectBehaviour {
+}
+class OnBecameInvisibleBehaviour {
+}
+class OnBecameVisibleBehaviour {
+}
+GPUDrivenRenderingTests +-- BoxedCounter
+GPUDrivenRenderingTests +-- OnWillRenderObjectBehaviour
+MonoBehaviour <|-- OnWillRenderObjectBehaviour
+GPUDrivenRenderingTests +-- OnBecameInvisibleBehaviour
+MonoBehaviour <|-- OnBecameInvisibleBehaviour
+GPUDrivenRenderingTests +-- OnBecameVisibleBehaviour
+MonoBehaviour <|-- OnBecameVisibleBehaviour
+@enduml

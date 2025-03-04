@@ -1,0 +1,6 @@
+@startuml
+class FrameTimeMeasurement {
+}
+MonoBehaviour <|-- FrameTimeMeasurement
+FrameTimeMeasurement --> "SampleGroup" SampleGroup
+@enduml

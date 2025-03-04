@@ -1,0 +1,7 @@
+@startuml
+class ImmediateEnumerableCommand {
+    + ImmediateEnumerableCommand(innerCommand:TestCommand)
+    + <<override>> Execute(context:ITestExecutionContext) : TestResult
+}
+DelegatingTestCommand <|-- ImmediateEnumerableCommand
+@enduml

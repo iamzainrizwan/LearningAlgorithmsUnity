@@ -1,0 +1,8 @@
+@startuml
+class SampleGradient {
+    + <<override>> latestVersion : int <<get>>
+    + SampleGradient()
+    + <<override>> hasPreview : bool <<get>>
+}
+CodeFunctionNode <|-- SampleGradient
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class ViewDirectionMaterialSlot {
+    + ViewDirectionMaterialSlot()
+    + ViewDirectionMaterialSlot(slotId:int, displayName:string, shaderOutputName:string, space:CoordinateSpace, stageCapability:ShaderStageCapability, hidden:bool)
+    + <<override>> InstantiateControl() : VisualElement
+    + <<override>> GetDefaultValue(generationMode:GenerationMode) : string
+    + RequiresViewDirection(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+}
+SpaceMaterialSlot <|-- ViewDirectionMaterialSlot
+IMayRequireViewDirection <|-- ViewDirectionMaterialSlot
+@enduml

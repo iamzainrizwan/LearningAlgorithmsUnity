@@ -1,0 +1,46 @@
+@startuml
+class ParallelSortExtensions <<static>> {
+}
+struct RadixSortBucketCountJob {
+    + radix : int
+    + jobsCount : int
+    + batchSize : int
+    + Execute(index:int) : void
+}
+struct RadixSortBatchPrefixSumJob {
+    + radix : int
+    + jobsCount : int
+    + Execute(index:int) : void
+}
+struct RadixSortPrefixSumJob {
+    + jobsCount : int
+    + Execute(index:int) : void
+}
+struct RadixSortBucketSortJob {
+    + radix : int
+    + batchSize : int
+    + Execute(index:int) : void
+}
+class "NativeArray`1"<T> {
+}
+ParallelSortExtensions +-- RadixSortBucketCountJob
+IJobFor <|-- RadixSortBucketCountJob
+RadixSortBucketCountJob --> "array<int>" "NativeArray`1"
+RadixSortBucketCountJob --> "buckets<int>" "NativeArray`1"
+ParallelSortExtensions +-- RadixSortBatchPrefixSumJob
+IJobFor <|-- RadixSortBatchPrefixSumJob
+RadixSortBatchPrefixSumJob --> "array<int>" "NativeArray`1"
+RadixSortBatchPrefixSumJob --> "counter<int>" "NativeArray`1"
+RadixSortBatchPrefixSumJob --> "indicesSum<int>" "NativeArray`1"
+RadixSortBatchPrefixSumJob --> "buckets<int>" "NativeArray`1"
+RadixSortBatchPrefixSumJob --> "indices<int>" "NativeArray`1"
+ParallelSortExtensions +-- RadixSortPrefixSumJob
+IJobFor <|-- RadixSortPrefixSumJob
+RadixSortPrefixSumJob --> "indicesSum<int>" "NativeArray`1"
+RadixSortPrefixSumJob --> "indices<int>" "NativeArray`1"
+ParallelSortExtensions +-- RadixSortBucketSortJob
+IJobFor <|-- RadixSortBucketSortJob
+RadixSortBucketSortJob --> "array<int>" "NativeArray`1"
+RadixSortBucketSortJob --> "indices<int>" "NativeArray`1"
+RadixSortBucketSortJob --> "arraySorted<int>" "NativeArray`1"
+@enduml

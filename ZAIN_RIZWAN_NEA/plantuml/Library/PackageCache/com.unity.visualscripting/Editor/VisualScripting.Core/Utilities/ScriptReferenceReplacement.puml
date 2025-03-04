@@ -1,0 +1,11 @@
+@startuml
+struct ScriptReferenceReplacement {
+    + ScriptReferenceReplacement(previousReference:ScriptReference, newReference:ScriptReference)
+    + {static} From(previous:ScriptReference) : ScriptReferenceReplacement
+    + {static} FromDll(dllGuid:string) : ScriptReferenceReplacement
+    + {static} FromCs(csGuid:string) : ScriptReferenceReplacement
+    + <<override>> ToString() : string
+}
+ScriptReferenceReplacement --> "previousReference" ScriptReference
+ScriptReferenceReplacement --> "newReference" ScriptReference
+@enduml

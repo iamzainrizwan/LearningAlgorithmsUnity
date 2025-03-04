@@ -1,0 +1,379 @@
+@startuml
+class NativeArrayExtensions <<static>> {
+    + {static} <<unsafe>> UnsafeElementAt(array:NativeArray<T>, index:int) : ref T
+    + {static} <<unsafe>> UnsafeElementAtMutable(array:NativeArray<T>, index:int) : ref T
+}
+enum MixedLightingSetup {
+    None,
+    ShadowMask,
+    Subtractive,
+}
+enum ImageScalingMode {
+    None,
+    Upscaling,
+    Downscaling,
+}
+enum ImageUpscalingFilter {
+    Linear,
+    Point,
+    FSR,
+    STP,
+}
+struct RenderingData {
+}
+struct LightData {
+}
+struct CameraData {
+    + GetViewMatrix(viewIndex:int) : Matrix4x4
+    + GetProjectionMatrix(viewIndex:int) : Matrix4x4
+    + GetGPUProjectionMatrix(viewIndex:int) : Matrix4x4
+    + GetGPUProjectionMatrixNoJitter(viewIndex:int) : Matrix4x4
+    + isSceneViewCamera : bool <<get>>
+    + isPreviewCamera : bool <<get>>
+    + isHDROutputActive : bool <<get>>
+    + rendersOverlayUI : bool <<get>>
+    + IsHandleYFlipped(handle:RTHandle) : bool
+    + IsCameraProjectionMatrixFlipped() : bool
+    + IsRenderTargetProjectionMatrixFlipped(color:RTHandle, depth:RTHandle) : bool
+}
+struct ShadowData {
+}
+struct PreTile {
+}
+struct TileData {
+    + tileID : uint
+    + listBitMask : uint
+    + relLightOffset : uint
+    + unused : uint
+}
+struct PunctualLightData {
+    + radius : float
+    + flags : int
+    + layerMask : uint
+}
+class ShaderPropertyId <<static>> {
+    + {static} <<readonly>> glossyEnvironmentColor : int
+    + {static} <<readonly>> subtractiveShadowColor : int
+    + {static} <<readonly>> glossyEnvironmentCubeMap : int
+    + {static} <<readonly>> glossyEnvironmentCubeMapHDR : int
+    + {static} <<readonly>> ambientSkyColor : int
+    + {static} <<readonly>> ambientEquatorColor : int
+    + {static} <<readonly>> ambientGroundColor : int
+    + {static} <<readonly>> time : int
+    + {static} <<readonly>> sinTime : int
+    + {static} <<readonly>> cosTime : int
+    + {static} <<readonly>> deltaTime : int
+    + {static} <<readonly>> timeParameters : int
+    + {static} <<readonly>> lastTimeParameters : int
+    + {static} <<readonly>> scaledScreenParams : int
+    + {static} <<readonly>> worldSpaceCameraPos : int
+    + {static} <<readonly>> screenParams : int
+    + {static} <<readonly>> alphaToMaskAvailable : int
+    + {static} <<readonly>> projectionParams : int
+    + {static} <<readonly>> zBufferParams : int
+    + {static} <<readonly>> orthoParams : int
+    + {static} <<readonly>> globalMipBias : int
+    + {static} <<readonly>> screenSize : int
+    + {static} <<readonly>> screenCoordScaleBias : int
+    + {static} <<readonly>> screenSizeOverride : int
+    + {static} <<readonly>> viewMatrix : int
+    + {static} <<readonly>> projectionMatrix : int
+    + {static} <<readonly>> viewAndProjectionMatrix : int
+    + {static} <<readonly>> inverseViewMatrix : int
+    + {static} <<readonly>> inverseProjectionMatrix : int
+    + {static} <<readonly>> inverseViewAndProjectionMatrix : int
+    + {static} <<readonly>> cameraProjectionMatrix : int
+    + {static} <<readonly>> inverseCameraProjectionMatrix : int
+    + {static} <<readonly>> worldToCameraMatrix : int
+    + {static} <<readonly>> cameraToWorldMatrix : int
+    + {static} <<readonly>> shadowBias : int
+    + {static} <<readonly>> lightDirection : int
+    + {static} <<readonly>> lightPosition : int
+    + {static} <<readonly>> cameraWorldClipPlanes : int
+    + {static} <<readonly>> billboardNormal : int
+    + {static} <<readonly>> billboardTangent : int
+    + {static} <<readonly>> billboardCameraParams : int
+    + {static} <<readonly>> previousViewProjectionNoJitter : int
+    + {static} <<readonly>> viewProjectionNoJitter : int
+    + {static} <<readonly>> blitTexture : int
+    + {static} <<readonly>> blitScaleBias : int
+    + {static} <<readonly>> sourceTex : int
+    + {static} <<readonly>> scaleBias : int
+    + {static} <<readonly>> scaleBiasRt : int
+    + {static} <<readonly>> rtHandleScale : int
+    + {static} <<readonly>> rendererColor : int
+    + {static} <<readonly>> ditheringTexture : int
+    + {static} <<readonly>> ditheringTextureInvSize : int
+    + {static} <<readonly>> renderingLayerMaxInt : int
+    + {static} <<readonly>> renderingLayerRcpMaxInt : int
+    + {static} <<readonly>> overlayUITexture : int
+    + {static} <<readonly>> hdrOutputLuminanceParams : int
+    + {static} <<readonly>> hdrOutputGradingParams : int
+}
+struct PostProcessingData {
+}
+class ShaderGlobalKeywords <<static>> {
+    + {static} InitializeShaderGlobalKeywords() : void
+}
+class ShaderKeywordStrings <<static>> {
+    + <<const>> MainLightShadows : string = "_MAIN_LIGHT_SHADOWS"
+    + <<const>> MainLightShadowCascades : string = "_MAIN_LIGHT_SHADOWS_CASCADE"
+    + <<const>> MainLightShadowScreen : string = "_MAIN_LIGHT_SHADOWS_SCREEN"
+    + <<const>> CastingPunctualLightShadow : string = "_CASTING_PUNCTUAL_LIGHT_SHADOW"
+    + <<const>> AdditionalLightsVertex : string = "_ADDITIONAL_LIGHTS_VERTEX"
+    + <<const>> AdditionalLightsPixel : string = "_ADDITIONAL_LIGHTS"
+    + <<const>> AdditionalLightShadows : string = "_ADDITIONAL_LIGHT_SHADOWS"
+    + <<const>> ReflectionProbeBoxProjection : string = "_REFLECTION_PROBE_BOX_PROJECTION"
+    + <<const>> ReflectionProbeBlending : string = "_REFLECTION_PROBE_BLENDING"
+    + <<const>> SoftShadows : string = "_SHADOWS_SOFT"
+    + <<const>> SoftShadowsLow : string = "_SHADOWS_SOFT_LOW"
+    + <<const>> SoftShadowsMedium : string = "_SHADOWS_SOFT_MEDIUM"
+    + <<const>> SoftShadowsHigh : string = "_SHADOWS_SOFT_HIGH"
+    + <<const>> MixedLightingSubtractive : string = "_MIXED_LIGHTING_SUBTRACTIVE"
+    + <<const>> LightmapShadowMixing : string = "LIGHTMAP_SHADOW_MIXING"
+    + <<const>> ShadowsShadowMask : string = "SHADOWS_SHADOWMASK"
+    + <<const>> LightLayers : string = "_LIGHT_LAYERS"
+    + <<const>> RenderPassEnabled : string = "_RENDER_PASS_ENABLED"
+    + <<const>> BillboardFaceCameraPos : string = "BILLBOARD_FACE_CAMERA_POS"
+    + <<const>> LightCookies : string = "_LIGHT_COOKIES"
+    + <<const>> DepthNoMsaa : string = "_DEPTH_NO_MSAA"
+    + <<const>> DepthMsaa2 : string = "_DEPTH_MSAA_2"
+    + <<const>> DepthMsaa4 : string = "_DEPTH_MSAA_4"
+    + <<const>> DepthMsaa8 : string = "_DEPTH_MSAA_8"
+    + <<const>> LinearToSRGBConversion : string = "_LINEAR_TO_SRGB_CONVERSION"
+    + <<const>> DBufferMRT1 : string = "_DBUFFER_MRT1"
+    + <<const>> DBufferMRT2 : string = "_DBUFFER_MRT2"
+    + <<const>> DBufferMRT3 : string = "_DBUFFER_MRT3"
+    + <<const>> DecalNormalBlendLow : string = "_DECAL_NORMAL_BLEND_LOW"
+    + <<const>> DecalNormalBlendMedium : string = "_DECAL_NORMAL_BLEND_MEDIUM"
+    + <<const>> DecalNormalBlendHigh : string = "_DECAL_NORMAL_BLEND_HIGH"
+    + <<const>> DecalLayers : string = "_DECAL_LAYERS"
+    + <<const>> WriteRenderingLayers : string = "_WRITE_RENDERING_LAYERS"
+    + <<const>> SmaaLow : string = "_SMAA_PRESET_LOW"
+    + <<const>> SmaaMedium : string = "_SMAA_PRESET_MEDIUM"
+    + <<const>> SmaaHigh : string = "_SMAA_PRESET_HIGH"
+    + <<const>> PaniniGeneric : string = "_GENERIC"
+    + <<const>> PaniniUnitDistance : string = "_UNIT_DISTANCE"
+    + <<const>> BloomLQ : string = "_BLOOM_LQ"
+    + <<const>> BloomHQ : string = "_BLOOM_HQ"
+    + <<const>> BloomLQDirt : string = "_BLOOM_LQ_DIRT"
+    + <<const>> BloomHQDirt : string = "_BLOOM_HQ_DIRT"
+    + <<const>> Distortion : string = "_DISTORTION"
+    + <<const>> ChromaticAberration : string = "_CHROMATIC_ABERRATION"
+    + <<const>> HDRGrading : string = "_HDR_GRADING"
+    + <<const>> HDROverlay : string = "_HDR_OVERLAY"
+    + <<const>> TonemapACES : string = "_TONEMAP_ACES"
+    + <<const>> TonemapNeutral : string = "_TONEMAP_NEUTRAL"
+    + <<const>> FilmGrain : string = "_FILM_GRAIN"
+    + <<const>> Fxaa : string = "_FXAA"
+    + <<const>> Dithering : string = "_DITHERING"
+    + <<const>> ScreenSpaceOcclusion : string = "_SCREEN_SPACE_OCCLUSION"
+    + <<const>> PointSampling : string = "_POINT_SAMPLING"
+    + <<const>> Rcas : string = "_RCAS"
+    + <<const>> EasuRcasAndHDRInput : string = "_EASU_RCAS_AND_HDR_INPUT"
+    + <<const>> Gamma20 : string = "_GAMMA_20"
+    + <<const>> Gamma20AndHDRInput : string = "_GAMMA_20_AND_HDR_INPUT"
+    + <<const>> HighQualitySampling : string = "_HIGH_QUALITY_SAMPLING"
+    + <<const>> _SPOT : string = "_SPOT"
+    + <<const>> _DIRECTIONAL : string = "_DIRECTIONAL"
+    + <<const>> _POINT : string = "_POINT"
+    + <<const>> _DEFERRED_STENCIL : string = "_DEFERRED_STENCIL"
+    + <<const>> _DEFERRED_FIRST_LIGHT : string = "_DEFERRED_FIRST_LIGHT"
+    + <<const>> _DEFERRED_MAIN_LIGHT : string = "_DEFERRED_MAIN_LIGHT"
+    + <<const>> _GBUFFER_NORMALS_OCT : string = "_GBUFFER_NORMALS_OCT"
+    + <<const>> _DEFERRED_MIXED_LIGHTING : string = "_DEFERRED_MIXED_LIGHTING"
+    + <<const>> LIGHTMAP_ON : string = "LIGHTMAP_ON"
+    + <<const>> DYNAMICLIGHTMAP_ON : string = "DYNAMICLIGHTMAP_ON"
+    + <<const>> _ALPHATEST_ON : string = "_ALPHATEST_ON"
+    + <<const>> DIRLIGHTMAP_COMBINED : string = "DIRLIGHTMAP_COMBINED"
+    + <<const>> _DETAIL_MULX2 : string = "_DETAIL_MULX2"
+    + <<const>> _DETAIL_SCALED : string = "_DETAIL_SCALED"
+    + <<const>> _CLEARCOAT : string = "_CLEARCOAT"
+    + <<const>> _CLEARCOATMAP : string = "_CLEARCOATMAP"
+    + <<const>> DEBUG_DISPLAY : string = "DEBUG_DISPLAY"
+    + <<const>> LOD_FADE_CROSSFADE : string = "LOD_FADE_CROSSFADE"
+    + <<const>> USE_UNITY_CROSSFADE : string = "USE_UNITY_CROSSFADE"
+    + <<const>> _EMISSION : string = "_EMISSION"
+    + <<const>> _RECEIVE_SHADOWS_OFF : string = "_RECEIVE_SHADOWS_OFF"
+    + <<const>> _SURFACE_TYPE_TRANSPARENT : string = "_SURFACE_TYPE_TRANSPARENT"
+    + <<const>> _ALPHAPREMULTIPLY_ON : string = "_ALPHAPREMULTIPLY_ON"
+    + <<const>> _ALPHAMODULATE_ON : string = "_ALPHAMODULATE_ON"
+    + <<const>> _NORMALMAP : string = "_NORMALMAP"
+    + <<const>> _ADD_PRECOMPUTED_VELOCITY : string = "_ADD_PRECOMPUTED_VELOCITY"
+    + <<const>> EDITOR_VISUALIZATION : string = "EDITOR_VISUALIZATION"
+    + <<const>> FoveatedRenderingNonUniformRaster : string = "_FOVEATED_RENDERING_NON_UNIFORM_RASTER"
+    + <<const>> DisableTexture2DXArray : string = "DISABLE_TEXTURE2D_X_ARRAY"
+    + <<const>> BlitSingleSlice : string = "BLIT_SINGLE_SLICE"
+    + <<const>> XROcclusionMeshCombined : string = "XR_OCCLUSION_MESH_COMBINED"
+    + <<const>> SCREEN_COORD_OVERRIDE : string = "SCREEN_COORD_OVERRIDE"
+    + <<const>> DOWNSAMPLING_SIZE_2 : string = "DOWNSAMPLING_SIZE_2"
+    + <<const>> DOWNSAMPLING_SIZE_4 : string = "DOWNSAMPLING_SIZE_4"
+    + <<const>> DOWNSAMPLING_SIZE_8 : string = "DOWNSAMPLING_SIZE_8"
+    + <<const>> DOWNSAMPLING_SIZE_16 : string = "DOWNSAMPLING_SIZE_16"
+    + <<const>> EVALUATE_SH_MIXED : string = "EVALUATE_SH_MIXED"
+    + <<const>> EVALUATE_SH_VERTEX : string = "EVALUATE_SH_VERTEX"
+    + <<const>> ProbeVolumeL1 : string = "PROBE_VOLUMES_L1"
+    + <<const>> ProbeVolumeL2 : string = "PROBE_VOLUMES_L2"
+    + <<const>> USE_LEGACY_LIGHTMAPS : string = "USE_LEGACY_LIGHTMAPS"
+    + <<const>> _OUTPUT_DEPTH : string = "_OUTPUT_DEPTH"
+    + <<const>> _ENABLE_ALPHA_OUTPUT : string = "_ENABLE_ALPHA_OUTPUT"
+}
+class UniversalRenderPipeline <<sealed>> <<partial>> {
+    + {static} IsGameCamera(camera:Camera) : bool
+    + {static} GetLightAttenuationAndSpotDirection(lightType:LightType, lightRange:float, lightLocalToWorldMatrix:Matrix4x4, spotAngle:float, innerSpotAngle:float?, lightAttenuation:Vector4, lightSpotDir:Vector4) : void
+    + {static} InitializeLightConstants_Common(lights:NativeArray<VisibleLight>, lightIndex:int, lightPos:Vector4, lightColor:Vector4, lightAttenuation:Vector4, lightSpotDir:Vector4, lightOcclusionProbeChannel:Vector4) : void
+}
+enum URPProfileId {
+    UniversalRenderTotal,
+    UpdateVolumeFramework,
+    RenderCameraStack,
+    AdditionalLightsShadow,
+    ColorGradingLUT,
+    CopyColor,
+    CopyDepth,
+    DrawDepthNormalPrepass,
+    DepthPrepass,
+    UpdateReflectionProbeAtlas,
+    DrawOpaqueObjects,
+    DrawTransparentObjects,
+    DrawScreenSpaceUI,
+    RecordRenderGraph,
+    LightCookies,
+    MainLightShadow,
+    ResolveShadows,
+    SSAO,
+    StopNaNs,
+    SMAA,
+    GaussianDepthOfField,
+    BokehDepthOfField,
+    TemporalAA,
+    MotionBlur,
+    PaniniProjection,
+    UberPostProcess,
+    Bloom,
+    LensFlareDataDrivenComputeOcclusion,
+    LensFlareDataDriven,
+    LensFlareScreenSpace,
+    DrawMotionVectors,
+    DrawFullscreen,
+    RG_SetupPostFX,
+    RG_StopNaNs,
+    RG_SMAAMaterialSetup,
+    RG_SMAAEdgeDetection,
+    RG_SMAABlendWeight,
+    RG_SMAANeighborhoodBlend,
+    RG_SetupDoF,
+    RG_DOFComputeCOC,
+    RG_DOFDownscalePrefilter,
+    RG_DOFBlurH,
+    RG_DOFBlurV,
+    RG_DOFBlurBokeh,
+    RG_DOFPostFilter,
+    RG_DOFComposite,
+    RG_TAA,
+    RG_TAACopyHistory,
+    RG_MotionBlur,
+    RG_BloomSetup,
+    RG_BloomPrefilter,
+    RG_BloomDownsample,
+    RG_BloomUpsample,
+    RG_UberPostSetupBloomPass,
+    RG_UberPost,
+    RG_FinalSetup,
+    RG_FinalFSRScale,
+    RG_FinalBlit,
+    BlitFinalToBackBuffer,
+    DrawSkybox,
+}
+class PlatformAutoDetect <<static>> {
+}
+RenderingData --> "cameraData" CameraData
+RenderingData --> "lightData" LightData
+RenderingData --> "shadowData" ShadowData
+RenderingData --> "postProcessingData" PostProcessingData
+CameraData --> "hdrDisplayColorGamut" ColorGamut
+CameraData --> "xr" XRPass
+PunctualLightData --> "wsPos" Vector3
+PunctualLightData --> "color" Vector4
+PunctualLightData --> "attenuation" Vector4
+PunctualLightData --> "spotDirection" Vector3
+PunctualLightData --> "occlusionProbeInfo" Vector4
+ShaderGlobalKeywords --> "MainLightShadows" GlobalKeyword
+ShaderGlobalKeywords --> "MainLightShadowCascades" GlobalKeyword
+ShaderGlobalKeywords --> "MainLightShadowScreen" GlobalKeyword
+ShaderGlobalKeywords --> "CastingPunctualLightShadow" GlobalKeyword
+ShaderGlobalKeywords --> "AdditionalLightsVertex" GlobalKeyword
+ShaderGlobalKeywords --> "AdditionalLightsPixel" GlobalKeyword
+ShaderGlobalKeywords --> "ForwardPlus" GlobalKeyword
+ShaderGlobalKeywords --> "AdditionalLightShadows" GlobalKeyword
+ShaderGlobalKeywords --> "ReflectionProbeBoxProjection" GlobalKeyword
+ShaderGlobalKeywords --> "ReflectionProbeBlending" GlobalKeyword
+ShaderGlobalKeywords --> "SoftShadows" GlobalKeyword
+ShaderGlobalKeywords --> "SoftShadowsLow" GlobalKeyword
+ShaderGlobalKeywords --> "SoftShadowsMedium" GlobalKeyword
+ShaderGlobalKeywords --> "SoftShadowsHigh" GlobalKeyword
+ShaderGlobalKeywords --> "MixedLightingSubtractive" GlobalKeyword
+ShaderGlobalKeywords --> "LightmapShadowMixing" GlobalKeyword
+ShaderGlobalKeywords --> "ShadowsShadowMask" GlobalKeyword
+ShaderGlobalKeywords --> "LightLayers" GlobalKeyword
+ShaderGlobalKeywords --> "RenderPassEnabled" GlobalKeyword
+ShaderGlobalKeywords --> "BillboardFaceCameraPos" GlobalKeyword
+ShaderGlobalKeywords --> "LightCookies" GlobalKeyword
+ShaderGlobalKeywords --> "DepthNoMsaa" GlobalKeyword
+ShaderGlobalKeywords --> "DepthMsaa2" GlobalKeyword
+ShaderGlobalKeywords --> "DepthMsaa4" GlobalKeyword
+ShaderGlobalKeywords --> "DepthMsaa8" GlobalKeyword
+ShaderGlobalKeywords --> "DBufferMRT1" GlobalKeyword
+ShaderGlobalKeywords --> "DBufferMRT2" GlobalKeyword
+ShaderGlobalKeywords --> "DBufferMRT3" GlobalKeyword
+ShaderGlobalKeywords --> "DecalNormalBlendLow" GlobalKeyword
+ShaderGlobalKeywords --> "DecalNormalBlendMedium" GlobalKeyword
+ShaderGlobalKeywords --> "DecalNormalBlendHigh" GlobalKeyword
+ShaderGlobalKeywords --> "DecalLayers" GlobalKeyword
+ShaderGlobalKeywords --> "WriteRenderingLayers" GlobalKeyword
+ShaderGlobalKeywords --> "ScreenSpaceOcclusion" GlobalKeyword
+ShaderGlobalKeywords --> "_SPOT" GlobalKeyword
+ShaderGlobalKeywords --> "_DIRECTIONAL" GlobalKeyword
+ShaderGlobalKeywords --> "_POINT" GlobalKeyword
+ShaderGlobalKeywords --> "_DEFERRED_STENCIL" GlobalKeyword
+ShaderGlobalKeywords --> "_DEFERRED_FIRST_LIGHT" GlobalKeyword
+ShaderGlobalKeywords --> "_DEFERRED_MAIN_LIGHT" GlobalKeyword
+ShaderGlobalKeywords --> "_GBUFFER_NORMALS_OCT" GlobalKeyword
+ShaderGlobalKeywords --> "_DEFERRED_MIXED_LIGHTING" GlobalKeyword
+ShaderGlobalKeywords --> "LIGHTMAP_ON" GlobalKeyword
+ShaderGlobalKeywords --> "DYNAMICLIGHTMAP_ON" GlobalKeyword
+ShaderGlobalKeywords --> "_ALPHATEST_ON" GlobalKeyword
+ShaderGlobalKeywords --> "DIRLIGHTMAP_COMBINED" GlobalKeyword
+ShaderGlobalKeywords --> "_DETAIL_MULX2" GlobalKeyword
+ShaderGlobalKeywords --> "_DETAIL_SCALED" GlobalKeyword
+ShaderGlobalKeywords --> "_CLEARCOAT" GlobalKeyword
+ShaderGlobalKeywords --> "_CLEARCOATMAP" GlobalKeyword
+ShaderGlobalKeywords --> "DEBUG_DISPLAY" GlobalKeyword
+ShaderGlobalKeywords --> "LOD_FADE_CROSSFADE" GlobalKeyword
+ShaderGlobalKeywords --> "USE_UNITY_CROSSFADE" GlobalKeyword
+ShaderGlobalKeywords --> "_EMISSION" GlobalKeyword
+ShaderGlobalKeywords --> "_RECEIVE_SHADOWS_OFF" GlobalKeyword
+ShaderGlobalKeywords --> "_SURFACE_TYPE_TRANSPARENT" GlobalKeyword
+ShaderGlobalKeywords --> "_ALPHAPREMULTIPLY_ON" GlobalKeyword
+ShaderGlobalKeywords --> "_ALPHAMODULATE_ON" GlobalKeyword
+ShaderGlobalKeywords --> "_NORMALMAP" GlobalKeyword
+ShaderGlobalKeywords --> "_ADD_PRECOMPUTED_VELOCITY" GlobalKeyword
+ShaderGlobalKeywords --> "EDITOR_VISUALIZATION" GlobalKeyword
+ShaderGlobalKeywords --> "FoveatedRenderingNonUniformRaster" GlobalKeyword
+ShaderGlobalKeywords --> "DisableTexture2DXArray" GlobalKeyword
+ShaderGlobalKeywords --> "BlitSingleSlice" GlobalKeyword
+ShaderGlobalKeywords --> "XROcclusionMeshCombined" GlobalKeyword
+ShaderGlobalKeywords --> "SCREEN_COORD_OVERRIDE" GlobalKeyword
+ShaderGlobalKeywords --> "DOWNSAMPLING_SIZE_2" GlobalKeyword
+ShaderGlobalKeywords --> "DOWNSAMPLING_SIZE_4" GlobalKeyword
+ShaderGlobalKeywords --> "DOWNSAMPLING_SIZE_8" GlobalKeyword
+ShaderGlobalKeywords --> "DOWNSAMPLING_SIZE_16" GlobalKeyword
+ShaderGlobalKeywords --> "EVALUATE_SH_MIXED" GlobalKeyword
+ShaderGlobalKeywords --> "EVALUATE_SH_VERTEX" GlobalKeyword
+ShaderGlobalKeywords --> "ProbeVolumeL1" GlobalKeyword
+ShaderGlobalKeywords --> "ProbeVolumeL2" GlobalKeyword
+ShaderGlobalKeywords --> "_OUTPUT_DEPTH" GlobalKeyword
+ShaderGlobalKeywords --> "LinearToSRGBConversion" GlobalKeyword
+ShaderGlobalKeywords --> "_ENABLE_ALPHA_OUTPUT" GlobalKeyword
+UniversalRenderPipeline --> "asset" UniversalRenderPipelineAsset
+@enduml

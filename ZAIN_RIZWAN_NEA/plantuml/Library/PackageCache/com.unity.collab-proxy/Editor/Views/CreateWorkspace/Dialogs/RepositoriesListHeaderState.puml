@@ -1,0 +1,10 @@
+@startuml
+enum RepositoriesListColumn {
+    Name,
+    Server,
+}
+class RepositoriesListHeaderState {
+}
+MultiColumnHeaderState <|-- RepositoriesListHeaderState
+ISerializationCallbackReceiver <|-- RepositoriesListHeaderState
+@enduml

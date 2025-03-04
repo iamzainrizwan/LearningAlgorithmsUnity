@@ -1,0 +1,55 @@
+@startuml
+class GraphSettings {
+    + updatePeriod : int = 5
+    + OutlineWidth : float <<get>> <<set>>
+    + LineWidth : float <<get>> <<set>>
+    + PointRadius : float <<get>> <<set>>
+    + PointHoverRadius : float <<get>> <<set>>
+    + PointHoverSpeed : float = 5f
+    + PointLockedRadius : float <<get>> <<set>>
+    + PointLockedSpeed : float = 5f
+    + UnfixedPointOutlineWidth : float <<get>> <<set>>
+    + UnfixedPointOutlineHoverWidth : float <<get>> <<set>>
+    + UnfixedPointOutlineHoverSpeed : float = 5f
+    + FixedPointOutlineWidth : float <<get>> <<set>>
+    + FixedPointOutlineSpeed : float = 5f
+    + XAxisWidth : float <<get>> <<set>>
+    + XAxisTextSize : float <<get>> <<set>>
+    + XAxisTextOffset : float <<get>> <<set>>
+    + YAxisWidth : float <<get>> <<set>>
+    + YAxisTextSize : float <<get>> <<set>>
+    + YAxisTextOffset : float <<get>> <<set>>
+    + XGridWidth : float <<get>> <<set>>
+    + YGridWidth : float <<get>> <<set>>
+    + ZoomSelectionOutlineWidth : float <<get>> <<set>>
+    + PointSelectionOutlineWidth : float <<get>> <<set>>
+    + ZoomSpeed : float = 5f
+    + SmoothZoomSpeed : float = 20f
+    + SmoothMoveSpeed : float = 20f
+}
+MonoBehaviour <|-- GraphSettings
+GraphSettings --> "GraphSize" Vector2
+GraphSettings --> "GraphScale" Vector2
+GraphSettings --> "BackgroundColor" Color
+GraphSettings --> "OutlineColor" Color
+GraphSettings --> "LineColor" Color
+GraphSettings --> "PointSprite" Sprite
+GraphSettings --> "PointColor" Color
+GraphSettings --> "PointHoverColor" Color
+GraphSettings --> "PointLockedColor" Color
+GraphSettings --> "UnfixedPointOutlineColor" Color
+GraphSettings --> "UnfixedPointOutlineHoverColor" Color
+GraphSettings --> "FixedPointOutlineColor" Color
+GraphSettings --> "GridTextFont" TMP_FontAsset
+GraphSettings --> "GridSpacing" Vector2
+GraphSettings --> "XAxisColor" Color
+GraphSettings --> "XAxisTextColor" Color
+GraphSettings --> "YAxisColor" Color
+GraphSettings --> "YAxisTextColor" Color
+GraphSettings --> "XGridColor" Color
+GraphSettings --> "YGridColor" Color
+GraphSettings --> "ZoomSelectionColor" Color
+GraphSettings --> "ZoomSelectionOutlineColor" Color
+GraphSettings --> "PointSelectionColor" Color
+GraphSettings --> "PointSelectionOutlineColor" Color
+@enduml

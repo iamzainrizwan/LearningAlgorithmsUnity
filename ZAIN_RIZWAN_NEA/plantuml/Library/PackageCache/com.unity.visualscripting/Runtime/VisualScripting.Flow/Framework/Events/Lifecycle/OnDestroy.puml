@@ -1,0 +1,8 @@
+@startuml
+class OnDestroy <<sealed>> {
+    + <<override>> StopListening(stack:GraphStack) : void
+}
+class "MachineEventUnit`1"<T> {
+}
+"MachineEventUnit`1" "<EmptyEventArgs>" <|-- OnDestroy
+@enduml

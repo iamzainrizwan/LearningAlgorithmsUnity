@@ -1,0 +1,7 @@
+@startuml
+class FogNode {
+    + FogNode()
+    + <<override>> hasPreview : bool <<get>>
+}
+CodeFunctionNode <|-- FogNode
+@enduml

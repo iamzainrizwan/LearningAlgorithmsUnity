@@ -1,0 +1,12 @@
+@startuml
+class Samples {
+    + introduction : string
+    + {static} CreateFromJSON(jsonString:string, prefabs:GameObject[]) : Samples
+    + FindSampleWithPrefab(prefab:GameObject) : Sample
+}
+class Sample {
+    + title : string
+    + prefabName : string
+    + description : string
+}
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+interface IEditablePath {
+}
+class "ISelectable`1"<T> {
+}
+"ISelectable`1" "<Vector3>" <|-- IEditablePath
+@enduml

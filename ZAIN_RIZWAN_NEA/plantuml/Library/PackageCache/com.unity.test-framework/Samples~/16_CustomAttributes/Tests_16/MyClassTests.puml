@@ -1,0 +1,6 @@
+@startuml
+class MyClassTests {
+    + SomethingReturnsTrue() : void
+    + SomethingElseReturnsTrue() : void
+}
+@enduml

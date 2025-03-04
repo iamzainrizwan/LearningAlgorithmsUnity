@@ -1,0 +1,5 @@
+@startuml
+class ResourcesLoader <<static>> {
+    + {static} Load(assetPath:string, prefsKey:string) : T
+}
+@enduml

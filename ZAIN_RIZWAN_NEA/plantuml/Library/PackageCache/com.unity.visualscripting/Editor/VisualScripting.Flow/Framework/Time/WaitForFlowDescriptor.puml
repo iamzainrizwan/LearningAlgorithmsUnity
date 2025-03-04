@@ -1,0 +1,8 @@
+@startuml
+class WaitForFlowDescriptor {
+    + WaitForFlowDescriptor(unit:WaitForFlow)
+}
+class "UnitDescriptor`1"<T> {
+}
+"UnitDescriptor`1" "<WaitForFlow>" <|-- WaitForFlowDescriptor
+@enduml

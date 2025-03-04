@@ -1,0 +1,10 @@
+@startuml
+class PendingChangesOptionsFoldout {
+}
+interface IAutoRefreshView {
+}
+class Styles {
+}
+PendingChangesOptionsFoldout +-- IAutoRefreshView
+PendingChangesOptionsFoldout +-- Styles
+@enduml

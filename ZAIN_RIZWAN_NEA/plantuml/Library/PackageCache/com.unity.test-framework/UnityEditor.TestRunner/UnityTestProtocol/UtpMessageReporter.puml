@@ -1,0 +1,11 @@
+@startuml
+class UtpMessageReporter {
+    + UtpMessageReporter(utpLogger:IUtpLogger, projectRepoPath:string)
+    + ReportTestRunStarted(testsToRun:ITestAdaptor) : void
+    + ReportTestStarted(test:ITestAdaptor) : void
+    + ReportTestFinished(result:ITestResultAdaptor) : void
+}
+IUtpMessageReporter <|-- UtpMessageReporter
+UtpMessageReporter --> "TestRunnerApiMapper" ITestRunnerApiMapper
+UtpMessageReporter --> "Logger" IUtpLogger
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+class FrameBufferFetchRenderFeature {
+    + <<override>> Create() : void
+    + <<override>> AddRenderPasses(renderer:ScriptableRenderer, renderingData:RenderingData) : void
+}
+class FrameBufferFetchPass {
+    + FrameBufferFetchPass(fbFetchMaterial:Material)
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+class PassData {
+}
+ScriptableRendererFeature <|-- FrameBufferFetchRenderFeature
+FrameBufferFetchRenderFeature --> "m_FBFetchMaterial" Material
+FrameBufferFetchRenderFeature +-- FrameBufferFetchPass
+ScriptableRenderPass <|-- FrameBufferFetchPass
+FrameBufferFetchPass +-- PassData
+@enduml

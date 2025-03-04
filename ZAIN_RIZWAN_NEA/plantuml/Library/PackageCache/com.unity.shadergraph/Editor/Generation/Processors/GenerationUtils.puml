@@ -1,0 +1,15 @@
+@startuml
+class GenerationUtils <<static>> {
+    + {static} FinalCustomEditorString(canChangeShaderGUI:ICanChangeShaderGUI) : string
+}
+struct PackedEntry {
+}
+struct Input {
+    + startChannel : int
+    + channelCount : int
+}
+GenerationUtils +-- PackedEntry
+PackedEntry --> "packedField" FieldDescriptor
+PackedEntry +-- Input
+Input --> "field" FieldDescriptor
+@enduml

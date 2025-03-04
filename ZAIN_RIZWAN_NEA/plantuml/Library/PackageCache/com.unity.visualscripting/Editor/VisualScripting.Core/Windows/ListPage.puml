@@ -1,0 +1,16 @@
+@startuml
+class ListPage {
+    + ListPage()
+    + UpdateOptions() : void
+    + <<override>> Update() : void
+}
+class "List`1"<T> {
+}
+class Styles <<static>> {
+}
+Page <|-- ListPage
+ListPage --> "pages<Page>" "List`1"
+ListPage --> "currentPage" Page
+ListPage +-- Styles
+Styles --> "emptyBackground" GUIStyle
+@enduml

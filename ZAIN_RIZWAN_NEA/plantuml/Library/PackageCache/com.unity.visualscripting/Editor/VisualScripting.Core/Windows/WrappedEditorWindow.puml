@@ -1,0 +1,6 @@
+@startuml
+class WrappedEditorWindow {
+}
+EditorWindow <|-- WrappedEditorWindow
+WrappedEditorWindow --> "wrapper" EditorWindowWrapper
+@enduml

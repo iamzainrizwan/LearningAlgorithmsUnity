@@ -1,0 +1,5 @@
+@startuml
+class LocksListViewItem <<sealed>> {
+}
+TreeViewItem <|-- LocksListViewItem
+@enduml

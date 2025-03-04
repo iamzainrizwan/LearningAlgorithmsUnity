@@ -1,0 +1,11 @@
+@startuml
+class BitArrayTests {
+    + SetUpBitArray() : void
+    + TestBitArray8() : void
+    + TestBitArray16() : void
+    + TestBitArray32() : void
+    + TestBitArray64() : void
+    + TestBitArray128() : void
+    + TestBitArray256() : void
+}
+@enduml

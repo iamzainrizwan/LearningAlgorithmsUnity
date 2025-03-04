@@ -1,0 +1,107 @@
+@startuml
+class NativeParallelHashMapTests {
+    + NativeParallelHashMap_TryAdd_TryGetValue_Clear() : void
+    + NativeParallelHashMap_Full_HashMap_Throws() : void
+    + NativeParallelHashMap_Key_Collisions() : void
+    + <<unsafe>> NativeParallelHashMap_Key_Collisions_FromJobs() : void
+    + NativeParallelHashMap_HashMapSupportsAutomaticCapacityChange() : void
+    + NativeParallelHashMap_HashMapSameKey() : void
+    + NativeParallelHashMap_IsEmpty() : void
+    + NativeParallelHashMap_HashMapEmptyCapacity() : void
+    + NativeParallelHashMap_Remove() : void
+    + NativeParallelHashMap_RemoveOnEmptyMap_DoesNotThrow() : void
+    + NativeParallelHashMap_TryAddScalability() : void
+    + NativeParallelHashMap_GetKeysEmpty() : void
+    + NativeParallelHashMap_GetKeys() : void
+    + NativeParallelHashMap_GetValues() : void
+    + NativeParallelHashMap_GetKeysAndValues() : void
+    + NativeParallelHashMap_GetKeysGuid() : void
+    + NativeParallelHashMap_IndexerWorks() : void
+    + NativeParallelHashMap_ContainsKeyHashMap() : void
+    + NativeParallelHashMap_NativeKeyValueArrays_DisposeJob() : void
+    + NativeParallelHashMap_UseAfterFree_UsesCustomOwnerTypeName() : void
+    + NativeParallelHashMap_CreateAndUseAfterFreeInBurstJob_UsesCustomOwnerTypeName() : void
+    + NativeParallelHashMap_ForEach_FixedStringInHashMap() : void
+    + NativeParallelHashMap_EnumeratorDoesNotReturnRemovedElementsTest() : void
+    + NativeParallelHashMap_EnumeratorInfiniteIterationTest() : void
+    + NativeParallelHashMap_ForEach(n:int) : void
+    + NativeParallelHashMap_ForEach_From_Job(n:int) : void
+    + NativeParallelHashMap_ForEach_Throws_When_Modified() : void
+    + NativeParallelHashMap_ForEach_Throws_Job_Iterator() : void
+    + NativeParallelHashMap_ForEach_Throws() : void
+    + <<unsafe>> NativeParallelHashMap_GetUnsafeBucketData() : void
+    + NativeParallelHashMap_CustomAllocatorTest() : void
+    + <<unsafe>> NativeParallelHashMap_BurstedCustomAllocatorTest() : void
+    + NativeParallelHashMap_Nested() : void
+    + NativeParallelHashMap_IndexerAdd_ResizesContainer() : void
+}
+struct NonBlittableStruct {
+    + Equals(other:NonBlittableStruct) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+struct LargeKey {
+    + Ptr : ulong
+    + Equals(rhs:LargeKey) : bool
+    + <<override>> GetHashCode() : int
+}
+struct HashMapTryAddAtomic {
+    + Execute(index:int) : void
+}
+struct TestEntityGuid {
+    + a : ulong
+    + b : ulong
+    + Equals(other:TestEntityGuid) : bool
+    + <<override>> GetHashCode() : int
+    + CompareTo(other:TestEntityGuid) : int
+}
+struct NativeParallelHashMap_CreateAndUseAfterFreeBurst {
+    + Execute() : void
+}
+struct NativeParallelHashMap_ForEach_Job {
+    + Num : int
+    + Execute() : void
+}
+struct NativeParallelHashMap_ForEachIterator {
+    + Execute() : void
+}
+struct ParallelWriteToHashMapJob {
+    + Execute(index:int) : void
+}
+struct BurstedCustomAllocatorJob {
+    + Execute() : void
+}
+struct NestedHashMap {
+}
+class "IEquatable`1"<T> {
+}
+class "NativeArray`1"<T> {
+}
+class "IComparable`1"<T> {
+}
+class "NativeParallelHashMap`2"<T1,T2> {
+}
+CollectionsTestFixture <|-- NativeParallelHashMapTests
+NativeParallelHashMapTests +-- NonBlittableStruct
+"IEquatable`1" "<NonBlittableStruct>" <|-- NonBlittableStruct
+NativeParallelHashMapTests +-- LargeKey
+"IEquatable`1" "<LargeKey>" <|-- LargeKey
+NativeParallelHashMapTests +-- HashMapTryAddAtomic
+IJobParallelFor <|-- HashMapTryAddAtomic
+HashMapTryAddAtomic --> "keys<LargeKey>" "NativeArray`1"
+NativeParallelHashMapTests +-- TestEntityGuid
+"IEquatable`1" "<TestEntityGuid>" <|-- TestEntityGuid
+"IComparable`1" "<TestEntityGuid>" <|-- TestEntityGuid
+NativeParallelHashMapTests +-- NativeParallelHashMap_CreateAndUseAfterFreeBurst
+IJob <|-- NativeParallelHashMap_CreateAndUseAfterFreeBurst
+NativeParallelHashMapTests +-- NativeParallelHashMap_ForEach_Job
+IJob <|-- NativeParallelHashMap_ForEach_Job
+NativeParallelHashMapTests +-- NativeParallelHashMap_ForEachIterator
+IJob <|-- NativeParallelHashMap_ForEachIterator
+NativeParallelHashMapTests +-- ParallelWriteToHashMapJob
+IJobParallelFor <|-- ParallelWriteToHashMapJob
+NativeParallelHashMapTests +-- BurstedCustomAllocatorJob
+IJob <|-- BurstedCustomAllocatorJob
+NativeParallelHashMapTests +-- NestedHashMap
+NestedHashMap --> "map<int,int>" "NativeParallelHashMap`2"
+@enduml

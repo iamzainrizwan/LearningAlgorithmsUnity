@@ -1,0 +1,11 @@
+@startuml
+abstract class BaseVertexEffect {
+    + {abstract} ModifyVertices(vertices:List<UIVertex>) : void
+}
+abstract class BaseMeshEffect {
+    + <<virtual>> ModifyMesh(mesh:Mesh) : void
+    + {abstract} ModifyMesh(vh:VertexHelper) : void
+}
+UIBehaviour <|-- BaseMeshEffect
+IMeshModifier <|-- BaseMeshEffect
+@enduml

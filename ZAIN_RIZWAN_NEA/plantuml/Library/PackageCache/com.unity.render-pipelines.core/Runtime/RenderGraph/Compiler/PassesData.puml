@@ -1,0 +1,157 @@
+@startuml
+struct PassInputData {
+}
+struct PassOutputData {
+}
+struct PassFragmentData {
+    + mipLevel : int
+    + depthSlice : int
+    + <<override>> GetHashCode() : int
+    + {static} EqualForMerge(x:PassFragmentData, y:PassFragmentData) : bool
+}
+struct PassRandomWriteData {
+    + index : int
+    + preserveCounterValue : bool
+    + <<override>> GetHashCode() : int
+}
+enum PassMergeState {
+    None= -1,
+    Begin= 0,
+    SubPass= 1,
+    End= 2,
+}
+struct PassData {
+    + passId : int
+    + hasFoveatedRasterization : bool
+    + tag : int
+    + nativePassIndex : int
+    + nativeSubPassIndex : int
+    + firstInput : int
+    + numInputs : int
+    + firstOutput : int
+    + numOutputs : int
+    + firstFragment : int
+    + numFragments : int
+    + firstFragmentInput : int
+    + numFragmentInputs : int
+    + firstRandomAccessResource : int
+    + numRandomAccessResources : int
+    + firstCreate : int
+    + numCreated : int
+    + firstDestroy : int
+    + numDestroyed : int
+    + fragmentInfoWidth : int
+    + fragmentInfoHeight : int
+    + fragmentInfoVolumeDepth : int
+    + fragmentInfoSamples : int
+    + waitOnGraphicsFencePassId : int
+    + asyncCompute : bool
+    + hasSideEffects : bool
+    + culled : bool
+    + beginNativeSubpass : bool
+    + fragmentInfoValid : bool
+    + fragmentInfoHasDepth : bool
+    + insertGraphicsFence : bool
+    + GetName(ctx:CompilerContextData) : Name
+    + PassData(pass:RenderGraphPass, passIndex:int)
+    + ResetAndInitialize(pass:RenderGraphPass, passIndex:int) : void
+    + <<readonly>> Outputs(ctx:CompilerContextData) : ReadOnlySpan<PassOutputData>
+    + <<readonly>> Inputs(ctx:CompilerContextData) : ReadOnlySpan<PassInputData>
+    + <<readonly>> Fragments(ctx:CompilerContextData) : ReadOnlySpan<PassFragmentData>
+    + <<readonly>> FragmentInputs(ctx:CompilerContextData) : ReadOnlySpan<PassFragmentData>
+    + <<readonly>> FirstUsedResources(ctx:CompilerContextData) : ReadOnlySpan<ResourceHandle>
+    + RandomWriteTextures(ctx:CompilerContextData) : ReadOnlySpan<PassRandomWriteData>
+    + <<readonly>> LastUsedResources(ctx:CompilerContextData) : ReadOnlySpan<ResourceHandle>
+}
+struct NativePassAttachment {
+    + memoryless : bool
+    + mipLevel : int
+    + depthSlice : int
+}
+enum LoadReason {
+    InvalidReason,
+    LoadImported,
+    LoadPreviouslyWritten,
+    ClearImported,
+    ClearCreated,
+    FullyRewritten,
+    Count,
+}
+struct LoadAudit {
+    + passId : int
+    + LoadAudit(setReason:LoadReason, setPassId:int)
+}
+enum StoreReason {
+    InvalidReason,
+    StoreImported,
+    StoreUsedByLaterPass,
+    DiscardImported,
+    DiscardUnused,
+    DiscardBindMs,
+    NoMSAABuffer,
+    Count,
+}
+struct StoreAudit {
+    + passId : int
+    + msaaPassId : int
+    + StoreAudit(setReason:StoreReason, setPassId:int, setMsaaReason:StoreReason, setMsaaPassId:int)
+}
+enum PassBreakReason {
+    NotOptimized,
+    TargetSizeMismatch,
+    NextPassReadsTexture,
+    NonRasterPass,
+    DifferentDepthTextures,
+    AttachmentLimitReached,
+    SubPassLimitReached,
+    EndOfGraph,
+    FRStateMismatch,
+    Merged,
+    Count,
+}
+struct PassBreakAudit {
+    + breakPass : int
+    + PassBreakAudit(reason:PassBreakReason, breakPass:int)
+}
+struct NativePassData {
+    + firstGraphPass : int
+    + lastGraphPass : int
+    + numGraphPasses : int
+    + firstNativeSubPass : int
+    + numNativeSubPasses : int
+    + width : int
+    + height : int
+    + volumeDepth : int
+    + samples : int
+    + hasDepth : bool
+    + hasFoveatedRasterization : bool
+    + NativePassData(pass:PassData, ctx:CompilerContextData)
+    + Clear() : void
+    + <<readonly>> IsValid() : bool
+    + <<readonly>> GraphPasses(ctx:CompilerContextData) : ReadOnlySpan<PassData>
+    + <<readonly>> GetGraphPassNames(ctx:CompilerContextData, dest:DynamicArray<Name>) : void
+    + {static} CanMerge(contextData:CompilerContextData, activeNativePassId:int, passIdToMerge:int) : PassBreakAudit
+    + {static} TryMergeNativeSubPass(contextData:CompilerContextData, nativePass:NativePassData, passToMerge:PassData) : void
+    + {static} TryMerge(contextData:CompilerContextData, activeNativePassId:int, passIdToMerge:int) : PassBreakAudit
+    + {static} SetPassStatesForNativePass(contextData:CompilerContextData, nativePassId:int) : void
+}
+class "FixedAttachmentArray`1"<T> {
+}
+PassInputData --> "resource" ResourceHandle
+PassOutputData --> "resource" ResourceHandle
+PassFragmentData --> "resource" ResourceHandle
+PassFragmentData --> "accessFlags" AccessFlags
+PassRandomWriteData --> "resource" ResourceHandle
+PassData --> "type" RenderGraphPassType
+PassData --> "mergeState" PassMergeState
+NativePassAttachment --> "handle" ResourceHandle
+LoadAudit --> "reason" LoadReason
+StoreAudit --> "reason" StoreReason
+StoreAudit --> "msaaReason" StoreReason
+PassBreakAudit --> "reason" PassBreakReason
+NativePassData --> "loadAudit<LoadAudit>" "FixedAttachmentArray`1"
+NativePassData --> "storeAudit<StoreAudit>" "FixedAttachmentArray`1"
+NativePassData --> "breakAudit" PassBreakAudit
+NativePassData --> "fragments<PassFragmentData>" "FixedAttachmentArray`1"
+NativePassData --> "attachments<NativePassAttachment>" "FixedAttachmentArray`1"
+@enduml

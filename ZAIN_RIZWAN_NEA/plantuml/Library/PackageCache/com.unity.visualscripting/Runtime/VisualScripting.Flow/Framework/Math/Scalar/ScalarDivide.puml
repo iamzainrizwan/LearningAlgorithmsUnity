@@ -1,0 +1,8 @@
+@startuml
+class ScalarDivide <<sealed>> {
+    + <<override>> Operation(a:float, b:float) : float
+}
+class "Divide`1"<T> {
+}
+"Divide`1" "<float>" <|-- ScalarDivide
+@enduml

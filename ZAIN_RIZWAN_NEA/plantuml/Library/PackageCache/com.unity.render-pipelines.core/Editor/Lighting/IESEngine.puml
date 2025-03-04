@@ -1,0 +1,11 @@
+@startuml
+class IESEngine {
+    + ReadFile(iesFilePath:string) : string
+    + GetKeywordValue(keyword:string) : string
+    + GetPhotometricType() : string
+    + GetMaximumIntensity() : (float, string)
+    + GenerateCubeCookie(compression:TextureImporterCompression, textureSize:int) : (string, Texture)
+    + Generate2DCookie(compression:TextureImporterCompression, coneAngle:float, textureSize:int, applyLightAttenuation:bool) : (string, Texture)
+}
+IESEngine --> "TextureGenerationType" TextureImporterType
+@enduml

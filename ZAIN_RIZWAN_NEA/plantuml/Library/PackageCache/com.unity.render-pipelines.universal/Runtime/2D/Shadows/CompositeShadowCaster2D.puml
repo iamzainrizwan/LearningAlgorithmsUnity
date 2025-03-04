@@ -1,0 +1,5 @@
+@startuml
+class CompositeShadowCaster2D {
+}
+ShadowCasterGroup2D <|-- CompositeShadowCaster2D
+@enduml

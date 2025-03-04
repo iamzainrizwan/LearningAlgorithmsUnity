@@ -1,0 +1,11 @@
+@startuml
+class ExitPlayModeTask {
+    + ExitPlayModeTask()
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+class "Func`1"<T> {
+}
+TestTaskBase <|-- ExitPlayModeTask
+ExitPlayModeTask o-> "IsInPlayMode<bool>" "Func`1"
+ExitPlayModeTask o-> "ExitPlayMode" Action
+@enduml

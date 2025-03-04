@@ -1,0 +1,6 @@
+@startuml
+class ContentSizeFitterEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+SelfControllerEditor <|-- ContentSizeFitterEditor
+@enduml

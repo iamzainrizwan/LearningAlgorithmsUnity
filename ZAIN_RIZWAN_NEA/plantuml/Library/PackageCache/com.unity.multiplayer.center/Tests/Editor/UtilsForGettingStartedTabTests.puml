@@ -1,0 +1,10 @@
+@startuml
+class UtilsForGettingStartedTabTests <<static>> {
+    + {static} OpenGettingStartedTab() : void
+    + {static} GetSection(sectionName:string) : VisualElement
+    + {static} CheckErrorLogged(type:LogType) : bool
+    + {static} DeleteSetupDirectoryIfExists(directoryPath:string) : bool
+    + {static} AssertGameObjectHasNoMissingScripts(gameObject:GameObject) : void
+    + {static} SettingsWindowRightSideHasContent() : bool
+}
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class ContrastNode {
+    + ContrastNode()
+}
+CodeFunctionNode <|-- ContrastNode
+@enduml

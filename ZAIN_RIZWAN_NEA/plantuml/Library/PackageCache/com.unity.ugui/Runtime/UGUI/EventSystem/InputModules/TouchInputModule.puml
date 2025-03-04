@@ -1,0 +1,13 @@
+@startuml
+class TouchInputModule {
+    + allowActivationOnStandalone : bool <<get>> <<set>>
+    + forceModuleActive : bool <<get>> <<set>>
+    + <<override>> UpdateModule() : void
+    + <<override>> IsModuleSupported() : bool
+    + <<override>> ShouldActivateModule() : bool
+    + <<override>> Process() : void
+    + <<override>> DeactivateModule() : void
+    + <<override>> ToString() : string
+}
+PointerInputModule <|-- TouchInputModule
+@enduml

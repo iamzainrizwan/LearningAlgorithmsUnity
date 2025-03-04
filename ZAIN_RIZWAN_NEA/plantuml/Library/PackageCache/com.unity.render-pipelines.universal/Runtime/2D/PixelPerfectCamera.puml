@@ -1,0 +1,48 @@
+@startuml
+class PixelPerfectCamera {
+    + orthographicSize : float <<get>>
+    + assetsPPU : int <<get>> <<set>>
+    + refResolutionX : int <<get>> <<set>>
+    + refResolutionY : int <<get>> <<set>>
+    + upscaleRT : bool <<get>> <<set>>
+    + pixelSnapping : bool <<get>> <<set>>
+    + cropFrameX : bool <<get>> <<set>>
+    + cropFrameY : bool <<get>> <<set>>
+    + stretchFill : bool <<get>> <<set>>
+    + pixelRatio : int <<get>>
+    + requiresUpscalePass : bool <<get>>
+    + RoundToPixel(position:Vector3) : Vector3
+    + CorrectCinemachineOrthoSize(targetOrthoSize:float) : float
+    + OnBeforeSerialize() : void
+    + OnAfterDeserialize() : void
+}
+enum CropFrame {
+    None,
+    Pillarbox,
+    Letterbox,
+    Windowbox,
+    StretchFill,
+}
+enum GridSnapping {
+    None,
+    PixelSnapping,
+    UpscaleRenderTexture,
+}
+enum PixelPerfectFilterMode {
+    RetroAA,
+    Point,
+}
+enum ComponentVersions {
+    Version_Unserialized= 0,
+    Version_1= 1,
+}
+MonoBehaviour <|-- PixelPerfectCamera
+IPixelPerfectCamera <|-- PixelPerfectCamera
+ISerializationCallbackReceiver <|-- PixelPerfectCamera
+PixelPerfectCamera --> "cropFrame" CropFrame
+PixelPerfectCamera --> "gridSnapping" GridSnapping
+PixelPerfectCamera +-- CropFrame
+PixelPerfectCamera +-- GridSnapping
+PixelPerfectCamera +-- PixelPerfectFilterMode
+PixelPerfectCamera +-- ComponentVersions
+@enduml

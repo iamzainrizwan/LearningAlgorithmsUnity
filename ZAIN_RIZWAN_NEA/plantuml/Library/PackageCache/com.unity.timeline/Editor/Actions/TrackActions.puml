@@ -1,0 +1,83 @@
+@startuml
+class EditTrackInAnimationWindow {
+    + {static} Do(track:TrackAsset) : bool
+    + <<override>> Validate(tracks:IEnumerable<TrackAsset>) : ActionValidity
+    + <<override>> Execute(tracks:IEnumerable<TrackAsset>) : bool
+}
+class LockSelectedTrack {
+    + {static} <<readonly>> LockSelectedTrackOnlyText : string
+    + {static} <<readonly>> UnlockSelectedTrackOnlyText : string
+    + menuName : string <<get>>
+    + <<override>> Validate(tracks:IEnumerable<TrackAsset>) : ActionValidity
+    + <<override>> Execute(tracks:IEnumerable<TrackAsset>) : bool
+    + {static} Lock(tracks:TrackAsset[], shouldlock:bool) : void
+}
+class LockTrack {
+    + menuName : string <<get>>
+    + <<override>> Execute(tracks:IEnumerable<TrackAsset>) : bool
+    + <<override>> Validate(tracks:IEnumerable<TrackAsset>) : ActionValidity
+    + {static} SetLockState(tracks:IEnumerable<TrackAsset>, shouldLock:bool) : void
+}
+class ShowHideMarkers {
+    + isChecked : bool <<get>>
+    + <<override>> Validate(tracks:IEnumerable<TrackAsset>) : ActionValidity
+    + <<override>> Execute(tracks:IEnumerable<TrackAsset>) : bool
+}
+class MuteSelectedTrack {
+    + {static} <<readonly>> MuteSelectedText : string
+    + {static} <<readonly>> UnmuteSelectedText : string
+    + menuName : string <<get>>
+    + <<override>> Validate(tracks:IEnumerable<TrackAsset>) : ActionValidity
+    + <<override>> Execute(tracks:IEnumerable<TrackAsset>) : bool
+    + {static} Mute(tracks:TrackAsset[], shouldMute:bool) : void
+}
+class MuteTrack {
+    + menuName : string <<get>>
+    + <<override>> Execute(tracks:IEnumerable<TrackAsset>) : bool
+    + <<override>> Validate(tracks:IEnumerable<TrackAsset>) : ActionValidity
+    + {static} Mute(tracks:IEnumerable<TrackAsset>, shouldMute:bool) : void
+}
+class DeleteTracks {
+    + {static} Do(timeline:TimelineAsset, track:TrackAsset) : void
+    + <<override>> Validate(tracks:IEnumerable<TrackAsset>) : ActionValidity
+    + <<override>> Execute(tracks:IEnumerable<TrackAsset>) : bool
+}
+class CopyTracksToClipboard {
+    + {static} Do(tracks:TrackAsset[]) : bool
+    + <<override>> Validate(tracks:IEnumerable<TrackAsset>) : ActionValidity
+    + <<override>> Execute(tracks:IEnumerable<TrackAsset>) : bool
+}
+class DuplicateTracks {
+    + <<override>> Validate(tracks:IEnumerable<TrackAsset>) : ActionValidity
+    + <<override>> Execute(tracks:IEnumerable<TrackAsset>) : bool
+}
+class RemoveInvalidMarkersAction {
+    + <<override>> Validate(tracks:IEnumerable<TrackAsset>) : ActionValidity
+    + <<override>> Execute(tracks:IEnumerable<TrackAsset>) : bool
+}
+class CollapseTrackAction {
+    + <<override>> Validate(tracks:IEnumerable<TrackAsset>) : ActionValidity
+    + <<override>> Execute(tracks:IEnumerable<TrackAsset>) : bool
+}
+class ExpandTrackAction {
+    + <<override>> Validate(tracks:IEnumerable<TrackAsset>) : ActionValidity
+    + <<override>> Execute(tracks:IEnumerable<TrackAsset>) : bool
+}
+TrackAction <|-- EditTrackInAnimationWindow
+TrackAction <|-- LockSelectedTrack
+IMenuName <|-- LockSelectedTrack
+TrackAction <|-- LockTrack
+IMenuName <|-- LockTrack
+TrackAction <|-- ShowHideMarkers
+IMenuChecked <|-- ShowHideMarkers
+TrackAction <|-- MuteSelectedTrack
+IMenuName <|-- MuteSelectedTrack
+TrackAction <|-- MuteTrack
+IMenuName <|-- MuteTrack
+TrackAction <|-- DeleteTracks
+TrackAction <|-- CopyTracksToClipboard
+TrackAction <|-- DuplicateTracks
+TrackAction <|-- RemoveInvalidMarkersAction
+TrackAction <|-- CollapseTrackAction
+TrackAction <|-- ExpandTrackAction
+@enduml

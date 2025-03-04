@@ -1,0 +1,6 @@
+@startuml
+class AnimationClipExtensions <<static>> {
+    + {static} ClipVersion(clip:AnimationClip) : UInt64
+    + {static} GetChangeType(clip:AnimationClip, curveVersion:UInt64) : CurveChangeType
+}
+@enduml

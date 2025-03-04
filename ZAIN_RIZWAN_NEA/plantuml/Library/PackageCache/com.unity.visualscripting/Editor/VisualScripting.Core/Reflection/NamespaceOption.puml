@@ -1,0 +1,9 @@
+@startuml
+class NamespaceOption {
+    + NamespaceOption(@namespace:Namespace)
+    + NamespaceOption(@namespace:Namespace, parentOnly:bool)
+}
+class "FuzzyOption`1"<T> {
+}
+"FuzzyOption`1" "<Namespace>" <|-- NamespaceOption
+@enduml

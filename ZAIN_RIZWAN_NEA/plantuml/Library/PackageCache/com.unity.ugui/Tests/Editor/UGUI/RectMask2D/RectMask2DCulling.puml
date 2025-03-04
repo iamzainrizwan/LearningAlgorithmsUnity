@@ -1,0 +1,8 @@
+@startuml
+class RectMask2DCulling {
+    + CullFlagNotResetWhenReparented740604() : void
+}
+class "TestBehaviourBase`1"<T> {
+}
+"TestBehaviourBase`1" "<UnityEngine.Canvas>" <|-- RectMask2DCulling
+@enduml

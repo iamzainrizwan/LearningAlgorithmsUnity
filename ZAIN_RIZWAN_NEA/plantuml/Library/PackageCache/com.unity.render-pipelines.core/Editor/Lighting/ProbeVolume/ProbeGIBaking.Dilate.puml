@@ -1,0 +1,28 @@
+@startuml
+class AdaptiveProbeVolumes <<partial>> {
+}
+struct DilatedProbe {
+}
+struct DataForDilation {
+    + DataForDilation(cell:ProbeReferenceVolume.Cell, defaultThreshold:float)
+    + ExtractDilatedProbes() : void
+    + Dispose() : void
+}
+AdaptiveProbeVolumes +-- DilatedProbe
+DilatedProbe --> "L0" Vector3
+DilatedProbe --> "L1_0" Vector3
+DilatedProbe --> "L1_1" Vector3
+DilatedProbe --> "L1_2" Vector3
+DilatedProbe --> "L2_0" Vector3
+DilatedProbe --> "L2_1" Vector3
+DilatedProbe --> "L2_2" Vector3
+DilatedProbe --> "L2_3" Vector3
+DilatedProbe --> "L2_4" Vector3
+DilatedProbe --> "SO_L0L1" Vector4
+DilatedProbe --> "SO_Direction" Vector3
+DilatedProbe --> "ProbeOcclusion" Vector4
+AdaptiveProbeVolumes +-- DataForDilation
+DataForDilation --> "positionBuffer" ComputeBuffer
+DataForDilation --> "outputProbes" ComputeBuffer
+DataForDilation --> "needDilatingBuffer" ComputeBuffer
+@enduml

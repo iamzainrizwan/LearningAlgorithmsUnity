@@ -1,0 +1,127 @@
+@startuml
+class HashSetUtil <<static>> {
+    {static} + AllocInt(container:NativeHashSet<int>, capacity:int, addValues:bool) : void
+    {static} + AllocInt(containerA:NativeHashSet<int>, containerB:NativeHashSet<int>, capacity:int, addValues:bool) : void
+    {static} + AllocInt(container:UnsafeHashSet<int>, capacity:int, addValues:bool) : void
+    {static} + AllocInt(containerA:UnsafeHashSet<int>, containerB:UnsafeHashSet<int>, capacity:int, addValues:bool) : void
+    {static} + AllocBclContainer(capacity:int, addValues:bool) : object
+    {static} + AllocBclContainerTuple(capacity:int, addValues:bool) : object
+    {static} + CreateRandomKeys(capacity:int, keys:UnsafeList<int>) : void
+}
+struct HashSetIsEmpty100k {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct HashSetCount100k {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct HashSetToNativeArray {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct HashSetInsert {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct HashSetAddGrow {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct HashSetContains {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct HashSetRemove {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct HashSetForEach {
+    + total : int
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct HashSetUnionWith {
+    + total : int
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct HashSetIntersectWith {
+    + total : int
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct HashSetExceptWith {
+    + total : int
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+class HashSet {
+    + <<unsafe>> IsEmpty_x_100k(capacity:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Count_x_100k(capacity:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> ToNativeArray(capacity:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Insert(insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> AddGrow(capacity:int, growTo:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Contains(insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Remove(insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Foreach(insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> UnionWith(insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> IntersectWith(insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> ExceptWith(insertions:int, type:BenchmarkContainerType) : void
+}
+IBenchmarkContainer <|-- HashSetIsEmpty100k
+IBenchmarkContainer <|-- HashSetCount100k
+IBenchmarkContainer <|-- HashSetToNativeArray
+IBenchmarkContainer <|-- HashSetInsert
+IBenchmarkContainer <|-- HashSetAddGrow
+IBenchmarkContainer <|-- HashSetContains
+IBenchmarkContainer <|-- HashSetRemove
+IBenchmarkContainer <|-- HashSetForEach
+IBenchmarkContainer <|-- HashSetUnionWith
+IBenchmarkContainer <|-- HashSetIntersectWith
+IBenchmarkContainer <|-- HashSetExceptWith
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+class BuildReportTestScope {
+    + BuildReportTestScope()
+}
+class ShaderStrippingReportTests {
+    + GlobalSetUp() : void
+    + JSONOutput(shaders:Shader[], steps:uint, variantsOutMultiplier:float) : void
+}
+IDisposable <|-- BuildReportTestScope
+@enduml

@@ -1,0 +1,51 @@
+@startuml
+class ReorderableListControl {
+    + {static} CurrentListControlID : int <<get>>
+    + {static} DrawControlFromState(adaptor:IReorderableListAdaptor, drawEmpty:DrawEmpty, flags:ReorderableListFlags) : void
+    + {static} DrawControlFromState(position:Rect, adaptor:IReorderableListAdaptor, drawEmpty:DrawEmptyAbsolute, flags:ReorderableListFlags) : void
+    + VerticalSpacing : float <<get>> <<set>>
+    + HorizontalLineAtStart : bool <<get>> <<set>>
+    + HorizontalLineAtEnd : bool <<get>> <<set>>
+    +  <<event>> ItemInserted : ItemInsertedEventHandler 
+    +  <<event>> ItemRemoving : ItemRemovingEventHandler 
+    +  <<event>> ItemMoving : ItemMovingEventHandler 
+    +  <<event>> ItemMoved : ItemMovedEventHandler 
+    + ReorderableListControl()
+    + ReorderableListControl(flags:ReorderableListFlags)
+    + Draw(adaptor:IReorderableListAdaptor, drawEmpty:DrawEmpty) : void
+    + Draw(adaptor:IReorderableListAdaptor) : void
+    + Draw(position:Rect, adaptor:IReorderableListAdaptor, drawEmpty:DrawEmptyAbsolute) : void
+    + Draw(position:Rect, adaptor:IReorderableListAdaptor) : void
+    + DrawSizeField(position:Rect, label:GUIContent, adaptor:IReorderableListAdaptor) : void
+    + DrawSizeField(position:Rect, label:string, adaptor:IReorderableListAdaptor) : void
+    + DrawSizeField(position:Rect, adaptor:IReorderableListAdaptor) : void
+    + DrawSizeField(label:GUIContent, adaptor:IReorderableListAdaptor) : void
+    + DrawSizeField(label:string, adaptor:IReorderableListAdaptor) : void
+    + DrawSizeField(adaptor:IReorderableListAdaptor) : void
+    + DoCommand(commandName:string, itemIndex:int, adaptor:IReorderableListAdaptor) : bool
+    + DoCommand(command:GUIContent, itemIndex:int, adaptor:IReorderableListAdaptor) : bool
+    + CalculateListHeight(adaptor:IReorderableListAdaptor) : float
+    + CalculateListHeight(itemCount:int, itemHeight:float) : float
+}
+struct ListInfo {
+    + ControlID : int
+    + ListInfo(controlID:int, position:Rect)
+}
+struct ItemInfo {
+    + ItemIndex : int
+    + ItemInfo(itemIndex:int, itemPosition:Rect)
+}
+ReorderableListControl --> "CurrentListPosition" Rect
+ReorderableListControl --> "CurrentItemTotalPosition" Rect
+ReorderableListControl --> "AnchorBackgroundColor" Color
+ReorderableListControl --> "TargetBackgroundColor" Color
+ReorderableListControl --> "Flags" ReorderableListFlags
+ReorderableListControl --> "ContainerStyle" GUIStyle
+ReorderableListControl --> "FooterButtonStyle" GUIStyle
+ReorderableListControl --> "ItemButtonStyle" GUIStyle
+ReorderableListControl --> "HorizontalLineColor" Color
+ReorderableListControl +-- ListInfo
+ListInfo --> "Position" Rect
+ReorderableListControl +-- ItemInfo
+ItemInfo --> "ItemPosition" Rect
+@enduml

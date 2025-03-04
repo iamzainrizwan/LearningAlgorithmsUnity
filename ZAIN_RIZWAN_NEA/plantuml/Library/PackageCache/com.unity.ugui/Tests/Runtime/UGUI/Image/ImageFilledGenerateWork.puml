@@ -1,0 +1,7 @@
+@startuml
+class ImageFilledGenerateWork {
+    + SetUp() : void
+    + ImageFilledGenerateWorks() : void
+    + TearDown() : void
+}
+@enduml

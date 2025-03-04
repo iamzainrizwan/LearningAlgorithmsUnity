@@ -1,0 +1,67 @@
+@startuml
+class LudiqCoreChangelog_1_4_0 {
+    + LudiqCoreChangelog_1_4_0(plugin:Plugin)
+}
+class LudiqCoreChangelog_1_4_0f2 {
+    + LudiqCoreChangelog_1_4_0f2(plugin:Plugin)
+}
+class LudiqCoreChangelog_1_4_0f3 {
+    + LudiqCoreChangelog_1_4_0f3(plugin:Plugin)
+}
+class LudiqCoreChangelog_1_4_0f5 {
+    + LudiqCoreChangelog_1_4_0f5(plugin:Plugin)
+}
+class LudiqCoreChangelog_1_4_0f6 {
+    + LudiqCoreChangelog_1_4_0f6(plugin:Plugin)
+}
+class LudiqCoreChangelog_1_4_0f7 {
+    + LudiqCoreChangelog_1_4_0f7(plugin:Plugin)
+}
+class LudiqCoreChangelog_1_4_0f9 {
+    + LudiqCoreChangelog_1_4_0f9(plugin:Plugin)
+}
+class LudiqCoreChangelog_1_4_0f10 {
+    + LudiqCoreChangelog_1_4_0f10(plugin:Plugin)
+}
+class LudiqCoreChangelog_1_4_0f11 {
+    + LudiqCoreChangelog_1_4_0f11(plugin:Plugin)
+}
+class "IEnumerable`1"<T> {
+}
+PluginChangelog <|-- LudiqCoreChangelog_1_4_0
+LudiqCoreChangelog_1_4_0 --> "version" SemanticVersion
+LudiqCoreChangelog_1_4_0 --> "date" DateTime
+LudiqCoreChangelog_1_4_0 --> "changes<string>" "IEnumerable`1"
+PluginChangelog <|-- LudiqCoreChangelog_1_4_0f2
+LudiqCoreChangelog_1_4_0f2 --> "version" SemanticVersion
+LudiqCoreChangelog_1_4_0f2 --> "date" DateTime
+LudiqCoreChangelog_1_4_0f2 --> "changes<string>" "IEnumerable`1"
+PluginChangelog <|-- LudiqCoreChangelog_1_4_0f3
+LudiqCoreChangelog_1_4_0f3 --> "version" SemanticVersion
+LudiqCoreChangelog_1_4_0f3 --> "date" DateTime
+LudiqCoreChangelog_1_4_0f3 --> "changes<string>" "IEnumerable`1"
+PluginChangelog <|-- LudiqCoreChangelog_1_4_0f5
+LudiqCoreChangelog_1_4_0f5 --> "version" SemanticVersion
+LudiqCoreChangelog_1_4_0f5 --> "date" DateTime
+LudiqCoreChangelog_1_4_0f5 --> "changes<string>" "IEnumerable`1"
+PluginChangelog <|-- LudiqCoreChangelog_1_4_0f6
+LudiqCoreChangelog_1_4_0f6 --> "version" SemanticVersion
+LudiqCoreChangelog_1_4_0f6 --> "date" DateTime
+LudiqCoreChangelog_1_4_0f6 --> "changes<string>" "IEnumerable`1"
+PluginChangelog <|-- LudiqCoreChangelog_1_4_0f7
+LudiqCoreChangelog_1_4_0f7 --> "version" SemanticVersion
+LudiqCoreChangelog_1_4_0f7 --> "date" DateTime
+LudiqCoreChangelog_1_4_0f7 --> "changes<string>" "IEnumerable`1"
+PluginChangelog <|-- LudiqCoreChangelog_1_4_0f9
+LudiqCoreChangelog_1_4_0f9 --> "version" SemanticVersion
+LudiqCoreChangelog_1_4_0f9 --> "date" DateTime
+LudiqCoreChangelog_1_4_0f9 --> "changes<string>" "IEnumerable`1"
+PluginChangelog <|-- LudiqCoreChangelog_1_4_0f10
+LudiqCoreChangelog_1_4_0f10 --> "version" SemanticVersion
+LudiqCoreChangelog_1_4_0f10 --> "date" DateTime
+LudiqCoreChangelog_1_4_0f10 --> "changes<string>" "IEnumerable`1"
+PluginChangelog <|-- LudiqCoreChangelog_1_4_0f11
+LudiqCoreChangelog_1_4_0f11 --> "version" SemanticVersion
+LudiqCoreChangelog_1_4_0f11 --> "date" DateTime
+LudiqCoreChangelog_1_4_0f11 --> "changes<string>" "IEnumerable`1"
+@enduml

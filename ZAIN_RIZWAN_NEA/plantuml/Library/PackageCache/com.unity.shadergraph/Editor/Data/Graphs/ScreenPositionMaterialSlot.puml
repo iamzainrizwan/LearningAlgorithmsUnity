@@ -1,0 +1,18 @@
+@startuml
+class ScreenPositionMaterialSlot {
+    + <<override>> isDefaultValue : bool <<get>>
+    + ScreenPositionMaterialSlot()
+    + ScreenPositionMaterialSlot(slotId:int, displayName:string, shaderOutputName:string, screenSpaceType:ScreenSpaceType, stageCapability:ShaderStageCapability, hidden:bool)
+    + <<override>> InstantiateControl() : VisualElement
+    + <<override>> GetDefaultValue(generationMode:GenerationMode) : string
+    + RequiresScreenPosition(stageCapability:ShaderStageCapability) : bool
+    + RequiresNDCPosition(stageCapability:ShaderStageCapability) : bool
+    + RequiresPixelPosition(stageCapability:ShaderStageCapability) : bool
+    + <<override>> CopyValuesFrom(foundSlot:MaterialSlot) : void
+}
+Vector4MaterialSlot <|-- ScreenPositionMaterialSlot
+IMayRequireScreenPosition <|-- ScreenPositionMaterialSlot
+IMayRequireNDCPosition <|-- ScreenPositionMaterialSlot
+IMayRequirePixelPosition <|-- ScreenPositionMaterialSlot
+ScreenPositionMaterialSlot --> "screenSpaceType" ScreenSpaceType
+@enduml

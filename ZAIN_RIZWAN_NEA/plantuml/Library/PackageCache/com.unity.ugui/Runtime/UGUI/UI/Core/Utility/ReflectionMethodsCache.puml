@@ -1,0 +1,6 @@
+@startuml
+class ReflectionMethodsCache {
+    + ReflectionMethodsCache()
+}
+ReflectionMethodsCache --> "Singleton" ReflectionMethodsCache
+@enduml

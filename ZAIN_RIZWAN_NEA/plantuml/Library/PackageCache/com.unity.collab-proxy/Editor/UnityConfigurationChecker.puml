@@ -1,0 +1,6 @@
+@startuml
+class UnityConfigurationChecker <<static>> {
+}
+class SetupUnityEditionToken <<static>> {
+}
+@enduml

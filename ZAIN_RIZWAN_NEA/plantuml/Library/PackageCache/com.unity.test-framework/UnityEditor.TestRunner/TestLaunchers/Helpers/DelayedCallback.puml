@@ -1,0 +1,7 @@
+@startuml
+class DelayedCallback {
+    + DelayedCallback(function:Action, timeFromNow:double)
+    + Clear() : void
+    + Reset() : void
+}
+@enduml

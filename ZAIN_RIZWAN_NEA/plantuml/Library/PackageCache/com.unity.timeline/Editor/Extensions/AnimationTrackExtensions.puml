@@ -1,0 +1,8 @@
+@startuml
+class AnimationTrackExtensions <<static>> {
+    + {static} CanStartRecording(track:AnimationTrack) : bool
+    + {static} IsRecording(track:AnimationTrack) : bool
+    + {static} StartRecording(track:AnimationTrack) : bool
+    + {static} StopRecording(track:AnimationTrack) : void
+}
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class SaveModifiedSceneTask {
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- SaveModifiedSceneTask
+@enduml

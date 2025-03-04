@@ -1,0 +1,16 @@
+@startuml
+abstract class "ShaderPreprocessor`2"<TShader,TShaderVariant> {
+}
+class ShaderVariantStripper {
+    + callbackOrder : int <<get>>
+    + OnProcessShader(shader:Shader, snippet:ShaderSnippetData, inputData:IList<ShaderCompilerData>) : void
+}
+class ComputeShaderVariantStripper {
+    + callbackOrder : int <<get>>
+    + OnProcessComputeShader(shader:ComputeShader, kernelName:string, inputData:IList<ShaderCompilerData>) : void
+}
+"ShaderPreprocessor`2" "<Shader,ShaderSnippetData>" <|-- ShaderVariantStripper
+IPreprocessShaders <|-- ShaderVariantStripper
+"ShaderPreprocessor`2" "<ComputeShader,string>" <|-- ComputeShaderVariantStripper
+IPreprocessComputeShaders <|-- ComputeShaderVariantStripper
+@enduml

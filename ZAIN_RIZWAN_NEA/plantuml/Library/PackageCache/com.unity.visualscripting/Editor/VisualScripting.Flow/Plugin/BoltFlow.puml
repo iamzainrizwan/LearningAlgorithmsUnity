@@ -1,0 +1,19 @@
+@startuml
+class BoltFlow <<sealed>> {
+    + BoltFlow()
+    + <<const>> ID : string = "VisualScripting.Flow"
+    + <<const>> LegacyRuntimeDllGuid : string = "a040fb66244a7f54289914d98ea4ef7d"
+    + <<const>> LegacyEditorDllGuid : string = "6cb65bfc2ee1c854ca1382175f3aba91"
+    + <<override>> RunAction() : void
+}
+class "IEnumerable`1"<T> {
+}
+Plugin <|-- BoltFlow
+BoltFlow --> "instance" BoltFlow
+BoltFlow --> "Manifest" BoltFlowManifest
+BoltFlow --> "Configuration" BoltFlowConfiguration
+BoltFlow --> "Resources" BoltFlowResources
+BoltFlow --> "Paths" BoltFlowPaths
+BoltFlow --> "scriptReferenceReplacements<ScriptReferenceReplacement>" "IEnumerable`1"
+BoltFlow --> "tips<string>" "IEnumerable`1"
+@enduml

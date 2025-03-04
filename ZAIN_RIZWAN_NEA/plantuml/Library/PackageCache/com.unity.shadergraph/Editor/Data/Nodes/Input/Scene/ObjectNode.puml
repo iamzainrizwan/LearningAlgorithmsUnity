@@ -1,0 +1,15 @@
+@startuml
+class ObjectNode <<sealed>> {
+    + <<const>> OutputSlotId : int = 0
+    + <<const>> OutputSlot1Id : int = 1
+    + <<const>> OutputSlot2Id : int = 2
+    + <<const>> OutputSlot3Id : int = 3
+    + <<const>> OutputSlot4Id : int = 4
+    + ObjectNode()
+    + <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> GetVariableNameForSlot(slotId:int) : string
+    + RequiresTransform(stageCapability:ShaderStageCapability) : NeededTransform[]
+}
+AbstractMaterialNode <|-- ObjectNode
+IMayRequireTransform <|-- ObjectNode
+@enduml

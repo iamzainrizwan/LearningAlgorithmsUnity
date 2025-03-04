@@ -1,0 +1,20 @@
+@startuml
+abstract class SubTarget {
+    + displayName : string <<get>> <<set>>
+    + isHidden : bool <<get>> <<set>>
+    + {abstract} IsActive() : bool
+    + {abstract} Setup(context:TargetSetupContext) : void
+    + {abstract} GetFields(context:TargetFieldContext) : void
+    + {abstract} GetActiveBlocks(context:TargetActiveBlockContext) : void
+    + {abstract} GetPropertiesGUI(context:TargetPropertyGUIContext, onChange:Action, registerUndo:Action<String>) : void
+    + <<virtual>> CollectShaderProperties(collector:PropertyCollector, generationMode:GenerationMode) : void
+    + <<virtual>> ProcessPreviewMaterial(material:Material) : void
+    + <<virtual>> saveContext : object <<get>>
+    + <<virtual>> IsNodeAllowedBySubTarget(nodeType:Type) : bool
+}
+abstract class "SubTarget`1"<T> {
+    + <<new>> target : T <<get>> <<set>>
+}
+JsonObject <|-- SubTarget
+SubTarget <|-- "SubTarget`1"
+@enduml

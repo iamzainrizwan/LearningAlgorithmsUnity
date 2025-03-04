@@ -1,0 +1,10 @@
+@startuml
+class TabButton {
+}
+enum CloseButtonState {
+    Normal,
+    Clicked,
+    Hovered,
+}
+TabButton +-- CloseButtonState
+@enduml

@@ -1,0 +1,27 @@
+@startuml
+class StringHelpers <<static>> {
+    + {static} Escape(str:string, chars:string, replacements:string) : string
+    + {static} Unescape(str:string, chars:string, replacements:string) : string
+    + {static} Contains(str:string, ch:char) : bool
+    + {static} Contains(str:string, text:string, comparison:StringComparison) : bool
+    + {static} GetPlural(str:string) : string
+    + {static} NicifyMemorySize(numBytes:long) : string
+    + {static} FromNicifiedMemorySize(text:string, result:long, defaultMultiplier:long) : bool
+    + {static} CountOccurrences(str:string, ch:char) : int
+    + {static} Tokenize(str:string) : IEnumerable<Substring>
+    + {static} Split(str:string, predicate:Func<char, bool>) : IEnumerable<string>
+    + {static} Join(separator:string, values:TValue[]) : string
+    + {static} Join(values:IEnumerable<TValue>, separator:string) : string
+    + {static} MakeUniqueName(baseName:string, existingSet:IEnumerable<TExisting>, getNameFunc:Func<TExisting, string>) : string
+    + {static} CharacterSeparatedListsHaveAtLeastOneCommonElement(firstList:string, secondList:string, separator:char) : bool
+    + {static} ParseInt(str:string, pos:int) : int
+    + {static} WriteStringToBuffer(text:string, buffer:IntPtr, bufferSizeInCharacters:int) : bool
+    + {static} <<unsafe>> WriteStringToBuffer(text:string, buffer:IntPtr, bufferSizeInCharacters:int, offset:uint) : bool
+    + {static} ReadStringFromBuffer(buffer:IntPtr, bufferSize:int) : string
+    + {static} <<unsafe>> ReadStringFromBuffer(buffer:IntPtr, bufferSize:int, offset:uint) : string
+    + {static} IsPrintable(ch:char) : bool
+    + {static} WithAllWhitespaceStripped(str:string) : string
+    + {static} InvariantEqualsIgnoreCase(left:string, right:string) : bool
+    + {static} ExpandTemplateString(template:string, mapFunc:Func<string, string>) : string
+}
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+class HierarchicalBox {
+    + monoHandle : bool <<get>> <<set>>
+    + allowNegativeSize : bool <<get>> <<set>>
+    + SetBaseColor(color:Color) : void
+    + HierarchicalBox(baseColor:Color, polychromeHandleColors:Color[], parent:HierarchicalBox)
+    + DrawHull(filled:bool) : void
+    + DrawHandle() : void
+}
+enum NamedFace {
+    Right,
+    Top,
+    Front,
+    Left,
+    Bottom,
+    Back,
+    None,
+}
+HierarchicalBox --> "center" Vector3
+HierarchicalBox --> "size" Vector3
+HierarchicalBox --> "baseColor" Color
+HierarchicalBox +-- NamedFace
+@enduml

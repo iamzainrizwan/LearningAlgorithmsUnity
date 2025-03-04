@@ -1,0 +1,24 @@
+@startuml
+class "GenericListAdaptor`1"<T> {
+    + GenericListAdaptor(list:IList<T>, itemDrawer:ReorderableListControl.ItemDrawer<T>, itemHeight:float)
+    + FixedItemHeight : float
+    + Count : int <<get>>
+    + <<virtual>> CanDrag(index:int) : bool
+    + <<virtual>> CanRemove(index:int) : bool
+    + <<virtual>> Add() : void
+    + <<virtual>> Insert(index:int) : void
+    + <<virtual>> Duplicate(index:int) : void
+    + <<virtual>> Remove(index:int) : void
+    + <<virtual>> Move(sourceIndex:int, destIndex:int) : void
+    + <<virtual>> Clear() : void
+    + <<virtual>> BeginGUI() : void
+    + <<virtual>> EndGUI() : void
+    + <<virtual>> DrawItemBackground(position:Rect, index:int) : void
+    + <<virtual>> DrawItem(position:Rect, index:int) : void
+    + <<virtual>> GetItemHeight(index:int) : float
+}
+class "IList`1"<T> {
+}
+IReorderableListAdaptor <|-- "GenericListAdaptor`1"
+"GenericListAdaptor`1" --> "List<T>" "IList`1"
+@enduml

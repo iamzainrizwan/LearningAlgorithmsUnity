@@ -1,0 +1,17 @@
+@startuml
+class RecommendationTests <<partial>> {
+}
+class "IEnumerable`1"<T> {
+}
+RecommendationTests --> "AdventurePresetCases<TestCaseData>" "IEnumerable`1"
+RecommendationTests --> "SandboxPresetCases<TestCaseData>" "IEnumerable`1"
+RecommendationTests --> "AsyncPresetCases<TestCaseData>" "IEnumerable`1"
+RecommendationTests --> "TurnBasedPresetCases<TestCaseData>" "IEnumerable`1"
+RecommendationTests --> "FightingPresetCases<TestCaseData>" "IEnumerable`1"
+RecommendationTests --> "RacingPresetCases<TestCaseData>" "IEnumerable`1"
+RecommendationTests --> "RolePlayingPresetCases<TestCaseData>" "IEnumerable`1"
+RecommendationTests --> "ShooterPresetCases<TestCaseData>" "IEnumerable`1"
+RecommendationTests --> "SimulationPresetCases<TestCaseData>" "IEnumerable`1"
+RecommendationTests --> "StrategyPresetCases<TestCaseData>" "IEnumerable`1"
+RecommendationTests --> "SportPresetCases<TestCaseData>" "IEnumerable`1"
+@enduml

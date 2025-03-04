@@ -1,0 +1,24 @@
+@startuml
+class Variables {
+    + {static} Graph(pointer:GraphPointer) : VariableDeclarations
+    + {static} GraphInstance(pointer:GraphPointer) : VariableDeclarations
+    + {static} GraphDefinition(pointer:GraphPointer) : VariableDeclarations
+    + {static} GraphDefinition(graph:IGraphWithVariables) : VariableDeclarations
+    + {static} Object(go:GameObject) : VariableDeclarations
+    + {static} Object(component:Component) : VariableDeclarations
+    + {static} Scene(scene:Scene?) : VariableDeclarations
+    + {static} Scene(go:GameObject) : VariableDeclarations
+    + {static} Scene(component:Component) : VariableDeclarations
+    + {static} ExistOnObject(go:GameObject) : bool
+    + {static} ExistOnObject(component:Component) : bool
+    + {static} ExistInScene(scene:Scene?) : bool
+    + {static} ExistInActiveScene : bool <<get>>
+    + GetAotStubs(visited:HashSet<object>) : IEnumerable<object>
+}
+LudiqBehaviour <|-- Variables
+IAotStubbable <|-- Variables
+Variables o-> "declarations" VariableDeclarations
+Variables --> "ActiveScene" VariableDeclarations
+Variables --> "Application" VariableDeclarations
+Variables --> "Saved" VariableDeclarations
+@enduml

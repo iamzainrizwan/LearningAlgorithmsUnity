@@ -1,0 +1,14 @@
+@startuml
+class ReflectedInspector {
+    + ReflectedInspector(metadata:Metadata)
+    + <<override>> Initialize() : void
+    + <<virtual>> ReflectMetadata() : void
+    + <<override>> GetAdaptiveWidth() : float
+}
+class Styles <<static>> {
+    + {static} <<readonly>> spaceBetweenMembers : float
+}
+Inspector <|-- ReflectedInspector
+ReflectedInspector --> "bindingFlags" BindingFlags
+ReflectedInspector +-- Styles
+@enduml

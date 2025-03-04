@@ -1,0 +1,15 @@
+@startuml
+class GroupTrackInspector {
+    + <<override>> OnInspectorGUI() : void
+    + <<override>> OnEnable() : void
+}
+class Styles <<static>> {
+}
+TrackAssetInspector <|-- GroupTrackInspector
+GroupTrackInspector +-- Styles
+Styles o-> "GroupSubTrackHeaderName" GUIContent
+Styles o-> "GroupSubTrackHeaderType" GUIContent
+Styles o-> "GroupSubTrackHeaderDuration" GUIContent
+Styles o-> "GroupSubTrackHeaderFrames" GUIContent
+Styles o-> "GroupInvalidTrack" GUIContent
+@enduml

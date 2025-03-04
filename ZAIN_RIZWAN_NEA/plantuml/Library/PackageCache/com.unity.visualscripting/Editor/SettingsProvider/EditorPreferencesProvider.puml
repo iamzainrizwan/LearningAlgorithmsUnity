@@ -1,0 +1,6 @@
+@startuml
+class EditorPreferencesProvider {
+    + {static} CreateEditorPreferencesProvider() : SettingsProvider
+}
+Editor <|-- EditorPreferencesProvider
+@enduml

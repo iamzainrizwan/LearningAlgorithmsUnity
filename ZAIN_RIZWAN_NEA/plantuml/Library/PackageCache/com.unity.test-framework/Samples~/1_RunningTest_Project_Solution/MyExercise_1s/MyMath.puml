@@ -1,0 +1,6 @@
+@startuml
+class MyMath <<static>> {
+    + {static} Add(a:int, b:int) : int
+    + {static} Subtract(a:int, b:int) : int
+}
+@enduml

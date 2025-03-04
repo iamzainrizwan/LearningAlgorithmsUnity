@@ -1,0 +1,5 @@
+@startuml
+class TMP_EditorPanel {
+}
+TMP_BaseEditorPanel <|-- TMP_EditorPanel
+@enduml

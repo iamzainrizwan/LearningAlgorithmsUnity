@@ -1,0 +1,16 @@
+@startuml
+class ProbeVolumeDebugPass <<partial>> {
+    + ProbeVolumeDebugPass(evt:RenderPassEvent, computeShader:ComputeShader)
+    + Setup(depthBuffer:RTHandle, normalBuffer:RTHandle) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+}
+class WriteApvData {
+}
+ScriptableRenderPass <|-- ProbeVolumeDebugPass
+ProbeVolumeDebugPass +-- WriteApvData
+WriteApvData --> "computeShader" ComputeShader
+WriteApvData --> "resultBuffer" BufferHandle
+WriteApvData --> "clickCoordinates" Vector2
+WriteApvData --> "depthBuffer" TextureHandle
+WriteApvData --> "normalBuffer" TextureHandle
+@enduml

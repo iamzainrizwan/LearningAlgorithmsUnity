@@ -1,0 +1,6 @@
+@startuml
+class NesterStateTransitionEditor {
+    + NesterStateTransitionEditor(metadata:Metadata)
+}
+StateTransitionEditor <|-- NesterStateTransitionEditor
+@enduml

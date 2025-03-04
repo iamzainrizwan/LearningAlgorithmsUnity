@@ -1,0 +1,9 @@
+@startuml
+class NotApproximatelyEqual <<sealed>> {
+    + Comparison(flow:Flow) : bool
+}
+Unit <|-- NotApproximatelyEqual
+NotApproximatelyEqual --> "a" ValueInput
+NotApproximatelyEqual --> "b" ValueInput
+NotApproximatelyEqual --> "notEqual" ValueOutput
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class "NesterUnitAnalyser`1"<TNesterUnit> {
+    + NesterUnitAnalyser(reference:GraphReference, unit:TNesterUnit)
+}
+class "UnitAnalyser`1"<T> {
+}
+"UnitAnalyser`1" "<TNesterUnit>" <|-- "NesterUnitAnalyser`1"
+@enduml

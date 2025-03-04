@@ -1,0 +1,13 @@
+@startuml
+class ProductContainer <<sealed>> {
+    + {static} initialized : bool <<get>>
+    + {static} initializing : bool <<get>>
+    + {static} GetProductID(productType:Type) : string
+    + {static} GetProductType(productId:string) : Type
+    + {static} GetProduct(productId:string) : Product
+    + {static} HasProduct(productId:string) : bool
+}
+class "IEnumerable`1"<T> {
+}
+ProductContainer --> "products<Product>" "IEnumerable`1"
+@enduml

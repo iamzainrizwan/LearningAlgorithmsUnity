@@ -1,0 +1,8 @@
+@startuml
+class SignalListFactory <<static>> {
+    + {static} CreateSignalInspectorList(state:TreeViewState, header:SignalReceiverHeader, target:SignalReceiver, so:SerializedObject) : SignalReceiverTreeView
+    + {static} CreateHeader(state:MultiColumnHeaderState, columnHeight:int) : SignalReceiverHeader
+    + {static} CreateHeaderState() : MultiColumnHeaderState
+    + {static} CreateViewState() : TreeViewState
+}
+@enduml

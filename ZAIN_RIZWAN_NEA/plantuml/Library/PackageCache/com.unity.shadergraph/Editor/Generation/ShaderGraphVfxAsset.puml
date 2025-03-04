@@ -1,0 +1,43 @@
+@startuml
+struct TextureInfo {
+    + TextureInfo(name:string, texture:Texture, dimension:TextureDimension)
+    + name : string
+    + instanceID : int <<get>>
+}
+class ShaderGraphVfxAsset <<sealed>> {
+    + <<const>> BaseColorSlotId : int = 1
+    + <<const>> MetallicSlotId : int = 2
+    + <<const>> SmoothnessSlotId : int = 3
+    + <<const>> NormalSlotId : int = 8
+    + <<const>> AlphaSlotId : int = 4
+    + <<const>> EmissiveSlotId : int = 5
+    + <<const>> ColorSlotId : int = 6
+    + <<const>> AlphaThresholdSlotId : int = 7
+    + generatesWithShaderGraph : bool
+    + lit : bool
+    + alphaClipping : bool
+    + GetOutput(id:int) : OutputMetadata
+    + HasOutput(id:int) : bool
+    + evaluationFunctionName : string <<get>> <<internal set>>
+    + inputStructName : string <<get>> <<internal set>>
+    + outputStructName : string <<get>> <<internal set>>
+    + GetCode(outputs:OutputMetadata[]) : GraphCode
+}
+class ShaderGraphVfxAssetData {
+}
+class "IEnumerable`1"<T> {
+}
+class "List`1"<T> {
+}
+TextureInfo --> "texture" Texture
+TextureInfo --> "dimension" TextureDimension
+ScriptableObject <|-- ShaderGraphVfxAsset
+ISerializationCallbackReceiver <|-- ShaderGraphVfxAsset
+ShaderGraphVfxAsset --> "textureInfos<TextureInfo>" "IEnumerable`1"
+ShaderGraphVfxAsset --> "properties<ShaderInput>" "List`1"
+ShaderGraphVfxAsset --> "fragmentProperties<AbstractShaderProperty>" "List`1"
+ShaderGraphVfxAsset --> "vertexProperties<AbstractShaderProperty>" "List`1"
+ShaderGraphVfxAsset +-- ShaderGraphVfxAssetData
+JsonObject <|-- ShaderGraphVfxAssetData
+ShaderGraphVfxAssetData o-> "m_Properties<JsonData<ShaderInput>>" "List`1"
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+struct MouseState {
+    + buttons : ushort
+    + displayIndex : ushort
+    + clickCount : ushort
+    + WithButton(button:MouseButton, state:bool) : MouseState
+}
+enum MouseButton {
+    Left,
+    Right,
+    Middle,
+    Forward,
+    Back,
+}
+class Mouse {
+    + <<override>> MakeCurrent() : void
+    + WarpCursorPosition(position:Vector2) : void
+}
+IInputStateTypeInfo <|-- MouseState
+MouseState --> "Format" FourCC
+MouseState --> "position" Vector2
+MouseState --> "delta" Vector2
+MouseState --> "scroll" Vector2
+MouseState --> "format" FourCC
+Pointer <|-- Mouse
+IInputStateCallbackReceiver <|-- Mouse
+Mouse --> "scroll" DeltaControl
+Mouse --> "leftButton" ButtonControl
+Mouse --> "middleButton" ButtonControl
+Mouse --> "rightButton" ButtonControl
+Mouse --> "backButton" ButtonControl
+Mouse --> "forwardButton" ButtonControl
+Mouse --> "clickCount" IntegerControl
+Mouse --> "current" Mouse
+@enduml

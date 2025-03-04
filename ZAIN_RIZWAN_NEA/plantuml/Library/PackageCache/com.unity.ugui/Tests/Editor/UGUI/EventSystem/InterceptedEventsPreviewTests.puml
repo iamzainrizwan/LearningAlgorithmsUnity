@@ -1,0 +1,5 @@
+@startuml
+class InterceptedEventsPreviewTests {
+    + InterceptedEventsPreviewCacheUsingTypeCacheReturnsSameTypes() : void
+}
+@enduml

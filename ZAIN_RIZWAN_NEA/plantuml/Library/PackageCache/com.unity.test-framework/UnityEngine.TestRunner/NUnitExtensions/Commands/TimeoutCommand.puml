@@ -1,0 +1,9 @@
+@startuml
+class TimeoutCommand {
+    + TimeoutCommand(innerCommand:TestCommand)
+    + <<override>> Execute(context:ITestExecutionContext) : TestResult
+    + ExecuteEnumerable(context:ITestExecutionContext) : IEnumerable
+}
+DelegatingTestCommand <|-- TimeoutCommand
+IEnumerableTestMethodCommand <|-- TimeoutCommand
+@enduml

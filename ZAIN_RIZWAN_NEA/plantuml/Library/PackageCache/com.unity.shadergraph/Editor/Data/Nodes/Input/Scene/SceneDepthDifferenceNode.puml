@@ -1,0 +1,11 @@
+@startuml
+class SceneDepthDifferenceNode <<sealed>> {
+    + SceneDepthDifferenceNode()
+    + <<override>> hasPreview : bool <<get>>
+}
+CodeFunctionNode <|-- SceneDepthDifferenceNode
+IMayRequireDepthTexture <|-- SceneDepthDifferenceNode
+IMayRequireScreenPosition <|-- SceneDepthDifferenceNode
+IMayRequirePosition <|-- SceneDepthDifferenceNode
+SceneDepthDifferenceNode --> "depthSamplingMode" DepthSamplingMode
+@enduml

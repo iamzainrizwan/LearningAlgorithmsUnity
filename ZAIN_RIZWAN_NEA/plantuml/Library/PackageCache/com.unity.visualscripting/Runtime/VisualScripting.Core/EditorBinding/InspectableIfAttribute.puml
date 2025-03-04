@@ -1,0 +1,9 @@
+@startuml
+class InspectableIfAttribute <<sealed>> {
+    + InspectableIfAttribute(conditionMember:string)
+    + order : int <<get>> <<set>>
+    + conditionMember : string <<get>>
+}
+Attribute <|-- InspectableIfAttribute
+IInspectableAttribute <|-- InspectableIfAttribute
+@enduml

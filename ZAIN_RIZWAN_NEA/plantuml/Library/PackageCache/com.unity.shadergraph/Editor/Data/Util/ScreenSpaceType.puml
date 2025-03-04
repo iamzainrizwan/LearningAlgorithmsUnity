@@ -1,0 +1,15 @@
+@startuml
+enum ScreenSpaceType {
+    Default,
+    Raw,
+    Center,
+    Tiled,
+    Pixel,
+}
+class ScreenSpaceTypeExtensions <<static>> {
+    + {static} ToValueAsVariable(screenSpaceType:ScreenSpaceType) : string
+    + {static} RequiresScreenPosition(screenSpaceType:ScreenSpaceType) : bool
+    + {static} RequiresNDCPosition(screenSpaceType:ScreenSpaceType) : bool
+    + {static} RequiresPixelPosition(screenSpaceType:ScreenSpaceType) : bool
+}
+@enduml

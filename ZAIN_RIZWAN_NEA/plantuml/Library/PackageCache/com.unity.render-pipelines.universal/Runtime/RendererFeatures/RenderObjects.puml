@@ -1,0 +1,47 @@
+@startuml
+enum RenderQueueType {
+    Opaque,
+    Transparent,
+}
+class RenderObjects {
+    + <<override>> Create() : void
+    + <<override>> AddRenderPasses(renderer:ScriptableRenderer, renderingData:RenderingData) : void
+}
+class RenderObjectsSettings {
+    + passTag : string = "RenderObjectsFeature"
+    + overrideMaterialPassIndex : int = 0
+    + overrideShaderPassIndex : int = 0
+    + overrideDepthState : bool = false
+    + enableWrite : bool = true
+}
+class FilterSettings {
+    + FilterSettings()
+}
+class CustomCameraSettings {
+    + overrideCamera : bool = false
+    + restoreCamera : bool = true
+    + cameraFieldOfView : float = 60.0f
+}
+enum OverrideMaterialMode {
+    None,
+    Material,
+    Shader,
+}
+ScriptableRendererFeature <|-- RenderObjects
+RenderObjects o-> "settings" RenderObjectsSettings
+RenderObjects +-- RenderObjectsSettings
+RenderObjectsSettings o-> "Event" RenderPassEvent
+RenderObjectsSettings o-> "filterSettings" FilterSettings
+RenderObjectsSettings o-> "overrideMaterial" Material
+RenderObjectsSettings o-> "overrideShader" Shader
+RenderObjectsSettings o-> "overrideMode" OverrideMaterialMode
+RenderObjectsSettings o-> "depthCompareFunction" CompareFunction
+RenderObjectsSettings o-> "stencilSettings" StencilStateData
+RenderObjectsSettings o-> "cameraSettings" CustomCameraSettings
+RenderObjects +-- FilterSettings
+FilterSettings --> "RenderQueueType" RenderQueueType
+FilterSettings --> "LayerMask" LayerMask
+RenderObjects +-- CustomCameraSettings
+CustomCameraSettings --> "offset" Vector4
+RenderObjectsSettings +-- OverrideMaterialMode
+@enduml

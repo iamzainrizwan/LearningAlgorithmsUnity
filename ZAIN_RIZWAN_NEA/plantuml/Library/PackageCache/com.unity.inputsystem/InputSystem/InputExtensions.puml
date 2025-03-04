@@ -1,0 +1,9 @@
+@startuml
+class InputExtensions <<static>> {
+    + {static} IsInProgress(phase:InputActionPhase) : bool
+    + {static} IsEndedOrCanceled(phase:TouchPhase) : bool
+    + {static} IsActive(phase:TouchPhase) : bool
+    + {static} IsModifierKey(key:Key) : bool
+    + {static} IsTextInputKey(key:Key) : bool
+}
+@enduml

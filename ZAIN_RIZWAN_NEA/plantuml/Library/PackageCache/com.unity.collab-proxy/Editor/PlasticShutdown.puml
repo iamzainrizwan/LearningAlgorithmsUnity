@@ -1,0 +1,4 @@
+@startuml
+class PlasticShutdown <<static>> {
+}
+@enduml

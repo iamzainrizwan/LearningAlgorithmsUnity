@@ -1,0 +1,7 @@
+@startuml
+class OnboardingSectionAnalyticsProvider {
+    + OnboardingSectionAnalyticsProvider(analytics:IMultiplayerCenterAnalytics, targetPackageId:string, sectionId:string)
+    + SendInteractionEvent(type:InteractionDataType, displayName:string) : void
+}
+IOnboardingSectionAnalyticsProvider <|-- OnboardingSectionAnalyticsProvider
+@enduml

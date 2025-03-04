@@ -1,0 +1,7 @@
+@startuml
+class EditModeMixUtils <<static>> {
+    + {static} CanInsert(itemsGroups:IEnumerable<ItemsPerTrack>) : bool
+    + {static} PrepareItemsForInsertion(itemsGroups:IEnumerable<ItemsPerTrack>) : void
+    + {static} GetPlacementValidity(item:ITimelineItem, otherItems:IEnumerable<ITimelineItem>) : PlacementValidity
+}
+@enduml

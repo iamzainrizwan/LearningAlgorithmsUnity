@@ -1,0 +1,57 @@
+@startuml
+struct "UnsafeParallelHashSet`1"<T> {
+    + UnsafeParallelHashSet(capacity:int, allocator:AllocatorManager.AllocatorHandle)
+    + <<readonly>> IsEmpty : bool <<get>>
+    + Count() : int
+    + Capacity : int <<readonly get>> <<set>>
+    + <<readonly>> IsCreated : bool <<get>>
+    + Dispose() : void
+    + Dispose(inputDeps:JobHandle) : JobHandle
+    + Clear() : void
+    + Add(item:T) : bool
+    + Remove(item:T) : bool
+    + Contains(item:T) : bool
+    + ToNativeArray(allocator:AllocatorManager.AllocatorHandle) : NativeArray<T>
+    + AsParallelWriter() : ParallelWriter
+    + GetEnumerator() : Enumerator
+    + AsReadOnly() : ReadOnly
+}
+class "UnsafeParallelHashSetDebuggerTypeProxy`1"<T> <<sealed>> {
+    + UnsafeParallelHashSetDebuggerTypeProxy(data:UnsafeParallelHashSet<T>)
+}
+class "IEnumerable`1"<T> {
+}
+class "IEquatable`1"<T> {
+}
+struct ParallelWriter {
+    + <<readonly>> Capacity : int <<get>>
+    + Add(item:T) : bool
+}
+struct Enumerator {
+    + Dispose() : void
+    + MoveNext() : bool
+    + Reset() : void
+}
+struct ReadOnly {
+    + <<readonly>> IsCreated : bool <<get>>
+    + <<readonly>> IsEmpty : bool <<get>>
+    + <<readonly>> Count() : int
+    + <<readonly>> Capacity : int <<get>>
+    + <<readonly>> Contains(item:T) : bool
+    + <<readonly>> ToNativeArray(allocator:AllocatorManager.AllocatorHandle) : NativeArray<T>
+    + <<readonly>> GetEnumerator() : Enumerator
+}
+class "List`1"<T> {
+}
+class "IEnumerator`1"<T> {
+}
+INativeDisposable <|-- "UnsafeParallelHashSet`1"
+"IEnumerable`1" "<T>" <|-- "UnsafeParallelHashSet`1"
+"UnsafeParallelHashSetDebuggerTypeProxy`1" --> "Items<T>" "List`1"
+"UnsafeParallelHashSet`1" +-- ParallelWriter
+"UnsafeParallelHashSet`1" +-- Enumerator
+"IEnumerator`1" "<T>" <|-- Enumerator
+Enumerator --> "Current" T
+"UnsafeParallelHashSet`1" +-- ReadOnly
+"IEnumerable`1" "<T>" <|-- ReadOnly
+@enduml

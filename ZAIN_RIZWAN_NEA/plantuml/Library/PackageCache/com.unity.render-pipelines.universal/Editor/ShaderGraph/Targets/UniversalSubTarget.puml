@@ -1,0 +1,15 @@
+@startuml
+abstract class UniversalSubTarget {
+    + <<override>> Setup(context:TargetSetupContext) : void
+    + <<override>> GetFields(context:TargetFieldContext) : void
+    + <<virtual>> identifier : string <<get>>
+    + <<virtual>> GetMetadataObject(graphData:GraphDataReadOnly) : ScriptableObject
+    + <<override>> saveContext : object <<get>>
+}
+class SubShaderUtils <<static>> {
+}
+class "SubTarget`1"<T> {
+}
+"SubTarget`1" "<UniversalTarget>" <|-- UniversalSubTarget
+IHasMetadata <|-- UniversalSubTarget
+@enduml

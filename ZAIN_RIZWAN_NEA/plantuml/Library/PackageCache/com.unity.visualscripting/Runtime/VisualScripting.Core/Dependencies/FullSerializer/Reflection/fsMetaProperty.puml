@@ -1,0 +1,14 @@
+@startuml
+class fsMetaProperty {
+    + CanRead : bool <<get>>
+    + CanWrite : bool <<get>>
+    + JsonName : string <<get>>
+    + MemberName : string <<get>>
+    + IsPublic : bool <<get>>
+    + IsReadOnly : bool <<get>>
+    + Write(context:object, value:object) : void
+    + Read(context:object) : object
+}
+fsMetaProperty --> "StorageType" Type
+fsMetaProperty --> "OverrideConverterType" Type
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class RiderTestRunner <<static>> {
+    + {static} RunTestsWithSyncCallbacks(sessionId:string, testMode:int, assemblyNames:string[], testNames:string[], categoryNames:string[], groupNames:string[], buildTarget:int?, callbacksHandlerCodeBase:string, callbacksHandlerTypeName:string, callbacksHandlerDependencies:string[]) : void
+    + {static} RunTests(testMode:int, assemblyNames:string[], testNames:string[], categoryNames:string[], groupNames:string[], buildTarget:int?) : void
+}
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+class GeometryPoolConstants <<static>> {
+    + <<const>> GeoPoolPosByteSize : int
+    + <<const>> GeoPoolUV0ByteSize : int
+    + <<const>> GeoPoolUV1ByteSize : int
+    + <<const>> GeoPoolNormalByteSize : int
+    + <<const>> GeoPoolPosByteOffset : int = 0
+    + <<const>> GeoPoolUV0ByteOffset : int
+    + <<const>> GeoPoolUV1ByteOffset : int
+    + <<const>> GeoPoolNormalByteOffset : int
+    + <<const>> GeoPoolIndexByteSize : int = 4
+    + <<const>> GeoPoolVertexByteSize : int
+}
+struct GeoPoolVertex {
+}
+struct GeoPoolMeshChunk {
+    + indexOffset : int
+    + indexCount : int
+    + vertexOffset : int
+    + vertexCount : int
+}
+enum GeoPoolVertexAttribs {
+    Position= 1,
+    Normal= 2,
+    Uv0= 4,
+    Uv1= 8,
+}
+GeoPoolVertex --> "pos" Vector3
+GeoPoolVertex --> "uv0" Vector2
+GeoPoolVertex --> "uv1" Vector2
+GeoPoolVertex --> "N" Vector3
+@enduml

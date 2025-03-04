@@ -1,0 +1,7 @@
+@startuml
+interface IMayRequireTime {
+}
+class MayRequireTimeExtensions <<static>> {
+    + {static} RequiresTime(node:AbstractMaterialNode) : bool
+}
+@enduml

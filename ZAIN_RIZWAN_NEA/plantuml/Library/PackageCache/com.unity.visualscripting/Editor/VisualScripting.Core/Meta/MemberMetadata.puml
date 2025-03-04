@@ -1,0 +1,19 @@
+@startuml
+class MemberMetadata <<sealed>> {
+    + MemberMetadata(name:string, bindingFlags:BindingFlags, parent:Metadata)
+    + name : string <<get>>
+    + <<override>> GetCustomAttributes(inherit:bool) : Attribute[]
+}
+enum Mode {
+    Field,
+    Property,
+}
+Metadata <|-- MemberMetadata
+MemberMetadata --> "bindingFlags" BindingFlags
+MemberMetadata --> "member" MemberInfo
+MemberMetadata --> "field" FieldInfo
+MemberMetadata --> "property" PropertyInfo
+MemberMetadata --> "mode" Mode
+MemberMetadata o-> "DefaultBindingFlags" BindingFlags
+MemberMetadata +-- Mode
+@enduml

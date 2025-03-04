@@ -1,0 +1,9 @@
+@startuml
+class EditModeTestCallbacks {
+}
+class DefaultTestWorkItem {
+    + DefaultTestWorkItem(test:TestMethod, filter:ITestFilter)
+}
+EditModeTestCallbacks --> "RestoringTestContext" Action
+UnityWorkItem <|-- DefaultTestWorkItem
+@enduml

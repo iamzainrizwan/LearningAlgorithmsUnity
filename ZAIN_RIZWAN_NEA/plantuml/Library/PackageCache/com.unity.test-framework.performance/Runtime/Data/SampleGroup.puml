@@ -1,0 +1,20 @@
+@startuml
+class SampleGroup {
+    + Name : string
+    + IncreaseIsBetter : bool
+    + Min : double
+    + Max : double
+    + Median : double
+    + Average : double
+    + StandardDeviation : double
+    + Sum : double
+    + SampleGroup()
+    + SampleGroup(name:string, unit:SampleUnit, increaseIsBetter:bool)
+    + OnDeserialization(sender:object) : void
+}
+class "List`1"<T> {
+}
+IDeserializationCallback <|-- SampleGroup
+SampleGroup --> "Unit" SampleUnit
+SampleGroup o-> "Samples<double>" "List`1"
+@enduml

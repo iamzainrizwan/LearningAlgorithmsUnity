@@ -1,0 +1,31 @@
+@startuml
+class ShadowCasterPath {
+    + <<override>> SetDefaultShape() : void
+}
+class ShadowCaster2DEditor {
+    + OnEnable() : void
+    + ShadowCaster2DSceneGUI() : void
+    + ShadowCaster2DInspectorGUI() : void
+    + OnSceneGUI() : void
+    + <<override>> OnInspectorGUI() : void
+}
+class "PathComponentEditor`1"<T> {
+}
+class ShadowCaster2DShadowCasterShapeTool {
+}
+class Styles <<static>> {
+}
+ScriptablePath <|-- ShadowCasterPath
+"PathComponentEditor`1" "<ShadowCasterPath>" <|-- ShadowCaster2DEditor
+ShadowCaster2DEditor +-- ShadowCaster2DShadowCasterShapeTool
+ShadowCaster2DShapeTool <|-- ShadowCaster2DShadowCasterShapeTool
+ShadowCaster2DEditor +-- Styles
+Styles o-> "shadowShape2DProvider" GUIContent
+Styles o-> "castsShadows" GUIContent
+Styles o-> "castingSourcePrefixLabel" GUIContent
+Styles o-> "sortingLayerPrefixLabel" GUIContent
+Styles o-> "shadowShapeTrim" GUIContent
+Styles o-> "alphaCutoff" GUIContent
+Styles o-> "castingOption" GUIContent
+Styles o-> "castingSource" GUIContent
+@enduml

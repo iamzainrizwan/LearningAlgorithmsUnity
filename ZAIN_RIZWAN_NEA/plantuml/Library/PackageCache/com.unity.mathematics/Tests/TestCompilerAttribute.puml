@@ -1,0 +1,10 @@
+@startuml
+class WindowsOnlyAttribute {
+    + WindowsOnlyAttribute(reason:string)
+}
+class TestCompilerAttribute <<sealed>> {
+}
+Attribute <|-- WindowsOnlyAttribute
+TestCaseAttribute <|-- TestCompilerAttribute
+ITestBuilder <|-- TestCompilerAttribute
+@enduml

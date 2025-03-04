@@ -1,0 +1,11 @@
+@startuml
+class IESImporterEditor {
+    + CommonOnEnable(serializedObject:SerializedProperty) : void
+    + CommonOnInspectorGUI(scriptedImporter:ScriptedImporterEditor) : void
+    + CommonApply() : void
+    + CommonHasPreviewGUI(setupRenderPipelinePreviewCamera:SetupRenderPipelinePreviewCamera, setupRenderPipelinePreviewLight:SetupRenderPipelinePreviewLight, setupRenderPipelinePreviewWallRenderer:SetupRenderPipelinePreviewWallRenderer, setupRenderPipelinePreviewFloorRenderer:SetupRenderPipelinePreviewFloorRenderer) : bool
+    + CommonGetPreviewTitle() : GUIContent
+    + CommonOnPreviewGUI(r:Rect, background:GUIStyle, target:ScriptedImporter, setupRenderPipelinePreviewLightIntensity:SetupRenderPipelinePreviewLightIntensity) : void
+    + CommonOnDisable() : void
+}
+@enduml

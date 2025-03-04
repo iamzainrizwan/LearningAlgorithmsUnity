@@ -1,0 +1,14 @@
+@startuml
+abstract class "HasGraph`3"<TGraph,TMacro,TMachine> {
+}
+class "Macro`1"<T> {
+}
+class "Machine`2"<T1,T2> {
+}
+Unit <|-- "HasGraph`3"
+"HasGraph`3" --> "enter" ControlInput
+"HasGraph`3" --> "target" ValueInput
+"HasGraph`3" --> "graphInput" ValueInput
+"HasGraph`3" --> "hasGraphOutput" ValueOutput
+"HasGraph`3" --> "exit" ControlOutput
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class IntegerControlAttribute {
+    + IntegerControlAttribute(label:string)
+    + InstantiateControl(node:AbstractMaterialNode, propertyInfo:PropertyInfo) : VisualElement
+}
+class IntegerControlView {
+    + IntegerControlView(label:string, node:AbstractMaterialNode, propertyInfo:PropertyInfo)
+}
+Attribute <|-- IntegerControlAttribute
+IControlAttribute <|-- IntegerControlAttribute
+VisualElement <|-- IntegerControlView
+@enduml

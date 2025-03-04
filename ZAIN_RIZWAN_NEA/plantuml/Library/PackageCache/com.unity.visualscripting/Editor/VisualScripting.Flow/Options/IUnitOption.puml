@@ -1,0 +1,11 @@
+@startuml
+interface IUnitOption {
+}
+class XUnitOption <<static>> {
+    + {static} UnitIs(option:IUnitOption, type:Type) : bool
+    + {static} UnitIs(option:IUnitOption) : bool
+    + {static} HasCompatibleValueInput(option:IUnitOption, outputType:Type) : bool
+    + {static} HasCompatibleValueOutput(option:IUnitOption, inputType:Type) : bool
+}
+IFuzzyOption <|-- IUnitOption
+@enduml

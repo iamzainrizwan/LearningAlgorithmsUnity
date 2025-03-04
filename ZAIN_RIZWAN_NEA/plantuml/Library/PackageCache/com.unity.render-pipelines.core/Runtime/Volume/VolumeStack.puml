@@ -1,0 +1,9 @@
+@startuml
+class VolumeStack <<sealed>> {
+    + GetComponent() : T
+    + GetComponent(type:Type) : VolumeComponent
+    + Dispose() : void
+    + isValid : bool <<get>>
+}
+IDisposable <|-- VolumeStack
+@enduml

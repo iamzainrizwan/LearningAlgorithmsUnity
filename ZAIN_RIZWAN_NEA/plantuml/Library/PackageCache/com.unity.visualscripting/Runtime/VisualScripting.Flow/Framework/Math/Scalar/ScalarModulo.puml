@@ -1,0 +1,8 @@
+@startuml
+class ScalarModulo <<sealed>> {
+    + <<override>> Operation(a:float, b:float) : float
+}
+class "Modulo`1"<T> {
+}
+"Modulo`1" "<float>" <|-- ScalarModulo
+@enduml

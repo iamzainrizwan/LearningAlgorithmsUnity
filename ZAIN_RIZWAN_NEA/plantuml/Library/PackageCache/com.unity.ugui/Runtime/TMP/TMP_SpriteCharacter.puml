@@ -1,0 +1,9 @@
+@startuml
+class TMP_SpriteCharacter {
+    + name : string <<get>> <<set>>
+    + TMP_SpriteCharacter()
+    + TMP_SpriteCharacter(unicode:uint, glyph:TMP_SpriteGlyph)
+    + TMP_SpriteCharacter(unicode:uint, spriteAsset:TMP_SpriteAsset, glyph:TMP_SpriteGlyph)
+}
+TMP_TextElement <|-- TMP_SpriteCharacter
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+class AudioClipPropertiesDrawer {
+    + <<override>> OnGUI(position:Rect, property:SerializedProperty, label:GUIContent) : void
+}
+class Styles <<static>> {
+    + <<const>> VolumeControl : string = "AudioClipPropertiesDrawer.volume"
+    + <<const>> valuesFormatter : string = "0.###"
+    + {static} mixedPropertiesInfo : string
+    + {static} audioSourceContribution : string
+}
+PropertyDrawer <|-- AudioClipPropertiesDrawer
+AudioClipPropertiesDrawer +-- Styles
+@enduml

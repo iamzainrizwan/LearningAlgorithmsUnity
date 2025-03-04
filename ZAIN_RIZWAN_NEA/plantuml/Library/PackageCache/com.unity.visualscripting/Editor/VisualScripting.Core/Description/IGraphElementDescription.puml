@@ -1,0 +1,5 @@
+@startuml
+interface IGraphElementDescription {
+}
+IDescription <|-- IGraphElementDescription
+@enduml

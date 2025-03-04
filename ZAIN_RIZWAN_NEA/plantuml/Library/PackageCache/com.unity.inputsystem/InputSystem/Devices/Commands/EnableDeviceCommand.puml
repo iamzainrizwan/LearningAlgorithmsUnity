@@ -1,0 +1,9 @@
+@startuml
+struct EnableDeviceCommand {
+    + {static} Create() : EnableDeviceCommand
+}
+IInputDeviceCommandInfo <|-- EnableDeviceCommand
+EnableDeviceCommand --> "Type" FourCC
+EnableDeviceCommand --> "baseCommand" InputDeviceCommand
+EnableDeviceCommand --> "typeStatic" FourCC
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class Utils <<static>> {
+    + {static} Destroy(obj:UnityEngine.Object) : void
+}
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+class Environment {
+    + rotation : float = 0.0f
+    + exposure : float = 0f
+    + sunLatitude : float <<get>> <<set>>
+    + sunLongitude : float <<get>> <<set>>
+    + ResetToBrightestSpot() : void
+}
+class EnvironmentEditor {
+    + <<sealed>> <<override>> CreateInspectorGUI() : VisualElement
+    + <<sealed>> <<override>> OnInspectorGUI() : void
+    <<override>> + RenderStaticPreview(assetPath:string, subAssets:UnityEngine.Object[], width:int, height:int) : Texture2D
+}
+interface "IBendable`1"<T> {
+}
+class EnvironmentElement {
+    + EnvironmentElement()
+    + EnvironmentElement(withPreview:bool, OnChangeCallback:Action)
+    + EnvironmentElement(environment:Environment)
+    + Bind(environment:Environment) : void
+    + Bind(environment:Environment, deportedLatlong:Image) : void
+    {static} + PositionToLatLong(position:Vector2) : Vector2
+    + {static} ResetToBrightestSpot(environment:Environment) : void
+    + GetLatLongThumbnailTexture() : Texture2D
+    + {static} GetLatLongThumbnailTexture(environment:Environment, width:int) : Texture2D
+    + GetDefaultInspector() : VisualElement
+}
+ScriptableObject <|-- Environment
+Environment o-> "shadowColor" Color
+Environment --> "cubemap" Cubemap
+Editor <|-- EnvironmentEditor
+VisualElement <|-- EnvironmentElement
+"IBendable`1" "<Environment>" <|-- EnvironmentElement
+EnvironmentElement --> "target" Environment
+@enduml

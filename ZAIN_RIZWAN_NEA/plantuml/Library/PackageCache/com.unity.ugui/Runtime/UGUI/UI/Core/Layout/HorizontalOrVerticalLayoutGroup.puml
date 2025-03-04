@@ -1,0 +1,13 @@
+@startuml
+abstract class HorizontalOrVerticalLayoutGroup {
+    + spacing : float <<get>> <<set>>
+    + childForceExpandWidth : bool <<get>> <<set>>
+    + childForceExpandHeight : bool <<get>> <<set>>
+    + childControlWidth : bool <<get>> <<set>>
+    + childControlHeight : bool <<get>> <<set>>
+    + childScaleWidth : bool <<get>> <<set>>
+    + childScaleHeight : bool <<get>> <<set>>
+    + reverseArrangement : bool <<get>> <<set>>
+}
+LayoutGroup <|-- HorizontalOrVerticalLayoutGroup
+@enduml

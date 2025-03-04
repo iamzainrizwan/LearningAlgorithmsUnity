@@ -1,0 +1,8 @@
+@startuml
+abstract class "Normalize`1"<T> {
+    + {abstract} Operation(input:T) : T
+}
+Unit <|-- "Normalize`1"
+"Normalize`1" --> "input" ValueInput
+"Normalize`1" --> "output" ValueOutput
+@enduml

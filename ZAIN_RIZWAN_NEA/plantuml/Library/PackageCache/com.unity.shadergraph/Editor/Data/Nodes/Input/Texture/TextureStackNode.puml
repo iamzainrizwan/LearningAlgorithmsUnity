@@ -1,0 +1,6 @@
+@startuml
+class VirtualTexturingFeedbackUtils <<static>> {
+    + {static} GenerateVirtualTextureFeedback(downstreamNodesIncludingRoot:List<AbstractMaterialNode>, keywordPermutationsPerNode:List<int>[], surfaceDescriptionFunction:ShaderStringBuilder, shaderKeywords:KeywordCollector) : void
+    + {static} GetFeedbackVariables(masterNode:SubGraphOutputNode) : List<string>
+}
+@enduml

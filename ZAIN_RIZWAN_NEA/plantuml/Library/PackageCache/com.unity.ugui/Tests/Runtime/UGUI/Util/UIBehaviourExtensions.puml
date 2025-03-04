@@ -1,0 +1,32 @@
+@startuml
+class UIBehaviourExtensions <<static>> {
+    + {static} InvokeMethodAndRethrow(obj:Object, methodName:string, args:object[]) : object
+    + {static} InvokeMethodAndRethrow(obj:Object, methodName:string, args:object[]) : object
+    + {static} InvokeOnEnable(behaviour:UIBehaviour) : void
+    + {static} InvokeOnDisable(behaviour:UIBehaviour) : void
+    + {static} InvokeAwake(behaviour:UIBehaviour) : void
+    + {static} InvokeRebuild(behaviour:UIBehaviour, type:CanvasUpdate) : void
+    + {static} InvokeLateUpdate(behaviour:UIBehaviour) : void
+    + {static} InvokeUpdate(behaviour:UIBehaviour) : void
+    + {static} InvokeOnRectTransformDimensionsChange(behaviour:UIBehaviour) : void
+    + {static} InvokeOnCanvasGroupChanged(behaviour:UIBehaviour) : void
+    + {static} InvokeOnDidApplyAnimationProperties(behaviour:UIBehaviour) : void
+}
+class SelectableExtensions <<static>> {
+    + {static} InvokeOnPointerDown(selectable:Selectable, data:PointerEventData) : void
+    + {static} InvokeOnPointerUp(selectable:Selectable, data:PointerEventData) : void
+    + {static} InvokeOnPointerEnter(selectable:Selectable, data:PointerEventData) : void
+    + {static} InvokeOnPointerExit(selectable:Selectable, data:PointerEventData) : void
+    + {static} InvokeTriggerAnimation(selectable:Selectable, triggerName:string) : void
+    + {static} InvokeOnSelect(selectable:Selectable, triggerName:string) : void
+}
+class GraphicExtension <<static>> {
+    + {static} InvokeOnPopulateMesh(graphic:Graphic, vh:VertexHelper) : void
+}
+class GraphicRaycasterExtension <<static>> {
+    + {static} InvokeRaycast(canvas:Canvas, eventCamera:Camera, pointerPosition:Vector2, results:List<Graphic>) : void
+}
+class ToggleGroupExtension <<static>> {
+    + {static} InvokeValidateToggleIsInGroup(tgroup:ToggleGroup, toggle:Toggle) : void
+}
+@enduml

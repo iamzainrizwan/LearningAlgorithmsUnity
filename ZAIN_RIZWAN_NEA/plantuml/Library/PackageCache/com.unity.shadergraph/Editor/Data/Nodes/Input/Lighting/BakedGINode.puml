@@ -1,0 +1,19 @@
+@startuml
+class BakedGINode {
+    + <<override>> hasPreview : bool <<get>>
+    + BakedGINode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + RequiresPixelPosition(stageCapability:ShaderStageCapability) : bool
+    + RequiresPosition(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresNormal(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresMeshUV(channel:UVChannel, stageCapability:ShaderStageCapability) : bool
+}
+AbstractMaterialNode <|-- BakedGINode
+IGeneratesBodyCode <|-- BakedGINode
+IMayRequirePixelPosition <|-- BakedGINode
+IMayRequirePosition <|-- BakedGINode
+IMayRequireNormal <|-- BakedGINode
+IMayRequireMeshUV <|-- BakedGINode
+BakedGINode --> "applyScaling" ToggleData
+@enduml

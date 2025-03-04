@@ -1,0 +1,12 @@
+@startuml
+struct MultiJsonEntry {
+    + id : string <<get>>
+    + type : string <<get>>
+    + json : string <<get>>
+    + MultiJsonEntry(type:string, id:string, json:string)
+    + Equals(other:MultiJsonEntry) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+}
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class MyClass {
+    + Add(a:int, b:int) : int
+    + AddAsync(a:int, b:int) : IEnumerator<int>
+}
+@enduml

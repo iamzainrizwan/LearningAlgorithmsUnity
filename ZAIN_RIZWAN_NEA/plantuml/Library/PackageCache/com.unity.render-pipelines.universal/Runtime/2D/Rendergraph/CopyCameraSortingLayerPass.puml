@@ -1,0 +1,12 @@
+@startuml
+class CopyCameraSortingLayerPass {
+    + CopyCameraSortingLayerPass(blitMaterial:Material)
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + {static} ConfigureDescriptor(downsamplingMethod:Downsampling, descriptor:RenderTextureDescriptor, filterMode:FilterMode) : void
+    + Render(graph:RenderGraph, cameraColorAttachment:TextureHandle, destination:TextureHandle) : void
+}
+class PassData {
+}
+ScriptableRenderPass <|-- CopyCameraSortingLayerPass
+CopyCameraSortingLayerPass +-- PassData
+@enduml

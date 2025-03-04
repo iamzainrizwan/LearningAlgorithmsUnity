@@ -1,0 +1,5 @@
+@startuml
+class ViewUtils <<static>> {
+    + {static} MoveToggleLeft(button:BaseBoolField) : void
+}
+@enduml

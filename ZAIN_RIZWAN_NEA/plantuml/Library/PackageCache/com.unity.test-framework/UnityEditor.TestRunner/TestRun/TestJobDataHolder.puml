@@ -1,0 +1,15 @@
+@startuml
+class TestJobDataHolder {
+    + RegisterRun(runner:ITestJobRunner, data:TestJobData) : void
+    + UnregisterRun(runner:ITestJobRunner, data:TestJobData) : void
+    + GetRunner(guid:string) : ITestJobRunner
+    + GetAllRunners() : ITestJobRunner[]
+}
+class "ScriptableSingleton`1"<T> {
+}
+class "List`1"<T> {
+}
+"ScriptableSingleton`1" "<TestJobDataHolder>" <|-- TestJobDataHolder
+ITestJobDataHolder <|-- TestJobDataHolder
+TestJobDataHolder o-> "TestRuns<TestJobData>" "List`1"
+@enduml

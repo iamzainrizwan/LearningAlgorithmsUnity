@@ -1,0 +1,6 @@
+@startuml
+class DitherNode {
+    + DitherNode()
+}
+CodeFunctionNode <|-- DitherNode
+@enduml

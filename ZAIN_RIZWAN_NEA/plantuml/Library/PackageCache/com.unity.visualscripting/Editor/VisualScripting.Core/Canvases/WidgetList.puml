@@ -1,0 +1,22 @@
+@startuml
+class "WidgetList`1"<TWidget> {
+    + WidgetList(canvas:ICanvas)
+    + <<new>> GetEnumerator() : Enumerator
+}
+class "Collection`1"<T> {
+}
+class "IEnumerable`1"<T> {
+}
+struct Enumerator {
+    + Enumerator(list:WidgetList<TWidget>)
+    + Dispose() : void
+    + MoveNext() : bool
+}
+class "IEnumerator`1"<T> {
+}
+"Collection`1" "<TWidget>" <|-- "WidgetList`1"
+"IEnumerable`1" "<TWidget>" <|-- "WidgetList`1"
+"WidgetList`1" +-- Enumerator
+"IEnumerator`1" "<TWidget>" <|-- Enumerator
+Enumerator --> "Current" TWidget
+@enduml

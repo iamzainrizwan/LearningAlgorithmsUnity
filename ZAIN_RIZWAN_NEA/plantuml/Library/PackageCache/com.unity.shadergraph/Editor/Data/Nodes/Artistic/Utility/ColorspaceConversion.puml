@@ -1,0 +1,17 @@
+@startuml
+enum Colorspace {
+    RGB,
+    Linear,
+    HSV,
+}
+struct ColorspaceConversion {
+    + ColorspaceConversion(from:Colorspace, to:Colorspace)
+}
+class ColorspaceConversionNode {
+    + ColorspaceConversionNode()
+}
+IEnumConversion <|-- ColorspaceConversion
+ColorspaceConversion --> "from" Colorspace
+ColorspaceConversion --> "to" Colorspace
+CodeFunctionNode <|-- ColorspaceConversionNode
+@enduml

@@ -1,0 +1,37 @@
+@startuml
+class RenderSettingsConverter {
+    + <<override>> priority : int <<get>>
+    + <<override>> name : string <<get>>
+    + <<override>> info : string <<get>>
+    + <<override>> OnInitialize(context:InitializeConverterContext, callback:Action) : void
+    + <<override>> OnRun(context:RunItemContext) : void
+}
+struct GraphicsTierSettings {
+    + ReflectionProbeBoxProjection : bool
+    + ReflectionProbeBlending : bool
+    + CascadeShadows : bool
+    + HDR : bool
+}
+class SettingsItem {
+}
+class RenderSettingItem {
+    + Index : int
+    + LevelName : string
+    + PixelLightCount : int
+    + MSAA : int
+    + ShadowDistance : float
+    + ShadowCascadeCount : int
+    + CascadeSplit2 : float
+    + SoftParticles : bool
+}
+RenderPipelineConverter <|-- RenderSettingsConverter
+RenderSettingsConverter --> "container" Type
+RenderSettingsConverter +-- GraphicsTierSettings
+GraphicsTierSettings --> "RenderingPath" RenderingPath
+RenderSettingsConverter +-- SettingsItem
+RenderSettingsConverter +-- RenderSettingItem
+SettingsItem <|-- RenderSettingItem
+RenderSettingItem --> "Shadows" ShadowQuality
+RenderSettingItem --> "ShadowResolution" ShadowResolution
+RenderSettingItem --> "CascadeSplit4" Vector3
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class CustomTextureSlice {
+    + <<const>> OutputSlotCubeFaceId : int = 3
+    + <<const>> OutputSlot3DSliceId : int = 4
+    + CustomTextureSlice()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> GetVariableNameForSlot(slotId:int) : string
+    + GenerateNodeFunction(registry:FunctionRegistry, generationMode:GenerationMode) : void
+}
+AbstractMaterialNode <|-- CustomTextureSlice
+IGeneratesFunction <|-- CustomTextureSlice
+@enduml

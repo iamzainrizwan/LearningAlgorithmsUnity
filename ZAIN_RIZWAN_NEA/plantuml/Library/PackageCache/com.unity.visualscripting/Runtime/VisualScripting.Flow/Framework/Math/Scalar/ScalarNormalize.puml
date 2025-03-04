@@ -1,0 +1,8 @@
+@startuml
+class ScalarNormalize <<sealed>> {
+    + <<override>> Operation(input:float) : float
+}
+class "Normalize`1"<T> {
+}
+"Normalize`1" "<float>" <|-- ScalarNormalize
+@enduml

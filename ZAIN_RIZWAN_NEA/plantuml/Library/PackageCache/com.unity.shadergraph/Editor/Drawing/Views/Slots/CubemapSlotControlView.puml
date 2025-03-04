@@ -1,0 +1,6 @@
+@startuml
+class CubemapSlotControlView {
+    + CubemapSlotControlView(slot:CubemapInputMaterialSlot)
+}
+VisualElement <|-- CubemapSlotControlView
+@enduml

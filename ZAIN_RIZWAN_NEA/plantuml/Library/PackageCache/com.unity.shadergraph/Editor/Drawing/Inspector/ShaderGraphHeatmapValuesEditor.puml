@@ -1,0 +1,6 @@
+@startuml
+class ShaderGraphHeatmapValuesEditor {
+    + <<override>> CreateInspectorGUI() : VisualElement
+}
+Editor <|-- ShaderGraphHeatmapValuesEditor
+@enduml

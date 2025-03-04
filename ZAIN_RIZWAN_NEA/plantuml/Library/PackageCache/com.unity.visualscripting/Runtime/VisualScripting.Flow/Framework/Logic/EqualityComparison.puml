@@ -1,0 +1,9 @@
+@startuml
+class EqualityComparison <<sealed>> {
+}
+Unit <|-- EqualityComparison
+EqualityComparison --> "a" ValueInput
+EqualityComparison --> "b" ValueInput
+EqualityComparison --> "equal" ValueOutput
+EqualityComparison --> "notEqual" ValueOutput
+@enduml

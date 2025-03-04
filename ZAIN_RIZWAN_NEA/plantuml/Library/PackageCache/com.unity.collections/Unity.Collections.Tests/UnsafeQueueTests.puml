@@ -1,0 +1,31 @@
+@startuml
+class UnsafeQueueTests {
+    + Enqueue_Dequeue() : void
+    + ConcurrentEnqueue_Dequeue() : void
+    + Enqueue_Dequeue_Peek() : void
+    + Enqueue_Dequeue_Clear() : void
+    + Double_Deallocate_DoesNotThrow() : void
+    + EnqueueScalability() : void
+    + Enqueue_Wrap() : void
+    + ConcurrentEnqueue_Wrap() : void
+    + TryDequeue_OnEmptyQueueWhichHadElements_RetainsValidState() : void
+    + TryDequeue_OnEmptyQueue_RetainsValidState() : void
+    + ToArray_ContainsCorrectElements() : void
+    + ToArray_RespectsDequeue() : void
+    + UnsafeQueue_CustomAllocatorTest() : void
+    + <<unsafe>> UnsafeQueue_BurstedCustomAllocatorTest() : void
+    + UnsafeQueue_Nested() : void
+}
+struct BurstedCustomAllocatorJob {
+    + Execute() : void
+}
+struct NestedContainer {
+}
+class "UnsafeQueue`1"<T> {
+}
+CollectionsTestCommonBase <|-- UnsafeQueueTests
+UnsafeQueueTests +-- BurstedCustomAllocatorJob
+IJob <|-- BurstedCustomAllocatorJob
+UnsafeQueueTests +-- NestedContainer
+NestedContainer --> "data<int>" "UnsafeQueue`1"
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+struct Plane {
+    + Plane(coefficientA:float, coefficientB:float, coefficientC:float, coefficientD:float)
+    + Plane(normal:float3, distance:float)
+    + Plane(normal:float3, pointInPlane:float3)
+    + Plane(vector1InPlane:float3, vector2InPlane:float3, pointInPlane:float3)
+    + {static} CreateFromUnitNormalAndDistance(unitNormal:float3, distance:float) : Plane
+    + {static} CreateFromUnitNormalAndPointInPlane(unitNormal:float3, pointInPlane:float3) : Plane
+    + Distance : float <<get>> <<set>>
+    + {static} Normalize(plane:Plane) : Plane
+    + {static} Normalize(planeCoefficients:float4) : float4
+    + SignedDistanceToPoint(point:float3) : float
+    + Projection(point:float3) : float3
+}
+Plane --> "NormalAndDistance" float4
+Plane --> "Normal" float3
+Plane --> "Flipped" Plane
+@enduml

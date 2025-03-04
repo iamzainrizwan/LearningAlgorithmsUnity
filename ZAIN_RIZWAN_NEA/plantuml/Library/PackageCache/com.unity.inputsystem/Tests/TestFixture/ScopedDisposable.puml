@@ -1,0 +1,11 @@
+@startuml
+class "ScopedDisposable`1"<T> <<sealed>> {
+    + ScopedDisposable(obj:T, dispose:Action<T>)
+    + value : T <<get>>
+    + Dispose() : void
+}
+class Scoped <<static>> {
+    + {static} Object(obj:T) : ScopedDisposable<T>
+}
+IDisposable <|-- "ScopedDisposable`1"
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+class ProbeSubdivisionContext {
+    + Initialize(bakingSet:ProbeVolumeBakingSet, profileInfo:ProbeVolumeProfileInfo, refVolOrigin:Vector3) : void
+}
+class RealtimeProbeSubdivisionDebug {
+}
+class "List`1"<T> {
+}
+ProbeSubdivisionContext o-> "probeVolumes<(ProbeVolume component, ProbeReferenceVolume.Volume volume, Bounds bounds)>" "List`1"
+ProbeSubdivisionContext o-> "cells<(Vector3Int position, Bounds bounds)>" "List`1"
+ProbeSubdivisionContext --> "bakingSet" ProbeVolumeBakingSet
+ProbeSubdivisionContext --> "profile" ProbeVolumeProfileInfo
+ProbeSubdivisionContext +-- RealtimeProbeSubdivisionDebug
+@enduml

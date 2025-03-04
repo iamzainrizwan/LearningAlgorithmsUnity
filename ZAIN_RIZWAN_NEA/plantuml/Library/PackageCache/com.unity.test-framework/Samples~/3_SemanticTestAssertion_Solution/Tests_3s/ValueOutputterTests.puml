@@ -1,0 +1,7 @@
+@startuml
+class ValueOutputterTests {
+    + GivesExpectedInt() : void
+    + GivesExpectedString() : void
+    + GivesExpectedFloat() : void
+}
+@enduml

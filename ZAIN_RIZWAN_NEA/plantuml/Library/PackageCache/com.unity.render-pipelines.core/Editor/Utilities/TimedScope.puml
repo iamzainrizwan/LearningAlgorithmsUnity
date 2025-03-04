@@ -1,0 +1,7 @@
+@startuml
+struct TimedScope {
+    + {static} <<unsafe>> FromPtr(durationMsPtr:double*) : TimedScope
+    + {static} FromRef(durationMs:double) : TimedScope
+}
+IDisposable <|-- TimedScope
+@enduml

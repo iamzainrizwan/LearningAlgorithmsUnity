@@ -1,0 +1,32 @@
+@startuml
+class TrackedPoseDriver {
+    + ignoreTrackingState : bool <<get>> <<set>>
+}
+enum TrackingType {
+    RotationAndPosition,
+    RotationOnly,
+    PositionOnly,
+}
+enum TrackingStates {
+    None,
+    Position= 1 << 0,
+    Rotation= 1 << 1,
+}
+enum UpdateType {
+    UpdateAndBeforeRender,
+    Update,
+    BeforeRender,
+}
+MonoBehaviour <|-- TrackedPoseDriver
+ISerializationCallbackReceiver <|-- TrackedPoseDriver
+TrackedPoseDriver --> "trackingType" TrackingType
+TrackedPoseDriver --> "updateType" UpdateType
+TrackedPoseDriver --> "positionInput" InputActionProperty
+TrackedPoseDriver --> "rotationInput" InputActionProperty
+TrackedPoseDriver --> "trackingStateInput" InputActionProperty
+TrackedPoseDriver --> "positionAction" InputAction
+TrackedPoseDriver --> "rotationAction" InputAction
+TrackedPoseDriver +-- TrackingType
+TrackedPoseDriver +-- TrackingStates
+TrackedPoseDriver +-- UpdateType
+@enduml

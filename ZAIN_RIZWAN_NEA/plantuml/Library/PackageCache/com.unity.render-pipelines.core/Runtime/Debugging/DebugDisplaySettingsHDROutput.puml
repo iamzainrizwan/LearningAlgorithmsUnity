@@ -1,0 +1,22 @@
+@startuml
+class DebugDisplaySettingsHDROutput {
+    + {static} CreateHDROuputDisplayTable() : DebugUI.Table
+}
+class Strings <<static>> {
+    + {static} <<readonly>> hdrOutputAPI : string = "HDROutputSettings"
+    + {static} <<readonly>> displayName : string = "Display "
+    + {static} <<readonly>> displayMain : string = " (main)"
+    + {static} <<readonly>> hdrActive : string = "HDR Output Active"
+    + {static} <<readonly>> hdrAvailable : string = "HDR Output Available"
+    + {static} <<readonly>> gamut : string = "Display Color Gamut"
+    + {static} <<readonly>> format : string = "Display Buffer Graphics Format"
+    + {static} <<readonly>> autoHdrTonemapping : string = "Automatic HDR Tonemapping"
+    + {static} <<readonly>> paperWhite : string = "Paper White Nits"
+    + {static} <<readonly>> minLuminance : string = "Min Tone Map Luminance"
+    + {static} <<readonly>> maxLuminance : string = "Max Tone Map Luminance"
+    + {static} <<readonly>> maxFullFrameLuminance : string = "Max Full Frame Tone Map Luminance"
+    + {static} <<readonly>> modeChangeRequested : string = "HDR Mode Change Requested"
+    + {static} <<readonly>> notAvailable : string = "N/A"
+}
+DebugDisplaySettingsHDROutput +-- Strings
+@enduml

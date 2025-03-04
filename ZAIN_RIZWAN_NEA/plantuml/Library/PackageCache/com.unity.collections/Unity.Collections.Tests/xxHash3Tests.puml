@@ -1,0 +1,51 @@
+@startuml
+class xxHash3Tests {
+    + <<unsafe>> <<override>> Setup() : void
+    + <<unsafe>> <<override>> TearDown() : void
+    + xxHash3_Hash_64_Length0000() : void
+    + xxHash3_Hash_64_Length0001() : void
+    + xxHash3_Hash_64_Length0006() : void
+    + xxHash3_Hash_64_Length0012() : void
+    + xxHash3_Hash_64_Length0024() : void
+    + xxHash3_Hash_64_Length0048() : void
+    + xxHash3_Hash_64_Length0080() : void
+    + xxHash3_Hash_64_Length0195() : void
+    + xxHash3_Hash_64_Length0403() : void
+    + xxHash3_Hash_64_Length0512() : void
+    + xxHash3_Hash_64_Length2048() : void
+    + xxHash3_Hash_64_Length2240() : void
+    + xxHash3_Hash_64_Length2243() : void
+    + <<unsafe>> xxHash3_Hash_128_Length0000() : void
+    + xxHash3_Hash_128_Length0001() : void
+    + xxHash3_Hash_128_Length0006() : void
+    + xxHash3_Hash_128_Length0012() : void
+    + xxHash3_Hash_128_Length0024() : void
+    + xxHash3_Hash_128_Length0048() : void
+    + xxHash3_Hash_128_Length0081() : void
+    + xxHash3_Hash_128_Length0222() : void
+    + xxHash3_Hash_128_Length0403() : void
+    + xxHash3_Hash_128_Length0512() : void
+    + xxHash3_Hash_128_Length2048() : void
+    + xxHash3_Hash_128_Length2240() : void
+    + xxHash3_Hash_128_Length2367() : void
+}
+struct xxHash3Hash64SanityCheckJob {
+    + Length : long
+    + Seed : ulong
+    + <<unsafe>> Execute() : void
+}
+struct xxHash3Hash128SanityCheckJob {
+    + Length : long
+    + Seed : ulong
+    + <<unsafe>> Execute() : void
+}
+class "NativeArray`1"<T> {
+}
+CollectionsTestCommonBase <|-- xxHash3Tests
+xxHash3Tests +-- xxHash3Hash64SanityCheckJob
+IJob <|-- xxHash3Hash64SanityCheckJob
+xxHash3Hash64SanityCheckJob --> "Result<uint2>" "NativeArray`1"
+xxHash3Tests +-- xxHash3Hash128SanityCheckJob
+IJob <|-- xxHash3Hash128SanityCheckJob
+xxHash3Hash128SanityCheckJob --> "Result<uint4>" "NativeArray`1"
+@enduml

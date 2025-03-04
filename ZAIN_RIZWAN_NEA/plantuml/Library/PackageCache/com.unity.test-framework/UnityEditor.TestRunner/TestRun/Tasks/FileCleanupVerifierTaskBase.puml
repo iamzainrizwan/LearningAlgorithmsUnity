@@ -1,0 +1,5 @@
+@startuml
+abstract class FileCleanupVerifierTaskBase {
+}
+TestTaskBase <|-- FileCleanupVerifierTaskBase
+@enduml

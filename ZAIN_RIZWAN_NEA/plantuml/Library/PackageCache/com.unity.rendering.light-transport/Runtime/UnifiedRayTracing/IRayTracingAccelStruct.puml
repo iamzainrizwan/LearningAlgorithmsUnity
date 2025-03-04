@@ -1,0 +1,15 @@
+@startuml
+struct MeshInstanceDesc {
+    + subMeshIndex : int
+    + mask : uint
+    + instanceID : uint
+    + enableTriangleCulling : bool
+    + frontTriangleCounterClockwise : bool
+    + MeshInstanceDesc(mesh:Mesh, subMeshIndex:int)
+}
+interface IRayTracingAccelStruct {
+}
+MeshInstanceDesc --> "mesh" Mesh
+MeshInstanceDesc --> "localToWorldMatrix" Matrix4x4
+IDisposable <|-- IRayTracingAccelStruct
+@enduml

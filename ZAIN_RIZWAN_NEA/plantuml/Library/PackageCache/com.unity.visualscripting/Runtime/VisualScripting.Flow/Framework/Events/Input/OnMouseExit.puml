@@ -1,0 +1,9 @@
+@startuml
+class OnMouseExit <<sealed>> {
+}
+class "GameObjectEventUnit`1"<T> {
+}
+"GameObjectEventUnit`1" "<EmptyEventArgs>" <|-- OnMouseExit
+IMouseEventUnit <|-- OnMouseExit
+OnMouseExit --> "MessageListenerType" Type
+@enduml

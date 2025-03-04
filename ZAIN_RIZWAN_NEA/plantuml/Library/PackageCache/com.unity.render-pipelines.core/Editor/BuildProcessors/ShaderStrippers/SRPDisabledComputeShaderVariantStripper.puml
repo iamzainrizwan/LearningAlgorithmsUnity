@@ -1,0 +1,7 @@
+@startuml
+class SRPDisabledComputeShaderVariantStripper {
+    + active : bool <<get>>
+    + CanRemoveVariant(shader:ComputeShader, _:string, __:ShaderCompilerData) : bool
+}
+IComputeShaderVariantStripper <|-- SRPDisabledComputeShaderVariantStripper
+@enduml

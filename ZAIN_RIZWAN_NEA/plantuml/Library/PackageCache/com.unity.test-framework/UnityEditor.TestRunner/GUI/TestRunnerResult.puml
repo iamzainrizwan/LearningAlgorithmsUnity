@@ -1,0 +1,41 @@
+@startuml
+class TestRunnerResult {
+    + id : string
+    + uniqueId : string
+    + name : string
+    + fullName : string
+    + duration : float
+    + messages : string
+    + output : string
+    + stacktrace : string
+    + notRunnable : bool
+    + ignoredOrSkipped : bool
+    + description : string
+    + isSuite : bool
+    + parentId : string
+    + parentUniqueId : string
+    + notOutdated : bool
+    + CalculateParentResult(parentId:string, results:IDictionary<string, List<TestRunnerResult>>) : void
+    + Update(result:TestRunnerResult) : void
+    + SetResultChangedCallback(resultUpdated:Action<TestRunnerResult>) : void
+    + <<override>> ToString() : string
+    + Id : string <<get>>
+    + FullName : string <<get>>
+    + ParentId : string <<get>>
+    + IsSuite : bool <<get>>
+    + Clear() : void
+}
+class "List`1"<T> {
+}
+enum ResultStatus {
+    NotRun,
+    Passed,
+    Failed,
+    Inconclusive,
+    Skipped,
+}
+TestRunnerResult o-> "resultStatus" ResultStatus
+TestRunnerResult --> "categories<string>" "List`1"
+TestRunnerResult --> "Categories<string>" "List`1"
+TestRunnerResult +-- ResultStatus
+@enduml

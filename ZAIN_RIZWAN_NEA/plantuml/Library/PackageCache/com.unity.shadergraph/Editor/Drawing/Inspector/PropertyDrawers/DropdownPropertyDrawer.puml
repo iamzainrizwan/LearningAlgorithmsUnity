@@ -1,0 +1,9 @@
+@startuml
+class DropdownPropertyDrawer {
+    + DrawProperty(propertyInfo:PropertyInfo, actualObject:object, attribute:InspectableAttribute) : VisualElement
+}
+class "IEnumerable`1"<T> {
+}
+IPropertyDrawer <|-- DropdownPropertyDrawer
+DropdownPropertyDrawer --> "inspectorUpdateDelegate" Action
+@enduml

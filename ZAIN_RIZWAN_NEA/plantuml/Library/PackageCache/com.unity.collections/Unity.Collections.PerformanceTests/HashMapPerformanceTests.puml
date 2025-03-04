@@ -1,0 +1,135 @@
+@startuml
+class HashMapUtil <<static>> {
+    {static} + AllocInt(container:NativeHashMap<int, int>, capacity:int, addValues:bool) : void
+    {static} + AllocInt(container:UnsafeHashMap<int, int>, capacity:int, addValues:bool) : void
+    {static} + AllocBclContainer(capacity:int, addValues:bool) : object
+    {static} + CreateRandomKeys(capacity:int, keys:UnsafeList<int>) : void
+    {static} + CreateRandomKeys(capacity:int, keys:UnsafeList<int>, hashMap:UnsafeHashMap<int, int>) : void
+    {static} + CreateRandomKeys(capacity:int, keys:UnsafeList<int>, hashMap:System.Collections.Generic.Dictionary<int, int>) : void
+    {static} + CreateRandomKeys(capacity:int, keys:UnsafeList<int>, hashMap:NativeHashMap<int, int>) : void
+    {static} + RandomlyShuffleKeys(capacity:int, keys:UnsafeList<int>) : void
+}
+struct HashMapIsEmpty100k {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct HashMapCount100k {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct HashMapToNativeArrayKeys {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct HashMapToNativeArrayValues {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct HashMapInsert {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct HashMapAddGrow {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct HashMapContains {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct HashMapIndexedRead {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct HashMapIndexedWrite {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct HashMapTryGetValue {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct HashMapRemove {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct HashMapForEach {
+    + total : int
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+class HashMap {
+    + <<unsafe>> IsEmpty_x_100k(capacity:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Count_x_100k(capacity:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> ToNativeArrayKeys(capacity:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> ToNativeArrayValues(capacity:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Insert(insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> AddGrow(capacity:int, growTo:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Contains(insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> IndexedRead(insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> IndexedWrite(insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> TryGetValue(insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Remove(insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Foreach(insertions:int, type:BenchmarkContainerType) : void
+}
+IBenchmarkContainer <|-- HashMapIsEmpty100k
+IBenchmarkContainer <|-- HashMapCount100k
+IBenchmarkContainer <|-- HashMapToNativeArrayKeys
+IBenchmarkContainer <|-- HashMapToNativeArrayValues
+IBenchmarkContainer <|-- HashMapInsert
+IBenchmarkContainer <|-- HashMapAddGrow
+IBenchmarkContainer <|-- HashMapContains
+IBenchmarkContainer <|-- HashMapIndexedRead
+IBenchmarkContainer <|-- HashMapIndexedWrite
+IBenchmarkContainer <|-- HashMapTryGetValue
+IBenchmarkContainer <|-- HashMapRemove
+IBenchmarkContainer <|-- HashMapForEach
+@enduml

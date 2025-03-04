@@ -1,0 +1,6 @@
+@startuml
+class Texture3DSlotControlView {
+    + Texture3DSlotControlView(slot:Texture3DInputMaterialSlot)
+}
+VisualElement <|-- Texture3DSlotControlView
+@enduml

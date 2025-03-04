@@ -1,0 +1,6 @@
+@startuml
+class MenuManager <<static>> {
+    + {static} AddMenuItem(path:string, shortcut:string, @checked:bool, priority:int, execute:System.Action, validate:System.Func<bool>) : void
+    + {static} RemoveMenuItem(path:string) : void
+}
+@enduml

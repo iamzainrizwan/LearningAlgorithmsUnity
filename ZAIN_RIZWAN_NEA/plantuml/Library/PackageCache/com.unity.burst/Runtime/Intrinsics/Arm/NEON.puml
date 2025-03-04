@@ -1,0 +1,1106 @@
+@startuml
+class Arm <<unsafe>> <<static>> <<partial>> {
+}
+class Neon <<unsafe>> <<partial>> {
+    + {static} IsNeonSupported : bool <<get>>
+    + {static} vadd_s8(a0:v64, a1:v64) : v64
+    + {static} vaddq_s8(a0:v128, a1:v128) : v128
+    + {static} vadd_s16(a0:v64, a1:v64) : v64
+    + {static} vaddq_s16(a0:v128, a1:v128) : v128
+    + {static} vadd_s32(a0:v64, a1:v64) : v64
+    + {static} vaddq_s32(a0:v128, a1:v128) : v128
+    + {static} vadd_s64(a0:v64, a1:v64) : v64
+    + {static} vaddq_s64(a0:v128, a1:v128) : v128
+    + {static} vadd_u8(a0:v64, a1:v64) : v64
+    + {static} vaddq_u8(a0:v128, a1:v128) : v128
+    + {static} vadd_u16(a0:v64, a1:v64) : v64
+    + {static} vaddq_u16(a0:v128, a1:v128) : v128
+    + {static} vadd_u32(a0:v64, a1:v64) : v64
+    + {static} vaddq_u32(a0:v128, a1:v128) : v128
+    + {static} vadd_u64(a0:v64, a1:v64) : v64
+    + {static} vaddq_u64(a0:v128, a1:v128) : v128
+    + {static} vadd_f32(a0:v64, a1:v64) : v64
+    + {static} vaddq_f32(a0:v128, a1:v128) : v128
+    + {static} vaddl_s8(a0:v64, a1:v64) : v128
+    + {static} vaddl_s16(a0:v64, a1:v64) : v128
+    + {static} vaddl_s32(a0:v64, a1:v64) : v128
+    + {static} vaddl_u8(a0:v64, a1:v64) : v128
+    + {static} vaddl_u16(a0:v64, a1:v64) : v128
+    + {static} vaddl_u32(a0:v64, a1:v64) : v128
+    + {static} vaddw_s8(a0:v128, a1:v64) : v128
+    + {static} vaddw_s16(a0:v128, a1:v64) : v128
+    + {static} vaddw_s32(a0:v128, a1:v64) : v128
+    + {static} vaddw_u8(a0:v128, a1:v64) : v128
+    + {static} vaddw_u16(a0:v128, a1:v64) : v128
+    + {static} vaddw_u32(a0:v128, a1:v64) : v128
+    + {static} vhadd_s8(a0:v64, a1:v64) : v64
+    + {static} vhaddq_s8(a0:v128, a1:v128) : v128
+    + {static} vhadd_s16(a0:v64, a1:v64) : v64
+    + {static} vhaddq_s16(a0:v128, a1:v128) : v128
+    + {static} vhadd_s32(a0:v64, a1:v64) : v64
+    + {static} vhaddq_s32(a0:v128, a1:v128) : v128
+    + {static} vhadd_u8(a0:v64, a1:v64) : v64
+    + {static} vhaddq_u8(a0:v128, a1:v128) : v128
+    + {static} vhadd_u16(a0:v64, a1:v64) : v64
+    + {static} vhaddq_u16(a0:v128, a1:v128) : v128
+    + {static} vhadd_u32(a0:v64, a1:v64) : v64
+    + {static} vhaddq_u32(a0:v128, a1:v128) : v128
+    + {static} vrhadd_s8(a0:v64, a1:v64) : v64
+    + {static} vrhaddq_s8(a0:v128, a1:v128) : v128
+    + {static} vrhadd_s16(a0:v64, a1:v64) : v64
+    + {static} vrhaddq_s16(a0:v128, a1:v128) : v128
+    + {static} vrhadd_s32(a0:v64, a1:v64) : v64
+    + {static} vrhaddq_s32(a0:v128, a1:v128) : v128
+    + {static} vrhadd_u8(a0:v64, a1:v64) : v64
+    + {static} vrhaddq_u8(a0:v128, a1:v128) : v128
+    + {static} vrhadd_u16(a0:v64, a1:v64) : v64
+    + {static} vrhaddq_u16(a0:v128, a1:v128) : v128
+    + {static} vrhadd_u32(a0:v64, a1:v64) : v64
+    + {static} vrhaddq_u32(a0:v128, a1:v128) : v128
+    + {static} vqadd_s8(a0:v64, a1:v64) : v64
+    + {static} vqaddq_s8(a0:v128, a1:v128) : v128
+    + {static} vqadd_s16(a0:v64, a1:v64) : v64
+    + {static} vqaddq_s16(a0:v128, a1:v128) : v128
+    + {static} vqadd_s32(a0:v64, a1:v64) : v64
+    + {static} vqaddq_s32(a0:v128, a1:v128) : v128
+    + {static} vqadd_s64(a0:v64, a1:v64) : v64
+    + {static} vqaddq_s64(a0:v128, a1:v128) : v128
+    + {static} vqadd_u8(a0:v64, a1:v64) : v64
+    + {static} vqaddq_u8(a0:v128, a1:v128) : v128
+    + {static} vqadd_u16(a0:v64, a1:v64) : v64
+    + {static} vqaddq_u16(a0:v128, a1:v128) : v128
+    + {static} vqadd_u32(a0:v64, a1:v64) : v64
+    + {static} vqaddq_u32(a0:v128, a1:v128) : v128
+    + {static} vqadd_u64(a0:v64, a1:v64) : v64
+    + {static} vqaddq_u64(a0:v128, a1:v128) : v128
+    + {static} vaddhn_s16(a0:v128, a1:v128) : v64
+    + {static} vaddhn_s32(a0:v128, a1:v128) : v64
+    + {static} vaddhn_s64(a0:v128, a1:v128) : v64
+    + {static} vaddhn_u16(a0:v128, a1:v128) : v64
+    + {static} vaddhn_u32(a0:v128, a1:v128) : v64
+    + {static} vaddhn_u64(a0:v128, a1:v128) : v64
+    + {static} vraddhn_s16(a0:v128, a1:v128) : v64
+    + {static} vraddhn_s32(a0:v128, a1:v128) : v64
+    + {static} vraddhn_s64(a0:v128, a1:v128) : v64
+    + {static} vraddhn_u16(a0:v128, a1:v128) : v64
+    + {static} vraddhn_u32(a0:v128, a1:v128) : v64
+    + {static} vraddhn_u64(a0:v128, a1:v128) : v64
+    + {static} vmul_s8(a0:v64, a1:v64) : v64
+    + {static} vmulq_s8(a0:v128, a1:v128) : v128
+    + {static} vmul_s16(a0:v64, a1:v64) : v64
+    + {static} vmulq_s16(a0:v128, a1:v128) : v128
+    + {static} vmul_s32(a0:v64, a1:v64) : v64
+    + {static} vmulq_s32(a0:v128, a1:v128) : v128
+    + {static} vmul_u8(a0:v64, a1:v64) : v64
+    + {static} vmulq_u8(a0:v128, a1:v128) : v128
+    + {static} vmul_u16(a0:v64, a1:v64) : v64
+    + {static} vmulq_u16(a0:v128, a1:v128) : v128
+    + {static} vmul_u32(a0:v64, a1:v64) : v64
+    + {static} vmulq_u32(a0:v128, a1:v128) : v128
+    + {static} vmul_f32(a0:v64, a1:v64) : v64
+    + {static} vmulq_f32(a0:v128, a1:v128) : v128
+    + {static} vmla_s8(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vmlaq_s8(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vmla_s16(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vmlaq_s16(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vmla_s32(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vmlaq_s32(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vmla_u8(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vmlaq_u8(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vmla_u16(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vmlaq_u16(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vmla_u32(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vmlaq_u32(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vmla_f32(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vmlaq_f32(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vmlal_s8(a0:v128, a1:v64, a2:v64) : v128
+    + {static} vmlal_s16(a0:v128, a1:v64, a2:v64) : v128
+    + {static} vmlal_s32(a0:v128, a1:v64, a2:v64) : v128
+    + {static} vmlal_u8(a0:v128, a1:v64, a2:v64) : v128
+    + {static} vmlal_u16(a0:v128, a1:v64, a2:v64) : v128
+    + {static} vmlal_u32(a0:v128, a1:v64, a2:v64) : v128
+    + {static} vmls_s8(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vmlsq_s8(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vmls_s16(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vmlsq_s16(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vmls_s32(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vmlsq_s32(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vmls_u8(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vmlsq_u8(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vmls_u16(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vmlsq_u16(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vmls_u32(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vmlsq_u32(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vmls_f32(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vmlsq_f32(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vmlsl_s8(a0:v128, a1:v64, a2:v64) : v128
+    + {static} vmlsl_s16(a0:v128, a1:v64, a2:v64) : v128
+    + {static} vmlsl_s32(a0:v128, a1:v64, a2:v64) : v128
+    + {static} vmlsl_u8(a0:v128, a1:v64, a2:v64) : v128
+    + {static} vmlsl_u16(a0:v128, a1:v64, a2:v64) : v128
+    + {static} vmlsl_u32(a0:v128, a1:v64, a2:v64) : v128
+    + {static} vfma_f32(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vfmaq_f32(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vfms_f32(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vfmsq_f32(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vqdmulh_s16(a0:v64, a1:v64) : v64
+    + {static} vqdmulhq_s16(a0:v128, a1:v128) : v128
+    + {static} vqdmulh_s32(a0:v64, a1:v64) : v64
+    + {static} vqdmulhq_s32(a0:v128, a1:v128) : v128
+    + {static} vqrdmulh_s16(a0:v64, a1:v64) : v64
+    + {static} vqrdmulhq_s16(a0:v128, a1:v128) : v128
+    + {static} vqrdmulh_s32(a0:v64, a1:v64) : v64
+    + {static} vqrdmulhq_s32(a0:v128, a1:v128) : v128
+    + {static} vqdmlal_s16(a0:v128, a1:v64, a2:v64) : v128
+    + {static} vqdmlal_s32(a0:v128, a1:v64, a2:v64) : v128
+    + {static} vqdmlsl_s16(a0:v128, a1:v64, a2:v64) : v128
+    + {static} vqdmlsl_s32(a0:v128, a1:v64, a2:v64) : v128
+    + {static} vmull_s8(a0:v64, a1:v64) : v128
+    + {static} vmull_s16(a0:v64, a1:v64) : v128
+    + {static} vmull_s32(a0:v64, a1:v64) : v128
+    + {static} vmull_u8(a0:v64, a1:v64) : v128
+    + {static} vmull_u16(a0:v64, a1:v64) : v128
+    + {static} vmull_u32(a0:v64, a1:v64) : v128
+    + {static} vqdmull_s16(a0:v64, a1:v64) : v128
+    + {static} vqdmull_s32(a0:v64, a1:v64) : v128
+    + {static} vsub_s8(a0:v64, a1:v64) : v64
+    + {static} vsubq_s8(a0:v128, a1:v128) : v128
+    + {static} vsub_s16(a0:v64, a1:v64) : v64
+    + {static} vsubq_s16(a0:v128, a1:v128) : v128
+    + {static} vsub_s32(a0:v64, a1:v64) : v64
+    + {static} vsubq_s32(a0:v128, a1:v128) : v128
+    + {static} vsub_s64(a0:v64, a1:v64) : v64
+    + {static} vsubq_s64(a0:v128, a1:v128) : v128
+    + {static} vsub_u8(a0:v64, a1:v64) : v64
+    + {static} vsubq_u8(a0:v128, a1:v128) : v128
+    + {static} vsub_u16(a0:v64, a1:v64) : v64
+    + {static} vsubq_u16(a0:v128, a1:v128) : v128
+    + {static} vsub_u32(a0:v64, a1:v64) : v64
+    + {static} vsubq_u32(a0:v128, a1:v128) : v128
+    + {static} vsub_u64(a0:v64, a1:v64) : v64
+    + {static} vsubq_u64(a0:v128, a1:v128) : v128
+    + {static} vsub_f32(a0:v64, a1:v64) : v64
+    + {static} vsubq_f32(a0:v128, a1:v128) : v128
+    + {static} vsubl_s8(a0:v64, a1:v64) : v128
+    + {static} vsubl_s16(a0:v64, a1:v64) : v128
+    + {static} vsubl_s32(a0:v64, a1:v64) : v128
+    + {static} vsubl_u8(a0:v64, a1:v64) : v128
+    + {static} vsubl_u16(a0:v64, a1:v64) : v128
+    + {static} vsubl_u32(a0:v64, a1:v64) : v128
+    + {static} vsubw_s8(a0:v128, a1:v64) : v128
+    + {static} vsubw_s16(a0:v128, a1:v64) : v128
+    + {static} vsubw_s32(a0:v128, a1:v64) : v128
+    + {static} vsubw_u8(a0:v128, a1:v64) : v128
+    + {static} vsubw_u16(a0:v128, a1:v64) : v128
+    + {static} vsubw_u32(a0:v128, a1:v64) : v128
+    + {static} vhsub_s8(a0:v64, a1:v64) : v64
+    + {static} vhsubq_s8(a0:v128, a1:v128) : v128
+    + {static} vhsub_s16(a0:v64, a1:v64) : v64
+    + {static} vhsubq_s16(a0:v128, a1:v128) : v128
+    + {static} vhsub_s32(a0:v64, a1:v64) : v64
+    + {static} vhsubq_s32(a0:v128, a1:v128) : v128
+    + {static} vhsub_u8(a0:v64, a1:v64) : v64
+    + {static} vhsubq_u8(a0:v128, a1:v128) : v128
+    + {static} vhsub_u16(a0:v64, a1:v64) : v64
+    + {static} vhsubq_u16(a0:v128, a1:v128) : v128
+    + {static} vhsub_u32(a0:v64, a1:v64) : v64
+    + {static} vhsubq_u32(a0:v128, a1:v128) : v128
+    + {static} vqsub_s8(a0:v64, a1:v64) : v64
+    + {static} vqsubq_s8(a0:v128, a1:v128) : v128
+    + {static} vqsub_s16(a0:v64, a1:v64) : v64
+    + {static} vqsubq_s16(a0:v128, a1:v128) : v128
+    + {static} vqsub_s32(a0:v64, a1:v64) : v64
+    + {static} vqsubq_s32(a0:v128, a1:v128) : v128
+    + {static} vqsub_s64(a0:v64, a1:v64) : v64
+    + {static} vqsubq_s64(a0:v128, a1:v128) : v128
+    + {static} vqsub_u8(a0:v64, a1:v64) : v64
+    + {static} vqsubq_u8(a0:v128, a1:v128) : v128
+    + {static} vqsub_u16(a0:v64, a1:v64) : v64
+    + {static} vqsubq_u16(a0:v128, a1:v128) : v128
+    + {static} vqsub_u32(a0:v64, a1:v64) : v64
+    + {static} vqsubq_u32(a0:v128, a1:v128) : v128
+    + {static} vqsub_u64(a0:v64, a1:v64) : v64
+    + {static} vqsubq_u64(a0:v128, a1:v128) : v128
+    + {static} vsubhn_s16(a0:v128, a1:v128) : v64
+    + {static} vsubhn_s32(a0:v128, a1:v128) : v64
+    + {static} vsubhn_s64(a0:v128, a1:v128) : v64
+    + {static} vsubhn_u16(a0:v128, a1:v128) : v64
+    + {static} vsubhn_u32(a0:v128, a1:v128) : v64
+    + {static} vsubhn_u64(a0:v128, a1:v128) : v64
+    + {static} vrsubhn_s16(a0:v128, a1:v128) : v64
+    + {static} vrsubhn_s32(a0:v128, a1:v128) : v64
+    + {static} vrsubhn_s64(a0:v128, a1:v128) : v64
+    + {static} vrsubhn_u16(a0:v128, a1:v128) : v64
+    + {static} vrsubhn_u32(a0:v128, a1:v128) : v64
+    + {static} vrsubhn_u64(a0:v128, a1:v128) : v64
+    + {static} vceq_s8(a0:v64, a1:v64) : v64
+    + {static} vceqq_s8(a0:v128, a1:v128) : v128
+    + {static} vceq_s16(a0:v64, a1:v64) : v64
+    + {static} vceqq_s16(a0:v128, a1:v128) : v128
+    + {static} vceq_s32(a0:v64, a1:v64) : v64
+    + {static} vceqq_s32(a0:v128, a1:v128) : v128
+    + {static} vceq_u8(a0:v64, a1:v64) : v64
+    + {static} vceqq_u8(a0:v128, a1:v128) : v128
+    + {static} vceq_u16(a0:v64, a1:v64) : v64
+    + {static} vceqq_u16(a0:v128, a1:v128) : v128
+    + {static} vceq_u32(a0:v64, a1:v64) : v64
+    + {static} vceqq_u32(a0:v128, a1:v128) : v128
+    + {static} vceq_f32(a0:v64, a1:v64) : v64
+    + {static} vceqq_f32(a0:v128, a1:v128) : v128
+    + {static} vcge_s8(a0:v64, a1:v64) : v64
+    + {static} vcgeq_s8(a0:v128, a1:v128) : v128
+    + {static} vcge_s16(a0:v64, a1:v64) : v64
+    + {static} vcgeq_s16(a0:v128, a1:v128) : v128
+    + {static} vcge_s32(a0:v64, a1:v64) : v64
+    + {static} vcgeq_s32(a0:v128, a1:v128) : v128
+    + {static} vcge_u8(a0:v64, a1:v64) : v64
+    + {static} vcgeq_u8(a0:v128, a1:v128) : v128
+    + {static} vcge_u16(a0:v64, a1:v64) : v64
+    + {static} vcgeq_u16(a0:v128, a1:v128) : v128
+    + {static} vcge_u32(a0:v64, a1:v64) : v64
+    + {static} vcgeq_u32(a0:v128, a1:v128) : v128
+    + {static} vcge_f32(a0:v64, a1:v64) : v64
+    + {static} vcgeq_f32(a0:v128, a1:v128) : v128
+    + {static} vcle_s8(a0:v64, a1:v64) : v64
+    + {static} vcleq_s8(a0:v128, a1:v128) : v128
+    + {static} vcle_s16(a0:v64, a1:v64) : v64
+    + {static} vcleq_s16(a0:v128, a1:v128) : v128
+    + {static} vcle_s32(a0:v64, a1:v64) : v64
+    + {static} vcleq_s32(a0:v128, a1:v128) : v128
+    + {static} vcle_u8(a0:v64, a1:v64) : v64
+    + {static} vcleq_u8(a0:v128, a1:v128) : v128
+    + {static} vcle_u16(a0:v64, a1:v64) : v64
+    + {static} vcleq_u16(a0:v128, a1:v128) : v128
+    + {static} vcle_u32(a0:v64, a1:v64) : v64
+    + {static} vcleq_u32(a0:v128, a1:v128) : v128
+    + {static} vcle_f32(a0:v64, a1:v64) : v64
+    + {static} vcleq_f32(a0:v128, a1:v128) : v128
+    + {static} vcgt_s8(a0:v64, a1:v64) : v64
+    + {static} vcgtq_s8(a0:v128, a1:v128) : v128
+    + {static} vcgt_s16(a0:v64, a1:v64) : v64
+    + {static} vcgtq_s16(a0:v128, a1:v128) : v128
+    + {static} vcgt_s32(a0:v64, a1:v64) : v64
+    + {static} vcgtq_s32(a0:v128, a1:v128) : v128
+    + {static} vcgt_u8(a0:v64, a1:v64) : v64
+    + {static} vcgtq_u8(a0:v128, a1:v128) : v128
+    + {static} vcgt_u16(a0:v64, a1:v64) : v64
+    + {static} vcgtq_u16(a0:v128, a1:v128) : v128
+    + {static} vcgt_u32(a0:v64, a1:v64) : v64
+    + {static} vcgtq_u32(a0:v128, a1:v128) : v128
+    + {static} vcgt_f32(a0:v64, a1:v64) : v64
+    + {static} vcgtq_f32(a0:v128, a1:v128) : v128
+    + {static} vclt_s8(a0:v64, a1:v64) : v64
+    + {static} vcltq_s8(a0:v128, a1:v128) : v128
+    + {static} vclt_s16(a0:v64, a1:v64) : v64
+    + {static} vcltq_s16(a0:v128, a1:v128) : v128
+    + {static} vclt_s32(a0:v64, a1:v64) : v64
+    + {static} vcltq_s32(a0:v128, a1:v128) : v128
+    + {static} vclt_u8(a0:v64, a1:v64) : v64
+    + {static} vcltq_u8(a0:v128, a1:v128) : v128
+    + {static} vclt_u16(a0:v64, a1:v64) : v64
+    + {static} vcltq_u16(a0:v128, a1:v128) : v128
+    + {static} vclt_u32(a0:v64, a1:v64) : v64
+    + {static} vcltq_u32(a0:v128, a1:v128) : v128
+    + {static} vclt_f32(a0:v64, a1:v64) : v64
+    + {static} vcltq_f32(a0:v128, a1:v128) : v128
+    + {static} vcage_f32(a0:v64, a1:v64) : v64
+    + {static} vcageq_f32(a0:v128, a1:v128) : v128
+    + {static} vcale_f32(a0:v64, a1:v64) : v64
+    + {static} vcaleq_f32(a0:v128, a1:v128) : v128
+    + {static} vcagt_f32(a0:v64, a1:v64) : v64
+    + {static} vcagtq_f32(a0:v128, a1:v128) : v128
+    + {static} vcalt_f32(a0:v64, a1:v64) : v64
+    + {static} vcaltq_f32(a0:v128, a1:v128) : v128
+    + {static} vtst_s8(a0:v64, a1:v64) : v64
+    + {static} vtstq_s8(a0:v128, a1:v128) : v128
+    + {static} vtst_s16(a0:v64, a1:v64) : v64
+    + {static} vtstq_s16(a0:v128, a1:v128) : v128
+    + {static} vtst_s32(a0:v64, a1:v64) : v64
+    + {static} vtstq_s32(a0:v128, a1:v128) : v128
+    + {static} vtst_u8(a0:v64, a1:v64) : v64
+    + {static} vtstq_u8(a0:v128, a1:v128) : v128
+    + {static} vtst_u16(a0:v64, a1:v64) : v64
+    + {static} vtstq_u16(a0:v128, a1:v128) : v128
+    + {static} vtst_u32(a0:v64, a1:v64) : v64
+    + {static} vtstq_u32(a0:v128, a1:v128) : v128
+    + {static} vabd_s8(a0:v64, a1:v64) : v64
+    + {static} vabdq_s8(a0:v128, a1:v128) : v128
+    + {static} vabd_s16(a0:v64, a1:v64) : v64
+    + {static} vabdq_s16(a0:v128, a1:v128) : v128
+    + {static} vabd_s32(a0:v64, a1:v64) : v64
+    + {static} vabdq_s32(a0:v128, a1:v128) : v128
+    + {static} vabd_u8(a0:v64, a1:v64) : v64
+    + {static} vabdq_u8(a0:v128, a1:v128) : v128
+    + {static} vabd_u16(a0:v64, a1:v64) : v64
+    + {static} vabdq_u16(a0:v128, a1:v128) : v128
+    + {static} vabd_u32(a0:v64, a1:v64) : v64
+    + {static} vabdq_u32(a0:v128, a1:v128) : v128
+    + {static} vabd_f32(a0:v64, a1:v64) : v64
+    + {static} vabdq_f32(a0:v128, a1:v128) : v128
+    + {static} vabdl_s8(a0:v64, a1:v64) : v128
+    + {static} vabdl_s16(a0:v64, a1:v64) : v128
+    + {static} vabdl_s32(a0:v64, a1:v64) : v128
+    + {static} vabdl_u8(a0:v64, a1:v64) : v128
+    + {static} vabdl_u16(a0:v64, a1:v64) : v128
+    + {static} vabdl_u32(a0:v64, a1:v64) : v128
+    + {static} vaba_s8(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vabaq_s8(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vaba_s16(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vabaq_s16(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vaba_s32(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vabaq_s32(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vaba_u8(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vabaq_u8(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vaba_u16(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vabaq_u16(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vaba_u32(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vabaq_u32(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vabal_s8(a0:v128, a1:v64, a2:v64) : v128
+    + {static} vabal_s16(a0:v128, a1:v64, a2:v64) : v128
+    + {static} vabal_s32(a0:v128, a1:v64, a2:v64) : v128
+    + {static} vabal_u8(a0:v128, a1:v64, a2:v64) : v128
+    + {static} vabal_u16(a0:v128, a1:v64, a2:v64) : v128
+    + {static} vabal_u32(a0:v128, a1:v64, a2:v64) : v128
+    + {static} vmax_s8(a0:v64, a1:v64) : v64
+    + {static} vmaxq_s8(a0:v128, a1:v128) : v128
+    + {static} vmax_s16(a0:v64, a1:v64) : v64
+    + {static} vmaxq_s16(a0:v128, a1:v128) : v128
+    + {static} vmax_s32(a0:v64, a1:v64) : v64
+    + {static} vmaxq_s32(a0:v128, a1:v128) : v128
+    + {static} vmax_u8(a0:v64, a1:v64) : v64
+    + {static} vmaxq_u8(a0:v128, a1:v128) : v128
+    + {static} vmax_u16(a0:v64, a1:v64) : v64
+    + {static} vmaxq_u16(a0:v128, a1:v128) : v128
+    + {static} vmax_u32(a0:v64, a1:v64) : v64
+    + {static} vmaxq_u32(a0:v128, a1:v128) : v128
+    + {static} vmax_f32(a0:v64, a1:v64) : v64
+    + {static} vmaxq_f32(a0:v128, a1:v128) : v128
+    + {static} vmin_s8(a0:v64, a1:v64) : v64
+    + {static} vminq_s8(a0:v128, a1:v128) : v128
+    + {static} vmin_s16(a0:v64, a1:v64) : v64
+    + {static} vminq_s16(a0:v128, a1:v128) : v128
+    + {static} vmin_s32(a0:v64, a1:v64) : v64
+    + {static} vminq_s32(a0:v128, a1:v128) : v128
+    + {static} vmin_u8(a0:v64, a1:v64) : v64
+    + {static} vminq_u8(a0:v128, a1:v128) : v128
+    + {static} vmin_u16(a0:v64, a1:v64) : v64
+    + {static} vminq_u16(a0:v128, a1:v128) : v128
+    + {static} vmin_u32(a0:v64, a1:v64) : v64
+    + {static} vminq_u32(a0:v128, a1:v128) : v128
+    + {static} vmin_f32(a0:v64, a1:v64) : v64
+    + {static} vminq_f32(a0:v128, a1:v128) : v128
+    + {static} vshl_s8(a0:v64, a1:v64) : v64
+    + {static} vshlq_s8(a0:v128, a1:v128) : v128
+    + {static} vshl_s16(a0:v64, a1:v64) : v64
+    + {static} vshlq_s16(a0:v128, a1:v128) : v128
+    + {static} vshl_s32(a0:v64, a1:v64) : v64
+    + {static} vshlq_s32(a0:v128, a1:v128) : v128
+    + {static} vshl_s64(a0:v64, a1:v64) : v64
+    + {static} vshlq_s64(a0:v128, a1:v128) : v128
+    + {static} vshl_u8(a0:v64, a1:v64) : v64
+    + {static} vshlq_u8(a0:v128, a1:v128) : v128
+    + {static} vshl_u16(a0:v64, a1:v64) : v64
+    + {static} vshlq_u16(a0:v128, a1:v128) : v128
+    + {static} vshl_u32(a0:v64, a1:v64) : v64
+    + {static} vshlq_u32(a0:v128, a1:v128) : v128
+    + {static} vshl_u64(a0:v64, a1:v64) : v64
+    + {static} vshlq_u64(a0:v128, a1:v128) : v128
+    + {static} vqshl_s8(a0:v64, a1:v64) : v64
+    + {static} vqshlq_s8(a0:v128, a1:v128) : v128
+    + {static} vqshl_s16(a0:v64, a1:v64) : v64
+    + {static} vqshlq_s16(a0:v128, a1:v128) : v128
+    + {static} vqshl_s32(a0:v64, a1:v64) : v64
+    + {static} vqshlq_s32(a0:v128, a1:v128) : v128
+    + {static} vqshl_s64(a0:v64, a1:v64) : v64
+    + {static} vqshlq_s64(a0:v128, a1:v128) : v128
+    + {static} vqshl_u8(a0:v64, a1:v64) : v64
+    + {static} vqshlq_u8(a0:v128, a1:v128) : v128
+    + {static} vqshl_u16(a0:v64, a1:v64) : v64
+    + {static} vqshlq_u16(a0:v128, a1:v128) : v128
+    + {static} vqshl_u32(a0:v64, a1:v64) : v64
+    + {static} vqshlq_u32(a0:v128, a1:v128) : v128
+    + {static} vqshl_u64(a0:v64, a1:v64) : v64
+    + {static} vqshlq_u64(a0:v128, a1:v128) : v128
+    + {static} vrshl_s8(a0:v64, a1:v64) : v64
+    + {static} vrshlq_s8(a0:v128, a1:v128) : v128
+    + {static} vrshl_s16(a0:v64, a1:v64) : v64
+    + {static} vrshlq_s16(a0:v128, a1:v128) : v128
+    + {static} vrshl_s32(a0:v64, a1:v64) : v64
+    + {static} vrshlq_s32(a0:v128, a1:v128) : v128
+    + {static} vrshl_s64(a0:v64, a1:v64) : v64
+    + {static} vrshlq_s64(a0:v128, a1:v128) : v128
+    + {static} vrshl_u8(a0:v64, a1:v64) : v64
+    + {static} vrshlq_u8(a0:v128, a1:v128) : v128
+    + {static} vrshl_u16(a0:v64, a1:v64) : v64
+    + {static} vrshlq_u16(a0:v128, a1:v128) : v128
+    + {static} vrshl_u32(a0:v64, a1:v64) : v64
+    + {static} vrshlq_u32(a0:v128, a1:v128) : v128
+    + {static} vrshl_u64(a0:v64, a1:v64) : v64
+    + {static} vrshlq_u64(a0:v128, a1:v128) : v128
+    + {static} vqrshl_s8(a0:v64, a1:v64) : v64
+    + {static} vqrshlq_s8(a0:v128, a1:v128) : v128
+    + {static} vqrshl_s16(a0:v64, a1:v64) : v64
+    + {static} vqrshlq_s16(a0:v128, a1:v128) : v128
+    + {static} vqrshl_s32(a0:v64, a1:v64) : v64
+    + {static} vqrshlq_s32(a0:v128, a1:v128) : v128
+    + {static} vqrshl_s64(a0:v64, a1:v64) : v64
+    + {static} vqrshlq_s64(a0:v128, a1:v128) : v128
+    + {static} vqrshl_u8(a0:v64, a1:v64) : v64
+    + {static} vqrshlq_u8(a0:v128, a1:v128) : v128
+    + {static} vqrshl_u16(a0:v64, a1:v64) : v64
+    + {static} vqrshlq_u16(a0:v128, a1:v128) : v128
+    + {static} vqrshl_u32(a0:v64, a1:v64) : v64
+    + {static} vqrshlq_u32(a0:v128, a1:v128) : v128
+    + {static} vqrshl_u64(a0:v64, a1:v64) : v64
+    + {static} vqrshlq_u64(a0:v128, a1:v128) : v128
+    + {static} vshr_n_s8(a0:v64, a1:Int32) : v64
+    + {static} vshrq_n_s8(a0:v128, a1:Int32) : v128
+    + {static} vshr_n_s16(a0:v64, a1:Int32) : v64
+    + {static} vshrq_n_s16(a0:v128, a1:Int32) : v128
+    + {static} vshr_n_s32(a0:v64, a1:Int32) : v64
+    + {static} vshrq_n_s32(a0:v128, a1:Int32) : v128
+    + {static} vshr_n_s64(a0:v64, a1:Int32) : v64
+    + {static} vshrq_n_s64(a0:v128, a1:Int32) : v128
+    + {static} vshr_n_u8(a0:v64, a1:Int32) : v64
+    + {static} vshrq_n_u8(a0:v128, a1:Int32) : v128
+    + {static} vshr_n_u16(a0:v64, a1:Int32) : v64
+    + {static} vshrq_n_u16(a0:v128, a1:Int32) : v128
+    + {static} vshr_n_u32(a0:v64, a1:Int32) : v64
+    + {static} vshrq_n_u32(a0:v128, a1:Int32) : v128
+    + {static} vshr_n_u64(a0:v64, a1:Int32) : v64
+    + {static} vshrq_n_u64(a0:v128, a1:Int32) : v128
+    + {static} vshl_n_s8(a0:v64, a1:Int32) : v64
+    + {static} vshlq_n_s8(a0:v128, a1:Int32) : v128
+    + {static} vshl_n_s16(a0:v64, a1:Int32) : v64
+    + {static} vshlq_n_s16(a0:v128, a1:Int32) : v128
+    + {static} vshl_n_s32(a0:v64, a1:Int32) : v64
+    + {static} vshlq_n_s32(a0:v128, a1:Int32) : v128
+    + {static} vshl_n_s64(a0:v64, a1:Int32) : v64
+    + {static} vshlq_n_s64(a0:v128, a1:Int32) : v128
+    + {static} vshl_n_u8(a0:v64, a1:Int32) : v64
+    + {static} vshlq_n_u8(a0:v128, a1:Int32) : v128
+    + {static} vshl_n_u16(a0:v64, a1:Int32) : v64
+    + {static} vshlq_n_u16(a0:v128, a1:Int32) : v128
+    + {static} vshl_n_u32(a0:v64, a1:Int32) : v64
+    + {static} vshlq_n_u32(a0:v128, a1:Int32) : v128
+    + {static} vshl_n_u64(a0:v64, a1:Int32) : v64
+    + {static} vshlq_n_u64(a0:v128, a1:Int32) : v128
+    + {static} vrshr_n_s8(a0:v64, a1:Int32) : v64
+    + {static} vrshrq_n_s8(a0:v128, a1:Int32) : v128
+    + {static} vrshr_n_s16(a0:v64, a1:Int32) : v64
+    + {static} vrshrq_n_s16(a0:v128, a1:Int32) : v128
+    + {static} vrshr_n_s32(a0:v64, a1:Int32) : v64
+    + {static} vrshrq_n_s32(a0:v128, a1:Int32) : v128
+    + {static} vrshr_n_s64(a0:v64, a1:Int32) : v64
+    + {static} vrshrq_n_s64(a0:v128, a1:Int32) : v128
+    + {static} vrshr_n_u8(a0:v64, a1:Int32) : v64
+    + {static} vrshrq_n_u8(a0:v128, a1:Int32) : v128
+    + {static} vrshr_n_u16(a0:v64, a1:Int32) : v64
+    + {static} vrshrq_n_u16(a0:v128, a1:Int32) : v128
+    + {static} vrshr_n_u32(a0:v64, a1:Int32) : v64
+    + {static} vrshrq_n_u32(a0:v128, a1:Int32) : v128
+    + {static} vrshr_n_u64(a0:v64, a1:Int32) : v64
+    + {static} vrshrq_n_u64(a0:v128, a1:Int32) : v128
+    + {static} vsra_n_s8(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vsraq_n_s8(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vsra_n_s16(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vsraq_n_s16(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vsra_n_s32(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vsraq_n_s32(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vsra_n_s64(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vsraq_n_s64(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vsra_n_u8(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vsraq_n_u8(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vsra_n_u16(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vsraq_n_u16(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vsra_n_u32(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vsraq_n_u32(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vsra_n_u64(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vsraq_n_u64(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vrsra_n_s8(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vrsraq_n_s8(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vrsra_n_s16(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vrsraq_n_s16(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vrsra_n_s32(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vrsraq_n_s32(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vrsra_n_s64(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vrsraq_n_s64(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vrsra_n_u8(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vrsraq_n_u8(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vrsra_n_u16(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vrsraq_n_u16(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vrsra_n_u32(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vrsraq_n_u32(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vrsra_n_u64(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vrsraq_n_u64(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vqshl_n_s8(a0:v64, a1:Int32) : v64
+    + {static} vqshlq_n_s8(a0:v128, a1:Int32) : v128
+    + {static} vqshl_n_s16(a0:v64, a1:Int32) : v64
+    + {static} vqshlq_n_s16(a0:v128, a1:Int32) : v128
+    + {static} vqshl_n_s32(a0:v64, a1:Int32) : v64
+    + {static} vqshlq_n_s32(a0:v128, a1:Int32) : v128
+    + {static} vqshl_n_s64(a0:v64, a1:Int32) : v64
+    + {static} vqshlq_n_s64(a0:v128, a1:Int32) : v128
+    + {static} vqshl_n_u8(a0:v64, a1:Int32) : v64
+    + {static} vqshlq_n_u8(a0:v128, a1:Int32) : v128
+    + {static} vqshl_n_u16(a0:v64, a1:Int32) : v64
+    + {static} vqshlq_n_u16(a0:v128, a1:Int32) : v128
+    + {static} vqshl_n_u32(a0:v64, a1:Int32) : v64
+    + {static} vqshlq_n_u32(a0:v128, a1:Int32) : v128
+    + {static} vqshl_n_u64(a0:v64, a1:Int32) : v64
+    + {static} vqshlq_n_u64(a0:v128, a1:Int32) : v128
+    + {static} vqshlu_n_s8(a0:v64, a1:Int32) : v64
+    + {static} vqshluq_n_s8(a0:v128, a1:Int32) : v128
+    + {static} vqshlu_n_s16(a0:v64, a1:Int32) : v64
+    + {static} vqshluq_n_s16(a0:v128, a1:Int32) : v128
+    + {static} vqshlu_n_s32(a0:v64, a1:Int32) : v64
+    + {static} vqshluq_n_s32(a0:v128, a1:Int32) : v128
+    + {static} vqshlu_n_s64(a0:v64, a1:Int32) : v64
+    + {static} vqshluq_n_s64(a0:v128, a1:Int32) : v128
+    + {static} vshrn_n_s16(a0:v128, a1:Int32) : v64
+    + {static} vshrn_n_s32(a0:v128, a1:Int32) : v64
+    + {static} vshrn_n_s64(a0:v128, a1:Int32) : v64
+    + {static} vshrn_n_u16(a0:v128, a1:Int32) : v64
+    + {static} vshrn_n_u32(a0:v128, a1:Int32) : v64
+    + {static} vshrn_n_u64(a0:v128, a1:Int32) : v64
+    + {static} vqshrun_n_s16(a0:v128, a1:Int32) : v64
+    + {static} vqshrun_n_s32(a0:v128, a1:Int32) : v64
+    + {static} vqshrun_n_s64(a0:v128, a1:Int32) : v64
+    + {static} vqrshrun_n_s16(a0:v128, a1:Int32) : v64
+    + {static} vqrshrun_n_s32(a0:v128, a1:Int32) : v64
+    + {static} vqrshrun_n_s64(a0:v128, a1:Int32) : v64
+    + {static} vqshrn_n_s16(a0:v128, a1:Int32) : v64
+    + {static} vqshrn_n_s32(a0:v128, a1:Int32) : v64
+    + {static} vqshrn_n_s64(a0:v128, a1:Int32) : v64
+    + {static} vqshrn_n_u16(a0:v128, a1:Int32) : v64
+    + {static} vqshrn_n_u32(a0:v128, a1:Int32) : v64
+    + {static} vqshrn_n_u64(a0:v128, a1:Int32) : v64
+    + {static} vrshrn_n_s16(a0:v128, a1:Int32) : v64
+    + {static} vrshrn_n_s32(a0:v128, a1:Int32) : v64
+    + {static} vrshrn_n_s64(a0:v128, a1:Int32) : v64
+    + {static} vrshrn_n_u16(a0:v128, a1:Int32) : v64
+    + {static} vrshrn_n_u32(a0:v128, a1:Int32) : v64
+    + {static} vrshrn_n_u64(a0:v128, a1:Int32) : v64
+    + {static} vqrshrn_n_s16(a0:v128, a1:Int32) : v64
+    + {static} vqrshrn_n_s32(a0:v128, a1:Int32) : v64
+    + {static} vqrshrn_n_s64(a0:v128, a1:Int32) : v64
+    + {static} vqrshrn_n_u16(a0:v128, a1:Int32) : v64
+    + {static} vqrshrn_n_u32(a0:v128, a1:Int32) : v64
+    + {static} vqrshrn_n_u64(a0:v128, a1:Int32) : v64
+    + {static} vshll_n_s8(a0:v64, a1:Int32) : v128
+    + {static} vshll_n_s16(a0:v64, a1:Int32) : v128
+    + {static} vshll_n_s32(a0:v64, a1:Int32) : v128
+    + {static} vshll_n_u8(a0:v64, a1:Int32) : v128
+    + {static} vshll_n_u16(a0:v64, a1:Int32) : v128
+    + {static} vshll_n_u32(a0:v64, a1:Int32) : v128
+    + {static} vsri_n_s8(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vsriq_n_s8(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vsri_n_s16(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vsriq_n_s16(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vsri_n_s32(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vsriq_n_s32(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vsri_n_s64(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vsriq_n_s64(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vsri_n_u8(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vsriq_n_u8(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vsri_n_u16(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vsriq_n_u16(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vsri_n_u32(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vsriq_n_u32(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vsri_n_u64(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vsriq_n_u64(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vsli_n_s8(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vsliq_n_s8(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vsli_n_s16(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vsliq_n_s16(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vsli_n_s32(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vsliq_n_s32(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vsli_n_s64(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vsliq_n_s64(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vsli_n_u8(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vsliq_n_u8(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vsli_n_u16(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vsliq_n_u16(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vsli_n_u32(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vsliq_n_u32(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vsli_n_u64(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vsliq_n_u64(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vcvt_s32_f32(a0:v64) : v64
+    + {static} vcvtq_s32_f32(a0:v128) : v128
+    + {static} vcvt_u32_f32(a0:v64) : v64
+    + {static} vcvtq_u32_f32(a0:v128) : v128
+    + {static} vcvt_n_s32_f32(a0:v64, a1:Int32) : v64
+    + {static} vcvtq_n_s32_f32(a0:v128, a1:Int32) : v128
+    + {static} vcvt_n_u32_f32(a0:v64, a1:Int32) : v64
+    + {static} vcvtq_n_u32_f32(a0:v128, a1:Int32) : v128
+    + {static} vcvt_f32_s32(a0:v64) : v64
+    + {static} vcvtq_f32_s32(a0:v128) : v128
+    + {static} vcvt_f32_u32(a0:v64) : v64
+    + {static} vcvtq_f32_u32(a0:v128) : v128
+    + {static} vcvt_n_f32_s32(a0:v64, a1:Int32) : v64
+    + {static} vcvtq_n_f32_s32(a0:v128, a1:Int32) : v128
+    + {static} vcvt_n_f32_u32(a0:v64, a1:Int32) : v64
+    + {static} vcvtq_n_f32_u32(a0:v128, a1:Int32) : v128
+    + {static} vmovn_s16(a0:v128) : v64
+    + {static} vmovn_s32(a0:v128) : v64
+    + {static} vmovn_s64(a0:v128) : v64
+    + {static} vmovn_u16(a0:v128) : v64
+    + {static} vmovn_u32(a0:v128) : v64
+    + {static} vmovn_u64(a0:v128) : v64
+    + {static} vmovn_high_s16(a0:v64, a1:v128) : v128
+    + {static} vmovn_high_s32(a0:v64, a1:v128) : v128
+    + {static} vmovn_high_s64(a0:v64, a1:v128) : v128
+    + {static} vmovn_high_u16(a0:v64, a1:v128) : v128
+    + {static} vmovn_high_u32(a0:v64, a1:v128) : v128
+    + {static} vmovn_high_u64(a0:v64, a1:v128) : v128
+    + {static} vmovl_s8(a0:v64) : v128
+    + {static} vmovl_s16(a0:v64) : v128
+    + {static} vmovl_s32(a0:v64) : v128
+    + {static} vmovl_u8(a0:v64) : v128
+    + {static} vmovl_u16(a0:v64) : v128
+    + {static} vmovl_u32(a0:v64) : v128
+    + {static} vqmovn_s16(a0:v128) : v64
+    + {static} vqmovn_s32(a0:v128) : v64
+    + {static} vqmovn_s64(a0:v128) : v64
+    + {static} vqmovn_u16(a0:v128) : v64
+    + {static} vqmovn_u32(a0:v128) : v64
+    + {static} vqmovn_u64(a0:v128) : v64
+    + {static} vqmovun_s16(a0:v128) : v64
+    + {static} vqmovun_s32(a0:v128) : v64
+    + {static} vqmovun_s64(a0:v128) : v64
+    + {static} vmla_lane_s16(a0:v64, a1:v64, a2:v64, a3:Int32) : v64
+    + {static} vmlaq_lane_s16(a0:v128, a1:v128, a2:v64, a3:Int32) : v128
+    + {static} vmla_lane_s32(a0:v64, a1:v64, a2:v64, a3:Int32) : v64
+    + {static} vmlaq_lane_s32(a0:v128, a1:v128, a2:v64, a3:Int32) : v128
+    + {static} vmla_lane_u16(a0:v64, a1:v64, a2:v64, a3:Int32) : v64
+    + {static} vmlaq_lane_u16(a0:v128, a1:v128, a2:v64, a3:Int32) : v128
+    + {static} vmla_lane_u32(a0:v64, a1:v64, a2:v64, a3:Int32) : v64
+    + {static} vmlaq_lane_u32(a0:v128, a1:v128, a2:v64, a3:Int32) : v128
+    + {static} vmla_lane_f32(a0:v64, a1:v64, a2:v64, a3:Int32) : v64
+    + {static} vmlaq_lane_f32(a0:v128, a1:v128, a2:v64, a3:Int32) : v128
+    + {static} vmlal_lane_s16(a0:v128, a1:v64, a2:v64, a3:Int32) : v128
+    + {static} vmlal_lane_s32(a0:v128, a1:v64, a2:v64, a3:Int32) : v128
+    + {static} vmlal_lane_u16(a0:v128, a1:v64, a2:v64, a3:Int32) : v128
+    + {static} vmlal_lane_u32(a0:v128, a1:v64, a2:v64, a3:Int32) : v128
+    + {static} vqdmlal_lane_s16(a0:v128, a1:v64, a2:v64, a3:Int32) : v128
+    + {static} vqdmlal_lane_s32(a0:v128, a1:v64, a2:v64, a3:Int32) : v128
+    + {static} vmls_lane_s16(a0:v64, a1:v64, a2:v64, a3:Int32) : v64
+    + {static} vmlsq_lane_s16(a0:v128, a1:v128, a2:v64, a3:Int32) : v128
+    + {static} vmls_lane_s32(a0:v64, a1:v64, a2:v64, a3:Int32) : v64
+    + {static} vmlsq_lane_s32(a0:v128, a1:v128, a2:v64, a3:Int32) : v128
+    + {static} vmls_lane_u16(a0:v64, a1:v64, a2:v64, a3:Int32) : v64
+    + {static} vmlsq_lane_u16(a0:v128, a1:v128, a2:v64, a3:Int32) : v128
+    + {static} vmls_lane_u32(a0:v64, a1:v64, a2:v64, a3:Int32) : v64
+    + {static} vmlsq_lane_u32(a0:v128, a1:v128, a2:v64, a3:Int32) : v128
+    + {static} vmls_lane_f32(a0:v64, a1:v64, a2:v64, a3:Int32) : v64
+    + {static} vmlsq_lane_f32(a0:v128, a1:v128, a2:v64, a3:Int32) : v128
+    + {static} vmlsl_lane_s16(a0:v128, a1:v64, a2:v64, a3:Int32) : v128
+    + {static} vmlsl_lane_s32(a0:v128, a1:v64, a2:v64, a3:Int32) : v128
+    + {static} vmlsl_lane_u16(a0:v128, a1:v64, a2:v64, a3:Int32) : v128
+    + {static} vmlsl_lane_u32(a0:v128, a1:v64, a2:v64, a3:Int32) : v128
+    + {static} vqdmlsl_lane_s16(a0:v128, a1:v64, a2:v64, a3:Int32) : v128
+    + {static} vqdmlsl_lane_s32(a0:v128, a1:v64, a2:v64, a3:Int32) : v128
+    + {static} vmul_n_s16(a0:v64, a1:Int16) : v64
+    + {static} vmulq_n_s16(a0:v128, a1:Int16) : v128
+    + {static} vmul_n_s32(a0:v64, a1:Int32) : v64
+    + {static} vmulq_n_s32(a0:v128, a1:Int32) : v128
+    + {static} vmul_n_u16(a0:v64, a1:UInt16) : v64
+    + {static} vmulq_n_u16(a0:v128, a1:UInt16) : v128
+    + {static} vmul_n_u32(a0:v64, a1:UInt32) : v64
+    + {static} vmulq_n_u32(a0:v128, a1:UInt32) : v128
+    + {static} vmul_n_f32(a0:v64, a1:Single) : v64
+    + {static} vmulq_n_f32(a0:v128, a1:Single) : v128
+    + {static} vmul_lane_s16(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vmulq_lane_s16(a0:v128, a1:v64, a2:Int32) : v128
+    + {static} vmul_lane_s32(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vmulq_lane_s32(a0:v128, a1:v64, a2:Int32) : v128
+    + {static} vmul_lane_u16(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vmulq_lane_u16(a0:v128, a1:v64, a2:Int32) : v128
+    + {static} vmul_lane_u32(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vmulq_lane_u32(a0:v128, a1:v64, a2:Int32) : v128
+    + {static} vmul_lane_f32(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vmulq_lane_f32(a0:v128, a1:v64, a2:Int32) : v128
+    + {static} vmull_n_s16(a0:v64, a1:Int16) : v128
+    + {static} vmull_n_s32(a0:v64, a1:Int32) : v128
+    + {static} vmull_n_u16(a0:v64, a1:UInt16) : v128
+    + {static} vmull_n_u32(a0:v64, a1:UInt32) : v128
+    + {static} vmull_lane_s16(a0:v64, a1:v64, a2:Int32) : v128
+    + {static} vmull_lane_s32(a0:v64, a1:v64, a2:Int32) : v128
+    + {static} vmull_lane_u16(a0:v64, a1:v64, a2:Int32) : v128
+    + {static} vmull_lane_u32(a0:v64, a1:v64, a2:Int32) : v128
+    + {static} vqdmull_n_s16(a0:v64, a1:Int16) : v128
+    + {static} vqdmull_n_s32(a0:v64, a1:Int32) : v128
+    + {static} vqdmull_lane_s16(a0:v64, a1:v64, a2:Int32) : v128
+    + {static} vqdmull_lane_s32(a0:v64, a1:v64, a2:Int32) : v128
+    + {static} vqdmulh_n_s16(a0:v64, a1:Int16) : v64
+    + {static} vqdmulhq_n_s16(a0:v128, a1:Int16) : v128
+    + {static} vqdmulh_n_s32(a0:v64, a1:Int32) : v64
+    + {static} vqdmulhq_n_s32(a0:v128, a1:Int32) : v128
+    + {static} vqdmulh_lane_s16(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vqdmulhq_lane_s16(a0:v128, a1:v64, a2:Int32) : v128
+    + {static} vqdmulh_lane_s32(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vqdmulhq_lane_s32(a0:v128, a1:v64, a2:Int32) : v128
+    + {static} vqrdmulh_n_s16(a0:v64, a1:Int16) : v64
+    + {static} vqrdmulhq_n_s16(a0:v128, a1:Int16) : v128
+    + {static} vqrdmulh_n_s32(a0:v64, a1:Int32) : v64
+    + {static} vqrdmulhq_n_s32(a0:v128, a1:Int32) : v128
+    + {static} vqrdmulh_lane_s16(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vqrdmulhq_lane_s16(a0:v128, a1:v64, a2:Int32) : v128
+    + {static} vqrdmulh_lane_s32(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vqrdmulhq_lane_s32(a0:v128, a1:v64, a2:Int32) : v128
+    + {static} vmla_n_s16(a0:v64, a1:v64, a2:Int16) : v64
+    + {static} vmlaq_n_s16(a0:v128, a1:v128, a2:Int16) : v128
+    + {static} vmla_n_s32(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vmlaq_n_s32(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vmla_n_u16(a0:v64, a1:v64, a2:UInt16) : v64
+    + {static} vmlaq_n_u16(a0:v128, a1:v128, a2:UInt16) : v128
+    + {static} vmla_n_u32(a0:v64, a1:v64, a2:UInt32) : v64
+    + {static} vmlaq_n_u32(a0:v128, a1:v128, a2:UInt32) : v128
+    + {static} vmla_n_f32(a0:v64, a1:v64, a2:Single) : v64
+    + {static} vmlaq_n_f32(a0:v128, a1:v128, a2:Single) : v128
+    + {static} vmlal_n_s16(a0:v128, a1:v64, a2:Int16) : v128
+    + {static} vmlal_n_s32(a0:v128, a1:v64, a2:Int32) : v128
+    + {static} vmlal_n_u16(a0:v128, a1:v64, a2:UInt16) : v128
+    + {static} vmlal_n_u32(a0:v128, a1:v64, a2:UInt32) : v128
+    + {static} vqdmlal_n_s16(a0:v128, a1:v64, a2:Int16) : v128
+    + {static} vqdmlal_n_s32(a0:v128, a1:v64, a2:Int32) : v128
+    + {static} vmls_n_s16(a0:v64, a1:v64, a2:Int16) : v64
+    + {static} vmlsq_n_s16(a0:v128, a1:v128, a2:Int16) : v128
+    + {static} vmls_n_s32(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vmlsq_n_s32(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vmls_n_u16(a0:v64, a1:v64, a2:UInt16) : v64
+    + {static} vmlsq_n_u16(a0:v128, a1:v128, a2:UInt16) : v128
+    + {static} vmls_n_u32(a0:v64, a1:v64, a2:UInt32) : v64
+    + {static} vmlsq_n_u32(a0:v128, a1:v128, a2:UInt32) : v128
+    + {static} vmls_n_f32(a0:v64, a1:v64, a2:Single) : v64
+    + {static} vmlsq_n_f32(a0:v128, a1:v128, a2:Single) : v128
+    + {static} vmlsl_n_s16(a0:v128, a1:v64, a2:Int16) : v128
+    + {static} vmlsl_n_s32(a0:v128, a1:v64, a2:Int32) : v128
+    + {static} vmlsl_n_u16(a0:v128, a1:v64, a2:UInt16) : v128
+    + {static} vmlsl_n_u32(a0:v128, a1:v64, a2:UInt32) : v128
+    + {static} vqdmlsl_n_s16(a0:v128, a1:v64, a2:Int16) : v128
+    + {static} vqdmlsl_n_s32(a0:v128, a1:v64, a2:Int32) : v128
+    + {static} vabs_s8(a0:v64) : v64
+    + {static} vabsq_s8(a0:v128) : v128
+    + {static} vabs_s16(a0:v64) : v64
+    + {static} vabsq_s16(a0:v128) : v128
+    + {static} vabs_s32(a0:v64) : v64
+    + {static} vabsq_s32(a0:v128) : v128
+    + {static} vabs_f32(a0:v64) : v64
+    + {static} vabsq_f32(a0:v128) : v128
+    + {static} vqabs_s8(a0:v64) : v64
+    + {static} vqabsq_s8(a0:v128) : v128
+    + {static} vqabs_s16(a0:v64) : v64
+    + {static} vqabsq_s16(a0:v128) : v128
+    + {static} vqabs_s32(a0:v64) : v64
+    + {static} vqabsq_s32(a0:v128) : v128
+    + {static} vneg_s8(a0:v64) : v64
+    + {static} vnegq_s8(a0:v128) : v128
+    + {static} vneg_s16(a0:v64) : v64
+    + {static} vnegq_s16(a0:v128) : v128
+    + {static} vneg_s32(a0:v64) : v64
+    + {static} vnegq_s32(a0:v128) : v128
+    + {static} vneg_f32(a0:v64) : v64
+    + {static} vnegq_f32(a0:v128) : v128
+    + {static} vqneg_s8(a0:v64) : v64
+    + {static} vqnegq_s8(a0:v128) : v128
+    + {static} vqneg_s16(a0:v64) : v64
+    + {static} vqnegq_s16(a0:v128) : v128
+    + {static} vqneg_s32(a0:v64) : v64
+    + {static} vqnegq_s32(a0:v128) : v128
+    + {static} vcls_s8(a0:v64) : v64
+    + {static} vclsq_s8(a0:v128) : v128
+    + {static} vcls_s16(a0:v64) : v64
+    + {static} vclsq_s16(a0:v128) : v128
+    + {static} vcls_s32(a0:v64) : v64
+    + {static} vclsq_s32(a0:v128) : v128
+    + {static} vclz_s8(a0:v64) : v64
+    + {static} vclzq_s8(a0:v128) : v128
+    + {static} vclz_s16(a0:v64) : v64
+    + {static} vclzq_s16(a0:v128) : v128
+    + {static} vclz_s32(a0:v64) : v64
+    + {static} vclzq_s32(a0:v128) : v128
+    + {static} vclz_u8(a0:v64) : v64
+    + {static} vclzq_u8(a0:v128) : v128
+    + {static} vclz_u16(a0:v64) : v64
+    + {static} vclzq_u16(a0:v128) : v128
+    + {static} vclz_u32(a0:v64) : v64
+    + {static} vclzq_u32(a0:v128) : v128
+    + {static} vcnt_s8(a0:v64) : v64
+    + {static} vcntq_s8(a0:v128) : v128
+    + {static} vcnt_u8(a0:v64) : v64
+    + {static} vcntq_u8(a0:v128) : v128
+    + {static} vrecpe_u32(a0:v64) : v64
+    + {static} vrecpeq_u32(a0:v128) : v128
+    + {static} vrecpe_f32(a0:v64) : v64
+    + {static} vrecpeq_f32(a0:v128) : v128
+    + {static} vrecps_f32(a0:v64, a1:v64) : v64
+    + {static} vrecpsq_f32(a0:v128, a1:v128) : v128
+    + {static} vrsqrte_u32(a0:v64) : v64
+    + {static} vrsqrteq_u32(a0:v128) : v128
+    + {static} vrsqrte_f32(a0:v64) : v64
+    + {static} vrsqrteq_f32(a0:v128) : v128
+    + {static} vrsqrts_f32(a0:v64, a1:v64) : v64
+    + {static} vrsqrtsq_f32(a0:v128, a1:v128) : v128
+    + {static} vmvn_s8(a0:v64) : v64
+    + {static} vmvnq_s8(a0:v128) : v128
+    + {static} vmvn_s16(a0:v64) : v64
+    + {static} vmvnq_s16(a0:v128) : v128
+    + {static} vmvn_s32(a0:v64) : v64
+    + {static} vmvnq_s32(a0:v128) : v128
+    + {static} vmvn_u8(a0:v64) : v64
+    + {static} vmvnq_u8(a0:v128) : v128
+    + {static} vmvn_u16(a0:v64) : v64
+    + {static} vmvnq_u16(a0:v128) : v128
+    + {static} vmvn_u32(a0:v64) : v64
+    + {static} vmvnq_u32(a0:v128) : v128
+    + {static} vand_s8(a0:v64, a1:v64) : v64
+    + {static} vandq_s8(a0:v128, a1:v128) : v128
+    + {static} vand_s16(a0:v64, a1:v64) : v64
+    + {static} vandq_s16(a0:v128, a1:v128) : v128
+    + {static} vand_s32(a0:v64, a1:v64) : v64
+    + {static} vandq_s32(a0:v128, a1:v128) : v128
+    + {static} vand_s64(a0:v64, a1:v64) : v64
+    + {static} vandq_s64(a0:v128, a1:v128) : v128
+    + {static} vand_u8(a0:v64, a1:v64) : v64
+    + {static} vandq_u8(a0:v128, a1:v128) : v128
+    + {static} vand_u16(a0:v64, a1:v64) : v64
+    + {static} vandq_u16(a0:v128, a1:v128) : v128
+    + {static} vand_u32(a0:v64, a1:v64) : v64
+    + {static} vandq_u32(a0:v128, a1:v128) : v128
+    + {static} vand_u64(a0:v64, a1:v64) : v64
+    + {static} vandq_u64(a0:v128, a1:v128) : v128
+    + {static} vorr_s8(a0:v64, a1:v64) : v64
+    + {static} vorrq_s8(a0:v128, a1:v128) : v128
+    + {static} vorr_s16(a0:v64, a1:v64) : v64
+    + {static} vorrq_s16(a0:v128, a1:v128) : v128
+    + {static} vorr_s32(a0:v64, a1:v64) : v64
+    + {static} vorrq_s32(a0:v128, a1:v128) : v128
+    + {static} vorr_s64(a0:v64, a1:v64) : v64
+    + {static} vorrq_s64(a0:v128, a1:v128) : v128
+    + {static} vorr_u8(a0:v64, a1:v64) : v64
+    + {static} vorrq_u8(a0:v128, a1:v128) : v128
+    + {static} vorr_u16(a0:v64, a1:v64) : v64
+    + {static} vorrq_u16(a0:v128, a1:v128) : v128
+    + {static} vorr_u32(a0:v64, a1:v64) : v64
+    + {static} vorrq_u32(a0:v128, a1:v128) : v128
+    + {static} vorr_u64(a0:v64, a1:v64) : v64
+    + {static} vorrq_u64(a0:v128, a1:v128) : v128
+    + {static} veor_s8(a0:v64, a1:v64) : v64
+    + {static} veorq_s8(a0:v128, a1:v128) : v128
+    + {static} veor_s16(a0:v64, a1:v64) : v64
+    + {static} veorq_s16(a0:v128, a1:v128) : v128
+    + {static} veor_s32(a0:v64, a1:v64) : v64
+    + {static} veorq_s32(a0:v128, a1:v128) : v128
+    + {static} veor_s64(a0:v64, a1:v64) : v64
+    + {static} veorq_s64(a0:v128, a1:v128) : v128
+    + {static} veor_u8(a0:v64, a1:v64) : v64
+    + {static} veorq_u8(a0:v128, a1:v128) : v128
+    + {static} veor_u16(a0:v64, a1:v64) : v64
+    + {static} veorq_u16(a0:v128, a1:v128) : v128
+    + {static} veor_u32(a0:v64, a1:v64) : v64
+    + {static} veorq_u32(a0:v128, a1:v128) : v128
+    + {static} veor_u64(a0:v64, a1:v64) : v64
+    + {static} veorq_u64(a0:v128, a1:v128) : v128
+    + {static} vbic_s8(a0:v64, a1:v64) : v64
+    + {static} vbicq_s8(a0:v128, a1:v128) : v128
+    + {static} vbic_s16(a0:v64, a1:v64) : v64
+    + {static} vbicq_s16(a0:v128, a1:v128) : v128
+    + {static} vbic_s32(a0:v64, a1:v64) : v64
+    + {static} vbicq_s32(a0:v128, a1:v128) : v128
+    + {static} vbic_s64(a0:v64, a1:v64) : v64
+    + {static} vbicq_s64(a0:v128, a1:v128) : v128
+    + {static} vbic_u8(a0:v64, a1:v64) : v64
+    + {static} vbicq_u8(a0:v128, a1:v128) : v128
+    + {static} vbic_u16(a0:v64, a1:v64) : v64
+    + {static} vbicq_u16(a0:v128, a1:v128) : v128
+    + {static} vbic_u32(a0:v64, a1:v64) : v64
+    + {static} vbicq_u32(a0:v128, a1:v128) : v128
+    + {static} vbic_u64(a0:v64, a1:v64) : v64
+    + {static} vbicq_u64(a0:v128, a1:v128) : v128
+    + {static} vorn_s8(a0:v64, a1:v64) : v64
+    + {static} vornq_s8(a0:v128, a1:v128) : v128
+    + {static} vorn_s16(a0:v64, a1:v64) : v64
+    + {static} vornq_s16(a0:v128, a1:v128) : v128
+    + {static} vorn_s32(a0:v64, a1:v64) : v64
+    + {static} vornq_s32(a0:v128, a1:v128) : v128
+    + {static} vorn_s64(a0:v64, a1:v64) : v64
+    + {static} vornq_s64(a0:v128, a1:v128) : v128
+    + {static} vorn_u8(a0:v64, a1:v64) : v64
+    + {static} vornq_u8(a0:v128, a1:v128) : v128
+    + {static} vorn_u16(a0:v64, a1:v64) : v64
+    + {static} vornq_u16(a0:v128, a1:v128) : v128
+    + {static} vorn_u32(a0:v64, a1:v64) : v64
+    + {static} vornq_u32(a0:v128, a1:v128) : v128
+    + {static} vorn_u64(a0:v64, a1:v64) : v64
+    + {static} vornq_u64(a0:v128, a1:v128) : v128
+    + {static} vbsl_s8(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vbslq_s8(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vbsl_s16(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vbslq_s16(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vbsl_s32(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vbslq_s32(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vbsl_s64(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vbslq_s64(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vbsl_u8(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vbslq_u8(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vbsl_u16(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vbslq_u16(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vbsl_u32(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vbslq_u32(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vbsl_u64(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vbslq_u64(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vbsl_f32(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vbslq_f32(a0:v128, a1:v128, a2:v128) : v128
+    + {static} vdup_lane_s8(a0:v64, a1:Int32) : v64
+    + {static} vdupq_lane_s8(a0:v64, a1:Int32) : v128
+    + {static} vdup_lane_s16(a0:v64, a1:Int32) : v64
+    + {static} vdupq_lane_s16(a0:v64, a1:Int32) : v128
+    + {static} vdup_lane_s32(a0:v64, a1:Int32) : v64
+    + {static} vdupq_lane_s32(a0:v64, a1:Int32) : v128
+    + {static} vdup_lane_s64(a0:v64, a1:Int32) : v64
+    + {static} vdupq_lane_s64(a0:v64, a1:Int32) : v128
+    + {static} vdup_lane_u8(a0:v64, a1:Int32) : v64
+    + {static} vdupq_lane_u8(a0:v64, a1:Int32) : v128
+    + {static} vdup_lane_u16(a0:v64, a1:Int32) : v64
+    + {static} vdupq_lane_u16(a0:v64, a1:Int32) : v128
+    + {static} vdup_lane_u32(a0:v64, a1:Int32) : v64
+    + {static} vdupq_lane_u32(a0:v64, a1:Int32) : v128
+    + {static} vdup_lane_u64(a0:v64, a1:Int32) : v64
+    + {static} vdupq_lane_u64(a0:v64, a1:Int32) : v128
+    + {static} vdup_lane_f32(a0:v64, a1:Int32) : v64
+    + {static} vdupq_lane_f32(a0:v64, a1:Int32) : v128
+    + {static} vpadd_s8(a0:v64, a1:v64) : v64
+    + {static} vpadd_s16(a0:v64, a1:v64) : v64
+    + {static} vpadd_s32(a0:v64, a1:v64) : v64
+    + {static} vpadd_u8(a0:v64, a1:v64) : v64
+    + {static} vpadd_u16(a0:v64, a1:v64) : v64
+    + {static} vpadd_u32(a0:v64, a1:v64) : v64
+    + {static} vpadd_f32(a0:v64, a1:v64) : v64
+    + {static} vpaddl_s8(a0:v64) : v64
+    + {static} vpaddlq_s8(a0:v128) : v128
+    + {static} vpaddl_s16(a0:v64) : v64
+    + {static} vpaddlq_s16(a0:v128) : v128
+    + {static} vpaddl_s32(a0:v64) : v64
+    + {static} vpaddlq_s32(a0:v128) : v128
+    + {static} vpaddl_u8(a0:v64) : v64
+    + {static} vpaddlq_u8(a0:v128) : v128
+    + {static} vpaddl_u16(a0:v64) : v64
+    + {static} vpaddlq_u16(a0:v128) : v128
+    + {static} vpaddl_u32(a0:v64) : v64
+    + {static} vpaddlq_u32(a0:v128) : v128
+    + {static} vpadal_s8(a0:v64, a1:v64) : v64
+    + {static} vpadalq_s8(a0:v128, a1:v128) : v128
+    + {static} vpadal_s16(a0:v64, a1:v64) : v64
+    + {static} vpadalq_s16(a0:v128, a1:v128) : v128
+    + {static} vpadal_s32(a0:v64, a1:v64) : v64
+    + {static} vpadalq_s32(a0:v128, a1:v128) : v128
+    + {static} vpadal_u8(a0:v64, a1:v64) : v64
+    + {static} vpadalq_u8(a0:v128, a1:v128) : v128
+    + {static} vpadal_u16(a0:v64, a1:v64) : v64
+    + {static} vpadalq_u16(a0:v128, a1:v128) : v128
+    + {static} vpadal_u32(a0:v64, a1:v64) : v64
+    + {static} vpadalq_u32(a0:v128, a1:v128) : v128
+    + {static} vpmax_s8(a0:v64, a1:v64) : v64
+    + {static} vpmax_s16(a0:v64, a1:v64) : v64
+    + {static} vpmax_s32(a0:v64, a1:v64) : v64
+    + {static} vpmax_u8(a0:v64, a1:v64) : v64
+    + {static} vpmax_u16(a0:v64, a1:v64) : v64
+    + {static} vpmax_u32(a0:v64, a1:v64) : v64
+    + {static} vpmax_f32(a0:v64, a1:v64) : v64
+    + {static} vpmin_s8(a0:v64, a1:v64) : v64
+    + {static} vpmin_s16(a0:v64, a1:v64) : v64
+    + {static} vpmin_s32(a0:v64, a1:v64) : v64
+    + {static} vpmin_u8(a0:v64, a1:v64) : v64
+    + {static} vpmin_u16(a0:v64, a1:v64) : v64
+    + {static} vpmin_u32(a0:v64, a1:v64) : v64
+    + {static} vpmin_f32(a0:v64, a1:v64) : v64
+    + {static} vext_s8(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vextq_s8(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vext_s16(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vextq_s16(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vext_s32(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vextq_s32(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vext_s64(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vextq_s64(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vext_u8(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vextq_u8(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vext_u16(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vextq_u16(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vext_u32(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vextq_u32(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vext_u64(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vextq_u64(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vext_f32(a0:v64, a1:v64, a2:Int32) : v64
+    + {static} vextq_f32(a0:v128, a1:v128, a2:Int32) : v128
+    + {static} vrev64_s8(a0:v64) : v64
+    + {static} vrev64q_s8(a0:v128) : v128
+    + {static} vrev64_s16(a0:v64) : v64
+    + {static} vrev64q_s16(a0:v128) : v128
+    + {static} vrev64_s32(a0:v64) : v64
+    + {static} vrev64q_s32(a0:v128) : v128
+    + {static} vrev64_u8(a0:v64) : v64
+    + {static} vrev64q_u8(a0:v128) : v128
+    + {static} vrev64_u16(a0:v64) : v64
+    + {static} vrev64q_u16(a0:v128) : v128
+    + {static} vrev64_u32(a0:v64) : v64
+    + {static} vrev64q_u32(a0:v128) : v128
+    + {static} vrev64_f32(a0:v64) : v64
+    + {static} vrev64q_f32(a0:v128) : v128
+    + {static} vrev32_s8(a0:v64) : v64
+    + {static} vrev32q_s8(a0:v128) : v128
+    + {static} vrev32_s16(a0:v64) : v64
+    + {static} vrev32q_s16(a0:v128) : v128
+    + {static} vrev32_u8(a0:v64) : v64
+    + {static} vrev32q_u8(a0:v128) : v128
+    + {static} vrev32_u16(a0:v64) : v64
+    + {static} vrev32q_u16(a0:v128) : v128
+    + {static} vrev16_s8(a0:v64) : v64
+    + {static} vrev16q_s8(a0:v128) : v128
+    + {static} vrev16_u8(a0:v64) : v64
+    + {static} vrev16q_u8(a0:v128) : v128
+    + {static} vtbl1_s8(a0:v64, a1:v64) : v64
+    + {static} vtbl1_u8(a0:v64, a1:v64) : v64
+    + {static} vtbx1_s8(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vtbx1_u8(a0:v64, a1:v64, a2:v64) : v64
+    + {static} vget_lane_u8(a0:v64, a1:Int32) : Byte
+    + {static} vget_lane_u16(a0:v64, a1:Int32) : UInt16
+    + {static} vget_lane_u32(a0:v64, a1:Int32) : UInt32
+    + {static} vget_lane_u64(a0:v64, a1:Int32) : UInt64
+    + {static} vget_lane_s8(a0:v64, a1:Int32) : SByte
+    + {static} vget_lane_s16(a0:v64, a1:Int32) : Int16
+    + {static} vget_lane_s32(a0:v64, a1:Int32) : Int32
+    + {static} vget_lane_s64(a0:v64, a1:Int32) : Int64
+    + {static} vget_lane_f32(a0:v64, a1:Int32) : Single
+    + {static} vgetq_lane_u8(a0:v128, a1:Int32) : Byte
+    + {static} vgetq_lane_u16(a0:v128, a1:Int32) : UInt16
+    + {static} vgetq_lane_u32(a0:v128, a1:Int32) : UInt32
+    + {static} vgetq_lane_u64(a0:v128, a1:Int32) : UInt64
+    + {static} vgetq_lane_s8(a0:v128, a1:Int32) : SByte
+    + {static} vgetq_lane_s16(a0:v128, a1:Int32) : Int16
+    + {static} vgetq_lane_s32(a0:v128, a1:Int32) : Int32
+    + {static} vgetq_lane_s64(a0:v128, a1:Int32) : Int64
+    + {static} vgetq_lane_f32(a0:v128, a1:Int32) : Single
+    + {static} vset_lane_u8(a0:Byte, a1:v64, a2:Int32) : v64
+    + {static} vset_lane_u16(a0:UInt16, a1:v64, a2:Int32) : v64
+    + {static} vset_lane_u32(a0:UInt32, a1:v64, a2:Int32) : v64
+    + {static} vset_lane_u64(a0:UInt64, a1:v64, a2:Int32) : v64
+    + {static} vset_lane_s8(a0:SByte, a1:v64, a2:Int32) : v64
+    + {static} vset_lane_s16(a0:Int16, a1:v64, a2:Int32) : v64
+    + {static} vset_lane_s32(a0:Int32, a1:v64, a2:Int32) : v64
+    + {static} vset_lane_s64(a0:Int64, a1:v64, a2:Int32) : v64
+    + {static} vset_lane_f32(a0:Single, a1:v64, a2:Int32) : v64
+    + {static} vsetq_lane_u8(a0:Byte, a1:v128, a2:Int32) : v128
+    + {static} vsetq_lane_u16(a0:UInt16, a1:v128, a2:Int32) : v128
+    + {static} vsetq_lane_u32(a0:UInt32, a1:v128, a2:Int32) : v128
+    + {static} vsetq_lane_u64(a0:UInt64, a1:v128, a2:Int32) : v128
+    + {static} vsetq_lane_s8(a0:SByte, a1:v128, a2:Int32) : v128
+    + {static} vsetq_lane_s16(a0:Int16, a1:v128, a2:Int32) : v128
+    + {static} vsetq_lane_s32(a0:Int32, a1:v128, a2:Int32) : v128
+    + {static} vsetq_lane_s64(a0:Int64, a1:v128, a2:Int32) : v128
+    + {static} vsetq_lane_f32(a0:Single, a1:v128, a2:Int32) : v128
+    + {static} vfma_n_f32(a0:v64, a1:v64, a2:Single) : v64
+    + {static} vfmaq_n_f32(a0:v128, a1:v128, a2:Single) : v128
+}
+Arm +-- Neon
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class NavMeshLinkInspectorTests {
+    + SetUp() : void
+    + TearDown() : void
+    + ShowNavMeshLinkInInspector_NoErrorsOrWarnings() : IEnumerator
+}
+@enduml

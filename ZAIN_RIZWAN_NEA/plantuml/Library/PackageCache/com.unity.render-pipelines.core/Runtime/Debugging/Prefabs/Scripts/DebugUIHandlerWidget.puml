@@ -1,0 +1,17 @@
+@startuml
+class DebugUIHandlerWidget {
+    + <<virtual>> OnSelection(fromNext:bool, previous:DebugUIHandlerWidget) : bool
+    + <<virtual>> OnDeselection() : void
+    + <<virtual>> OnAction() : void
+    + <<virtual>> OnIncrement(fast:bool) : void
+    + <<virtual>> OnDecrement(fast:bool) : void
+    + <<virtual>> Previous() : DebugUIHandlerWidget
+    + <<virtual>> Next() : DebugUIHandlerWidget
+}
+MonoBehaviour <|-- DebugUIHandlerWidget
+DebugUIHandlerWidget o-> "colorDefault" Color
+DebugUIHandlerWidget o-> "colorSelected" Color
+DebugUIHandlerWidget --> "parentUIHandler" DebugUIHandlerWidget
+DebugUIHandlerWidget --> "previousUIHandler" DebugUIHandlerWidget
+DebugUIHandlerWidget --> "nextUIHandler" DebugUIHandlerWidget
+@enduml

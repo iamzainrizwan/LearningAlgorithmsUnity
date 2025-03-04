@@ -1,0 +1,33 @@
+@startuml
+class CoreEditorConstants <<static>> {
+    + {static} <<readonly>> additionalPropertiesHightLightSpeed : float = 0.3f
+    + {static} standardHorizontalSpacing : float <<get>>
+}
+class CoreEditorStyles <<static>> {
+}
+CoreEditorStyles --> "smallTickbox" GUIStyle
+CoreEditorStyles --> "smallMixedTickbox" GUIStyle
+CoreEditorStyles --> "miniLabelButton" GUIStyle
+CoreEditorStyles --> "contextMenuStyle" GUIStyle
+CoreEditorStyles --> "additionalPropertiesHighlightStyle" GUIStyle
+CoreEditorStyles --> "iconHelpStyle" GUIStyle
+CoreEditorStyles --> "sectionHeaderStyle" GUIStyle
+CoreEditorStyles --> "subSectionHeaderStyle" GUIStyle
+CoreEditorStyles --> "redTexture" Texture2D
+CoreEditorStyles --> "greenTexture" Texture2D
+CoreEditorStyles --> "blueTexture" Texture2D
+CoreEditorStyles --> "paneOptionsIcon" Texture2D
+CoreEditorStyles --> "iconWarn" Texture2D
+CoreEditorStyles --> "iconHelp" Texture2D
+CoreEditorStyles --> "iconFail" Texture2D
+CoreEditorStyles --> "iconSuccess" Texture2D
+CoreEditorStyles --> "iconComplete" Texture2D
+CoreEditorStyles --> "iconPending" Texture2D
+CoreEditorStyles --> "globalSettingsIcon" Texture2D
+CoreEditorStyles --> "backgroundColor" Color
+CoreEditorStyles --> "backgroundHighlightColor" Color
+CoreEditorStyles --> "contextMenuIcon" GUIContent
+CoreEditorStyles o-> "resetButtonLabel" GUIContent
+CoreEditorStyles o-> "resetAllButtonLabel" GUIContent
+CoreEditorStyles o-> "empty" GUIContent
+@enduml

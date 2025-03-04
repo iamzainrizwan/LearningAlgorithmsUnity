@@ -1,0 +1,6 @@
+@startuml
+class VisualScriptingHelpURLAttribute {
+    + VisualScriptingHelpURLAttribute(type:Type)
+}
+Attribute <|-- VisualScriptingHelpURLAttribute
+@enduml

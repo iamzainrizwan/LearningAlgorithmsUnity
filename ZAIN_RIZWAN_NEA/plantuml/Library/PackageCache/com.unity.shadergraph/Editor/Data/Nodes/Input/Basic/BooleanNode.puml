@@ -1,0 +1,17 @@
+@startuml
+class BooleanNode {
+    + <<const>> OutputSlotId : int = 0
+    + BooleanNode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> CollectShaderProperties(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + <<override>> GetVariableNameForSlot(slotId:int) : string
+    + <<override>> CollectPreviewMaterialProperties(properties:List<PreviewProperty>) : void
+    + AsShaderProperty() : AbstractShaderProperty
+    + outputSlotId : int <<get>>
+}
+AbstractMaterialNode <|-- BooleanNode
+IGeneratesBodyCode <|-- BooleanNode
+IPropertyFromNode <|-- BooleanNode
+BooleanNode --> "value" ToggleData
+@enduml

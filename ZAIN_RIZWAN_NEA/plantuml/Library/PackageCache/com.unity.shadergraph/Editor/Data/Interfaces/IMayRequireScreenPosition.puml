@@ -1,0 +1,13 @@
+@startuml
+interface IMayRequireScreenPosition {
+}
+interface IMayRequireNDCPosition {
+}
+interface IMayRequirePixelPosition {
+}
+class MayRequireScreenPositionExtensions <<static>> {
+    + {static} RequiresScreenPosition(slot:MaterialSlot, stageCapability:ShaderStageCapability) : bool
+    + {static} RequiresNDCPosition(slot:MaterialSlot, stageCapability:ShaderStageCapability) : bool
+    + {static} RequiresPixelPosition(slot:MaterialSlot, stageCapability:ShaderStageCapability) : bool
+}
+@enduml

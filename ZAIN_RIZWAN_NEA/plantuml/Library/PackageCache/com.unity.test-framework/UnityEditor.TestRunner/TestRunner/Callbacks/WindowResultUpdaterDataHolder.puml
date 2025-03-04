@@ -1,0 +1,10 @@
+@startuml
+class WindowResultUpdaterDataHolder {
+}
+class "ScriptableSingleton`1"<T> {
+}
+class "List`1"<T> {
+}
+"ScriptableSingleton`1" "<WindowResultUpdaterDataHolder>" <|-- WindowResultUpdaterDataHolder
+WindowResultUpdaterDataHolder o-> "CachedResults<TestRunnerResult>" "List`1"
+@enduml

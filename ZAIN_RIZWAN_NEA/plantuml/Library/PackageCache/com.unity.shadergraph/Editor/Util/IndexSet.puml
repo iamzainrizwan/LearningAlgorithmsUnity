@@ -1,0 +1,37 @@
+@startuml
+class IndexSet <<sealed>> {
+    + IndexSet()
+    + IndexSet(indices:IEnumerable<int>)
+    + GetEnumerator() : IEnumerator<int>
+    + UnionWith(other:IEnumerable<int>) : void
+    + UnionWith(other:IndexSet) : void
+    + IntersectWith(other:IEnumerable<int>) : void
+    + IntersectWith(other:IndexSet) : void
+    + ExceptWith(other:IEnumerable<int>) : void
+    + ExceptWith(other:IndexSet) : void
+    + SymmetricExceptWith(other:IEnumerable<int>) : void
+    + SymmetricExceptWith(other:IndexSet) : void
+    + IsSubsetOf(other:IEnumerable<int>) : bool
+    + IsSubsetOf(other:IndexSet) : bool
+    + IsSupersetOf(other:IEnumerable<int>) : bool
+    + IsSupersetOf(other:IndexSet) : bool
+    + IsProperSupersetOf(other:IEnumerable<int>) : bool
+    + IsProperSupersetOf(other:IndexSet) : bool
+    + IsProperSubsetOf(other:IEnumerable<int>) : bool
+    + IsProperSubsetOf(other:IndexSet) : bool
+    + Overlaps(other:IEnumerable<int>) : bool
+    + Overlaps(other:IndexSet) : bool
+    + SetEquals(other:IEnumerable<int>) : bool
+    + SetEquals(other:IndexSet) : bool
+    + Add(index:int) : bool
+    + Clear() : void
+    + Contains(index:int) : bool
+    + CopyTo(array:int[], arrayIndex:int) : void
+    + Remove(index:int) : bool
+    + Count : int <<get>>
+    + IsReadOnly : bool <<get>>
+}
+class "ICollection`1"<T> {
+}
+"ICollection`1" "<int>" <|-- IndexSet
+@enduml

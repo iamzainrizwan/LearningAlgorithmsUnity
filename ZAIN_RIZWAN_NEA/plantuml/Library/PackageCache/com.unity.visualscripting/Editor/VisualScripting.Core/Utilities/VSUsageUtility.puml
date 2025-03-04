@@ -1,0 +1,5 @@
+@startuml
+class VSUsageUtility <<static>> {
+    + {static} isVisualScriptingUsed : bool <<get>> <<set>>
+}
+@enduml

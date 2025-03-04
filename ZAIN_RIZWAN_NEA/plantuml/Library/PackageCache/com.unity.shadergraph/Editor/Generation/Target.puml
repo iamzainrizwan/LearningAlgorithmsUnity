@@ -1,0 +1,18 @@
+@startuml
+abstract class Target {
+    + displayName : string <<get>> <<set>>
+    + isHidden : bool <<get>> <<set>>
+    + {abstract} IsActive() : bool
+    + {abstract} Setup(context:TargetSetupContext) : void
+    + {abstract} GetFields(context:TargetFieldContext) : void
+    + {abstract} GetActiveBlocks(context:TargetActiveBlockContext) : void
+    + {abstract} GetPropertiesGUI(context:TargetPropertyGUIContext, onChange:Action, registerUndo:Action<string>) : void
+    + <<virtual>> CollectShaderProperties(collector:PropertyCollector, generationMode:GenerationMode) : void
+    + <<virtual>> ProcessPreviewMaterial(material:Material) : void
+    + <<virtual>> saveContext : object <<get>>
+    + <<virtual>> IsNodeAllowedByTarget(nodeType:Type) : bool
+    + <<virtual>> DerivativeModificationCallback(dstGraphFunctions:string, dstGraphPixel:string, adjustedUvDerivs:bool[], primaryShaderName:string, passName:string, propStr:string, surfaceDescStr:string, graphFuncStr:string, graphPixelStr:string, customFuncs:List<string>, applyEmulatedDerivatives:bool) : bool
+    + {abstract} WorksWithSRP(scriptableRenderPipeline:RenderPipelineAsset) : bool
+}
+JsonObject <|-- Target
+@enduml

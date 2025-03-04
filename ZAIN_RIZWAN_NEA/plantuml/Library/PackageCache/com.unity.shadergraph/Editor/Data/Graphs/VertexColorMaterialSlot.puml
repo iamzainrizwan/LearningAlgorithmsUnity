@@ -1,0 +1,11 @@
+@startuml
+class VertexColorMaterialSlot {
+    + VertexColorMaterialSlot()
+    + VertexColorMaterialSlot(slotId:int, displayName:string, shaderOutputName:string, stageCapability:ShaderStageCapability, hidden:bool)
+    + <<override>> InstantiateControl() : VisualElement
+    + <<override>> GetDefaultValue(generationMode:GenerationMode) : string
+    + RequiresVertexColor(stageCapability:ShaderStageCapability) : bool
+}
+Vector4MaterialSlot <|-- VertexColorMaterialSlot
+IMayRequireVertexColor <|-- VertexColorMaterialSlot
+@enduml

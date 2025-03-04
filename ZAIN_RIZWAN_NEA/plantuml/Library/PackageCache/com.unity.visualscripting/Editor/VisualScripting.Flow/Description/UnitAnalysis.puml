@@ -1,0 +1,6 @@
+@startuml
+class UnitAnalysis <<sealed>> {
+    + isEntered : bool <<get>> <<set>>
+}
+GraphElementAnalysis <|-- UnitAnalysis
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+abstract class MemberUnit {
+    + <<override>> canDefine : bool <<get>>
+    + <<override>> Prewarm() : void
+    + <<override>> GetAotStubs(visited:HashSet<object>) : IEnumerable<object>
+}
+Unit <|-- MemberUnit
+IAotStubbable <|-- MemberUnit
+MemberUnit --> "member" Member
+MemberUnit --> "target" ValueInput
+@enduml

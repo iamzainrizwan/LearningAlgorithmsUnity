@@ -1,0 +1,41 @@
+@startuml
+class ShaderGeneratorTests {
+    + RunBeforeAnyTests() : void
+    + AdaptNodeOutput1To1Works() : void
+    + AdaptNodeOutput1To2Works() : void
+    + AdaptNodeOutput1To3Works() : void
+    + AdaptNodeOutput1To4Works() : void
+    + AdaptNodeOutput2To1Works() : void
+    + AdaptNodeOutput2To2Works() : void
+    + AdaptNodeOutput2To3Works() : void
+    + AdaptNodeOutput2To4Works() : void
+    + AdaptNodeOutput3To1Works() : void
+    + AdaptNodeOutput3To2Works() : void
+    + AdaptNodeOutput3To3Works() : void
+    + AdaptNodeOutput3To4Fails() : void
+    + AdaptNodeOutput4To1Works() : void
+    + AdaptNodeOutput4To2Works() : void
+    + AdaptNodeOutput4To3Works() : void
+    + AdaptNodeOutput4To4Works() : void
+    + AdaptNodeOutput1To4PreviewWorks() : void
+    + AdaptNodeOutput2To4PreviewWorks() : void
+    + AdaptNodeOutput3To4PreviewWorks() : void
+    + AdaptNodeOutput4To4PreviewWorks() : void
+    + GenerationUtils_GeneratePackedStruct(testCase:PackingTestCase) : void
+    + GenerationUtils_GenerateInterpolatorFunctions(packingTestCase:PackingTestCase) : void
+    + GenerationUtils_ActivationFields() : void
+}
+class TestNode {
+    + <<const>> V1Out : int = 0
+    + <<const>> V2Out : int = 1
+    + <<const>> V3Out : int = 2
+    + <<const>> V4Out : int = 3
+    + TestNode()
+}
+struct PackingTestCase {
+    + <<override>> ToString() : string
+}
+ShaderGeneratorTests +-- TestNode
+AbstractMaterialNode <|-- TestNode
+ShaderGeneratorTests +-- PackingTestCase
+@enduml

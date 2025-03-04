@@ -1,0 +1,5 @@
+@startuml
+class ObsoleteProbeVolumeAsset {
+}
+ScriptableObject <|-- ObsoleteProbeVolumeAsset
+@enduml

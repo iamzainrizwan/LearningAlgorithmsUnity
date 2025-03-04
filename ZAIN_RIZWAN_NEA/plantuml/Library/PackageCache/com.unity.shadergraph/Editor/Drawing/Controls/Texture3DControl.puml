@@ -1,0 +1,12 @@
+@startuml
+class Texture3DControlAttribute {
+    + Texture3DControlAttribute(label:string)
+    + InstantiateControl(node:AbstractMaterialNode, propertyInfo:PropertyInfo) : VisualElement
+}
+class Texture3DControlView {
+    + Texture3DControlView(label:string, node:AbstractMaterialNode, propertyInfo:PropertyInfo)
+}
+Attribute <|-- Texture3DControlAttribute
+IControlAttribute <|-- Texture3DControlAttribute
+VisualElement <|-- Texture3DControlView
+@enduml

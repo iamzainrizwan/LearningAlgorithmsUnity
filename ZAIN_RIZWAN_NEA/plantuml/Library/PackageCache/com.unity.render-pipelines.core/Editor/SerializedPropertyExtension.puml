@@ -1,0 +1,10 @@
+@startuml
+class SerializedPropertyExtension <<static>> {
+    + {static} IsTargetAlive(property:SerializedProperty) : bool
+    + {static} GetEnumValue(property:SerializedProperty) : T
+    + {static} GetEnumName(property:SerializedProperty) : string
+    + {static} SetEnumValue(property:SerializedProperty, value:T) : void
+    + {static} GetInline(serializedProperty:SerializedProperty) : T
+    + {static} SetInline(serializedProperty:SerializedProperty, value:T) : void
+}
+@enduml

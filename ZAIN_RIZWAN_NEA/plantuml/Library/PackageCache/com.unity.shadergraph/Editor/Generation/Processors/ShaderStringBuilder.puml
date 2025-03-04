@@ -1,0 +1,48 @@
+@startuml
+struct ShaderStringMapping {
+    + startIndex : int <<get>> <<set>>
+    + count : int <<get>> <<set>>
+}
+class ShaderStringBuilder {
+    + ShaderStringBuilder(indentationLevel:int, stringBuilderSize:int, humanReadable:bool)
+    + AppendNewLine() : void
+    + AppendLine(value:string) : void
+    + AddLine(v0:string) : void
+    + AddLine(v0:string, v1:string) : void
+    + AddLine(v0:string, v1:string, v2:string) : void
+    + AddLine(v0:string, v1:string, v2:string, v3:string) : void
+    + AddLine(v0:string, v1:string, v2:string, v3:string, v4:string) : void
+    + AddLine(v0:string, v1:string, v2:string, v3:string, v4:string, v5:string) : void
+    + AddLine(v0:string, v1:string, v2:string, v3:string, v4:string, v5:string, v6:string) : void
+    + AddLine(v0:string, v1:string, v2:string, v3:string, v4:string, v5:string, v6:string, v7:string) : void
+    + AppendLine(formatString:string, args:object[]) : void
+    + AppendLines(lines:string) : void
+    + Append(value:string) : void
+    + Append(value:string, start:int, count:int) : void
+    + Append(formatString:string, args:object[]) : void
+    + AppendSpaces(count:int) : void
+    + TryAppendIndentation() : void
+    + IndentScope() : IDisposable
+    + BlockScope() : IDisposable
+    + BlockSemicolonScope() : IDisposable
+    + IncreaseIndent() : void
+    + IncreaseIndent(level:int) : void
+    + DecreaseIndent() : void
+    + DecreaseIndent(level:int) : void
+    + Dispose() : void
+    + Concat(other:ShaderStringBuilder) : void
+    + ReplaceInCurrentMapping(oldValue:string, newValue:string) : void
+    + Replace(oldValue:string, newValue:string, start:int, end:int) : void
+    + ToCodeBlock() : string
+    + <<override>> ToString() : string
+    + ToString(startIndex:int, length:int) : string
+}
+enum ScopeType {
+    Indent,
+    Block,
+    BlockSemicolon,
+}
+ShaderStringMapping --> "node" AbstractMaterialNode
+IDisposable <|-- ShaderStringBuilder
+ShaderStringBuilder +-- ScopeType
+@enduml

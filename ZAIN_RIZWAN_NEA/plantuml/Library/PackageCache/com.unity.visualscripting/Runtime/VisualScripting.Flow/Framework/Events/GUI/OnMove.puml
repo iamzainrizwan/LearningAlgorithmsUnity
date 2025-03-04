@@ -1,0 +1,9 @@
+@startuml
+class OnMove <<sealed>> {
+}
+class "GameObjectEventUnit`1"<T> {
+}
+"GameObjectEventUnit`1" "<AxisEventData>" <|-- OnMove
+OnMove --> "MessageListenerType" Type
+OnMove --> "data" ValueOutput
+@enduml

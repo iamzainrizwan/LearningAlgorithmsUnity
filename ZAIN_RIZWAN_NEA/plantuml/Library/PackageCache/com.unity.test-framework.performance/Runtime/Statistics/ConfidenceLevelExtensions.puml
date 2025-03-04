@@ -1,0 +1,5 @@
+@startuml
+class ConfidenceLevelExtensions <<static>> {
+    + {static} GetZValue(level:ConfidenceLevel, n:int) : double
+}
+@enduml

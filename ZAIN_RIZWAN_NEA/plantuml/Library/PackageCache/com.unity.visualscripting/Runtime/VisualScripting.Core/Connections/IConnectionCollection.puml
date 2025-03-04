@@ -1,0 +1,11 @@
+@startuml
+interface "IConnectionCollection`3"<TConnection,TSource,TDestination> {
+}
+class "ICollection`1"<T> {
+}
+class "IConnection`2"<T1,T2> {
+}
+class "IEnumerable`1"<T> {
+}
+"ICollection`1" "<TConnection>" <|-- "IConnectionCollection`3"
+@enduml

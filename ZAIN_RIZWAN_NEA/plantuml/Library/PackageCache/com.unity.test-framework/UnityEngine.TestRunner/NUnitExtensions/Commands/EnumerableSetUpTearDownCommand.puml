@@ -1,0 +1,8 @@
+@startuml
+class EnumerableSetUpTearDownCommand {
+    + EnumerableSetUpTearDownCommand(innerCommand:TestCommand)
+}
+class "BeforeAfterTestCommandBase`1"<T> {
+}
+"BeforeAfterTestCommandBase`1" "<MethodInfo>" <|-- EnumerableSetUpTearDownCommand
+@enduml

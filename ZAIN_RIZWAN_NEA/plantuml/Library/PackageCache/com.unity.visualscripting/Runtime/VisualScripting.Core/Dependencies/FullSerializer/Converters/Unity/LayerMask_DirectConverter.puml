@@ -1,0 +1,11 @@
+@startuml
+class fsConverterRegistrar <<partial>> {
+}
+class LayerMask_DirectConverter {
+    + <<override>> CreateInstance(data:fsData, storageType:Type) : object
+}
+class "fsDirectConverter`1"<T> {
+}
+fsConverterRegistrar --> "Register_LayerMask_DirectConverter" LayerMask_DirectConverter
+"fsDirectConverter`1" "<LayerMask>" <|-- LayerMask_DirectConverter
+@enduml

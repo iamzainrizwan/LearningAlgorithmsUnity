@@ -1,0 +1,22 @@
+@startuml
+class KeyboardNavigation <<static>> {
+    + {static} FrameTrackHeader(treeItem:TreeViewItem) : void
+    + {static} TrackHeadActive() : bool
+    + {static} ClipAreaActive() : bool
+    + {static} GetVisibleSelectedItems() : IEnumerable<ITimelineItem>
+    + {static} GetVisibleTracks() : IEnumerable<TimelineTrackBaseGUI>
+    + {static} FocusFirstVisibleItem(focusTracks:IEnumerable<TrackAsset>) : bool
+    + {static} NavigateLeft(tracks:IEnumerable<TrackAsset>) : bool
+    + {static} TryCollapse(tracks:IEnumerable<TrackAsset>) : bool
+    + {static} ToggleCollapseGroup(tracks:IEnumerable<TrackAsset>) : bool
+    + {static} SelectLeftItem(shift:bool) : bool
+    + {static} SelectRightItem(shift:bool) : bool
+    + {static} NavigateRight(tracks:IEnumerable<TrackAsset>) : bool
+    + {static} TryExpand(tracks:IEnumerable<TrackAsset>) : bool
+    + {static} TrySelectFirstChild(tracks:IEnumerable<TrackAsset>) : bool
+    + {static} SelectUpTrack(shift:bool) : bool
+    + {static} SelectUpItem() : bool
+    + {static} SelectDownTrack(shift:bool) : bool
+    + {static} SelectDownItem() : bool
+}
+@enduml

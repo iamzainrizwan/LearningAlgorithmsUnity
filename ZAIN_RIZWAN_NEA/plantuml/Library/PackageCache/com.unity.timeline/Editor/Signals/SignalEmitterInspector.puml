@@ -1,0 +1,8 @@
+@startuml
+class SignalEmitterInspector {
+    + <<override>> OnInspectorGUI() : void
+}
+MarkerInspector <|-- SignalEmitterInspector
+ISignalAssetProvider <|-- SignalEmitterInspector
+SignalEmitterInspector --> "signalAsset" SignalAsset
+@enduml

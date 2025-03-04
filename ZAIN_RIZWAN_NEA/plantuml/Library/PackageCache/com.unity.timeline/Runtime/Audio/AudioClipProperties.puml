@@ -1,0 +1,6 @@
+@startuml
+class AudioClipProperties {
+    + volume : float = 1.0f
+}
+PlayableBehaviour <|-- AudioClipProperties
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+class FlipbookNode {
+    + FlipbookNode()
+    + <<override>> hasPreview : bool <<get>>
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + <<override>> CollectPreviewMaterialProperties(properties:List<PreviewProperty>) : void
+    + <<override>> CollectShaderProperties(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + GenerateNodeFunction(registry:FunctionRegistry, generationMode:GenerationMode) : void
+    + RequiresMeshUV(channel:UVChannel, stageCapability:ShaderStageCapability) : bool
+}
+AbstractMaterialNode <|-- FlipbookNode
+IGeneratesBodyCode <|-- FlipbookNode
+IGeneratesFunction <|-- FlipbookNode
+IMayRequireMeshUV <|-- FlipbookNode
+FlipbookNode --> "invertX" ToggleData
+FlipbookNode --> "invertY" ToggleData
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+class CopyColorPass {
+    + CopyColorPass(evt:RenderPassEvent, samplingMaterial:Material, copyColorMaterial:Material, customPassName:string)
+    + {static} ConfigureDescriptor(downsamplingMethod:Downsampling, descriptor:RenderTextureDescriptor, filterMode:FilterMode) : void
+    + Setup(source:RenderTargetIdentifier, destination:RenderTargetHandle, downsampling:Downsampling) : void
+    + Setup(source:RTHandle, destination:RTHandle, downsampling:Downsampling) : void
+    + <<override>> OnCameraSetup(cmd:CommandBuffer, renderingData:RenderingData) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+}
+class PassData {
+}
+ScriptableRenderPass <|-- CopyColorPass
+CopyColorPass +-- PassData
+@enduml

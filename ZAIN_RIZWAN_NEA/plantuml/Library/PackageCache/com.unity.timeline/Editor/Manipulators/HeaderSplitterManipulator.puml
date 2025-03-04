@@ -1,0 +1,6 @@
+@startuml
+class HeaderSplitterManipulator {
+    + <<override>> Overlay(evt:Event, state:WindowState) : void
+}
+Manipulator <|-- HeaderSplitterManipulator
+@enduml

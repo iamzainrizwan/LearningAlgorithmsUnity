@@ -1,0 +1,8 @@
+@startuml
+class TMP_StyleSheet {
+    + GetStyle(hashCode:int) : TMP_Style
+    + GetStyle(name:string) : TMP_Style
+    + RefreshStyles() : void
+}
+ScriptableObject <|-- TMP_StyleSheet
+@enduml

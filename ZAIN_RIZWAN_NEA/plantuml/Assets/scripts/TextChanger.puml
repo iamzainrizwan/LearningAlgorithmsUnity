@@ -1,0 +1,8 @@
+@startuml
+class TextChanger {
+    + newText : string
+    + ChangeText() : void
+}
+MonoBehaviour <|-- TextChanger
+TextChanger --> "displayText" TMP_Text
+@enduml

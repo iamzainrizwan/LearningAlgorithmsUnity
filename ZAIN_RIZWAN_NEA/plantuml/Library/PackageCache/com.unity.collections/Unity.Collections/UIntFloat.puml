@@ -1,0 +1,8 @@
+@startuml
+struct UIntFloat {
+    + floatValue : float
+    + intValue : uint
+    + doubleValue : double
+    + longValue : ulong
+}
+@enduml

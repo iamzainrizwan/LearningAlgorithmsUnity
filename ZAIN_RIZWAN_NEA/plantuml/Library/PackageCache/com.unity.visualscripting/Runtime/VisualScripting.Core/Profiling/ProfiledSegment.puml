@@ -1,0 +1,10 @@
+@startuml
+class ProfiledSegment {
+    + ProfiledSegment(parent:ProfiledSegment, name:string)
+    + name : string <<get>>
+    + calls : long <<get>> <<set>>
+}
+ProfiledSegment --> "stopwatch" Stopwatch
+ProfiledSegment --> "parent" ProfiledSegment
+ProfiledSegment --> "children" ProfiledSegmentCollection
+@enduml

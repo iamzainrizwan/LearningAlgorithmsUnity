@@ -1,0 +1,6 @@
+@startuml
+class ILSupport <<unsafe>> <<static>> {
+    + {static} AddressOf(thing:T) : void*
+    + {static} AsRef(thing:T) : ref T
+}
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+abstract class PluginConfigurationItemMetadata {
+    + key : string <<get>>
+    + defaultValue : object <<get>> <<set>>
+    + visible : bool <<get>>
+    + enabled : bool <<get>>
+    + resettable : bool <<get>>
+    + <<override>> isEditable : bool <<get>> <<set>>
+    + {abstract} exists : bool <<get>>
+    + {abstract} Load() : void
+    + {abstract} Save() : void
+    + Reset(force:bool) : void
+    + <<override>> GetCustomAttributes(inherit:bool) : Attribute[]
+}
+enum Mode {
+    Field,
+    Property,
+}
+Metadata <|-- PluginConfigurationItemMetadata
+PluginConfigurationItemMetadata --> "member" MemberInfo
+PluginConfigurationItemMetadata --> "configuration" PluginConfiguration
+PluginConfigurationItemMetadata +-- Mode
+@enduml

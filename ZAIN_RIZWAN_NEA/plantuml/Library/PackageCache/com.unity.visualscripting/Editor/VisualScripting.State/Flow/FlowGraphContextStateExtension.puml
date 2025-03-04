@@ -1,0 +1,11 @@
+@startuml
+class FlowGraphContextStateExtension <<sealed>> {
+    + FlowGraphContextStateExtension(context:FlowGraphContext)
+    + <<override>> AcceptsDragAndDrop() : bool
+    + <<override>> PerformDragAndDrop() : void
+    + <<override>> DrawDragAndDropPreview() : void
+}
+class "GraphContextExtension`1"<T> {
+}
+"GraphContextExtension`1" "<FlowGraphContext>" <|-- FlowGraphContextStateExtension
+@enduml

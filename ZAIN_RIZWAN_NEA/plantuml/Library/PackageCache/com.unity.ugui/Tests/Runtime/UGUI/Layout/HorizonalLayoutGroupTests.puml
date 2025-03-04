@@ -1,0 +1,13 @@
+@startuml
+class HorizontalLayoutGroupTests {
+    + Setup() : void
+    + TestSetup() : void
+    + TearDown() : void
+    + OneTimeTearDown() : void
+    + TestCalculateLayoutInputHorizontal() : void
+    + TestCalculateLayoutInputVertical() : void
+    + TestCalculateLayoutHorizontal() : void
+    + TestCalculateLayoutHorizontalReversed() : void
+}
+IPrebuildSetup <|-- HorizontalLayoutGroupTests
+@enduml

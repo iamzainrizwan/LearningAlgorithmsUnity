@@ -1,0 +1,63 @@
+@startuml
+struct DataStreamWriter {
+    + {static} IsLittleEndian : bool <<get>>
+    + DataStreamWriter(length:int, allocator:AllocatorManager.AllocatorHandle)
+    + DataStreamWriter(data:NativeArray<byte>)
+    + DataStreamWriter(data:byte*, length:int)
+    + AsNativeArray() : NativeArray<byte>
+    + <<readonly>> IsCreated : bool <<get>>
+    + <<readonly>> HasFailedWrites : bool <<get>>
+    + <<readonly>> Capacity : int <<get>>
+    + Length : int <<get>>
+    + LengthInBits : int <<get>>
+    + Flush() : void
+    + WriteByte(value:byte) : bool
+    + WriteBytes(value:NativeArray<byte>) : bool
+    + WriteBytes(value:Span<byte>) : bool
+    + WriteShort(value:short) : bool
+    + WriteUShort(value:ushort) : bool
+    + WriteInt(value:int) : bool
+    + WriteUInt(value:uint) : bool
+    + WriteLong(value:long) : bool
+    + WriteULong(value:ulong) : bool
+    + WriteShortNetworkByteOrder(value:short) : bool
+    + WriteUShortNetworkByteOrder(value:ushort) : bool
+    + WriteIntNetworkByteOrder(value:int) : bool
+    + WriteUIntNetworkByteOrder(value:uint) : bool
+    + WriteFloat(value:float) : bool
+    + WriteDouble(value:double) : bool
+    + WriteRawBits(value:uint, numbits:int) : bool
+    + WritePackedUInt(value:uint, model:StreamCompressionModel) : bool
+    + WritePackedULong(value:ulong, model:StreamCompressionModel) : bool
+    + WritePackedInt(value:int, model:StreamCompressionModel) : bool
+    + WritePackedLong(value:long, model:StreamCompressionModel) : bool
+    + WritePackedFloat(value:float, model:StreamCompressionModel) : bool
+    + WritePackedDouble(value:double, model:StreamCompressionModel) : bool
+    + WritePackedUIntDelta(value:uint, baseline:uint, model:StreamCompressionModel) : bool
+    + WritePackedIntDelta(value:int, baseline:int, model:StreamCompressionModel) : bool
+    + WritePackedLongDelta(value:long, baseline:long, model:StreamCompressionModel) : bool
+    + WritePackedULongDelta(value:ulong, baseline:ulong, model:StreamCompressionModel) : bool
+    + WritePackedFloatDelta(value:float, baseline:float, model:StreamCompressionModel) : bool
+    + WritePackedDoubleDelta(value:double, baseline:double, model:StreamCompressionModel) : bool
+    + <<unsafe>> WriteFixedString32(str:FixedString32Bytes) : bool
+    + <<unsafe>> WriteFixedString64(str:FixedString64Bytes) : bool
+    + <<unsafe>> WriteFixedString128(str:FixedString128Bytes) : bool
+    + <<unsafe>> WriteFixedString512(str:FixedString512Bytes) : bool
+    + <<unsafe>> WriteFixedString4096(str:FixedString4096Bytes) : bool
+    + <<unsafe>> WritePackedFixedString32Delta(str:FixedString32Bytes, baseline:FixedString32Bytes, model:StreamCompressionModel) : bool
+    + <<unsafe>> WritePackedFixedString64Delta(str:FixedString64Bytes, baseline:FixedString64Bytes, model:StreamCompressionModel) : bool
+    + <<unsafe>> WritePackedFixedString128Delta(str:FixedString128Bytes, baseline:FixedString128Bytes, model:StreamCompressionModel) : bool
+    + <<unsafe>> WritePackedFixedString512Delta(str:FixedString512Bytes, baseline:FixedString512Bytes, model:StreamCompressionModel) : bool
+    + <<unsafe>> WritePackedFixedString4096Delta(str:FixedString4096Bytes, baseline:FixedString4096Bytes, model:StreamCompressionModel) : bool
+    + Clear() : void
+}
+struct StreamData {
+    + length : int
+    + capacity : int
+    + bitBuffer : ulong
+    + bitIndex : int
+    + failedWrites : int
+}
+DataStreamWriter --> "m_SendHandleData" IntPtr
+DataStreamWriter +-- StreamData
+@enduml

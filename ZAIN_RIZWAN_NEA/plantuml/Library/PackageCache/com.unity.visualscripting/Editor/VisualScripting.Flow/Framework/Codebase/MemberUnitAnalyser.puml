@@ -1,0 +1,8 @@
+@startuml
+class MemberUnitAnalyser {
+    + MemberUnitAnalyser(reference:GraphReference, target:MemberUnit)
+}
+class "UnitAnalyser`1"<T> {
+}
+"UnitAnalyser`1" "<MemberUnit>" <|-- MemberUnitAnalyser
+@enduml

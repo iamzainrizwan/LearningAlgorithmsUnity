@@ -1,0 +1,7 @@
+@startuml
+class UnitPortDefinitionInspector {
+    + UnitPortDefinitionInspector(metadata:Metadata)
+    + <<override>> Initialize() : void
+}
+Inspector <|-- UnitPortDefinitionInspector
+@enduml

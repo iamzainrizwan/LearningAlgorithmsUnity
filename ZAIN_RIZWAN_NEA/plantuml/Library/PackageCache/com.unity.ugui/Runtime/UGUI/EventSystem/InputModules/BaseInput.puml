@@ -1,0 +1,20 @@
+@startuml
+class BaseInput {
+    + <<virtual>> compositionString : string <<get>>
+    + <<virtual>> mousePresent : bool <<get>>
+    + <<virtual>> GetMouseButtonDown(button:int) : bool
+    + <<virtual>> GetMouseButtonUp(button:int) : bool
+    + <<virtual>> GetMouseButton(button:int) : bool
+    + <<virtual>> mouseScrollDeltaPerTick : float <<get>>
+    + <<virtual>> touchSupported : bool <<get>>
+    + <<virtual>> touchCount : int <<get>>
+    + <<virtual>> GetTouch(index:int) : Touch
+    + <<virtual>> GetAxisRaw(axisName:string) : float
+    + <<virtual>> GetButtonDown(buttonName:string) : bool
+}
+UIBehaviour <|-- BaseInput
+BaseInput --> "imeCompositionMode" IMECompositionMode
+BaseInput --> "compositionCursorPos" Vector2
+BaseInput --> "mousePosition" Vector2
+BaseInput --> "mouseScrollDelta" Vector2
+@enduml

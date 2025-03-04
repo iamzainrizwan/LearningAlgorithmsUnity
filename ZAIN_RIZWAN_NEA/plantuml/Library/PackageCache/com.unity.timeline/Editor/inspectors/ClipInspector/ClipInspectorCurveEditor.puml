@@ -1,0 +1,11 @@
+@startuml
+class ClipInspectorCurveEditor {
+    + {static} <<readonly>> kDisableTrackTime : double
+    + trackTime : double <<get>> <<set>>
+    + headerString : string <<get>> <<set>>
+    + ClipInspectorCurveEditor()
+    + SetCurve(curve:AnimationCurve) : void
+    + SetSelected(curve:AnimationCurve) : void
+    + {static} CurveField(title:GUIContent, property:SerializedProperty, onClick:Action<SerializedProperty>) : void
+}
+@enduml

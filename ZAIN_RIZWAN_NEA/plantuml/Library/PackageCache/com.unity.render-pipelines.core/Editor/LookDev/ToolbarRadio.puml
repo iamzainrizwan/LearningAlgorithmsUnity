@@ -1,0 +1,20 @@
+@startuml
+class ToolbarRadio {
+    + <<new>> {static} <<readonly>> ussClassName : string = "unity-toolbar-radio"
+    + radioLength : int <<get>> = 0
+    + value : int <<get>> <<set>>
+    + ToolbarRadio()
+    + ToolbarRadio(label:string, canDeselectAll:bool)
+    + AddRadio(text:string, icon:Texture2D, tooltip:string) : void
+    + AddRadios(labels:string[]) : void
+    + AddRadios(labels:(string text, string tooltip)[]) : void
+    + AddRadios(icons:Texture2D[]) : void
+    + AddRadios(labels:(string text, Texture2D icon)[]) : void
+    + AddRadios(labels:(Texture2D icon, string tooltip)[]) : void
+    + AddRadios(labels:(string text, Texture2D icon, string tooltip)[]) : void
+    + SetValueWithoutNotify(newValue:int) : void
+}
+class "INotifyValueChanged`1"<T> {
+}
+"INotifyValueChanged`1" "<int>" <|-- ToolbarRadio
+@enduml

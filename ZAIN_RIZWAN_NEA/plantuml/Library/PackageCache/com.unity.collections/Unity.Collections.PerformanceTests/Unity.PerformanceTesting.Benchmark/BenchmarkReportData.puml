@@ -1,0 +1,72 @@
+@startuml
+enum BenchmarkRankingStatistic {
+    Min,
+    Max,
+    Median,
+    Average,
+    StdDev,
+    Sum,
+}
+enum BenchmarkResultType {
+    Ignored,
+    Normal,
+    NormalBaseline,
+    External,
+    ExternalBaseline,
+}
+enum BenchmarkRankingType {
+    Ignored,
+    Normal,
+    Best,
+    Worst,
+}
+struct BenchmarkResults {
+    + <<const>> kFlagNoOptimization : uint = 0x01
+    + <<const>> kFlagParallelJobs : uint = 0x02
+    + <<const>> kFlagFootnotes : uint = 0x04
+    + min : double
+    + max : double
+    + median : double
+    + average : double
+    + standardDeviation : double
+    + sum : double
+    + baselineRatio : double
+    + resultFlags : uint
+    + Comparator : double <<get>>
+    + UnitSuffix : string <<get>>
+}
+struct BenchmarkReportComparison {
+    + footnoteFlags : uint
+    + BenchmarkReportComparison(name:string)
+    + Dispose() : void
+    + RankResults(resultTypes:BenchmarkResultType[]) : void
+}
+struct BenchmarkReportGroup {
+    + resultDecimalPlaces : int
+    + BenchmarkReportGroup(name:string, variantNameArray:string[], resultTypeArray:BenchmarkResultType[], resultDecimalPlaces:int)
+    + Dispose() : void
+}
+struct BenchmarkReports {
+    + BenchmarkReports(name:string)
+    + Dispose() : void
+}
+class "UnsafeList`1"<T> {
+}
+class "UnsafeHashMap`2"<T1,T2> {
+}
+BenchmarkResults --> "unit" SampleUnit
+BenchmarkResults --> "ranking" BenchmarkRankingType
+BenchmarkResults --> "statistic" BenchmarkRankingStatistic
+IDisposable <|-- BenchmarkReportComparison
+BenchmarkReportComparison --> "results<BenchmarkResults>" "UnsafeList`1"
+BenchmarkReportComparison --> "comparisonName" FixedString512Bytes
+IDisposable <|-- BenchmarkReportGroup
+BenchmarkReportGroup --> "comparisons<BenchmarkReportComparison>" "UnsafeList`1"
+BenchmarkReportGroup --> "groupName" FixedString512Bytes
+BenchmarkReportGroup --> "variantNames<FixedString64Bytes>" "UnsafeList`1"
+BenchmarkReportGroup --> "resultTypes<BenchmarkResultType>" "UnsafeList`1"
+BenchmarkReportGroup --> "customFootnotes<uint,NativeText>" "UnsafeHashMap`2"
+IDisposable <|-- BenchmarkReports
+BenchmarkReports --> "groups<BenchmarkReportGroup>" "UnsafeList`1"
+BenchmarkReports --> "reportName" FixedString512Bytes
+@enduml

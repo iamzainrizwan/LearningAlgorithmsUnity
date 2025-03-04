@@ -1,0 +1,12 @@
+@startuml
+class MeshGizmo {
+    + {static} <<readonly>> vertexCountPerCube : int = 24
+    + MeshGizmo(capacity:int)
+    + Clear() : void
+    + AddWireCube(center:Vector3, size:Vector3, color:Color) : void
+    + RenderWireframe(trs:Matrix4x4, depthTest:CompareFunction, gizmoName:string) : void
+    + Dispose() : void
+}
+IDisposable <|-- MeshGizmo
+MeshGizmo --> "mesh" Mesh
+@enduml

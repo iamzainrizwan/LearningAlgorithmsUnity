@@ -1,0 +1,38 @@
+@startuml
+class TimelineAsset <<partial>> {
+    + <<override>> duration : double <<get>>
+    + fixedDuration : double <<get>> <<set>>
+    + outputTrackCount : int <<get>>
+    + rootTrackCount : int <<get>>
+    + GetRootTrack(index:int) : TrackAsset
+    + GetRootTracks() : IEnumerable<TrackAsset>
+    + GetOutputTrack(index:int) : TrackAsset
+    + GetOutputTracks() : IEnumerable<TrackAsset>
+    + <<override>> CreatePlayable(graph:PlayableGraph, go:GameObject) : Playable
+    + GatherProperties(director:PlayableDirector, driver:IPropertyCollector) : void
+    + CreateMarkerTrack() : void
+}
+enum DurationMode {
+    BasedOnClips,
+    FixedLength,
+}
+class EditorSettings {
+    + fps : float <<get>> <<set>>
+    + frameRate : double <<get>> <<set>>
+    + SetStandardFrameRate(enumValue:StandardFrameRates) : void
+    + scenePreview : bool <<get>> <<set>>
+}
+class "IEnumerable`1"<T> {
+}
+PlayableAsset <|-- TimelineAsset
+ISerializationCallbackReceiver <|-- TimelineAsset
+ITimelineClipAsset <|-- TimelineAsset
+IPropertyPreview <|-- TimelineAsset
+TimelineAsset --> "editorSettings" EditorSettings
+TimelineAsset --> "durationMode" DurationMode
+TimelineAsset --> "outputs<PlayableBinding>" "IEnumerable`1"
+TimelineAsset --> "clipCaps" ClipCaps
+TimelineAsset --> "markerTrack" MarkerTrack
+TimelineAsset +-- DurationMode
+TimelineAsset +-- EditorSettings
+@enduml

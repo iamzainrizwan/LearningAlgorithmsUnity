@@ -1,0 +1,62 @@
+@startuml
+class MathTests {
+    + Tests() : void
+}
+class NativeArraySortTests {
+    + SortNativeArray_RandomInts_ReturnSorted(size:int) : void
+    + SortNativeArray_SortedInts_ReturnSorted(size:int) : void
+    + SortNativeArray_RandomBytes_ReturnSorted(size:int) : void
+    + SortNativeArray_RandomShorts_ReturnSorted(size:int) : void
+    + SortNativeArray_RandomFloats_ReturnSorted(size:int) : void
+    + SortNativeArray_RandomComparableType_ReturnSorted(size:int) : void
+    + SortNativeArray_RandomNonComparableType_ReturnSorted(size:int) : void
+    + SortNativeSlice_ReturnSorted() : void
+    + SortNativeSlice_DoesNotChangeArrayBeyondLimits() : void
+    + SortNativeSlice_WithCustomStride_ThrowsInvalidOperationException() : void
+}
+class NativeSliceTests {
+    + NativeSlice_CopyTo() : void
+    + NativeSlice_CopyFrom() : void
+    + SortJobNativeArray_RandomInts_ReturnSorted(size:int) : void
+    + SortJobNativeArray_SortedInts_ReturnSorted(size:int) : void
+    + SortJobNativeArray_RandomBytes_ReturnSorted(size:int) : void
+    + SortJobNativeArray_RandomBytes_ReturnSorted_Descending(size:int) : void
+    + SortJobNativeArray_RandomShorts_ReturnSorted(size:int) : void
+    + SortNativeArrayByJob_RandomShorts_ReturnSorted_Descending(size:int) : void
+    + SortJobNativeArray_RandomFloats_ReturnSorted(size:int) : void
+    + SortJobNativeArray_RandomFloats_ReturnSorted_Descending(size:int) : void
+    + SortJobNativeList_UseInPreviousJob() : void
+}
+struct ComparableType {
+    + value : int
+    + CompareTo(other:ComparableType) : int
+}
+struct NonComparableType {
+    + value : int
+}
+struct NonComparableTypeComparator {
+    + Compare(lhs:NonComparableType, rhs:NonComparableType) : int
+}
+struct "DescendingComparer`1"<T> {
+    + Compare(x:T, y:T) : int
+}
+struct FilterOdd {
+    + Execute(index:int) : bool
+}
+class "IComparable`1"<T> {
+}
+class "IComparer`1"<T> {
+}
+CollectionsTestCommonBase <|-- MathTests
+CollectionsTestCommonBase <|-- NativeArraySortTests
+CollectionsTestCommonBase <|-- NativeSliceTests
+NativeArraySortTests +-- ComparableType
+"IComparable`1" "<ComparableType>" <|-- ComparableType
+NativeArraySortTests +-- NonComparableType
+NativeArraySortTests +-- NonComparableTypeComparator
+"IComparer`1" "<NonComparableType>" <|-- NonComparableTypeComparator
+NativeSliceTests +-- "DescendingComparer`1"
+"IComparer`1" "<T>" <|-- "DescendingComparer`1"
+NativeSliceTests +-- FilterOdd
+IJobFilter <|-- FilterOdd
+@enduml

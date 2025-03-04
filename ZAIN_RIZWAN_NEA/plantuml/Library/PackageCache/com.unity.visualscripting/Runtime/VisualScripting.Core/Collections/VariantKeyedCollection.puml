@@ -1,0 +1,15 @@
+@startuml
+class "VariantKeyedCollection`3"<TBase,TImplementation,TKey> {
+    + VariantKeyedCollection(implementation:IKeyedCollection<TKey, TImplementation>)
+    + TryGetValue(key:TKey, value:TBase) : bool
+    + Contains(key:TKey) : bool
+    + Remove(key:TKey) : bool
+}
+class "VariantCollection`2"<T1,T2> {
+}
+class "IKeyedCollection`2"<T1,T2> {
+}
+"VariantCollection`2" "<TBase,TImplementation>" <|-- "VariantKeyedCollection`3"
+"IKeyedCollection`2" "<TKey,TBase>" <|-- "VariantKeyedCollection`3"
+"VariantKeyedCollection`3" --> "implementation<TKey,TImplementation>" "IKeyedCollection`2"
+@enduml

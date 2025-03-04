@@ -1,0 +1,15 @@
+@startuml
+class UIManager {
+    + infostring : string
+    + index : int = 0
+}
+MonoBehaviour <|-- UIManager
+UIManager --> "proceedButton" Button
+UIManager --> "algorithmDropdown" TMP_Dropdown
+UIManager --> "stateText" TMP_Text
+UIManager --> "inputCanvas" GameObject
+UIManager --> "resetter" FieldResetter
+UIManager --> "simulationFieldInputter" TakeFieldsInput
+UIManager --> "selectedAgentFields" TakeFieldsInput
+UIManager --> "gameManager" GameManager
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+class MethodMeasurement {
+    + MethodMeasurement(action:Action)
+    + ProfilerMarkers(profilerMarkerNames:string[]) : MethodMeasurement
+    + ProfilerMarkers(sampleGroups:SampleGroup[]) : MethodMeasurement
+    + SampleGroup(name:string) : MethodMeasurement
+    + SampleGroup(sampleGroup:SampleGroup) : MethodMeasurement
+    + WarmupCount(count:int) : MethodMeasurement
+    + IterationsPerMeasurement(count:int) : MethodMeasurement
+    + MeasurementCount(count:int) : MethodMeasurement
+    + DynamicMeasurementCount(outlierMode:OutlierMode) : MethodMeasurement
+    + DynamicMeasurementCount(maxRelativeError:double, confidenceLevel:ConfidenceLevel, outlierMode:OutlierMode) : MethodMeasurement
+    + CleanUp(action:Action) : MethodMeasurement
+    + SetUp(action:Action) : MethodMeasurement
+    + GC() : MethodMeasurement
+    + Run() : void
+}
+@enduml

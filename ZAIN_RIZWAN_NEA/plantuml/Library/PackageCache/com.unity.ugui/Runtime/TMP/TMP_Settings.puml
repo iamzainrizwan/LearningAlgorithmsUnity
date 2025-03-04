@@ -1,0 +1,57 @@
+@startuml
+class TMP_Settings {
+    + {static} version : string <<get>>
+    + {static} enableKerning : bool <<get>>
+    + {static} enableExtraPadding : bool <<get>>
+    + {static} enableTintAllSprites : bool <<get>>
+    + {static} enableParseEscapeCharacters : bool <<get>>
+    + {static} enableRaycastTarget : bool <<get>>
+    + {static} getFontFeaturesAtRuntime : bool <<get>>
+    + {static} missingGlyphCharacter : int <<get>> <<set>>
+    + {static} clearDynamicDataOnBuild : bool <<get>>
+    + {static} warningsDisabled : bool <<get>>
+    + {static} defaultFontAssetPath : string <<get>>
+    + {static} defaultFontSize : float <<get>>
+    + {static} defaultTextAutoSizingMinRatio : float <<get>>
+    + {static} defaultTextAutoSizingMaxRatio : float <<get>>
+    + {static} autoSizeTextContainer : bool <<get>>
+    + {static} isTextObjectScaleStatic : bool <<get>> <<set>>
+    + {static} matchMaterialPreset : bool <<get>>
+    + {static} hideSubTextObjects : bool <<get>>
+    + {static} defaultSpriteAssetPath : string <<get>>
+    + {static} enableEmojiSupport : bool <<get>> <<set>>
+    + {static} missingCharacterSpriteUnicode : uint <<get>> <<set>>
+    + {static} defaultColorGradientPresetsPath : string <<get>>
+    + {static} styleSheetsResourcePath : string <<get>>
+    + {static} useModernHangulLineBreakingRules : bool <<get>> <<set>>
+    + {static} LoadDefaultSettings() : TMP_Settings
+    + {static} GetSettings() : TMP_Settings
+    + {static} GetFontAsset() : TMP_FontAsset
+    + {static} GetSpriteAsset() : TMP_SpriteAsset
+    + {static} GetStyleSheet() : TMP_StyleSheet
+    + {static} LoadLinebreakingRules() : void
+}
+class "List`1"<T> {
+}
+class LineBreakingTable {
+}
+class "HashSet`1"<T> {
+}
+ScriptableObject <|-- TMP_Settings
+TMP_Settings --> "textWrappingMode" TextWrappingModes
+TMP_Settings --> "fontFeatures<OTL_FeatureTag>" "List`1"
+TMP_Settings --> "defaultFontAsset" TMP_FontAsset
+TMP_Settings --> "defaultTextMeshProTextContainerSize" Vector2
+TMP_Settings --> "defaultTextMeshProUITextContainerSize" Vector2
+TMP_Settings --> "fallbackFontAssets<TMP_FontAsset>" "List`1"
+TMP_Settings --> "defaultSpriteAsset" TMP_SpriteAsset
+TMP_Settings --> "emojiFallbackTextAssets<TMP_Asset>" "List`1"
+TMP_Settings --> "defaultStyleSheet" TMP_StyleSheet
+TMP_Settings --> "leadingCharacters" TextAsset
+TMP_Settings --> "followingCharacters" TextAsset
+TMP_Settings --> "linebreakingRules" LineBreakingTable
+TMP_Settings --> "instance" TMP_Settings
+TMP_Settings +-- LineBreakingTable
+LineBreakingTable --> "leadingCharacters<uint>" "HashSet`1"
+LineBreakingTable --> "followingCharacters<uint>" "HashSet`1"
+@enduml

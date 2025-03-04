@@ -1,0 +1,12 @@
+@startuml
+class LudiqGraphsChangelog_1_1_1 {
+    + LudiqGraphsChangelog_1_1_1(plugin:Plugin)
+    + <<override>> description : string <<get>>
+}
+class "IEnumerable`1"<T> {
+}
+PluginChangelog <|-- LudiqGraphsChangelog_1_1_1
+LudiqGraphsChangelog_1_1_1 --> "version" SemanticVersion
+LudiqGraphsChangelog_1_1_1 --> "date" DateTime
+LudiqGraphsChangelog_1_1_1 --> "changes<string>" "IEnumerable`1"
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class DepthOnlyPass {
+    + DepthOnlyPass(evt:RenderPassEvent, renderQueueRange:RenderQueueRange, layerMask:LayerMask)
+    + Setup(baseDescriptor:RenderTextureDescriptor, depthAttachmentHandle:RTHandle) : void
+    + <<override>> OnCameraSetup(cmd:CommandBuffer, renderingData:RenderingData) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+}
+class PassData {
+}
+ScriptableRenderPass <|-- DepthOnlyPass
+DepthOnlyPass +-- PassData
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+class "PrivateFieldSetter`1"<T> {
+    + PrivateFieldSetter(obj:object, field:string, value:object)
+    + Dispose() : void
+}
+class PrivateStaticField <<static>> {
+    + {static} GetValue(staticType:Type, fieldName:string) : T
+}
+class PrivateField <<static>> {
+    + {static} GetValue(o:object, fieldName:string) : T
+}
+IDisposable <|-- "PrivateFieldSetter`1"
+@enduml

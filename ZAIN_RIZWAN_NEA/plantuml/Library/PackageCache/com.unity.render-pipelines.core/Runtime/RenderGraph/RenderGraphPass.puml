@@ -1,0 +1,84 @@
+@startuml
+abstract class RenderGraphPass {
+    + {abstract} Execute(renderGraphContext:InternalRenderGraphContext) : void
+    + {abstract} Release(pool:RenderGraphObjectPool) : void
+    + {abstract} HasRenderFunc() : bool
+    + {abstract} GetRenderFuncHash() : int
+    + name : string <<get>> <<protected set>>
+    + index : int <<get>> <<protected set>>
+    + enableAsyncCompute : bool <<get>> <<protected set>>
+    + allowPassCulling : bool <<get>> <<protected set>>
+    + allowGlobalState : bool <<get>> <<protected set>>
+    + enableFoveatedRasterization : bool <<get>> <<protected set>>
+    + colorBufferMaxIndex : int <<get>> <<protected set>>
+    + fragmentInputMaxIndex : int <<get>> <<protected set>>
+    + randomAccessResourceMaxIndex : int <<get>> <<protected set>>
+    + generateDebugData : bool <<get>> <<protected set>>
+    + allowRendererListCulling : bool <<get>> <<protected set>>
+    + useAllGlobalTextures : bool
+    + RenderGraphPass()
+    + Clear() : void
+    + HasRenderAttachments() : bool
+    + IsTransient(res:ResourceHandle) : bool
+    + IsWritten(res:ResourceHandle) : bool
+    + IsRead(res:ResourceHandle) : bool
+    + IsAttachment(res:TextureHandle) : bool
+    + AddResourceWrite(res:ResourceHandle) : void
+    + AddResourceRead(res:ResourceHandle) : void
+    + AddTransientResource(res:ResourceHandle) : void
+    + UseRendererList(rendererList:RendererListHandle) : void
+    + EnableAsyncCompute(value:bool) : void
+    + AllowPassCulling(value:bool) : void
+    + EnableFoveatedRasterization(value:bool) : void
+    + AllowRendererListCulling(value:bool) : void
+    + AllowGlobalState(value:bool) : void
+    + GenerateDebugData(value:bool) : void
+    + SetColorBuffer(resource:TextureHandle, index:int) : void
+    + SetColorBufferRaw(resource:TextureHandle, index:int, accessFlags:AccessFlags, mipLevel:int, depthSlice:int) : void
+    + SetFragmentInputRaw(resource:TextureHandle, index:int, accessFlags:AccessFlags, mipLevel:int, depthSlice:int) : void
+    + SetRandomWriteResourceRaw(resource:ResourceHandle, index:int, preserveCounterValue:bool, accessFlags:AccessFlags) : void
+    + SetDepthBuffer(resource:TextureHandle, flags:DepthAccess) : void
+    + SetDepthBufferRaw(resource:TextureHandle, accessFlags:AccessFlags, mipLevel:int, depthSlice:int) : void
+    + ComputeHash(generator:HashFNV1A32, resources:RenderGraphResourceRegistry) : void
+}
+abstract class "BaseRenderGraphPass`2"<PassData,TRenderGraphContext> {
+    + Initialize(passIndex:int, passData:PassData, passName:string, passType:RenderGraphPassType, sampler:ProfilingSampler) : void
+    + <<override>> Release(pool:RenderGraphObjectPool) : void
+    + <<override>> HasRenderFunc() : bool
+    + <<override>> GetRenderFuncHash() : int
+}
+class "RenderGraphPass`1"<PassData> <<sealed>> {
+    + <<override>> Execute(renderGraphContext:InternalRenderGraphContext) : void
+    + <<override>> Release(pool:RenderGraphObjectPool) : void
+}
+class "ComputeRenderGraphPass`1"<PassData> <<sealed>> {
+    + <<override>> Execute(renderGraphContext:InternalRenderGraphContext) : void
+    + <<override>> Release(pool:RenderGraphObjectPool) : void
+}
+class "RasterRenderGraphPass`1"<PassData> <<sealed>> {
+    + <<override>> Execute(renderGraphContext:InternalRenderGraphContext) : void
+    + <<override>> Release(pool:RenderGraphObjectPool) : void
+}
+class "UnsafeRenderGraphPass`1"<PassData> <<sealed>> {
+    + <<override>> Execute(renderGraphContext:InternalRenderGraphContext) : void
+    + <<override>> Release(pool:RenderGraphObjectPool) : void
+}
+struct RandomWriteResourceInfo {
+    + preserveCounterValue : bool
+}
+class "List`1"<T> {
+}
+RenderGraphPass --> "type" RenderGraphPassType
+RenderGraphPass --> "customSampler" ProfilingSampler
+RenderGraphPass --> "depthAccess" TextureAccess
+RenderGraphPass o-> "usedRendererListList<RendererListHandle>" "List`1"
+RenderGraphPass o-> "setGlobalsList<ValueTuple<TextureHandle, int>>" "List`1"
+RenderGraphPass o-> "implicitReadsList<ResourceHandle>" "List`1"
+RenderGraphPass <|-- "BaseRenderGraphPass`2"
+"BaseRenderGraphPass`2" "<PassData,RenderGraphContext>" <|-- "RenderGraphPass`1"
+"BaseRenderGraphPass`2" "<PassData,ComputeGraphContext>" <|-- "ComputeRenderGraphPass`1"
+"BaseRenderGraphPass`2" "<PassData,RasterGraphContext>" <|-- "RasterRenderGraphPass`1"
+"BaseRenderGraphPass`2" "<PassData,UnsafeGraphContext>" <|-- "UnsafeRenderGraphPass`1"
+RenderGraphPass +-- RandomWriteResourceInfo
+RandomWriteResourceInfo --> "h" ResourceHandle
+@enduml

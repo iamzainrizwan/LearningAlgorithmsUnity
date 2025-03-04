@@ -1,0 +1,26 @@
+@startuml
+class UniversalSampleBufferNode <<sealed>> {
+    + <<override>> documentationURL : string <<get>>
+    + UniversalSampleBufferNode()
+    + <<override>> hasPreview : bool <<get>>
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> CollectShaderProperties(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + GenerateNodeFunction(registry:FunctionRegistry, generationMode:GenerationMode) : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + RequiresNDCPosition(stageCapability:ShaderStageCapability) : bool
+    + RequiresScreenPosition(stageCapability:ShaderStageCapability) : bool
+}
+enum BufferType {
+    NormalWorldSpace,
+    MotionVectors,
+    BlitSource,
+}
+AbstractMaterialNode <|-- UniversalSampleBufferNode
+IGeneratesBodyCode <|-- UniversalSampleBufferNode
+IGeneratesFunction <|-- UniversalSampleBufferNode
+IMayRequireScreenPosition <|-- UniversalSampleBufferNode
+IMayRequireNDCPosition <|-- UniversalSampleBufferNode
+UniversalSampleBufferNode --> "bufferType" BufferType
+UniversalSampleBufferNode --> "previewMode" PreviewMode
+UniversalSampleBufferNode +-- BufferType
+@enduml

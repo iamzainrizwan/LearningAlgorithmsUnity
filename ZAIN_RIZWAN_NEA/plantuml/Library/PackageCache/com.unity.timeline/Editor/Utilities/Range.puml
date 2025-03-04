@@ -1,0 +1,11 @@
+@startuml
+struct Range {
+    + start : double
+    + end : double
+    + length : double <<get>>
+    + {static} Union(lhs:Range, rhs:Range) : Range
+    + {static} Intersection(lhs:Range, rhs:Range) : Range
+    + <<override>> ToString() : string
+    + ToString(format:string) : string
+}
+@enduml

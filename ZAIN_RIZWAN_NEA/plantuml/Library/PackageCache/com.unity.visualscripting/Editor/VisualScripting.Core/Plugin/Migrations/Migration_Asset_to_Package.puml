@@ -1,0 +1,29 @@
+@startuml
+class MigrationUtility_Asset_to_Package {
+    + {static} GetLegacyProjectSettingsAsset(pluginId:string) : DictionaryAsset
+    + {static} GetLegacyIconMapAssetPath(pluginId:string) : string
+    + {static} GetLegacyRootPath(pluginId:string) : string
+    + {static} TryManualParseSavedVersion(pluginId:string) : SemanticVersion
+    + {static} MigrateEditorPreferences(p:Plugin) : void
+}
+class Migration_Asset_to_Package {
+    + Migration_Asset_to_Package(plugin:Plugin)
+    + <<override>> Run() : void
+}
+class Migration_Asset_to_Package_Post {
+    + Migration_Asset_to_Package_Post(plugin:Plugin)
+    + <<override>> Run() : void
+}
+class DeprecatedSavedVersionLoader_Bolt_AssetStore {
+    + DeprecatedSavedVersionLoader_Bolt_AssetStore(plugin:Plugin)
+    + <<override>> Run(savedVersion:SemanticVersion) : bool
+}
+PluginMigration <|-- Migration_Asset_to_Package
+Migration_Asset_to_Package --> "@from" SemanticVersion
+Migration_Asset_to_Package --> "to" SemanticVersion
+PluginMigration <|-- Migration_Asset_to_Package_Post
+Migration_Asset_to_Package_Post --> "@from" SemanticVersion
+Migration_Asset_to_Package_Post --> "to" SemanticVersion
+PluginDeprecatedSavedVersionLoader <|-- DeprecatedSavedVersionLoader_Bolt_AssetStore
+DeprecatedSavedVersionLoader_Bolt_AssetStore --> "@from" SemanticVersion
+@enduml

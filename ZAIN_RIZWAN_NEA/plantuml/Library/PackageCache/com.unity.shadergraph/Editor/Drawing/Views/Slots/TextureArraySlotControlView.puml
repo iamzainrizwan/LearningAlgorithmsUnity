@@ -1,0 +1,6 @@
+@startuml
+class TextureArraySlotControlView {
+    + TextureArraySlotControlView(slot:Texture2DArrayInputMaterialSlot)
+}
+VisualElement <|-- TextureArraySlotControlView
+@enduml

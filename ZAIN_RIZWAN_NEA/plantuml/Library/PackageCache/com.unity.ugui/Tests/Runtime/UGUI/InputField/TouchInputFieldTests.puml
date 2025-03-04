@@ -1,0 +1,26 @@
+@startuml
+class TouchInputFieldTests {
+    + Setup() : void
+    + TestSetup() : void
+    + TearDown() : void
+    + OnetimeTearDown() : void
+    + HonorsCharacterValidationSettingsAssignment(input:string, output:string, validation:InputField.CharacterValidation) : void
+    + HonorsCharacterValidationSettingsTypingWithSelection(input:string, output:string, validation:InputField.CharacterValidation) : IEnumerator
+    + AssignmentAgainstCharacterLimit(text:string) : void
+    + AssignmentAgainstCharacterLimitWithContentType(text:string) : void
+    + SendsEndEditEventOnDeselect() : IEnumerator
+    + StripsNullCharacters2() : void
+    + FocusOpensTouchScreenKeyboard() : IEnumerator
+    + AssignsShouldHideInput() : IEnumerator
+    + IsTouchScreenKeyboardVisible() : IEnumerator
+}
+struct CharValidationTestData {
+    + input : string
+    + output : string
+    + CharValidationTestData(input:string, output:string, validation:InputField.CharacterValidation)
+    + <<override>> ToString() : string
+}
+BaseInputFieldTests <|-- TouchInputFieldTests
+IPrebuildSetup <|-- TouchInputFieldTests
+TouchInputFieldTests +-- CharValidationTestData
+@enduml

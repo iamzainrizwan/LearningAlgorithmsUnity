@@ -1,0 +1,41 @@
+@startuml
+class QuestionnaireData {
+    + FormatVersion : string = "1.0.0"
+    + Version : string = "1.2"
+}
+enum PossibleSolution {
+    NGO,
+    N4E,
+    LS,
+    DS,
+    DA,
+    CustomNetcode,
+    NoNetcode,
+    CloudCode,
+}
+enum ViewType {
+    Toggle,
+    Radio,
+    Checkboxes,
+    DropDown,
+}
+class Question {
+    + Id : string
+    + Title : string
+    + Description : string
+    + GlobalWeight : float = 1f
+    + IsMandatory : bool
+}
+class Answer {
+    + Id : string
+    + Title : string
+    + Description : string
+}
+class ScoreImpact {
+    + Score : float
+    + Comment : string
+}
+QuestionnaireData --> "PresetData" PresetData
+Question --> "ViewType" ViewType
+ScoreImpact --> "Solution" PossibleSolution
+@enduml

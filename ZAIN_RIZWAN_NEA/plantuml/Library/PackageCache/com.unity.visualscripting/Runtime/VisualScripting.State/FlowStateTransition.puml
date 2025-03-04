@@ -1,0 +1,18 @@
+@startuml
+class FlowStateTransition <<sealed>> {
+    + FlowStateTransition()
+    + FlowStateTransition(source:IState, destination:IState)
+    + {static} WithDefaultTrigger(source:IState, destination:IState) : FlowStateTransition
+    + {static} GraphWithDefaultTrigger() : FlowGraph
+    + <<override>> OnEnter(flow:Flow) : void
+    + <<override>> OnExit(flow:Flow) : void
+    + StartListening(stack:GraphStack) : void
+    + StopListening(stack:GraphStack) : void
+    + IsListening(pointer:GraphPointer) : bool
+    + <<override>> DefaultGraph() : FlowGraph
+}
+class "NesterStateTransition`2"<T1,T2> {
+}
+"NesterStateTransition`2" "<FlowGraph,ScriptGraphAsset>" <|-- FlowStateTransition
+IGraphEventListener <|-- FlowStateTransition
+@enduml

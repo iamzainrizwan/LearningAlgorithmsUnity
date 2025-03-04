@@ -1,0 +1,19 @@
+@startuml
+class RecommendationUtils <<static>> {
+    + {static} PackagesToInstall(recommendation:RecommendationViewData, solutionToPackageData:SolutionsToRecommendedPackageViewData) : List<RecommendedPackageViewData>
+    + {static} GetSelectedHostingModel(recommendation:RecommendationViewData) : RecommendedSolutionViewData
+    + {static} GetSelectedNetcode(recommendation:RecommendationViewData) : RecommendedSolutionViewData
+    + {static} GetSelectedSolution(availableSolutions:RecommendedSolutionViewData[]) : RecommendedSolutionViewData
+    + {static} GetPackageDetailForPackageId(packageId:string) : PackageDetails
+    + {static} GetPackagesWithAdditionalPackages(packages:List<RecommendedPackageViewData>, ids:List<string>, names:List<string>, toolTip:string) : void
+    + {static} ApplyPreviousSelection(recommendation:RecommendationViewData, data:SelectedSolutionsData) : void
+    + {static} FilterByType(packages:IEnumerable<RecommendedPackageViewData>, type:RecommendationType) : List<RecommendedPackageViewData>
+    + {static} IndexOfMaximumScore(array:RecommendedSolutionViewData[]) : int
+    + {static} FindRecommendedSolution(scoredSolutions:(PossibleSolution, Scoring)[]) : PossibleSolution
+    + {static} MarkIncompatibleHostingModels(recommendation:RecommendationViewData) : void
+    + {static} FindRecommendedPackageViewById(packages:List<RecommendedPackageViewData>, id:string) : RecommendedPackageViewData
+    + {static} IsQuestionAnswered(question:Question) : bool
+    + {static} AreArraysEqual(a:T[], b:T[]) : bool
+    + {static} GetSectionTypeNamesInOrder(sectionMapping:Dictionary<OnboardingSectionCategory, Type[]>) : List<string>
+}
+@enduml

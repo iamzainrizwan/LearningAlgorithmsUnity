@@ -1,0 +1,8 @@
+@startuml
+class GraphDebugData {
+    + GraphDebugData(definition:IGraph)
+    + GetOrCreateElementData(element:IGraphElementWithDebugData) : IGraphElementDebugData
+    + GetOrCreateChildGraphData(element:IGraphParentElement) : IGraphDebugData
+}
+IGraphDebugData <|-- GraphDebugData
+@enduml

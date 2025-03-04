@@ -1,0 +1,37 @@
+@startuml
+class UnsafeTextTests {
+    + UnsafeTextIsMarshalable() : void
+    + <<unsafe>> UnsafeTextCorrectBinaryHeader() : void
+    + UnsafeTextCorrectLengthAfterClear() : void
+    + UnsafeTextFormatExtension1Params() : void
+    + UnsafeTextFormatExtension2Params() : void
+    + UnsafeTextFormatExtension3Params() : void
+    + UnsafeTextFormatExtension4Params() : void
+    + UnsafeTextFormatExtension5Params() : void
+    + UnsafeTextFormatExtension6Params() : void
+    + UnsafeTextFormatExtension7Params() : void
+    + UnsafeTextFormatExtension8Params() : void
+    + UnsafeTextFormatExtension9Params() : void
+    + UnsafeTextFormatExtension10Params() : void
+    + UnsafeTextAppendGrows() : void
+    + UnsafeTextAppendString() : void
+    + UnsafeTextCopyFromBytesWorks(a:String) : void
+    + UnsafeTextToStringWorks(a:String) : void
+    + UnsafeTextIndexOf() : void
+    + UnsafeTextLastIndexOf() : void
+    + UnsafeTextContains() : void
+    + UnsafeTextComparisons() : void
+    + UnsafeText_CustomAllocatorTest() : void
+    + <<unsafe>> UnsafeText_BurstedCustomAllocatorTest() : void
+    + UnsafeText_StartsEndsWithChar(a:String, starts:char, ends:char) : void
+    + UnsafeText_StartsEndsWithString(a:String, starts:String, ends:String) : void
+    + UnsafeText_TrimStart(a:String, trim:char, expectedStart:String, expectedEnd:String, expected:String) : void
+    + UnsafeText_TrimStartWithRunes(a:String, expectedStart:String, expectedEnd:String, expected:String) : void
+    + UnsafeText_ToLowerUpperAscii(a:String, expectedLower:String, expectedUpped:String) : void
+}
+struct BurstedCustomAllocatorJob {
+    + Execute() : void
+}
+UnsafeTextTests +-- BurstedCustomAllocatorJob
+IJob <|-- BurstedCustomAllocatorJob
+@enduml

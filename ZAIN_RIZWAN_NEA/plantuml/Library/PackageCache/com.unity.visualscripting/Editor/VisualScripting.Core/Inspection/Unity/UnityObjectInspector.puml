@@ -1,0 +1,13 @@
+@startuml
+class UnityObjectInspector <<sealed>> {
+    + UnityObjectInspector(metadata:Metadata)
+    + <<override>> Initialize() : void
+    + <<override>> GetAdaptiveWidth() : float
+}
+class Styles <<static>> {
+}
+Inspector <|-- UnityObjectInspector
+UnityObjectInspector +-- Styles
+Styles --> "selfPatch" GUIStyle
+Styles --> "selfPatchTransparent" GUIStyle
+@enduml

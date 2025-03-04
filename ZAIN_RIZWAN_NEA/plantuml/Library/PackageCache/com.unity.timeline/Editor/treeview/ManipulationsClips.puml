@@ -1,0 +1,8 @@
+@startuml
+class DrillIntoClip {
+}
+class ContextMenuManipulator {
+}
+Manipulator <|-- DrillIntoClip
+Manipulator <|-- ContextMenuManipulator
+@enduml

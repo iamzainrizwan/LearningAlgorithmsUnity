@@ -1,0 +1,15 @@
+@startuml
+abstract class "Round`2"<TInput,TOutput> {
+    + Operation(flow:Flow) : TOutput
+}
+enum Rounding {
+    Floor= 0,
+    Ceiling= 1,
+    AwayFromZero= 2,
+}
+Unit <|-- "Round`2"
+"Round`2" o-> "rounding" Rounding
+"Round`2" --> "input" ValueInput
+"Round`2" --> "output" ValueOutput
+"Round`2" +-- Rounding
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class StudentDistributionHelper <<static>> {
+    + {static} InverseTwoTailedStudent(p:double, n:double) : double
+}
+@enduml

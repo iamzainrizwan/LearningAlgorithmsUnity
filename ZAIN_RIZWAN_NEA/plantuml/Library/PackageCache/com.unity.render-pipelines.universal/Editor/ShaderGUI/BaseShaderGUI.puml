@@ -1,0 +1,84 @@
+@startuml
+abstract class BaseShaderGUI {
+    + m_FirstTimeApply : bool = true
+    + <<virtual>> MaterialChanged(material:Material) : void
+    + <<virtual>> FindProperties(properties:MaterialProperty[]) : void
+    + <<override>> OnGUI(materialEditorIn:MaterialEditor, properties:MaterialProperty[]) : void
+    + <<virtual>> OnOpenGUI(material:Material, materialEditor:MaterialEditor) : void
+    + ShaderPropertiesGUI(material:Material) : void
+    + <<virtual>> DrawSurfaceOptions(material:Material) : void
+    + <<virtual>> DrawSurfaceInputs(material:Material) : void
+    + <<virtual>> DrawAdvancedOptions(material:Material) : void
+    + <<virtual>> FillAdditionalFoldouts(materialScopesList:MaterialHeaderScopeList) : void
+    + <<virtual>> DrawBaseProperties(material:Material) : void
+    + {static} DrawNormalArea(materialEditor:MaterialEditor, bumpMap:MaterialProperty, bumpMapScale:MaterialProperty) : void
+    + {static} SetMaterialKeywords(material:Material, shadingModelFunc:Action<Material>, shaderFunc:Action<Material>) : void
+    + {static} SetupMaterialBlendMode(material:Material) : void
+    + <<override>> AssignNewShaderToMaterial(material:Material, oldShader:Shader, newShader:Shader) : void
+    + {static} TwoFloatSingleLine(title:GUIContent, prop1:MaterialProperty, prop1Label:GUIContent, prop2:MaterialProperty, prop2Label:GUIContent, materialEditor:MaterialEditor, labelWidth:float) : void
+    + DoPopup(label:GUIContent, property:MaterialProperty, options:string[]) : void
+    + {static} TextureColorProps(materialEditor:MaterialEditor, label:GUIContent, textureProp:MaterialProperty, colorProp:MaterialProperty, hdr:bool) : Rect
+    + <<new>> {static} FindProperty(propertyName:string, properties:MaterialProperty[]) : MaterialProperty
+    + <<new>> {static} FindProperty(propertyName:string, properties:MaterialProperty[], propertyIsMandatory:bool) : MaterialProperty
+}
+enum Expandable {
+    SurfaceOptions= 1 << 0,
+    SurfaceInputs= 1 << 1,
+    Advanced= 1 << 2,
+    Details= 1 << 3,
+}
+enum SurfaceType {
+    Opaque,
+    Transparent,
+}
+enum BlendMode {
+    Alpha,
+    Premultiply,
+    Additive,
+    Multiply,
+}
+enum SmoothnessSource {
+    SpecularAlpha,
+    BaseAlpha,
+}
+enum RenderFace {
+    Front= 2,
+    Back= 1,
+    Both= 0,
+}
+enum QueueControl {
+    Auto= 0,
+    UserOverride= 1,
+}
+class Styles {
+}
+ShaderGUI <|-- BaseShaderGUI
+BaseShaderGUI +-- Expandable
+BaseShaderGUI +-- SurfaceType
+BaseShaderGUI +-- BlendMode
+BaseShaderGUI +-- SmoothnessSource
+BaseShaderGUI +-- RenderFace
+BaseShaderGUI +-- QueueControl
+BaseShaderGUI +-- Styles
+Styles o-> "SurfaceOptions" GUIContent
+Styles o-> "SurfaceInputs" GUIContent
+Styles o-> "AdvancedLabel" GUIContent
+Styles o-> "surfaceType" GUIContent
+Styles o-> "blendingMode" GUIContent
+Styles o-> "preserveSpecularText" GUIContent
+Styles o-> "cullingText" GUIContent
+Styles o-> "zwriteText" GUIContent
+Styles o-> "ztestText" GUIContent
+Styles o-> "alphaClipText" GUIContent
+Styles o-> "alphaClipThresholdText" GUIContent
+Styles o-> "castShadowText" GUIContent
+Styles o-> "receiveShadowText" GUIContent
+Styles o-> "baseMap" GUIContent
+Styles o-> "emissionMap" GUIContent
+Styles o-> "normalMapText" GUIContent
+Styles o-> "bumpScaleNotSupported" GUIContent
+Styles o-> "fixNormalNow" GUIContent
+Styles o-> "queueSlider" GUIContent
+Styles o-> "queueControl" GUIContent
+Styles o-> "documentationIcon" GUIContent
+@enduml

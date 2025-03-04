@@ -1,0 +1,6 @@
+@startuml
+class RuntimeExampleTest {
+    + SetUp() : void
+    + PlayModeSampleTestSimplePasses() : void
+}
+@enduml

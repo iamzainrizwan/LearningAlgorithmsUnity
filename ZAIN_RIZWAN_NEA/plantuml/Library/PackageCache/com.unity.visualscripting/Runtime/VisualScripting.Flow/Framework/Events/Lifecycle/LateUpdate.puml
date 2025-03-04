@@ -1,0 +1,7 @@
+@startuml
+class LateUpdate <<sealed>> {
+}
+class "MachineEventUnit`1"<T> {
+}
+"MachineEventUnit`1" "<EmptyEventArgs>" <|-- LateUpdate
+@enduml

@@ -1,0 +1,37 @@
+@startuml
+class InputManager <<partial>> {
+    + AddStateChangeMonitor(control:InputControl, monitor:IInputStateChangeMonitor, monitorIndex:long, groupIndex:uint) : void
+    + RemoveStateChangeMonitor(control:InputControl, monitor:IInputStateChangeMonitor, monitorIndex:long) : void
+    + AddStateChangeMonitorTimeout(control:InputControl, monitor:IInputStateChangeMonitor, time:double, monitorIndex:long, timerIndex:int) : void
+    + RemoveStateChangeMonitorTimeout(monitor:IInputStateChangeMonitor, monitorIndex:long, timerIndex:int) : void
+    + SignalStateChangeMonitor(control:InputControl, monitor:IInputStateChangeMonitor) : void
+    + <<unsafe>> FireStateChangeNotifications() : void
+}
+struct StateChangeMonitorTimeout {
+    + time : double
+    + monitorIndex : long
+    + timerIndex : int
+}
+struct StateChangeMonitorListener {
+    + monitorIndex : long
+    + groupIndex : uint
+}
+struct StateChangeMonitorsForDevice {
+    + needToUpdateOrderingOfMonitors : bool
+    + needToCompactArrays : bool
+    + count : int <<get>>
+    + Add(control:InputControl, monitor:IInputStateChangeMonitor, monitorIndex:long, groupIndex:uint) : void
+    + Remove(monitor:IInputStateChangeMonitor, monitorIndex:long, deferRemoval:bool) : void
+    + Clear() : void
+    + CompactArrays() : void
+    + SortMonitorsByIndex() : void
+}
+InputManager +-- StateChangeMonitorTimeout
+StateChangeMonitorTimeout --> "control" InputControl
+StateChangeMonitorTimeout --> "monitor" IInputStateChangeMonitor
+InputManager +-- StateChangeMonitorListener
+StateChangeMonitorListener --> "control" InputControl
+StateChangeMonitorListener --> "monitor" IInputStateChangeMonitor
+InputManager +-- StateChangeMonitorsForDevice
+StateChangeMonitorsForDevice --> "signalled" DynamicBitfield
+@enduml

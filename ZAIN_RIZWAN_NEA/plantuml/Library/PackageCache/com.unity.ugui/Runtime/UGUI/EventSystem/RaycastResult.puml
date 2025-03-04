@@ -1,0 +1,20 @@
+@startuml
+struct RaycastResult {
+    + distance : float
+    + index : float
+    + depth : int
+    + sortingGroupID : int
+    + sortingGroupOrder : int
+    + sortingLayer : int
+    + sortingOrder : int
+    + displayIndex : int
+    + isValid : bool <<get>>
+    + Clear() : void
+    + <<override>> ToString() : string
+}
+RaycastResult --> "gameObject" GameObject
+RaycastResult --> "module" BaseRaycaster
+RaycastResult --> "worldPosition" Vector3
+RaycastResult --> "worldNormal" Vector3
+RaycastResult --> "screenPosition" Vector2
+@enduml

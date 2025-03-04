@@ -1,0 +1,9 @@
+@startuml
+class ScalarAverage <<sealed>> {
+    + <<override>> Operation(a:float, b:float) : float
+    + <<override>> Operation(values:IEnumerable<float>) : float
+}
+class "Average`1"<T> {
+}
+"Average`1" "<float>" <|-- ScalarAverage
+@enduml

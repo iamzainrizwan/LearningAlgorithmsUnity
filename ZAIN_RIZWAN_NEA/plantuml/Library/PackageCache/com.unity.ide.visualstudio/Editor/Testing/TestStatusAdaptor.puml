@@ -1,0 +1,8 @@
+@startuml
+enum TestStatusAdaptor {
+    Passed,
+    Skipped,
+    Inconclusive,
+    Failed,
+}
+@enduml

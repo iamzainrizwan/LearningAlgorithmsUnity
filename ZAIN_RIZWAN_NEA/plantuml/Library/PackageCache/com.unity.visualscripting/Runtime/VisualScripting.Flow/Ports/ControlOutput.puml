@@ -1,0 +1,27 @@
+@startuml
+class ControlOutput <<sealed>> {
+    + ControlOutput(key:string)
+    + isPredictable : bool <<get>>
+    + IsPredictable(recursion:Recursion) : bool
+    + couldBeEntered : bool <<get>>
+    + <<override>> hasValidConnection : bool <<get>>
+    + <<override>> CanConnectToValid(port:ControlInput) : bool
+    + <<override>> ConnectToValid(port:ControlInput) : void
+    + <<override>> ConnectToInvalid(port:IUnitInputPort) : void
+    + <<override>> DisconnectFromValid(port:ControlInput) : void
+    + <<override>> DisconnectFromInvalid(port:IUnitInputPort) : void
+    + <<override>> CompatiblePort(unit:IUnit) : IUnitPort
+}
+class "UnitPort`3"<T1,T2,T3> {
+}
+class "IEnumerable`1"<T> {
+}
+"UnitPort`3" "<ControlInput,IUnitInputPort,ControlConnection>" <|-- ControlOutput
+IUnitControlPort <|-- ControlOutput
+IUnitOutputPort <|-- ControlOutput
+ControlOutput --> "validConnections<ControlConnection>" "IEnumerable`1"
+ControlOutput --> "invalidConnections<InvalidConnection>" "IEnumerable`1"
+ControlOutput --> "validConnectedPorts<ControlInput>" "IEnumerable`1"
+ControlOutput --> "invalidConnectedPorts<IUnitInputPort>" "IEnumerable`1"
+ControlOutput --> "connection" ControlConnection
+@enduml

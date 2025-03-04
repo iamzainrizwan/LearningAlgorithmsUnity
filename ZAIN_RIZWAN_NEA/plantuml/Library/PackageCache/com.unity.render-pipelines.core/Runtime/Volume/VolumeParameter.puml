@@ -1,0 +1,264 @@
+@startuml
+abstract class VolumeParameter {
+    + <<const>> k_DebuggerDisplay : string = "{m_Value&#125; ({m_OverrideState&#125;)"
+    + <<virtual>> overrideState : bool <<get>> <<set>>
+    + GetValue() : T
+    + {abstract} SetValue(parameter:VolumeParameter) : void
+    + {static} IsObjectParameter(type:Type) : bool
+    + <<virtual>> Release() : void
+    + {abstract} Clone() : object
+}
+class "VolumeParameter`1"<T> {
+    + <<virtual>> value : T <<get>> <<set>>
+    + VolumeParameter()
+    + <<virtual>> Interp(from:T, to:T, t:float) : void
+    + Override(x:T) : void
+    + <<override>> SetValue(parameter:VolumeParameter) : void
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+    + Equals(other:VolumeParameter<T>) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> Clone() : object
+}
+class "EnumParameter`1"<T> <<sealed>> {
+    + EnumParameter(value:T, overrideState:bool)
+}
+class BoolParameter {
+    + BoolParameter(value:bool, overrideState:bool)
+    + BoolParameter(value:bool, displayType:DisplayType, overrideState:bool)
+}
+class LayerMaskParameter {
+    + LayerMaskParameter(value:LayerMask, overrideState:bool)
+}
+class RenderingLayerMaskParameter {
+    + RenderingLayerMaskParameter(value:RenderingLayerMask, overrideState:bool)
+}
+class IntParameter {
+    + IntParameter(value:int, overrideState:bool)
+    + <<sealed>> <<override>> Interp(from:int, to:int, t:float) : void
+}
+class NoInterpIntParameter {
+    + NoInterpIntParameter(value:int, overrideState:bool)
+}
+class MinIntParameter {
+    + min : int
+    + <<override>> value : int <<get>> <<set>>
+    + MinIntParameter(value:int, min:int, overrideState:bool)
+}
+class NoInterpMinIntParameter {
+    + min : int
+    + <<override>> value : int <<get>> <<set>>
+    + NoInterpMinIntParameter(value:int, min:int, overrideState:bool)
+}
+class MaxIntParameter {
+    + max : int
+    + <<override>> value : int <<get>> <<set>>
+    + MaxIntParameter(value:int, max:int, overrideState:bool)
+}
+class NoInterpMaxIntParameter {
+    + max : int
+    + <<override>> value : int <<get>> <<set>>
+    + NoInterpMaxIntParameter(value:int, max:int, overrideState:bool)
+}
+class ClampedIntParameter {
+    + min : int
+    + max : int
+    + <<override>> value : int <<get>> <<set>>
+    + ClampedIntParameter(value:int, min:int, max:int, overrideState:bool)
+}
+class NoInterpClampedIntParameter {
+    + min : int
+    + max : int
+    + <<override>> value : int <<get>> <<set>>
+    + NoInterpClampedIntParameter(value:int, min:int, max:int, overrideState:bool)
+}
+class FloatParameter {
+    + FloatParameter(value:float, overrideState:bool)
+    + <<sealed>> <<override>> Interp(from:float, to:float, t:float) : void
+}
+class NoInterpFloatParameter {
+    + NoInterpFloatParameter(value:float, overrideState:bool)
+}
+class MinFloatParameter {
+    + min : float
+    + <<override>> value : float <<get>> <<set>>
+    + MinFloatParameter(value:float, min:float, overrideState:bool)
+}
+class NoInterpMinFloatParameter {
+    + min : float
+    + <<override>> value : float <<get>> <<set>>
+    + NoInterpMinFloatParameter(value:float, min:float, overrideState:bool)
+}
+class MaxFloatParameter {
+    + max : float
+    + <<override>> value : float <<get>> <<set>>
+    + MaxFloatParameter(value:float, max:float, overrideState:bool)
+}
+class NoInterpMaxFloatParameter {
+    + max : float
+    + <<override>> value : float <<get>> <<set>>
+    + NoInterpMaxFloatParameter(value:float, max:float, overrideState:bool)
+}
+class ClampedFloatParameter {
+    + min : float
+    + max : float
+    + <<override>> value : float <<get>> <<set>>
+    + ClampedFloatParameter(value:float, min:float, max:float, overrideState:bool)
+}
+class NoInterpClampedFloatParameter {
+    + min : float
+    + max : float
+    + <<override>> value : float <<get>> <<set>>
+    + NoInterpClampedFloatParameter(value:float, min:float, max:float, overrideState:bool)
+}
+class FloatRangeParameter {
+    + min : float
+    + max : float
+    + FloatRangeParameter(value:Vector2, min:float, max:float, overrideState:bool)
+    + <<override>> Interp(from:Vector2, to:Vector2, t:float) : void
+}
+class NoInterpFloatRangeParameter {
+    + min : float
+    + max : float
+    + NoInterpFloatRangeParameter(value:Vector2, min:float, max:float, overrideState:bool)
+}
+class ColorParameter {
+    + hdr : bool = false
+    + showAlpha : bool = true
+    + showEyeDropper : bool = true
+    + ColorParameter(value:Color, overrideState:bool)
+    + ColorParameter(value:Color, hdr:bool, showAlpha:bool, showEyeDropper:bool, overrideState:bool)
+    + <<override>> Interp(from:Color, to:Color, t:float) : void
+}
+class NoInterpColorParameter {
+    + hdr : bool = false
+    + showAlpha : bool = true
+    + showEyeDropper : bool = true
+    + NoInterpColorParameter(value:Color, overrideState:bool)
+    + NoInterpColorParameter(value:Color, hdr:bool, showAlpha:bool, showEyeDropper:bool, overrideState:bool)
+}
+class Vector2Parameter {
+    + Vector2Parameter(value:Vector2, overrideState:bool)
+    + <<override>> Interp(from:Vector2, to:Vector2, t:float) : void
+}
+class NoInterpVector2Parameter {
+    + NoInterpVector2Parameter(value:Vector2, overrideState:bool)
+}
+class Vector3Parameter {
+    + Vector3Parameter(value:Vector3, overrideState:bool)
+    + <<override>> Interp(from:Vector3, to:Vector3, t:float) : void
+}
+class NoInterpVector3Parameter {
+    + NoInterpVector3Parameter(value:Vector3, overrideState:bool)
+}
+class Vector4Parameter {
+    + Vector4Parameter(value:Vector4, overrideState:bool)
+    + <<override>> Interp(from:Vector4, to:Vector4, t:float) : void
+}
+class NoInterpVector4Parameter {
+    + NoInterpVector4Parameter(value:Vector4, overrideState:bool)
+}
+class TextureParameter {
+    + TextureParameter(value:Texture, overrideState:bool)
+    + TextureParameter(value:Texture, dimension:TextureDimension, overrideState:bool)
+    + <<override>> GetHashCode() : int
+}
+class NoInterpTextureParameter {
+    + NoInterpTextureParameter(value:Texture, overrideState:bool)
+    + <<override>> GetHashCode() : int
+}
+class Texture2DParameter {
+    + Texture2DParameter(value:Texture, overrideState:bool)
+    + <<override>> GetHashCode() : int
+}
+class Texture3DParameter {
+    + Texture3DParameter(value:Texture, overrideState:bool)
+    + <<override>> GetHashCode() : int
+}
+class RenderTextureParameter {
+    + RenderTextureParameter(value:RenderTexture, overrideState:bool)
+    + <<override>> GetHashCode() : int
+}
+class NoInterpRenderTextureParameter {
+    + NoInterpRenderTextureParameter(value:RenderTexture, overrideState:bool)
+    + <<override>> GetHashCode() : int
+}
+class CubemapParameter {
+    + CubemapParameter(value:Texture, overrideState:bool)
+    + <<override>> GetHashCode() : int
+}
+class NoInterpCubemapParameter {
+    + NoInterpCubemapParameter(value:Cubemap, overrideState:bool)
+    + <<override>> GetHashCode() : int
+}
+class "ObjectParameter`1"<T> {
+    + <<sealed>> <<override>> overrideState : bool <<get>> <<set>>
+    + <<sealed>> <<override>> value : T <<get>> <<set>>
+    + ObjectParameter(value:T)
+}
+class AnimationCurveParameter {
+    + AnimationCurveParameter(value:AnimationCurve, overrideState:bool)
+    + <<override>> Interp(lhsCurve:AnimationCurve, rhsCurve:AnimationCurve, t:float) : void
+    + <<override>> SetValue(parameter:VolumeParameter) : void
+    + <<override>> Clone() : object
+    + <<override>> GetHashCode() : int
+}
+class MaterialParameter {
+    + MaterialParameter(value:Material, overrideState:bool)
+}
+class "IEquatable`1"<T> {
+}
+enum DisplayType {
+    Checkbox,
+    EnumPopup,
+}
+ICloneable <|-- VolumeParameter
+VolumeParameter <|-- "VolumeParameter`1"
+"IEquatable`1" "<VolumeParameter<T>>" <|-- "VolumeParameter`1"
+"VolumeParameter`1" "<T>" <|-- "EnumParameter`1"
+"VolumeParameter`1" "<bool>" <|-- BoolParameter
+BoolParameter o-> "displayType" DisplayType
+"VolumeParameter`1" "<LayerMask>" <|-- LayerMaskParameter
+"VolumeParameter`1" "<RenderingLayerMask>" <|-- RenderingLayerMaskParameter
+"VolumeParameter`1" "<int>" <|-- IntParameter
+"VolumeParameter`1" "<int>" <|-- NoInterpIntParameter
+IntParameter <|-- MinIntParameter
+"VolumeParameter`1" "<int>" <|-- NoInterpMinIntParameter
+IntParameter <|-- MaxIntParameter
+"VolumeParameter`1" "<int>" <|-- NoInterpMaxIntParameter
+IntParameter <|-- ClampedIntParameter
+"VolumeParameter`1" "<int>" <|-- NoInterpClampedIntParameter
+"VolumeParameter`1" "<float>" <|-- FloatParameter
+"VolumeParameter`1" "<float>" <|-- NoInterpFloatParameter
+FloatParameter <|-- MinFloatParameter
+"VolumeParameter`1" "<float>" <|-- NoInterpMinFloatParameter
+FloatParameter <|-- MaxFloatParameter
+"VolumeParameter`1" "<float>" <|-- NoInterpMaxFloatParameter
+FloatParameter <|-- ClampedFloatParameter
+"VolumeParameter`1" "<float>" <|-- NoInterpClampedFloatParameter
+"VolumeParameter`1" "<Vector2>" <|-- FloatRangeParameter
+FloatRangeParameter --> "value" Vector2
+"VolumeParameter`1" "<Vector2>" <|-- NoInterpFloatRangeParameter
+NoInterpFloatRangeParameter --> "value" Vector2
+"VolumeParameter`1" "<Color>" <|-- ColorParameter
+"VolumeParameter`1" "<Color>" <|-- NoInterpColorParameter
+"VolumeParameter`1" "<Vector2>" <|-- Vector2Parameter
+"VolumeParameter`1" "<Vector2>" <|-- NoInterpVector2Parameter
+"VolumeParameter`1" "<Vector3>" <|-- Vector3Parameter
+"VolumeParameter`1" "<Vector3>" <|-- NoInterpVector3Parameter
+"VolumeParameter`1" "<Vector4>" <|-- Vector4Parameter
+"VolumeParameter`1" "<Vector4>" <|-- NoInterpVector4Parameter
+"VolumeParameter`1" "<Texture>" <|-- TextureParameter
+TextureParameter --> "dimension" TextureDimension
+"VolumeParameter`1" "<Texture>" <|-- NoInterpTextureParameter
+"VolumeParameter`1" "<Texture>" <|-- Texture2DParameter
+"VolumeParameter`1" "<Texture>" <|-- Texture3DParameter
+"VolumeParameter`1" "<RenderTexture>" <|-- RenderTextureParameter
+"VolumeParameter`1" "<RenderTexture>" <|-- NoInterpRenderTextureParameter
+"VolumeParameter`1" "<Texture>" <|-- CubemapParameter
+"VolumeParameter`1" "<Cubemap>" <|-- NoInterpCubemapParameter
+"VolumeParameter`1" "<T>" <|-- "ObjectParameter`1"
+"VolumeParameter`1" "<AnimationCurve>" <|-- AnimationCurveParameter
+"VolumeParameter`1" "<Material>" <|-- MaterialParameter
+BoolParameter +-- DisplayType
+@enduml

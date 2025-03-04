@@ -1,0 +1,102 @@
+@startuml
+interface IBitArray {
+}
+struct BitArray8 {
+    + capacity : uint <<get>>
+    + allFalse : bool <<get>>
+    + allTrue : bool <<get>>
+    + humanizedData : string <<get>>
+    + BitArray8(initValue:byte)
+    + BitArray8(bitIndexTrue:IEnumerable<uint>)
+    + BitAnd(other:IBitArray) : IBitArray
+    + BitOr(other:IBitArray) : IBitArray
+    + BitNot() : IBitArray
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+struct BitArray16 {
+    + capacity : uint <<get>>
+    + allFalse : bool <<get>>
+    + allTrue : bool <<get>>
+    + humanizedData : string <<get>>
+    + BitArray16(initValue:ushort)
+    + BitArray16(bitIndexTrue:IEnumerable<uint>)
+    + BitAnd(other:IBitArray) : IBitArray
+    + BitOr(other:IBitArray) : IBitArray
+    + BitNot() : IBitArray
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+struct BitArray32 {
+    + capacity : uint <<get>>
+    + allFalse : bool <<get>>
+    + allTrue : bool <<get>>
+    + humanizedData : string <<get>>
+    + BitArray32(initValue:uint)
+    + BitArray32(bitIndexTrue:IEnumerable<uint>)
+    + BitAnd(other:IBitArray) : IBitArray
+    + BitOr(other:IBitArray) : IBitArray
+    + BitNot() : IBitArray
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+struct BitArray64 {
+    + capacity : uint <<get>>
+    + allFalse : bool <<get>>
+    + allTrue : bool <<get>>
+    + humanizedData : string <<get>>
+    + BitArray64(initValue:ulong)
+    + BitArray64(bitIndexTrue:IEnumerable<uint>)
+    + BitAnd(other:IBitArray) : IBitArray
+    + BitOr(other:IBitArray) : IBitArray
+    + BitNot() : IBitArray
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+struct BitArray128 {
+    + capacity : uint <<get>>
+    + allFalse : bool <<get>>
+    + allTrue : bool <<get>>
+    + humanizedData : string <<get>>
+    + BitArray128(initValue1:ulong, initValue2:ulong)
+    + BitArray128(bitIndexTrue:IEnumerable<uint>)
+    + BitAnd(other:IBitArray) : IBitArray
+    + BitOr(other:IBitArray) : IBitArray
+    + BitNot() : IBitArray
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+struct BitArray256 {
+    + capacity : uint <<get>>
+    + allFalse : bool <<get>>
+    + allTrue : bool <<get>>
+    + humanizedData : string <<get>>
+    + BitArray256(initValue1:ulong, initValue2:ulong, initValue3:ulong, initValue4:ulong)
+    + BitArray256(bitIndexTrue:IEnumerable<uint>)
+    + BitAnd(other:IBitArray) : IBitArray
+    + BitOr(other:IBitArray) : IBitArray
+    + BitNot() : IBitArray
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+class BitArrayUtilities <<static>> {
+    + {static} Get8(index:uint, data:byte) : bool
+    + {static} Get16(index:uint, data:ushort) : bool
+    + {static} Get32(index:uint, data:uint) : bool
+    + {static} Get64(index:uint, data:ulong) : bool
+    + {static} Get128(index:uint, data1:ulong, data2:ulong) : bool
+    + {static} Get256(index:uint, data1:ulong, data2:ulong, data3:ulong, data4:ulong) : bool
+    + {static} Set8(index:uint, data:byte, value:bool) : void
+    + {static} Set16(index:uint, data:ushort, value:bool) : void
+    + {static} Set32(index:uint, data:uint, value:bool) : void
+    + {static} Set64(index:uint, data:ulong, value:bool) : void
+    + {static} Set128(index:uint, data1:ulong, data2:ulong, value:bool) : void
+    + {static} Set256(index:uint, data1:ulong, data2:ulong, data3:ulong, data4:ulong, value:bool) : void
+}
+IBitArray <|-- BitArray8
+IBitArray <|-- BitArray16
+IBitArray <|-- BitArray32
+IBitArray <|-- BitArray64
+IBitArray <|-- BitArray128
+IBitArray <|-- BitArray256
+@enduml

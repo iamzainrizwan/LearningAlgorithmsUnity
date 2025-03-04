@@ -1,0 +1,40 @@
+@startuml
+abstract class Graphic {
+    + <<virtual>> raycastTarget : bool <<get>> <<set>>
+    + <<virtual>> SetAllDirty() : void
+    + <<virtual>> SetLayoutDirty() : void
+    + <<virtual>> SetVerticesDirty() : void
+    + <<virtual>> SetMaterialDirty() : void
+    + SetRaycastDirty() : void
+    + depth : int <<get>>
+    + <<virtual>> OnCullingChanged() : void
+    + <<virtual>> Rebuild(update:CanvasUpdate) : void
+    + <<virtual>> LayoutComplete() : void
+    + <<virtual>> GraphicUpdateComplete() : void
+    + <<virtual>> SetNativeSize() : void
+    + <<virtual>> Raycast(sp:Vector2, eventCamera:Camera) : bool
+    + PixelAdjustPoint(point:Vector2) : Vector2
+    + GetPixelAdjustedRect() : Rect
+    + <<virtual>> CrossFadeColor(targetColor:Color, duration:float, ignoreTimeScale:bool, useAlpha:bool) : void
+    + <<virtual>> CrossFadeColor(targetColor:Color, duration:float, ignoreTimeScale:bool, useAlpha:bool, useRGB:bool) : void
+    + <<virtual>> CrossFadeAlpha(alpha:float, duration:float, ignoreTimeScale:bool) : void
+    + RegisterDirtyLayoutCallback(action:UnityAction) : void
+    + UnregisterDirtyLayoutCallback(action:UnityAction) : void
+    + RegisterDirtyVerticesCallback(action:UnityAction) : void
+    + UnregisterDirtyVerticesCallback(action:UnityAction) : void
+    + RegisterDirtyMaterialCallback(action:UnityAction) : void
+    + UnregisterDirtyMaterialCallback(action:UnityAction) : void
+}
+UIBehaviour <|-- Graphic
+ICanvasElement <|-- Graphic
+Graphic --> "defaultGraphicMaterial" Material
+Graphic --> "color" Color
+Graphic --> "raycastPadding" Vector4
+Graphic --> "rectTransform" RectTransform
+Graphic --> "canvas" Canvas
+Graphic --> "canvasRenderer" CanvasRenderer
+Graphic --> "defaultMaterial" Material
+Graphic --> "material" Material
+Graphic --> "materialForRendering" Material
+Graphic --> "mainTexture" Texture
+@enduml

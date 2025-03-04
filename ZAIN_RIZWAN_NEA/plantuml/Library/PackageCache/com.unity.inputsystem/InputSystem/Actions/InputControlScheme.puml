@@ -1,0 +1,97 @@
+@startuml
+struct InputControlScheme {
+    + name : string <<get>>
+    + bindingGroup : string <<get>> <<set>>
+    + InputControlScheme(name:string, devices:IEnumerable<DeviceRequirement>, bindingGroup:string)
+    + {static} FindControlSchemeForDevices(devices:TDevices, schemes:TSchemes, mustIncludeDevice:InputDevice, allowUnsuccesfulMatch:bool) : InputControlScheme?
+    + {static} FindControlSchemeForDevices(devices:TDevices, schemes:TSchemes, controlScheme:InputControlScheme, matchResult:MatchResult, mustIncludeDevice:InputDevice, allowUnsuccessfulMatch:bool) : bool
+    + {static} FindControlSchemeForDevice(device:InputDevice, schemes:TSchemes) : InputControlScheme?
+    + SupportsDevice(device:InputDevice) : bool
+    + PickDevicesFrom(devices:TDevices, favorDevice:InputDevice) : MatchResult
+    + Equals(other:InputControlScheme) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+}
+class "IEquatable`1"<T> {
+}
+class "ReadOnlyArray`1"<T> {
+}
+struct MatchResult {
+    + score : float <<get>>
+    + isSuccessfulMatch : bool <<get>>
+    + hasMissingRequiredDevices : bool <<get>>
+    + hasMissingOptionalDevices : bool <<get>>
+    + GetEnumerator() : IEnumerator<Match>
+    + Dispose() : void
+}
+struct DeviceRequirement {
+    + controlPath : string <<get>> <<set>>
+    + isOptional : bool <<get>> <<set>>
+    + isAND : bool <<get>> <<set>>
+    + isOR : bool <<get>> <<set>>
+    + <<override>> ToString() : string
+    + Equals(other:DeviceRequirement) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+struct SchemeJson {
+    + name : string
+    + bindingGroup : string
+    + ToScheme() : InputControlScheme
+    + {static} ToJson(scheme:InputControlScheme) : SchemeJson
+    + {static} ToJson(schemes:InputControlScheme[]) : SchemeJson[]
+    + {static} ToSchemes(schemes:SchemeJson[]) : InputControlScheme[]
+}
+class "IEnumerable`1"<T> {
+}
+class "InputControlList`1"<T> {
+}
+enum Result {
+    AllSatisfied,
+    MissingRequired,
+    MissingOptional,
+}
+struct Match {
+    + requirementIndex : int <<get>>
+    + isOptional : bool <<get>>
+}
+struct Enumerator {
+    + MoveNext() : bool
+    + Reset() : void
+    + Dispose() : void
+}
+enum Flags {
+    None= 0,
+    Optional= 1 << 0,
+    Or= 1 << 1,
+}
+struct DeviceJson {
+    + devicePath : string
+    + isOptional : bool
+    + isOR : bool
+    + ToDeviceEntry() : DeviceRequirement
+    + {static} From(requirement:DeviceRequirement) : DeviceJson
+}
+class "IEnumerator`1"<T> {
+}
+"IEquatable`1" "<InputControlScheme>" <|-- InputControlScheme
+InputControlScheme --> "deviceRequirements<DeviceRequirement>" "ReadOnlyArray`1"
+InputControlScheme +-- MatchResult
+"IEnumerable`1" "<MatchResult.Match>" <|-- MatchResult
+IDisposable <|-- MatchResult
+MatchResult --> "devices<InputDevice>" "InputControlList`1"
+InputControlScheme +-- DeviceRequirement
+"IEquatable`1" "<DeviceRequirement>" <|-- DeviceRequirement
+InputControlScheme +-- SchemeJson
+MatchResult +-- Result
+MatchResult +-- Match
+Match --> "control" InputControl
+Match --> "device" InputDevice
+Match --> "requirement" DeviceRequirement
+MatchResult +-- Enumerator
+"IEnumerator`1" "<Match>" <|-- Enumerator
+Enumerator --> "Current" Match
+DeviceRequirement +-- Flags
+SchemeJson +-- DeviceJson
+@enduml

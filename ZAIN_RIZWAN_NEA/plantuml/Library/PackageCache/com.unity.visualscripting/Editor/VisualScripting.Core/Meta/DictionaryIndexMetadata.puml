@@ -1,0 +1,7 @@
+@startuml
+abstract class DictionaryIndexMetadata {
+    + index : int <<get>>
+    + <<override>> GetCustomAttributes(inherit:bool) : Attribute[]
+}
+Metadata <|-- DictionaryIndexMetadata
+@enduml

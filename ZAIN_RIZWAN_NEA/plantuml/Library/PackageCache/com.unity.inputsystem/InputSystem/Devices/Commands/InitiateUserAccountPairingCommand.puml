@@ -1,0 +1,15 @@
+@startuml
+struct InitiateUserAccountPairingCommand {
+    + {static} Create() : InitiateUserAccountPairingCommand
+}
+enum Result {
+    SuccessfullyInitiated= 1,
+    ErrorNotSupported= (int)InputDeviceCommand.GenericFailure,
+    ErrorAlreadyInProgress= -2,
+}
+IInputDeviceCommandInfo <|-- InitiateUserAccountPairingCommand
+InitiateUserAccountPairingCommand --> "Type" FourCC
+InitiateUserAccountPairingCommand --> "baseCommand" InputDeviceCommand
+InitiateUserAccountPairingCommand --> "typeStatic" FourCC
+InitiateUserAccountPairingCommand +-- Result
+@enduml

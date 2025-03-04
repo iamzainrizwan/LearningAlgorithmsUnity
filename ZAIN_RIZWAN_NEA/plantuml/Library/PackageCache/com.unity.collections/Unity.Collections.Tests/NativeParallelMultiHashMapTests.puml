@@ -1,0 +1,62 @@
+@startuml
+class NativeParallelMultiHashMapTests {
+    + NativeParallelMultiHashMap_UseAfterFree_UsesCustomOwnerTypeName() : void
+    + NativeParallelMultiHashMap_CreateAndUseAfterFreeInBurstJob_UsesCustomOwnerTypeName() : void
+    + NativeParallelMultiHashMap_IsEmpty() : void
+    + NativeParallelMultiHashMap_CountValuesForKey() : void
+    + NativeParallelMultiHashMap_RemoveKeyAndValue() : void
+    + NativeParallelMultiHashMap_ValueIterator() : void
+    + NativeParallelMultiHashMap_RemoveKeyValueDoesntDeallocate() : void
+    + NativeParallelMultiHashMap_RemoveOnEmptyMap_DoesNotThrow() : void
+    + NativeParallelMultiHashMap_RemoveFromMultiHashMap() : void
+    + NativeParallelMultiHashMap_GetKeys() : void
+    + NativeParallelMultiHashMap_GetUniqueKeysEmpty() : void
+    + NativeParallelMultiHashMap_GetUniqueKeys() : void
+    + NativeParallelMultiHashMap_GetValues() : void
+    + NativeParallelMultiHashMap_ForEach_FixedStringInHashMap() : void
+    + NativeParallelMultiHashMap_ForEach(n:int) : void
+    + NativeParallelMultiHashMap_ForEach_From_Job(n:int) : void
+    + NativeParallelMultiHashMap_ForEach_Throws_When_Modified() : void
+    + NativeParallelMultiHashMap_ForEach_Throws_Job_Iterator() : void
+    + NativeParallelMultiHashMap_ForEach_Throws_When_Modified_From_Job() : void
+    + NativeParallelMultiHashMap_GetKeysAndValues() : void
+    + NativeParallelMultiHashMap_ContainsKeyMultiHashMap() : void
+    + NativeParallelMultiHashMap_CustomAllocatorTest() : void
+    + <<unsafe>> NativeParallelMultiHashMap_BurstedCustomAllocatorTest() : void
+    + NativeParallelMultiHashMap_Nested() : void
+}
+struct NativeParallelMultiHashMap_CreateAndUseAfterFreeBurst {
+    + Execute() : void
+}
+struct NativeParallelMultiHashMap_ForEach_Job {
+    + Num : int
+    + Execute() : void
+}
+struct NativeParallelMultiHashMap_ForEachIterator {
+    + Execute() : void
+}
+struct ParallelWriteToMultiHashMapJob {
+    + Execute(index:int) : void
+}
+struct BurstedCustomAllocatorJob {
+    + Execute() : void
+}
+struct NestedHashMap {
+}
+class "NativeParallelMultiHashMap`2"<T1,T2> {
+}
+CollectionsTestFixture <|-- NativeParallelMultiHashMapTests
+NativeParallelMultiHashMapTests +-- NativeParallelMultiHashMap_CreateAndUseAfterFreeBurst
+IJob <|-- NativeParallelMultiHashMap_CreateAndUseAfterFreeBurst
+NativeParallelMultiHashMapTests +-- NativeParallelMultiHashMap_ForEach_Job
+IJob <|-- NativeParallelMultiHashMap_ForEach_Job
+NativeParallelMultiHashMap_ForEach_Job --> "Input<int,int>" "NativeParallelMultiHashMap`2"
+NativeParallelMultiHashMapTests +-- NativeParallelMultiHashMap_ForEachIterator
+IJob <|-- NativeParallelMultiHashMap_ForEachIterator
+NativeParallelMultiHashMapTests +-- ParallelWriteToMultiHashMapJob
+IJobParallelFor <|-- ParallelWriteToMultiHashMapJob
+NativeParallelMultiHashMapTests +-- BurstedCustomAllocatorJob
+IJob <|-- BurstedCustomAllocatorJob
+NativeParallelMultiHashMapTests +-- NestedHashMap
+NestedHashMap --> "map<int,int>" "NativeParallelMultiHashMap`2"
+@enduml

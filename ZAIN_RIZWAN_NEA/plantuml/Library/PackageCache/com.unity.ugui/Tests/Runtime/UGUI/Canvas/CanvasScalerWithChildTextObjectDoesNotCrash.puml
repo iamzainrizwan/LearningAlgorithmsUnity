@@ -1,0 +1,7 @@
+@startuml
+class CanvasScalerWithChildTextObjectDoesNotCrash {
+    + TestSetup() : void
+    + CanvasScalerWithChildTextObjectWithTextFontDoesNotCrash() : IEnumerator
+    + TearDown() : void
+}
+@enduml

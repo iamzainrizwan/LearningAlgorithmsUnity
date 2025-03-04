@@ -1,0 +1,36 @@
+@startuml
+enum TextProcessingElementType {
+    Undefined= 0x0,
+    TextCharacterElement= 0x1,
+    TextMarkupElement= 0x2,
+}
+struct CharacterElement {
+    + Unicode : uint <<get>> <<set>>
+    + CharacterElement(textElement:TMP_TextElement)
+}
+struct MarkupAttribute {
+    + NameHashCode : int <<get>> <<set>>
+    + ValueHashCode : int <<get>> <<set>>
+    + ValueStartIndex : int <<get>> <<set>>
+    + ValueLength : int <<get>> <<set>>
+}
+struct MarkupElement {
+    + NameHashCode : int <<get>> <<set>>
+    + ValueHashCode : int <<get>> <<set>>
+    + ValueStartIndex : int <<get>> <<set>>
+    + ValueLength : int <<get>> <<set>>
+    + MarkupElement(nameHashCode:int, startIndex:int, length:int)
+}
+struct TextProcessingElement {
+    + StartIndex : int <<get>> <<set>>
+    + Length : int <<get>> <<set>>
+    + TextProcessingElement(elementType:TextProcessingElementType, startIndex:int, length:int)
+    + TextProcessingElement(textElement:TMP_TextElement, startIndex:int, length:int)
+    + TextProcessingElement(characterElement:CharacterElement, startIndex:int, length:int)
+    + TextProcessingElement(markupElement:MarkupElement)
+}
+TextProcessingElement --> "ElementType" TextProcessingElementType
+TextProcessingElement --> "CharacterElement" CharacterElement
+TextProcessingElement --> "MarkupElement" MarkupElement
+TextProcessingElement --> "Undefined" TextProcessingElement
+@enduml

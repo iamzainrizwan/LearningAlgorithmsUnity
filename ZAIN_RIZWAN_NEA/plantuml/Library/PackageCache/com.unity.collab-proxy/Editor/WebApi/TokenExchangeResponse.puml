@@ -1,0 +1,7 @@
+@startuml
+class TokenExchangeResponse {
+    + User : string <<get>> <<set>>
+    + AccessToken : string <<get>> <<set>>
+    + RefreshToken : string <<get>> <<set>>
+}
+@enduml

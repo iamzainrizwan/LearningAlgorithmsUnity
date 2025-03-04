@@ -1,0 +1,77 @@
+@startuml
+struct float2x2 {
+    + {static} Rotate(angle:float) : float2x2
+    + {static} Scale(s:float) : float2x2
+    + {static} Scale(x:float, y:float) : float2x2
+    + {static} Scale(v:float2) : float2x2
+}
+struct float3x3 {
+    + float3x3(f4x4:float4x4)
+    + float3x3(q:quaternion)
+    + {static} AxisAngle(axis:float3, angle:float) : float3x3
+    + {static} EulerXYZ(xyz:float3) : float3x3
+    + {static} EulerXZY(xyz:float3) : float3x3
+    + {static} EulerYXZ(xyz:float3) : float3x3
+    + {static} EulerYZX(xyz:float3) : float3x3
+    + {static} EulerZXY(xyz:float3) : float3x3
+    + {static} EulerZYX(xyz:float3) : float3x3
+    + {static} EulerXYZ(x:float, y:float, z:float) : float3x3
+    + {static} EulerXZY(x:float, y:float, z:float) : float3x3
+    + {static} EulerYXZ(x:float, y:float, z:float) : float3x3
+    + {static} EulerYZX(x:float, y:float, z:float) : float3x3
+    + {static} EulerZXY(x:float, y:float, z:float) : float3x3
+    + {static} EulerZYX(x:float, y:float, z:float) : float3x3
+    + {static} Euler(xyz:float3, order:RotationOrder) : float3x3
+    + {static} Euler(x:float, y:float, z:float, order:RotationOrder) : float3x3
+    + {static} RotateX(angle:float) : float3x3
+    + {static} RotateY(angle:float) : float3x3
+    + {static} RotateZ(angle:float) : float3x3
+    + {static} Scale(s:float) : float3x3
+    + {static} Scale(x:float, y:float, z:float) : float3x3
+    + {static} Scale(v:float3) : float3x3
+    + {static} LookRotation(forward:float3, up:float3) : float3x3
+    + {static} LookRotationSafe(forward:float3, up:float3) : float3x3
+}
+struct float4x4 {
+    + float4x4(rotation:float3x3, translation:float3)
+    + float4x4(rotation:quaternion, translation:float3)
+    + float4x4(transform:RigidTransform)
+    + {static} AxisAngle(axis:float3, angle:float) : float4x4
+    + {static} EulerXYZ(xyz:float3) : float4x4
+    + {static} EulerXZY(xyz:float3) : float4x4
+    + {static} EulerYXZ(xyz:float3) : float4x4
+    + {static} EulerYZX(xyz:float3) : float4x4
+    + {static} EulerZXY(xyz:float3) : float4x4
+    + {static} EulerZYX(xyz:float3) : float4x4
+    + {static} EulerXYZ(x:float, y:float, z:float) : float4x4
+    + {static} EulerXZY(x:float, y:float, z:float) : float4x4
+    + {static} EulerYXZ(x:float, y:float, z:float) : float4x4
+    + {static} EulerYZX(x:float, y:float, z:float) : float4x4
+    + {static} EulerZXY(x:float, y:float, z:float) : float4x4
+    + {static} EulerZYX(x:float, y:float, z:float) : float4x4
+    + {static} Euler(xyz:float3, order:RotationOrder) : float4x4
+    + {static} Euler(x:float, y:float, z:float, order:RotationOrder) : float4x4
+    + {static} RotateX(angle:float) : float4x4
+    + {static} RotateY(angle:float) : float4x4
+    + {static} RotateZ(angle:float) : float4x4
+    + {static} Scale(s:float) : float4x4
+    + {static} Scale(x:float, y:float, z:float) : float4x4
+    + {static} Scale(scales:float3) : float4x4
+    + {static} Translate(vector:float3) : float4x4
+    + {static} LookAt(eye:float3, target:float3, up:float3) : float4x4
+    + {static} Ortho(width:float, height:float, near:float, far:float) : float4x4
+    + {static} OrthoOffCenter(left:float, right:float, bottom:float, top:float, near:float, far:float) : float4x4
+    + {static} PerspectiveFov(verticalFov:float, aspect:float, near:float, far:float) : float4x4
+    + {static} PerspectiveOffCenter(left:float, right:float, bottom:float, top:float, near:float, far:float) : float4x4
+    + {static} TRS(translation:float3, rotation:quaternion, scale:float3) : float4x4
+}
+class math <<partial>> {
+    + {static} float3x3(f4x4:float4x4) : float3x3
+    + {static} float3x3(rotation:quaternion) : float3x3
+    + {static} float4x4(rotation:float3x3, translation:float3) : float4x4
+    + {static} float4x4(rotation:quaternion, translation:float3) : float4x4
+    + {static} float4x4(transform:RigidTransform) : float4x4
+    + {static} orthonormalize(i:float3x3) : float3x3
+    + {static} pseudoinverse(m:float3x3) : float3x3
+}
+@enduml

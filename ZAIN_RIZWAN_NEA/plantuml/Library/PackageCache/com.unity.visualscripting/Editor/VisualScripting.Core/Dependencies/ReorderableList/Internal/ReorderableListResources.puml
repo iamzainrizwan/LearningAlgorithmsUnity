@@ -1,0 +1,25 @@
+@startuml
+enum ReorderableListTexture {
+    Icon_Add_Normal= 0,
+    Icon_Add_Active,
+    Icon_AddMenu_Normal,
+    Icon_AddMenu_Active,
+    Icon_Menu_Normal,
+    Icon_Menu_Active,
+    Icon_Remove_Normal,
+    Icon_Remove_Active,
+    Button_Normal,
+    Button_Active,
+    Button2_Normal,
+    Button2_Active,
+    TitleBackground,
+    ContainerBackground,
+    Container2Background,
+    GrabHandle,
+}
+class ReorderableListResources <<static>> {
+    + {static} GetTexture(name:ReorderableListTexture) : Texture2D
+    + {static} CreatePixelTexture(name:string, color:Color) : Texture2D
+}
+ReorderableListResources --> "texHighlightColor" Texture2D
+@enduml

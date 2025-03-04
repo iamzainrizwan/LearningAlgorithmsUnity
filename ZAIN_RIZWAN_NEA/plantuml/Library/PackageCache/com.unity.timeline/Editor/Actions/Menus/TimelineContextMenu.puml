@@ -1,0 +1,22 @@
+@startuml
+class SequencerContextMenu <<static>> {
+    + {static} ShowNewTracksContextMenu(tracks:ICollection<TrackAsset>, state:WindowState) : void
+    + {static} ShowNewTracksContextMenu(tracks:ICollection<TrackAsset>, state:WindowState, rect:Rect) : void
+    + {static} ShowTrackContextMenu(mousePosition:Vector2?) : void
+    + {static} ShowItemContextMenu(mousePosition:Vector2) : void
+    + {static} BuildItemContextMenu(items:List<MenuActionItem>, mousePosition:Vector2) : void
+    + {static} BuildNewTracksContextMenu(menuItems:List<MenuActionItem>, parentTracks:ICollection<TrackAsset>, state:WindowState, format:string) : void
+    + {static} BuildTrackContextMenu(items:List<MenuActionItem>, mousePosition:Vector2?) : void
+}
+class Styles <<static>> {
+    + {static} <<readonly>> addItemFromAssetTemplate : string
+    + {static} <<readonly>> addSingleItemFromAssetTemplate : string
+    + {static} <<readonly>> addItemTemplate : string
+    + {static} <<readonly>> typeSelectorTemplate : string
+    + {static} <<readonly>> trackGroup : string
+    + {static} <<readonly>> trackSubGroup : string
+    + {static} <<readonly>> addTrackLayer : string
+    + {static} <<readonly>> layerName : string
+}
+SequencerContextMenu +-- Styles
+@enduml

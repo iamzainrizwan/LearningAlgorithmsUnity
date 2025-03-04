@@ -1,0 +1,25 @@
+@startuml
+class OptimizedReflection <<static>> {
+    + {static} <<readonly>> jitAvailable : bool
+    + {static} useJitIfAvailable : bool <<get>> <<set>>
+    + {static} safeMode : bool <<get>> <<set>>
+    + {static} ClearCache() : void
+    + {static} Prewarm(fieldInfo:FieldInfo) : IOptimizedAccessor
+    + {static} GetValueOptimized(fieldInfo:FieldInfo, target:object) : object
+    + {static} SetValueOptimized(fieldInfo:FieldInfo, target:object, value:object) : void
+    + {static} SupportsOptimization(fieldInfo:FieldInfo) : bool
+    + {static} Prewarm(propertyInfo:PropertyInfo) : IOptimizedAccessor
+    + {static} GetValueOptimized(propertyInfo:PropertyInfo, target:object) : object
+    + {static} SetValueOptimized(propertyInfo:PropertyInfo, target:object, value:object) : void
+    + {static} SupportsOptimization(propertyInfo:PropertyInfo) : bool
+    + {static} Prewarm(methodInfo:MethodInfo) : IOptimizedInvoker
+    + {static} InvokeOptimized(methodInfo:MethodInfo, target:object, args:object[]) : object
+    + {static} InvokeOptimized(methodInfo:MethodInfo, target:object) : object
+    + {static} InvokeOptimized(methodInfo:MethodInfo, target:object, arg0:object) : object
+    + {static} InvokeOptimized(methodInfo:MethodInfo, target:object, arg0:object, arg1:object) : object
+    + {static} InvokeOptimized(methodInfo:MethodInfo, target:object, arg0:object, arg1:object, arg2:object) : object
+    + {static} InvokeOptimized(methodInfo:MethodInfo, target:object, arg0:object, arg1:object, arg2:object, arg3:object) : object
+    + {static} InvokeOptimized(methodInfo:MethodInfo, target:object, arg0:object, arg1:object, arg2:object, arg3:object, arg4:object) : object
+    + {static} SupportsOptimization(methodInfo:MethodInfo) : bool
+}
+@enduml

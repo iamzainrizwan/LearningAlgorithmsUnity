@@ -1,0 +1,6 @@
+@startuml
+class Physics2DRaycasterEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+Editor <|-- Physics2DRaycasterEditor
+@enduml

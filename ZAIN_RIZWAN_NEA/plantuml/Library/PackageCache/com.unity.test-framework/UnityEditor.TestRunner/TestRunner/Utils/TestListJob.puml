@@ -1,0 +1,6 @@
+@startuml
+class TestListJob {
+    + TestListJob(testListProvider:CachingTestListProvider, platform:TestPlatform, callback:Action<ITestAdaptor>)
+    + Start() : void
+}
+@enduml

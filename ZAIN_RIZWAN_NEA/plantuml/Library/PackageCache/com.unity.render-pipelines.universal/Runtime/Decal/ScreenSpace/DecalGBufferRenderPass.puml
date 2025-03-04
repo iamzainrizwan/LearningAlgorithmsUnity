@@ -1,0 +1,17 @@
+@startuml
+class DecalDrawGBufferSystem {
+    + DecalDrawGBufferSystem(entityManager:DecalEntityManager)
+}
+class DecalGBufferRenderPass {
+    + DecalGBufferRenderPass(settings:DecalScreenSpaceSettings, drawSystem:DecalDrawGBufferSystem, decalLayers:bool)
+    + <<override>> Configure(cmd:CommandBuffer, cameraTextureDescriptor:RenderTextureDescriptor) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+    + <<override>> OnCameraCleanup(cmd:CommandBuffer) : void
+}
+class PassData {
+}
+DecalDrawSystem <|-- DecalDrawGBufferSystem
+ScriptableRenderPass <|-- DecalGBufferRenderPass
+DecalGBufferRenderPass +-- PassData
+@enduml

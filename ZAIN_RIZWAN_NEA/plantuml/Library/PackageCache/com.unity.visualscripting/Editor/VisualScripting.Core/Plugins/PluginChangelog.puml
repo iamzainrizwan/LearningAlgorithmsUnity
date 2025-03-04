@@ -1,0 +1,16 @@
+@startuml
+abstract class PluginChangelog {
+    + <<virtual>> description : string <<get>>
+    + CompareTo(other:PluginChangelog) : int
+}
+class "IComparable`1"<T> {
+}
+class "IEnumerable`1"<T> {
+}
+IPluginLinked <|-- PluginChangelog
+"IComparable`1" "<PluginChangelog>" <|-- PluginChangelog
+PluginChangelog --> "plugin" Plugin
+PluginChangelog --> "version" SemanticVersion
+PluginChangelog --> "date" DateTime
+PluginChangelog --> "changes<string>" "IEnumerable`1"
+@enduml

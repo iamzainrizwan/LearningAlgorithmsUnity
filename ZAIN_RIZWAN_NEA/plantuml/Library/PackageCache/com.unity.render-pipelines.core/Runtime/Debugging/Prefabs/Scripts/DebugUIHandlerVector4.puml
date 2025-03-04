@@ -1,0 +1,17 @@
+@startuml
+class DebugUIHandlerVector4 {
+    + <<override>> OnSelection(fromNext:bool, previous:DebugUIHandlerWidget) : bool
+    + <<override>> OnDeselection() : void
+    + <<override>> OnIncrement(fast:bool) : void
+    + <<override>> OnDecrement(fast:bool) : void
+    + <<override>> OnAction() : void
+    + <<override>> Next() : DebugUIHandlerWidget
+}
+DebugUIHandlerWidget <|-- DebugUIHandlerVector4
+DebugUIHandlerVector4 --> "nameLabel" Text
+DebugUIHandlerVector4 --> "valueToggle" UIFoldout
+DebugUIHandlerVector4 --> "fieldX" DebugUIHandlerIndirectFloatField
+DebugUIHandlerVector4 --> "fieldY" DebugUIHandlerIndirectFloatField
+DebugUIHandlerVector4 --> "fieldZ" DebugUIHandlerIndirectFloatField
+DebugUIHandlerVector4 --> "fieldW" DebugUIHandlerIndirectFloatField
+@enduml

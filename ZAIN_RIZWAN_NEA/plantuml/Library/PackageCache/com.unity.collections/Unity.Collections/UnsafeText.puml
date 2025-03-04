@@ -1,0 +1,27 @@
+@startuml
+class UnsafeTextExtensions <<static>> {
+    + {static} AsUnsafeListOfBytes(text:UnsafeText) : ref UnsafeList<byte>
+    + {static} AsUnsafeListOfBytesRO(text:UnsafeText) : UnsafeList<byte>
+}
+struct UnsafeText {
+    + UnsafeText(capacity:int, allocator:AllocatorManager.AllocatorHandle)
+    + <<readonly>> IsCreated : bool <<get>>
+    + Dispose() : void
+    + Dispose(inputDeps:JobHandle) : JobHandle
+    + <<readonly>> IsEmpty : bool <<get>>
+    + ElementAt(index:int) : ref byte
+    + Clear() : void
+    + GetUnsafePtr() : byte*
+    + TryResize(newLength:int, clearOptions:NativeArrayOptions) : bool
+    + Capacity : int <<readonly get>> <<set>>
+    + Length : int <<readonly get>> <<set>>
+    + <<override>> ToString() : string
+}
+class "INativeList`1"<T> {
+}
+class "ReadArrayElement`1"<T> {
+}
+INativeDisposable <|-- UnsafeText
+IUTF8Bytes <|-- UnsafeText
+"INativeList`1" "<byte>" <|-- UnsafeText
+@enduml

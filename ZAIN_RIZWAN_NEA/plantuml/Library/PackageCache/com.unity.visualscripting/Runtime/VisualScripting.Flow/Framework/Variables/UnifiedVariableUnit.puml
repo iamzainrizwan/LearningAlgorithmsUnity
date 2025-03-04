@@ -1,0 +1,9 @@
+@startuml
+abstract class UnifiedVariableUnit {
+}
+Unit <|-- UnifiedVariableUnit
+IUnifiedVariableUnit <|-- UnifiedVariableUnit
+UnifiedVariableUnit --> "kind" VariableKind
+UnifiedVariableUnit --> "name" ValueInput
+UnifiedVariableUnit --> "@object" ValueInput
+@enduml

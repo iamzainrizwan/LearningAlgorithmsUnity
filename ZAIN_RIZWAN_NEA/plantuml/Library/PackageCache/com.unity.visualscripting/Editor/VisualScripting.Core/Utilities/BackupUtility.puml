@@ -1,0 +1,6 @@
+@startuml
+class BackupUtility <<static>> {
+    + {static} BackupAssetsFolder() : void
+    + {static} BackupAssetsFolder(backupLabel:string) : void
+}
+@enduml

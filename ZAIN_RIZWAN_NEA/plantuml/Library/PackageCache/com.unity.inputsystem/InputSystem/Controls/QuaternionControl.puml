@@ -1,0 +1,14 @@
+@startuml
+class QuaternionControl {
+    + QuaternionControl()
+    + <<override>> <<unsafe>> ReadUnprocessedValueFromState(statePtr:void*) : Quaternion
+    + <<override>> <<unsafe>> WriteValueIntoState(value:Quaternion, statePtr:void*) : void
+}
+class "InputControl`1"<T> {
+}
+"InputControl`1" "<Quaternion>" <|-- QuaternionControl
+QuaternionControl --> "x" AxisControl
+QuaternionControl --> "y" AxisControl
+QuaternionControl --> "z" AxisControl
+QuaternionControl --> "w" AxisControl
+@enduml

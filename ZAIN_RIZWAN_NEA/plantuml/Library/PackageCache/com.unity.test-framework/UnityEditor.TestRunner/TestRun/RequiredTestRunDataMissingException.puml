@@ -1,0 +1,7 @@
+@startuml
+class RequiredTestRunDataMissingException {
+    + RequiredTestRunDataMissingException(fieldName:string)
+    + FieldName : string
+}
+Exception <|-- RequiredTestRunDataMissingException
+@enduml

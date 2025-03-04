@@ -1,0 +1,9 @@
+@startuml
+class ScrollBarTests {
+    + Setup() : void
+    + TestSetup() : void
+    + ScrollBarSetValueWithoutNotifyWillNotNotify() : void
+    + TearDown() : void
+}
+IPrebuildSetup <|-- ScrollBarTests
+@enduml

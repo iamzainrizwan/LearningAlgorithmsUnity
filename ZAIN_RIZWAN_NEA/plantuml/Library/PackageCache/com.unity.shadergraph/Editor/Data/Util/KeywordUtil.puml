@@ -1,0 +1,18 @@
+@startuml
+class BuiltinKeyword <<static>> {
+    + {static} QualityKeyword() : KeywordDescriptor
+}
+class KeywordUtil <<static>> {
+    + {static} GetBuiltinKeywordDescriptors() : IEnumerable<KeywordDescriptor>
+    + {static} ToConcreteSlotValueType(keywordType:KeywordType) : ConcreteSlotValueType
+    + {static} ToDeclarationSuffix(scope:KeywordScope) : string
+    + {static} ToDeclarationString(keywordDefinition:KeywordDefinition) : string
+    + {static} GenerateEnumKeywordPragmaStrings(keywordReferenceName:string, keywordDefinition:KeywordDefinition, keywordScope:KeywordScope, keywordStages:KeywordShaderStage, keywordEntries:IEnumerable<KeywordEntry>, pragmaStringAction:Action<string>) : void
+    + {static} GenerateBooleanKeywordPragmaStrings(keywordReferenceName:string, keywordDefinition:KeywordDefinition, keywordScope:KeywordScope, keywordStages:KeywordShaderStage, pragmaStringAction:Action<string>) : void
+    + {static} ToKeywordStagesString(stages:KeywordShaderStage) : string
+    + {static} ToDefineString(keyword:KeywordDescriptor, value:int) : string
+    + {static} GetKeywordPermutationSetConditional(permutationSet:List<int>) : string
+    + {static} GetKeywordPermutationConditional(permutation:int) : string
+    + {static} GetKeywordPermutationDeclarations(sb:ShaderStringBuilder, permutations:List<List<KeyValuePair<ShaderKeyword, int>>>) : void
+}
+@enduml

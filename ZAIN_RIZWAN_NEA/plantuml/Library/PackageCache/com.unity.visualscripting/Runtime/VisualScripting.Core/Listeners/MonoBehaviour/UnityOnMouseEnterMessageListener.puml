@@ -1,0 +1,5 @@
+@startuml
+class UnityOnMouseEnterMessageListener <<sealed>> {
+}
+MessageListener <|-- UnityOnMouseEnterMessageListener
+@enduml

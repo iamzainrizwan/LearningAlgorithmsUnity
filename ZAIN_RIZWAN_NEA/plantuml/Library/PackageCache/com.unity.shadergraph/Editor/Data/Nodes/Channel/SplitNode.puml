@@ -1,0 +1,14 @@
+@startuml
+class SplitNode {
+    + <<const>> InputSlotId : int = 0
+    + <<const>> OutputSlotRId : int = 1
+    + <<const>> OutputSlotGId : int = 2
+    + <<const>> OutputSlotBId : int = 3
+    + <<const>> OutputSlotAId : int = 4
+    + SplitNode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+}
+AbstractMaterialNode <|-- SplitNode
+IGeneratesBodyCode <|-- SplitNode
+@enduml

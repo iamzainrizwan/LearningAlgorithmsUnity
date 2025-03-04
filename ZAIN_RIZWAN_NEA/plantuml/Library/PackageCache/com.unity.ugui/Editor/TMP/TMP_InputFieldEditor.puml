@@ -1,0 +1,12 @@
+@startuml
+class TMP_InputFieldEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+struct m_foldout {
+    + {static} textInput : bool = true
+    + {static} fontSettings : bool = true
+    + {static} extraSettings : bool = true
+}
+SelectableEditor <|-- TMP_InputFieldEditor
+TMP_InputFieldEditor +-- m_foldout
+@enduml

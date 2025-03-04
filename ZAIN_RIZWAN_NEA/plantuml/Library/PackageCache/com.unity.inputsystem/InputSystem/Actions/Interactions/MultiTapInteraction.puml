@@ -1,0 +1,19 @@
+@startuml
+class MultiTapInteraction {
+    + tapTime : float
+    + tapDelay : float
+    + tapCount : int = 2
+    + pressPoint : float
+    + Process(context:InputInteractionContext) : void
+    + Reset() : void
+}
+class "IInputInteraction`1"<T> {
+}
+enum TapPhase {
+    None,
+    WaitingForNextRelease,
+    WaitingForNextPress,
+}
+"IInputInteraction`1" "<float>" <|-- MultiTapInteraction
+MultiTapInteraction +-- TapPhase
+@enduml

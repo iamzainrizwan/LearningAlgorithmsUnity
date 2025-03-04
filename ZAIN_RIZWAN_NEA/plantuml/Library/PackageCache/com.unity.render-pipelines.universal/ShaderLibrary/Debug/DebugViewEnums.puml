@@ -1,0 +1,116 @@
+@startuml
+enum DebugMaterialMode {
+    None,
+    Albedo,
+    Specular,
+    Alpha,
+    Smoothness,
+    AmbientOcclusion,
+    Emission,
+    NormalWorldSpace,
+    NormalTangentSpace,
+    LightingComplexity,
+    Metallic,
+    SpriteMask,
+    RenderingLayerMasks,
+}
+enum DebugVertexAttributeMode {
+    None,
+    Texcoord0,
+    Texcoord1,
+    Texcoord2,
+    Texcoord3,
+    Color,
+    Tangent,
+    Normal,
+}
+enum DebugMaterialValidationMode {
+    None,
+    Albedo,
+    Metallic,
+}
+enum DebugFullScreenMode {
+    None,
+    Depth,
+    MotionVector,
+    AdditionalLightsShadowMap,
+    MainLightShadowMap,
+    AdditionalLightsCookieAtlas,
+    ReflectionProbeAtlas,
+    STP,
+}
+enum DebugSceneOverrideMode {
+    None,
+    Overdraw,
+    Wireframe,
+    SolidWireframe,
+    ShadedWireframe,
+}
+enum DebugOverdrawMode {
+    None,
+    Opaque,
+    Transparent,
+    All,
+}
+enum DebugMipInfoMode {
+    None,
+    MipStreamingPerformance,
+    MipStreamingStatus,
+    MipStreamingActivity,
+    MipStreamingPriority,
+    MipCount,
+    MipRatio,
+}
+enum DebugMipMapStatusMode {
+    Material,
+    Texture,
+}
+enum DebugMipMapModeTerrainTexture {
+    Control,
+    Layer0,
+    Layer1,
+    Layer2,
+    Layer3,
+}
+enum DebugPostProcessingMode {
+    Disabled,
+    Auto,
+    Enabled,
+}
+enum DebugValidationMode {
+    None,
+    HighlightNanInfNegative,
+    HighlightOutsideOfRange,
+}
+enum PixelValidationChannels {
+    RGB,
+    R,
+    G,
+    B,
+    A,
+}
+enum DebugLightingMode {
+    None,
+    ShadowCascades,
+    LightingWithoutNormalMaps,
+    LightingWithNormalMaps,
+    Reflections,
+    ReflectionsWithSmoothness,
+    GlobalIllumination,
+}
+enum HDRDebugMode {
+    None,
+    GamutView,
+    GamutClip,
+    ValuesAbovePaperWhite,
+}
+enum DebugLightingFeatureFlags {
+    None,
+    GlobalIllumination= 0x1,
+    MainLight= 0x2,
+    AdditionalLights= 0x4,
+    VertexLighting= 0x8,
+    Emission= 0x10,
+    AmbientOcclusion= 0x20,
+}
+@enduml

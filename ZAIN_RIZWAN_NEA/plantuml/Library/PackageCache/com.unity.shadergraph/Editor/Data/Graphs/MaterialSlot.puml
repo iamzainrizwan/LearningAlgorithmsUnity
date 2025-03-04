@@ -1,0 +1,40 @@
+@startuml
+abstract class MaterialSlot {
+    + IsConnectionTestable() : bool
+    + InstantiateCustomControl() : VisualElement
+    + <<virtual>> InstantiateControl() : VisualElement
+    + <<virtual>> displayName : string <<get>> <<set>>
+    + RawDisplayName() : string
+    + {static} CreateMaterialSlot(type:SlotValueType, slotId:int, displayName:string, shaderOutputName:string, slotType:SlotType, defaultValue:Vector4, shaderStageCapability:ShaderStageCapability, hidden:bool) : MaterialSlot
+    + hidden : bool <<get>> <<set>>
+    + id : int <<get>>
+    + isInputSlot : bool <<get>>
+    + isOutputSlot : bool <<get>>
+    + isConnected : bool <<get>>
+    + {abstract} isDefaultValue : bool <<get>>
+    + shaderOutputName : string <<get>>
+    + hasError : bool <<get>> <<set>>
+    + IsUsingDefaultValue() : bool
+    + IsCompatibleWith(otherSlot:MaterialSlot) : bool
+    + IsCompatibleStageWith(otherSlot:MaterialSlot) : bool
+    + GetDefaultValue(generationMode:GenerationMode, concretePrecision:ConcretePrecision) : string
+    + <<virtual>> GetDefaultValue(generationMode:GenerationMode) : string
+    + {abstract} AddDefaultProperty(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + <<virtual>> GetPreviewProperties(properties:List<PreviewProperty>, name:string) : void
+    + <<virtual>> AppendHLSLParameterDeclaration(sb:ShaderStringBuilder, paramName:string) : void
+    + {abstract} CopyValuesFrom(foundSlot:MaterialSlot) : void
+    + Equals(other:MaterialSlot) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + Dispose() : void
+    + <<virtual>> CopyDefaultValue(other:MaterialSlot) : void
+}
+JsonObject <|-- MaterialSlot
+IDisposable <|-- MaterialSlot
+MaterialSlot --> "slotReference" SlotReference
+MaterialSlot --> "owner" AbstractMaterialNode
+MaterialSlot --> "slotType" SlotType
+MaterialSlot --> "valueType" SlotValueType
+MaterialSlot --> "concreteValueType" ConcreteSlotValueType
+MaterialSlot --> "stageCapability" ShaderStageCapability
+@enduml

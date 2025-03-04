@@ -1,0 +1,21 @@
+@startuml
+enum ClipCaps {
+    None= 0,
+    Looping= 1 << 0,
+    Extrapolation= 1 << 1,
+    ClipIn= 1 << 2,
+    SpeedMultiplier= 1 << 3,
+    Blending= 1 << 4,
+    AutoScale= 1 << 5 | SpeedMultiplier,
+    All= ~None,
+}
+class TimelineClipCapsExtensions <<static>> {
+    + {static} SupportsLooping(clip:TimelineClip) : bool
+    + {static} SupportsExtrapolation(clip:TimelineClip) : bool
+    + {static} SupportsClipIn(clip:TimelineClip) : bool
+    + {static} SupportsSpeedMultiplier(clip:TimelineClip) : bool
+    + {static} SupportsBlending(clip:TimelineClip) : bool
+    + {static} HasAll(caps:ClipCaps, flags:ClipCaps) : bool
+    + {static} HasAny(caps:ClipCaps, flags:ClipCaps) : bool
+}
+@enduml

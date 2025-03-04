@@ -1,0 +1,7 @@
+@startuml
+class WaitForSecondsUnit {
+}
+WaitUnit <|-- WaitForSecondsUnit
+WaitForSecondsUnit --> "seconds" ValueInput
+WaitForSecondsUnit --> "unscaledTime" ValueInput
+@enduml

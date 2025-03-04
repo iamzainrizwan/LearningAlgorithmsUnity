@@ -1,0 +1,12 @@
+@startuml
+class GradientMaterialSlot {
+    + GradientMaterialSlot()
+    + GradientMaterialSlot(slotId:int, displayName:string, shaderOutputName:string, slotType:SlotType, stageCapability:ShaderStageCapability, hidden:bool)
+    + <<override>> isDefaultValue : bool <<get>>
+    + <<override>> AddDefaultProperty(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + <<override>> CopyValuesFrom(foundSlot:MaterialSlot) : void
+}
+MaterialSlot <|-- GradientMaterialSlot
+GradientMaterialSlot --> "valueType" SlotValueType
+GradientMaterialSlot --> "concreteValueType" ConcreteSlotValueType
+@enduml

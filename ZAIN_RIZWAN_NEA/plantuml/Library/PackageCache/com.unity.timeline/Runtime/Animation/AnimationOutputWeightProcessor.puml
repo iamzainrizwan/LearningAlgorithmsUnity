@@ -1,0 +1,13 @@
+@startuml
+class AnimationOutputWeightProcessor {
+    + AnimationOutputWeightProcessor(output:AnimationPlayableOutput)
+    + Evaluate() : void
+}
+struct WeightInfo {
+    + port : int
+}
+ITimelineEvaluateCallback <|-- AnimationOutputWeightProcessor
+AnimationOutputWeightProcessor +-- WeightInfo
+WeightInfo --> "mixer" Playable
+WeightInfo --> "parentMixer" Playable
+@enduml

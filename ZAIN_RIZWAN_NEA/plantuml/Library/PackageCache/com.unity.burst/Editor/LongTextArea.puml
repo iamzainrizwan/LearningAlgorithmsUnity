@@ -1,0 +1,80 @@
+@startuml
+class LongTextArea {
+    + GetText : string <<get>>
+    + HasSelection : bool <<get>>
+    + NrSearchHits : int <<get>>
+    + ActiveSearchNr : int <<get>>
+    + SetText(jobName:string, textToRender:string, isDarkMode:bool, disassembler:BurstDisassembler, useDisassembler:bool) : void
+    + ExpandAllBlocks() : void
+    + FocusCodeBlocks() : void
+    + SetDisassembler(disassembler:BurstDisassembler) : void
+    + Invalidate() : void
+    + Interact(workingArea:Rect, eventT:EventType) : void
+    + MoveView(dir:Direction, workingArea:Rect) : void
+    + StopSelection() : void
+    + NextSearchHit(shift:bool, workingArea:Rect) : void
+    + StopSearching() : void
+    + Render(style:GUIStyle, workingArea:Rect, showBranchMarkers:bool, doSearch:bool, searchCriteria:SearchCriteria, regx:Regex) : bool
+}
+struct Fragment {
+    + lineCount : int
+    + text : string
+}
+enum Direction {
+    Left,
+    Right,
+    Up,
+    Down,
+}
+struct Branch {
+    + UpperAngle : float
+    + LowerAngle : float
+    + Branch(edge:BurstDisassembler.AsmEdge, startHorizontal:Rect, verticalLine:Rect, endHorizontal:Rect, upperLine:Rect, lowerLine:Rect, angle1:float, angle2:float)
+}
+struct HoverBox {
+    + info : string
+    + lineNumber : int
+    + valid : bool
+}
+struct FragmentSelectionInfo {
+    + startY : float
+    + lastY : float
+    + botY : float
+    + startLineEndIdxRel : int
+    + startLine : int
+    + lastLine : int
+    + charsIn : int
+    + charsInDrag : int
+}
+struct LineRegRectsCache {
+    + startLine : int
+    + endLine : int
+    + chosenLine : int
+    + LinesRegsCached(pressedLine:int) : bool
+    + IsRegisterCachedOrClear(pressedLine:int, firstLine:int, lastLine:int) : bool
+    + IsLineHighlightCached(linePressed:int, folded:bool) : bool
+    + IsRegistersCached(linePressed:int) : bool
+    + UpdateRegisters(firstLine:int, lastLine:int, pressedLine:int, RegRects:List<Rect>[]) : void
+    + UpdateLineHighlight(pressedLine:int, rect:Rect, folded:bool) : void
+    + Clear() : void
+}
+enum CachedItem {
+    None= 0,
+    Line= 1,
+    Registers= 2,
+}
+LongTextArea +-- Fragment
+LongTextArea +-- Direction
+LongTextArea +-- Branch
+Branch --> "StartHorizontal" Rect
+Branch --> "VerticalLine" Rect
+Branch --> "EndHorizontal" Rect
+Branch --> "UpperLine" Rect
+Branch --> "LowerLine" Rect
+LongTextArea +-- HoverBox
+HoverBox --> "box" Rect
+LongTextArea +-- FragmentSelectionInfo
+LongTextArea +-- LineRegRectsCache
+LineRegRectsCache --> "lineHighlight" Rect
+LineRegRectsCache +-- CachedItem
+@enduml

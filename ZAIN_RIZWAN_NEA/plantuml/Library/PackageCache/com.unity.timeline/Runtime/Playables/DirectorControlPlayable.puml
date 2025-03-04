@@ -1,0 +1,18 @@
+@startuml
+class DirectorControlPlayable {
+    + {static} Create(graph:PlayableGraph, director:PlayableDirector) : ScriptPlayable<DirectorControlPlayable>
+    + <<override>> OnPlayableDestroy(playable:Playable) : void
+    + <<override>> PrepareFrame(playable:Playable, info:FrameData) : void
+    + <<override>> OnBehaviourPlay(playable:Playable, info:FrameData) : void
+    + <<override>> OnBehaviourPause(playable:Playable, info:FrameData) : void
+    + <<override>> ProcessFrame(playable:Playable, info:FrameData, playerData:object) : void
+}
+enum PauseAction {
+    StopDirector,
+    PauseDirector,
+}
+PlayableBehaviour <|-- DirectorControlPlayable
+DirectorControlPlayable --> "director" PlayableDirector
+DirectorControlPlayable --> "pauseAction" PauseAction
+DirectorControlPlayable +-- PauseAction
+@enduml

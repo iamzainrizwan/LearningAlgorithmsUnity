@@ -1,0 +1,10 @@
+@startuml
+class UnitPortDescriptor <<sealed>> {
+    + UnitPortDescriptor(target:IUnitPort)
+    + isDirty : bool <<get>> <<set>> = true
+    + Validate() : void
+}
+IDescriptor <|-- UnitPortDescriptor
+UnitPortDescriptor --> "target" IUnitPort
+UnitPortDescriptor o-> "description" UnitPortDescription
+@enduml

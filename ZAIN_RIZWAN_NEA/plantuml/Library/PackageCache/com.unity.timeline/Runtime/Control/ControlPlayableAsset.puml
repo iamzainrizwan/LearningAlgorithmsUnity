@@ -1,0 +1,22 @@
+@startuml
+class ControlPlayableAsset {
+    + updateParticle : bool = true
+    + particleRandomSeed : uint
+    + updateDirector : bool = true
+    + updateITimeControl : bool = true
+    + searchHierarchy : bool
+    + active : bool = true
+    + OnEnable() : void
+    + <<override>> duration : double <<get>>
+    + <<override>> CreatePlayable(graph:PlayableGraph, go:GameObject) : Playable
+    + GatherProperties(director:PlayableDirector, driver:IPropertyCollector) : void
+}
+class "ExposedReference`1"<T> {
+}
+PlayableAsset <|-- ControlPlayableAsset
+IPropertyPreview <|-- ControlPlayableAsset
+ITimelineClipAsset <|-- ControlPlayableAsset
+ControlPlayableAsset --> "sourceGameObject<GameObject>" "ExposedReference`1"
+ControlPlayableAsset --> "prefabGameObject" GameObject
+ControlPlayableAsset --> "clipCaps" ClipCaps
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+interface IVertexModifier {
+}
+interface IMeshModifier {
+}
+@enduml

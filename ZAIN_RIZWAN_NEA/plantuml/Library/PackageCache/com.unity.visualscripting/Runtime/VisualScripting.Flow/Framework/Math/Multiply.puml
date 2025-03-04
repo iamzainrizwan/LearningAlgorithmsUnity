@@ -1,0 +1,9 @@
+@startuml
+abstract class "Multiply`1"<T> {
+    + {abstract} Operation(a:T, b:T) : T
+}
+Unit <|-- "Multiply`1"
+"Multiply`1" --> "a" ValueInput
+"Multiply`1" --> "b" ValueInput
+"Multiply`1" --> "product" ValueOutput
+@enduml

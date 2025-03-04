@@ -1,0 +1,6 @@
+@startuml
+class DebugRenderSetup {
+    + Dispose() : void
+}
+IDisposable <|-- DebugRenderSetup
+@enduml

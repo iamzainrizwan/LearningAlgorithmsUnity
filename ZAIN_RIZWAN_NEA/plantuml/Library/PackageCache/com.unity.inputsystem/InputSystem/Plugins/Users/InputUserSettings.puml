@@ -1,0 +1,17 @@
+@startuml
+class InputUserSettings {
+    + customBindings : string <<get>> <<set>>
+    + invertMouseX : bool <<get>> <<set>>
+    + invertMouseY : bool <<get>> <<set>>
+    + mouseSmoothing : float? <<get>> <<set>>
+    + mouseSensitivity : float? <<get>> <<set>>
+    + invertStickX : bool <<get>> <<set>>
+    + invertStickY : bool <<get>> <<set>>
+    + swapSticks : bool <<get>> <<set>>
+    + swapBumpers : bool <<get>> <<set>>
+    + swapTriggers : bool <<get>> <<set>>
+    + swapDpadAndLeftStick : bool <<get>> <<set>>
+    + vibrationStrength : float <<get>> <<set>>
+    + <<virtual>> Apply(actions:IInputActionCollection) : void
+}
+@enduml

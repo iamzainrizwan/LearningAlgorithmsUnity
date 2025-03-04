@@ -1,0 +1,14 @@
+@startuml
+interface ILayoutElement {
+}
+interface ILayoutController {
+}
+interface ILayoutGroup {
+}
+interface ILayoutSelfController {
+}
+interface ILayoutIgnorer {
+}
+ILayoutController <|-- ILayoutGroup
+ILayoutController <|-- ILayoutSelfController
+@enduml

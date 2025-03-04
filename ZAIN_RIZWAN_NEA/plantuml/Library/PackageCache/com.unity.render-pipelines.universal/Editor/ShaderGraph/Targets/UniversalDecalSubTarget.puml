@@ -1,0 +1,137 @@
+@startuml
+class UniversalDecalSubTarget <<sealed>> {
+    + UniversalDecalSubTarget()
+    + <<override>> IsActive() : bool
+    + <<override>> Setup(context:TargetSetupContext) : void
+    + <<override>> CollectShaderProperties(collector:PropertyCollector, generationMode:GenerationMode) : void
+    + <<override>> GetFields(context:TargetFieldContext) : void
+    + <<override>> GetActiveBlocks(context:TargetActiveBlockContext) : void
+    + <<override>> GetPropertiesGUI(context:TargetPropertyGUIContext, onChange:Action, registerUndo:Action<String>) : void
+}
+class Styles {
+    + <<const>> header : string = "Surface Options"
+}
+class DecalData {
+    + affectsAlbedo : bool = true
+    + affectsNormalBlend : bool = true
+    + affectsNormal : bool = true
+    + affectsMAOS : bool
+    + affectsEmission : bool
+    + drawOrder : int
+    + supportLodCrossFade : bool
+    + angleFade : bool
+}
+class SubShaders <<static>> {
+    + {static} Decal(disableBatchingTag:string) : SubShaderDescriptor
+}
+class DecalPasses <<static>> {
+    + {static} GetScenePicking(pragma:PragmaCollection) : PassDescriptor
+    + {static} GetScreenSpaceProjector(pragma:PragmaCollection, keywords:KeywordCollection) : PassDescriptor
+    + {static} GetScreenSpaceMesh(pragma:PragmaCollection, keywords:KeywordCollection) : PassDescriptor
+}
+class DecalBlockMasks <<static>> {
+}
+class DecalRequiredFields <<static>> {
+}
+class DecalColorMasks <<static>> {
+}
+class DecalRenderStates <<static>> {
+}
+class DecalPragmas <<static>> {
+}
+class DecalDefines <<static>> {
+}
+class DecalKeywords <<static>> {
+}
+class DecalIncludes <<static>> {
+}
+class Descriptors <<static>> {
+}
+class Descriptors <<static>> {
+}
+UniversalSubTarget <|-- UniversalDecalSubTarget
+UniversalDecalSubTarget +-- Styles
+Styles o-> "affectAlbedoText" GUIContent
+Styles o-> "affectNormalText" GUIContent
+Styles o-> "affectNormalBlendText" GUIContent
+Styles o-> "affectMetalText" GUIContent
+Styles o-> "affectAmbientOcclusionText" GUIContent
+Styles o-> "affectSmoothnessText" GUIContent
+Styles o-> "affectEmissionText" GUIContent
+Styles o-> "supportLodCrossFadeText" GUIContent
+UniversalDecalSubTarget +-- DecalData
+UniversalDecalSubTarget +-- SubShaders
+UniversalDecalSubTarget +-- DecalPasses
+DecalPasses o-> "ScenePicking" PassDescriptor
+DecalPasses o-> "DBufferProjector" PassDescriptor
+DecalPasses o-> "ForwardEmissiveProjector" PassDescriptor
+DecalPasses o-> "ScreenSpaceProjector" PassDescriptor
+DecalPasses o-> "GBufferProjector" PassDescriptor
+DecalPasses o-> "DBufferMesh" PassDescriptor
+DecalPasses o-> "ForwardEmissiveMesh" PassDescriptor
+DecalPasses o-> "ScreenSpaceMesh" PassDescriptor
+DecalPasses o-> "GBufferMesh" PassDescriptor
+UniversalDecalSubTarget +-- DecalBlockMasks
+UniversalDecalSubTarget +-- DecalRequiredFields
+DecalRequiredFields o-> "Mesh" FieldCollection
+DecalRequiredFields o-> "ScreenSpaceProjector" FieldCollection
+DecalRequiredFields o-> "GBufferProjector" FieldCollection
+DecalRequiredFields o-> "ScreenSpaceMesh" FieldCollection
+UniversalDecalSubTarget +-- DecalColorMasks
+DecalColorMasks o-> "ColorMaskRGBA0" RenderStateDescriptor
+DecalColorMasks o-> "ColorMaskNone0" RenderStateDescriptor
+DecalColorMasks o-> "ColorMaskRGBA1" RenderStateDescriptor
+DecalColorMasks o-> "ColorMaskNone1" RenderStateDescriptor
+DecalColorMasks o-> "ColorMaskRGBA2" RenderStateDescriptor
+DecalColorMasks o-> "ColorMaskNone2" RenderStateDescriptor
+UniversalDecalSubTarget +-- DecalRenderStates
+DecalRenderStates o-> "ScenePicking" RenderStateCollection
+DecalRenderStates o-> "DBufferProjector" RenderStateCollection
+DecalRenderStates o-> "ForwardEmissiveProjector" RenderStateCollection
+DecalRenderStates o-> "ScreenSpaceProjector" RenderStateCollection
+DecalRenderStates o-> "GBufferProjector" RenderStateCollection
+DecalRenderStates o-> "DBufferMesh" RenderStateCollection
+DecalRenderStates o-> "ForwardEmissiveMesh" RenderStateCollection
+DecalRenderStates o-> "ScreenSpaceMesh" RenderStateCollection
+DecalRenderStates o-> "GBufferMesh" RenderStateCollection
+UniversalDecalSubTarget +-- DecalPragmas
+DecalPragmas o-> "ScreenSpace" PragmaCollection
+DecalPragmas o-> "GBuffer" PragmaCollection
+DecalPragmas o-> "MultipleRenderTargets" PragmaCollection
+DecalPragmas o-> "Instanced" PragmaCollection
+UniversalDecalSubTarget +-- DecalDefines
+DecalDefines o-> "Projector" DefineCollection
+DecalDefines o-> "ProjectorEmission" DefineCollection
+DecalDefines o-> "ProjectorWithEmission" DefineCollection
+DecalDefines o-> "Mesh" DefineCollection
+DecalDefines o-> "MeshEmission" DefineCollection
+DecalDefines o-> "MeshWithEmission" DefineCollection
+DecalDefines o-> "ScenePicking" DefineCollection
+UniversalDecalSubTarget +-- DecalKeywords
+DecalKeywords o-> "DBufferMesh" KeywordCollection
+DecalKeywords o-> "DBufferProjector" KeywordCollection
+DecalKeywords o-> "ForwardEmissiveProjector" KeywordCollection
+DecalKeywords o-> "ScreenSpaceMeshGl" KeywordCollection
+DecalKeywords o-> "ScreenSpaceMesh" KeywordCollection
+DecalKeywords o-> "ScreenSpaceProjector" KeywordCollection
+DecalKeywords o-> "GBufferMesh" KeywordCollection
+DecalKeywords o-> "GBufferProjector" KeywordCollection
+UniversalDecalSubTarget +-- DecalIncludes
+DecalIncludes o-> "DecalPregraph" IncludeCollection
+DecalIncludes o-> "DecalPostgraph" IncludeCollection
+DecalIncludes o-> "DBuffer" IncludeCollection
+DecalIncludes o-> "ScreenSpace" IncludeCollection
+DecalIncludes o-> "GBuffer" IncludeCollection
+DecalIncludes o-> "ScenePicking" IncludeCollection
+DecalDefines +-- Descriptors
+Descriptors o-> "AffectsAlbedo" KeywordDescriptor
+Descriptors o-> "AffectsNormal" KeywordDescriptor
+Descriptors o-> "AffectsNormalBlend" KeywordDescriptor
+Descriptors o-> "AffectsMAOS" KeywordDescriptor
+Descriptors o-> "AffectsEmission" KeywordDescriptor
+Descriptors o-> "AngleFade" KeywordDescriptor
+Descriptors o-> "ScenePickingPass" KeywordDescriptor
+DecalKeywords +-- Descriptors
+Descriptors o-> "DecalsNormalBlend" KeywordDescriptor
+Descriptors o-> "DecalLayers" KeywordDescriptor
+@enduml

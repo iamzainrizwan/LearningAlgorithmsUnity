@@ -1,0 +1,6 @@
+@startuml
+class LayoutElementEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+Editor <|-- LayoutElementEditor
+@enduml

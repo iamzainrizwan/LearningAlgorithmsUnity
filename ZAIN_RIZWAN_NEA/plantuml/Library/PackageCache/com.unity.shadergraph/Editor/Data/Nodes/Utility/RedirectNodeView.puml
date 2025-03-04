@@ -1,0 +1,20 @@
+@startuml
+class RedirectNodeView {
+    + ConnectToData(inNode:AbstractMaterialNode, connectorListener:IEdgeConnectorListener) : void
+    + AddSlots(slots:IEnumerable<MaterialSlot>) : void
+    + Dispose() : void
+    + UpdatePortInputTypes() : void
+    + OnModified(scope:ModificationScope) : void
+    + FindPort(slot:SlotReference, port:ShaderPort) : bool
+    + AttachMessage(errString:string, severity:ShaderCompilerMessageSeverity) : void
+    + ClearMessage() : void
+    + SetColor(newColor:Color) : void
+    + ResetColor() : void
+    + UpdateDropdownEntries() : void
+}
+RedirectNode <|-- RedirectNodeView
+IShaderNodeView <|-- RedirectNodeView
+RedirectNodeView --> "gvNode" Node
+RedirectNodeView --> "node" AbstractMaterialNode
+RedirectNodeView --> "colorElement" VisualElement
+@enduml

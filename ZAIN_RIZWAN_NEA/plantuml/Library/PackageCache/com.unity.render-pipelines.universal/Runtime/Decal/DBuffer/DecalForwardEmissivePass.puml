@@ -1,0 +1,15 @@
+@startuml
+class DecalDrawFowardEmissiveSystem {
+    + DecalDrawFowardEmissiveSystem(entityManager:DecalEntityManager)
+}
+class DecalForwardEmissivePass {
+    + DecalForwardEmissivePass(drawSystem:DecalDrawFowardEmissiveSystem)
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+class PassData {
+}
+DecalDrawSystem <|-- DecalDrawFowardEmissiveSystem
+ScriptableRenderPass <|-- DecalForwardEmissivePass
+DecalForwardEmissivePass +-- PassData
+@enduml

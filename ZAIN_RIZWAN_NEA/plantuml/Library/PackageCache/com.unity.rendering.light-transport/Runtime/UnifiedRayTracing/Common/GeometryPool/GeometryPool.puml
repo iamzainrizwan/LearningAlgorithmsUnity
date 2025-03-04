@@ -1,0 +1,113 @@
+@startuml
+struct GeometryPoolDesc {
+    + vertexPoolByteSize : int
+    + indexPoolByteSize : int
+    + meshChunkTablesByteSize : int
+    + {static} NewDefault() : GeometryPoolDesc
+}
+struct GeometryPoolHandle {
+    + index : int
+    + <<readonly>> valid : bool <<get>>
+    + Equals(other:GeometryPoolHandle) : bool
+}
+struct GeometryPoolEntryInfo {
+    + valid : bool
+    + refCount : uint
+    + {static} NewDefault() : GeometryPoolEntryInfo
+}
+struct GeometryPoolSubmeshData {
+    + submeshIndex : int
+}
+struct GeometryPoolEntryDesc {
+}
+class GeometryPool <<sealed>> {
+    + {static} GetVertexByteSize() : int
+    + {static} GetIndexByteSize() : int
+    + {static} GetMeshChunkTableEntryByteSize() : int
+    + globalVertexBufferStrideBytes : int <<get>>
+    + indicesCount : int <<get>>
+    + verticesCount : int <<get>>
+    + meshChunkTablesEntryCount : int <<get>>
+    + GeometryPool(desc:GeometryPoolDesc, geometryPoolShader:ComputeShader, copyShader:ComputeShader)
+    + Dispose() : void
+    + GetEntryInfo(handle:GeometryPoolHandle) : GeometryPoolEntryInfo
+    + GetEntryGeomAllocation(handle:GeometryPoolHandle) : GeometrySlot
+    + GetInstanceGeometryIndex(mesh:Mesh) : int
+    + GetHandle(mesh:Mesh) : GeometryPoolHandle
+    + Register(mesh:Mesh, outHandle:GeometryPoolHandle) : bool
+    + Register(entryDesc:GeometryPoolEntryDesc, outHandle:GeometryPoolHandle) : bool
+    + Unregister(handle:GeometryPoolHandle) : void
+    + SendGpuCommands() : void
+}
+class "IEquatable`1"<T> {
+}
+class GeoPoolShaderIDs <<static>> {
+    + {static} <<readonly>> _InputIBBaseOffset : int
+    + {static} <<readonly>> _DispatchIndexOffset : int
+    + {static} <<readonly>> _InputIBCount : int
+    + {static} <<readonly>> _OutputIBOffset : int
+    + {static} <<readonly>> _InputFirstVertex : int
+    + {static} <<readonly>> _InputIndexBuffer : int
+    + {static} <<readonly>> _OutputIndexBuffer : int
+    + {static} <<readonly>> _InputVBCount : int
+    + {static} <<readonly>> _InputBaseVertexOffset : int
+    + {static} <<readonly>> _DispatchVertexOffset : int
+    + {static} <<readonly>> _OutputVBSize : int
+    + {static} <<readonly>> _OutputVBOffset : int
+    + {static} <<readonly>> _InputPosBufferStride : int
+    + {static} <<readonly>> _InputPosBufferOffset : int
+    + {static} <<readonly>> _InputUv0BufferStride : int
+    + {static} <<readonly>> _InputUv0BufferOffset : int
+    + {static} <<readonly>> _InputUv1BufferStride : int
+    + {static} <<readonly>> _InputUv1BufferOffset : int
+    + {static} <<readonly>> _InputNormalBufferStride : int
+    + {static} <<readonly>> _InputNormalBufferOffset : int
+    + {static} <<readonly>> _PosBuffer : int
+    + {static} <<readonly>> _Uv0Buffer : int
+    + {static} <<readonly>> _Uv1Buffer : int
+    + {static} <<readonly>> _NormalBuffer : int
+    + {static} <<readonly>> _OutputVB : int
+    + {static} <<readonly>> _AttributesMask : int
+}
+struct MeshChunk {
+    + EncodeGPUEntry() : GeoPoolMeshChunk
+}
+struct GeometrySlot {
+    + refCount : uint
+    + hash : uint
+    + hasGPUData : bool
+    + valid : bool <<get>>
+}
+struct GeoPoolEntrySlot {
+    + refCount : uint
+    + hash : uint
+    + geoSlotHandle : int
+    + valid : bool <<get>>
+}
+struct VertexBufferAttribInfo {
+    + stride : int
+    + offset : int
+    + byteCount : int
+    + valid : bool <<get>>
+}
+class "NativeArray`1"<T> {
+}
+"IEquatable`1" "<GeometryPoolHandle>" <|-- GeometryPoolHandle
+GeometryPoolHandle o-> "Invalid" GeometryPoolHandle
+GeometryPoolSubmeshData --> "material" Material
+GeometryPoolEntryDesc --> "mesh" Mesh
+IDisposable <|-- GeometryPool
+GeometryPool --> "globalIndexBuffer" GraphicsBuffer
+GeometryPool --> "globalVertexBuffer" GraphicsBuffer
+GeometryPool --> "globalMeshChunkTableEntryBuffer" GraphicsBuffer
+GeometryPool +-- GeoPoolShaderIDs
+GeometryPool +-- MeshChunk
+MeshChunk --> "Invalid" MeshChunk
+GeometryPool +-- GeometrySlot
+GeometrySlot --> "meshChunks<MeshChunk>" "NativeArray`1"
+GeometrySlot o-> "Invalid" GeometrySlot
+GeometryPool +-- GeoPoolEntrySlot
+GeoPoolEntrySlot o-> "Invalid" GeoPoolEntrySlot
+GeometryPool +-- VertexBufferAttribInfo
+VertexBufferAttribInfo --> "buffer" GraphicsBuffer
+@enduml

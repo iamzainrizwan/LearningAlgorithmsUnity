@@ -1,0 +1,78 @@
+@startuml
+enum BlendKind {
+    None,
+    Ease,
+    Mix,
+}
+enum BlendAngle {
+    Descending,
+    Ascending,
+}
+struct IconData {
+    + width : float <<get>>
+    + height : float <<get>>
+    + IconData(icon:Texture2D)
+}
+struct ClipBorder {
+    + <<readonly>> thickness : float
+    + {static} Recording() : ClipBorder
+    + {static} Selection() : ClipBorder
+    + {static} Default() : ClipBorder
+}
+struct ClipBlends {
+    + ClipBlends(inKind:BlendKind, inRect:Rect, outKind:BlendKind, outRect:Rect)
+}
+struct ClipDrawData {
+    + title : string
+    + selected : bool
+    + inlineCurvesSelected : bool
+    + localVisibleStartTime : double
+    + localVisibleEndTime : double
+    + previousClipSelected : bool
+    + supportsLooping : bool
+    + minLoopIndex : int
+}
+class ClipDrawer <<static>> {
+    + {static} DrawClipSelectionBorder(clipRect:Rect, border:ClipBorder, blends:ClipBlends) : void
+    + {static} DrawSimpleClip(clip:TimelineClip, targetRect:Rect, border:ClipBorder, overlay:Color, drawOptions:ClipDrawOptions) : void
+    + {static} DrawDefaultClip(drawData:ClipDrawData) : void
+    + {static} DrawAnimationRecordBorder(drawData:ClipDrawData) : void
+    + {static} DrawRecordProhibited(drawData:ClipDrawData) : void
+    + {static} DrawRecordOnBlend(drawData:ClipDrawData) : void
+    + {static} DrawRecordInvalidClip(drawData:ClipDrawData) : void
+    + {static} DrawInvalidRecordIcon(rect:Rect, helpText:GUIContent) : void
+}
+enum Side {
+    Left= -1,
+    Right= 1,
+}
+class "List`1"<T> {
+}
+class Styles <<static>> {
+    + {static} <<readonly>> HoldText : string
+}
+IconData --> "icon" Texture2D
+IconData --> "tint" Color
+ClipBorder --> "color" Color
+ClipBlends --> "inKind" BlendKind
+ClipBlends --> "inRect" Rect
+ClipBlends --> "outKind" BlendKind
+ClipBlends --> "outRect" Rect
+ClipBlends o-> "kNone" ClipBlends
+ClipDrawData --> "clip" TimelineClip
+ClipDrawData --> "targetRect" Rect
+ClipDrawData --> "unclippedRect" Rect
+ClipDrawData --> "clippedRect" Rect
+ClipDrawData --> "clipCenterSection" Rect
+ClipDrawData --> "previousClip" TimelineClip
+ClipDrawData --> "loopRects<Rect>" "List`1"
+ClipDrawData --> "clipBlends" ClipBlends
+ClipDrawData --> "ClipDrawOptions" ClipDrawOptions
+ClipDrawData --> "clipEditor" ClipEditor
+IconData +-- Side
+ClipDrawer +-- Styles
+Styles o-> "iconWarn" Texture2D
+Styles o-> "s_IconNoRecord" Texture2D
+Styles o-> "s_ClipNotRecorable" GUIContent
+Styles o-> "s_ClipNoRecordInBlend" GUIContent
+@enduml

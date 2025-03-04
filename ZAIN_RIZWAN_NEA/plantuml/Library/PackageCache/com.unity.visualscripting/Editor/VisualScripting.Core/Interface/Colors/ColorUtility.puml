@@ -1,0 +1,14 @@
+@startuml
+class ColorUtility <<static>> {
+    + {static} Gray(brightness:float) : Color
+    + {static} WithAlpha(color:Color, alpha:float) : Color
+    + {static} WithAlphaMultiplied(color:Color, alphaMultiplier:float) : Color
+    + {static} GetPixel(color:Color) : Texture2D
+    + {static} GetPixel(skinnedColor:SkinnedColor) : Texture2D
+    + {static} CreateBox(name:string, fill:Color, border:Color) : Texture2D
+    + {static} CreateBox(fill:Color, border:Color) : Texture2D
+    + {static} CreateBackground(color:Color) : GUIStyle
+    + {static} CreateBackground(skinnedColor:SkinnedColor) : GUIStyle
+    + {static} ToHexString(skinnedColor:SkinnedColor) : string
+}
+@enduml

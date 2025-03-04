@@ -1,0 +1,57 @@
+@startuml
+class InstanceDataSystem <<partial>> {
+    + hasBoundingSpheres : bool <<get>>
+    + InstanceDataSystem(maxInstances:int, enableBoundingSpheres:bool, resources:GPUResidentDrawerResources)
+    + Dispose() : void
+    + GetMaxInstancesOfType(instanceType:InstanceType) : int
+    + GetAliveInstancesOfType(instanceType:InstanceType) : int
+    + UpdateInstanceWindDataHistory(gpuInstanceIndices:NativeArray<GPUInstanceIndex>, renderersParameters:RenderersParameters, outputBuffer:GPUInstanceDataBuffer) : void
+    + <<unsafe>> ReallocateAndGetInstances(rendererData:GPUDrivenRendererGroupData, instances:NativeArray<InstanceHandle>) : void
+    + FreeRendererGroupInstances(rendererGroupsID:NativeArray<int>) : void
+    + FreeInstances(instances:NativeArray<InstanceHandle>) : void
+    + ScheduleUpdateInstanceDataJob(instances:NativeArray<InstanceHandle>, rendererData:GPUDrivenRendererGroupData, lodGroupDataMap:NativeParallelHashMap<int, GPUInstanceIndex>) : JobHandle
+    + UpdateAllInstanceProbes(renderersParameters:RenderersParameters, outputBuffer:GPUInstanceDataBuffer) : void
+    + InitializeInstanceTransforms(instances:NativeArray<InstanceHandle>, localToWorldMatrices:NativeArray<Matrix4x4>, prevLocalToWorldMatrices:NativeArray<Matrix4x4>, renderersParameters:RenderersParameters, outputBuffer:GPUInstanceDataBuffer) : void
+    + UpdateInstanceTransforms(instances:NativeArray<InstanceHandle>, localToWorldMatrices:NativeArray<Matrix4x4>, renderersParameters:RenderersParameters, outputBuffer:GPUInstanceDataBuffer) : void
+    + UpdateInstanceMotions(renderersParameters:RenderersParameters, outputBuffer:GPUInstanceDataBuffer) : void
+    + ScheduleQueryRendererGroupInstancesJob(rendererGroupIDs:NativeArray<int>, instances:NativeArray<InstanceHandle>) : JobHandle
+    + ScheduleQueryRendererGroupInstancesJob(rendererGroupIDs:NativeArray<int>, instances:NativeList<InstanceHandle>) : JobHandle
+    + ScheduleQueryRendererGroupInstancesJob(rendererGroupIDs:NativeArray<int>, instancesOffset:NativeArray<int>, instancesCount:NativeArray<int>, instances:NativeList<InstanceHandle>) : JobHandle
+    + ScheduleQuerySortedMeshInstancesJob(sortedMeshIDs:NativeArray<int>, instances:NativeList<InstanceHandle>) : JobHandle
+    + ScheduleCollectInstancesLODGroupAndMasksJob(instances:NativeArray<InstanceHandle>, lodGroupAndMasks:NativeArray<uint>) : JobHandle
+    + InternalSanityCheckStates() : bool
+    + <<unsafe>> GetVisibleTreeInstances(compactedVisibilityMasks:ParallelBitArray, processedBits:ParallelBitArray, visibeTreeRendererIDs:NativeList<int>, visibeTreeInstances:NativeList<InstanceHandle>, becomeVisibleOnly:bool, becomeVisibeTreeInstancesCount:int) : void
+    + UpdatePerFrameInstanceVisibility(compactedVisibilityMasks:ParallelBitArray) : void
+}
+class "NativeArray`1"<T> {
+}
+class InstanceTransformUpdateIDs <<static>> {
+    + {static} <<readonly>> _TransformUpdateQueueCount : int
+    + {static} <<readonly>> _TransformUpdateOutputL2WVec4Offset : int
+    + {static} <<readonly>> _TransformUpdateOutputW2LVec4Offset : int
+    + {static} <<readonly>> _TransformUpdateOutputPrevL2WVec4Offset : int
+    + {static} <<readonly>> _TransformUpdateOutputPrevW2LVec4Offset : int
+    + {static} <<readonly>> _BoundingSphereOutputVec4Offset : int
+    + {static} <<readonly>> _TransformUpdateDataQueue : int
+    + {static} <<readonly>> _TransformUpdateIndexQueue : int
+    + {static} <<readonly>> _BoundingSphereDataQueue : int
+    + {static} <<readonly>> _OutputTransformBuffer : int
+    + {static} <<readonly>> _ProbeUpdateQueueCount : int
+    + {static} <<readonly>> _SHUpdateVec4Offset : int
+    + {static} <<readonly>> _ProbeUpdateDataQueue : int
+    + {static} <<readonly>> _ProbeOcclusionUpdateDataQueue : int
+    + {static} <<readonly>> _ProbeUpdateIndexQueue : int
+    + {static} <<readonly>> _OutputProbeBuffer : int
+}
+class InstanceWindDataUpdateIDs <<static>> {
+    + {static} <<readonly>> _WindDataQueueCount : int
+    + {static} <<readonly>> _WindDataUpdateIndexQueue : int
+    + {static} <<readonly>> _WindDataBuffer : int
+    + {static} <<readonly>> _WindParamAddressArray : int
+    + {static} <<readonly>> _WindHistoryParamAddressArray : int
+}
+IDisposable <|-- InstanceDataSystem
+InstanceDataSystem --> "aliveInstances<InstanceHandle>" "NativeArray`1"
+InstanceDataSystem +-- InstanceTransformUpdateIDs
+InstanceDataSystem +-- InstanceWindDataUpdateIDs
+@enduml

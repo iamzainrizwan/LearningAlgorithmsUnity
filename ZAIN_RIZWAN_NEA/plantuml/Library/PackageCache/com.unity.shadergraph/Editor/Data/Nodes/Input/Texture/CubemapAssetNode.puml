@@ -1,0 +1,19 @@
+@startuml
+class CubemapAssetNode {
+    + <<const>> OutputSlotId : int = 0
+    + CubemapAssetNode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> GetVariableNameForSlot(slotId:int) : string
+    + <<override>> CollectShaderProperties(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + <<override>> CollectPreviewMaterialProperties(properties:List<PreviewProperty>) : void
+    + AsShaderProperty() : AbstractShaderProperty
+    + outputSlotId : int <<get>>
+}
+class MinimalCubemapAssetNode {
+    + GetSourceAssetDependencies(assetCollection:AssetCollection) : void
+}
+AbstractMaterialNode <|-- CubemapAssetNode
+IPropertyFromNode <|-- CubemapAssetNode
+CubemapAssetNode --> "cubemap" Cubemap
+IHasDependencies <|-- MinimalCubemapAssetNode
+@enduml

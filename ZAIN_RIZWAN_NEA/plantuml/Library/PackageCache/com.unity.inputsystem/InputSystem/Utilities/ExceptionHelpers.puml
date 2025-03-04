@@ -1,0 +1,5 @@
+@startuml
+class ExceptionHelpers <<static>> {
+    + {static} IsExceptionIndicatingBugInCode(exception:Exception) : bool
+}
+@enduml

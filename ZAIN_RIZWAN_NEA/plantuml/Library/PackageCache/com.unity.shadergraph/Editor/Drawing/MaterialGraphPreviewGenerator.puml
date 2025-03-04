@@ -1,0 +1,9 @@
+@startuml
+class MaterialGraphPreviewGenerator {
+    + MaterialGraphPreviewGenerator()
+    + DoRenderPreview(renderTexture:RenderTexture, mat:Material, mesh:Mesh, mode:PreviewMode, allowSRP:bool, time:float, properties:MaterialPropertyBlock) : void
+    + Dispose() : void
+}
+IDisposable <|-- MaterialGraphPreviewGenerator
+MaterialGraphPreviewGenerator --> "quad" Mesh
+@enduml

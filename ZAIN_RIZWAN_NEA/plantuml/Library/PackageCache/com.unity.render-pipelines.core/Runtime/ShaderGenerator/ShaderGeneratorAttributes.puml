@@ -1,0 +1,57 @@
+@startuml
+enum PackingRules {
+    Exact,
+    Aggressive,
+}
+enum FieldPacking {
+    NoPacking= 0,
+    R11G11B10,
+    PackedFloat,
+    PackedUint,
+}
+enum FieldPrecision {
+    Half,
+    Real,
+    Default,
+}
+class GenerateHLSL {
+    + containsPackedFields : bool
+    + needAccessors : bool
+    + needSetters : bool
+    + needParamDebug : bool
+    + paramDefinesStart : int
+    + omitStructDeclaration : bool
+    + generateCBuffer : bool
+    + constantRegister : int
+    + sourcePath : string
+    + GenerateHLSL(rules:PackingRules, needAccessors:bool, needSetters:bool, needParamDebug:bool, paramDefinesStart:int, omitStructDeclaration:bool, containsPackedFields:bool, generateCBuffer:bool, constantRegister:int, sourcePath:string)
+}
+class SurfaceDataAttributes {
+    + isDirection : bool
+    + sRGBDisplay : bool
+    + checkIsNormalized : bool
+    + preprocessor : string
+    + SurfaceDataAttributes(displayName:string, isDirection:bool, sRGBDisplay:bool, precision:FieldPrecision, checkIsNormalized:bool, preprocessor:string)
+    + SurfaceDataAttributes(displayNames:string[], isDirection:bool, sRGBDisplay:bool, precision:FieldPrecision, checkIsNormalized:bool, preprocessor:string)
+}
+class HLSLArray {
+    + arraySize : int
+    + HLSLArray(arraySize:int, elementType:Type)
+}
+class PackingAttribute {
+    + offsetInSource : int
+    + sizeInBits : int
+    + isDirection : bool
+    + sRGBDisplay : bool
+    + checkIsNormalized : bool
+    + preprocessor : string
+    + PackingAttribute(displayNames:string[], packingScheme:FieldPacking, bitSize:int, offsetInSource:int, minValue:float, maxValue:float, isDirection:bool, sRGBDisplay:bool, checkIsNormalized:bool, preprocessor:string)
+    + PackingAttribute(displayName:string, packingScheme:FieldPacking, bitSize:int, offsetInSource:int, minValue:float, maxValue:float, isDirection:bool, sRGBDisplay:bool, checkIsNormalized:bool, preprocessor:string)
+}
+struct ShaderGenUInt4 {
+}
+GenerateHLSL --> "packingRules" PackingRules
+SurfaceDataAttributes --> "precision" FieldPrecision
+HLSLArray --> "elementType" Type
+PackingAttribute --> "packingScheme" FieldPacking
+@enduml

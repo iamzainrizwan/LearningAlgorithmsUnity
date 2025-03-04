@@ -1,0 +1,9 @@
+@startuml
+class ShaderInput <<static>> <<partial>> {
+}
+struct ShadowData {
+}
+ShaderInput +-- ShadowData
+ShadowData --> "worldToShadowMatrix" Matrix4x4
+ShadowData --> "shadowParams" Vector4
+@enduml

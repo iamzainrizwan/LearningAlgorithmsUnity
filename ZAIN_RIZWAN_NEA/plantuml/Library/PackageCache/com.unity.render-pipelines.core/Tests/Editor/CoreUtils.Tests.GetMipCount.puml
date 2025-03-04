@@ -1,0 +1,6 @@
+@startuml
+class CoreUtilsTests <<partial>> {
+    + GetMipCountInt(size:int) : int
+    + GetMipCountFloat(size:float) : int
+}
+@enduml

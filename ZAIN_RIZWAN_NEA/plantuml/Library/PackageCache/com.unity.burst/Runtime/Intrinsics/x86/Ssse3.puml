@@ -1,0 +1,24 @@
+@startuml
+class X86 <<unsafe>> <<static>> <<partial>> {
+}
+class Ssse3 <<static>> {
+    + {static} IsSsse3Supported : bool <<get>>
+    + {static} abs_epi8(a:v128) : v128
+    + {static} abs_epi16(a:v128) : v128
+    + {static} abs_epi32(a:v128) : v128
+    + {static} shuffle_epi8(a:v128, b:v128) : v128
+    + {static} alignr_epi8(a:v128, b:v128, count:int) : v128
+    + {static} hadd_epi16(a:v128, b:v128) : v128
+    + {static} hadds_epi16(a:v128, b:v128) : v128
+    + {static} hadd_epi32(a:v128, b:v128) : v128
+    + {static} hsub_epi16(a:v128, b:v128) : v128
+    + {static} hsubs_epi16(a:v128, b:v128) : v128
+    + {static} hsub_epi32(a:v128, b:v128) : v128
+    + {static} maddubs_epi16(a:v128, b:v128) : v128
+    + {static} mulhrs_epi16(a:v128, b:v128) : v128
+    + {static} sign_epi8(a:v128, b:v128) : v128
+    + {static} sign_epi16(a:v128, b:v128) : v128
+    + {static} sign_epi32(a:v128, b:v128) : v128
+}
+X86 +-- Ssse3
+@enduml

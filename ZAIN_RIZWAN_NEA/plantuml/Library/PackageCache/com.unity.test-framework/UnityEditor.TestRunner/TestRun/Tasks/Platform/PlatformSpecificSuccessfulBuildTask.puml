@@ -1,0 +1,6 @@
+@startuml
+class PlatformSpecificSuccessfulBuildTask {
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- PlatformSpecificSuccessfulBuildTask
+@enduml

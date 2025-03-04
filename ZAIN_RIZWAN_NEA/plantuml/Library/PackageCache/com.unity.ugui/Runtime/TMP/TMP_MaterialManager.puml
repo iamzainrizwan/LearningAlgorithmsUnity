@@ -1,0 +1,34 @@
+@startuml
+class TMP_MaterialManager <<static>> {
+    + {static} GetStencilMaterial(baseMaterial:Material, stencilID:int) : Material
+    + {static} ReleaseStencilMaterial(stencilMaterial:Material) : void
+    + {static} GetBaseMaterial(stencilMaterial:Material) : Material
+    + {static} SetStencil(material:Material, stencilID:int) : Material
+    + {static} AddMaskingMaterial(baseMaterial:Material, stencilMaterial:Material, stencilID:int) : void
+    + {static} RemoveStencilMaterial(stencilMaterial:Material) : void
+    + {static} ReleaseBaseMaterial(baseMaterial:Material) : void
+    + {static} ClearMaterials() : void
+    + {static} GetStencilID(obj:GameObject) : int
+    + {static} GetMaterialForRendering(graphic:MaskableGraphic, baseMaterial:Material) : Material
+    + {static} GetFallbackMaterial(sourceMaterial:Material, targetMaterial:Material) : Material
+    + {static} AddFallbackMaterialReference(targetMaterial:Material) : void
+    + {static} RemoveFallbackMaterialReference(targetMaterial:Material) : void
+    + {static} CleanupFallbackMaterials() : void
+    + {static} ReleaseFallbackMaterial(fallbackMaterial:Material) : void
+    + {static} CopyMaterialPresetProperties(source:Material, destination:Material) : void
+}
+class FallbackMaterial {
+    + fallbackID : long
+    + count : int
+}
+class MaskingMaterial {
+    + count : int
+    + stencilID : int
+}
+TMP_MaterialManager +-- FallbackMaterial
+FallbackMaterial --> "sourceMaterial" Material
+FallbackMaterial --> "fallbackMaterial" Material
+TMP_MaterialManager +-- MaskingMaterial
+MaskingMaterial --> "baseMaterial" Material
+MaskingMaterial --> "stencilMaterial" Material
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class FunctionExpression {
+    + FunctionExpression(identifier:IdentifierExpression, expressions:LogicalExpression[])
+    + <<override>> Accept(visitor:LogicalExpressionVisitor) : void
+}
+LogicalExpression <|-- FunctionExpression
+FunctionExpression --> "Identifier" IdentifierExpression
+@enduml

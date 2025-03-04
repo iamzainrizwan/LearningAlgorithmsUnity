@@ -1,0 +1,5 @@
+@startuml
+class StartUpMethodExecutor <<static>> {
+    + {static} EnterPlayMode() : void
+}
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+struct Long8 {
+}
+struct Long64 {
+}
+struct Long512 {
+}
+struct Long1024 {
+    + Length : int <<get>> <<set>>
+    + ElementAt(index:int) : ref long
+}
+class ConcurrentMask {
+}
+class "IIndexable`1"<T> {
+}
+"IIndexable`1" "<long>" <|-- Long1024
+@enduml

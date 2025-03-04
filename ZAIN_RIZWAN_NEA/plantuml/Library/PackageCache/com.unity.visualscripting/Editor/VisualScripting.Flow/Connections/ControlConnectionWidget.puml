@@ -1,0 +1,9 @@
+@startuml
+class ControlConnectionWidget <<sealed>> {
+    + ControlConnectionWidget(canvas:FlowCanvas, connection:ControlConnection)
+}
+class "UnitConnectionWidget`1"<T> {
+}
+"UnitConnectionWidget`1" "<ControlConnection>" <|-- ControlConnectionWidget
+ControlConnectionWidget --> "color" Color
+@enduml

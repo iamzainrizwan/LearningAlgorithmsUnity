@@ -1,0 +1,18 @@
+@startuml
+class ShaderDropdown {
+    + ShaderDropdown()
+    + <<override>> allowedInMainGraph : bool <<get>>
+    + value : int <<get>> <<set>>
+    + entryName : string <<get>>
+    + entryId : int <<get>>
+    + ContainsEntry(entryName:string) : bool
+    + IndexOfName(entryName:string) : int
+    + IndexOfId(entryId:int) : int
+    + count : int <<get>>
+    + <<override>> latestVersion : int <<get>>
+}
+class "List`1"<T> {
+}
+ShaderInput <|-- ShaderDropdown
+ShaderDropdown --> "entries<DropdownEntry>" "List`1"
+@enduml

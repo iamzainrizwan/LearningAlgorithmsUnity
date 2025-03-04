@@ -1,0 +1,7 @@
+@startuml
+class ProbeGlobalIndirection {
+}
+struct IndexMetaData {
+}
+ProbeGlobalIndirection +-- IndexMetaData
+@enduml

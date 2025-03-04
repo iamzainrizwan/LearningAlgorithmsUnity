@@ -1,0 +1,46 @@
+@startuml
+enum FormatError {
+    None,
+    Overflow,
+    BadFormatSpecifier,
+}
+enum ParseError {
+    None,
+    Syntax,
+    Overflow,
+    Underflow,
+}
+enum CopyError {
+    None,
+    Truncation,
+}
+enum ConversionError {
+    None,
+    Overflow,
+    Encoding,
+    CodePoint,
+}
+struct Unicode {
+    + <<const>> kMaximumValidCodePoint : int = 0x10FFFF
+    + {static} IsValidCodePoint(codepoint:int) : bool
+    + {static} NotTrailer(b:byte) : bool
+    + {static} Utf8ToUcs(rune:Rune, buffer:byte*, index:int, capacity:int) : ConversionError
+    + {static} Utf16ToUcs(rune:Rune, buffer:char*, index:int, capacity:int) : ConversionError
+    + {static} UcsToUtf8(buffer:byte*, index:int, capacity:int, rune:Rune) : ConversionError
+    + {static} UcsToUtf16(buffer:char*, index:int, capacity:int, rune:Rune) : ConversionError
+    + {static} Utf16ToUtf8(utf16Buffer:char*, utf16Length:int, utf8Buffer:byte*, utf8Length:int, utf8Capacity:int) : ConversionError
+    + {static} Utf8ToUtf8(srcBuffer:byte*, srcLength:int, destBuffer:byte*, destLength:int, destCapacity:int) : ConversionError
+    + {static} Utf8ToUtf16(utf8Buffer:byte*, utf8Length:int, utf16Buffer:char*, utf16Length:int, utf16Capacity:int) : ConversionError
+}
+struct Rune {
+    + value : int
+    + Rune(codepoint:int)
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + {static} IsDigit(r:Rune) : bool
+    + LengthInUtf8Bytes() : int
+}
+Unicode --> "ReplacementCharacter" Rune
+Unicode --> "BadRune" Rune
+Unicode +-- Rune
+@enduml

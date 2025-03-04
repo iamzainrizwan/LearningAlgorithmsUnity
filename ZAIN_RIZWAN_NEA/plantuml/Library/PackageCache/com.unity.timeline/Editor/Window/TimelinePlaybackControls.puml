@@ -1,0 +1,21 @@
+@startuml
+interface ITimelinePlaybackControls {
+}
+class TimelinePlaybackControls <<sealed>> {
+    + Play() : void
+    + Pause() : void
+    + PreviousFrame() : void
+    + NextFrame() : void
+    + GoToFirstFrame() : void
+    + GoToLastFrame() : void
+    + SetCurrentTime(time:double, context:Context) : void
+    + SetCurrentFrame(frame:int, context:Context) : void
+    + GetCurrentTime(context:Context) : double
+    + GetCurrentFrame(context:Context) : int
+}
+enum Context {
+    Local,
+    Global,
+}
+TimelinePlaybackControls +-- Context
+@enduml

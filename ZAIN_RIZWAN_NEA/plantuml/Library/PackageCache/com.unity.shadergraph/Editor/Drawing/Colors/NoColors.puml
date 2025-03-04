@@ -1,0 +1,11 @@
+@startuml
+class NoColors {
+    + <<const>> Title : string = "<None>"
+    + GetTitle() : string
+    + AllowCustom() : bool
+    + ClearOnDirty() : bool
+    + ApplyColor(nodeView:IShaderNodeView) : void
+    + ClearColor(nodeView:IShaderNodeView) : void
+}
+IColorProvider <|-- NoColors
+@enduml

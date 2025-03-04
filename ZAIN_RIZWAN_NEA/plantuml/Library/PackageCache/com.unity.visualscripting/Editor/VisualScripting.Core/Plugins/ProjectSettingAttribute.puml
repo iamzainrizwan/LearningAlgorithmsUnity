@@ -1,0 +1,7 @@
+@startuml
+class ProjectSettingAttribute {
+    + ProjectSettingAttribute()
+    + ProjectSettingAttribute(key:string)
+}
+PluginConfigurationItemAttribute <|-- ProjectSettingAttribute
+@enduml

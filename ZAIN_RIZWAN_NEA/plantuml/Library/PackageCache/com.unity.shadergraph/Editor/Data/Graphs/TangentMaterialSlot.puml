@@ -1,0 +1,11 @@
+@startuml
+class TangentMaterialSlot {
+    + TangentMaterialSlot()
+    + TangentMaterialSlot(slotId:int, displayName:string, shaderOutputName:string, space:CoordinateSpace, stageCapability:ShaderStageCapability, hidden:bool)
+    + <<override>> InstantiateControl() : VisualElement
+    + <<override>> GetDefaultValue(generationMode:GenerationMode) : string
+    + RequiresTangent(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+}
+SpaceMaterialSlot <|-- TangentMaterialSlot
+IMayRequireTangent <|-- TangentMaterialSlot
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+interface IState {
+}
+IGraphElementWithDebugData <|-- IState
+IGraphElementWithData <|-- IState
+@enduml

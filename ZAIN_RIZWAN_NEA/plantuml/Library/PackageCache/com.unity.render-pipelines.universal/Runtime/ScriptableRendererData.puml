@@ -1,0 +1,11 @@
+@startuml
+abstract class ScriptableRendererData <<partial>> {
+    + <<new>> SetDirty() : void
+    + useNativeRenderPass : bool <<get>> <<set>>
+    + TryGetRendererFeature(rendererFeature:T) : bool
+}
+class "List`1"<T> {
+}
+ScriptableObject <|-- ScriptableRendererData
+ScriptableRendererData --> "rendererFeatures<ScriptableRendererFeature>" "List`1"
+@enduml

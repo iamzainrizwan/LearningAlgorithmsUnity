@@ -1,0 +1,8 @@
+@startuml
+class CastMetadata {
+    + CastMetadata(newType:Type, parent:Metadata)
+    + <<override>> GetCustomAttributes(inherit:bool) : Attribute[]
+}
+ProxyMetadata <|-- CastMetadata
+CastMetadata --> "newType" Type
+@enduml

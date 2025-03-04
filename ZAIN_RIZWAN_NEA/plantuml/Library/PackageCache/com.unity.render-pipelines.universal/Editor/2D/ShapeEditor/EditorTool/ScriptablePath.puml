@@ -1,0 +1,26 @@
+@startuml
+class ScriptablePath {
+    + isOpenEnded : bool <<get>> <<set>>
+    + pointCount : int <<get>>
+    + Select(selector:ISelector<Vector3>) : bool
+    + <<virtual>> Clear() : void
+    + <<virtual>> GetPoint(index:int) : ControlPoint
+    + <<virtual>> SetPoint(index:int, controlPoint:ControlPoint) : void
+    + <<virtual>> AddPoint(controlPoint:ControlPoint) : void
+    + <<virtual>> InsertPoint(index:int, controlPoint:ControlPoint) : void
+    + <<virtual>> RemovePoint(index:int) : void
+    + <<virtual>> SetDefaultShape() : void
+}
+class "ISelection`1"<T> {
+}
+ScriptableObject <|-- ScriptablePath
+IEditablePath <|-- ScriptablePath
+IUndoObject <|-- ScriptablePath
+ScriptablePath --> "shapeType" ShapeType
+ScriptablePath --> "undoObject" IUndoObject
+ScriptablePath --> "selection<int>" "ISelection`1"
+ScriptablePath --> "localToWorldMatrix" Matrix4x4
+ScriptablePath --> "forward" Vector3
+ScriptablePath --> "up" Vector3
+ScriptablePath --> "right" Vector3
+@enduml

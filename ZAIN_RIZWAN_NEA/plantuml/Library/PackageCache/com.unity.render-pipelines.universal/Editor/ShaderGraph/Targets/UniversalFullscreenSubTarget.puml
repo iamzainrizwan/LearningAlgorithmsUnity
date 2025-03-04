@@ -1,0 +1,14 @@
+@startuml
+class UniversalFullscreenSubTarget {
+    + <<override>> Setup(context:TargetSetupContext) : void
+    + <<override>> saveContext : object <<get>>
+    + UniversalFullscreenSubTarget()
+}
+class "FullscreenSubTarget`1"<T> {
+}
+class "IRequiresData`1"<T> {
+}
+"FullscreenSubTarget`1" "<UniversalTarget>" <|-- UniversalFullscreenSubTarget
+"IRequiresData`1" "<FullscreenData>" <|-- UniversalFullscreenSubTarget
+IHasMetadata <|-- UniversalFullscreenSubTarget
+@enduml

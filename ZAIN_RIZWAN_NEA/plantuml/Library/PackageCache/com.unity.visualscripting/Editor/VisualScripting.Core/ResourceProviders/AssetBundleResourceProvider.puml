@@ -1,0 +1,33 @@
+@startuml
+class AssetBundleResourceProvider <<sealed>> {
+    + <<const>> DirectorySeparatorChar : char = '/'
+    + AssetBundleResourceProvider()
+    + AssetBundleResourceProvider(assetBundle:AssetBundle)
+    + GetAllFiles() : IEnumerable<string>
+    + GetFiles(path:string) : IEnumerable<string>
+    + GetDirectories(path:string) : IEnumerable<string>
+    + GetPersonalPath(path:string, width:float) : string
+    + GetProfessionalPath(path:string, width:float) : string
+    + FileExists(path:string) : bool
+    + DirectoryExists(path:string) : bool
+    + NormalizePath(path:string) : string
+    + DebugPath(path:string) : string
+    + LoadAsset(path:string) : T
+    + LoadTexture(path:string, options:CreateTextureOptions) : Texture2D
+}
+class Directory {
+    + name : string <<get>>
+    + path : string <<get>>
+    + Directory(parent:Directory, name:string)
+}
+class "Dictionary`2"<T1,T2> {
+}
+class "List`1"<T> {
+}
+IResourceProvider <|-- AssetBundleResourceProvider
+AssetBundleResourceProvider --> "assetBundle" AssetBundle
+AssetBundleResourceProvider +-- Directory
+Directory --> "parent" Directory
+Directory o-> "subDirectories<string,Directory>" "Dictionary`2"
+Directory o-> "files<string>" "List`1"
+@enduml

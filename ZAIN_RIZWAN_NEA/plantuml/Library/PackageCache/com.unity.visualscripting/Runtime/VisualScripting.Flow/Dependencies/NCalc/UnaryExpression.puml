@@ -1,0 +1,14 @@
+@startuml
+class UnaryExpression {
+    + UnaryExpression(type:UnaryExpressionType, expression:LogicalExpression)
+    + <<override>> Accept(visitor:LogicalExpressionVisitor) : void
+}
+enum UnaryExpressionType {
+    Not,
+    Negate,
+    BitwiseNot,
+}
+LogicalExpression <|-- UnaryExpression
+UnaryExpression --> "Expression" LogicalExpression
+UnaryExpression --> "Type" UnaryExpressionType
+@enduml

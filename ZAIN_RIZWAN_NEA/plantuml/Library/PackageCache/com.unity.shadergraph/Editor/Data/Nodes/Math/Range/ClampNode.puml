@@ -1,0 +1,6 @@
+@startuml
+class ClampNode {
+    + ClampNode()
+}
+CodeFunctionNode <|-- ClampNode
+@enduml

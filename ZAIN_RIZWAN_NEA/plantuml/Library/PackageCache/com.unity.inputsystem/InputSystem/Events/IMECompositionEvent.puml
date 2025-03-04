@@ -1,0 +1,30 @@
+@startuml
+struct IMECompositionEvent {
+    + <<const>> Type : int = 0x494D4553
+    + {static} Create(deviceId:int, compositionString:string, time:double) : IMECompositionEvent
+}
+struct IMECompositionString {
+    + Count : int <<get>>
+    + IMECompositionString(characters:string)
+    + <<override>> ToString() : string
+    + GetEnumerator() : IEnumerator<char>
+}
+class "IEnumerable`1"<T> {
+}
+struct Enumerator {
+    + Enumerator(compositionString:IMECompositionString)
+    + MoveNext() : bool
+    + Reset() : void
+    + Dispose() : void
+    + Current : char <<get>>
+}
+class "IEnumerator`1"<T> {
+}
+IInputEventTypeInfo <|-- IMECompositionEvent
+IMECompositionEvent --> "baseEvent" InputEvent
+IMECompositionEvent --> "compositionString" IMECompositionString
+IMECompositionEvent --> "typeStatic" FourCC
+"IEnumerable`1" "<char>" <|-- IMECompositionString
+IMECompositionString +-- Enumerator
+"IEnumerator`1" "<char>" <|-- Enumerator
+@enduml

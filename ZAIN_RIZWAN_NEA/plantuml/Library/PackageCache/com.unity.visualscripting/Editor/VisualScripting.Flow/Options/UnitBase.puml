@@ -1,0 +1,16 @@
+@startuml
+class UnitBase <<static>> {
+    + {static} Rebuild() : void
+    + {static} Build(initialBuild:bool) : void
+    + {static} Update() : void
+    + {static} Subset(filter:UnitOptionFilter, reference:GraphReference) : IEnumerable<IUnitOption>
+    + {static} GetScriptGuids(type:Type) : IEnumerable<string>
+    + {static} GetScriptTypes(guid:string) : IEnumerable<Type>
+    + {static} WithoutInheritedDuplicates(items:IEnumerable<T>, optionSelector:Func<T, IUnitOption>, cancellation:CancellationToken) : IEnumerable<T>
+}
+class "NonNullableList`1"<T> {
+}
+UnitBase --> "staticUnitsExtensions<Func<IEnumerable<IUnitOption>>>" "NonNullableList`1"
+UnitBase --> "dynamicUnitsExtensions<Func<IEnumerable<IUnitOption>>>" "NonNullableList`1"
+UnitBase --> "contextualUnitsExtensions<Func<GraphReference, IEnumerable<IUnitOption>>>" "NonNullableList`1"
+@enduml

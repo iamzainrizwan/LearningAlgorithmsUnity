@@ -1,0 +1,7 @@
+@startuml
+class UnitShortTitleAttribute <<sealed>> {
+    + UnitShortTitleAttribute(title:string)
+    + title : string <<get>>
+}
+Attribute <|-- UnitShortTitleAttribute
+@enduml

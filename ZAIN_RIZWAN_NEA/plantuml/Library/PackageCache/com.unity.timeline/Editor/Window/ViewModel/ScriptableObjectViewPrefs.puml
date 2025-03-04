@@ -1,0 +1,11 @@
+@startuml
+class "ScriptableObjectViewPrefs`1"<TViewModel> {
+    + ScriptableObjectViewPrefs(asset:ScriptableObject, relativeSavePath:string)
+    + viewModel : TViewModel <<get>>
+    + Save() : void
+    + DeleteFile() : void
+    + Dispose() : void
+    + {static} CreateViewModel() : TViewModel
+}
+IDisposable <|-- "ScriptableObjectViewPrefs`1"
+@enduml

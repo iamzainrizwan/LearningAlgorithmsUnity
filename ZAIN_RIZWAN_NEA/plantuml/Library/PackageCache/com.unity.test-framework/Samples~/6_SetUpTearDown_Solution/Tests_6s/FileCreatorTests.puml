@@ -1,0 +1,8 @@
+@startuml
+class FileCreatorTests {
+    + Setup() : void
+    + CreatesEmptyFile() : void
+    + CreatesFile() : void
+    + Teardown() : void
+}
+@enduml

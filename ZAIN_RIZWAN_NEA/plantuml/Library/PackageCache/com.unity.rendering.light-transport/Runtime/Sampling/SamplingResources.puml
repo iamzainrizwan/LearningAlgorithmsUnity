@@ -1,0 +1,13 @@
+@startuml
+class SamplingResources <<sealed>> {
+    + {static} BindSobolBlueNoiseTextures(cmd:CommandBuffer, resources:SamplingResources) : void
+    + Dispose() : void
+}
+enum ResourceType {
+    BlueNoiseTextures= 1,
+    SobolMatrices= 2,
+    All= BlueNoiseTextures | SobolMatrices,
+}
+IDisposable <|-- SamplingResources
+SamplingResources +-- ResourceType
+@enduml

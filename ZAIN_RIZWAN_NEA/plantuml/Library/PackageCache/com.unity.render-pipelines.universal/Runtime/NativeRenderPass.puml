@@ -1,0 +1,14 @@
+@startuml
+class ScriptableRenderer <<partial>> {
+}
+class Profiling <<static>> <<partial>> {
+}
+struct RenderPassDescriptor {
+}
+ScriptableRenderer +-- Profiling
+Profiling o-> "setMRTAttachmentsList" ProfilingSampler
+Profiling o-> "setAttachmentList" ProfilingSampler
+Profiling o-> "execute" ProfilingSampler
+Profiling o-> "setupFrameData" ProfilingSampler
+ScriptableRenderer +-- RenderPassDescriptor
+@enduml

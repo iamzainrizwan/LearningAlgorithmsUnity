@@ -1,0 +1,17 @@
+@startuml
+enum DepthSamplingMode {
+    Linear01,
+    Raw,
+    Eye,
+}
+class SceneDepthNode <<sealed>> {
+    + <<const>> ScreenPositionSlotId : int = 0
+    + <<const>> OutputSlotId : int = 1
+    + SceneDepthNode()
+    + <<override>> hasPreview : bool <<get>>
+    + RequiresDepthTexture(stageCapability:ShaderStageCapability) : bool
+}
+CodeFunctionNode <|-- SceneDepthNode
+IMayRequireDepthTexture <|-- SceneDepthNode
+SceneDepthNode --> "depthSamplingMode" DepthSamplingMode
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class IgnoreTestCommand {
+    + IgnoreTestCommand(innerCommand:TestCommand, test:ITest)
+    + <<override>> Execute(context:ITestExecutionContext) : TestResult
+    + ExecuteEnumerable(context:ITestExecutionContext) : IEnumerable
+}
+DelegatingTestCommand <|-- IgnoreTestCommand
+IEnumerableTestMethodCommand <|-- IgnoreTestCommand
+@enduml

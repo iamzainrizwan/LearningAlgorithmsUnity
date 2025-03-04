@@ -1,0 +1,17 @@
+@startuml
+class X86 <<unsafe>> <<static>> <<partial>> {
+}
+class Sse3 <<static>> {
+    + {static} IsSse3Supported : bool <<get>>
+    + {static} addsub_ps(a:v128, b:v128) : v128
+    + {static} addsub_pd(a:v128, b:v128) : v128
+    + {static} hadd_pd(a:v128, b:v128) : v128
+    + {static} hadd_ps(a:v128, b:v128) : v128
+    + {static} hsub_pd(a:v128, b:v128) : v128
+    + {static} hsub_ps(a:v128, b:v128) : v128
+    + {static} movedup_pd(a:v128) : v128
+    + {static} movehdup_ps(a:v128) : v128
+    + {static} moveldup_ps(a:v128) : v128
+}
+X86 +-- Sse3
+@enduml

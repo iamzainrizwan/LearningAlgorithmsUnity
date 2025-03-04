@@ -1,0 +1,8 @@
+@startuml
+class NullOption <<sealed>> {
+    + NullOption()
+}
+class "FuzzyOption`1"<T> {
+}
+"FuzzyOption`1" "<object>" <|-- NullOption
+@enduml

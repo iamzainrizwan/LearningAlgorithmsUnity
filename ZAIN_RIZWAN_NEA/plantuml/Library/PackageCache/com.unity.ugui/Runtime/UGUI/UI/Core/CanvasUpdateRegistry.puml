@@ -1,0 +1,23 @@
+@startuml
+enum CanvasUpdate {
+    Prelayout= 0,
+    Layout= 1,
+    PostLayout= 2,
+    PreRender= 3,
+    LatePreRender= 4,
+    MaxUpdateValue= 5,
+}
+interface ICanvasElement {
+}
+class CanvasUpdateRegistry {
+    + {static} RegisterCanvasElementForLayoutRebuild(element:ICanvasElement) : void
+    + {static} TryRegisterCanvasElementForLayoutRebuild(element:ICanvasElement) : bool
+    + {static} RegisterCanvasElementForGraphicRebuild(element:ICanvasElement) : void
+    + {static} TryRegisterCanvasElementForGraphicRebuild(element:ICanvasElement) : bool
+    + {static} UnRegisterCanvasElementForRebuild(element:ICanvasElement) : void
+    + {static} DisableCanvasElementForRebuild(element:ICanvasElement) : void
+    + {static} IsRebuildingLayout() : bool
+    + {static} IsRebuildingGraphics() : bool
+}
+CanvasUpdateRegistry --> "instance" CanvasUpdateRegistry
+@enduml

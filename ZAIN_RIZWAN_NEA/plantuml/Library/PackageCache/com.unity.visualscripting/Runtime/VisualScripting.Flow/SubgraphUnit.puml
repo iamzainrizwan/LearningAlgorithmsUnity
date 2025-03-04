@@ -1,0 +1,25 @@
+@startuml
+class SubgraphUnit <<sealed>> {
+    + CreateData() : IGraphElementData
+    + SubgraphUnit()
+    + SubgraphUnit(macro:ScriptGraphAsset)
+    + {static} WithInputOutput() : SubgraphUnit
+    + {static} WithStartUpdate() : SubgraphUnit
+    + <<override>> DefaultGraph() : FlowGraph
+    + StartListening(stack:GraphStack) : void
+    + StopListening(stack:GraphStack) : void
+    + IsListening(pointer:GraphPointer) : bool
+    + <<override>> AfterAdd() : void
+    + <<override>> BeforeRemove() : void
+}
+class "NesterUnit`2"<T1,T2> {
+}
+class Data <<sealed>> {
+    + isListening : bool
+}
+"NesterUnit`2" "<FlowGraph,ScriptGraphAsset>" <|-- SubgraphUnit
+IGraphEventListener <|-- SubgraphUnit
+IGraphElementWithData <|-- SubgraphUnit
+SubgraphUnit +-- Data
+IGraphElementData <|-- Data
+@enduml

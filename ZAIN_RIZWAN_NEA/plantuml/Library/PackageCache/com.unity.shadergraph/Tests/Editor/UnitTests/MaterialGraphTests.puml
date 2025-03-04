@@ -1,0 +1,12 @@
+@startuml
+class MaterialGraphTests {
+    + RunBeforeAnyTests() : void
+    + TestCreateMaterialGraph() : void
+    + TestUndoRedoPerformedMethod() : void
+    + TestMaterialGraphKeepUnsavedChange() : IEnumerator
+}
+class TestNode {
+}
+MaterialGraphTests +-- TestNode
+AbstractMaterialNode <|-- TestNode
+@enduml

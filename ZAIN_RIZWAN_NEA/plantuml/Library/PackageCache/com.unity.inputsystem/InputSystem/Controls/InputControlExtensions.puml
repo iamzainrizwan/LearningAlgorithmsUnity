@@ -1,0 +1,110 @@
+@startuml
+class InputControlExtensions <<static>> {
+    + {static} FindInParentChain(control:InputControl) : TControl
+    + {static} IsPressed(control:InputControl, buttonPressPoint:float) : bool
+    + {static} IsActuated(control:InputControl, threshold:float) : bool
+    + {static} <<unsafe>> ReadValueAsObject(control:InputControl) : object
+    + {static} <<unsafe>> ReadValueIntoBuffer(control:InputControl, buffer:void*, bufferSize:int) : void
+    + {static} <<unsafe>> ReadDefaultValueAsObject(control:InputControl) : object
+    + {static} ReadValueFromEvent(control:InputControl<TValue>, inputEvent:InputEventPtr) : TValue
+    + {static} <<unsafe>> ReadValueFromEvent(control:InputControl<TValue>, inputEvent:InputEventPtr, value:TValue) : bool
+    + {static} <<unsafe>> ReadValueFromEventAsObject(control:InputControl, inputEvent:InputEventPtr) : object
+    + {static} ReadUnprocessedValueFromEvent(control:InputControl<TValue>, eventPtr:InputEventPtr) : TValue
+    + {static} <<unsafe>> ReadUnprocessedValueFromEvent(control:InputControl<TValue>, inputEvent:InputEventPtr, value:TValue) : bool
+    + {static} <<unsafe>> WriteValueFromObjectIntoEvent(control:InputControl, eventPtr:InputEventPtr, value:object) : void
+    + {static} <<unsafe>> WriteValueIntoState(control:InputControl, statePtr:void*) : void
+    + {static} <<unsafe>> WriteValueIntoState(control:InputControl, value:TValue, statePtr:void*) : void
+    + {static} <<unsafe>> WriteValueIntoState(control:InputControl<TValue>, value:TValue, statePtr:void*) : void
+    + {static} <<unsafe>> WriteValueIntoState(control:InputControl<TValue>, statePtr:void*) : void
+    + {static} <<unsafe>> WriteValueIntoState(control:InputControl<TValue>, value:TValue, state:TState) : void
+    + {static} WriteValueIntoEvent(control:InputControl, value:TValue, eventPtr:InputEventPtr) : void
+    + {static} <<unsafe>> WriteValueIntoEvent(control:InputControl<TValue>, value:TValue, eventPtr:InputEventPtr) : void
+    + {static} <<unsafe>> CopyState(device:InputDevice, buffer:void*, bufferSizeInBytes:int) : void
+    + {static} <<unsafe>> CopyState(device:InputDevice, state:TState) : void
+    + {static} <<unsafe>> CheckStateIsAtDefault(control:InputControl) : bool
+    + {static} <<unsafe>> CheckStateIsAtDefault(control:InputControl, statePtr:void*, maskPtr:void*) : bool
+    + {static} <<unsafe>> CheckStateIsAtDefaultIgnoringNoise(control:InputControl) : bool
+    + {static} <<unsafe>> CheckStateIsAtDefaultIgnoringNoise(control:InputControl, statePtr:void*) : bool
+    + {static} <<unsafe>> CompareStateIgnoringNoise(control:InputControl, statePtr:void*) : bool
+    + {static} <<unsafe>> CompareState(control:InputControl, firstStatePtr:void*, secondStatePtr:void*, maskPtr:void*) : bool
+    + {static} <<unsafe>> CompareState(control:InputControl, statePtr:void*, maskPtr:void*) : bool
+    + {static} <<unsafe>> HasValueChangeInState(control:InputControl, statePtr:void*) : bool
+    + {static} <<unsafe>> HasValueChangeInEvent(control:InputControl, eventPtr:InputEventPtr) : bool
+    + {static} <<unsafe>> GetStatePtrFromStateEvent(control:InputControl, eventPtr:InputEventPtr) : void*
+    + {static} <<unsafe>> ResetToDefaultStateInEvent(control:InputControl, eventPtr:InputEventPtr) : bool
+    + {static} QueueValueChange(control:InputControl<TValue>, value:TValue, time:double) : void
+    + {static} <<unsafe>> AccumulateValueInEvent(control:InputControl<float>, currentStatePtr:void*, newState:InputEventPtr) : void
+    + {static} FindControlsRecursive(parent:InputControl, controls:IList<TControl>, predicate:Func<TControl, bool>) : void
+    + {static} EnumerateControls(eventPtr:InputEventPtr, flags:Enumerate, device:InputDevice, magnitudeThreshold:float) : InputEventControlCollection
+    + {static} EnumerateChangedControls(eventPtr:InputEventPtr, device:InputDevice, magnitudeThreshold:float) : InputEventControlCollection
+    + {static} HasButtonPress(eventPtr:InputEventPtr, magnitude:float, buttonControlsOnly:bool) : bool
+    + {static} GetFirstButtonPressOrNull(eventPtr:InputEventPtr, magnitude:float, buttonControlsOnly:bool) : InputControl
+    + {static} GetAllButtonPresses(eventPtr:InputEventPtr, magnitude:float, buttonControlsOnly:bool) : IEnumerable<InputControl>
+    + {static} Setup(control:InputControl) : ControlBuilder
+    + {static} Setup(device:InputDevice, controlCount:int, usageCount:int, aliasCount:int) : DeviceBuilder
+}
+enum Enumerate {
+    IgnoreControlsInDefaultState= 1 << 0,
+    IgnoreControlsInCurrentState= 1 << 1,
+    IncludeSyntheticControls= 1 << 2,
+    IncludeNoisyControls= 1 << 3,
+    IncludeNonLeafControls= 1 << 4,
+}
+struct InputEventControlCollection {
+    + GetEnumerator() : InputEventControlEnumerator
+}
+struct InputEventControlEnumerator {
+    + MoveNext() : bool
+    + Reset() : void
+    + Dispose() : void
+}
+struct ControlBuilder {
+    + At(device:InputDevice, index:int) : ControlBuilder
+    + WithParent(parent:InputControl) : ControlBuilder
+    + WithName(name:string) : ControlBuilder
+    + WithDisplayName(displayName:string) : ControlBuilder
+    + WithShortDisplayName(shortDisplayName:string) : ControlBuilder
+    + WithLayout(layout:InternedString) : ControlBuilder
+    + WithUsages(startIndex:int, count:int) : ControlBuilder
+    + WithAliases(startIndex:int, count:int) : ControlBuilder
+    + WithChildren(startIndex:int, count:int) : ControlBuilder
+    + WithStateBlock(stateBlock:InputStateBlock) : ControlBuilder
+    + WithDefaultState(value:PrimitiveValue) : ControlBuilder
+    + WithMinAndMax(min:PrimitiveValue, max:PrimitiveValue) : ControlBuilder
+    + WithProcessor(processor:TProcessor) : ControlBuilder
+    + IsNoisy(value:bool) : ControlBuilder
+    + IsSynthetic(value:bool) : ControlBuilder
+    + DontReset(value:bool) : ControlBuilder
+    + IsButton(value:bool) : ControlBuilder
+    + Finish() : void
+}
+struct DeviceBuilder {
+    + WithName(name:string) : DeviceBuilder
+    + WithDisplayName(displayName:string) : DeviceBuilder
+    + WithShortDisplayName(shortDisplayName:string) : DeviceBuilder
+    + WithLayout(layout:InternedString) : DeviceBuilder
+    + WithChildren(startIndex:int, count:int) : DeviceBuilder
+    + WithStateBlock(stateBlock:InputStateBlock) : DeviceBuilder
+    + IsNoisy(value:bool) : DeviceBuilder
+    + WithControlUsage(controlIndex:int, usage:InternedString, control:InputControl) : DeviceBuilder
+    + WithControlAlias(controlIndex:int, alias:InternedString) : DeviceBuilder
+    + WithStateOffsetToControlIndexMap(map:uint[]) : DeviceBuilder
+    + <<unsafe>> WithControlTree(controlTreeNodes:byte[], controlTreeIndicies:ushort[]) : DeviceBuilder
+    + Finish() : void
+}
+class "IEnumerable`1"<T> {
+}
+class "IEnumerator`1"<T> {
+}
+InputControlExtensions +-- Enumerate
+InputControlExtensions +-- InputEventControlCollection
+"IEnumerable`1" "<InputControl>" <|-- InputEventControlCollection
+InputEventControlCollection --> "eventPtr" InputEventPtr
+InputControlExtensions +-- InputEventControlEnumerator
+"IEnumerator`1" "<InputControl>" <|-- InputEventControlEnumerator
+InputEventControlEnumerator --> "Current" InputControl
+InputControlExtensions +-- ControlBuilder
+ControlBuilder --> "control" InputControl
+InputControlExtensions +-- DeviceBuilder
+DeviceBuilder --> "device" InputDevice
+@enduml

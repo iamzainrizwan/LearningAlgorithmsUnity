@@ -1,0 +1,19 @@
+@startuml
+class PlasticExeLauncher {
+}
+interface ICheckIsExeAvailable {
+}
+interface IProcessExecutor {
+}
+class CheckIsExeAvailable {
+}
+class ProcessExecutor {
+}
+IToolLauncher <|-- PlasticExeLauncher
+PlasticExeLauncher +-- ICheckIsExeAvailable
+PlasticExeLauncher +-- IProcessExecutor
+PlasticExeLauncher +-- CheckIsExeAvailable
+ICheckIsExeAvailable <|-- CheckIsExeAvailable
+PlasticExeLauncher +-- ProcessExecutor
+IProcessExecutor <|-- ProcessExecutor
+@enduml

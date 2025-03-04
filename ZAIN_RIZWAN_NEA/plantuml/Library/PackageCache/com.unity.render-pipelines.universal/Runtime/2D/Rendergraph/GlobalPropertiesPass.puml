@@ -1,0 +1,8 @@
+@startuml
+class GlobalPropertiesPass {
+}
+class PassData {
+}
+ScriptableRenderPass <|-- GlobalPropertiesPass
+GlobalPropertiesPass +-- PassData
+@enduml

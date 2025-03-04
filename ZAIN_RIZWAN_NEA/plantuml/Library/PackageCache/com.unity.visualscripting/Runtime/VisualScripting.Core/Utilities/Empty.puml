@@ -1,0 +1,10 @@
+@startuml
+class "Empty`1"<T> <<static>> {
+}
+class "List`1"<T> {
+}
+class "HashSet`1"<T> {
+}
+"Empty`1" o-> "list<T>" "List`1"
+"Empty`1" o-> "hashSet<T>" "HashSet`1"
+@enduml

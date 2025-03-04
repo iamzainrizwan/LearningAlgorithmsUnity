@@ -1,0 +1,4 @@
+@startuml
+class UIElementsExtensions <<static>> {
+}
+@enduml

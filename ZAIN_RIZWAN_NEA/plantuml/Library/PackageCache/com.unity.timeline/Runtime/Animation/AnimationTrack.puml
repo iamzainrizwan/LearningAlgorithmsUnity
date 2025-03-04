@@ -1,0 +1,56 @@
+@startuml
+enum MatchTargetFields {
+    PositionX= 1 << 0,
+    PositionY= 1 << 1,
+    PositionZ= 1 << 2,
+    RotationX= 1 << 3,
+    RotationY= 1 << 4,
+    RotationZ= 1 << 5,
+}
+enum TrackOffset {
+    ApplyTransformOffsets,
+    ApplySceneOffsets,
+    Auto,
+}
+enum AppliedOffsetMode {
+    NoRootTransform,
+    TransformOffset,
+    SceneOffset,
+    TransformOffsetLegacy,
+    SceneOffsetLegacy,
+    SceneOffsetEditor,
+    SceneOffsetLegacyEditor,
+}
+class MatchTargetFieldConstants <<static>> {
+    + {static} HasAny(me:MatchTargetFields, fields:MatchTargetFields) : bool
+    + {static} Toggle(me:MatchTargetFields, flag:MatchTargetFields) : MatchTargetFields
+}
+class AnimationTrack <<partial>> {
+    + applyOffsets : bool <<get>> <<set>>
+    + applyAvatarMask : bool <<get>> <<set>>
+    + inClipMode : bool <<get>>
+    + CreateClip(clip:AnimationClip) : TimelineClip
+    + CreateInfiniteClip(infiniteClipName:string) : void
+    + CreateRecordableClip(animClipName:string) : TimelineClip
+    + <<override>> GatherProperties(director:PlayableDirector, driver:IPropertyCollector) : void
+}
+class "IEnumerable`1"<T> {
+}
+MatchTargetFieldConstants o-> "All" MatchTargetFields
+MatchTargetFieldConstants o-> "None" MatchTargetFields
+MatchTargetFieldConstants o-> "Position" MatchTargetFields
+MatchTargetFieldConstants o-> "Rotation" MatchTargetFields
+TrackAsset <|-- AnimationTrack
+ILayerable <|-- AnimationTrack
+AnimationTrack --> "position" Vector3
+AnimationTrack --> "rotation" Quaternion
+AnimationTrack --> "eulerAngles" Vector3
+AnimationTrack --> "trackOffset" TrackOffset
+AnimationTrack --> "matchTargetFields" MatchTargetFields
+AnimationTrack --> "infiniteClip" AnimationClip
+AnimationTrack --> "avatarMask" AvatarMask
+AnimationTrack --> "outputs<PlayableBinding>" "IEnumerable`1"
+AnimationTrack --> "infiniteClipOffsetPosition" Vector3
+AnimationTrack --> "infiniteClipOffsetRotation" Quaternion
+AnimationTrack --> "infiniteClipOffsetEulerAngles" Vector3
+@enduml

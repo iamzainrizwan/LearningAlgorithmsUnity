@@ -1,0 +1,11 @@
+@startuml
+enum ZTest {
+    Less,
+    Greater,
+    LEqual,
+    GEqual,
+    Equal,
+    NotEqual,
+    Always,
+}
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class Project {
+    + Name : string
+    + Version : string
+    + Branch : string
+    + Changeset : string
+    + Date : int
+}
+@enduml

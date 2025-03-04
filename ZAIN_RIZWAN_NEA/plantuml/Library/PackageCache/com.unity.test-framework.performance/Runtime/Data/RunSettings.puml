@@ -1,0 +1,9 @@
+@startuml
+class RunSettings {
+    + RunSettings(args:string[])
+    + MeasurementCount : int
+    + OnDeserialization(sender:object) : void
+}
+IDeserializationCallback <|-- RunSettings
+RunSettings --> "Instance" RunSettings
+@enduml

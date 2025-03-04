@@ -1,0 +1,12 @@
+@startuml
+class RenderPipelineGlobalSettingsUtilsTests {
+    + TearDown() : void
+    + Ensure(path:string, canCreateNewAsset:bool, assetState:AssetState, expectedPath:string) : void
+    + EnsureWithAValidInstanceReturnsTheCurrentInstance() : void
+}
+enum AssetState {
+    Null,
+    NotNull,
+}
+RenderPipelineGlobalSettingsUtilsTests +-- AssetState
+@enduml

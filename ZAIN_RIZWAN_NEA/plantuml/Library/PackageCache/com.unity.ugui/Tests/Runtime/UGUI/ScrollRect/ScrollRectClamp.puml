@@ -1,0 +1,7 @@
+@startuml
+class ScrollRectClamp {
+    + Setup() : void
+    + TearDown() : void
+    + ScrollRect_CorrectClampOnResize() : IEnumerator
+}
+@enduml

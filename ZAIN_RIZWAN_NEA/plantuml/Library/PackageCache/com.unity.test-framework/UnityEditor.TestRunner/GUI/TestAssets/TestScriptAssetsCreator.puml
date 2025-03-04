@@ -1,0 +1,9 @@
+@startuml
+class TestScriptAssetsCreator {
+    + AddNewFolderWithTestAssemblyDefinition(isEditorOnly:bool) : void
+    + AddNewTestScript() : void
+    + ActiveFolderContainsTestAssemblyDefinition() : bool
+    + TestScriptWillCompileInActiveFolder() : bool
+}
+ITestScriptAssetsCreator <|-- TestScriptAssetsCreator
+@enduml

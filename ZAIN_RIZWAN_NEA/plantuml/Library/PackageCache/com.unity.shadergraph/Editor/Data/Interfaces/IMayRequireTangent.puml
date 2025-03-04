@@ -1,0 +1,7 @@
+@startuml
+interface IMayRequireTangent {
+}
+class MayRequireTangentExtensions <<static>> {
+    + {static} RequiresTangent(slot:MaterialSlot) : NeededCoordinateSpace
+}
+@enduml

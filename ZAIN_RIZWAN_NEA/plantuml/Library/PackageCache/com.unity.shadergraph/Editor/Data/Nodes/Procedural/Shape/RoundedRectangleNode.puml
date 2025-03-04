@@ -1,0 +1,6 @@
+@startuml
+class RoundedRectangleNode {
+    + RoundedRectangleNode()
+}
+CodeFunctionNode <|-- RoundedRectangleNode
+@enduml

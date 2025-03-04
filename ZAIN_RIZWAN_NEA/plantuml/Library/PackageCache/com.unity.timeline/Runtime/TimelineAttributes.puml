@@ -1,0 +1,58 @@
+@startuml
+class TrackClipTypeAttribute {
+    + <<readonly>> allowAutoCreate : bool
+    + TrackClipTypeAttribute(clipClass:Type)
+    + TrackClipTypeAttribute(clipClass:Type, allowAutoCreate:bool)
+}
+class NotKeyableAttribute {
+}
+enum TrackBindingFlags {
+    None= 0,
+    AllowCreateComponent= 1,
+    All= AllowCreateComponent,
+}
+class TrackBindingTypeAttribute {
+    + TrackBindingTypeAttribute(type:Type)
+    + TrackBindingTypeAttribute(type:Type, flags:TrackBindingFlags)
+}
+class SupportsChildTracksAttribute {
+    + <<readonly>> levels : int
+    + SupportsChildTracksAttribute(childType:Type, levels:int)
+}
+class IgnoreOnPlayableTrackAttribute {
+}
+class TimeFieldAttribute {
+    + TimeFieldAttribute(useEditMode:UseEditMode)
+}
+class FrameRateFieldAttribute {
+}
+class HideInMenuAttribute {
+}
+class CustomStyleAttribute {
+    + <<readonly>> ussStyle : string
+    + CustomStyleAttribute(ussStyle:string)
+}
+class MenuCategoryAttribute {
+    + <<readonly>> category : string
+    + MenuCategoryAttribute(category:string)
+}
+enum UseEditMode {
+    None,
+    ApplyEditMode,
+}
+Attribute <|-- TrackClipTypeAttribute
+TrackClipTypeAttribute --> "inspectedType" Type
+Attribute <|-- NotKeyableAttribute
+Attribute <|-- TrackBindingTypeAttribute
+TrackBindingTypeAttribute --> "type" Type
+TrackBindingTypeAttribute --> "flags" TrackBindingFlags
+Attribute <|-- SupportsChildTracksAttribute
+SupportsChildTracksAttribute --> "childType" Type
+PropertyAttribute <|-- TimeFieldAttribute
+TimeFieldAttribute --> "useEditMode" UseEditMode
+PropertyAttribute <|-- FrameRateFieldAttribute
+Attribute <|-- HideInMenuAttribute
+Attribute <|-- CustomStyleAttribute
+Attribute <|-- MenuCategoryAttribute
+TimeFieldAttribute +-- UseEditMode
+@enduml

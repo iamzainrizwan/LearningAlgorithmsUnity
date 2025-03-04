@@ -1,0 +1,14 @@
+@startuml
+class RenderGraphDefaultResources {
+}
+RenderGraphDefaultResources --> "blackTexture" TextureHandle
+RenderGraphDefaultResources --> "whiteTexture" TextureHandle
+RenderGraphDefaultResources --> "clearTextureXR" TextureHandle
+RenderGraphDefaultResources --> "magentaTextureXR" TextureHandle
+RenderGraphDefaultResources --> "blackTextureXR" TextureHandle
+RenderGraphDefaultResources --> "blackTextureArrayXR" TextureHandle
+RenderGraphDefaultResources --> "blackUIntTextureXR" TextureHandle
+RenderGraphDefaultResources --> "blackTexture3DXR" TextureHandle
+RenderGraphDefaultResources --> "whiteTextureXR" TextureHandle
+RenderGraphDefaultResources --> "defaultShadowTexture" TextureHandle
+@enduml

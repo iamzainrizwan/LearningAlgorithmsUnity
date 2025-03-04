@@ -1,0 +1,7 @@
+@startuml
+class ShadowShape2DProvider_ProperyDrawer {
+    + <<override>> OnGUI(rect:Rect, property:SerializedProperty, label:GUIContent) : void
+    + <<override>> GetPropertyHeight(property:SerializedProperty, label:GUIContent) : float
+}
+PropertyDrawer <|-- ShadowShape2DProvider_ProperyDrawer
+@enduml

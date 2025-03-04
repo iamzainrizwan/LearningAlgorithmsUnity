@@ -1,0 +1,15 @@
+@startuml
+class AvailableSectionTypes {
+    + AvailableSectionTypes(sectionTypes:SectionCategoryToSectionList)
+    + TryGetValue(category:OnboardingSectionCategory, sectionTypes:Type[]) : bool
+    + HaveTypesChanged(other:AvailableSectionTypes) : bool
+}
+class SectionsFinder <<static>> {
+    + {static} FindSectionTypes() : AvailableSectionTypes
+}
+class "Dictionary`2"<T1,T2> {
+}
+class "IEnumerable`1"<T> {
+}
+AvailableSectionTypes --> "SectionTypeNames<string>" "IEnumerable`1"
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class RenderingLayersTests {
+    + OneTimeSetup() : void
+    + OneTimeTeardown() : void
+    + Setup() : void
+    + MaskSizeTest(tagManagerLayerCount:int) : int
+}
+@enduml

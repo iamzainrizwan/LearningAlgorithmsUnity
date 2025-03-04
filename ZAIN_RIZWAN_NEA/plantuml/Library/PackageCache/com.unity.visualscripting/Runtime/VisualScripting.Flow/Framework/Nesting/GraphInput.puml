@@ -1,0 +1,6 @@
+@startuml
+class GraphInput <<sealed>> {
+    + <<override>> canDefine : bool <<get>>
+}
+Unit <|-- GraphInput
+@enduml

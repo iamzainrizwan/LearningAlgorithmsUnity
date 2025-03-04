@@ -1,0 +1,9 @@
+@startuml
+class AudioTrack {
+    + CreateClip(clip:AudioClip) : TimelineClip
+}
+class "IEnumerable`1"<T> {
+}
+TrackAsset <|-- AudioTrack
+AudioTrack --> "outputs<PlayableBinding>" "IEnumerable`1"
+@enduml

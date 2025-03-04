@@ -1,0 +1,11 @@
+@startuml
+class PhysicsRaycaster {
+    + <<virtual>> depth : int <<get>>
+    + finalEventMask : int <<get>>
+    + maxRayIntersections : int <<get>> <<set>>
+    + <<override>> Raycast(eventData:PointerEventData, resultAppendList:List<RaycastResult>) : void
+}
+BaseRaycaster <|-- PhysicsRaycaster
+PhysicsRaycaster --> "eventCamera" Camera
+PhysicsRaycaster --> "eventMask" LayerMask
+@enduml

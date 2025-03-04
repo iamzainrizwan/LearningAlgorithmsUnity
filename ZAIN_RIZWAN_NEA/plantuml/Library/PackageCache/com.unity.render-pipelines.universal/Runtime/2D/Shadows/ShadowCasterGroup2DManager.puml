@@ -1,0 +1,15 @@
+@startuml
+class ShadowCasterGroup2DManager {
+    + {static} CacheValues() : void
+    + {static} AddShadowCasterGroupToList(shadowCaster:ShadowCasterGroup2D, list:List<ShadowCasterGroup2D>) : void
+    + {static} RemoveShadowCasterGroupFromList(shadowCaster:ShadowCasterGroup2D, list:List<ShadowCasterGroup2D>) : void
+    + {static} GetRendereringPriority(shadowCaster:ShadowCaster2D) : int
+    + {static} AddToShadowCasterGroup(shadowCaster:ShadowCaster2D, shadowCasterGroup:ShadowCasterGroup2D, priority:int) : bool
+    + {static} RemoveFromShadowCasterGroup(shadowCaster:ShadowCaster2D, shadowCasterGroup:ShadowCasterGroup2D) : void
+    + {static} AddGroup(group:ShadowCasterGroup2D) : void
+    + {static} RemoveGroup(group:ShadowCasterGroup2D) : void
+}
+class "List`1"<T> {
+}
+ShadowCasterGroup2DManager --> "shadowCasterGroups<ShadowCasterGroup2D>" "List`1"
+@enduml

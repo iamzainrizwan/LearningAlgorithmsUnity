@@ -1,0 +1,6 @@
+@startuml
+class ColorMaskNode {
+    + ColorMaskNode()
+}
+CodeFunctionNode <|-- ColorMaskNode
+@enduml

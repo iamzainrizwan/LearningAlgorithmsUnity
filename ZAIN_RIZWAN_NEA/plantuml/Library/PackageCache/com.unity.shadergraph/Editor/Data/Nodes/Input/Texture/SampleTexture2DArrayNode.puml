@@ -1,0 +1,25 @@
+@startuml
+class SampleTexture2DArrayNode {
+    + <<const>> OutputSlotRGBAId : int = 0
+    + <<const>> OutputSlotRId : int = 4
+    + <<const>> OutputSlotGId : int = 5
+    + <<const>> OutputSlotBId : int = 6
+    + <<const>> OutputSlotAId : int = 7
+    + <<const>> TextureInputId : int = 1
+    + <<const>> UVInput : int = 2
+    + <<const>> SamplerInput : int = 3
+    + <<const>> IndexInputId : int = 8
+    + <<const>> MipBiasInput : int = 9
+    + <<const>> LodInput : int = 10
+    + <<const>> DdxInput : int = 11
+    + <<const>> DdyInput : int = 12
+    + <<override>> hasPreview : bool <<get>>
+    + SampleTexture2DArrayNode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<virtual>> GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + RequiresMeshUV(channel:UVChannel, stageCapability:ShaderStageCapability) : bool
+}
+AbstractMaterialNode <|-- SampleTexture2DArrayNode
+IGeneratesBodyCode <|-- SampleTexture2DArrayNode
+IMayRequireMeshUV <|-- SampleTexture2DArrayNode
+@enduml

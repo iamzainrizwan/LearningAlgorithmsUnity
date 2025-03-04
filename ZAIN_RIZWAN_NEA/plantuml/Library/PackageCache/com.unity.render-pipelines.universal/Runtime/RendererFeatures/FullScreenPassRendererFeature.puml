@@ -1,0 +1,35 @@
+@startuml
+class FullScreenPassRendererFeature <<partial>> {
+    + fetchColorBuffer : bool = true
+    + passIndex : int = 0
+    + bindDepthStencilAttachment : bool = false
+    + <<override>> Create() : void
+    + <<override>> AddRenderPasses(renderer:ScriptableRenderer, renderingData:RenderingData) : void
+}
+enum InjectionPoint {
+    BeforeRenderingTransparents= RenderPassEvent.BeforeRenderingTransparents,
+    BeforeRenderingPostProcessing= RenderPassEvent.BeforeRenderingPostProcessing,
+    AfterRenderingPostProcessing= RenderPassEvent.AfterRenderingPostProcessing,
+}
+class FullScreenRenderPass {
+    + FullScreenRenderPass(passName:string)
+    + SetupMembers(material:Material, passIndex:int, fetchActiveColor:bool, bindDepthStencilAttachment:bool) : void
+    + <<override>> OnCameraSetup(cmd:CommandBuffer, renderingData:RenderingData) : void
+    + Dispose() : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+class CopyPassData {
+}
+class MainPassData {
+}
+ScriptableRendererFeature <|-- FullScreenPassRendererFeature
+FullScreenPassRendererFeature o-> "injectionPoint" InjectionPoint
+FullScreenPassRendererFeature o-> "requirements" ScriptableRenderPassInput
+FullScreenPassRendererFeature --> "passMaterial" Material
+FullScreenPassRendererFeature +-- InjectionPoint
+FullScreenPassRendererFeature +-- FullScreenRenderPass
+ScriptableRenderPass <|-- FullScreenRenderPass
+FullScreenRenderPass +-- CopyPassData
+FullScreenRenderPass +-- MainPassData
+@enduml

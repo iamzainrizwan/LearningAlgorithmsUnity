@@ -1,0 +1,9 @@
+@startuml
+class QuaternionUtils <<static>> {
+    + {static} Scale(q:Quaternion, scale:float) : Quaternion
+    + {static} NormalizeSafe(q:Quaternion) : Quaternion
+    + {static} Blend(q1:Quaternion, q2:Quaternion, weight:float) : Quaternion
+    + {static} Add(rhs:Quaternion, lhs:Quaternion) : Quaternion
+}
+QuaternionUtils o-> "zero" Quaternion
+@enduml

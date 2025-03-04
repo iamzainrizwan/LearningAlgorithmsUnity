@@ -1,0 +1,11 @@
+@startuml
+class VariableDeclarationsCloner <<sealed>> {
+    + <<override>> Handles(type:Type) : bool
+    + <<override>> ConstructClone(type:Type, original:VariableDeclarations) : VariableDeclarations
+    + <<override>> FillClone(type:Type, clone:VariableDeclarations, original:VariableDeclarations, context:CloningContext) : void
+}
+class "Cloner`1"<T> {
+}
+"Cloner`1" "<VariableDeclarations>" <|-- VariableDeclarationsCloner
+VariableDeclarationsCloner o-> "instance" VariableDeclarationsCloner
+@enduml

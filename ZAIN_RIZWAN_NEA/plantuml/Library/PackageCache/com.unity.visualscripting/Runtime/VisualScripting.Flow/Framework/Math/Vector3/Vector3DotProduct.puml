@@ -1,0 +1,8 @@
+@startuml
+class Vector3DotProduct <<sealed>> {
+    + <<override>> Operation(a:UnityEngine.Vector3, b:UnityEngine.Vector3) : float
+}
+class "DotProduct`1"<T> {
+}
+"DotProduct`1" "<UnityEngine.Vector3>" <|-- Vector3DotProduct
+@enduml

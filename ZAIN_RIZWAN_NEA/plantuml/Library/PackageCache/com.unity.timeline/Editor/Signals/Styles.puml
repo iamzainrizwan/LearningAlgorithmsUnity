@@ -1,0 +1,29 @@
+@startuml
+class Styles <<static>> {
+    + {static} <<readonly>> SignalListDuplicateOption : string
+    + {static} <<readonly>> SignalListDeleteOption : string
+    + {static} <<readonly>> NoBoundGO : string
+    + {static} <<readonly>> MultiEditNotSupportedOnDifferentBindings : string
+    + {static} <<readonly>> MultiEditNotSupportedOnDifferentSignals : string
+    + {static} <<readonly>> UndoCreateSignalAsset : string
+    + {static} <<readonly>> UndoDuplicateRow : string
+    + {static} <<readonly>> UndoDeleteRow : string
+    + {static} <<readonly>> UndoAddReaction : string
+    + {static} <<readonly>> NoReaction : string
+    + {static} <<readonly>> NoSignalReceiverComponent : string
+    + {static} <<readonly>> ProjectHasNoSignalAsset : string
+}
+Styles o-> "RetroactiveLabel" GUIContent
+Styles o-> "EmitOnceLabel" GUIContent
+Styles o-> "EmitSignalLabel" GUIContent
+Styles o-> "ObjectLabel" GUIContent
+Styles o-> "CreateNewSignal" GUIContent
+Styles o-> "AddSignalReceiverComponent" GUIContent
+Styles o-> "EmptySignalList" GUIContent
+Styles o-> "AddReactionButton" GUIContent
+Styles o-> "NewSignalWindowTitle" GUIContent
+Styles o-> "NewSignalDefaultName" GUIContent
+Styles o-> "NewSignalWindowMessage" GUIContent
+Styles o-> "OptionsStyle" GUIStyle
+Styles o-> "SignalEmitterIcon" GUIContent
+@enduml

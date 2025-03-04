@@ -1,0 +1,12 @@
+@startuml
+class TypeOptionsSettings {
+    + TypeOptionsSettings(coreConfig:BoltCoreConfiguration)
+    + OnGUI() : void
+}
+class Styles <<static>> {
+    + <<const>> OptionsWidth : float = 250
+}
+TypeOptionsSettings +-- Styles
+Styles --> "background" GUIStyle
+Styles --> "defaultsButton" GUIStyle
+@enduml

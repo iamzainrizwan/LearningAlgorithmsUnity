@@ -1,0 +1,14 @@
+@startuml
+class CapturePass {
+    + CapturePass(evt:RenderPassEvent)
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+class UnsafePassData {
+}
+class "IEnumerator`1"<T> {
+}
+ScriptableRenderPass <|-- CapturePass
+CapturePass +-- UnsafePassData
+UnsafePassData --> "captureActions<Action<RenderTargetIdentifier, CommandBuffer>>" "IEnumerator`1"
+@enduml

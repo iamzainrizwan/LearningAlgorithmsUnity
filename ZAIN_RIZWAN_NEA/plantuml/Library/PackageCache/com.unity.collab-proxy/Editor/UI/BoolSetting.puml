@@ -1,0 +1,4 @@
+@startuml
+class BoolSetting <<static>> {
+}
+@enduml

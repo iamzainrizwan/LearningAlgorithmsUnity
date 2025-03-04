@@ -1,0 +1,30 @@
+@startuml
+struct CoordinateSpaceConversion {
+    + CoordinateSpaceConversion(from:CoordinateSpace, to:CoordinateSpace)
+}
+class TransformNode {
+    + <<override>> latestVersion : int <<get>>
+    + TransformNode()
+    + normalize : bool <<get>> <<set>>
+    + <<override>> hasPreview : bool <<get>>
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + RequiresTangent(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresBitangent(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresNormal(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresTransform(stageCapability:ShaderStageCapability) : NeededTransform[]
+}
+IEnumConversion <|-- CoordinateSpaceConversion
+CoordinateSpaceConversion --> "from" CoordinateSpace
+CoordinateSpaceConversion --> "to" CoordinateSpace
+AbstractMaterialNode <|-- TransformNode
+IGeneratesBodyCode <|-- TransformNode
+IMayRequireTangent <|-- TransformNode
+IMayRequireBitangent <|-- TransformNode
+IMayRequireNormal <|-- TransformNode
+IMayRequireTransform <|-- TransformNode
+IMayRequirePosition <|-- TransformNode
+TransformNode --> "conversion" CoordinateSpaceConversion
+TransformNode o-> "m_ConversionType" ConversionType
+TransformNode --> "conversionType" ConversionType
+@enduml

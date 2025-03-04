@@ -1,0 +1,7 @@
+@startuml
+interface IAssetStatusCache {
+}
+class AssetStatusCache {
+}
+IAssetStatusCache <|-- AssetStatusCache
+@enduml

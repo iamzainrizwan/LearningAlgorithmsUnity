@@ -1,0 +1,9 @@
+@startuml
+struct RequestResetCommand {
+    + {static} Create() : RequestResetCommand
+}
+IInputDeviceCommandInfo <|-- RequestResetCommand
+RequestResetCommand --> "Type" FourCC
+RequestResetCommand --> "baseCommand" InputDeviceCommand
+RequestResetCommand --> "typeStatic" FourCC
+@enduml

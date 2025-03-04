@@ -1,0 +1,10 @@
+@startuml
+enum SemanticLabel {
+    Unspecified,
+    Alpha,
+    Beta,
+    ReleaseCandidate,
+    Final,
+    Pre,
+}
+@enduml

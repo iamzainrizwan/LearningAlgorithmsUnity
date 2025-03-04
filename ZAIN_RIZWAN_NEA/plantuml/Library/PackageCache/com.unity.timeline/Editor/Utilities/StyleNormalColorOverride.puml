@@ -1,0 +1,7 @@
+@startuml
+struct StyleNormalColorOverride {
+    + StyleNormalColorOverride(style:GUIStyle, newColor:Color)
+    + Dispose() : void
+}
+IDisposable <|-- StyleNormalColorOverride
+@enduml

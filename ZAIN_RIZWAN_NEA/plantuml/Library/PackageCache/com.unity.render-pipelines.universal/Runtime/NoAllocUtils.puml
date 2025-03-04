@@ -1,0 +1,10 @@
+@startuml
+struct Sorting {
+    + {static} QuickSort(data:T[], compare:Func<T, T, int>) : void
+    + {static} QuickSort(data:T[], start:int, end:int, compare:Func<T, T, int>) : void
+    {static} + InsertionSort(data:T[], compare:Func<T, T, int>) : void
+    {static} + InsertionSort(data:T[], start:int, end:int, compare:Func<T, T, int>) : void
+}
+Sorting o-> "s_QuickSortSampler" ProfilingSampler
+Sorting o-> "s_InsertionSortSampler" ProfilingSampler
+@enduml

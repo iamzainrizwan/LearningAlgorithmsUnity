@@ -1,0 +1,11 @@
+@startuml
+class EditorVariablesUtility <<static>> {
+    + {static} isDraggingVariable : bool <<get>>
+    + {static} GetDynamicVariableNames(kind:VariableKind, reference:GraphReference) : IEnumerable<string>
+    + {static} GetPredefinedVariableNames(kind:VariableKind, reference:GraphReference) : IEnumerable<string>
+    + {static} GetVariableNameSuggestions(kind:VariableKind, reference:GraphReference) : IEnumerable<string>
+    + {static} SaveVariableAsset(asset:VariablesAsset, fileName:string) : void
+}
+EditorVariablesUtility --> "kind" VariableKind
+EditorVariablesUtility --> "declaration" VariableDeclaration
+@enduml

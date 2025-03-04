@@ -1,0 +1,12 @@
+@startuml
+abstract class DomainReloadTestBase {
+    + TearDown() : IEnumerator
+    + OneTimeSetUp() : void
+    + OneTimeTearDown() : void
+}
+struct OptionSet {
+    + enterPlayModeOptionsEnabled : bool
+}
+DomainReloadTestBase +-- OptionSet
+OptionSet --> "enterPlayModeOptions" EnterPlayModeOptions
+@enduml

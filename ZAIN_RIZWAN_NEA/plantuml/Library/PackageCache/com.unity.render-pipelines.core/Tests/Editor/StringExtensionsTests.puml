@@ -1,0 +1,6 @@
+@startuml
+class StringExtensionsTests {
+    + ReplaceInvalidFileNameCharacters(input:string) : string
+    + CheckExtensionTests(input:string, extension:string) : void
+}
+@enduml

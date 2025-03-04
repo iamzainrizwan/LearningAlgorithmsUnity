@@ -1,0 +1,71 @@
+@startuml
+class X86 <<unsafe>> <<static>> <<partial>> {
+}
+class Sse4_1 <<static>> {
+    + {static} IsSse41Supported : bool <<get>>
+    + {static} stream_load_si128(mem_addr:void*) : v128
+    + {static} blend_pd(a:v128, b:v128, imm8:int) : v128
+    + {static} blend_ps(a:v128, b:v128, imm8:int) : v128
+    + {static} blendv_pd(a:v128, b:v128, mask:v128) : v128
+    + {static} blendv_ps(a:v128, b:v128, mask:v128) : v128
+    + {static} blendv_epi8(a:v128, b:v128, mask:v128) : v128
+    + {static} blend_epi16(a:v128, b:v128, imm8:int) : v128
+    + {static} dp_pd(a:v128, b:v128, imm8:int) : v128
+    + {static} dp_ps(a:v128, b:v128, imm8:int) : v128
+    + {static} extract_ps(a:v128, imm8:int) : int
+    + {static} extractf_ps(a:v128, imm8:int) : float
+    + {static} extract_epi8(a:v128, imm8:int) : byte
+    + {static} extract_epi32(a:v128, imm8:int) : int
+    + {static} extract_epi64(a:v128, imm8:int) : long
+    + {static} insert_ps(a:v128, b:v128, imm8:int) : v128
+    + {static} insert_epi8(a:v128, i:byte, imm8:int) : v128
+    + {static} insert_epi32(a:v128, i:int, imm8:int) : v128
+    + {static} insert_epi64(a:v128, i:long, imm8:int) : v128
+    + {static} max_epi8(a:v128, b:v128) : v128
+    + {static} max_epi32(a:v128, b:v128) : v128
+    + {static} max_epu32(a:v128, b:v128) : v128
+    + {static} max_epu16(a:v128, b:v128) : v128
+    + {static} min_epi8(a:v128, b:v128) : v128
+    + {static} min_epi32(a:v128, b:v128) : v128
+    + {static} min_epu32(a:v128, b:v128) : v128
+    + {static} min_epu16(a:v128, b:v128) : v128
+    + {static} packus_epi32(a:v128, b:v128) : v128
+    + {static} cmpeq_epi64(a:v128, b:v128) : v128
+    + {static} cvtepi8_epi16(a:v128) : v128
+    + {static} cvtepi8_epi32(a:v128) : v128
+    + {static} cvtepi8_epi64(a:v128) : v128
+    + {static} cvtepi16_epi32(a:v128) : v128
+    + {static} cvtepi16_epi64(a:v128) : v128
+    + {static} cvtepi32_epi64(a:v128) : v128
+    + {static} cvtepu8_epi16(a:v128) : v128
+    + {static} cvtepu8_epi32(a:v128) : v128
+    + {static} cvtepu8_epi64(a:v128) : v128
+    + {static} cvtepu16_epi32(a:v128) : v128
+    + {static} cvtepu16_epi64(a:v128) : v128
+    + {static} cvtepu32_epi64(a:v128) : v128
+    + {static} mul_epi32(a:v128, b:v128) : v128
+    + {static} mullo_epi32(a:v128, b:v128) : v128
+    + {static} testz_si128(a:v128, b:v128) : int
+    + {static} testc_si128(a:v128, b:v128) : int
+    + {static} testnzc_si128(a:v128, b:v128) : int
+    + {static} test_all_zeros(a:v128, mask:v128) : int
+    + {static} test_mix_ones_zeroes(a:v128, mask:v128) : int
+    + {static} test_all_ones(a:v128) : int
+    + {static} round_pd(a:v128, rounding:int) : v128
+    + {static} floor_pd(a:v128) : v128
+    + {static} ceil_pd(a:v128) : v128
+    + {static} round_ps(a:v128, rounding:int) : v128
+    + {static} floor_ps(a:v128) : v128
+    + {static} ceil_ps(a:v128) : v128
+    + {static} round_sd(a:v128, b:v128, rounding:int) : v128
+    + {static} floor_sd(a:v128, b:v128) : v128
+    + {static} ceil_sd(a:v128, b:v128) : v128
+    + {static} round_ss(a:v128, b:v128, rounding:int) : v128
+    + {static} floor_ss(a:v128, b:v128) : v128
+    + {static} ceil_ss(a:v128, b:v128) : v128
+    + {static} minpos_epu16(a:v128) : v128
+    + {static} mpsadbw_epu8(a:v128, b:v128, imm8:int) : v128
+    + {static} MK_INSERTPS_NDX(srcField:int, dstField:int, zeroMask:int) : int
+}
+X86 +-- Sse4_1
+@enduml

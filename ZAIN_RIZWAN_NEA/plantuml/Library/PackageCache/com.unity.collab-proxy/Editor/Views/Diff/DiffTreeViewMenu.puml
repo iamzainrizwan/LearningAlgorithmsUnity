@@ -1,0 +1,7 @@
+@startuml
+class DiffTreeViewMenu {
+}
+interface IMetaMenuOperations {
+}
+DiffTreeViewMenu +-- IMetaMenuOperations
+@enduml

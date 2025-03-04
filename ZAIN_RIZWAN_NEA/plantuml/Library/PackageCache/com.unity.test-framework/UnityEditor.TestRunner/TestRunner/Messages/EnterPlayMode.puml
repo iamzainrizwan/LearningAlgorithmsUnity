@@ -1,0 +1,9 @@
+@startuml
+class EnterPlayMode {
+    + ExpectDomainReload : bool <<get>>
+    + ExpectedPlaymodeState : bool <<get>>
+    + EnterPlayMode(expectDomainReload:bool)
+    + Perform() : IEnumerator
+}
+IEditModeTestYieldInstruction <|-- EnterPlayMode
+@enduml

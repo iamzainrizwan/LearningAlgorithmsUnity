@@ -1,0 +1,8 @@
+@startuml
+class Extensions <<static>> {
+    + {static} ToArray(set:NativeHashSet<T>) : T[]
+    + {static} ToArray(set:NativeParallelHashSet<T>) : T[]
+    + {static} ToArrayNBC(list:NativeList<T>) : T[]
+    + {static} CopyFromNBC(list:NativeList<T>, array:T[]) : void
+}
+@enduml

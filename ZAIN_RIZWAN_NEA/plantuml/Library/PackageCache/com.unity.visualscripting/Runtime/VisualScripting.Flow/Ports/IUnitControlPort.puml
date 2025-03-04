@@ -1,0 +1,5 @@
+@startuml
+interface IUnitControlPort {
+}
+IUnitPort <|-- IUnitControlPort
+@enduml

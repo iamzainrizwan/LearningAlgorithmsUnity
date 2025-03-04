@@ -1,0 +1,6 @@
+@startuml
+class ElementAdderMenuBuilder <<static>> {
+    + {static} For() : IElementAdderMenuBuilder<TContext>
+    + {static} For(contractType:Type) : IElementAdderMenuBuilder<TContext>
+}
+@enduml

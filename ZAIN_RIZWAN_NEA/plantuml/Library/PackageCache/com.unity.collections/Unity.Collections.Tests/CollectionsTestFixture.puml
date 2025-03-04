@@ -1,0 +1,21 @@
+@startuml
+class TestRequiresCollectionChecks {
+    + TestRequiresCollectionChecks(msg:string)
+}
+class TestRequiresDotsDebugOrCollectionChecks {
+    + TestRequiresDotsDebugOrCollectionChecks(msg:string)
+}
+class CollectionsTestCommonBase {
+    + <<virtual>> Setup() : void
+    + OneTimeSetup() : void
+    + OneTimeTearDown() : void
+    + <<virtual>> TearDown() : void
+}
+abstract class CollectionsTestFixture {
+    + <<override>> Setup() : void
+    + <<override>> TearDown() : void
+}
+IgnoreAttribute <|-- TestRequiresCollectionChecks
+IgnoreAttribute <|-- TestRequiresDotsDebugOrCollectionChecks
+CollectionsTestCommonBase <|-- CollectionsTestFixture
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class Metadata <<static>> {
+    + {static} GetHardware() : Hardware
+    + {static} SetPlayerSettings(run:Run) : void
+    + {static} GetFromResources() : Run
+    + {static} SetRuntimeSettings(run:Run) : void
+}
+@enduml

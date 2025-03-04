@@ -1,0 +1,11 @@
+@startuml
+class SplitToning <<sealed>> {
+    + IsActive() : bool
+    + IsTileCompatible() : bool
+}
+VolumeComponent <|-- SplitToning
+IPostProcessComponent <|-- SplitToning
+SplitToning o-> "shadows" ColorParameter
+SplitToning o-> "highlights" ColorParameter
+SplitToning o-> "balance" ClampedFloatParameter
+@enduml

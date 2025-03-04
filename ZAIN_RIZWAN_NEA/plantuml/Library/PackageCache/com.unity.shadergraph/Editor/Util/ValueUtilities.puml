@@ -1,0 +1,6 @@
+@startuml
+class ValueUtilities <<static>> {
+    + {static} ToShaderString(type:ShaderValueType, precisionToken:string) : string
+    + {static} GetVectorCount(type:ShaderValueType) : int
+}
+@enduml

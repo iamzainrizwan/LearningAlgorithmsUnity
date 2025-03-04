@@ -1,0 +1,11 @@
+@startuml
+class SetDictionaryItem <<sealed>> {
+    + Set(flow:Flow) : ControlOutput
+}
+Unit <|-- SetDictionaryItem
+SetDictionaryItem --> "enter" ControlInput
+SetDictionaryItem --> "dictionary" ValueInput
+SetDictionaryItem --> "key" ValueInput
+SetDictionaryItem --> "value" ValueInput
+SetDictionaryItem --> "exit" ControlOutput
+@enduml

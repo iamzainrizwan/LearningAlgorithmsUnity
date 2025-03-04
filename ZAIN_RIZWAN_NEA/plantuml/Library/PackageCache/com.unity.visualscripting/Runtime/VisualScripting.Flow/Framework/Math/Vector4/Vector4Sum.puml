@@ -1,0 +1,13 @@
+@startuml
+class Vector4Sum <<sealed>> {
+    + <<override>> Operation(a:Vector4, b:Vector4) : Vector4
+    + <<override>> Operation(values:IEnumerable<Vector4>) : Vector4
+}
+class "Sum`1"<T> {
+}
+class "IDefaultValue`1"<T> {
+}
+"Sum`1" "<Vector4>" <|-- Vector4Sum
+"IDefaultValue`1" "<Vector4>" <|-- Vector4Sum
+Vector4Sum --> "defaultValue" Vector4
+@enduml

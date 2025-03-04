@@ -1,0 +1,11 @@
+@startuml
+class RemotePlayerLogController {
+    + SetBuildTarget(buildTarget:BuildTarget) : void
+    + SetLogsDirectory(dir:string) : void
+    + StartLogWriters() : void
+    + StopLogWriters() : void
+}
+class "ScriptableSingleton`1"<T> {
+}
+"ScriptableSingleton`1" "<RemotePlayerLogController>" <|-- RemotePlayerLogController
+@enduml

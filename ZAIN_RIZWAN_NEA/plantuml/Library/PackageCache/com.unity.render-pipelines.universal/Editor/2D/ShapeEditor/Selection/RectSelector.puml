@@ -1,0 +1,18 @@
+@startuml
+abstract class "RectSelector`1"<T> {
+    + RectSelector()
+    + RectSelector(guiSystem:GUISystem)
+    + OnGUI() : void
+}
+class "ISelector`1"<T> {
+}
+class "Action`2"<T1,T2> {
+}
+class "Action`1"<T> {
+}
+"ISelector`1" "<T>" <|-- "RectSelector`1"
+"RectSelector`1" --> "onSelectionBegin<ISelector<T>,bool>" "Action`2"
+"RectSelector`1" --> "onSelectionChanged<ISelector<T>>" "Action`1"
+"RectSelector`1" o-> "onSelectionEnd<ISelector<T>>" "Action`1"
+"RectSelector`1" --> "guiRect" Rect
+@enduml

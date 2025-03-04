@@ -1,0 +1,10 @@
+@startuml
+class FileIOProvider {
+    + Exists(path:string) : bool
+    + GetReader(path:string) : TextReader
+    + ReadAllText(path:string) : string
+    + WriteAllText(path:string, content:string) : void
+    + EscapedRelativePathFor(file:string, rootDirectoryFullPath:string) : string
+}
+IFileIO <|-- FileIOProvider
+@enduml

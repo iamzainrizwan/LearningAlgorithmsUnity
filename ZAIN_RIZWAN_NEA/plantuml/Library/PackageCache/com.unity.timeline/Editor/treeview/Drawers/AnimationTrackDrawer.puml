@@ -1,0 +1,13 @@
+@startuml
+class AnimationTrackDrawer {
+    + <<override>> DrawTrackHeaderButton(rect:Rect, state:WindowState) : void
+    + <<override>> DrawRecordingBackground(trackRect:Rect, trackAsset:TrackAsset, visibleTime:Vector2, state:WindowState) : void
+    + <<override>> HasCustomTrackHeaderButton() : bool
+}
+class Styles <<static>> {
+}
+TrackDrawer <|-- AnimationTrackDrawer
+AnimationTrackDrawer +-- Styles
+Styles o-> "AvatarMaskActiveTooltip" GUIContent
+Styles o-> "AvatarMaskInactiveTooltip" GUIContent
+@enduml

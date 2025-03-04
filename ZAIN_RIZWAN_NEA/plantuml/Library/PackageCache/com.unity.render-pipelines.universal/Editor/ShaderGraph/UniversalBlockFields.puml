@@ -1,0 +1,16 @@
+@startuml
+class UniversalBlockFields <<static>> {
+}
+struct VertexDescription {
+    + {static} name : string = "VertexDescription"
+}
+struct SurfaceDescription {
+    + {static} name : string = "SurfaceDescription"
+}
+UniversalBlockFields +-- VertexDescription
+VertexDescription o-> "MotionVector" BlockFieldDescriptor
+UniversalBlockFields +-- SurfaceDescription
+SurfaceDescription o-> "SpriteMask" BlockFieldDescriptor
+SurfaceDescription o-> "NormalAlpha" BlockFieldDescriptor
+SurfaceDescription o-> "MAOSAlpha" BlockFieldDescriptor
+@enduml

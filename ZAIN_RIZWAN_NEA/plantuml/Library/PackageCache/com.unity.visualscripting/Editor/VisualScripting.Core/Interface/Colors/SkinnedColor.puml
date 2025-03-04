@@ -1,0 +1,7 @@
+@startuml
+struct SkinnedColor {
+    + SkinnedColor(personalColor:Color, proColor:Color)
+    + SkinnedColor(personalAndProColor:Color)
+}
+SkinnedColor --> "color" Color
+@enduml

@@ -1,0 +1,46 @@
+@startuml
+class Changelog_1_4_0 {
+    + Changelog_1_4_0(plugin:Plugin)
+}
+class Changelog_1_4_0f4 {
+    + Changelog_1_4_0f4(plugin:Plugin)
+}
+class Changelog_1_4_0f5 {
+    + Changelog_1_4_0f5(plugin:Plugin)
+}
+class Changelog_1_4_0f6 {
+    + Changelog_1_4_0f6(plugin:Plugin)
+}
+class Changelog_1_4_0f10 {
+    + Changelog_1_4_0f10(plugin:Plugin)
+}
+class Changelog_1_4_0f11 {
+    + Changelog_1_4_0f11(plugin:Plugin)
+}
+class "IEnumerable`1"<T> {
+}
+PluginChangelog <|-- Changelog_1_4_0
+Changelog_1_4_0 --> "version" SemanticVersion
+Changelog_1_4_0 --> "date" DateTime
+Changelog_1_4_0 --> "changes<string>" "IEnumerable`1"
+PluginChangelog <|-- Changelog_1_4_0f4
+Changelog_1_4_0f4 --> "version" SemanticVersion
+Changelog_1_4_0f4 --> "date" DateTime
+Changelog_1_4_0f4 --> "changes<string>" "IEnumerable`1"
+PluginChangelog <|-- Changelog_1_4_0f5
+Changelog_1_4_0f5 --> "version" SemanticVersion
+Changelog_1_4_0f5 --> "date" DateTime
+Changelog_1_4_0f5 --> "changes<string>" "IEnumerable`1"
+PluginChangelog <|-- Changelog_1_4_0f6
+Changelog_1_4_0f6 --> "version" SemanticVersion
+Changelog_1_4_0f6 --> "date" DateTime
+Changelog_1_4_0f6 --> "changes<string>" "IEnumerable`1"
+PluginChangelog <|-- Changelog_1_4_0f10
+Changelog_1_4_0f10 --> "version" SemanticVersion
+Changelog_1_4_0f10 --> "date" DateTime
+Changelog_1_4_0f10 --> "changes<string>" "IEnumerable`1"
+PluginChangelog <|-- Changelog_1_4_0f11
+Changelog_1_4_0f11 --> "version" SemanticVersion
+Changelog_1_4_0f11 --> "date" DateTime
+Changelog_1_4_0f11 --> "changes<string>" "IEnumerable`1"
+@enduml

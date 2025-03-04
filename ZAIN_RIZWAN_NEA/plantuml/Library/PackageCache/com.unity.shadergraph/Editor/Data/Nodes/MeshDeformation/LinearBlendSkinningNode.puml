@@ -1,0 +1,32 @@
+@startuml
+class LinearBlendSkinningNode {
+    + <<const>> kPositionSlotId : int = 0
+    + <<const>> kNormalSlotId : int = 1
+    + <<const>> kTangentSlotId : int = 2
+    + <<const>> kPositionOutputSlotId : int = 3
+    + <<const>> kNormalOutputSlotId : int = 4
+    + <<const>> kTangentOutputSlotId : int = 5
+    + <<const>> kSlotPositionName : string = "Vertex Position"
+    + <<const>> kSlotNormalName : string = "Vertex Normal"
+    + <<const>> kSlotTangentName : string = "Vertex Tangent"
+    + <<const>> kOutputSlotPositionName : string = "Skinned Position"
+    + <<const>> kOutputSlotNormalName : string = "Skinned Normal"
+    + <<const>> kOutputSlotTangentName : string = "Skinned Tangent"
+    + LinearBlendSkinningNode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + RequiresVertexSkinning(stageCapability:ShaderStageCapability) : bool
+    + RequiresPosition(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresNormal(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresTangent(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + <<override>> CollectShaderProperties(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + GenerateNodeFunction(registry:FunctionRegistry, generationMode:GenerationMode) : void
+}
+AbstractMaterialNode <|-- LinearBlendSkinningNode
+IGeneratesBodyCode <|-- LinearBlendSkinningNode
+IGeneratesFunction <|-- LinearBlendSkinningNode
+IMayRequireVertexSkinning <|-- LinearBlendSkinningNode
+IMayRequirePosition <|-- LinearBlendSkinningNode
+IMayRequireNormal <|-- LinearBlendSkinningNode
+IMayRequireTangent <|-- LinearBlendSkinningNode
+@enduml

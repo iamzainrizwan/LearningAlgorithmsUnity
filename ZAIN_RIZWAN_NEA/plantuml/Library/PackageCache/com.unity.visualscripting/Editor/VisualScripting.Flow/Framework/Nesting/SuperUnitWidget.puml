@@ -1,0 +1,15 @@
+@startuml
+class SuperUnitWidget {
+    + SuperUnitWidget(canvas:FlowCanvas, unit:SubgraphUnit)
+    + AcceptsDragAndDrop() : bool
+    + PerformDragAndDrop() : void
+    + UpdateDragAndDrop() : void
+    + DrawDragAndDropPreview() : void
+    + ExitDragAndDrop() : void
+}
+class "NestrerUnitWidget`1"<T> {
+}
+"NestrerUnitWidget`1" "<SubgraphUnit>" <|-- SuperUnitWidget
+IDragAndDropHandler <|-- SuperUnitWidget
+SuperUnitWidget --> "dragAndDropVisualMode" DragAndDropVisualMode
+@enduml

@@ -1,0 +1,135 @@
+@startuml
+class ParallelHashMapUtil <<static>> {
+    {static} + AllocInt(container:NativeParallelHashMap<int, int>, capacity:int, addValues:bool) : void
+    {static} + AllocInt(container:UnsafeParallelHashMap<int, int>, capacity:int, addValues:bool) : void
+    {static} + AllocBclContainer(capacity:int, addValues:bool) : object
+    {static} + CreateRandomKeys(capacity:int, keys:UnsafeList<int>) : void
+    {static} + CreateRandomKeys(capacity:int, keys:UnsafeList<int>, hashMap:UnsafeParallelHashMap<int, int>) : void
+    {static} + CreateRandomKeys(capacity:int, keys:UnsafeList<int>, hashMap:System.Collections.Concurrent.ConcurrentDictionary<int, int>) : void
+    {static} + CreateRandomKeys(capacity:int, keys:UnsafeList<int>, hashMap:NativeParallelHashMap<int, int>) : void
+    {static} + RandomlyShuffleKeys(capacity:int, keys:UnsafeList<int>) : void
+    {static} + SplitForWorkers(count:int, worker:int, workers:int, startInclusive:int, endExclusive:int) : void
+}
+struct ParallelHashMapIsEmpty100k {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(worker:int, threadIndex:int) : void
+    + MeasureUnsafeContainer(worker:int, threadIndex:int) : void
+    + MeasureBclContainer(container:object, worker:int) : void
+}
+struct ParallelHashMapCount100k {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(worker:int, threadIndex:int) : void
+    + MeasureUnsafeContainer(worker:int, threadIndex:int) : void
+    + MeasureBclContainer(container:object, worker:int) : void
+}
+struct ParallelHashMapToNativeArrayKeys {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(worker:int, threadIndex:int) : void
+    + MeasureUnsafeContainer(worker:int, threadIndex:int) : void
+    + MeasureBclContainer(container:object, worker:int) : void
+}
+struct ParallelHashMapToNativeArrayValues {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(worker:int, threadIndex:int) : void
+    + MeasureUnsafeContainer(worker:int, threadIndex:int) : void
+    + MeasureBclContainer(container:object, worker:int) : void
+}
+struct ParallelHashMapInsert {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(worker:int, threadIndex:int) : void
+    + MeasureUnsafeContainer(worker:int, threadIndex:int) : void
+    + MeasureBclContainer(container:object, worker:int) : void
+}
+struct ParallelHashMapAddGrow {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(_:int, __:int) : void
+    + MeasureUnsafeContainer(_:int, __:int) : void
+    + MeasureBclContainer(container:object, _:int) : void
+}
+struct ParallelHashMapContains {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(worker:int, threadIndex:int) : void
+    + MeasureUnsafeContainer(worker:int, threadIndex:int) : void
+    + MeasureBclContainer(container:object, worker:int) : void
+}
+struct ParallelHashMapIndexedRead {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(worker:int, threadIndex:int) : void
+    + MeasureUnsafeContainer(worker:int, threadIndex:int) : void
+    + MeasureBclContainer(container:object, worker:int) : void
+}
+struct ParallelHashMapIndexedWrite {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(worker:int, threadIndex:int) : void
+    + MeasureUnsafeContainer(worker:int, threadIndex:int) : void
+    + MeasureBclContainer(container:object, worker:int) : void
+}
+struct ParallelHashMapTryGetValue {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(worker:int, threadIndex:int) : void
+    + MeasureUnsafeContainer(worker:int, threadIndex:int) : void
+    + MeasureBclContainer(container:object, worker:int) : void
+}
+struct ParallelHashMapRemove {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(worker:int, threadIndex:int) : void
+    + MeasureUnsafeContainer(worker:int, threadIndex:int) : void
+    + MeasureBclContainer(container:object, worker:int) : void
+}
+struct ParallelHashMapForEach {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer(_:int, __:int) : void
+    + MeasureUnsafeContainer(_:int, __:int) : void
+    + MeasureBclContainer(container:object, _:int) : void
+}
+class ParallelHashMap {
+    + <<unsafe>> IsEmpty_x_100k(workers:int, capacity:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Count_x_100k(workers:int, capacity:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> ToNativeArrayKeys(workers:int, capacity:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> ToNativeArrayValues(workers:int, capacity:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Insert(workers:int, insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> AddGrow(workers:int, capacity:int, growTo:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Contains(workers:int, insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> IndexedRead(workers:int, insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> IndexedWrite(workers:int, insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> TryGetValue(workers:int, insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Remove(workers:int, insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Foreach(workers:int, insertions:int, type:BenchmarkContainerType) : void
+}
+IBenchmarkContainerParallel <|-- ParallelHashMapIsEmpty100k
+IBenchmarkContainerParallel <|-- ParallelHashMapCount100k
+IBenchmarkContainerParallel <|-- ParallelHashMapToNativeArrayKeys
+IBenchmarkContainerParallel <|-- ParallelHashMapToNativeArrayValues
+IBenchmarkContainerParallel <|-- ParallelHashMapInsert
+IBenchmarkContainerParallel <|-- ParallelHashMapAddGrow
+IBenchmarkContainerParallel <|-- ParallelHashMapContains
+IBenchmarkContainerParallel <|-- ParallelHashMapIndexedRead
+IBenchmarkContainerParallel <|-- ParallelHashMapIndexedWrite
+IBenchmarkContainerParallel <|-- ParallelHashMapTryGetValue
+IBenchmarkContainerParallel <|-- ParallelHashMapRemove
+IBenchmarkContainerParallel <|-- ParallelHashMapForEach
+@enduml

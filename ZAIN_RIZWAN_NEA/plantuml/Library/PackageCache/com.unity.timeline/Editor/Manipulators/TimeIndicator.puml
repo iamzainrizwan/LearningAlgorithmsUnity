@@ -1,0 +1,6 @@
+@startuml
+class TimeIndicator <<static>> {
+    + {static} Draw(state:WindowState, time:double) : void
+    + {static} Draw(state:WindowState, start:double, end:double) : void
+}
+@enduml

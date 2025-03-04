@@ -1,0 +1,7 @@
+@startuml
+class RemoteStatusCache {
+}
+class BuildStatusByPathCache <<static>> {
+}
+RemoteStatusCache +-- BuildStatusByPathCache
+@enduml

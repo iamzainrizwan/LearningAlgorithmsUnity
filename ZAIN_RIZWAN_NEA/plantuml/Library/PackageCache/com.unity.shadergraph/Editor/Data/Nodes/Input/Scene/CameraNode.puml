@@ -1,0 +1,18 @@
+@startuml
+class CameraNode {
+    + <<const>> OutputSlotId : int = 0
+    + <<const>> OutputSlot1Id : int = 1
+    + <<const>> OutputSlot2Id : int = 2
+    + <<const>> OutputSlot3Id : int = 3
+    + <<const>> OutputSlot4Id : int = 4
+    + <<const>> OutputSlot5Id : int = 5
+    + <<const>> OutputSlot6Id : int = 6
+    + <<const>> OutputSlot7Id : int = 7
+    + CameraNode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> GetVariableNameForSlot(slotId:int) : string
+    + RequiresTransform(stageCapability:ShaderStageCapability) : NeededTransform[]
+}
+AbstractMaterialNode <|-- CameraNode
+IMayRequireTransform <|-- CameraNode
+@enduml

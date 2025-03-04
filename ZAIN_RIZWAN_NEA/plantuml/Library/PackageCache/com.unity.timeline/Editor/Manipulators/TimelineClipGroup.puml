@@ -1,0 +1,7 @@
+@startuml
+class TimelineClipGroup {
+    + start : double <<get>> <<set>>
+    + end : double <<get>>
+    + TimelineClipGroup(clips:IEnumerable<TimelineClip>)
+}
+@enduml

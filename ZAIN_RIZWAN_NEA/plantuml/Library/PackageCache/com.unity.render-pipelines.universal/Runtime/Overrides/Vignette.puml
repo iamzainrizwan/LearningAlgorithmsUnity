@@ -1,0 +1,13 @@
+@startuml
+class Vignette <<sealed>> {
+    + IsActive() : bool
+    + IsTileCompatible() : bool
+}
+VolumeComponent <|-- Vignette
+IPostProcessComponent <|-- Vignette
+Vignette o-> "color" ColorParameter
+Vignette o-> "center" Vector2Parameter
+Vignette o-> "intensity" ClampedFloatParameter
+Vignette o-> "smoothness" ClampedFloatParameter
+Vignette o-> "rounded" BoolParameter
+@enduml

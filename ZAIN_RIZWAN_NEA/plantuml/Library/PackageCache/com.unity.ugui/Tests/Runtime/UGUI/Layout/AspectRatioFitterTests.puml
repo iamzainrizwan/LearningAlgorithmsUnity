@@ -1,0 +1,10 @@
+@startuml
+class AspectRatioFitterTests {
+    + Setup() : void
+    + TearDown() : void
+    + OneTimeTearDown() : void
+    + TestEnvelopParent() : void
+    + TestFitInParent() : void
+}
+IPrebuildSetup <|-- AspectRatioFitterTests
+@enduml

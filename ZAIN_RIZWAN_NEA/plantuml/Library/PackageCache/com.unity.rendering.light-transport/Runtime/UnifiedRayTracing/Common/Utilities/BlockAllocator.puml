@@ -1,0 +1,29 @@
+@startuml
+struct BlockAllocator {
+    + freeElementsCount : int <<get>>
+    + freeBlocks : int <<get>>
+    + capacity : int <<get>>
+    + Initialize(maxElementCounts:int) : void
+    + Grow(newDesiredCapacity:int, maxAllowedNewCapacity:int) : int
+    + GrowAndAllocate(elementCounts:int, oldCapacity:int, newCapacity:int) : Allocation
+    + GrowAndAllocate(elementCounts:int, maxAllowedNewCapacity:int, oldCapacity:int, newCapacity:int) : Allocation
+    + Dispose() : void
+    + Allocate(elementCounts:int) : Allocation
+    + FreeAllocation(allocation:Allocation) : void
+    + SplitAllocation(allocation:Allocation, count:int) : Allocation[]
+}
+struct Block {
+    + offset : int
+    + count : int
+}
+struct Allocation {
+    + handle : int
+    + <<readonly>> valid : bool <<get>>
+}
+IDisposable <|-- BlockAllocator
+BlockAllocator +-- Block
+Block o-> "Invalid" Block
+BlockAllocator +-- Allocation
+Allocation --> "block" Block
+Allocation o-> "Invalid" Allocation
+@enduml

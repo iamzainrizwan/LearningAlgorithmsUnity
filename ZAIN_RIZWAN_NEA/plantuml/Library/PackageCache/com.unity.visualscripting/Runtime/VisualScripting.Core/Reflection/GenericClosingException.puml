@@ -1,0 +1,7 @@
+@startuml
+class GenericClosingException <<sealed>> {
+    + GenericClosingException(message:string)
+    + GenericClosingException(open:Type, closed:Type)
+}
+Exception <|-- GenericClosingException
+@enduml

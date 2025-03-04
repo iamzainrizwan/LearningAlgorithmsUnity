@@ -1,0 +1,8 @@
+@startuml
+class SelectOnFlowDescriptor {
+    + SelectOnFlowDescriptor(unit:SelectOnFlow)
+}
+class "UnitDescriptor`1"<T> {
+}
+"UnitDescriptor`1" "<SelectOnFlow>" <|-- SelectOnFlowDescriptor
+@enduml

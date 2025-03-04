@@ -1,0 +1,37 @@
+@startuml
+class DisplayWindow <<partial>> {
+}
+class Style <<static>> <<partial>> {
+}
+class MultipleDifferentValue {
+    + <<new>> {static} <<readonly>> ussClassName : string = "unity-multipledifferentevalue"
+    + MultipleDifferentValue()
+}
+interface IMultipleSource {
+}
+class MultipleSourceToggle {
+    + inMultipleValueState : bool <<get>> <<set>>
+    + MultipleSourceToggle()
+    + MultipleSourceToggle(label:string)
+    + <<override>> SetValueWithoutNotify(newValue:bool) : void
+    + <<override>> value : bool <<get>> <<set>>
+}
+class MultipleSourcePopupField {
+    + inMultipleValueState : bool <<get>> <<set>>
+    + MultipleSourcePopupField(label:string, choices:List<string>, defaultIndex:int)
+    + <<override>> SetValueWithoutNotify(newValue:string) : void
+    + <<override>> value : string <<get>> <<set>>
+}
+class "PopupField`1"<T> {
+}
+DisplayWindow +-- Style
+DisplayWindow +-- MultipleDifferentValue
+TextElement <|-- MultipleDifferentValue
+DisplayWindow +-- IMultipleSource
+DisplayWindow +-- MultipleSourceToggle
+Toggle <|-- MultipleSourceToggle
+IMultipleSource <|-- MultipleSourceToggle
+DisplayWindow +-- MultipleSourcePopupField
+"PopupField`1" "<string>" <|-- MultipleSourcePopupField
+IMultipleSource <|-- MultipleSourcePopupField
+@enduml

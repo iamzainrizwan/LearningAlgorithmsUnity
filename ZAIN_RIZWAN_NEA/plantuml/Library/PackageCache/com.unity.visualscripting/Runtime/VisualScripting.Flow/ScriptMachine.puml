@@ -1,0 +1,8 @@
+@startuml
+class ScriptMachine <<sealed>> {
+    + <<override>> DefaultGraph() : FlowGraph
+}
+class "EventMachine`2"<T1,T2> {
+}
+"EventMachine`2" "<FlowGraph,ScriptGraphAsset>" <|-- ScriptMachine
+@enduml

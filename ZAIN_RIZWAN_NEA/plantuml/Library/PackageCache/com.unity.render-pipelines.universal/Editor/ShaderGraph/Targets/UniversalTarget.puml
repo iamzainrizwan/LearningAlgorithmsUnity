@@ -1,0 +1,244 @@
+@startuml
+enum MaterialType {
+    Lit,
+    Unlit,
+    SpriteLit,
+    SpriteUnlit,
+}
+enum WorkflowMode {
+    Specular,
+    Metallic,
+}
+enum SurfaceType {
+    Opaque,
+    Transparent,
+}
+enum ZWriteControl {
+    Auto= 0,
+    ForceEnabled= 1,
+    ForceDisabled= 2,
+}
+enum ZTestMode {
+    Disabled= 0,
+    Never= 1,
+    Less= 2,
+    Equal= 3,
+    LEqual= 4,
+    Greater= 5,
+    NotEqual= 6,
+    GEqual= 7,
+    Always= 8,
+}
+enum AlphaMode {
+    Alpha,
+    Premultiply,
+    Additive,
+    Multiply,
+}
+enum RenderFace {
+    Front= 2,
+    Back= 1,
+    Both= 0,
+}
+enum AdditionalMotionVectorMode {
+    None,
+    TimeBased,
+    Custom,
+}
+class UniversalTarget <<sealed>> {
+    + <<override>> latestVersion : int <<get>>
+    + <<const>> kPipelineTag : string = "UniversalPipeline"
+    + <<const>> kComplexLitMaterialTypeTag : string = "\"UniversalMaterialType\" = \"ComplexLit\""
+    + <<const>> kLitMaterialTypeTag : string = "\"UniversalMaterialType\" = \"Lit\""
+    + <<const>> kUnlitMaterialTypeTag : string = "\"UniversalMaterialType\" = \"Unlit\""
+    + <<const>> kAlwaysRenderMotionVectorsTag : string = "\"AlwaysRenderMotionVectors\" = \"true\""
+    + <<const>> kUberTemplatePath : string = "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Templates/ShaderPass.template"
+    + UniversalTarget()
+    + renderType : string <<get>>
+    + renderQueue : string <<get>>
+    + disableBatching : string <<get>>
+    + allowMaterialOverride : bool <<get>> <<set>>
+    + alphaClip : bool <<get>> <<set>>
+    + disableTint : bool <<get>> <<set>>
+    + castShadows : bool <<get>> <<set>>
+    + receiveShadows : bool <<get>> <<set>>
+    + alembicMotionVectors : bool <<get>> <<set>>
+    + alwaysRenderMotionVectors : bool <<get>>
+    + supportsLodCrossFade : bool <<get>> <<set>>
+    + customEditorGUI : string <<get>> <<set>>
+    + mayWriteDepth : bool <<get>>
+    + <<override>> IsActive() : bool
+    + <<override>> IsNodeAllowedByTarget(nodeType:Type) : bool
+    + <<override>> Setup(context:TargetSetupContext) : void
+    + <<override>> OnAfterMultiDeserialize(json:string) : void
+    + <<override>> GetFields(context:TargetFieldContext) : void
+    + <<override>> GetActiveBlocks(context:TargetActiveBlockContext) : void
+    + <<override>> ProcessPreviewMaterial(material:Material) : void
+    + <<override>> saveContext : object <<get>>
+    + <<override>> CollectShaderProperties(collector:PropertyCollector, generationMode:GenerationMode) : void
+    + <<override>> GetPropertiesGUI(context:TargetPropertyGUIContext, onChange:Action, registerUndo:Action<String>) : void
+    + AddDefaultMaterialOverrideGUI(context:TargetPropertyGUIContext, onChange:Action, registerUndo:Action<String>) : void
+    + AddDefaultSurfacePropertiesGUI(context:TargetPropertyGUIContext, onChange:Action, registerUndo:Action<String>, showReceiveShadows:bool) : void
+    + TrySetActiveSubTarget(subTargetType:Type) : bool
+    + SetDataOnSubTarget(subTarget:SubTarget) : void
+    + ValidateDataForSubTarget(subTarget:SubTarget, data:T) : void
+    + <<override>> OnBeforeSerialize() : void
+    + TryUpgradeFromMasterNode(masterNode:IMasterNode1, blockMap:Dictionary<BlockFieldDescriptor, int>) : bool
+    + <<override>> WorksWithSRP(scriptableRenderPipeline:RenderPipelineAsset) : bool
+    + CanSupportVFX() : bool
+    + SupportsVFX() : bool
+    + <<override>> OnAfterDeserialize(json:string) : void
+}
+class CorePasses <<static>> {
+    + {static} DepthOnly(target:UniversalTarget) : PassDescriptor
+    + {static} DepthNormal(target:UniversalTarget) : PassDescriptor
+    + {static} DepthNormalOnly(target:UniversalTarget) : PassDescriptor
+    + {static} ShadowCaster(target:UniversalTarget) : PassDescriptor
+    + {static} MotionVectors(target:UniversalTarget) : PassDescriptor
+    + {static} SceneSelection(target:UniversalTarget) : PassDescriptor
+    + {static} ScenePicking(target:UniversalTarget) : PassDescriptor
+    + {static} _2DSceneSelection(target:UniversalTarget) : PassDescriptor
+    + {static} _2DScenePicking(target:UniversalTarget) : PassDescriptor
+}
+class CoreBlockMasks {
+}
+class CoreStructCollections <<static>> {
+}
+class CoreRequiredFields <<static>> {
+}
+class CoreFieldDependencies <<static>> {
+}
+class CoreRenderStates <<static>> {
+    + {static} RenderFaceToCull(renderFace:RenderFace) : Cull
+    + {static} UberSwitchedRenderState(target:UniversalTarget, blendModePreserveSpecular:bool) : RenderStateCollection
+    + {static} UberSwitchedCullRenderState(target:UniversalTarget) : RenderStateDescriptor
+    + {static} MotionVector(target:UniversalTarget) : RenderStateCollection
+    + {static} ShadowCaster(target:UniversalTarget) : RenderStateCollection
+    + {static} DepthOnly(target:UniversalTarget) : RenderStateCollection
+    + {static} DepthNormalsOnly(target:UniversalTarget) : RenderStateCollection
+    + {static} SceneSelection(target:UniversalTarget) : RenderStateCollection
+    + {static} ScenePicking(target:UniversalTarget) : RenderStateCollection
+}
+class CorePragmas <<static>> {
+}
+class CoreIncludes <<static>> {
+}
+class CoreDefines <<static>> {
+}
+class CoreKeywordDescriptors <<static>> {
+}
+class CoreKeywords <<static>> {
+}
+class CoreFields <<static>> {
+}
+class CoreCustomInterpDescriptors <<static>> {
+}
+enum ZTestModeForUI {
+    Never= 1,
+    Less= 2,
+    Equal= 3,
+    LEqual= 4,
+    Greater= 5,
+    NotEqual= 6,
+    GEqual= 7,
+    Always= 8,
+}
+class UniversalTargetLegacySerialization {
+    + m_TwoSided : bool = false
+}
+class Uniforms <<static>> {
+    + {static} <<readonly>> srcBlend : string
+    + {static} <<readonly>> dstBlend : string
+    + {static} <<readonly>> cullMode : string
+    + {static} <<readonly>> zWrite : string
+    + {static} <<readonly>> zTest : string
+}
+Target <|-- UniversalTarget
+IHasMetadata <|-- UniversalTarget
+ILegacyTarget <|-- UniversalTarget
+IMaySupportVFX <|-- UniversalTarget
+UniversalTarget --> "activeSubTarget" SubTarget
+UniversalTarget --> "surfaceType" SurfaceType
+UniversalTarget --> "zWriteControl" ZWriteControl
+UniversalTarget --> "zTestMode" ZTestMode
+UniversalTarget --> "alphaMode" AlphaMode
+UniversalTarget --> "renderFace" RenderFace
+UniversalTarget --> "additionalMotionVectorMode" AdditionalMotionVectorMode
+CoreStructCollections o-> "Default" StructCollection
+CoreRequiredFields o-> "ShadowCaster" FieldCollection
+CoreRequiredFields o-> "DepthNormals" FieldCollection
+CoreFieldDependencies o-> "Default" DependencyCollection
+CoreRenderStates o-> "Default" RenderStateCollection
+CoreRenderStates o-> "Meta" RenderStateCollection
+CorePragmas o-> "Default" PragmaCollection
+CorePragmas o-> "Instanced" PragmaCollection
+CorePragmas o-> "MotionVectors" PragmaCollection
+CorePragmas o-> "Forward" PragmaCollection
+CorePragmas o-> "_2DDefault" PragmaCollection
+CorePragmas o-> "GBuffer" PragmaCollection
+CoreIncludes o-> "CorePregraph" IncludeCollection
+CoreIncludes o-> "DOTSPregraph" IncludeCollection
+CoreIncludes o-> "WriteRenderLayersPregraph" IncludeCollection
+CoreIncludes o-> "ProbeVolumePregraph" IncludeCollection
+CoreIncludes o-> "ShaderGraphPregraph" IncludeCollection
+CoreIncludes o-> "CorePostgraph" IncludeCollection
+CoreIncludes o-> "DepthOnly" IncludeCollection
+CoreIncludes o-> "DepthNormalsOnly" IncludeCollection
+CoreIncludes o-> "MotionVectors" IncludeCollection
+CoreIncludes o-> "ShadowCaster" IncludeCollection
+CoreIncludes o-> "DBufferPregraph" IncludeCollection
+CoreIncludes o-> "SceneSelection" IncludeCollection
+CoreIncludes o-> "ScenePicking" IncludeCollection
+CoreIncludes o-> "LODCrossFade" IncludeCollection
+CoreDefines o-> "UseLegacySpriteBlocks" DefineCollection
+CoreDefines o-> "UseFragmentFog" DefineCollection
+CoreDefines o-> "SceneSelection" DefineCollection
+CoreDefines o-> "ScenePicking" DefineCollection
+CoreKeywordDescriptors o-> "StaticLightmap" KeywordDescriptor
+CoreKeywordDescriptors o-> "DynamicLightmap" KeywordDescriptor
+CoreKeywordDescriptors o-> "DirectionalLightmapCombined" KeywordDescriptor
+CoreKeywordDescriptors o-> "SampleGI" KeywordDescriptor
+CoreKeywordDescriptors o-> "AlphaTestOn" KeywordDescriptor
+CoreKeywordDescriptors o-> "SurfaceTypeTransparent" KeywordDescriptor
+CoreKeywordDescriptors o-> "AlphaPremultiplyOn" KeywordDescriptor
+CoreKeywordDescriptors o-> "AlphaModulateOn" KeywordDescriptor
+CoreKeywordDescriptors o-> "EvaluateSh" KeywordDescriptor
+CoreKeywordDescriptors o-> "MainLightShadows" KeywordDescriptor
+CoreKeywordDescriptors o-> "CastingPunctualLightShadow" KeywordDescriptor
+CoreKeywordDescriptors o-> "AutomaticTimeBasedMotionVectors" KeywordDescriptor
+CoreKeywordDescriptors o-> "AddPrecomputedVelocity" KeywordDescriptor
+CoreKeywordDescriptors o-> "AdditionalLights" KeywordDescriptor
+CoreKeywordDescriptors o-> "AdditionalLightShadows" KeywordDescriptor
+CoreKeywordDescriptors o-> "ReflectionProbeBlending" KeywordDescriptor
+CoreKeywordDescriptors o-> "ReflectionProbeBoxProjection" KeywordDescriptor
+CoreKeywordDescriptors o-> "ShadowsSoft" KeywordDescriptor
+CoreKeywordDescriptors o-> "MixedLightingSubtractive" KeywordDescriptor
+CoreKeywordDescriptors o-> "LightmapShadowMixing" KeywordDescriptor
+CoreKeywordDescriptors o-> "ShadowsShadowmask" KeywordDescriptor
+CoreKeywordDescriptors o-> "LightLayers" KeywordDescriptor
+CoreKeywordDescriptors o-> "RenderPassEnabled" KeywordDescriptor
+CoreKeywordDescriptors o-> "ShapeLightType0" KeywordDescriptor
+CoreKeywordDescriptors o-> "ShapeLightType1" KeywordDescriptor
+CoreKeywordDescriptors o-> "ShapeLightType2" KeywordDescriptor
+CoreKeywordDescriptors o-> "ShapeLightType3" KeywordDescriptor
+CoreKeywordDescriptors o-> "UseLegacySpriteBlocks" KeywordDescriptor
+CoreKeywordDescriptors o-> "UseFragmentFog" KeywordDescriptor
+CoreKeywordDescriptors o-> "GBufferNormalsOct" KeywordDescriptor
+CoreKeywordDescriptors o-> "DBuffer" KeywordDescriptor
+CoreKeywordDescriptors o-> "DebugDisplay" KeywordDescriptor
+CoreKeywordDescriptors o-> "SceneSelectionPass" KeywordDescriptor
+CoreKeywordDescriptors o-> "ScenePickingPass" KeywordDescriptor
+CoreKeywordDescriptors o-> "AlphaClipThreshold" KeywordDescriptor
+CoreKeywordDescriptors o-> "LightCookies" KeywordDescriptor
+CoreKeywordDescriptors o-> "ForwardPlus" KeywordDescriptor
+CoreKeywordDescriptors o-> "EditorVisualization" KeywordDescriptor
+CoreKeywordDescriptors o-> "LODFadeCrossFade" KeywordDescriptor
+CoreKeywordDescriptors o-> "UseUnityCrossFade" KeywordDescriptor
+CoreKeywordDescriptors o-> "ScreenSpaceAmbientOcclusion" KeywordDescriptor
+CoreKeywordDescriptors o-> "UseLegacyLightmaps" KeywordDescriptor
+CoreKeywords o-> "ShadowCaster" KeywordCollection
+CoreFields o-> "UseLegacySpriteBlocks" FieldDescriptor
+UniversalTarget +-- ZTestModeForUI
+UniversalTarget +-- UniversalTargetLegacySerialization
+CoreRenderStates +-- Uniforms
+@enduml

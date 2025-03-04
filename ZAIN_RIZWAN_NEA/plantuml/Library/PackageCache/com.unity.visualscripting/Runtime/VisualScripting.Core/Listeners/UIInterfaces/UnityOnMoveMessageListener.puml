@@ -1,0 +1,7 @@
+@startuml
+class UnityOnMoveMessageListener <<sealed>> {
+    + OnMove(eventData:AxisEventData) : void
+}
+MessageListener <|-- UnityOnMoveMessageListener
+IMoveHandler <|-- UnityOnMoveMessageListener
+@enduml

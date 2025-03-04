@@ -1,0 +1,18 @@
+@startuml
+struct ColorBlock {
+    + colorMultiplier : float <<get>> <<set>>
+    + fadeDuration : float <<get>> <<set>>
+    + <<override>> Equals(obj:object) : bool
+    + Equals(other:ColorBlock) : bool
+    + <<override>> GetHashCode() : int
+}
+class "IEquatable`1"<T> {
+}
+"IEquatable`1" "<ColorBlock>" <|-- ColorBlock
+ColorBlock --> "normalColor" Color
+ColorBlock --> "highlightedColor" Color
+ColorBlock --> "pressedColor" Color
+ColorBlock --> "selectedColor" Color
+ColorBlock --> "disabledColor" Color
+ColorBlock --> "defaultColorBlock" ColorBlock
+@enduml

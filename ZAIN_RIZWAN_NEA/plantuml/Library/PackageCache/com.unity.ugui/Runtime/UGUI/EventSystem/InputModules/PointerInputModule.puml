@@ -1,0 +1,28 @@
+@startuml
+abstract class PointerInputModule {
+    + <<const>> kMouseLeftId : int
+    + <<const>> kMouseRightId : int
+    + <<const>> kMouseMiddleId : int
+    + <<const>> kFakeTouchesId : int
+    + <<override>> IsPointerOverGameObject(pointerId:int) : bool
+    + <<override>> ToString() : string
+}
+class ButtonState {
+}
+class MouseState {
+    + AnyPressesThisFrame() : bool
+    + AnyReleasesThisFrame() : bool
+    + GetButtonState(button:PointerEventData.InputButton) : ButtonState
+    + SetButtonState(button:PointerEventData.InputButton, stateForMouseButton:PointerEventData.FramePressState, data:PointerEventData) : void
+}
+class MouseButtonEventData {
+    + PressedThisFrame() : bool
+    + ReleasedThisFrame() : bool
+}
+BaseInputModule <|-- PointerInputModule
+PointerInputModule +-- ButtonState
+ButtonState --> "eventData" MouseButtonEventData
+PointerInputModule +-- MouseState
+PointerInputModule +-- MouseButtonEventData
+MouseButtonEventData --> "buttonData" PointerEventData
+@enduml

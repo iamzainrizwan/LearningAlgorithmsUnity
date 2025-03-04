@@ -1,0 +1,13 @@
+@startuml
+class CreateStructOption {
+    + CreateStructOption()
+    + CreateStructOption(unit:CreateStruct)
+    + <<override>> SearchResultLabel(query:string) : string
+    + <<override>> Deserialize(row:UnitOptionRow) : void
+    + <<override>> Serialize() : UnitOptionRow
+}
+class "UnitOption`1"<T> {
+}
+"UnitOption`1" "<CreateStruct>" <|-- CreateStructOption
+CreateStructOption --> "structType" Type
+@enduml

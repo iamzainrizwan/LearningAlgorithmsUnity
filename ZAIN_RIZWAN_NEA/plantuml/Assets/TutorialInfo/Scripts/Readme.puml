@@ -1,0 +1,15 @@
+@startuml
+class Readme {
+    + title : string
+    + loadedLayout : bool
+}
+class Section {
+    + heading : string
+    + text : string
+    + linkText : string
+    + url : string
+}
+ScriptableObject <|-- Readme
+Readme --> "icon" Texture2D
+Readme +-- Section
+@enduml

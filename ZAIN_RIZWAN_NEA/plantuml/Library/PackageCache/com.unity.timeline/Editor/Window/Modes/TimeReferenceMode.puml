@@ -1,0 +1,6 @@
+@startuml
+enum TimeReferenceMode {
+    Local= 0,
+    Global= 1,
+}
+@enduml

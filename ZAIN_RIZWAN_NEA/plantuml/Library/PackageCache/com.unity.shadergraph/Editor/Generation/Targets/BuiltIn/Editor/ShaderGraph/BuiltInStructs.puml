@@ -1,0 +1,5 @@
+@startuml
+class BuiltInStructs <<static>> {
+}
+BuiltInStructs o-> "Varyings" StructDescriptor
+@enduml

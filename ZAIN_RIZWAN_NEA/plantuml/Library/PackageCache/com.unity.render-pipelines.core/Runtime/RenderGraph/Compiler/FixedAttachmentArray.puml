@@ -1,0 +1,12 @@
+@startuml
+struct "FixedAttachmentArray`1"<DataType> {
+    + <<const>> MaxAttachments : int = 8
+    + FixedAttachmentArray(numAttachments:int)
+    + FixedAttachmentArray(attachments:DataType[])
+    + FixedAttachmentArray(attachments:NativeArray<DataType>)
+    + size : int <<get>>
+    + Clear() : void
+    + Add(data:DataType) : int
+}
+"FixedAttachmentArray`1" o-> "Empty<DataType>" "FixedAttachmentArray`1"
+@enduml

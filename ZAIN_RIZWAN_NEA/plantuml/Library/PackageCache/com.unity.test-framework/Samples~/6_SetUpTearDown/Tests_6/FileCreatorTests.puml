@@ -1,0 +1,5 @@
+@startuml
+class FileCreatorTests {
+    + YourTestGoesHere() : void
+}
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+class VirtualTextureShaderProperty {
+    + VirtualTextureShaderProperty()
+    + <<override>> OnAfterDeserialize(json:string) : void
+}
+class "AbstractShaderProperty`1"<T> {
+}
+"AbstractShaderProperty`1" "<SerializableVirtualTexture>" <|-- VirtualTextureShaderProperty
+VirtualTextureShaderProperty --> "propertyType" PropertyType
+@enduml

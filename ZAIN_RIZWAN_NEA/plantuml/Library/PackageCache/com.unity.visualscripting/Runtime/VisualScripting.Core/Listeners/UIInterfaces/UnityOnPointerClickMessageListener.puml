@@ -1,0 +1,7 @@
+@startuml
+class UnityOnPointerClickMessageListener <<sealed>> {
+    + OnPointerClick(eventData:PointerEventData) : void
+}
+MessageListener <|-- UnityOnPointerClickMessageListener
+IPointerClickHandler <|-- UnityOnPointerClickMessageListener
+@enduml

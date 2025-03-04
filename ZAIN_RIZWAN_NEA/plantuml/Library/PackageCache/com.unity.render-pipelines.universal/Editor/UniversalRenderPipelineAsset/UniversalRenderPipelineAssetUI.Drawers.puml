@@ -1,0 +1,23 @@
+@startuml
+class UniversalRenderPipelineAssetUI <<partial>> {
+}
+class "CoreEditorDrawer`1"<T> {
+}
+enum Expandable {
+    Rendering= 1 << 1,
+    Quality= 1 << 2,
+    Lighting= 1 << 3,
+    Shadows= 1 << 4,
+    PostProcessing= 1 << 5,
+    Volumes= 1 << 7,
+}
+enum ExpandableAdditional {
+    Rendering= 1 << 1,
+    Lighting= 1 << 2,
+    PostProcessing= 1 << 3,
+    Shadows= 1 << 4,
+    Quality= 1 << 5,
+}
+UniversalRenderPipelineAssetUI +-- Expandable
+UniversalRenderPipelineAssetUI +-- ExpandableAdditional
+@enduml

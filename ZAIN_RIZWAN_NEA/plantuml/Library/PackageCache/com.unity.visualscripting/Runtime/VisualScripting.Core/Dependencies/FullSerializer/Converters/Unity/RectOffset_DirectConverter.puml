@@ -1,0 +1,11 @@
+@startuml
+class fsConverterRegistrar <<partial>> {
+}
+class RectOffset_DirectConverter {
+    + <<override>> CreateInstance(data:fsData, storageType:Type) : object
+}
+class "fsDirectConverter`1"<T> {
+}
+fsConverterRegistrar --> "Register_RectOffset_DirectConverter" RectOffset_DirectConverter
+"fsDirectConverter`1" "<RectOffset>" <|-- RectOffset_DirectConverter
+@enduml

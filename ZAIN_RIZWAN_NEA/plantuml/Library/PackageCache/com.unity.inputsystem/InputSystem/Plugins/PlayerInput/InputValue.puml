@@ -1,0 +1,7 @@
+@startuml
+class InputValue {
+    + Get() : object
+    + Get() : TValue
+    + isPressed : bool <<get>>
+}
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+class DecalCulledChunk {
+    + sceneCullingMask : ulong
+    + cullingMask : int
+    + visibleDecalCount : int
+    + <<override>> RemoveAtSwapBack(entityIndex:int) : void
+    + <<override>> SetCapacity(newCapacity:int) : void
+    + <<override>> Dispose() : void
+}
+class DecalUpdateCullingGroupSystem {
+    + boundingDistance : float <<get>> <<set>>
+    + DecalUpdateCullingGroupSystem(entityManager:DecalEntityManager, drawDistance:float)
+    + Execute(camera:Camera) : void
+    + Execute(cachedChunk:DecalCachedChunk, culledChunk:DecalCulledChunk, count:int) : void
+}
+class "NativeArray`1"<T> {
+}
+DecalChunk <|-- DecalCulledChunk
+DecalCulledChunk --> "cameraPosition" Vector3
+DecalCulledChunk --> "cullingGroups" CullingGroup
+DecalCulledChunk --> "visibleDecalIndices<int>" "NativeArray`1"
+@enduml

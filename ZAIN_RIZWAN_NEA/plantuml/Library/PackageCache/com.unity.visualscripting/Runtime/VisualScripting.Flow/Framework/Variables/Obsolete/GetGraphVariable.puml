@@ -1,0 +1,8 @@
+@startuml
+class GetGraphVariable <<sealed>> {
+    + GetGraphVariable()
+    + GetGraphVariable(defaultName:string)
+}
+GetVariableUnit <|-- GetGraphVariable
+IGraphVariableUnit <|-- GetGraphVariable
+@enduml

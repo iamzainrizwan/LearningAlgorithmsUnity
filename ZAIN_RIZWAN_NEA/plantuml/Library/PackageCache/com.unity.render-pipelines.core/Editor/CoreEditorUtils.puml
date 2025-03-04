@@ -1,0 +1,50 @@
+@startuml
+class CoreEditorUtils <<static>> {
+    + {static} FindProperty(expr:Expression<Func<T, TValue>>) : string
+    + {static} CreateColoredTexture2D(color:Color, textureName:string) : Texture2D
+    + {static} Highlight(windowTitle:string, text:string, mode:HighlightSearchMode) : void
+    + {static} DrawFixMeBox(message:string, action:Action) : void
+    + {static} DrawFixMeBox(message:string, messageType:MessageType, action:Action) : void
+    + {static} DrawFixMeBox(message:string, messageType:MessageType, buttonLabel:string, action:Action) : void
+    + {static} DrawFixMeBox(message:GUIContent, action:Action) : void
+    + {static} DrawFixMeBox(message:GUIContent, buttonLabel:string, action:Action) : void
+    + {static} DrawMultipleFields(label:string, ppts:SerializedProperty[], labels:GUIContent[]) : void
+    + {static} DrawEnumPopup(rect:Rect, label:GUIContent, serializedProperty:SerializedProperty) : void
+    + {static} DrawMultipleFields(label:GUIContent, ppts:SerializedProperty[], labels:GUIContent[]) : void
+    + {static} DrawMultipleFields(label:GUIContent, labels:GUIContent[], values:T[]) : void
+    + {static} DrawSplitter(isBoxed:bool) : void
+    + {static} DrawSplitter(rect:Rect, isBoxed:bool) : void
+    + {static} DrawFoldoutEndSplitter(isBoxed:bool) : void
+    + {static} DrawHeader(title:string) : void
+    + {static} DrawHeader(title:GUIContent) : void
+    + {static} DrawHeaderFoldout(title:string, state:bool, isBoxed:bool, hasMoreOptions:Func<bool>, toggleMoreOption:Action, isTitleHeader:bool, documentationURL:string, contextAction:Action<Vector2>, customMenuContextAction:Action<GenericMenu>) : bool
+    + {static} DrawHeaderFoldout(title:GUIContent, state:bool, isBoxed:bool, hasMoreOptions:Func<bool>, toggleMoreOptions:Action, isTitleHeader:bool, documentationURL:string, contextAction:Action<Vector2>, customMenuContextAction:Action<GenericMenu>) : bool
+    + {static} DrawHeaderFoldout(backgroundRect:Rect, title:GUIContent, state:bool, isBoxed:bool, hasMoreOptions:Func<bool>, toggleMoreOptions:Action, isTitleHeader:bool, documentationURL:string, contextAction:Action<Vector2>, customMenuContextAction:Action<GenericMenu>) : bool
+    + {static} DrawSubHeaderFoldout(title:string, state:bool, isBoxed:bool, hasMoreOptions:Func<bool>, toggleMoreOptions:Action) : bool
+    + {static} DrawSubHeaderFoldout(title:GUIContent, state:bool, isBoxed:bool, hasMoreOptions:Func<bool>, toggleMoreOptions:Action) : bool
+    + {static} DrawSubHeaderFoldout(title:string, state:bool, isBoxed:bool) : bool
+    + {static} DrawSubHeaderFoldout(title:GUIContent, state:bool, isBoxed:bool) : bool
+    + {static} DrawHeaderToggle(title:string, group:SerializedProperty, activeField:SerializedProperty, contextAction:Action<Vector2>, hasMoreOptions:Func<bool>, toggleMoreOptions:Action, documentationURL:string, customMenuContextAction:Action<GenericMenu>, isBoxed:bool, isTitleHeader:bool, shouldUpdate:bool) : bool
+    + {static} DrawHeaderToggle(title:GUIContent, group:SerializedProperty, activeField:SerializedProperty, contextAction:Action<Vector2>, hasMoreOptions:Func<bool>, toggleMoreOptions:Action, documentationURL:string, customMenuContextAction:Action<GenericMenu>, isBoxed:bool, isTitleHeader:bool, shouldUpdate:bool) : bool
+    + {static} DrawHeaderToggleFoldout(title:GUIContent, foldoutExpanded:bool, toggleProperty:SerializedProperty, contextAction:Action<Vector2>, hasMoreOptions:Func<bool>, toggleMoreOptions:Action, documentationURL:string) : bool
+    + {static} DrawSectionHeader(title:GUIContent, documentationURL:string, contextAction:Action<Vector2>, hasMoreOptions:Func<bool>, toggleMoreOptions:Action) : void
+    {static} + ColorFieldLinear(property:SerializedProperty, label:GUIContent) : void
+    + {static} DrawVector6(label:GUIContent, positive:SerializedProperty, negative:SerializedProperty, min:Vector3, max:Vector3, colors:Color[], multiplicator:SerializedProperty, allowIntersection:bool) : void
+    + {static} DrawPopup(label:GUIContent, property:SerializedProperty, options:string[]) : void
+    + {static} DrawEnumPopup(property:SerializedProperty, type:System.Type, label:GUIContent) : void
+    + {static} RemoveMaterialKeywords(material:Material) : void
+    + {static} GetAdditionalData(targets:UnityEngine.Object[], initDefault:Action<T>) : T[]
+    + {static} AddAdditionalData(go:GameObject, initDefault:Action<AdditionalT>) : void
+    + {static} CreateGameObject(parent:GameObject, name:string, types:Type[]) : GameObject
+    + {static} CreateGameObject(name:string, context:UnityEngine.Object) : GameObject
+    {static} + GetCurrentProjectVersion() : string
+    {static} + CheckOutFile(VCSEnabled:bool, mat:UnityObject) : void
+    + {static} LoadIcon(path:string, name:string, extention:string) : Texture2D
+}
+enum Skin {
+    Auto,
+    Personnal,
+    Professional,
+}
+CoreEditorUtils +-- Skin
+@enduml

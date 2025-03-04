@@ -1,0 +1,59 @@
+@startuml
+class FixedStringMethods <<unsafe>> <<static>> <<partial>> {
+    + {static} Substring(str:T, startIndex:int, length:int) : T
+    + {static} Substring(str:T, startIndex:int) : T
+    + {static} Substring(str:NativeText, startIndex:int, length:int, allocator:AllocatorManager.AllocatorHandle) : NativeText
+    + {static} Substring(str:NativeText, startIndex:int, allocator:AllocatorManager.AllocatorHandle) : NativeText
+    + {static} Substring(str:NativeText, startIndex:int, length:int) : NativeText
+    + {static} Substring(str:NativeText, startIndex:int) : NativeText
+    + {static} IndexOf(fs:T, rune:Unicode.Rune) : int
+    + {static} IndexOf(fs:T, bytes:byte*, bytesLen:int) : int
+    + {static} IndexOf(fs:T, bytes:byte*, bytesLen:int, startIndex:int, distance:int) : int
+    + {static} IndexOf(fs:T, other:T2) : int
+    + {static} IndexOf(fs:T, other:T2, startIndex:int, distance:int) : int
+    + {static} Contains(fs:T, other:T2) : bool
+    + {static} LastIndexOf(fs:T, rune:Unicode.Rune) : int
+    + {static} LastIndexOf(fs:T, bytes:byte*, bytesLen:int) : int
+    + {static} LastIndexOf(fs:T, bytes:byte*, bytesLen:int, startIndex:int, distance:int) : int
+    + {static} LastIndexOf(fs:T, other:T2) : int
+    + {static} LastIndexOf(fs:T, other:T2, startIndex:int, distance:int) : int
+    + {static} CompareTo(fs:T, bytes:byte*, bytesLen:int) : int
+    + {static} CompareTo(fs:T, other:T2) : int
+    + {static} Equals(fs:T, bytes:byte*, bytesLen:int) : bool
+    + {static} Equals(fs:T, other:T2) : bool
+    + {static} Peek(fs:T, index:int) : Unicode.Rune
+    + {static} Read(fs:T, index:int) : Unicode.Rune
+    + {static} Write(fs:T, index:int, rune:Unicode.Rune) : FormatError
+    + {static} ConvertToString(fs:T) : String
+    + {static} ComputeHashCode(fs:T) : int
+    + {static} EffectiveSizeOf(fs:T) : int
+    + {static} StartsWith(fs:T, rune:Unicode.Rune) : bool
+    + {static} StartsWith(fs:T, other:U) : bool
+    + {static} EndsWith(fs:T, rune:Unicode.Rune) : bool
+    + {static} EndsWith(fs:T, other:U) : bool
+    + {static} TrimStart(fs:T) : T
+    + {static} TrimStart(fs:UnsafeText, allocator:AllocatorManager.AllocatorHandle) : UnsafeText
+    + {static} TrimStart(fs:NativeText, allocator:AllocatorManager.AllocatorHandle) : NativeText
+    + {static} TrimStart(fs:T, trimRunes:ReadOnlySpan<Unicode.Rune>) : T
+    + {static} TrimStart(fs:UnsafeText, allocator:AllocatorManager.AllocatorHandle, trimRunes:ReadOnlySpan<Unicode.Rune>) : UnsafeText
+    + {static} TrimStart(fs:NativeText, allocator:AllocatorManager.AllocatorHandle, trimRunes:ReadOnlySpan<Unicode.Rune>) : NativeText
+    + {static} TrimEnd(fs:T) : T
+    + {static} TrimEnd(fs:UnsafeText, allocator:AllocatorManager.AllocatorHandle) : UnsafeText
+    + {static} TrimEnd(fs:NativeText, allocator:AllocatorManager.AllocatorHandle) : NativeText
+    + {static} TrimEnd(fs:T, trimRunes:ReadOnlySpan<Unicode.Rune>) : T
+    + {static} TrimEnd(fs:UnsafeText, allocator:AllocatorManager.AllocatorHandle, trimRunes:ReadOnlySpan<Unicode.Rune>) : UnsafeText
+    + {static} TrimEnd(fs:NativeText, allocator:AllocatorManager.AllocatorHandle, trimRunes:ReadOnlySpan<Unicode.Rune>) : NativeText
+    + {static} Trim(fs:T) : T
+    + {static} Trim(fs:UnsafeText, allocator:AllocatorManager.AllocatorHandle) : UnsafeText
+    + {static} Trim(fs:NativeText, allocator:AllocatorManager.AllocatorHandle) : NativeText
+    + {static} Trim(fs:T, trimRunes:ReadOnlySpan<Unicode.Rune>) : T
+    + {static} Trim(fs:UnsafeText, allocator:AllocatorManager.AllocatorHandle, trimRunes:ReadOnlySpan<Unicode.Rune>) : UnsafeText
+    + {static} Trim(fs:NativeText, allocator:AllocatorManager.AllocatorHandle, trimRunes:ReadOnlySpan<Unicode.Rune>) : NativeText
+    + {static} ToLowerAscii(fs:T) : T
+    + {static} ToLowerAscii(fs:UnsafeText, allocator:AllocatorManager.AllocatorHandle) : UnsafeText
+    + {static} ToLowerAscii(fs:NativeText, allocator:AllocatorManager.AllocatorHandle) : NativeText
+    + {static} ToUpperAscii(fs:T) : T
+    + {static} ToUpperAscii(fs:UnsafeText, allocator:AllocatorManager.AllocatorHandle) : UnsafeText
+    + {static} ToUpperAscii(fs:NativeText, allocator:AllocatorManager.AllocatorHandle) : NativeText
+}
+@enduml

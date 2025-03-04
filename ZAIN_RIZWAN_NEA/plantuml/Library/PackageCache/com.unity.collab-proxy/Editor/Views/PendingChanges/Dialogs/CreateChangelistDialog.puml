@@ -1,0 +1,5 @@
+@startuml
+class CreateChangelistDialog {
+}
+PlasticDialog <|-- CreateChangelistDialog
+@enduml

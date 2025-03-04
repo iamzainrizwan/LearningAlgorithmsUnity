@@ -1,0 +1,11 @@
+@startuml
+class PlayModeRunnerCallback {
+    + RunFinished(testResults:ITestResult) : void
+    + TestFinished(result:ITestResult) : void
+    + OnGUI() : void
+    + RunStarted(testsToRun:ITest) : void
+    + TestStarted(test:ITest) : void
+}
+MonoBehaviour <|-- PlayModeRunnerCallback
+ITestRunnerListener <|-- PlayModeRunnerCallback
+@enduml

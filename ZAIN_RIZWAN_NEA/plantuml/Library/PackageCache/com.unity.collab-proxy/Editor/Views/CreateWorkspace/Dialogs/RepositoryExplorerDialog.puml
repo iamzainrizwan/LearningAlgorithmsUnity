@@ -1,0 +1,8 @@
+@startuml
+class RepositoryExplorerDialog {
+}
+class State {
+}
+PlasticDialog <|-- RepositoryExplorerDialog
+RepositoryExplorerDialog +-- State
+@enduml

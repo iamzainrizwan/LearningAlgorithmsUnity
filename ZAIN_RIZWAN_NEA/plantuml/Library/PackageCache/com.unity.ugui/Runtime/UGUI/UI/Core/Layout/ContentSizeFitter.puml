@@ -1,0 +1,16 @@
+@startuml
+class ContentSizeFitter {
+    + <<virtual>> SetLayoutHorizontal() : void
+    + <<virtual>> SetLayoutVertical() : void
+}
+enum FitMode {
+    Unconstrained,
+    MinSize,
+    PreferredSize,
+}
+UIBehaviour <|-- ContentSizeFitter
+ILayoutSelfController <|-- ContentSizeFitter
+ContentSizeFitter --> "horizontalFit" FitMode
+ContentSizeFitter --> "verticalFit" FitMode
+ContentSizeFitter +-- FitMode
+@enduml

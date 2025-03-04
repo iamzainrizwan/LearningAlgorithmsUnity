@@ -1,0 +1,16 @@
+@startuml
+class ColorCurves <<sealed>> {
+    + IsActive() : bool
+    + IsTileCompatible() : bool
+}
+VolumeComponent <|-- ColorCurves
+IPostProcessComponent <|-- ColorCurves
+ColorCurves o-> "master" TextureCurveParameter
+ColorCurves o-> "red" TextureCurveParameter
+ColorCurves o-> "green" TextureCurveParameter
+ColorCurves o-> "blue" TextureCurveParameter
+ColorCurves o-> "hueVsHue" TextureCurveParameter
+ColorCurves o-> "hueVsSat" TextureCurveParameter
+ColorCurves o-> "satVsSat" TextureCurveParameter
+ColorCurves o-> "lumVsSat" TextureCurveParameter
+@enduml

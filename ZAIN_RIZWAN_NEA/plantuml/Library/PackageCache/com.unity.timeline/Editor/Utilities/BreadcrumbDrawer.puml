@@ -1,0 +1,17 @@
+@startuml
+enum TitleMode {
+    None,
+    DisabledComponent,
+    Prefab,
+    PrefabOutOfContext,
+    Asset,
+    GameObject,
+}
+struct BreadCrumbTitle {
+    + name : string
+}
+class BreadcrumbDrawer {
+    + {static} Draw(breadcrumbAreaWidth:float, labels:List<BreadCrumbTitle>, navigateToBreadcrumbIndex:Action<int>) : void
+}
+BreadCrumbTitle --> "mode" TitleMode
+@enduml

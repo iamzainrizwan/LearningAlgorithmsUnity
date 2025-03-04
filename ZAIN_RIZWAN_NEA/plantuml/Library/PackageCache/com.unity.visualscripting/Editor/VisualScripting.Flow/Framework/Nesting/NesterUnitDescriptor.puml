@@ -1,0 +1,8 @@
+@startuml
+class "NesterUnitDescriptor`1"<TNesterUnit> {
+    + NesterUnitDescriptor(unit:TNesterUnit)
+}
+class "UnitDescriptor`1"<T> {
+}
+"UnitDescriptor`1" "<TNesterUnit>" <|-- "NesterUnitDescriptor`1"
+@enduml

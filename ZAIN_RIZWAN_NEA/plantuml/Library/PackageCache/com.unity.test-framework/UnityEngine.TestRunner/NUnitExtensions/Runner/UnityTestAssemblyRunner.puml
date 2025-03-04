@@ -1,0 +1,19 @@
+@startuml
+interface IUnityTestAssemblyRunner {
+}
+class UnityTestAssemblyRunner {
+    + GetCurrentContext() : UnityTestExecutionContext
+    + IsTestLoaded : bool <<get>>
+    + IsTestRunning : bool <<get>>
+    + IsTestComplete : bool <<get>>
+    + UnityTestAssemblyRunner(builder:UnityTestAssemblyBuilder, factory:WorkItemFactory, context:UnityTestExecutionContext)
+    + Load(assemblies:Assembly[], testPlatform:TestPlatform, settings:IDictionary<string, object>) : ITest
+    + LoadTestTree(testTree:ITest) : void
+    + Run(listener:ITestListener, filter:ITestFilter) : IEnumerable
+    + StopRun() : void
+}
+IUnityTestAssemblyRunner <|-- UnityTestAssemblyRunner
+UnityTestAssemblyRunner --> "LoadedTest" ITest
+UnityTestAssemblyRunner --> "Result" ITestResult
+UnityTestAssemblyRunner --> "TopLevelWorkItem" UnityWorkItem
+@enduml

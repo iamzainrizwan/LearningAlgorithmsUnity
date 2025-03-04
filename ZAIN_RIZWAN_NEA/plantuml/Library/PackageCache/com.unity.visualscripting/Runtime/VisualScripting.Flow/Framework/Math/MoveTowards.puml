@@ -1,0 +1,11 @@
+@startuml
+abstract class "MoveTowards`1"<T> {
+    + perSecond : bool <<get>> <<set>>
+    + {abstract} Operation(current:T, target:T, maxDelta:float) : T
+}
+Unit <|-- "MoveTowards`1"
+"MoveTowards`1" --> "current" ValueInput
+"MoveTowards`1" --> "target" ValueInput
+"MoveTowards`1" --> "maxDelta" ValueInput
+"MoveTowards`1" --> "result" ValueOutput
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+interface IEventUnit {
+}
+interface IGameObjectEventUnit {
+}
+IUnit <|-- IEventUnit
+IGraphEventListener <|-- IEventUnit
+IEventUnit <|-- IGameObjectEventUnit
+@enduml

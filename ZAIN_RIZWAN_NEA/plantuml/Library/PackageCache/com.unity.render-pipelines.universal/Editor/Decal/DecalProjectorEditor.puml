@@ -1,0 +1,9 @@
+@startuml
+class DecalProjectorEditor <<partial>> {
+    + HasFrameBounds() : bool
+    + OnGetFrameBounds() : Bounds
+    + UpdateMaterialEditor() : void
+    + <<override>> OnInspectorGUI() : void
+}
+Editor <|-- DecalProjectorEditor
+@enduml

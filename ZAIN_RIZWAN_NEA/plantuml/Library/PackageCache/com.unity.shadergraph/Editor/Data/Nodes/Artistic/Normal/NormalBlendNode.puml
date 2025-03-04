@@ -1,0 +1,11 @@
+@startuml
+enum NormalBlendMode {
+    Default,
+    Reoriented,
+}
+class NormalBlendNode {
+    + NormalBlendNode()
+}
+CodeFunctionNode <|-- NormalBlendNode
+NormalBlendNode --> "blendMode" NormalBlendMode
+@enduml

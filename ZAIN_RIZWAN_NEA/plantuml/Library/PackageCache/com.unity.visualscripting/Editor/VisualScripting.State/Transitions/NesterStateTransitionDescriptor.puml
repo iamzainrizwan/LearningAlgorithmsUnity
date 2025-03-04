@@ -1,0 +1,10 @@
+@startuml
+class "NesterStateTransitionDescriptor`1"<TNesterStateTransition> {
+    + NesterStateTransitionDescriptor(transition:TNesterStateTransition)
+    + <<override>> Title() : string
+    + <<override>> Summary() : string
+}
+class "StateTransitionDescriptor`1"<T> {
+}
+"StateTransitionDescriptor`1" "<TNesterStateTransition>" <|-- "NesterStateTransitionDescriptor`1"
+@enduml

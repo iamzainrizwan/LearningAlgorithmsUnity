@@ -1,0 +1,11 @@
+@startuml
+class Finger {
+    + index : int <<get>>
+    + isActive : bool <<get>>
+}
+Finger --> "screen" Touchscreen
+Finger --> "screenPosition" Vector2
+Finger --> "lastTouch" Touch
+Finger --> "currentTouch" Touch
+Finger --> "touchHistory" TouchHistory
+@enduml

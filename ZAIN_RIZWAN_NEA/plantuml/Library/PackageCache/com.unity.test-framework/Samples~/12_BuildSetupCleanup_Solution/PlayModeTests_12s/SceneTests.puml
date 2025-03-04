@@ -1,0 +1,11 @@
+@startuml
+class SceneTests {
+    + Setup() : void
+    + SetupBeforeTest() : IEnumerator
+    + VerifyScene() : void
+    + TeardownAfterTest() : void
+    + Cleanup() : void
+}
+IPrebuildSetup <|-- SceneTests
+IPostBuildCleanup <|-- SceneTests
+@enduml

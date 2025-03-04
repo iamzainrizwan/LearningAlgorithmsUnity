@@ -1,0 +1,17 @@
+@startuml
+class ConfigurationPanel {
+    + ConfigurationPanel(product:Product)
+    + PreferenceItem() : void
+    + Show() : void
+    + GetSearchKeywords() : IEnumerable<string>
+}
+class Styles <<static>> {
+    + <<const>> iconSize : int = 12
+}
+ConfigurationPanel +-- Styles
+Styles --> "header" GUIStyle
+Styles --> "tabBackground" GUIStyle
+Styles --> "tabIcon" GUIStyle
+Styles --> "tabTitle" GUIStyle
+Styles --> "tabDescription" GUIStyle
+@enduml

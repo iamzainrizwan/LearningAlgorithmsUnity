@@ -1,0 +1,37 @@
+@startuml
+struct "NativeReference`1"<T> {
+    + NativeReference(allocator:AllocatorManager.AllocatorHandle, options:NativeArrayOptions)
+    + NativeReference(value:T, allocator:AllocatorManager.AllocatorHandle)
+    + Value : T <<get>> <<set>>
+    + <<readonly>> IsCreated : bool <<get>>
+    + Dispose() : void
+    + Dispose(inputDeps:JobHandle) : JobHandle
+    + CopyFrom(reference:NativeReference<T>) : void
+    + CopyTo(reference:NativeReference<T>) : void
+    + Equals(other:NativeReference<T>) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + {static} Copy(dst:NativeReference<T>, src:NativeReference<T>) : void
+    + AsReadOnly() : ReadOnly
+}
+struct NativeReferenceDispose {
+    + Dispose() : void
+}
+struct NativeReferenceDisposeJob {
+    + Execute() : void
+}
+class NativeReferenceUnsafeUtility <<static>> {
+    + {static} <<unsafe>> GetUnsafePtr(reference:NativeReference<T>) : T*
+    + {static} <<unsafe>> GetUnsafeReadOnlyPtr(reference:NativeReference<T>) : T*
+    + {static} <<unsafe>> GetUnsafePtrWithoutChecks(reference:NativeReference<T>) : T*
+}
+class "IEquatable`1"<T> {
+}
+struct ReadOnly {
+}
+INativeDisposable <|-- "NativeReference`1"
+"IEquatable`1" "<NativeReference<T>>" <|-- "NativeReference`1"
+IJob <|-- NativeReferenceDisposeJob
+"NativeReference`1" +-- ReadOnly
+ReadOnly --> "Value" T
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+class FontData {
+    + fontSize : int <<get>> <<set>>
+    + bestFit : bool <<get>> <<set>>
+    + minSize : int <<get>> <<set>>
+    + maxSize : int <<get>> <<set>>
+    + alignByGeometry : bool <<get>> <<set>>
+    + richText : bool <<get>> <<set>>
+    + lineSpacing : float <<get>> <<set>>
+}
+ISerializationCallbackReceiver <|-- FontData
+FontData --> "defaultFontData" FontData
+FontData --> "font" Font
+FontData --> "fontStyle" FontStyle
+FontData --> "alignment" TextAnchor
+FontData --> "horizontalOverflow" HorizontalWrapMode
+FontData --> "verticalOverflow" VerticalWrapMode
+@enduml

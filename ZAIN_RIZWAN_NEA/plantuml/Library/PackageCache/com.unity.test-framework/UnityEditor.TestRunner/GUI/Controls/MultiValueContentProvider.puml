@@ -1,0 +1,13 @@
+@startuml
+class "MultiValueContentProvider`1"<T> {
+    + MultiValueContentProvider(values:T[], selectedValues:T[], selectionChangeCallback:Action<T[]>)
+    + Count : int <<get>>
+    + IsMultiSelection : bool <<get>>
+    + GetName(index:int) : string
+    + SelectItem(index:int) : void
+    + IsSelected(index:int) : bool
+}
+class "IEquatable`1"<T> {
+}
+ISelectionDropDownContentProvider <|-- "MultiValueContentProvider`1"
+@enduml

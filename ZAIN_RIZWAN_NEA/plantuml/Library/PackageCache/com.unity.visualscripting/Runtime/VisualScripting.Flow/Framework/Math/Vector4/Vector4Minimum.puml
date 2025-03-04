@@ -1,0 +1,9 @@
+@startuml
+class Vector4Minimum <<sealed>> {
+    + <<override>> Operation(a:UnityEngine.Vector4, b:UnityEngine.Vector4) : UnityEngine.Vector4
+    + <<override>> Operation(values:IEnumerable<UnityEngine.Vector4>) : UnityEngine.Vector4
+}
+class "Minimum`1"<T> {
+}
+"Minimum`1" "<UnityEngine.Vector4>" <|-- Vector4Minimum
+@enduml

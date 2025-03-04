@@ -1,0 +1,7 @@
+@startuml
+class SearcherExampleHostWindow {
+    + {static} ShowAllInOne() : void
+    + OnEnable() : void
+}
+EditorWindow <|-- SearcherExampleHostWindow
+@enduml

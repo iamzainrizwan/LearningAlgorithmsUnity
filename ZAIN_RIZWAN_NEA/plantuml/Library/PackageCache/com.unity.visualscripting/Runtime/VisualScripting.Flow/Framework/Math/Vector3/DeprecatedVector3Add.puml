@@ -1,0 +1,8 @@
+@startuml
+class DeprecatedVector3Add <<sealed>> {
+    + <<override>> Operation(a:Vector3, b:Vector3) : Vector3
+}
+class "Add`1"<T> {
+}
+"Add`1" "<Vector3>" <|-- DeprecatedVector3Add
+@enduml

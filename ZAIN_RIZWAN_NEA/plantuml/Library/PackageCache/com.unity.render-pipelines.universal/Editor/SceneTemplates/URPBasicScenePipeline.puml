@@ -1,0 +1,5 @@
+@startuml
+class URPBasicScenePipeline {
+}
+ISceneTemplatePipeline <|-- URPBasicScenePipeline
+@enduml

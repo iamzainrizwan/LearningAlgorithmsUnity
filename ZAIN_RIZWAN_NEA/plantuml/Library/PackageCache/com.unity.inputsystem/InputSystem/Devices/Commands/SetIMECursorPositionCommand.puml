@@ -1,0 +1,10 @@
+@startuml
+struct SetIMECursorPositionCommand {
+    + {static} Create(cursorPosition:Vector2) : SetIMECursorPositionCommand
+}
+IInputDeviceCommandInfo <|-- SetIMECursorPositionCommand
+SetIMECursorPositionCommand --> "Type" FourCC
+SetIMECursorPositionCommand --> "baseCommand" InputDeviceCommand
+SetIMECursorPositionCommand --> "position" Vector2
+SetIMECursorPositionCommand --> "typeStatic" FourCC
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+class RenderGraphSettingsMigrationTest {
+    + PerformMigration(testCase:IRenderPipelineGraphicsSettingsTestCase<RenderGraphSettings>) : void
+}
+class "RenderPipelineGraphicsSettingsMigrationTestBase`1"<T> {
+}
+class TestCase1 {
+    + SetUp(globalSettingsAsset:UniversalRenderPipelineGlobalSettings, renderPipelineAsset:UniversalRenderPipelineAsset) : void
+    + IsMigrationCorrect(settings:RenderGraphSettings, message:string) : bool
+}
+class TestCase2 {
+    + SetUp(globalSettingsAsset:UniversalRenderPipelineGlobalSettings, renderPipelineAsset:UniversalRenderPipelineAsset) : void
+    + IsMigrationCorrect(settings:RenderGraphSettings, message:string) : bool
+}
+class "IRenderPipelineGraphicsSettingsTestCase`1"<T> {
+}
+"RenderPipelineGraphicsSettingsMigrationTestBase`1" "<RenderGraphSettings>" <|-- RenderGraphSettingsMigrationTest
+RenderGraphSettingsMigrationTest +-- TestCase1
+"IRenderPipelineGraphicsSettingsTestCase`1" "<RenderGraphSettings>" <|-- TestCase1
+RenderGraphSettingsMigrationTest +-- TestCase2
+"IRenderPipelineGraphicsSettingsTestCase`1" "<RenderGraphSettings>" <|-- TestCase2
+@enduml

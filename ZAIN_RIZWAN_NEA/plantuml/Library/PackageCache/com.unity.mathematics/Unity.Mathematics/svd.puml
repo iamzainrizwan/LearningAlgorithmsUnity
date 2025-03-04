@@ -1,0 +1,10 @@
+@startuml
+class svd <<static>> {
+    + <<const>> k_EpsilonDeterminant : float = 1e-6f
+    + <<const>> k_EpsilonRCP : float = 1e-9f
+    + <<const>> k_EpsilonNormalSqrt : float = 1e-15f
+    + <<const>> k_EpsilonNormal : float = 1e-30f
+    + {static} svdInverse(a:float3x3) : float3x3
+    + {static} svdRotation(a:float3x3) : quaternion
+}
+@enduml

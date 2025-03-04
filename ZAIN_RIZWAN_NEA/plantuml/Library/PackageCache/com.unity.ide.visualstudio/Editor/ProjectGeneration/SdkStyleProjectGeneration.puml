@@ -1,0 +1,10 @@
+@startuml
+class SdkStyleProjectGeneration {
+    + SdkStyleProjectGeneration()
+}
+class SdkStyleAssemblyNameProvider {
+}
+ProjectGeneration <|-- SdkStyleProjectGeneration
+SdkStyleProjectGeneration +-- SdkStyleAssemblyNameProvider
+AssemblyNameProvider <|-- SdkStyleAssemblyNameProvider
+@enduml

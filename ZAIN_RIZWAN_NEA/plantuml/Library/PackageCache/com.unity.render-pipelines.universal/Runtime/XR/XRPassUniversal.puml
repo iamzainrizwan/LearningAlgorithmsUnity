@@ -1,0 +1,7 @@
+@startuml
+class XRPassUniversal {
+    + {static} Create(createInfo:XRPassCreateInfo) : XRPass
+    <<override>> + Release() : void
+}
+XRPass <|-- XRPassUniversal
+@enduml

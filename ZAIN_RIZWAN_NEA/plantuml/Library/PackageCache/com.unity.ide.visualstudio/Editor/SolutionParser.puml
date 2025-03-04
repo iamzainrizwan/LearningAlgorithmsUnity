@@ -1,0 +1,6 @@
+@startuml
+class SolutionParser <<static>> {
+    + {static} ParseSolutionFile(filename:string, fileIO:IFileIO) : Solution
+    + {static} ParseSolutionContent(content:string) : Solution
+}
+@enduml

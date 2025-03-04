@@ -1,0 +1,11 @@
+@startuml
+class RiderScriptEditorData {
+    + Init() : void
+    + InvalidateSavedCompilationDefines() : void
+    + HasChangesInCompilationDefines() : bool
+    + Invalidate(editorInstallationPath:string, shouldInvalidatePrevEditorBuildNumber:bool) : void
+}
+class "ScriptableSingleton`1"<T> {
+}
+"ScriptableSingleton`1" "<RiderScriptEditorData>" <|-- RiderScriptEditorData
+@enduml

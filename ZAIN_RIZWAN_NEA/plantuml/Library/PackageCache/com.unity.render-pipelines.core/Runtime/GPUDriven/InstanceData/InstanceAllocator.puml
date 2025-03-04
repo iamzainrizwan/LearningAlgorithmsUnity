@@ -1,0 +1,59 @@
+@startuml
+struct InstanceHandle {
+    + index : int <<get>>
+    + instanceIndex : int <<get>>
+    + valid : bool <<get>>
+    + {static} Create(instanceIndex:int, instanceType:InstanceType) : InstanceHandle
+    + {static} FromInt(value:int) : InstanceHandle
+    + Equals(other:InstanceHandle) : bool
+    + CompareTo(other:InstanceHandle) : int
+    + <<override>> GetHashCode() : int
+}
+struct SharedInstanceHandle {
+    + index : int <<get>> <<set>>
+    + valid : bool <<get>>
+    + Equals(other:SharedInstanceHandle) : bool
+    + CompareTo(other:SharedInstanceHandle) : int
+    + <<override>> GetHashCode() : int
+}
+struct GPUInstanceIndex {
+    + index : int <<get>> <<set>>
+    + valid : bool <<get>>
+    + Equals(other:GPUInstanceIndex) : bool
+    + CompareTo(other:GPUInstanceIndex) : int
+    + <<override>> GetHashCode() : int
+}
+struct InstanceAllocator {
+    + length : int <<get>> <<set>>
+    + valid : bool <<get>>
+    + Initialize(baseInstanceOffset:int, instanceStride:int) : void
+    + Dispose() : void
+    + AllocateInstance() : int
+    + FreeInstance(instance:int) : void
+    + GetNumAllocated() : int
+}
+struct InstanceAllocators {
+    + Initialize() : void
+    + <<unsafe>> Dispose() : void
+    + GetInstanceHandlesLength(type:InstanceType) : int
+    + GetInstancesLength(type:InstanceType) : int
+    + AllocateInstance(type:InstanceType) : InstanceHandle
+    + FreeInstance(instance:InstanceHandle) : void
+    + <<unsafe>> AllocateSharedInstance() : SharedInstanceHandle
+    + FreeSharedInstance(instance:SharedInstanceHandle) : void
+}
+class "IEquatable`1"<T> {
+}
+class "IComparable`1"<T> {
+}
+"IEquatable`1" "<InstanceHandle>" <|-- InstanceHandle
+"IComparable`1" "<InstanceHandle>" <|-- InstanceHandle
+InstanceHandle --> "type" InstanceType
+InstanceHandle o-> "Invalid" InstanceHandle
+"IEquatable`1" "<SharedInstanceHandle>" <|-- SharedInstanceHandle
+"IComparable`1" "<SharedInstanceHandle>" <|-- SharedInstanceHandle
+SharedInstanceHandle o-> "Invalid" SharedInstanceHandle
+"IEquatable`1" "<GPUInstanceIndex>" <|-- GPUInstanceIndex
+"IComparable`1" "<GPUInstanceIndex>" <|-- GPUInstanceIndex
+GPUInstanceIndex o-> "Invalid" GPUInstanceIndex
+@enduml

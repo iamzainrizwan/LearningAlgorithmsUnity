@@ -1,0 +1,7 @@
+@startuml
+class Vector2Round <<sealed>> {
+}
+class "Round`2"<T1,T2> {
+}
+"Round`2" "<Vector2,Vector2>" <|-- Vector2Round
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+class LightUnitSlider {
+    + LightUnitSlider(descriptor:LightUnitSliderUIDescriptor)
+    + SetSerializedObject(serialized:SerializedObject) : void
+    + <<virtual>> Draw(rect:Rect, value:SerializedProperty, floatValue:float) : void
+}
+class SliderConfig <<static>> {
+    + <<const>> k_IconSeparator : float = 0
+    + <<const>> k_MarkerWidth : float = 2
+    + <<const>> k_MarkerHeight : float = 2
+    + <<const>> k_MarkerTooltipScale : float = 4
+    + <<const>> k_ThumbTooltipSize : float = 10
+    + <<const>> k_KnobSize : float = 10
+}
+class SliderStyles <<static>> {
+}
+LightUnitSlider +-- SliderConfig
+LightUnitSlider +-- SliderStyles
+SliderStyles o-> "k_IconButton" GUIStyle
+SliderStyles o-> "k_TemperatureBorder" GUIStyle
+SliderStyles o-> "k_TemperatureThumb" GUIStyle
+@enduml

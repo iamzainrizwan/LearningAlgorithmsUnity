@@ -1,0 +1,21 @@
+@startuml
+class TimelineRecording <<static>> <<partial>> {
+    + <<const>> kLocalPosition : string = "m_LocalPosition"
+    + <<const>> kLocalRotation : string = "m_LocalRotation"
+    + <<const>> kLocalEulerHint : string = "m_LocalEulerAnglesHint"
+    + {static} IsRecordingAnimationTrack : bool <<get>>
+    + {static} DoesPropertyPathMatch(a:string, b:string) : bool
+}
+class RecordingState {
+    + SaveCurve(curve:AnimationWindowCurve) : void
+    + AddPropertyModification(binding:EditorCurveBinding, propertyModification:PropertyModification, keepPrefabOverride:bool) : void
+    + addZeroFrame : bool <<get>>
+    + currentFrame : int <<get>> <<set>>
+    + DiscardModification(modification:PropertyModification) : bool
+}
+TimelineRecording +-- RecordingState
+IAnimationRecordingState <|-- RecordingState
+RecordingState --> "activeGameObject" GameObject
+RecordingState --> "activeRootGameObject" GameObject
+RecordingState --> "activeAnimationClip" AnimationClip
+@enduml

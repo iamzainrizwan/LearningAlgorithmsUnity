@@ -1,0 +1,11 @@
+@startuml
+class "InstanceActionInvoker`5"<TTarget,TParam0,TParam1,TParam2,TParam3> <<sealed>> {
+    + InstanceActionInvoker(methodInfo:MethodInfo)
+    + <<override>> Invoke(target:object, args:object[]) : object
+    + <<override>> Invoke(target:object, arg0:object, arg1:object, arg2:object, arg3:object) : object
+    + InvokeUnsafe(target:object, arg0:object, arg1:object, arg2:object, arg3:object) : object
+}
+class "InstanceActionInvokerBase`1"<T> {
+}
+"InstanceActionInvokerBase`1" "<TTarget>" <|-- "InstanceActionInvoker`5"
+@enduml

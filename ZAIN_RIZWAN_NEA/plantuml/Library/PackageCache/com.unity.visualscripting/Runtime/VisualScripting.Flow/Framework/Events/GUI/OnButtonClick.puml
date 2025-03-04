@@ -1,0 +1,8 @@
+@startuml
+class OnButtonClick <<sealed>> {
+}
+class "GameObjectEventUnit`1"<T> {
+}
+"GameObjectEventUnit`1" "<EmptyEventArgs>" <|-- OnButtonClick
+OnButtonClick --> "MessageListenerType" Type
+@enduml

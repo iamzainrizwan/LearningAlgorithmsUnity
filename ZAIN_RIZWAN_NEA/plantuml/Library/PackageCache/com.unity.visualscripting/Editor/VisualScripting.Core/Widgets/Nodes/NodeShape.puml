@@ -1,0 +1,6 @@
+@startuml
+enum NodeShape {
+    Square,
+    Hex,
+}
+@enduml

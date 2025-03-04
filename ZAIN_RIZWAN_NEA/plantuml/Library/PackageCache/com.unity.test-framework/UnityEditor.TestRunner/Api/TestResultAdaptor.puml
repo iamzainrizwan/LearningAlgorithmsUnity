@@ -1,0 +1,26 @@
+@startuml
+class TestResultAdaptor {
+    + Name : string <<get>>
+    + FullName : string <<get>>
+    + ResultState : string <<get>>
+    + Duration : double <<get>>
+    + Message : string <<get>>
+    + StackTrace : string <<get>>
+    + AssertCount : int <<get>>
+    + FailCount : int <<get>>
+    + PassCount : int <<get>>
+    + SkipCount : int <<get>>
+    + InconclusiveCount : int <<get>>
+    + HasChildren : bool <<get>>
+    + Output : string <<get>>
+    + ToXml() : TNode
+}
+class "IEnumerable`1"<T> {
+}
+ITestResultAdaptor <|-- TestResultAdaptor
+TestResultAdaptor --> "Test" ITestAdaptor
+TestResultAdaptor --> "TestStatus" TestStatus
+TestResultAdaptor --> "StartTime" DateTime
+TestResultAdaptor --> "EndTime" DateTime
+TestResultAdaptor --> "Children<ITestResultAdaptor>" "IEnumerable`1"
+@enduml

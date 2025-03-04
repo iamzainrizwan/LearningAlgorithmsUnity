@@ -1,0 +1,7 @@
+@startuml
+class DebugUIHandlerMessageBox {
+    + <<override>> OnSelection(fromNext:bool, previous:DebugUIHandlerWidget) : bool
+}
+DebugUIHandlerWidget <|-- DebugUIHandlerMessageBox
+DebugUIHandlerMessageBox --> "nameLabel" Text
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+struct InclusiveRange {
+    + start : short
+    + end : short
+    + InclusiveRange(startEnd:short)
+    + InclusiveRange(start:short, end:short)
+    + Expand(index:short) : void
+    + Clamp(min:short, max:short) : void
+    + isEmpty : bool <<get>>
+    + Contains(index:short) : bool
+    + {static} Merge(a:InclusiveRange, b:InclusiveRange) : InclusiveRange
+    + <<override>> ToString() : string
+}
+InclusiveRange --> "empty" InclusiveRange
+@enduml

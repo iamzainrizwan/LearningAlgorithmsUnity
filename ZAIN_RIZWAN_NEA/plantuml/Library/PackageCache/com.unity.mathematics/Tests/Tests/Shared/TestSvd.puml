@@ -1,0 +1,12 @@
+@startuml
+class TestSvd {
+    + {static} CanSVDInverseNonSingularFloat3x3() : void
+    + {static} CanSVDInverseFloat3x3With_NullColumn() : void
+    + {static} CanSVDInverseFloat3x3With_NullRow() : void
+    + {static} CanSVDInverseFloat3x3With_LinearDependentColumn() : void
+    + {static} CanSVDInverseFloat3x3With_LinearDependentRow() : void
+    + {static} CanSVDInverseFloat3x3With_RotatedZeroScale() : void
+    + {static} CanExtractSVDRotationFromFloat3x3With_X180_Y0_Z181() : void
+    + {static} CanExtractSVDRotationFromFloat3x3With_ZeroScaleXY() : void
+}
+@enduml

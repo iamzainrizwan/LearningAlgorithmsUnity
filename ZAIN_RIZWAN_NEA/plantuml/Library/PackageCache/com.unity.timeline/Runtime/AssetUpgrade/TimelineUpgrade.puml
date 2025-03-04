@@ -1,0 +1,11 @@
+@startuml
+class TimelineAsset <<partial>> {
+}
+enum Versions {
+    Initial= 0,
+}
+class TimelineAssetUpgrade <<static>> {
+}
+TimelineAsset +-- Versions
+TimelineAsset +-- TimelineAssetUpgrade
+@enduml

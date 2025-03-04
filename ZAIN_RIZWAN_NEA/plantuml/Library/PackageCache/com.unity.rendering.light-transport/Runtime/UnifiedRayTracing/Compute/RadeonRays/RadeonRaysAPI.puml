@@ -1,0 +1,120 @@
+@startuml
+enum IndexFormat {
+    Int32= 0,
+    Int16,
+}
+struct MeshBuildInfo {
+    + verticesStartOffset : int
+    + vertexCount : uint
+    + vertexStride : uint
+    + baseVertex : int
+    + indicesStartOffset : int
+    + baseIndex : int
+    + triangleCount : uint
+}
+struct MeshBuildMemoryRequirements {
+    + buildScratchSizeInDwords : ulong
+    + bvhSizeInDwords : ulong
+    + bvhLeavesSizeInDwords : ulong
+}
+struct SceneBuildMemoryRequirements {
+    + buildScratchSizeInDwords : ulong
+}
+class SceneMemoryRequirements {
+    + buildScratchSizeInDwords : ulong
+    + totalBottomLevelBvhSizeInNodes : ulong
+    + totalBottomLevelBvhLeavesSizeInNodes : ulong
+}
+enum BuildFlags {
+    None= 0,
+    PreferFastBuild= 1 << 0,
+}
+enum RayQueryType {
+    ClosestHit,
+    AnyHit,
+}
+enum RayQueryOutputType {
+    FullHitData,
+    InstanceID,
+}
+struct Transform {
+    + Transform(row0:float4, row1:float4, row2:float4)
+    + {static} Identity() : Transform
+    + {static} Translation(translation:float3) : Transform
+    + {static} Scale(scale:float3) : Transform
+    + {static} TRS(translation:float3, rotation:float3, scale:float3) : Transform
+    + Inverse() : Transform
+}
+struct BvhNode {
+    + child0 : uint
+    + child1 : uint
+    + parent : uint
+    + update : uint
+}
+struct BvhHeader {
+    + internalNodeCount : uint
+    + leafNodeCount : uint
+    + root : uint
+    + unused : uint
+}
+struct Instance {
+    + meshAccelStructOffset : uint
+    + instanceMask : uint
+    + vertexOffset : uint
+    + meshAccelStructLeavesOffset : uint
+    + triangleCullingEnabled : bool
+    + invertTriangleCulling : bool
+    + userInstanceID : uint
+}
+struct InstanceInfo {
+    + blasOffset : int
+    + instanceMask : int
+    + vertexOffset : int
+    + indexOffset : int
+    + triangleCullingEnabled : int
+    + invertTriangleCulling : int
+    + userInstanceID : uint
+    + padding2 : int
+}
+class RadeonRaysShaders <<sealed>> {
+}
+class RadeonRaysAPI {
+    + RadeonRaysAPI(shaders:RadeonRaysShaders)
+    + Dispose() : void
+    {static} + BvhInternalNodeSizeInDwords() : int
+    {static} + BvhInternalNodeSizeInBytes() : int
+    {static} + BvhLeafNodeSizeInBytes() : int
+    {static} + BvhLeafNodeSizeInDwords() : int
+    + BuildMeshAccelStruct(cmd:CommandBuffer, buildInfo:MeshBuildInfo, buildFlags:BuildFlags, scratchBuffer:GraphicsBuffer, result:BottomLevelLevelAccelStruct) : void
+    + GetMeshBuildMemoryRequirements(buildInfo:MeshBuildInfo, buildFlags:BuildFlags) : MeshBuildMemoryRequirements
+    + BuildSceneAccelStruct(cmd:CommandBuffer, meshAccelStructsBuffer:GraphicsBuffer, instances:Instance[], scratchBuffer:GraphicsBuffer) : TopLevelAccelStruct
+    + CreateSceneAccelStructBuffers(meshAccelStructsBuffer:GraphicsBuffer, tlasSizeInDwords:uint, instances:Instance[]) : TopLevelAccelStruct
+    + GetSceneBuildMemoryRequirements(instanceCount:uint) : SceneBuildMemoryRequirements
+    + GetSceneMemoryRequirements(buildInfos:MeshBuildInfo[], buildFlags:BuildFlags) : SceneMemoryRequirements
+    {static} + GetTraceMemoryRequirements(rayCount:uint) : ulong
+}
+MeshBuildInfo --> "vertices" GraphicsBuffer
+MeshBuildInfo --> "triangleIndices" GraphicsBuffer
+MeshBuildInfo --> "indexFormat" IndexFormat
+Transform --> "row0" float4
+Transform --> "row1" float4
+Transform --> "row2" float4
+BvhNode --> "aabb0_min" float3
+BvhNode --> "aabb0_max" float3
+BvhNode --> "aabb1_min" float3
+BvhNode --> "aabb1_max" float3
+BvhHeader --> "globalAabbMin" float3
+BvhHeader --> "globalAabbMax" float3
+BvhHeader --> "unused3" uint3
+BvhHeader --> "unused4" uint3
+Instance --> "localToWorldTransform" Transform
+InstanceInfo --> "worldToLocalTransform" Transform
+InstanceInfo --> "localToWorldTransform" Transform
+RadeonRaysShaders --> "bitHistogram" ComputeShader
+RadeonRaysShaders --> "blockReducePart" ComputeShader
+RadeonRaysShaders --> "blockScan" ComputeShader
+RadeonRaysShaders --> "buildHlbvh" ComputeShader
+RadeonRaysShaders --> "restructureBvh" ComputeShader
+RadeonRaysShaders --> "scatter" ComputeShader
+IDisposable <|-- RadeonRaysAPI
+@enduml

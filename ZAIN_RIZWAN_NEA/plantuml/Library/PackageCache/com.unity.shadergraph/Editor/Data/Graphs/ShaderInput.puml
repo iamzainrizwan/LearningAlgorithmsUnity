@@ -1,0 +1,15 @@
+@startuml
+abstract class ShaderInput {
+    + displayName : string <<get>> <<set>>
+    + referenceName : string <<get>>
+    + <<virtual>> referenceNameForEditing : string <<get>>
+    + <<override>> OnBeforeDeserialize() : void
+    + <<virtual>> GetOldDefaultReferenceName() : string
+    + IsUsingOldDefaultRefName() : bool
+    + IsUsingNewDefaultRefName() : bool
+    + <<virtual>> allowedInSubGraph : bool <<get>>
+    + <<virtual>> allowedInMainGraph : bool <<get>>
+    + dismissedUpdateVersion : int <<get>> <<set>>
+}
+JsonObject <|-- ShaderInput
+@enduml

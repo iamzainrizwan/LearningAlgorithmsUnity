@@ -1,0 +1,11 @@
+@startuml
+interface IFunctionPointer {
+}
+struct "FunctionPointer`1"<T> {
+    + FunctionPointer(ptr:IntPtr)
+    + Invoke : T <<get>>
+    + IsCreated : bool <<get>>
+}
+IFunctionPointer <|-- "FunctionPointer`1"
+"FunctionPointer`1" --> "Value" IntPtr
+@enduml

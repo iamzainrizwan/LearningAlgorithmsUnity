@@ -1,0 +1,12 @@
+@startuml
+class DragAndDropUtility <<static>> {
+    + {static} Contains() : bool
+    + {static} Is() : bool
+    + {static} First() : T
+    + {static} Single() : T
+    + {static} Get() : T
+}
+DragAndDropUtility --> "position" Vector2
+DragAndDropUtility --> "offsetedPosition" Vector2
+DragAndDropUtility o-> "mouseCursorOffset" Vector2
+@enduml

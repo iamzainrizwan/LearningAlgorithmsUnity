@@ -1,0 +1,25 @@
+@startuml
+struct PointerState {
+    + pressure : float
+    + buttons : ushort
+    + displayIndex : ushort
+}
+class Pointer {
+    + <<override>> MakeCurrent() : void
+}
+IInputStateTypeInfo <|-- PointerState
+PointerState --> "kFormat" FourCC
+PointerState --> "position" Vector2
+PointerState --> "delta" Vector2
+PointerState --> "radius" Vector2
+PointerState --> "format" FourCC
+InputDevice <|-- Pointer
+IInputStateCallbackReceiver <|-- Pointer
+Pointer --> "position" Vector2Control
+Pointer --> "delta" DeltaControl
+Pointer --> "radius" Vector2Control
+Pointer --> "pressure" AxisControl
+Pointer --> "press" ButtonControl
+Pointer --> "displayIndex" IntegerControl
+Pointer --> "current" Pointer
+@enduml

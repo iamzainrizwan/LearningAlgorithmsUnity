@@ -1,0 +1,10 @@
+@startuml
+class AotDictionary <<sealed>> {
+    + AotDictionary()
+    + AotDictionary(comparer:IEqualityComparer)
+    + AotDictionary(capacity:int)
+    + AotDictionary(capacity:int, comparer:IEqualityComparer)
+    + {static} AotStubs() : void
+}
+OrderedDictionary <|-- AotDictionary
+@enduml

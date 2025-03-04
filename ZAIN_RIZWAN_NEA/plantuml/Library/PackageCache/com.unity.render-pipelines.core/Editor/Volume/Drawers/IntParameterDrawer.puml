@@ -1,0 +1,34 @@
+@startuml
+class MinIntParameterDrawer <<sealed>> {
+    + <<override>> OnGUI(parameter:SerializedDataParameter, title:GUIContent) : bool
+}
+class NoInterpMinIntParameterDrawer <<sealed>> {
+    + <<override>> OnGUI(parameter:SerializedDataParameter, title:GUIContent) : bool
+}
+class MaxIntParameterDrawer <<sealed>> {
+    + <<override>> OnGUI(parameter:SerializedDataParameter, title:GUIContent) : bool
+}
+class NoInterpMaxIntParameterDrawer <<sealed>> {
+    + <<override>> OnGUI(parameter:SerializedDataParameter, title:GUIContent) : bool
+}
+class ClampedIntParameterDrawer <<sealed>> {
+    + <<override>> OnGUI(parameter:SerializedDataParameter, title:GUIContent) : bool
+}
+class NoInterpClampedIntParameterDrawer <<sealed>> {
+    + <<override>> OnGUI(parameter:SerializedDataParameter, title:GUIContent) : bool
+}
+class LayerMaskParameterDrawer <<sealed>> {
+    + <<override>> OnGUI(parameter:SerializedDataParameter, title:GUIContent) : bool
+}
+class RenderingLayerMaskParameterDrawer <<sealed>> {
+    + <<override>> OnGUI(parameter:SerializedDataParameter, title:GUIContent) : bool
+}
+VolumeParameterDrawer <|-- MinIntParameterDrawer
+VolumeParameterDrawer <|-- NoInterpMinIntParameterDrawer
+VolumeParameterDrawer <|-- MaxIntParameterDrawer
+VolumeParameterDrawer <|-- NoInterpMaxIntParameterDrawer
+VolumeParameterDrawer <|-- ClampedIntParameterDrawer
+VolumeParameterDrawer <|-- NoInterpClampedIntParameterDrawer
+VolumeParameterDrawer <|-- LayerMaskParameterDrawer
+VolumeParameterDrawer <|-- RenderingLayerMaskParameterDrawer
+@enduml

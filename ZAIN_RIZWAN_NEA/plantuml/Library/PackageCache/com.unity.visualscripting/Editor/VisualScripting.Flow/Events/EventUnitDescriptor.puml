@@ -1,0 +1,8 @@
+@startuml
+class "EventUnitDescriptor`1"<TEvent> {
+    + EventUnitDescriptor(@event:TEvent)
+}
+class "UnitDescriptor`1"<T> {
+}
+"UnitDescriptor`1" "<TEvent>" <|-- "EventUnitDescriptor`1"
+@enduml

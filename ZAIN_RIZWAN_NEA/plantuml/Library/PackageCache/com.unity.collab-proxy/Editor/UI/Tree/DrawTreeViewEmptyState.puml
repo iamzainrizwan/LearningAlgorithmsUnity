@@ -1,0 +1,4 @@
+@startuml
+class DrawTreeViewEmptyState <<static>> {
+}
+@enduml

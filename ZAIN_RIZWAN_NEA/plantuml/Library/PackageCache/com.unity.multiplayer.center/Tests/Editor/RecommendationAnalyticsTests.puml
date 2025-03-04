@@ -1,0 +1,21 @@
+@startuml
+class RecommendationAnalyticsTests {
+    + OneTimeSetup() : void
+    + OneTimeTearDown() : void
+    + SetUp() : void
+    + TearDown() : void
+    + RecommendationTabView_PresetSelectedViaUI_RecommendationEventSent() : void
+    + RecommendationTabView_NonePresetSelected_RecommendationEventNotSent() : void
+    + RecommendationTabView_PlayerCountChangedViaUI_RecommendationEventSent() : void
+    + RecommendationTabView_NonMandatoryAnswerChangedViaUI_RecommendationEventSent() : void
+}
+class MockThatCountsEvents {
+    + InstallationEventCount : int <<get>>
+    + RecommendationEventCount : int <<get>>
+    + SendInstallationEvent(data:AnswerData, preset:Preset, packages:Package[]) : void
+    + SendRecommendationEvent(data:AnswerData, preset:Preset) : void
+    + SendGettingStartedInteractionEvent(targetPackageId:string, sectionId:string, type:InteractionDataType, displayName:string) : void
+}
+RecommendationAnalyticsTests +-- MockThatCountsEvents
+IMultiplayerCenterAnalytics <|-- MockThatCountsEvents
+@enduml

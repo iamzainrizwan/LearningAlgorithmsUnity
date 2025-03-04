@@ -1,0 +1,7 @@
+@startuml
+class MarkerTrackEditor {
+    + {static} <<readonly>> DefaultMarkerTrackHeight : float = 24
+    + <<override>> GetTrackOptions(track:TrackAsset, binding:Object) : TrackDrawOptions
+}
+TrackEditor <|-- MarkerTrackEditor
+@enduml

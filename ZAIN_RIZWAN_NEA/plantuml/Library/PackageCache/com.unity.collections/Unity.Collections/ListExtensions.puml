@@ -1,0 +1,9 @@
+@startuml
+class ListExtensions <<static>> {
+    + {static} RemoveSwapBack(list:List<T>, value:T) : bool
+    + {static} RemoveSwapBack(list:List<T>, matcher:Predicate<T>) : bool
+    + {static} RemoveAtSwapBack(list:List<T>, index:int) : void
+    + {static} ToNativeList(list:List<T>, allocator:AllocatorManager.AllocatorHandle) : NativeList<T>
+    + <<unsafe>> {static} ToNativeArray(list:List<T>, allocator:AllocatorManager.AllocatorHandle) : NativeArray<T>
+}
+@enduml

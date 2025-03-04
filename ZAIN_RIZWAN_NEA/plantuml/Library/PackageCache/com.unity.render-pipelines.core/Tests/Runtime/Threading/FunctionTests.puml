@@ -1,0 +1,58 @@
+@startuml
+class ThreadingEmulationFunctionTests {
+    + Setup() : void
+    + OneTimeSetup() : void
+    + OneTimeCleanUp() : void
+    + SetUp() : void
+    + WaveTest(kernel:Kernel, waveSizeKeyword:WaveSizeKeyword) : void
+    + GroupTest(kernel:Kernel, groupSizeKeyword:GroupSizeKeyword) : void
+}
+enum Kernel {
+    AllEqual,
+    AllTrue,
+    AnyTrue,
+    Ballot,
+    BitAnd,
+    BitOr,
+    BitXor,
+    CountBits,
+    Max,
+    Min,
+    Product,
+    Sum,
+    GetCount,
+    GetIndex,
+    IsFirst,
+    PrefixCountBits,
+    PrefixProduct,
+    PrefixSum,
+    ReadAtBroadcast,
+    ReadAtShuffle,
+    ReadFirst,
+}
+enum WaveSizeKeyword {
+    EMULATE_WAVE_SIZE_8,
+    EMULATE_WAVE_SIZE_16,
+    EMULATE_WAVE_SIZE_32,
+    EMULATE_WAVE_SIZE_64,
+    EMULATE_WAVE_SIZE_128,
+    WAVE_SIZE_NATIVE,
+}
+enum GroupSizeKeyword {
+    GROUP_SIZE_1= 1,
+    GROUP_SIZE_2= 2,
+    GROUP_SIZE_4= 4,
+    GROUP_SIZE_8= 8,
+    GROUP_SIZE_16= 16,
+    GROUP_SIZE_32= 32,
+    GROUP_SIZE_64= 64,
+    GROUP_SIZE_128= 128,
+    GROUP_SIZE_256= 256,
+    GROUP_SIZE_512= 512,
+    GROUP_SIZE_1024= 1024,
+}
+IPrebuildSetup <|-- ThreadingEmulationFunctionTests
+ThreadingEmulationFunctionTests +-- Kernel
+ThreadingEmulationFunctionTests +-- WaveSizeKeyword
+ThreadingEmulationFunctionTests +-- GroupSizeKeyword
+@enduml

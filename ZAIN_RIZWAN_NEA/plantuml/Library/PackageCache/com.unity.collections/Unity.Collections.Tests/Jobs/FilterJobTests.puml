@@ -1,0 +1,35 @@
+@startuml
+class ParallelFilterJobTests {
+    + AddElementForEach(userFilterJob:bool) : void
+    + FilterProduceChained() : void
+    + FilterAppendChained() : void
+    + FilterPreviousChained() : void
+    + AccessingWritable() : void
+}
+struct NativeListAddMod7Job {
+    + NativeListAddMod7Job(list:NativeList<int>, produceCount:int)
+    + Execute() : void
+}
+struct FilterMod7Job {
+    + Execute(index:int) : bool
+}
+struct FilterAllJob {
+    + Execute(index:int) : bool
+}
+struct MinMaxRestrictionJob {
+    + MinMaxRestrictionJob(array:NativeArray<float>)
+    + Execute(index:int) : bool
+}
+class "NativeArray`1"<T> {
+}
+JobTestsFixtureBasic <|-- ParallelFilterJobTests
+ParallelFilterJobTests +-- NativeListAddMod7Job
+IJob <|-- NativeListAddMod7Job
+ParallelFilterJobTests +-- FilterMod7Job
+IJobFilter <|-- FilterMod7Job
+ParallelFilterJobTests +-- FilterAllJob
+IJobFilter <|-- FilterAllJob
+ParallelFilterJobTests +-- MinMaxRestrictionJob
+IJobFilter <|-- MinMaxRestrictionJob
+MinMaxRestrictionJob --> "array<float>" "NativeArray`1"
+@enduml

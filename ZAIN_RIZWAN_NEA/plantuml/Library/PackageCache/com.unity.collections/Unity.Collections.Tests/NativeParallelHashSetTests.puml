@@ -1,0 +1,64 @@
+@startuml
+class NativeParallelHashSetTests {
+    + NativeParallelHashSet_IsEmpty() : void
+    + UnsafeParallelHashSet_Capacity() : void
+    + NativeParallelHashSet_Full_Throws() : void
+    + NativeParallelHashSet_RemoveOnEmptyMap_DoesNotThrow() : void
+    + NativeParallelHashSet_Collisions() : void
+    + NativeParallelHashSet_SameElement() : void
+    + NativeParallelHashSet_ParallelWriter_CanBeUsedInJob() : void
+    + NativeParallelHashSet_CanBeReadFromJob() : void
+    + NativeParallelHashSet_TempHashSetInJob() : void
+    + NativeParallelHashSet_ForEach_FixedStringInHashMap() : void
+    + NativeParallelHashSet_ForEach(n:int) : void
+    + NativeParallelHashSet_ForEach_From_Job(n:int) : void
+    + NativeParallelHashSet_ForEach_Throws_When_Modified() : void
+    + NativeParallelHashSet_ForEach_Throws() : void
+    + NativeParallelHashSet_ForEach_Throws_Job_Iterator() : void
+    + NativeParallelHashSet_EIU_ExceptWith_Empty() : void
+    + NativeParallelHashSet_EIU_ExceptWith_AxB() : void
+    + NativeParallelHashSet_EIU_ExceptWith_BxA() : void
+    + NativeParallelHashSet_EIU_IntersectWith_Empty() : void
+    + NativeParallelHashSet_EIU_IntersectWith() : void
+    + NativeParallelHashSet_EIU_UnionWith_Empty() : void
+    + NativeParallelHashSet_EIU_UnionWith() : void
+    + NativeParallelHashSet_ToArray() : void
+    + NativeParallelHashSet_CustomAllocatorTest() : void
+    + <<unsafe>> NativeParallelHashSet_BurstedCustomAllocatorTest() : void
+}
+struct ParallelWriteToHashSetJob {
+    + Execute(index:int) : void
+}
+struct TempHashSet {
+    + Execute() : void
+}
+struct ReadHashSetJob {
+    + Execute() : void
+}
+struct NativeParallelHashSet_ForEach_Job {
+    + Num : int
+    + Execute() : void
+}
+struct ForEachIterator {
+    + Execute() : void
+}
+struct BurstedCustomAllocatorJob {
+    + Execute() : void
+}
+class "NativeReference`1"<T> {
+}
+CollectionsTestFixture <|-- NativeParallelHashSetTests
+NativeParallelHashSetTests +-- ParallelWriteToHashSetJob
+IJobParallelFor <|-- ParallelWriteToHashSetJob
+NativeParallelHashSetTests +-- TempHashSet
+IJob <|-- TempHashSet
+NativeParallelHashSetTests +-- ReadHashSetJob
+IJob <|-- ReadHashSetJob
+ReadHashSetJob --> "Output<int>" "NativeReference`1"
+NativeParallelHashSetTests +-- NativeParallelHashSet_ForEach_Job
+IJob <|-- NativeParallelHashSet_ForEach_Job
+NativeParallelHashSetTests +-- ForEachIterator
+IJob <|-- ForEachIterator
+NativeParallelHashSetTests +-- BurstedCustomAllocatorJob
+IJob <|-- BurstedCustomAllocatorJob
+@enduml

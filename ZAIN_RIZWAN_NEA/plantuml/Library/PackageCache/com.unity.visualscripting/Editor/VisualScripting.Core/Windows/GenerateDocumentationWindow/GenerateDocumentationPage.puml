@@ -1,0 +1,36 @@
+@startuml
+class GenerateDocumentationPage {
+    + GenerateDocumentationPage()
+    + <<override>> Update() : void
+}
+class Styles <<static>> {
+    + {static} <<readonly>> spaceBetweenSteps : float = 5
+}
+class DocumentationGenerationStep {
+    + DocumentationGenerationStep(projectPath:string, label:string)
+    + Generate() : void
+    + Reset() : void
+    + Update() : void
+    + OnGUI() : void
+}
+enum State {
+    Idle,
+    Generating,
+    Success,
+    Failure,
+}
+Page <|-- GenerateDocumentationPage
+GenerateDocumentationPage +-- Styles
+Styles --> "background" GUIStyle
+Styles --> "explanationLabel" GUIStyle
+Styles --> "generateButton" GUIStyle
+Styles --> "nextButton" GUIStyle
+Styles --> "stepLabel" GUIStyle
+Styles --> "stepIdleIcon" GUIStyle
+Styles --> "stepShowLogButton" GUIStyle
+Styles --> "stepShowLogHiddenButton" GUIStyle
+Styles --> "stepIcon" GUIStyle
+GenerateDocumentationPage +-- DocumentationGenerationStep
+DocumentationGenerationStep --> "state" State
+DocumentationGenerationStep +-- State
+@enduml

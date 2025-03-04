@@ -1,0 +1,7 @@
+@startuml
+class EditModeRunTask {
+    + EditModeRunTask()
+    + <<override>> Execute(testJobData:TestJobData) : IEnumerator
+}
+TestTaskBase <|-- EditModeRunTask
+@enduml

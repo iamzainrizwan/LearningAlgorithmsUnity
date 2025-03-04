@@ -1,0 +1,17 @@
+@startuml
+class VolumePriorityUsageAnalytic {
+    + {static} Send(volume:Volume) : void
+}
+class Analytic {
+    + Analytic(volume:Volume, guid:string)
+    + TryGatherData(data:IAnalytic.IData, error:Exception) : bool
+}
+class Data {
+    + volume_name : string
+    + scene_name : string
+    + priority : float
+}
+VolumePriorityUsageAnalytic +-- Analytic
+IAnalytic <|-- Analytic
+Analytic +-- Data
+@enduml

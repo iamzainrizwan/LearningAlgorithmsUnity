@@ -1,0 +1,7 @@
+@startuml
+class DisallowGPUDrivenRendering {
+    + m_applyToChildrenRecursively : bool
+    + applyToChildrenRecursively : bool <<get>> <<set>>
+}
+MonoBehaviour <|-- DisallowGPUDrivenRendering
+@enduml

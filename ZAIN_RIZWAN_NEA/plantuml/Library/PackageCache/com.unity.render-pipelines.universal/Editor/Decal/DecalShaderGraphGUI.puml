@@ -1,0 +1,24 @@
+@startuml
+class DecalProjectorScope {
+    + DecalProjectorScope()
+}
+class DecalShaderGraphGUI {
+    + {static} isDecalProjectorGUI : bool <<get>> <<set>>
+    + DecalShaderGraphGUI()
+    + <<override>> OnGUI(materialEditor:MaterialEditor, props:MaterialProperty[]) : void
+}
+class Styles {
+}
+enum Expandable {
+    Inputs= 1 << 0,
+    Advanced= 1 << 1,
+}
+DecalShaderGraphGUI +-- Styles
+Styles o-> "inputs" GUIContent
+Styles o-> "advancedOptions" GUIContent
+Styles o-> "meshDecalBiasType" GUIContent
+Styles o-> "meshDecalDepthBiasText" GUIContent
+Styles o-> "meshDecalViewBiasText" GUIContent
+Styles o-> "drawOrderText" GUIContent
+DecalShaderGraphGUI +-- Expandable
+@enduml

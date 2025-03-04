@@ -1,0 +1,5 @@
+@startuml
+class CheckinConflictsDialog {
+}
+PlasticDialog <|-- CheckinConflictsDialog
+@enduml

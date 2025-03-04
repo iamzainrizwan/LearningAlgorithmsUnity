@@ -1,0 +1,9 @@
+@startuml
+class fsNullableConverter {
+    + <<override>> CanProcess(type:Type) : bool
+    + <<override>> TrySerialize(instance:object, serialized:fsData, storageType:Type) : fsResult
+    + <<override>> TryDeserialize(data:fsData, instance:object, storageType:Type) : fsResult
+    + <<override>> CreateInstance(data:fsData, storageType:Type) : object
+}
+fsConverter <|-- fsNullableConverter
+@enduml

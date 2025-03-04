@@ -1,0 +1,10 @@
+@startuml
+abstract class VectorInspector {
+}
+class Styles <<static>> {
+    + {static} compactThreshold : float = 120
+    + {static} compactSpacing : float = 2
+}
+Inspector <|-- VectorInspector
+VectorInspector +-- Styles
+@enduml

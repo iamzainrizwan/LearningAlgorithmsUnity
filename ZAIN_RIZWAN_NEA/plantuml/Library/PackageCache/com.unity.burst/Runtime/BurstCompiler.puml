@@ -1,0 +1,39 @@
+@startuml
+class BurstCompiler <<static>> {
+    + {static} IsLoadAdditionalLibrarySupported() : bool
+    + {static} IsEnabled : bool <<get>>
+    + {static} SetExecutionMode(mode:BurstExecutionEnvironment) : void
+    + {static} GetExecutionMode() : BurstExecutionEnvironment
+    + {static} <<unsafe>> CompileILPPMethod(burstMethodHandle:RuntimeMethodHandle, managedMethodHandle:RuntimeMethodHandle, delegateTypeHandle:RuntimeTypeHandle) : IntPtr
+    + {static} <<unsafe>> CompileILPPMethod2(burstMethodHandle:RuntimeMethodHandle) : IntPtr
+    + {static} <<unsafe>> GetILPPMethodFunctionPointer(ilppMethod:IntPtr) : void*
+    + {static} <<unsafe>> GetILPPMethodFunctionPointer2(ilppMethod:IntPtr, managedMethodHandle:RuntimeMethodHandle, delegateTypeHandle:RuntimeTypeHandle) : void*
+    + {static} <<unsafe>> CompileUnsafeStaticMethod(handle:RuntimeMethodHandle) : void*
+    + {static} <<unsafe>> CompileFunctionPointer(delegateMethod:T) : FunctionPointer<T>
+}
+class CommandBuilder {
+    + CommandBuilder()
+    + Begin(cmd:string) : CommandBuilder
+    + With(arg:string) : CommandBuilder
+    + With(arg:IntPtr) : CommandBuilder
+    + And(sep:char) : CommandBuilder
+    + SendToCompiler() : string
+}
+class StaticTypeReinitAttribute {
+    + StaticTypeReinitAttribute(toReinit:Type)
+}
+class BurstCompilerHelper <<static>> {
+    + {static} <<readonly>> IsBurstGenerated : bool
+}
+class FakeDelegate {
+    + FakeDelegate(method:MethodInfo)
+}
+BurstCompiler o-> "Options" BurstCompilerOptions
+BurstCompiler +-- CommandBuilder
+BurstCompiler +-- StaticTypeReinitAttribute
+Attribute <|-- StaticTypeReinitAttribute
+StaticTypeReinitAttribute --> "reinitType" Type
+BurstCompiler +-- BurstCompilerHelper
+BurstCompiler +-- FakeDelegate
+FakeDelegate --> "Method" MethodInfo
+@enduml

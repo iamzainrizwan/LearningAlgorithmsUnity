@@ -1,0 +1,8 @@
+@startuml
+class UnityCloudProjectLinkMonitor {
+}
+class CloudSettings {
+}
+AssetModificationProcessor <|-- UnityCloudProjectLinkMonitor
+UnityCloudProjectLinkMonitor +-- CloudSettings
+@enduml

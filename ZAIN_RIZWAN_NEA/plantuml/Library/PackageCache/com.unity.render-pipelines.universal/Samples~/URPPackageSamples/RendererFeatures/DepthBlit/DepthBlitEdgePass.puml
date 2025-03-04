@@ -1,0 +1,9 @@
+@startuml
+class DepthBlitEdgePass {
+    + DepthBlitEdgePass(mat:Material, evt:RenderPassEvent)
+    + SetRTHandle(depthHandle:RTHandle) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+ScriptableRenderPass <|-- DepthBlitEdgePass
+@enduml

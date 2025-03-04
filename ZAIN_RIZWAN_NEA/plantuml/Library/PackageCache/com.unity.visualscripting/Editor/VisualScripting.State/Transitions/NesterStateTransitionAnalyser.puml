@@ -1,0 +1,8 @@
+@startuml
+class "NesterStateTransitionAnalyser`1"<TGraphNesterStateTransition> {
+    + NesterStateTransitionAnalyser(reference:GraphReference, transition:TGraphNesterStateTransition)
+}
+class "StateTransitionAnalyser`1"<T> {
+}
+"StateTransitionAnalyser`1" "<TGraphNesterStateTransition>" <|-- "NesterStateTransitionAnalyser`1"
+@enduml

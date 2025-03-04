@@ -1,0 +1,10 @@
+@startuml
+class LanguageIconSet {
+    + LanguageIconSet(name:string)
+    + {static} Load(name:string) : LanguageIconSet
+}
+LanguageIconSet --> "@public" EditorTexture
+LanguageIconSet --> "@private" EditorTexture
+LanguageIconSet --> "@protected" EditorTexture
+LanguageIconSet --> "@internal" EditorTexture
+@enduml

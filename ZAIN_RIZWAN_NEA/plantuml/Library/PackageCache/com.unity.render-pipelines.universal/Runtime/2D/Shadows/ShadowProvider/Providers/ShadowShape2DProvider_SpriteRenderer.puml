@@ -1,0 +1,9 @@
+@startuml
+class ShadowShape2DProvider_SpriteRenderer {
+    + <<override>> Priority() : int
+    + <<override>> IsShapeSource(sourceComponent:Component) : bool
+    + <<override>> OnPersistantDataCreated(sourceComponent:Component, persistantShadowShape:ShadowShape2D) : void
+    + <<override>> OnBeforeRender(sourceComponent:Component, worldCullingBounds:Bounds, persistantShadowShape:ShadowShape2D) : void
+}
+ShadowShape2DProvider <|-- ShadowShape2DProvider_SpriteRenderer
+@enduml

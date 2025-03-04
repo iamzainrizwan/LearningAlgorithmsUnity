@@ -1,0 +1,15 @@
+@startuml
+class Migration_Asset_to_Package {
+    + Migration_Asset_to_Package(plugin:Plugin)
+    + <<override>> Run() : void
+}
+class DeprecatedSavedVersionLoader_Bolt_AssetStore {
+    + DeprecatedSavedVersionLoader_Bolt_AssetStore(plugin:Plugin)
+    + <<override>> Run(savedVersion:SemanticVersion) : bool
+}
+PluginMigration <|-- Migration_Asset_to_Package
+Migration_Asset_to_Package --> "@from" SemanticVersion
+Migration_Asset_to_Package --> "to" SemanticVersion
+PluginDeprecatedSavedVersionLoader <|-- DeprecatedSavedVersionLoader_Bolt_AssetStore
+DeprecatedSavedVersionLoader_Bolt_AssetStore --> "@from" SemanticVersion
+@enduml

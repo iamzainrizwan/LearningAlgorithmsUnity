@@ -1,0 +1,10 @@
+@startuml
+class InvokeMemberOption {
+    + InvokeMemberOption()
+    + InvokeMemberOption(unit:InvokeMember)
+    + <<override>> SearchResultLabel(query:string) : string
+}
+class "MemberUnitOption`1"<T> {
+}
+"MemberUnitOption`1" "<InvokeMember>" <|-- InvokeMemberOption
+@enduml

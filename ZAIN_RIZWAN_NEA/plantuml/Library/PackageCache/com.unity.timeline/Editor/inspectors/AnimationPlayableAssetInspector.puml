@@ -1,0 +1,19 @@
+@startuml
+class AnimationPlayableAssetInspector {
+    + <<override>> OnInspectorGUI() : void
+    + OnEnable() : void
+}
+class Styles <<static>> {
+}
+Editor <|-- AnimationPlayableAssetInspector
+AnimationPlayableAssetInspector +-- Styles
+Styles o-> "RotationText" GUIContent
+Styles o-> "AnimClipText" GUIContent
+Styles o-> "TransformOffsetTitle" GUIContent
+Styles o-> "AnimationClipName" GUIContent
+Styles o-> "MatchTargetFieldsTitle" GUIContent
+Styles o-> "UseDefaults" GUIContent
+Styles o-> "RemoveStartOffset" GUIContent
+Styles o-> "ApplyFootIK" GUIContent
+Styles o-> "Loop" GUIContent
+@enduml

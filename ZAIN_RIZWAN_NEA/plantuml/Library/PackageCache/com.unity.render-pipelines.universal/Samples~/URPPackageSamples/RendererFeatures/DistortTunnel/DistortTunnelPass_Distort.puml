@@ -1,0 +1,10 @@
+@startuml
+class DistortTunnelPass_Distort {
+    + DistortTunnelPass_Distort(mat:Material, evt:RenderPassEvent)
+    + SetRTHandles(srcRT:RTHandle) : void
+    + <<override>> OnCameraSetup(cmd:CommandBuffer, renderingData:RenderingData) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+ScriptableRenderPass <|-- DistortTunnelPass_Distort
+@enduml

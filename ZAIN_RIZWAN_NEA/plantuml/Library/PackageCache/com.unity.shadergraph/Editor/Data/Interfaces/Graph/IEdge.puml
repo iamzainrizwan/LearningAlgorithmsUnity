@@ -1,0 +1,7 @@
+@startuml
+interface IEdge {
+}
+class "IEquatable`1"<T> {
+}
+"IEquatable`1" "<IEdge>" <|-- IEdge
+@enduml

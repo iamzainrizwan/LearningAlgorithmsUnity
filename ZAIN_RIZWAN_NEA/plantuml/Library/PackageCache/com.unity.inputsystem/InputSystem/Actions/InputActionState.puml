@@ -1,0 +1,161 @@
+@startuml
+class InputActionState <<unsafe>> {
+    + <<const>> kInvalidIndex : int
+    + totalProcessorCount : int
+    + totalCompositeCount : int <<get>>
+    + totalMapCount : int <<get>>
+    + totalActionCount : int <<get>>
+    + totalBindingCount : int <<get>>
+    + totalInteractionCount : int <<get>>
+    + totalControlCount : int <<get>>
+    + isProcessingControlStateChange : bool <<get>>
+    + Initialize(resolver:InputBindingResolver) : void
+    + ClaimDataFrom(resolver:InputBindingResolver) : void
+    + Dispose() : void
+    + Clone() : InputActionState
+    + HasEnabledActions() : bool
+    + FinishBindingResolution(hasEnabledActions:bool, oldMemory:UnmanagedMemory, activeControls:InputControlList<InputControl>, isFullResolve:bool) : void
+    + ResetActionState(actionIndex:int, toPhase:InputActionPhase, hardReset:bool) : void
+    + FetchActionState(action:InputAction) : ref TriggerState
+    + FetchMapIndices(map:InputActionMap) : ActionMapIndices
+    + EnableAllActions(map:InputActionMap) : void
+    + EnableSingleAction(action:InputAction) : void
+    + DisableAllActions(map:InputActionMap) : void
+    + DisableControls(map:InputActionMap) : void
+    + DisableSingleAction(action:InputAction) : void
+    + SetInitialStateCheckPending(actionIndex:int, value:bool) : void
+    + EvaluateCompositePartMagnitude(bindingIndex:int, partNumber:int) : float
+}
+class "Action`1"<T> {
+}
+struct InteractionState {
+    + triggerControlIndex : int <<get>> <<set>>
+    + startTime : double <<get>> <<set>>
+    + performedTime : double <<get>> <<set>>
+    + timerStartTime : double <<get>> <<set>>
+    + timerDuration : float <<get>> <<set>>
+    + totalTimeoutCompletionDone : float <<get>> <<set>>
+    + totalTimeoutCompletionTimeRemaining : float <<get>> <<set>>
+    + timerMonitorIndex : long <<get>> <<set>>
+    + isTimerRunning : bool <<get>> <<set>>
+}
+struct BindingState {
+    + controlStartIndex : int <<get>> <<set>>
+    + controlCount : int <<get>> <<set>>
+    + interactionStartIndex : int <<get>> <<set>>
+    + interactionCount : int <<get>> <<set>>
+    + processorStartIndex : int <<get>> <<set>>
+    + processorCount : int <<get>> <<set>>
+    + actionIndex : int <<get>> <<set>>
+    + mapIndex : int <<get>> <<set>>
+    + compositeOrCompositeBindingIndex : int <<get>> <<set>>
+    + triggerEventIdForComposite : int <<get>> <<set>>
+    + pressTime : double <<get>> <<set>>
+    + chainsWithNext : bool <<get>> <<set>>
+    + isEndOfChain : bool <<get>> <<set>>
+    + isPartOfChain : bool <<get>>
+    + isComposite : bool <<get>> <<set>>
+    + isPartOfComposite : bool <<get>> <<set>>
+    + initialStateCheckPending : bool <<get>> <<set>>
+    + wantsInitialStateCheck : bool <<get>> <<set>>
+    + partIndex : int <<get>> <<set>>
+}
+struct TriggerState {
+    + <<const>> kMaxNumMaps : int
+    + <<const>> kMaxNumControls : int
+    + <<const>> kMaxNumBindings : int
+    + isDisabled : bool <<get>>
+    + isWaiting : bool <<get>>
+    + isStarted : bool <<get>>
+    + isPerformed : bool <<get>>
+    + isCanceled : bool <<get>>
+    + time : double <<get>> <<set>>
+    + startTime : double <<get>> <<set>>
+    + magnitude : float <<get>> <<set>>
+    + haveMagnitude : bool <<get>>
+    + mapIndex : int <<get>> <<set>>
+    + controlIndex : int <<get>> <<set>>
+    + bindingIndex : int <<get>> <<set>>
+    + interactionIndex : int <<get>> <<set>>
+    + lastPerformedInUpdate : uint <<get>> <<set>>
+    + lastCompletedInUpdate : uint <<get>> <<set>>
+    + lastCanceledInUpdate : uint <<get>> <<set>>
+    + pressedInUpdate : uint <<get>> <<set>>
+    + releasedInUpdate : uint <<get>> <<set>>
+    + isPassThrough : bool <<get>> <<set>>
+    + isButton : bool <<get>> <<set>>
+    + isPressed : bool <<get>> <<set>>
+    + mayNeedConflictResolution : bool <<get>> <<set>>
+    + hasMultipleConcurrentActuations : bool <<get>> <<set>>
+    + inProcessing : bool <<get>> <<set>>
+}
+struct ActionMapIndices {
+    + actionStartIndex : int
+    + actionCount : int
+    + controlStartIndex : int
+    + controlCount : int
+    + bindingStartIndex : int
+    + bindingCount : int
+    + interactionStartIndex : int
+    + interactionCount : int
+    + processorStartIndex : int
+    + processorCount : int
+    + compositeStartIndex : int
+    + compositeCount : int
+}
+struct UnmanagedMemory {
+    + isAllocated : bool <<get>>
+    + mapCount : int
+    + actionCount : int
+    + interactionCount : int
+    + bindingCount : int
+    + controlCount : int
+    + compositeCount : int
+    + sizeInBytes : int <<get>>
+    + controlGroupingInitialized : bool
+    + Allocate(mapCount:int, actionCount:int, bindingCount:int, controlCount:int, interactionCount:int, compositeCount:int) : void
+    + Dispose() : void
+    + CopyDataFrom(memory:UnmanagedMemory) : void
+    + Clone() : UnmanagedMemory
+}
+struct GlobalState {
+}
+enum Flags {
+    TimerRunning= 1 << 0,
+}
+enum Flags {
+    ChainsWithNext= 1 << 0,
+    EndOfChain= 1 << 1,
+    Composite= 1 << 2,
+    PartOfComposite= 1 << 3,
+    InitialStateCheckPending= 1 << 4,
+    WantsInitialStateCheck= 1 << 5,
+}
+enum Flags {
+    HaveMagnitude= 1 << 0,
+    PassThrough= 1 << 1,
+    MayNeedConflictResolution= 1 << 2,
+    HasMultipleConcurrentActuations= 1 << 3,
+    InProcessing= 1 << 4,
+    Button= 1 << 5,
+    Pressed= 1 << 6,
+}
+IInputStateChangeMonitor <|-- InputActionState
+ICloneable <|-- InputActionState
+IDisposable <|-- InputActionState
+InputActionState --> "memory" UnmanagedMemory
+InputActionState +-- InteractionState
+InteractionState --> "phase" InputActionPhase
+InputActionState +-- BindingState
+BindingState --> "flags" Flags
+InputActionState +-- TriggerState
+TriggerState --> "phase" InputActionPhase
+TriggerState --> "flags" Flags
+InputActionState +-- ActionMapIndices
+InputActionState +-- UnmanagedMemory
+IDisposable <|-- UnmanagedMemory
+InputActionState +-- GlobalState
+InteractionState +-- Flags
+BindingState +-- Flags
+TriggerState +-- Flags
+@enduml

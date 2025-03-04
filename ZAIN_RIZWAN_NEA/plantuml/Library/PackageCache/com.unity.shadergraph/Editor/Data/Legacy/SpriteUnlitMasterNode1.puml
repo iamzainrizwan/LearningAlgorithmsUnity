@@ -1,0 +1,8 @@
+@startuml
+class SpriteUnlitMasterNode1 {
+    + m_ShaderGUIOverride : string
+    + m_OverrideEnabled : bool
+}
+AbstractMaterialNode <|-- SpriteUnlitMasterNode1
+IMasterNode1 <|-- SpriteUnlitMasterNode1
+@enduml

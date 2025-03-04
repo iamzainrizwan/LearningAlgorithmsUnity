@@ -1,0 +1,8 @@
+@startuml
+class PropertyInfoStubWriter {
+    + PropertyInfoStubWriter(propertyInfo:PropertyInfo)
+}
+class "AccessorInfoStubWriter`1"<T> {
+}
+"AccessorInfoStubWriter`1" "<PropertyInfo>" <|-- PropertyInfoStubWriter
+@enduml

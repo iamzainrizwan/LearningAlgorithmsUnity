@@ -1,0 +1,7 @@
+@startuml
+struct FieldDependency {
+    + FieldDependency(field:FieldDescriptor, dependsOn:FieldDescriptor)
+}
+FieldDependency --> "field" FieldDescriptor
+FieldDependency --> "dependsOn" FieldDescriptor
+@enduml

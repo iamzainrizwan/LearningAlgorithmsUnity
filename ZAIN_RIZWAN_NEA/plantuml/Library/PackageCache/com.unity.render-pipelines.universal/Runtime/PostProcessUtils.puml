@@ -1,0 +1,17 @@
+@startuml
+class PostProcessUtils <<static>> {
+    + {static} ConfigureDithering(data:PostProcessData, index:int, camera:Camera, material:Material) : int
+    + {static} ConfigureDithering(data:PostProcessData, index:int, cameraPixelWidth:int, cameraPixelHeight:int, material:Material) : int
+    + {static} ConfigureFilmGrain(data:PostProcessData, settings:FilmGrain, camera:Camera, material:Material) : void
+    + {static} ConfigureFilmGrain(data:PostProcessData, settings:FilmGrain, cameraPixelWidth:int, cameraPixelHeight:int, material:Material) : void
+}
+class ShaderConstants <<static>> {
+    + {static} <<readonly>> _Grain_Texture : int
+    + {static} <<readonly>> _Grain_Params : int
+    + {static} <<readonly>> _Grain_TilingParams : int
+    + {static} <<readonly>> _BlueNoise_Texture : int
+    + {static} <<readonly>> _Dithering_Params : int
+    + {static} <<readonly>> _SourceSize : int
+}
+PostProcessUtils +-- ShaderConstants
+@enduml

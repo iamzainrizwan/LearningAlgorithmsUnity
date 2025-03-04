@@ -1,0 +1,21 @@
+@startuml
+struct SphericalHarmonicsL1 {
+    + <<override>> Equals(other:object) : bool
+    + <<override>> GetHashCode() : int
+}
+class SphericalHarmonicsL2Utils {
+    + {static} GetL1(sh:SphericalHarmonicsL2, L1_R:Vector3, L1_G:Vector3, L1_B:Vector3) : void
+    + {static} GetL2(sh:SphericalHarmonicsL2, L2_0:Vector3, L2_1:Vector3, L2_2:Vector3, L2_3:Vector3, L2_4:Vector3) : void
+    + {static} SetL0(sh:SphericalHarmonicsL2, L0:Vector3) : void
+    + {static} SetL1R(sh:SphericalHarmonicsL2, L1_R:Vector3) : void
+    + {static} SetL1G(sh:SphericalHarmonicsL2, L1_G:Vector3) : void
+    + {static} SetL1B(sh:SphericalHarmonicsL2, L1_B:Vector3) : void
+    + {static} SetL1(sh:SphericalHarmonicsL2, L1_R:Vector3, L1_G:Vector3, L1_B:Vector3) : void
+    + {static} SetCoefficient(sh:SphericalHarmonicsL2, index:int, coefficient:Vector3) : void
+    + {static} GetCoefficient(sh:SphericalHarmonicsL2, index:int) : Vector3
+}
+SphericalHarmonicsL1 --> "shAr" Vector4
+SphericalHarmonicsL1 --> "shAg" Vector4
+SphericalHarmonicsL1 --> "shAb" Vector4
+SphericalHarmonicsL1 o-> "zero" SphericalHarmonicsL1
+@enduml

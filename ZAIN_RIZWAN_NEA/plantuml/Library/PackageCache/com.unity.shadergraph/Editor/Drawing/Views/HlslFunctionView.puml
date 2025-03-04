@@ -1,0 +1,9 @@
+@startuml
+enum HlslSourceType {
+    File,
+    String,
+}
+class HlslFunctionView {
+}
+VisualElement <|-- HlslFunctionView
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class AxisEventData {
+    + AxisEventData(eventSystem:EventSystem)
+}
+BaseEventData <|-- AxisEventData
+AxisEventData --> "moveVector" Vector2
+AxisEventData --> "moveDir" MoveDirection
+@enduml

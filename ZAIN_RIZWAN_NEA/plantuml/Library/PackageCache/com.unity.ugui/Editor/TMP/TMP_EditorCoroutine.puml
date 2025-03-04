@@ -1,0 +1,6 @@
+@startuml
+class TMP_EditorCoroutine {
+    + {static} StartCoroutine(routine:IEnumerator) : TMP_EditorCoroutine
+    + Stop() : void
+}
+@enduml

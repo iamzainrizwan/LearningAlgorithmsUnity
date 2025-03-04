@@ -1,0 +1,66 @@
+@startuml
+struct JsonParser {
+    + JsonParser(json:string)
+    + Reset() : void
+    + <<override>> ToString() : string
+    + NavigateToProperty(path:string) : bool
+    + CurrentPropertyHasValueEqualTo(expectedValue:JsonValue) : bool
+    + ParseToken(token:char) : bool
+    + ParseValue() : bool
+    + ParseValue(result:JsonValue) : bool
+    + ParseStringValue(result:JsonValue) : bool
+    + ParseArrayValue(result:JsonValue) : bool
+    + ParseObjectValue(result:JsonValue) : bool
+    + ParseNumber(result:JsonValue) : bool
+    + ParseBooleanValue(result:JsonValue) : bool
+    + ParseNullValue(result:JsonValue) : bool
+    + SkipToValue() : bool
+    + isAtEnd : bool <<get>>
+}
+enum JsonValueType {
+    None,
+    Bool,
+    Real,
+    Integer,
+    String,
+    Array,
+    Object,
+    Any,
+}
+struct JsonString {
+    + hasEscapes : bool
+    + <<override>> ToString() : string
+    + Equals(other:JsonString) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+struct JsonValue {
+    + boolValue : bool
+    + realValue : double
+    + integerValue : long
+    + anyValue : object
+    + ToBoolean() : bool
+    + ToInteger() : long
+    + ToDouble() : double
+    + <<override>> ToString() : string
+    + Equals(other:JsonValue) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+class "IEquatable`1"<T> {
+}
+class "List`1"<T> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+JsonParser +-- JsonValueType
+JsonParser +-- JsonString
+"IEquatable`1" "<JsonString>" <|-- JsonString
+JsonString --> "text" Substring
+JsonParser +-- JsonValue
+"IEquatable`1" "<JsonValue>" <|-- JsonValue
+JsonValue --> "type" JsonValueType
+JsonValue --> "stringValue" JsonString
+JsonValue --> "arrayValue<JsonValue>" "List`1"
+JsonValue --> "objectValue<string,JsonValue>" "Dictionary`2"
+@enduml

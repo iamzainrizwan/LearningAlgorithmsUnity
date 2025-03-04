@@ -1,0 +1,7 @@
+@startuml
+class AssetPostprocessor {
+}
+struct PathToMove {
+}
+AssetPostprocessor +-- PathToMove
+@enduml

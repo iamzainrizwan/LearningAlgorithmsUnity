@@ -1,0 +1,8 @@
+@startuml
+abstract class "NonNullableCollection`1"<T> {
+    + AddRange(collection:IEnumerable<T>) : void
+}
+class "Collection`1"<T> {
+}
+"Collection`1" "<T>" <|-- "NonNullableCollection`1"
+@enduml

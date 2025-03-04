@@ -1,0 +1,10 @@
+@startuml
+class "IsVariableDefinedUnitOption`1"<TVariableUnit> {
+    + IsVariableDefinedUnitOption()
+    + IsVariableDefinedUnitOption(unit:TVariableUnit)
+    + <<override>> Kind() : string
+}
+class "VariableUnitOption`1"<T> {
+}
+"VariableUnitOption`1" "<TVariableUnit>" <|-- "IsVariableDefinedUnitOption`1"
+@enduml

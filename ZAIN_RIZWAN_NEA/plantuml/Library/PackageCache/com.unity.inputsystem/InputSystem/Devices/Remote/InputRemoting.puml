@@ -1,0 +1,115 @@
+@startuml
+class InputRemoting <<sealed>> {
+    + sending : bool <<get>>
+    + StartSending() : void
+    + StopSending() : void
+    + Subscribe(observer:IObserver<Message>) : IDisposable
+    + RemoveRemoteDevices(participantId:int) : void
+}
+class "IObservable`1"<T> {
+}
+class "IObserver`1"<T> {
+}
+enum MessageType {
+    Connect,
+    Disconnect,
+    NewLayout,
+    NewDevice,
+    NewEvents,
+    RemoveDevice,
+    RemoveLayout,
+    ChangeUsages,
+    StartSending,
+    StopSending,
+}
+struct Message {
+    + participantId : int
+}
+enum Flags {
+    Sending= 1 << 0,
+    StartSendingOnConnect= 1 << 1,
+}
+struct RemoteSender {
+    + senderId : int
+}
+struct RemoteInputDevice {
+    + remoteId : int
+    + localId : int
+}
+class Subscriber {
+    + Dispose() : void
+}
+class ConnectMsg <<static>> {
+    + {static} Process(receiver:InputRemoting) : void
+}
+class StartSendingMsg <<static>> {
+    + {static} Process(receiver:InputRemoting) : void
+}
+class StopSendingMsg <<static>> {
+    + {static} Process(receiver:InputRemoting) : void
+}
+class DisconnectMsg <<static>> {
+    + {static} Process(receiver:InputRemoting, msg:Message) : void
+}
+class NewLayoutMsg <<static>> {
+    + {static} Create(sender:InputRemoting, layoutName:string) : Message?
+    + {static} Process(receiver:InputRemoting, msg:Message) : void
+}
+class NewDeviceMsg <<static>> {
+    + {static} Create(device:InputDevice) : Message
+    + {static} Process(receiver:InputRemoting, msg:Message) : void
+}
+class NewEventsMsg <<static>> {
+    + {static} <<unsafe>> CreateResetEvent(device:InputDevice, isHardReset:bool) : Message
+    + {static} <<unsafe>> CreateStateEvent(device:InputDevice) : Message
+    + {static} <<unsafe>> Create(events:InputEvent*, eventCount:int) : Message
+    + {static} <<unsafe>> Process(receiver:InputRemoting, msg:Message) : void
+}
+class ChangeUsageMsg <<static>> {
+    + {static} Create(device:InputDevice) : Message
+    + {static} Process(receiver:InputRemoting, msg:Message) : void
+}
+class RemoveDeviceMsg <<static>> {
+    + {static} Create(device:InputDevice) : Message
+    + {static} Process(receiver:InputRemoting, msg:Message) : void
+}
+struct Data {
+    + name : string
+    + layoutJson : string
+    + isOverride : bool
+}
+struct Data {
+    + name : string
+    + layout : string
+    + deviceId : int
+}
+struct Data {
+    + deviceId : int
+}
+"IObservable`1" "<InputRemoting.Message>" <|-- InputRemoting
+"IObserver`1" "<InputRemoting.Message>" <|-- InputRemoting
+InputRemoting +-- MessageType
+InputRemoting +-- Message
+Message --> "type" MessageType
+InputRemoting +-- Flags
+InputRemoting +-- RemoteSender
+InputRemoting +-- RemoteInputDevice
+RemoteInputDevice --> "description" InputDeviceDescription
+InputRemoting +-- Subscriber
+IDisposable <|-- Subscriber
+Subscriber --> "owner" InputRemoting
+Subscriber --> "observer<Message>" "IObserver`1"
+InputRemoting +-- ConnectMsg
+InputRemoting +-- StartSendingMsg
+InputRemoting +-- StopSendingMsg
+InputRemoting +-- DisconnectMsg
+InputRemoting +-- NewLayoutMsg
+InputRemoting +-- NewDeviceMsg
+InputRemoting +-- NewEventsMsg
+InputRemoting +-- ChangeUsageMsg
+InputRemoting +-- RemoveDeviceMsg
+NewLayoutMsg +-- Data
+NewDeviceMsg +-- Data
+Data --> "description" InputDeviceDescription
+ChangeUsageMsg +-- Data
+@enduml

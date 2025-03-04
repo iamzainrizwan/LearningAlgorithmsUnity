@@ -1,0 +1,9 @@
+@startuml
+class VersionAttribute {
+    + Version : string <<get>>
+    + VersionAttribute(version:string)
+    + ApplyToTest(test:Test) : void
+}
+NUnitAttribute <|-- VersionAttribute
+IApplyToTest <|-- VersionAttribute
+@enduml

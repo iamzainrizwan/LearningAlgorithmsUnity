@@ -1,0 +1,5 @@
+@startuml
+class CustomTextureShaderGraphMenu <<static>> {
+    + {static} CreateCustomTextureShaderGraph() : void
+}
+@enduml

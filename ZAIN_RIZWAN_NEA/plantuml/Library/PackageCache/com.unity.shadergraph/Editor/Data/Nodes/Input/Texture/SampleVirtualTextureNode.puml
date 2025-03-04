@@ -1,0 +1,64 @@
+@startuml
+class SampleVirtualTextureNode {
+    + <<const>> DefaultNodeTitle : string = "Sample Virtual Texture"
+    + <<const>> kMinLayers : int = 1
+    + <<const>> kMaxLayers : int = 4
+    + <<const>> UVInputId : int = 0
+    + <<const>> VirtualTextureInputId : int = 1
+    + <<const>> LODInputId : int = 2
+    + <<const>> BiasInputId : int = 3
+    + <<const>> DxInputId : int = 4
+    + <<const>> DyInputId : int = 5
+    + <<override>> hasPreview : bool <<get>>
+    + enableGlobalMipBias : bool <<get>> <<set>>
+    + noFeedback : bool <<get>> <<set>>
+    + SampleVirtualTextureNode()
+    + SampleVirtualTextureNode(isLod:bool, noResolve:bool)
+    + <<override>> Setup() : void
+    + RebuildAllSlots(inspectProperty:bool) : void
+    + <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> ValidateNode() : void
+    + GetFeedbackVariableName() : string
+    + GenerateNodeFunction(registry:FunctionRegistry, generationMode:GenerationMode) : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + <<override>> CollectShaderProperties(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + RequiresMeshUV(channel:Internal.UVChannel, stageCapability:ShaderStageCapability) : bool
+    + RequiresTime() : bool
+    + RequiresScreenPosition(stageCapability:ShaderStageCapability) : bool
+}
+enum LodCalculation {
+    VtLevel_Automatic= 0,
+    VtLevel_Lod= 1,
+    VtLevel_Bias= 2,
+    VtLevel_Derivatives= 3,
+}
+enum AddressMode {
+    VtAddressMode_Wrap= 0,
+    VtAddressMode_Clamp= 1,
+}
+enum FilterMode {
+    VtFilter_Anisotropic= 0,
+}
+enum UvSpace {
+    VtUvSpace_Regular= 0,
+    VtUvSpace_PreTransformed= 1,
+}
+enum QualityMode {
+    VtSampleQuality_Low= 0,
+    VtSampleQuality_High= 1,
+}
+AbstractMaterialNode <|-- SampleVirtualTextureNode
+IGeneratesBodyCode <|-- SampleVirtualTextureNode
+IGeneratesFunction <|-- SampleVirtualTextureNode
+IMayRequireMeshUV <|-- SampleVirtualTextureNode
+IMayRequireTime <|-- SampleVirtualTextureNode
+IMayRequireScreenPosition <|-- SampleVirtualTextureNode
+SampleVirtualTextureNode --> "addressMode" AddressMode
+SampleVirtualTextureNode --> "lodCalculation" LodCalculation
+SampleVirtualTextureNode --> "sampleQuality" QualityMode
+SampleVirtualTextureNode +-- LodCalculation
+SampleVirtualTextureNode +-- AddressMode
+SampleVirtualTextureNode +-- FilterMode
+SampleVirtualTextureNode +-- UvSpace
+SampleVirtualTextureNode +-- QualityMode
+@enduml

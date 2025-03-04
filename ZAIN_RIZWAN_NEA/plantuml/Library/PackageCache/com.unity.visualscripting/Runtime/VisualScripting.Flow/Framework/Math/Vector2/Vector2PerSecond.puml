@@ -1,0 +1,8 @@
+@startuml
+class Vector2PerSecond <<sealed>> {
+    + <<override>> Operation(input:Vector2) : Vector2
+}
+class "PerSecond`1"<T> {
+}
+"PerSecond`1" "<Vector2>" <|-- Vector2PerSecond
+@enduml

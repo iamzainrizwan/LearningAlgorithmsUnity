@@ -1,0 +1,89 @@
+@startuml
+class SubGraphNode {
+    + subGraphGuid : string <<get>>
+    + <<override>> hasPreview : bool <<get>>
+    + SubGraphNode()
+    + <<override>> allowedInSubGraph : bool <<get>>
+    + <<override>> canSetPrecision : bool <<get>>
+    + <<override>> GetInputSlots(startingSlot:MaterialSlot, foundSlots:List<T>) : void
+    + <<override>> GetOutputSlots(startingSlot:MaterialSlot, foundSlots:List<T>) : void
+    + GenerateNodeCode(sb:ShaderStringBuilder, generationMode:GenerationMode) : void
+    + OnEnable() : void
+    + Reload(changedFileDependencyGUIDs:HashSet<string>) : bool
+    + <<override>> UpdatePrecision(inputSlots:List<MaterialSlot>) : void
+    + <<virtual>> UpdateSlots() : void
+    + <<override>> ValidateNode() : void
+    + <<override>> CollectShaderProperties(visitor:PropertyCollector, generationMode:GenerationMode) : void
+    + GetShaderProperty(id:int) : AbstractShaderProperty
+    + CollectShaderKeywords(keywords:KeywordCollector, generationMode:GenerationMode) : void
+    + <<override>> CollectPreviewMaterialProperties(properties:List<PreviewProperty>) : void
+    + <<virtual>> GenerateNodeFunction(registry:FunctionRegistry, generationMode:GenerationMode) : void
+    + RequiresNormal(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresMeshUV(channel:UVChannel, stageCapability:ShaderStageCapability) : bool
+    + RequiresScreenPosition(stageCapability:ShaderStageCapability) : bool
+    + RequiresNDCPosition(stageCapability:ShaderStageCapability) : bool
+    + RequiresPixelPosition(stageCapability:ShaderStageCapability) : bool
+    + RequiresViewDirection(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresPosition(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresPositionPredisplacement(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresTangent(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresTime() : bool
+    + RequiresFaceSign(stageCapability:ShaderStageCapability) : bool
+    + RequiresBitangent(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresVertexColor(stageCapability:ShaderStageCapability) : bool
+    + RequiresCameraOpaqueTexture(stageCapability:ShaderStageCapability) : bool
+    + RequiresDepthTexture(stageCapability:ShaderStageCapability) : bool
+    + RequiresVertexSkinning(stageCapability:ShaderStageCapability) : bool
+    + RequiresVertexID(stageCapability:ShaderStageCapability) : bool
+    + RequiresInstanceID(stageCapability:ShaderStageCapability) : bool
+    + GetDropdownEntryName(referenceName:string) : string
+    + SetDropdownEntryName(referenceName:string, value:string) : void
+    + <<override>> Dispose() : void
+}
+class MinimalSubGraphNode {
+    + GetSourceAssetDependencies(assetCollection:AssetCollection) : void
+}
+class SubGraphHelper {
+}
+class SubGraphAssetReference {
+    + <<override>> ToString() : string
+}
+class AssetReference {
+    + fileID : long = default
+    + guid : string = default
+    + type : int = default
+    + <<override>> ToString() : string
+}
+AbstractMaterialNode <|-- SubGraphNode
+IGeneratesBodyCode <|-- SubGraphNode
+IOnAssetEnabled <|-- SubGraphNode
+IGeneratesFunction <|-- SubGraphNode
+IMayRequireNormal <|-- SubGraphNode
+IMayRequireTangent <|-- SubGraphNode
+IMayRequireBitangent <|-- SubGraphNode
+IMayRequireMeshUV <|-- SubGraphNode
+IMayRequireScreenPosition <|-- SubGraphNode
+IMayRequireNDCPosition <|-- SubGraphNode
+IMayRequirePixelPosition <|-- SubGraphNode
+IMayRequireViewDirection <|-- SubGraphNode
+IMayRequirePosition <|-- SubGraphNode
+IMayRequirePositionPredisplacement <|-- SubGraphNode
+IMayRequireVertexColor <|-- SubGraphNode
+IMayRequireTime <|-- SubGraphNode
+IMayRequireFaceSign <|-- SubGraphNode
+IMayRequireCameraOpaqueTexture <|-- SubGraphNode
+IMayRequireDepthTexture <|-- SubGraphNode
+IMayRequireVertexSkinning <|-- SubGraphNode
+IMayRequireVertexID <|-- SubGraphNode
+IMayRequireInstanceID <|-- SubGraphNode
+IDisposable <|-- SubGraphNode
+SubGraphNode --> "asset" SubGraphAsset
+SubGraphNode --> "previewMode" PreviewMode
+SubGraphNode +-- MinimalSubGraphNode
+IHasDependencies <|-- MinimalSubGraphNode
+SubGraphNode +-- SubGraphHelper
+SubGraphHelper --> "subGraph" SubGraphAsset
+SubGraphNode +-- SubGraphAssetReference
+SubGraphAssetReference o-> "subGraph" AssetReference
+SubGraphNode +-- AssetReference
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+struct ZBinningJob {
+    + <<const>> batchSize : int = 128
+    + <<const>> headerLength : int = 2
+    + zBinScale : float
+    + zBinOffset : float
+    + binCount : int
+    + wordsPerTile : int
+    + lightCount : int
+    + reflectionProbeCount : int
+    + batchCount : int
+    + viewCount : int
+    + isOrthographic : bool
+    + Execute(jobIndex:int) : void
+}
+class "NativeArray`1"<T> {
+}
+IJobFor <|-- ZBinningJob
+ZBinningJob --> "bins<uint>" "NativeArray`1"
+ZBinningJob --> "minMaxZs<float2>" "NativeArray`1"
+@enduml

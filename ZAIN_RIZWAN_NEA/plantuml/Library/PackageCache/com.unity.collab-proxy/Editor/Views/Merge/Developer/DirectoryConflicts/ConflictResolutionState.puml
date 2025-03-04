@@ -1,0 +1,4 @@
+@startuml
+class ConflictResolutionState {
+}
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class UnitCategoryOption {
+    + UnitCategoryOption(category:UnitCategory)
+}
+class "FuzzyOption`1"<T> {
+}
+"FuzzyOption`1" "<UnitCategory>" <|-- UnitCategoryOption
+@enduml

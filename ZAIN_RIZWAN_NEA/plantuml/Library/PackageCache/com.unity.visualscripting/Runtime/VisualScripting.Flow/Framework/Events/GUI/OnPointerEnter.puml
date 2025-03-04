@@ -1,0 +1,6 @@
+@startuml
+class OnPointerEnter <<sealed>> {
+}
+PointerEventUnit <|-- OnPointerEnter
+OnPointerEnter --> "MessageListenerType" Type
+@enduml

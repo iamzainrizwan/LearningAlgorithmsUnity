@@ -1,0 +1,6 @@
+@startuml
+class SobolData <<static>> {
+    + <<const>> SobolDims : uint = 1024
+    + <<const>> SobolSize : uint = 52
+}
+@enduml

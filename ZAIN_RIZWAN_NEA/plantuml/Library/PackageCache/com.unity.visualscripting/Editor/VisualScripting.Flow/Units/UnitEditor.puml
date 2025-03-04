@@ -1,0 +1,18 @@
+@startuml
+class UnitEditor {
+    + UnitEditor(metadata:Metadata)
+}
+class "GraphElementEditor`1"<T> {
+}
+class Styles <<new>> <<static>> {
+    + {static} <<readonly>> spaceBetweenPorts : float = 5
+}
+"GraphElementEditor`1" "<FlowGraphContext>" <|-- UnitEditor
+UnitEditor +-- Styles
+Styles --> "portsBackground" GUIStyle
+Styles --> "portsLabel" GUIStyle
+Styles --> "portLabel" GUIStyle
+Styles --> "portDescription" GUIStyle
+Styles --> "portIcon" GUIStyle
+Styles --> "inspectorBackground" GUIStyle
+@enduml

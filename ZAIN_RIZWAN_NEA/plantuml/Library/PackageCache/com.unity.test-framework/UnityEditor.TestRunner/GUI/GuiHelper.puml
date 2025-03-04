@@ -1,0 +1,12 @@
+@startuml
+class GuiHelper {
+    + GuiHelper(monoCecilHelper:IMonoCecilHelper, assetsDatabaseHelper:IAssetsDatabaseHelper)
+    + OpenScriptInExternalEditor(type:Type, method:MethodInfo) : void
+    + GetFileOpenInfo(type:Type, method:MethodInfo) : IFileOpenInfo
+    + FilePathToAssetsRelativeAndUnified(filePath:string) : string
+    + OpenScriptInExternalEditor(stacktrace:string) : bool
+}
+IGuiHelper <|-- GuiHelper
+GuiHelper --> "AssetsDatabaseHelper" IAssetsDatabaseHelper
+GuiHelper --> "Editor" IExternalCodeEditor
+@enduml

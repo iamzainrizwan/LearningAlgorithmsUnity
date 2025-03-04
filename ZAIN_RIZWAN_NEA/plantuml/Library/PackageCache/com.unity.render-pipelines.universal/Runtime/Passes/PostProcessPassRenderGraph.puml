@@ -1,0 +1,86 @@
+@startuml
+class PostProcessPass <<partial>> {
+    + RenderStopNaN(renderGraph:RenderGraph, cameraTargetDescriptor:RenderTextureDescriptor, activeCameraColor:TextureHandle, stopNaNTarget:TextureHandle) : void
+    + RenderSMAA(renderGraph:RenderGraph, resourceData:UniversalResourceData, antialiasingQuality:AntialiasingQuality, source:TextureHandle, SMAATarget:TextureHandle) : void
+    + UberPostSetupBloomPass(rendergraph:RenderGraph, bloomTexture:TextureHandle, uberMaterial:Material) : void
+    + RenderBloomTexture(renderGraph:RenderGraph, source:TextureHandle, destination:TextureHandle, enableAlphaOutput:bool) : void
+    + RenderDoF(renderGraph:RenderGraph, resourceData:UniversalResourceData, cameraData:UniversalCameraData, source:TextureHandle, destination:TextureHandle) : void
+    + RenderDoFGaussian(renderGraph:RenderGraph, resourceData:UniversalResourceData, cameraData:UniversalCameraData, source:TextureHandle, destination:TextureHandle, dofMaterial:Material) : void
+    + RenderDoFBokeh(renderGraph:RenderGraph, resourceData:UniversalResourceData, cameraData:UniversalCameraData, source:TextureHandle, destination:TextureHandle, dofMaterial:Material) : void
+    + RenderPaniniProjection(renderGraph:RenderGraph, camera:Camera, source:TextureHandle, destination:TextureHandle) : void
+    + RenderMotionBlur(renderGraph:RenderGraph, resourceData:UniversalResourceData, cameraData:UniversalCameraData, source:TextureHandle, destination:TextureHandle) : void
+    + RenderLensFlareDataDriven(renderGraph:RenderGraph, resourceData:UniversalResourceData, cameraData:UniversalCameraData, destination:TextureHandle) : void
+    + RenderLensFlareScreenSpace(renderGraph:RenderGraph, camera:Camera, destination:TextureHandle, originalBloomTexture:TextureHandle, screenSpaceLensFlareBloomMipTexture:TextureHandle, enableXR:bool) : TextureHandle
+    + RenderFinalSetup(renderGraph:RenderGraph, cameraData:UniversalCameraData, source:TextureHandle, destination:TextureHandle, settings:FinalBlitSettings) : void
+    + RenderFinalFSRScale(renderGraph:RenderGraph, source:TextureHandle, destination:TextureHandle, enableAlphaOutput:bool) : void
+    + RenderFinalBlit(renderGraph:RenderGraph, cameraData:UniversalCameraData, source:TextureHandle, overlayUITexture:TextureHandle, postProcessingTarget:TextureHandle, settings:FinalBlitSettings) : void
+    + RenderFinalPassRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer, source:TextureHandle, overlayUITexture:TextureHandle, postProcessingTarget:TextureHandle, enableColorEncodingIfNeeded:bool) : void
+    + RenderUberPost(renderGraph:RenderGraph, frameData:ContextContainer, cameraData:UniversalCameraData, postProcessingData:UniversalPostProcessingData, sourceTexture:TextureHandle, destTexture:TextureHandle, lutTexture:TextureHandle, overlayUITexture:TextureHandle, requireHDROutput:bool, enableAlphaOutput:bool, resolveToDebugScreen:bool, hasFinalPass:bool) : void
+    + RenderPostProcessingRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer, activeCameraColorTexture:TextureHandle, lutTexture:TextureHandle, overlayUITexture:TextureHandle, postProcessingTarget:TextureHandle, hasFinalPass:bool, resolveToDebugScreen:bool, enableColorEndingIfNeeded:bool) : void
+}
+class UpdateCameraResolutionPassData {
+}
+class StopNaNsPassData {
+}
+class SMAASetupPassData {
+}
+class SMAAPassData {
+}
+class UberSetupBloomPassData {
+}
+class BloomPassData {
+}
+struct BloomMaterialParams {
+}
+class DoFGaussianPassData {
+}
+class DoFBokehPassData {
+}
+class PaniniProjectionPassData {
+}
+class MotionBlurPassData {
+}
+class LensFlarePassData {
+}
+class LensFlareScreenSpacePassData {
+}
+class PostProcessingFinalSetupPassData {
+}
+class PostProcessingFinalFSRScalePassData {
+}
+class PostProcessingFinalBlitPassData {
+}
+struct FinalBlitSettings {
+    + isFxaaEnabled : bool
+    + isFsrEnabled : bool
+    + isTaaSharpeningEnabled : bool
+    + requireHDROutput : bool
+    + resolveToDebugScreen : bool
+    + isAlphaOutputEnabled : bool
+    + {static} Create() : FinalBlitSettings
+}
+class UberPostPassData {
+}
+class PostFXSetupPassData {
+}
+ScriptableRenderPass <|-- PostProcessPass
+PostProcessPass +-- UpdateCameraResolutionPassData
+PostProcessPass +-- StopNaNsPassData
+PostProcessPass +-- SMAASetupPassData
+PostProcessPass +-- SMAAPassData
+PostProcessPass +-- UberSetupBloomPassData
+PostProcessPass +-- BloomPassData
+PostProcessPass +-- BloomMaterialParams
+PostProcessPass +-- DoFGaussianPassData
+PostProcessPass +-- DoFBokehPassData
+PostProcessPass +-- PaniniProjectionPassData
+PostProcessPass +-- MotionBlurPassData
+PostProcessPass +-- LensFlarePassData
+PostProcessPass +-- LensFlareScreenSpacePassData
+PostProcessPass +-- PostProcessingFinalSetupPassData
+PostProcessPass +-- PostProcessingFinalFSRScalePassData
+PostProcessPass +-- PostProcessingFinalBlitPassData
+PostProcessPass +-- FinalBlitSettings
+PostProcessPass +-- UberPostPassData
+PostProcessPass +-- PostFXSetupPassData
+@enduml

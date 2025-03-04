@@ -1,0 +1,10 @@
+@startuml
+class PendingChangesTab <<partial>> {
+}
+IRefreshableView <|-- PendingChangesTab
+IPendingChangesView <|-- PendingChangesTab
+IPendingChangesMenuOperations <|-- PendingChangesTab
+IChangelistMenuOperations <|-- PendingChangesTab
+IOpenMenuOperations <|-- PendingChangesTab
+IFilesFilterPatternsMenuOperations <|-- PendingChangesTab
+@enduml

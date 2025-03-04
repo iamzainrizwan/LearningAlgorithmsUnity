@@ -1,0 +1,10 @@
+@startuml
+class GroupData {
+    + title : string <<get>> <<set>>
+    + GroupData()
+    + GroupData(title:string, position:Vector2)
+}
+JsonObject <|-- GroupData
+IRectInterface <|-- GroupData
+GroupData --> "position" Vector2
+@enduml

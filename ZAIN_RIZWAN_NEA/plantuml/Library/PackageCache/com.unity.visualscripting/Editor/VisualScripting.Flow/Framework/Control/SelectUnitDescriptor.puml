@@ -1,0 +1,8 @@
+@startuml
+class "SelectUnitDescriptor`1"<T> {
+    + SelectUnitDescriptor(unit:SelectUnit<T>)
+}
+class "UnitDescriptor`1"<T> {
+}
+"UnitDescriptor`1" "<SelectUnit<T>>" <|-- "SelectUnitDescriptor`1"
+@enduml

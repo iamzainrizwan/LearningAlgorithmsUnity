@@ -1,0 +1,9 @@
+@startuml
+class HorizontalLayoutGroup {
+    + <<override>> CalculateLayoutInputHorizontal() : void
+    + <<override>> CalculateLayoutInputVertical() : void
+    + <<override>> SetLayoutHorizontal() : void
+    + <<override>> SetLayoutVertical() : void
+}
+HorizontalOrVerticalLayoutGroup <|-- HorizontalLayoutGroup
+@enduml

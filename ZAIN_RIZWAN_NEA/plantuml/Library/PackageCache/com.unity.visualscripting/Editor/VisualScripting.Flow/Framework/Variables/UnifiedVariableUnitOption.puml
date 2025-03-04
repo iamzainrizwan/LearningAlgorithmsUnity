@@ -1,0 +1,18 @@
+@startuml
+interface IUnifiedVariableUnitOption {
+}
+abstract class "UnifiedVariableUnitOption`1"<TVariableUnit> {
+    + <<override>> Deserialize(row:UnitOptionRow) : void
+    + <<override>> Serialize() : UnitOptionRow
+    + name : string <<get>>
+    + hasName : bool <<get>>
+    + <<override>> SearchResultLabel(query:string) : string
+    + <<override>> PreconfigureUnit(unit:TVariableUnit) : void
+}
+class "UnitOption`1"<T> {
+}
+IUnitOption <|-- IUnifiedVariableUnitOption
+"UnitOption`1" "<TVariableUnit>" <|-- "UnifiedVariableUnitOption`1"
+IUnifiedVariableUnitOption <|-- "UnifiedVariableUnitOption`1"
+"UnifiedVariableUnitOption`1" --> "kind" VariableKind
+@enduml

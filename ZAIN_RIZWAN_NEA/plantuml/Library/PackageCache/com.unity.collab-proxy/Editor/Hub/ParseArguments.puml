@@ -1,0 +1,19 @@
+@startuml
+class ParseArguments <<static>> {
+}
+class Command {
+}
+class UVCSArguments <<static>> {
+}
+class CloudArguments <<static>> {
+}
+enum Operation {
+    None,
+    DownloadRepository,
+    CreateWorkspace,
+}
+ParseArguments +-- Command
+ParseArguments +-- UVCSArguments
+ParseArguments +-- CloudArguments
+Command +-- Operation
+@enduml

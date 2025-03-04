@@ -1,0 +1,6 @@
+@startuml
+class GloballyUpdatedNavMeshSurface {
+    + {static} RequestNavMeshUpdate() : void
+}
+MonoBehaviour <|-- GloballyUpdatedNavMeshSurface
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class ReciprocalSquareRootNode {
+    + ReciprocalSquareRootNode()
+}
+CodeFunctionNode <|-- ReciprocalSquareRootNode
+@enduml

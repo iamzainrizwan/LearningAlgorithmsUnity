@@ -1,0 +1,6 @@
+@startuml
+class OnPreprocessBuildAnalyticsEventHandler {
+    + callbackOrder : int <<get>>
+    + OnPreprocessBuild(report:BuildReport) : void
+}
+@enduml

@@ -1,0 +1,38 @@
+@startuml
+class BurstInspectorGUI {
+    + BurstInspectorGUI()
+    + OnEnable() : void
+    + OnDisable() : void
+    + Update() : void
+    + OnGUI() : void
+    + {static} IsBurstError(disassembly:string) : bool
+}
+class BurstMethodTreeView {
+    + BurstMethodTreeView(state:TreeViewState, getFilter:Func<string>, getJobListFilterToggles:Func<(bool,bool)>)
+    + Initialize(targets:List<BurstCompileTarget>, identicalTargets:bool) : void
+    + <<new>> GetSelection() : IList<int>
+}
+enum AssemblyOptions {
+    PlainWithoutDebugInformation= 0,
+    PlainWithDebugInformation= 1,
+    EnhancedWithMinimalDebugInformation= 2,
+    EnhancedWithFullDebugInformation= 3,
+    ColouredWithMinimalDebugInformation= 4,
+    ColouredWithFullDebugInformation= 5,
+}
+enum KeyboardOperation {
+    SelectAll,
+    Copy,
+    MoveLeft,
+    MoveRight,
+    MoveUp,
+    MoveDown,
+    Search,
+    Escape,
+    Enter,
+}
+EditorWindow <|-- BurstInspectorGUI
+TreeView <|-- BurstMethodTreeView
+BurstInspectorGUI +-- AssemblyOptions
+BurstInspectorGUI +-- KeyboardOperation
+@enduml

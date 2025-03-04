@@ -1,0 +1,7 @@
+@startuml
+enum TypeNameDetail {
+    Name,
+    NameAndAssembly,
+    Full,
+}
+@enduml

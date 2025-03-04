@@ -1,0 +1,36 @@
+@startuml
+class AccelStructAdapter <<sealed>> {
+    + AccelStructAdapter(accelStruct:IRayTracingAccelStruct, geometryPool:GeometryPool)
+    + AccelStructAdapter(accelStruct:IRayTracingAccelStruct, resources:RayTracingResources)
+    + GetAccelerationStructure() : IRayTracingAccelStruct
+    + Bind(cmd:CommandBuffer, propertyName:string, shader:IRayTracingShader) : void
+    + Dispose() : void
+    + AddInstance(objectHandle:int, meshRendererOrTerrain:Component, perSubMeshMask:Span<uint>, perSubMeshMaterialIDs:Span<uint>, renderingLayerMask:uint) : void
+    + AddInstance(objectHandle:int, mesh:Mesh, localToWorldMatrix:Matrix4x4, perSubMeshMask:Span<uint>, perSubMeshMaterialIDs:Span<uint>, renderingLayerMask:uint) : void
+    + RemoveInstance(objectHandle:int) : void
+    + UpdateInstanceTransform(objectHandle:int, localToWorldMatrix:Matrix4x4) : void
+    + UpdateInstanceMaterialIDs(objectHandle:int, perSubMeshMaterialIDs:Span<uint>) : void
+    + UpdateInstanceMask(objectHandle:int, perSubMeshMask:Span<uint>) : void
+    + UpdateInstanceMask(objectHandle:int, mask:uint) : void
+    + Build(cmd:CommandBuffer, scratchBuffer:GraphicsBuffer) : void
+    + NextFrame() : void
+    + GetInstanceIDs(rendererID:int, instanceIDs:int[]) : bool
+}
+struct TerrainDesc {
+    + mask : uint
+    + renderingLayerMask : uint
+    + materialID : uint
+    + enableTriangleCulling : bool
+    + frontTriangleCounterClockwise : bool
+    + TerrainDesc(terrain:Terrain)
+}
+struct InstanceIDs {
+    + InstanceID : int
+    + AccelStructID : int
+}
+IDisposable <|-- AccelStructAdapter
+AccelStructAdapter --> "GeometryPool" GeometryPool
+TerrainDesc --> "terrain" Terrain
+TerrainDesc --> "localToWorldMatrix" Matrix4x4
+AccelStructAdapter +-- InstanceIDs
+@enduml

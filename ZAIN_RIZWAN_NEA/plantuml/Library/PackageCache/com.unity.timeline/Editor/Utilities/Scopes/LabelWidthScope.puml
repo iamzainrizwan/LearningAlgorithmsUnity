@@ -1,0 +1,7 @@
+@startuml
+struct LabelWidthScope {
+    + LabelWidthScope(newValue:float)
+    + Dispose() : void
+}
+IDisposable <|-- LabelWidthScope
+@enduml

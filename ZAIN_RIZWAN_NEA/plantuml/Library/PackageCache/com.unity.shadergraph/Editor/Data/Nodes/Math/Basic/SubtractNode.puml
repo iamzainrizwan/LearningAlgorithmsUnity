@@ -1,0 +1,6 @@
+@startuml
+class SubtractNode {
+    + SubtractNode()
+}
+CodeFunctionNode <|-- SubtractNode
+@enduml

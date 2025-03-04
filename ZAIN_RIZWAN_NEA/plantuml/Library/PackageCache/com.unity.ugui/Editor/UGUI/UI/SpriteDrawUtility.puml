@@ -1,0 +1,6 @@
+@startuml
+class SpriteDrawUtility {
+    + {static} DrawSprite(sprite:Sprite, drawArea:Rect, color:Color) : void
+    + {static} DrawSprite(tex:Texture, drawArea:Rect, outer:Rect, uv:Rect, color:Color) : void
+}
+@enduml

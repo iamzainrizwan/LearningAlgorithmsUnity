@@ -1,0 +1,8 @@
+@startuml
+class Snapping {
+    + Snap(position:Vector3) : Vector3
+}
+class "ISnapping`1"<T> {
+}
+"ISnapping`1" "<Vector3>" <|-- Snapping
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+class ConvertToPropertyAction {
+}
+class ConvertToInlineAction {
+}
+class DragGraphInputAction {
+}
+class "Action`1"<T> {
+}
+class "IList`1"<T> {
+}
+class "IEnumerable`1"<T> {
+}
+IGraphDataAction <|-- ConvertToPropertyAction
+ConvertToPropertyAction --> "modifyGraphDataAction<GraphData>" "Action`1"
+ConvertToPropertyAction o-> "inlinePropertiesToConvert<IPropertyFromNode>" "IList`1"
+ConvertToPropertyAction o-> "convertedPropertyReferences<AbstractShaderProperty>" "IList`1"
+ConvertToPropertyAction --> "nodePsition" Vector2
+IGraphDataAction <|-- ConvertToInlineAction
+ConvertToInlineAction --> "modifyGraphDataAction<GraphData>" "Action`1"
+ConvertToInlineAction o-> "propertyNodesToConvert<PropertyNode>" "IEnumerable`1"
+IGraphDataAction <|-- DragGraphInputAction
+DragGraphInputAction --> "modifyGraphDataAction<GraphData>" "Action`1"
+DragGraphInputAction --> "graphInputBeingDraggedIn" ShaderInput
+DragGraphInputAction --> "nodePosition" Vector2
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+class "InstanceActionInvoker`1"<TTarget> <<sealed>> {
+    + InstanceActionInvoker(methodInfo:MethodInfo)
+    + <<override>> Invoke(target:object, args:object[]) : object
+    + <<override>> Invoke(target:object) : object
+}
+class "InstanceActionInvokerBase`1"<T> {
+}
+"InstanceActionInvokerBase`1" "<TTarget>" <|-- "InstanceActionInvoker`1"
+@enduml

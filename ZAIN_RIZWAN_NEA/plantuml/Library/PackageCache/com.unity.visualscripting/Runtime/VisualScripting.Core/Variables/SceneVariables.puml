@@ -1,0 +1,10 @@
+@startuml
+class SceneVariables <<sealed>> {
+    + {static} Instance(scene:Scene) : SceneVariables
+    + {static} InstantiatedIn(scene:Scene) : bool
+    + {static} For(scene:Scene?) : VariableDeclarations
+}
+MonoBehaviour <|-- SceneVariables
+ISingleton <|-- SceneVariables
+SceneVariables --> "variables" Variables
+@enduml

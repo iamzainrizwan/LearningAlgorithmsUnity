@@ -1,0 +1,29 @@
+@startuml
+class TerrainToMesh <<static>> {
+    {static} + ConvertAsync(terrain:Terrain) : AsyncTerrainToMeshRequest
+    {static} + ConvertAsync(heightmapWidth:int, heightmapHeight:int, heightmapData:short[], heightmapScale:Vector3, holeWidth:int, holeHeight:int, holedata:byte[]) : AsyncTerrainToMeshRequest
+    {static} + Convert(terrain:Terrain) : Mesh
+    {static} + Convert(heightmapWidth:int, heightmapHeight:int, heightmapData:short[], heightmapScale:Vector3, holeWidth:int, holeHeight:int, holedata:byte[]) : Mesh
+}
+struct AsyncTerrainToMeshRequest {
+    + done : bool <<get>>
+    + GetMesh() : Mesh
+    + WaitForCompletion() : void
+}
+struct ComputeTerrainMeshJob {
+    + width : int
+    + height : int
+    + DisposeArrays() : void
+    + Execute(index:int) : void
+}
+class "NativeArray`1"<T> {
+}
+IJobParallelFor <|-- ComputeTerrainMeshJob
+ComputeTerrainMeshJob --> "heightmap<float>" "NativeArray`1"
+ComputeTerrainMeshJob --> "holes<bool>" "NativeArray`1"
+ComputeTerrainMeshJob --> "heightmapScale" float3
+ComputeTerrainMeshJob --> "positions<float3>" "NativeArray`1"
+ComputeTerrainMeshJob --> "uvs<float2>" "NativeArray`1"
+ComputeTerrainMeshJob --> "normals<float3>" "NativeArray`1"
+ComputeTerrainMeshJob --> "indices<int>" "NativeArray`1"
+@enduml

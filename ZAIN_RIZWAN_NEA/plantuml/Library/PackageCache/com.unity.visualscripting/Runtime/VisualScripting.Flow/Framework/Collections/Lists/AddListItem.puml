@@ -1,0 +1,11 @@
+@startuml
+class AddListItem <<sealed>> {
+    + Add(flow:Flow) : ControlOutput
+}
+Unit <|-- AddListItem
+AddListItem --> "enter" ControlInput
+AddListItem --> "listInput" ValueInput
+AddListItem --> "listOutput" ValueOutput
+AddListItem --> "item" ValueInput
+AddListItem --> "exit" ControlOutput
+@enduml

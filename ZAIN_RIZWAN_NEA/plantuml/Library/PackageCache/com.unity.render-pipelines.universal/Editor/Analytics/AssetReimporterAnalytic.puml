@@ -1,0 +1,17 @@
+@startuml
+class AssetReimporterAnalytic {
+    + {static} Send(duration:double, numberOfAssets:uint) : void
+}
+class Analytic {
+    + Analytic(duration:double, numberOfAssets:uint, assetType:string)
+    + TryGatherData(data:IAnalytic.IData, error:Exception) : bool
+}
+class Data {
+    + num_assets : uint
+    + duration : double
+    + asset_type : string
+}
+AssetReimporterAnalytic +-- Analytic
+IAnalytic <|-- Analytic
+Analytic +-- Data
+@enduml

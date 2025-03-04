@@ -1,0 +1,10 @@
+@startuml
+class BackgroundWorker <<static>> {
+    + {static} progressLabel : string <<get>>
+    + {static} progressProportion : float <<get>>
+    + {static} hasProgress : bool <<get>>
+    + {static} Schedule(action:Action) : void
+    + {static} ReportProgress(title:string, progress:float) : void
+    + {static} ClearProgress() : void
+}
+@enduml

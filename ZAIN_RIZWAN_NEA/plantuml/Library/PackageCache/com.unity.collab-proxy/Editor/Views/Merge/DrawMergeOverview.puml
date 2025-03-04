@@ -1,0 +1,4 @@
+@startuml
+class DrawMergeOverview <<static>> {
+}
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+class LayoutUtility <<static>> {
+    + {static} GetMinSize(rect:RectTransform, axis:int) : float
+    + {static} GetPreferredSize(rect:RectTransform, axis:int) : float
+    + {static} GetFlexibleSize(rect:RectTransform, axis:int) : float
+    + {static} GetMinWidth(rect:RectTransform) : float
+    + {static} GetPreferredWidth(rect:RectTransform) : float
+    + {static} GetFlexibleWidth(rect:RectTransform) : float
+    + {static} GetMinHeight(rect:RectTransform) : float
+    + {static} GetPreferredHeight(rect:RectTransform) : float
+    + {static} GetFlexibleHeight(rect:RectTransform) : float
+    + {static} GetLayoutProperty(rect:RectTransform, property:System.Func<ILayoutElement, float>, defaultValue:float) : float
+    + {static} GetLayoutProperty(rect:RectTransform, property:System.Func<ILayoutElement, float>, defaultValue:float, source:ILayoutElement) : float
+}
+@enduml

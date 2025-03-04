@@ -1,0 +1,8 @@
+@startuml
+class EnumOption {
+    + EnumOption(@enum:Enum)
+}
+class "DocumentedOption`1"<T> {
+}
+"DocumentedOption`1" "<Enum>" <|-- EnumOption
+@enduml

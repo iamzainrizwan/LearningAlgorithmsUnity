@@ -1,0 +1,22 @@
+@startuml
+abstract class "DocumentedOption`1"<T> {
+    + zoom : bool <<get>> <<protected set>>
+    + showType : bool <<get>> <<protected set>>
+    + <<override>> hasFooter : bool <<get>>
+    + <<override>> GetFooterHeight(width:float) : float
+    + <<override>> OnFooterGUI(position:Rect) : void
+}
+class "FuzzyOption`1"<T> {
+}
+class Styles <<static>> {
+    + {static} <<readonly>> iconSpacing : float = 0
+    + {static} <<readonly>> zoomSize : float = 32
+    + {static} <<readonly>> zoomSpacing : float = 8
+}
+"FuzzyOption`1" "<T>" <|-- "DocumentedOption`1"
+"DocumentedOption`1" --> "documentation" XmlDocumentationTags
+"DocumentedOption`1" +-- Styles
+Styles --> "summary" GUIStyle
+Styles --> "parameterSummary" GUIStyle
+Styles --> "remarks" GUIStyle
+@enduml

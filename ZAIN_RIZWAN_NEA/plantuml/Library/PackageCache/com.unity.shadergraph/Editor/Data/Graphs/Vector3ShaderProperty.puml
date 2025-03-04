@@ -1,0 +1,8 @@
+@startuml
+class Vector3ShaderProperty <<sealed>> {
+    + <<override>> latestVersion : int <<get>>
+    + <<override>> OnAfterDeserialize(json:string) : void
+}
+VectorShaderProperty <|-- Vector3ShaderProperty
+Vector3ShaderProperty --> "propertyType" PropertyType
+@enduml

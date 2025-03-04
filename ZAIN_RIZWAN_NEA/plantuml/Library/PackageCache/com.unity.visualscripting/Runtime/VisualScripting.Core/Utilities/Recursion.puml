@@ -1,0 +1,19 @@
+@startuml
+class "Recursion`1"<T> {
+    + Enter(o:T) : void
+    + TryEnter(o:T) : bool
+    + Exit(o:T) : void
+    + Dispose() : void
+    + {static} New() : Recursion<T>
+    + {static} New(maxDepth:int) : Recursion<T>
+}
+class Recursion <<sealed>> {
+    + {static} defaultMaxDepth : int <<get>> <<set>> = 100
+    + {static} safeMode : bool <<get>> <<set>>
+    + <<new>> {static} New() : Recursion
+    + <<new>> {static} New(maxDepth:int) : Recursion
+}
+IPoolable <|-- "Recursion`1"
+IDisposable <|-- "Recursion`1"
+"Recursion`1" "<object>" <|-- Recursion
+@enduml

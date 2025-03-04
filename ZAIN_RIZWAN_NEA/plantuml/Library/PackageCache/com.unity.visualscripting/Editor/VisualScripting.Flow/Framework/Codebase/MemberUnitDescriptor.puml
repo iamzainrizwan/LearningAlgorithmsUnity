@@ -1,0 +1,7 @@
+@startuml
+abstract class "MemberUnitDescriptor`1"<TMemberUnit> {
+}
+class "UnitDescriptor`1"<T> {
+}
+"UnitDescriptor`1" "<TMemberUnit>" <|-- "MemberUnitDescriptor`1"
+@enduml

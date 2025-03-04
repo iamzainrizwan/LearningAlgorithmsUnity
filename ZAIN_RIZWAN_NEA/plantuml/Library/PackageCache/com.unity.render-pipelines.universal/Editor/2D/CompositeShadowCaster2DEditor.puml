@@ -1,0 +1,6 @@
+@startuml
+class CompositeShadowCaster2DEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+Editor <|-- CompositeShadowCaster2DEditor
+@enduml

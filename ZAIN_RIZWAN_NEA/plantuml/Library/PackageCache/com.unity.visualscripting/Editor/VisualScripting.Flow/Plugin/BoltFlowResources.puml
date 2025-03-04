@@ -1,0 +1,24 @@
+@startuml
+class BoltFlowResources <<sealed>> {
+    + <<override>> LateInitialize() : void
+}
+class Icons {
+    + Icons(resources:BoltFlowResources)
+    + Load() : void
+    + UnitCategory(category:UnitCategory) : EditorTexture
+}
+PluginResources <|-- BoltFlowResources
+BoltFlowResources --> "icons" Icons
+BoltFlowResources +-- Icons
+Icons --> "graph" EditorTexture
+Icons --> "unit" EditorTexture
+Icons --> "flowMacro" EditorTexture
+Icons --> "unitCategory" EditorTexture
+Icons --> "controlPortConnected" EditorTexture
+Icons --> "controlPortUnconnected" EditorTexture
+Icons --> "valuePortConnected" EditorTexture
+Icons --> "valuePortUnconnected" EditorTexture
+Icons --> "invalidPortConnected" EditorTexture
+Icons --> "invalidPortUnconnected" EditorTexture
+Icons --> "coroutine" EditorTexture
+@enduml

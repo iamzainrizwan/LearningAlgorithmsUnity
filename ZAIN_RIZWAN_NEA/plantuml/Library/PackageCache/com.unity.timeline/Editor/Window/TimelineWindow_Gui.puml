@@ -1,0 +1,26 @@
+@startuml
+class TimelineWindow <<partial>> {
+    + verticalScrollbarWidth : float <<get>>
+    + horizontalScrollbarHeight : float <<get>>
+    + AddUserOverlay(marker:IMarker, rect:Rect, editor:MarkerEditor, collapsed:bool, selected:bool) : void
+}
+struct MarkerOverlay {
+    + isSelected : bool
+    + isCollapsed : bool
+}
+enum TimelineItemArea {
+    Header,
+    Lines,
+}
+TimelineWindow --> "markerHeaderRect" Rect
+TimelineWindow --> "markerContentRect" Rect
+TimelineWindow --> "sequenceRect" Rect
+TimelineWindow --> "sequenceHeaderRect" Rect
+TimelineWindow --> "headerSplitterRect" Rect
+TimelineWindow --> "sequenceContentRect" Rect
+TimelineWindow +-- MarkerOverlay
+MarkerOverlay --> "marker" IMarker
+MarkerOverlay --> "rect" Rect
+MarkerOverlay --> "editor" MarkerEditor
+TimelineWindow +-- TimelineItemArea
+@enduml

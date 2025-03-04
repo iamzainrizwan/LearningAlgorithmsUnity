@@ -1,0 +1,16 @@
+@startuml
+class Benchmark03 {
+    + NumberOfSamples : int = 100
+}
+enum BenchmarkType {
+    TMP_SDF_MOBILE= 0,
+    TMP_SDF__MOBILE_SSD= 1,
+    TMP_SDF= 2,
+    TMP_BITMAP_MOBILE= 3,
+    TEXTMESH_BITMAP= 4,
+}
+MonoBehaviour <|-- Benchmark03
+Benchmark03 --> "Benchmark" BenchmarkType
+Benchmark03 --> "SourceFont" Font
+Benchmark03 +-- BenchmarkType
+@enduml

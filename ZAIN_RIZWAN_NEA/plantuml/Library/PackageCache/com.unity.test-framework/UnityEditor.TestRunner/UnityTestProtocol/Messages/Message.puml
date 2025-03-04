@@ -1,0 +1,10 @@
+@startuml
+abstract class Message {
+    + type : string
+    + time : ulong
+    + version : int
+    + phase : string
+    + processId : int
+    + AddTimeStamp() : void
+}
+@enduml

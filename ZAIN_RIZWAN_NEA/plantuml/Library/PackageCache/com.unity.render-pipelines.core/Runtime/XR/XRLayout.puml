@@ -1,0 +1,7 @@
+@startuml
+class XRLayout {
+    + AddCamera(camera:Camera, enableXR:bool) : void
+    + ReconfigurePass(xrPass:XRPass, camera:Camera) : void
+    + GetActivePasses() : List<(Camera, XRPass)>
+}
+@enduml

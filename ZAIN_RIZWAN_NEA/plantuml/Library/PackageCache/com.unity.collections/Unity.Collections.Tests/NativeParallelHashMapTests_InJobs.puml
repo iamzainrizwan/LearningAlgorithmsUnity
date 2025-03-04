@@ -1,0 +1,25 @@
+@startuml
+class NativeParallelHashMapTests_InJobs {
+    + NativeParallelHashMap_NestedJob_Error() : void
+    + NativeParallelHashMap_Read_And_Write() : void
+    + NativeParallelHashMap_Read_And_Write_Full() : void
+    + NativeParallelHashMap_Key_Collisions() : void
+    + NativeParallelHashMap_Clear_And_Write() : void
+    + NativeParallelHashMap_DisposeJob() : void
+}
+struct NestedMapJob {
+    + Execute() : void
+}
+struct Clear {
+    + Execute() : void
+}
+class "NativeParallelHashMap`2"<T1,T2> {
+}
+NativeParallelHashMapTestsFixture <|-- NativeParallelHashMapTests_InJobs
+NativeParallelHashMapTests_InJobs +-- NestedMapJob
+IJob <|-- NestedMapJob
+NestedMapJob --> "nestedMap<int,NativeParallelHashMap<int, int>>" "NativeParallelHashMap`2"
+NativeParallelHashMapTests_InJobs +-- Clear
+IJob <|-- Clear
+Clear --> "hashMap<int,int>" "NativeParallelHashMap`2"
+@enduml

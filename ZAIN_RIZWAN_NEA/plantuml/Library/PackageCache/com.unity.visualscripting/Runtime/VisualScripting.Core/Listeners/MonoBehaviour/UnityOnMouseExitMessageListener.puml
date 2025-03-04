@@ -1,0 +1,5 @@
+@startuml
+class UnityOnMouseExitMessageListener <<sealed>> {
+}
+MessageListener <|-- UnityOnMouseExitMessageListener
+@enduml

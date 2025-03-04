@@ -1,0 +1,14 @@
+@startuml
+class TestEnumerator {
+    + {static} Reset() : void
+    + TestEnumerator(context:ITestExecutionContext, testEnumerator:IEnumerator)
+    + Execute() : IEnumerator
+}
+class EnumeratorContext {
+    + EnumeratorContext(context:ITestExecutionContext)
+    + ExceptionWasRecorded : bool <<get>>
+    + RecordExceptionWithHint(ex:Exception) : void
+}
+TestEnumerator --> "Enumerator" IEnumerator
+TestEnumerator +-- EnumeratorContext
+@enduml

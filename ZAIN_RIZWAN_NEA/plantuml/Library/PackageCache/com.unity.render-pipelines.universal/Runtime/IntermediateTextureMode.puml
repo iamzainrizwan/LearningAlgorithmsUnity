@@ -1,0 +1,6 @@
+@startuml
+enum IntermediateTextureMode {
+    Auto,
+    Always,
+}
+@enduml

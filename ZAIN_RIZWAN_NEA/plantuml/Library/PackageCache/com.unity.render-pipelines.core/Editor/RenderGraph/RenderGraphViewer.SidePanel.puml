@@ -1,0 +1,24 @@
+@startuml
+class RenderGraphViewer <<partial>> {
+}
+class Names <<static>> <<partial>> {
+    + <<const>> kPanelContainer : string = "panel-container"
+    + <<const>> kResourceListFoldout : string = "panel-resource-list"
+    + <<const>> kPassListFoldout : string = "panel-pass-list"
+    + <<const>> kResourceSearchField : string = "resource-search-field"
+    + <<const>> kPassSearchField : string = "pass-search-field"
+}
+class Classes <<static>> <<partial>> {
+    + <<const>> kPanelListLineBreak : string = "panel-list__line-break"
+    + <<const>> kPanelListItem : string = "panel-list__item"
+    + <<const>> kPanelListItemSelectionAnimation : string = "panel-list__item--selection-animation"
+    + <<const>> kPanelResourceListItem : string = "panel-resource-list__item"
+    + <<const>> kPanelPassListItem : string = "panel-pass-list__item"
+    + <<const>> kSubHeaderText : string = "sub-header-text"
+    + <<const>> kInfoFoldout : string = "info-foldout"
+    + <<const>> kInfoFoldoutSecondaryText : string = "info-foldout__secondary-text"
+    + <<const>> kCustomFoldoutArrow : string = "custom-foldout-arrow"
+}
+RenderGraphViewer +-- Names
+RenderGraphViewer +-- Classes
+@enduml

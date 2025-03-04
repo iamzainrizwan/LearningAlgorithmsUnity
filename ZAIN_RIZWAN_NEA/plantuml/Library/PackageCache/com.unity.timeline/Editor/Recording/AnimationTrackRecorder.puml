@@ -1,0 +1,12 @@
+@startuml
+class AnimationTrackRecorder {
+    + {static} <<readonly>> kRecordClipDefaultName : string
+    + PrepareForRecord(state:WindowState) : void
+    + PrepareTrack(track:TrackAsset, state:WindowState, gameObject:GameObject, startTime:double) : AnimationClip
+    + FinializeTrack(track:TrackAsset, state:WindowState) : void
+    + FinalizeRecording(state:WindowState) : void
+    + {static} GetUniqueRecordedClipName(owner:Object, name:string) : string
+    + {static} AddRecordableClip(parentTrack:TrackAsset, state:WindowState, atTime:double) : TimelineClip
+}
+AnimationTrackRecorder --> "recordClip" TimelineClip
+@enduml

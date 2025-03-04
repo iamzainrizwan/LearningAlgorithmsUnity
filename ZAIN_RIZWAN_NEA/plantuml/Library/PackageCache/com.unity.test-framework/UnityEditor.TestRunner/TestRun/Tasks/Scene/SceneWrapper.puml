@@ -1,0 +1,8 @@
+@startuml
+class SceneWrapper {
+    + SceneWrapper(wrappedScene:UnityEngine.SceneManagement.Scene)
+    + isDirty : bool <<get>>
+    + path : string <<get>>
+}
+ISceneWrapper <|-- SceneWrapper
+@enduml

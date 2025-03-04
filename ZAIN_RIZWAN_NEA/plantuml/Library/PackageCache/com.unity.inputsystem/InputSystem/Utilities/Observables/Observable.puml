@@ -1,0 +1,12 @@
+@startuml
+class Observable <<static>> {
+    + {static} Where(source:IObservable<TValue>, predicate:Func<TValue, bool>) : IObservable<TValue>
+    + {static} Select(source:IObservable<TSource>, filter:Func<TSource, TResult>) : IObservable<TResult>
+    + {static} SelectMany(source:IObservable<TSource>, filter:Func<TSource, IEnumerable<TResult>>) : IObservable<TResult>
+    + {static} Take(source:IObservable<TValue>, count:int) : IObservable<TValue>
+    + {static} ForDevice(source:IObservable<InputEventPtr>, device:InputDevice) : IObservable<InputEventPtr>
+    + {static} ForDevice(source:IObservable<InputEventPtr>) : IObservable<InputEventPtr>
+    + {static} CallOnce(source:IObservable<TValue>, action:Action<TValue>) : IDisposable
+    + {static} Call(source:IObservable<TValue>, action:Action<TValue>) : IDisposable
+}
+@enduml

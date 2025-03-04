@@ -1,0 +1,11 @@
+@startuml
+enum ClampType {
+    Fastest,
+    Nicest,
+}
+class RectangleNode {
+    + RectangleNode()
+}
+CodeFunctionNode <|-- RectangleNode
+RectangleNode --> "clampType" ClampType
+@enduml

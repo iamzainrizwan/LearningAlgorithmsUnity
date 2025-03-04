@@ -1,0 +1,7 @@
+@startuml
+class Break {
+    + Operation(flow:Flow) : ControlOutput
+}
+Unit <|-- Break
+Break --> "enter" ControlInput
+@enduml

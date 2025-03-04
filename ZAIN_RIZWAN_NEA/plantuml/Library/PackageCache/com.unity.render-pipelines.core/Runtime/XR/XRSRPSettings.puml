@@ -1,0 +1,12 @@
+@startuml
+class XRSRPSettings {
+    + {static} enabled : bool <<get>>
+    + {static} isDeviceActive : bool <<get>>
+    + {static} loadedDeviceName : string <<get>>
+    + {static} eyeTextureWidth : int <<get>>
+    + {static} eyeTextureHeight : int <<get>>
+    + {static} occlusionMeshScale : float <<get>> <<set>>
+    + {static} mirrorViewMode : int <<get>> <<set>>
+}
+XRSRPSettings --> "eyeTextureDesc" RenderTextureDescriptor
+@enduml

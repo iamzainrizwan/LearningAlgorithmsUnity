@@ -1,0 +1,18 @@
+@startuml
+class RenderGraphObjectPool <<sealed>> {
+    + GetTempArray(size:int) : T[]
+    + GetTempMaterialPropertyBlock() : MaterialPropertyBlock
+}
+class SharedObjectPoolBase {
+    + SharedObjectPoolBase()
+    + <<virtual>> Clear() : void
+}
+class "SharedObjectPool`1"<T> {
+    + <<override>> Clear() : void
+    + {static} Get() : T
+    + {static} Release(toRelease:T) : void
+}
+RenderGraphObjectPool +-- SharedObjectPoolBase
+RenderGraphObjectPool +-- "SharedObjectPool`1"
+SharedObjectPoolBase <|-- "SharedObjectPool`1"
+@enduml

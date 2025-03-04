@@ -1,0 +1,9 @@
+@startuml
+class GPUResidentDrawerResourcesStripper {
+    + active : bool <<get>>
+    + CanRemoveSettings(settings:GPUResidentDrawerResources) : bool
+}
+class "IRenderPipelineGraphicsSettingsStripper`1"<T> {
+}
+"IRenderPipelineGraphicsSettingsStripper`1" "<GPUResidentDrawerResources>" <|-- GPUResidentDrawerResourcesStripper
+@enduml

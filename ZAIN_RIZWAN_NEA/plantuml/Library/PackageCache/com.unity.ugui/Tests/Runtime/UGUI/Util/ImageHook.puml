@@ -1,0 +1,13 @@
+@startuml
+class ImageHook {
+    + isGeometryUpdated : bool
+    + isLayoutRebuild : bool
+    + isMaterialRebuilt : bool
+    + ResetTest() : void
+    + <<override>> SetLayoutDirty() : void
+    + <<override>> SetMaterialDirty() : void
+    + <<override>> SetClipRect(clipRect:Rect, validRect:bool) : void
+}
+Image <|-- ImageHook
+ImageHook --> "cachedClipRect" Rect
+@enduml

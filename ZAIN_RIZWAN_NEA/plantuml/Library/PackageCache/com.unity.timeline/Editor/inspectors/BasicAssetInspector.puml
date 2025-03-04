@@ -1,0 +1,11 @@
+@startuml
+class BasicAssetInspector {
+    + <<override>> OnInspectorGUI() : void
+    + <<virtual>> OnPlayableAssetChangedInInspector() : void
+}
+class ActivationPlayableAssetInspector {
+}
+Editor <|-- BasicAssetInspector
+IInspectorChangeHandler <|-- BasicAssetInspector
+BasicAssetInspector <|-- ActivationPlayableAssetInspector
+@enduml

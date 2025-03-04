@@ -1,0 +1,11 @@
+@startuml
+enum PlacementValidity {
+    Valid,
+    InvalidContains,
+    InvalidIsWithin,
+    InvalidStartsInBlend,
+    InvalidEndsInBlend,
+    InvalidContainsBlend,
+    InvalidOverlapWithNonBlendableClip,
+}
+@enduml

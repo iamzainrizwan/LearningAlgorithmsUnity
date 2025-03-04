@@ -1,0 +1,76 @@
+@startuml
+class Light2DEditor {
+    + DrawInnerAndOuterSpotAngle(minProperty:SerializedProperty, maxProperty:SerializedProperty, label:GUIContent) : void
+    + <<override>> OnInspectorGUI() : void
+}
+class Light2DPostProcess {
+}
+class "PathComponentEditor`1"<T> {
+}
+class FreeformShapeTool {
+    + <<override>> IsAvailable() : bool
+}
+struct ToggleFoldoutResult {
+    + foldoutState : bool
+    + toggleState : bool
+}
+class Styles <<static>> {
+    + {static} deprecatedParametricLightDialogTextSingle : string = "The upgrade will convert the selected parametric light into a freeform light. You can't undo this operation."
+    + {static} deprecatedParametricLightDialogTextMulti : string = "The upgrade will convert the selected parametric lights into freeform lights. You can't undo this operation."
+    + {static} deprecatedParametricLightDialogTitle : string = "Parametric Light Upgrader"
+    + {static} deprecatedParametricLightDialogProceed : string = "Proceed"
+    + {static} deprecatedParametricLightDialogCancel : string = "Cancel"
+}
+class "PathEditorTool`1"<T> {
+}
+"PathComponentEditor`1" "<ScriptablePath>" <|-- Light2DEditor
+AssetPostprocessor <|-- Light2DPostProcess
+Light2DEditor +-- FreeformShapeTool
+"PathEditorTool`1" "<ScriptablePath>" <|-- FreeformShapeTool
+Light2DEditor +-- ToggleFoldoutResult
+Light2DEditor +-- Styles
+Styles o-> "InnerOuterSpotAngle" GUIContent
+Styles o-> "lightCapTopRight" Texture
+Styles o-> "lightCapTopLeft" Texture
+Styles o-> "lightCapBottomLeft" Texture
+Styles o-> "lightCapBottomRight" Texture
+Styles o-> "lightCapUp" Texture
+Styles o-> "lightCapDown" Texture
+Styles o-> "lightTypeFreeform" GUIContent
+Styles o-> "lightTypeSprite" GUIContent
+Styles o-> "lightTypePoint" GUIContent
+Styles o-> "lightTypeGlobal" GUIContent
+Styles o-> "blendingSettingsFoldout" GUIContent
+Styles o-> "shadowsSettingsFoldout" GUIContent
+Styles o-> "volumetricSettingsFoldout" GUIContent
+Styles o-> "normalMapsSettingsFoldout" GUIContent
+Styles o-> "generalLightType" GUIContent
+Styles o-> "generalFalloffSize" GUIContent
+Styles o-> "generalFalloffIntensity" GUIContent
+Styles o-> "generalLightColor" GUIContent
+Styles o-> "generalLightIntensity" GUIContent
+Styles o-> "generalVolumeIntensity" GUIContent
+Styles o-> "generalBlendStyle" GUIContent
+Styles o-> "generalLightOverlapOperation" GUIContent
+Styles o-> "generalLightOrder" GUIContent
+Styles o-> "generalShadowIntensity" GUIContent
+Styles o-> "generalShadowSoftness" GUIContent
+Styles o-> "generalShadowSoftnessFalloffIntensity" GUIContent
+Styles o-> "generalShadowVolumeIntensity" GUIContent
+Styles o-> "generalSortingLayerPrefixLabel" GUIContent
+Styles o-> "generalLightNoLightEnabled" GUIContent
+Styles o-> "generalNormalMapZDistance" GUIContent
+Styles o-> "generalNormalMapLightQuality" GUIContent
+Styles o-> "pointLightRadius" GUIContent
+Styles o-> "pointLightInner" GUIContent
+Styles o-> "pointLightOuter" GUIContent
+Styles o-> "pointLightSprite" GUIContent
+Styles o-> "shapeLightSprite" GUIContent
+Styles o-> "deprecatedParametricLightWarningSingle" GUIContent
+Styles o-> "deprecatedParametricLightWarningMulti" GUIContent
+Styles o-> "deprecatedParametricLightInstructions" GUIContent
+Styles o-> "deprecatedParametricLightButtonSingle" GUIContent
+Styles o-> "deprecatedParametricLightButtonMulti" GUIContent
+Styles o-> "renderPipelineUnassignedWarning" GUIContent
+Styles o-> "asset2DUnassignedWarning" GUIContent
+@enduml

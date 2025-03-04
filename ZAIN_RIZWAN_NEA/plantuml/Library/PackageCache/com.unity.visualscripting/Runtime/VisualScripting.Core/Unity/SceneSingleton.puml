@@ -1,0 +1,8 @@
+@startuml
+class "SceneSingleton`1"<T> <<static>> {
+    + {static} InstantiatedIn(scene:Scene) : bool
+    + {static} InstanceIn(scene:Scene) : T
+    + {static} Awake(instance:T) : void
+    + {static} OnDestroy(instance:T) : void
+}
+@enduml

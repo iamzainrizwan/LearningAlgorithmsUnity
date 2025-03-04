@@ -1,0 +1,7 @@
+@startuml
+enum NormalDropOffSpace {
+    Tangent,
+    Object,
+    World,
+}
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+class DebugDisplaySettingsRenderGraph {
+    + DebugDisplaySettingsRenderGraph()
+    + AreAnySettingsActive : bool <<get>>
+}
+class SettingsPanel {
+    + <<override>> PanelName : string <<get>>
+    + SettingsPanel(_:DebugDisplaySettingsRenderGraph)
+}
+IDebugDisplaySettingsData <|-- DebugDisplaySettingsRenderGraph
+DebugDisplaySettingsRenderGraph +-- SettingsPanel
+DebugDisplaySettingsPanel <|-- SettingsPanel
+@enduml

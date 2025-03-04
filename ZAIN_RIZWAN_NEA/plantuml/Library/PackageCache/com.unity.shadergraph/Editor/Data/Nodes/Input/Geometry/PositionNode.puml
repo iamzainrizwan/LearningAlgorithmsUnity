@@ -1,0 +1,18 @@
+@startuml
+class PositionNode {
+    + <<override>> latestVersion : int <<get>>
+    + <<const>> kOutputSlotName : string = "Out"
+    + PositionNode()
+    + <<sealed>> <<override>> UpdateNodeAfterDeserialization() : void
+    + <<override>> GetVariableNameForSlot(slotId:int) : string
+    + RequiresPosition(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresPositionPredisplacement(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + <<override>> OnAfterMultiDeserialize(json:string) : void
+}
+class "List`1"<T> {
+}
+GeometryNode <|-- PositionNode
+IMayRequirePosition <|-- PositionNode
+IMayRequirePositionPredisplacement <|-- PositionNode
+PositionNode --> "validSpaces<CoordinateSpace>" "List`1"
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+class ShadowsMidtonesHighlights <<sealed>> {
+    + IsActive() : bool
+    + IsTileCompatible() : bool
+}
+VolumeComponent <|-- ShadowsMidtonesHighlights
+IPostProcessComponent <|-- ShadowsMidtonesHighlights
+ShadowsMidtonesHighlights o-> "shadows" Vector4Parameter
+ShadowsMidtonesHighlights o-> "midtones" Vector4Parameter
+ShadowsMidtonesHighlights o-> "highlights" Vector4Parameter
+ShadowsMidtonesHighlights o-> "shadowsStart" MinFloatParameter
+ShadowsMidtonesHighlights o-> "shadowsEnd" MinFloatParameter
+ShadowsMidtonesHighlights o-> "highlightsStart" MinFloatParameter
+ShadowsMidtonesHighlights o-> "highlightsEnd" MinFloatParameter
+@enduml

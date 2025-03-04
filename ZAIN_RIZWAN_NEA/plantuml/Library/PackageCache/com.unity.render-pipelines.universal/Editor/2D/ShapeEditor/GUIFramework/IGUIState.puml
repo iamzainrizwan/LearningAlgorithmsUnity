@@ -1,0 +1,11 @@
+@startuml
+struct SliderData {
+}
+interface IGUIState {
+}
+SliderData --> "position" Vector3
+SliderData --> "forward" Vector3
+SliderData --> "up" Vector3
+SliderData --> "right" Vector3
+SliderData o-> "zero" SliderData
+@enduml

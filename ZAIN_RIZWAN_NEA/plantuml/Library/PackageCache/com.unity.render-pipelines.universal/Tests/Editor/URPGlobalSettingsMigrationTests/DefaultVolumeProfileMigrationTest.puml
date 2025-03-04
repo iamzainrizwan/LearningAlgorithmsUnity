@@ -1,0 +1,17 @@
+@startuml
+class DefaultVolumeProfileSettingsMigrationTests {
+    + PerformMigration(testCase:IRenderPipelineGraphicsSettingsTestCase<URPDefaultVolumeProfileSettings>) : void
+}
+class "RenderPipelineGraphicsSettingsMigrationTestBase`1"<T> {
+}
+class TestCase {
+    + TestCase(profileExists:bool)
+    + SetUp(globalSettingsAsset:UniversalRenderPipelineGlobalSettings, renderPipelineAsset:UniversalRenderPipelineAsset) : void
+    + IsMigrationCorrect(settings:URPDefaultVolumeProfileSettings, message:string) : bool
+}
+class "IRenderPipelineGraphicsSettingsTestCase`1"<T> {
+}
+"RenderPipelineGraphicsSettingsMigrationTestBase`1" "<URPDefaultVolumeProfileSettings>" <|-- DefaultVolumeProfileSettingsMigrationTests
+DefaultVolumeProfileSettingsMigrationTests +-- TestCase
+"IRenderPipelineGraphicsSettingsTestCase`1" "<URPDefaultVolumeProfileSettings>" <|-- TestCase
+@enduml

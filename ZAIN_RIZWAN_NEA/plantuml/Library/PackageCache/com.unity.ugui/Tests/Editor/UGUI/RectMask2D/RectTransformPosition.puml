@@ -1,0 +1,5 @@
+@startuml
+class RectTransformPosition {
+    + SettingPositionBeforeGameObjectIsActivatedWorks_953409() : void
+}
+@enduml

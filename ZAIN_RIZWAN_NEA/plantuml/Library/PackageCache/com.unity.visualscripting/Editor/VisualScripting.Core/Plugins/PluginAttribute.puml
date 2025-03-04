@@ -1,0 +1,7 @@
+@startuml
+class PluginAttribute {
+    + PluginAttribute(id:string)
+    + id : string <<get>>
+}
+Attribute <|-- PluginAttribute
+@enduml

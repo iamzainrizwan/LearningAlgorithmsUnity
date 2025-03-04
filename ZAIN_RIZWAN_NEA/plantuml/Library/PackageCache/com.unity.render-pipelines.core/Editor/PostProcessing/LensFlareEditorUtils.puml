@@ -1,0 +1,14 @@
+@startuml
+class LensFlareEditorUtils <<static>> {
+}
+class Icons <<static>> {
+}
+class LensFlareDataSRPCreator {
+    + <<override>> Action(instanceId:int, pathName:string, resourceFile:string) : void
+}
+LensFlareEditorUtils +-- Icons
+Icons o-> "circle" Texture2D
+Icons o-> "polygon" Texture2D
+Icons o-> "generic" Texture2D
+LensFlareEditorUtils +-- LensFlareDataSRPCreator
+@enduml

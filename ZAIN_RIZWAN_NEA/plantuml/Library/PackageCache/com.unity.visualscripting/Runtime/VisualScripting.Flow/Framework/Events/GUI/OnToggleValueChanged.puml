@@ -1,0 +1,9 @@
+@startuml
+class OnToggleValueChanged <<sealed>> {
+}
+class "GameObjectEventUnit`1"<T> {
+}
+"GameObjectEventUnit`1" "<bool>" <|-- OnToggleValueChanged
+OnToggleValueChanged --> "MessageListenerType" Type
+OnToggleValueChanged --> "value" ValueOutput
+@enduml

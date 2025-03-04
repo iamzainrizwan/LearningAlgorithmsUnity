@@ -1,0 +1,23 @@
+@startuml
+abstract class "VolumeDebugSettings`1"<T> <<partial>> {
+    + selectedComponent : int <<get>> <<set>> = 0
+    + selectedCameraIndex : int <<get>> <<set>>
+    + GetVolumes() : Volume[]
+    + RefreshVolumes(newVolumes:Volume[]) : bool
+    + GetVolumeWeight(volume:Volume) : float
+    + VolumeHasInfluence(volume:Volume) : bool
+}
+class "IEnumerable`1"<T> {
+}
+class "List`1"<T> {
+}
+IVolumeDebugSettings <|-- "VolumeDebugSettings`1"
+"VolumeDebugSettings`1" --> "selectedCamera" Camera
+"VolumeDebugSettings`1" --> "cameras<Camera>" "IEnumerable`1"
+"VolumeDebugSettings`1" --> "selectedCameraVolumeStack" VolumeStack
+"VolumeDebugSettings`1" --> "selectedCameraLayerMask" LayerMask
+"VolumeDebugSettings`1" --> "selectedCameraPosition" Vector3
+"VolumeDebugSettings`1" --> "selectedComponentType" Type
+"VolumeDebugSettings`1" --> "volumeComponentsPathAndType<(string, Type)>" "List`1"
+"VolumeDebugSettings`1" --> "targetRenderPipeline" Type
+@enduml

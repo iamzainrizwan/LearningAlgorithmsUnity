@@ -1,0 +1,9 @@
+@startuml
+class ScalarRoot <<sealed>> {
+    + Root(flow:Flow) : float
+}
+Unit <|-- ScalarRoot
+ScalarRoot --> "radicand" ValueInput
+ScalarRoot --> "degree" ValueInput
+ScalarRoot --> "root" ValueOutput
+@enduml

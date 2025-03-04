@@ -1,0 +1,7 @@
+@startuml
+class TMPro_TexturePostProcessor {
+}
+class TMP_FontAssetPostProcessor {
+}
+AssetPostprocessor <|-- TMPro_TexturePostProcessor
+@enduml

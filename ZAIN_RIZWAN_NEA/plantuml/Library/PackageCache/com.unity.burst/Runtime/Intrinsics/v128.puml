@@ -1,0 +1,93 @@
+@startuml
+struct v128 {
+    + Byte0 : byte
+    + Byte1 : byte
+    + Byte2 : byte
+    + Byte3 : byte
+    + Byte4 : byte
+    + Byte5 : byte
+    + Byte6 : byte
+    + Byte7 : byte
+    + Byte8 : byte
+    + Byte9 : byte
+    + Byte10 : byte
+    + Byte11 : byte
+    + Byte12 : byte
+    + Byte13 : byte
+    + Byte14 : byte
+    + Byte15 : byte
+    + SByte0 : sbyte
+    + SByte1 : sbyte
+    + SByte2 : sbyte
+    + SByte3 : sbyte
+    + SByte4 : sbyte
+    + SByte5 : sbyte
+    + SByte6 : sbyte
+    + SByte7 : sbyte
+    + SByte8 : sbyte
+    + SByte9 : sbyte
+    + SByte10 : sbyte
+    + SByte11 : sbyte
+    + SByte12 : sbyte
+    + SByte13 : sbyte
+    + SByte14 : sbyte
+    + SByte15 : sbyte
+    + UShort0 : ushort
+    + UShort1 : ushort
+    + UShort2 : ushort
+    + UShort3 : ushort
+    + UShort4 : ushort
+    + UShort5 : ushort
+    + UShort6 : ushort
+    + UShort7 : ushort
+    + SShort0 : short
+    + SShort1 : short
+    + SShort2 : short
+    + SShort3 : short
+    + SShort4 : short
+    + SShort5 : short
+    + SShort6 : short
+    + SShort7 : short
+    + UInt0 : uint
+    + UInt1 : uint
+    + UInt2 : uint
+    + UInt3 : uint
+    + SInt0 : int
+    + SInt1 : int
+    + SInt2 : int
+    + SInt3 : int
+    + ULong0 : ulong
+    + ULong1 : ulong
+    + SLong0 : long
+    + SLong1 : long
+    + Float0 : float
+    + Float1 : float
+    + Float2 : float
+    + Float3 : float
+    + Double0 : double
+    + Double1 : double
+    + v128(b:byte)
+    + v128(a:byte, b:byte, c:byte, d:byte, e:byte, f:byte, g:byte, h:byte, i:byte, j:byte, k:byte, l:byte, m:byte, n:byte, o:byte, p:byte)
+    + v128(b:sbyte)
+    + v128(a:sbyte, b:sbyte, c:sbyte, d:sbyte, e:sbyte, f:sbyte, g:sbyte, h:sbyte, i:sbyte, j:sbyte, k:sbyte, l:sbyte, m:sbyte, n:sbyte, o:sbyte, p:sbyte)
+    + v128(v:short)
+    + v128(a:short, b:short, c:short, d:short, e:short, f:short, g:short, h:short)
+    + v128(v:ushort)
+    + v128(a:ushort, b:ushort, c:ushort, d:ushort, e:ushort, f:ushort, g:ushort, h:ushort)
+    + v128(v:int)
+    + v128(a:int, b:int, c:int, d:int)
+    + v128(v:uint)
+    + v128(a:uint, b:uint, c:uint, d:uint)
+    + v128(f:float)
+    + v128(a:float, b:float, c:float, d:float)
+    + v128(f:double)
+    + v128(a:double, b:double)
+    + v128(f:long)
+    + v128(a:long, b:long)
+    + v128(f:ulong)
+    + v128(a:ulong, b:ulong)
+    + v128(lo:v64, hi:v64)
+}
+v128 --> "Lo64" v64
+v128 --> "Hi64" v64
+@enduml

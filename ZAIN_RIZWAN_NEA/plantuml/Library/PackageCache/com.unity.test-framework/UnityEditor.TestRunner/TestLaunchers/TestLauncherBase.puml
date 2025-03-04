@@ -1,0 +1,7 @@
+@startuml
+abstract class TestLauncherBase {
+    + {abstract} Run() : void
+    + ExecutePostBuildCleanupMethods(tests:ITest, testRunnerFilter:ITestFilter) : void
+    + {static} ExecutePostBuildCleanupMethods(tests:ITest, testRunnerFilter:ITestFilter, testTargetPlatform:RuntimePlatform?) : void
+}
+@enduml

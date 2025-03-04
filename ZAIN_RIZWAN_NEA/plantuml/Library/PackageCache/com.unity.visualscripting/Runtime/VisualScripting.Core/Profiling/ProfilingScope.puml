@@ -1,0 +1,7 @@
+@startuml
+struct ProfilingScope {
+    + ProfilingScope(name:string)
+    + Dispose() : void
+}
+IDisposable <|-- ProfilingScope
+@enduml

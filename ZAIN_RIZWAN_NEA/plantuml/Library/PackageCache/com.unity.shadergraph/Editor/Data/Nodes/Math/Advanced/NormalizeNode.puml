@@ -1,0 +1,6 @@
+@startuml
+class NormalizeNode {
+    + NormalizeNode()
+}
+CodeFunctionNode <|-- NormalizeNode
+@enduml

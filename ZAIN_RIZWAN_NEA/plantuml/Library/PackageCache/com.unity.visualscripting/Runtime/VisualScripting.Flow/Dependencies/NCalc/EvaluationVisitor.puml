@@ -1,0 +1,20 @@
+@startuml
+class EvaluationVisitor {
+    + EvaluationVisitor(flow:Flow, options:EvaluateOptions)
+    +  <<event>> EvaluateFunction : EvaluateFunctionHandler 
+    +  <<event>> EvaluateParameter : EvaluateParameterHandler 
+    + Result : object <<get>>
+    + <<override>> Visit(ternary:TernaryExpression) : void
+    + <<override>> Visit(binary:BinaryExpression) : void
+    + <<override>> Visit(unary:UnaryExpression) : void
+    + <<override>> Visit(value:ValueExpression) : void
+    + <<override>> Visit(function:FunctionExpression) : void
+    + <<override>> Visit(identifier:IdentifierExpression) : void
+    + {static} CheckExactArgumentCount(function:FunctionExpression, count:int) : void
+    + {static} CheckMinArgumentCount(function:FunctionExpression, count:int) : void
+}
+class "Dictionary`2"<T1,T2> {
+}
+LogicalExpressionVisitor <|-- EvaluationVisitor
+EvaluationVisitor --> "Parameters<string,object>" "Dictionary`2"
+@enduml

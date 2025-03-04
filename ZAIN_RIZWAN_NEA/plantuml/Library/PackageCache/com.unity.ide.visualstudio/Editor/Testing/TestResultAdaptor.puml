@@ -1,0 +1,17 @@
+@startuml
+class TestResultAdaptorContainer {
+}
+class TestResultAdaptor {
+    + Name : string
+    + FullName : string
+    + PassCount : int
+    + FailCount : int
+    + InconclusiveCount : int
+    + SkipCount : int
+    + ResultState : string
+    + StackTrace : string
+    + Parent : int
+    + TestResultAdaptor(testResultAdaptor:ITestResultAdaptor, parent:int)
+}
+TestResultAdaptor --> "TestStatus" TestStatusAdaptor
+@enduml

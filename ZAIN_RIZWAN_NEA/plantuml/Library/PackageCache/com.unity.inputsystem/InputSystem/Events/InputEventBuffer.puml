@@ -1,0 +1,37 @@
+@startuml
+struct InputEventBuffer {
+    + <<const>> BufferSizeUnknown : long
+    + eventCount : int <<get>>
+    + sizeInBytes : long <<get>>
+    + capacityInBytes : long <<get>>
+    + InputEventBuffer(eventPtr:InputEvent*, eventCount:int, sizeInBytes:int, capacityInBytes:int)
+    + InputEventBuffer(buffer:NativeArray<byte>, eventCount:int, sizeInBytes:int, transferNativeArrayOwnership:bool)
+    + AppendEvent(eventPtr:InputEvent*, capacityIncrementInBytes:int, allocator:Allocator) : void
+    + AllocateEvent(sizeInBytes:int, capacityIncrementInBytes:int, allocator:Allocator) : InputEvent*
+    + Contains(eventPtr:InputEvent*) : bool
+    + Reset() : void
+    + GetEnumerator() : IEnumerator<InputEventPtr>
+    + Dispose() : void
+    + Clone() : InputEventBuffer
+}
+class "IEnumerable`1"<T> {
+}
+class "NativeArray`1"<T> {
+}
+struct Enumerator {
+    + Enumerator(buffer:InputEventBuffer)
+    + MoveNext() : bool
+    + Reset() : void
+    + Dispose() : void
+}
+class "IEnumerator`1"<T> {
+}
+"IEnumerable`1" "<InputEventPtr>" <|-- InputEventBuffer
+IDisposable <|-- InputEventBuffer
+ICloneable <|-- InputEventBuffer
+InputEventBuffer --> "data<byte>" "NativeArray`1"
+InputEventBuffer --> "bufferPtr" InputEventPtr
+InputEventBuffer +-- Enumerator
+"IEnumerator`1" "<InputEventPtr>" <|-- Enumerator
+Enumerator --> "Current" InputEventPtr
+@enduml

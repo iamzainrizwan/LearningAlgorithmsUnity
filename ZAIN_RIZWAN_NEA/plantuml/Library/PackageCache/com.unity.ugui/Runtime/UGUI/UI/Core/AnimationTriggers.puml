@@ -1,0 +1,9 @@
+@startuml
+class AnimationTriggers {
+    + normalTrigger : string <<get>> <<set>>
+    + highlightedTrigger : string <<get>> <<set>>
+    + pressedTrigger : string <<get>> <<set>>
+    + selectedTrigger : string <<get>> <<set>>
+    + disabledTrigger : string <<get>> <<set>>
+}
+@enduml

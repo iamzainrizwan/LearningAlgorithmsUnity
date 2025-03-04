@@ -1,0 +1,7 @@
+@startuml
+class SearcherTreeUtilityTests {
+    + Init() : void
+    + Cleanup() : void
+    + ValidateSearcherTreeUtilityTests() : void
+}
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+abstract class "StateTransitionAnalyser`1"<TStateTransition> {
+    + transition : TStateTransition <<get>>
+}
+class "Analyser`2"<T1,T2> {
+}
+"Analyser`2" "<TStateTransition,StateTransitionAnalysis>" <|-- "StateTransitionAnalyser`1"
+@enduml

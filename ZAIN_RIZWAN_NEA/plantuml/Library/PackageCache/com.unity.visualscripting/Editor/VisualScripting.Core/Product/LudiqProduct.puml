@@ -1,0 +1,18 @@
+@startuml
+class LudiqProduct <<sealed>> {
+    + LudiqProduct()
+    + <<override>> configurationPanelLabel : string <<get>>
+    + <<override>> name : string <<get>>
+    + <<override>> description : string <<get>>
+    + <<override>> authorLabel : string <<get>>
+    + <<override>> author : string <<get>>
+    + <<override>> copyrightHolder : string <<get>>
+    + <<override>> supportUrl : string <<get>>
+    + <<const>> ID : string = "Ludiq"
+    + <<const>> ToolsMenuPriority : int
+    + <<const>> DeveloperToolsMenuPriority : int
+}
+Product <|-- LudiqProduct
+LudiqProduct --> "version" SemanticVersion
+LudiqProduct --> "instance" LudiqProduct
+@enduml

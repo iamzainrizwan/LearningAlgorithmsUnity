@@ -1,0 +1,6 @@
+@startuml
+class OnScroll <<sealed>> {
+}
+PointerEventUnit <|-- OnScroll
+OnScroll --> "MessageListenerType" Type
+@enduml

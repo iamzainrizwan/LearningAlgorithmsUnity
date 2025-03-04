@@ -1,0 +1,13 @@
+@startuml
+class Literal <<sealed>> {
+    + Literal()
+    + Literal(type:Type)
+    + Literal(type:Type, value:object)
+    + <<override>> canDefine : bool <<get>>
+    + value : object <<get>> <<set>>
+    + <<override>> GetAnalyticsIdentifier() : AnalyticsIdentifier
+}
+Unit <|-- Literal
+Literal --> "type" Type
+Literal --> "output" ValueOutput
+@enduml

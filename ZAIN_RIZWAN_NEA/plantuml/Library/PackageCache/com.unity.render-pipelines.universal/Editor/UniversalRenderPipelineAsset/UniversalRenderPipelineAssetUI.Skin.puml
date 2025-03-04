@@ -1,0 +1,99 @@
+@startuml
+class UniversalRenderPipelineAssetUI <<partial>> {
+}
+class Styles <<static>> {
+    + {static} <<readonly>> stpRequiresRenderGraph : string = "STP is selected but Render Graph is not enabled. STP requires Render Graph in order to function. Unity will fall back to the Automatic option."
+    + {static} <<readonly>> stpMobilePlatformWarning : string = "STP is selected for use on a mobile platform. STP is only supported on modern compute-capable hardware and its performance overhead may make it impractical on lower-end devices."
+    + {static} alphaOutputWarning : string = "Camera back-buffer format does not support alpha channel. Final output will be opaque."
+    + {static} colorGradingModeWarning : string = "HDR rendering is required to use the high dynamic range color grading mode. The low dynamic range will be used instead."
+    + {static} colorGradingModeWithHDROutput : string = "With the current configuration, Unity uses the HDR color grading mode when outputting to an HDR display."
+    + {static} colorGradingModeSpecInfo : string = "The high dynamic range color grading mode works best on platforms that support floating point textures."
+    + {static} colorGradingLutSizeWarning : string = "The minimal recommended LUT size for the high dynamic range color grading mode is 32. Using lower values will potentially result in color banding and posterization effects."
+}
+UniversalRenderPipelineAssetUI +-- Styles
+Styles o-> "renderingSettingsText" GUIContent
+Styles o-> "qualitySettingsText" GUIContent
+Styles o-> "lightingSettingsText" GUIContent
+Styles o-> "shadowSettingsText" GUIContent
+Styles o-> "postProcessingSettingsText" GUIContent
+Styles o-> "volumeSettingsText" GUIContent
+Styles o-> "advancedSettingsText" GUIContent
+Styles o-> "adaptivePerformanceText" GUIContent
+Styles o-> "rendererHeaderText" GUIContent
+Styles o-> "rendererDefaultText" GUIContent
+Styles o-> "rendererSetDefaultText" GUIContent
+Styles o-> "rendererSettingsText" GUIContent
+Styles o-> "rendererMissingText" GUIContent
+Styles o-> "rendererDefaultMissingText" GUIContent
+Styles o-> "requireDepthTextureText" GUIContent
+Styles o-> "requireOpaqueTextureText" GUIContent
+Styles o-> "opaqueDownsamplingText" GUIContent
+Styles o-> "supportsTerrainHolesText" GUIContent
+Styles o-> "srpBatcher" GUIContent
+Styles o-> "storeActionsOptimizationText" GUIContent
+Styles o-> "dynamicBatching" GUIContent
+Styles o-> "debugLevel" GUIContent
+Styles o-> "hdrText" GUIContent
+Styles o-> "hdrColorBufferPrecisionText" GUIContent
+Styles o-> "msaaText" GUIContent
+Styles o-> "renderScaleText" GUIContent
+Styles o-> "upscalingFilterText" GUIContent
+Styles o-> "fsrOverrideSharpness" GUIContent
+Styles o-> "fsrSharpnessText" GUIContent
+Styles o-> "enableLODCrossFadeText" GUIContent
+Styles o-> "lodCrossFadeDitheringTypeText" GUIContent
+Styles o-> "shEvalModeText" GUIContent
+Styles o-> "mainLightRenderingModeText" GUIContent
+Styles o-> "supportsMainLightShadowsText" GUIContent
+Styles o-> "mainLightShadowmapResolutionText" GUIContent
+Styles o-> "lightProbeSystemContent" GUIContent
+Styles o-> "probeVolumeMemoryBudget" GUIContent
+Styles o-> "probeVolumeBlendingMemoryBudget" GUIContent
+Styles o-> "supportProbeVolumeGPUStreaming" GUIContent
+Styles o-> "supportProbeVolumeDiskStreaming" GUIContent
+Styles o-> "supportProbeVolumeScenarios" GUIContent
+Styles o-> "supportProbeVolumeScenarioBlending" GUIContent
+Styles o-> "probeVolumeSHBands" GUIContent
+Styles o-> "addditionalLightsRenderingModeText" GUIContent
+Styles o-> "perObjectLimit" GUIContent
+Styles o-> "supportsAdditionalShadowsText" GUIContent
+Styles o-> "additionalLightsShadowmapResolution" GUIContent
+Styles o-> "additionalLightsShadowResolutionTiers" GUIContent
+Styles o-> "additionalLightsCookieResolution" GUIContent
+Styles o-> "additionalLightsCookieFormat" GUIContent
+Styles o-> "reflectionProbesSettingsText" GUIContent
+Styles o-> "reflectionProbeBlendingText" GUIContent
+Styles o-> "reflectionProbeBoxProjectionText" GUIContent
+Styles o-> "mixedLightingSupportLabel" GUIContent
+Styles o-> "useRenderingLayers" GUIContent
+Styles o-> "supportsLightCookies" GUIContent
+Styles o-> "shadowWorkingUnitText" GUIContent
+Styles o-> "shadowDistanceText" GUIContent
+Styles o-> "shadowCascadesText" GUIContent
+Styles o-> "shadowDepthBias" GUIContent
+Styles o-> "shadowNormalBias" GUIContent
+Styles o-> "supportsSoftShadows" GUIContent
+Styles o-> "conservativeEnclosingSphere" GUIContent
+Styles o-> "softShadowsQuality" GUIContent
+Styles o-> "colorGradingMode" GUIContent
+Styles o-> "colorGradingLutSize" GUIContent
+Styles o-> "allowPostProcessAlphaOutput" GUIContent
+Styles o-> "useFastSRGBLinearConversion" GUIContent
+Styles o-> "supportDataDrivenLensFlare" GUIContent
+Styles o-> "supportScreenSpaceLensFlare" GUIContent
+Styles o-> "volumeFrameworkUpdateMode" GUIContent
+Styles o-> "volumeProfileLabel" GUIContent
+Styles o-> "gpuResidentDrawerMode" GUIContent
+Styles o-> "smallMeshScreenPercentage" GUIContent
+Styles o-> "gpuResidentDrawerEnableOcclusionCullingInCameras" GUIContent
+Styles o-> "useAdaptivePerformance" GUIContent
+Styles o-> "rendererListDefaultMessage" GUIContent
+Styles o-> "rendererMissingDefaultMessage" GUIContent
+Styles o-> "rendererMissingMessage" GUIContent
+Styles o-> "lightlayersUnsupportedMessage" GUIContent
+Styles o-> "rendererUnsupportedAPIMessage" GUIContent
+Styles o-> "brgShaderStrippingErrorMessage" GUIContent
+Styles o-> "staticBatchingInfoMessage" GUIContent
+Styles o-> "lightModeErrorMessage" GUIContent
+Styles o-> "renderGraphNotEnabledErrorMessage" GUIContent
+@enduml

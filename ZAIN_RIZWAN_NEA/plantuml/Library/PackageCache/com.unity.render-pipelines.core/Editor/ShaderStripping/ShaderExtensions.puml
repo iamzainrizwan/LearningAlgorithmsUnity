@@ -1,0 +1,5 @@
+@startuml
+class ShaderExtensions <<static>> {
+    + {static} TryGetRenderPipelineTag(shader:Shader, snippetData:ShaderSnippetData, renderPipelineTag:string) : bool
+}
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class UpdateReportDialog {
+}
+PlasticDialog <|-- UpdateReportDialog
+IUpdateReportDialog <|-- UpdateReportDialog
+@enduml

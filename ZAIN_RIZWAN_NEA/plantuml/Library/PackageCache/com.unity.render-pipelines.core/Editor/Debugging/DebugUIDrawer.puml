@@ -1,0 +1,31 @@
+@startuml
+class DebugUIDrawerAttribute {
+    + DebugUIDrawerAttribute(type:Type)
+}
+class DebugUIDrawer {
+    + <<virtual>> Begin(widget:DebugUI.Widget, state:DebugState) : void
+    + <<virtual>> OnGUI(widget:DebugUI.Widget, state:DebugState) : bool
+    + <<virtual>> End(widget:DebugUI.Widget, state:DebugState) : void
+}
+abstract class "DebugUIFieldDrawer`3"<TValue,TField,TState> {
+    + <<override>> Begin(widget:DebugUI.Widget, state:DebugState) : void
+    + <<override>> OnGUI(widget:DebugUI.Widget, state:DebugState) : bool
+    + <<override>> End(widget:DebugUI.Widget, state:DebugState) : void
+}
+abstract class "DebugUIWidgetDrawer`1"<TWidget> {
+    + <<override>> Begin(widget:DebugUI.Widget, state:DebugState) : void
+    + <<override>> OnGUI(widget:DebugUI.Widget, state:DebugState) : bool
+    + <<override>> End(widget:DebugUI.Widget, state:DebugState) : void
+}
+class "Field`1"<T> {
+}
+struct WidgetChangedAction {
+    + query_path : string
+}
+Attribute <|-- DebugUIDrawerAttribute
+DebugUIDrawer <|-- "DebugUIFieldDrawer`3"
+DebugUIDrawer <|-- "DebugUIWidgetDrawer`1"
+"DebugUIFieldDrawer`3" +-- WidgetChangedAction
+WidgetChangedAction --> "previous_value" TValue
+WidgetChangedAction --> "new_value" TValue
+@enduml

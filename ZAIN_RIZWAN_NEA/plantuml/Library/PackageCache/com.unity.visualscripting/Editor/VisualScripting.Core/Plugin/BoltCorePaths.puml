@@ -1,0 +1,11 @@
+@startuml
+class BoltCorePaths {
+    + BoltCorePaths(plugin:Plugin)
+    + variableResources : string <<get>>
+    + propertyProviders : string <<get>>
+    + propertyProvidersEditor : string <<get>>
+    + assemblyDocumentations : string <<get>>
+    + dotNetDocumentation : string <<get>>
+}
+PluginPaths <|-- BoltCorePaths
+@enduml

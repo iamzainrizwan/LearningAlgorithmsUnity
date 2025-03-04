@@ -1,0 +1,50 @@
+@startuml
+class RingQueueUtil <<static>> {
+    {static} + AllocInt(container:NativeRingQueue<int>, capacity:int, addValues:bool) : void
+    {static} + AllocInt(container:UnsafeRingQueue<int>, capacity:int, addValues:bool) : void
+    {static} + AllocBclContainer(capacity:int, addValues:bool) : object
+    {static} + CreateRandomValues(capacity:int, values:UnsafeList<int>) : void
+}
+struct RingQueueIsEmpty100k {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct RingQueueCount100k {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct RingQueueEnqueue {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+struct RingQueueDequeue {
+    + AllocNativeContainer(capacity:int) : void
+    + AllocUnsafeContainer(capacity:int) : void
+    + AllocBclContainer(capacity:int) : object
+    + MeasureNativeContainer() : void
+    + MeasureUnsafeContainer() : void
+    + MeasureBclContainer(container:object) : void
+}
+class RingQueue {
+    + <<unsafe>> IsEmpty_x_100k(capacity:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Count_x_100k(capacity:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Enqueue(insertions:int, type:BenchmarkContainerType) : void
+    + <<unsafe>> Dequeue(insertions:int, type:BenchmarkContainerType) : void
+}
+IBenchmarkContainer <|-- RingQueueIsEmpty100k
+IBenchmarkContainer <|-- RingQueueCount100k
+IBenchmarkContainer <|-- RingQueueEnqueue
+IBenchmarkContainer <|-- RingQueueDequeue
+@enduml

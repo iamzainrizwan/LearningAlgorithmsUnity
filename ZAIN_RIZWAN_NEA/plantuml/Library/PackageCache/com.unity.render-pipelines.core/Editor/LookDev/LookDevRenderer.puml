@@ -1,0 +1,21 @@
+@startuml
+class RenderingData {
+    + sizeMissmatched : bool
+    + Dispose() : void
+}
+class Renderer {
+    + pixelPerfect : bool <<get>> <<set>>
+    + Renderer(pixelPerfect:bool)
+    + BeginRendering(data:RenderingData, dataProvider:IDataProvider) : void
+    + EndRendering(data:RenderingData, dataProvider:IDataProvider) : void
+    + Acquire(data:RenderingData) : void
+}
+class RectExtension <<static>> <<partial>> {
+    + {static} IsNullOrInverted(r:Rect) : bool
+}
+IDisposable <|-- RenderingData
+RenderingData --> "stage" Stage
+RenderingData --> "updater" ICameraUpdater
+RenderingData --> "viewPort" Rect
+RenderingData --> "output" RenderTexture
+@enduml

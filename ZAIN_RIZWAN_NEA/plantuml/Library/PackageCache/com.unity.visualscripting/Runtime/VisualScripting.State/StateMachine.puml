@@ -1,0 +1,8 @@
+@startuml
+class StateMachine <<sealed>> {
+    + <<override>> DefaultGraph() : StateGraph
+}
+class "EventMachine`2"<T1,T2> {
+}
+"EventMachine`2" "<StateGraph,StateGraphAsset>" <|-- StateMachine
+@enduml

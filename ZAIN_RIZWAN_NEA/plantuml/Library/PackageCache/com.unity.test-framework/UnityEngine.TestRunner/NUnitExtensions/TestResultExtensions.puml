@@ -1,0 +1,6 @@
+@startuml
+class TestResultExtensions <<static>> {
+    + {static} RecordPrefixedException(testResult:TestResult, prefix:string, ex:Exception, resultState:ResultState) : void
+    + {static} RecordPrefixedError(testResult:TestResult, prefix:string, error:string, resultState:ResultState) : void
+}
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+class SlotValueTypeUtil <<static>> {
+    + {static} ToSlotValueType(concreteValueType:ConcreteSlotValueType) : SlotValueType
+    + {static} ToConcreteSlotValueType(slotValueType:SlotValueType) : ConcreteSlotValueType
+    + {static} ToPropertyType(concreteValueType:ConcreteSlotValueType) : PropertyType
+    + {static} ToShaderString(type:ConcreteSlotValueType, concretePrecision:ConcretePrecision) : string
+    + {static} ToShaderString(type:ConcreteSlotValueType, precisionToken:string) : string
+    + {static} ToClassName(type:ConcreteSlotValueType) : string
+}
+@enduml

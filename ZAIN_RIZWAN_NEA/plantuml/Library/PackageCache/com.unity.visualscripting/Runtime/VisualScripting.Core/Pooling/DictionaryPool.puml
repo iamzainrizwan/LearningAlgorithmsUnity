@@ -1,0 +1,6 @@
+@startuml
+class "DictionaryPool`2"<TKey,TValue> <<static>> {
+    + {static} New(source:Dictionary<TKey, TValue>) : Dictionary<TKey, TValue>
+    + {static} Free(dictionary:Dictionary<TKey, TValue>) : void
+}
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+class MoveItemHandler {
+    + allowTrackSwitch : bool <<get>>
+    + MoveItemHandler(state:WindowState)
+    + Grab(items:IEnumerable<ITimelineItem>, referenceTrack:TrackAsset) : void
+    + Grab(items:IEnumerable<ITimelineItem>, referenceTrack:TrackAsset, mousePosition:Vector2) : void
+    + Drop() : void
+    + start : double <<get>>
+    + end : double <<get>>
+    + ShouldSnapTo(snappable:ISnappable) : bool
+    + UpdateTrackTarget(track:TrackAsset) : void
+    + OnGUI(evt:Event) : void
+    + OnAttractedEdge(attractable:IAttractable, manipulateEdges:ManipulateEdges, edge:AttractedEdge, time:double) : void
+    + RefreshPreviewItems() : void
+    + OnTrackDetach() : void
+}
+IAttractable <|-- MoveItemHandler
+IAttractionHandler <|-- MoveItemHandler
+MoveItemHandler --> "targetTrack" TrackAsset
+@enduml

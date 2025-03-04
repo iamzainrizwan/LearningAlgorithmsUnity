@@ -1,0 +1,6 @@
+@startuml
+class TweenMixerBehaviour {
+    + <<override>> ProcessFrame(playable:Playable, info:FrameData, playerData:object) : void
+}
+PlayableBehaviour <|-- TweenMixerBehaviour
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class InputActionReference {
+    + Set(action:InputAction) : void
+    + Set(asset:InputActionAsset, mapName:string, actionName:string) : void
+    + <<override>> ToString() : string
+    + {static} Create(action:InputAction) : InputActionReference
+    + ToInputAction() : InputAction
+}
+ScriptableObject <|-- InputActionReference
+InputActionReference --> "asset" InputActionAsset
+InputActionReference --> "action" InputAction
+@enduml

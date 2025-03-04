@@ -1,0 +1,231 @@
+@startuml
+class SceneExtensions <<static>> {
+    + {static} GetGUID(scene:Scene) : string
+}
+struct ProbeVolumeSystemParameters {
+    + supportScenarios : bool
+    + supportScenarioBlending : bool
+    + supportGPUStreaming : bool
+    + supportDiskStreaming : bool
+    + supportsRuntimeDebug : bool
+}
+struct ProbeVolumeShadingParameters {
+    + normalBias : float
+    + viewBias : float
+    + scaleBiasByMinDistanceBetweenProbes : bool
+    + samplingNoise : float
+    + weight : float
+    + frameIndexForNoise : int
+    + reflNormalizationLowerClamp : float
+    + reflNormalizationUpperClamp : float
+    + skyOcclusionIntensity : float
+    + skyOcclusionShadingDirection : bool
+    + regionCount : int
+}
+enum ProbeVolumeTextureMemoryBudget {
+    MemoryBudgetLow= 512,
+    MemoryBudgetMedium= 1024,
+    MemoryBudgetHigh= 2048,
+}
+enum ProbeVolumeBlendingTextureMemoryBudget {
+    MemoryBudgetLow= 128,
+    MemoryBudgetMedium= 256,
+    MemoryBudgetHigh= 512,
+}
+enum ProbeVolumeSHBands {
+    SphericalHarmonicsL1= 1,
+    SphericalHarmonicsL2= 2,
+}
+class ProbeReferenceVolume <<partial>> {
+    + isInitialized : bool <<get>>
+    + probeOcclusion : bool <<get>>
+    + skyOcclusion : bool <<get>>
+    + skyOcclusionShadingDirection : bool <<get>>
+    + lightingScenario : string <<get>> <<set>>
+    + otherScenario : string <<get>>
+    + scenarioBlendingFactor : float <<get>> <<set>>
+    + BlendLightingScenario(otherScenario:string, blendingFactor:float) : void
+    + SetActiveScene(scene:Scene) : void
+    + SetActiveBakingSet(bakingSet:ProbeVolumeBakingSet) : void
+    + Initialize(parameters:ProbeVolumeSystemParameters) : void
+    + SetEnableStateFromSRP(srpEnablesPV:bool) : void
+    + SetVertexSamplingEnabled(value:bool) : void
+    + Cleanup() : void
+    + GetVideoMemoryCost() : int
+    + PerformPendingOperations() : void
+    + GetRuntimeResources() : RuntimeResources
+    + DataHasBeenLoaded() : bool
+}
+struct IndirectionEntryInfo {
+    + minSubdiv : int
+    + hasMinMax : bool
+    + hasOnlyBiggerBricks : bool
+}
+class CellDesc {
+    + index : int
+    + probeCount : int
+    + minSubdiv : int
+    + indexChunkCount : int
+    + shChunkCount : int
+    + bricksCount : int
+    + <<override>> ToString() : string
+}
+class CellData {
+    + CleanupPerScenarioData(data:PerScenarioData) : void
+    + Cleanup(cleanScenarioList:bool) : void
+}
+class CellPoolInfo {
+    + shChunkCount : int
+    + Clear() : void
+}
+class CellIndexInfo {
+    + indexUpdated : bool
+    + indexChunkCount : int
+    + Clear() : void
+}
+class CellBlendingInfo {
+    + blendingScore : float
+    + blendingFactor : float
+    + blending : bool
+    + MarkUpToDate() : void
+    + IsUpToDate() : bool
+    + ForceReupload() : void
+    + ShouldReupload() : bool
+    + Prioritize() : void
+    + ShouldPrioritize() : bool
+    + Clear() : void
+}
+class CellStreamingInfo {
+    + streamingScore : float
+    + IsStreaming() : bool
+    + IsBlendingStreaming() : bool
+    + Clear() : void
+}
+class Cell {
+    + referenceCount : int = 0
+    + loaded : bool
+    + hasTwoScenarios : bool
+    + CompareTo(other:Cell) : int
+    + UpdateCellScenarioData(scenario0:string, scenario1:string) : bool
+    + Clear() : void
+}
+struct Volume {
+    + Volume(trs:Matrix4x4, maxSubdivision:float, minSubdivision:float)
+    + Volume(corner:Vector3, X:Vector3, Y:Vector3, Z:Vector3, maxSubdivision:float, minSubdivision:float)
+    + Volume(copy:Volume)
+    + Volume(bounds:Bounds)
+    + CalculateAABB() : Bounds
+    + CalculateCenterAndSize(center:Vector3, size:Vector3) : void
+    + Transform(trs:Matrix4x4) : void
+    + <<override>> ToString() : string
+    + Equals(other:Volume) : bool
+}
+struct RefVolTransform {
+    + scale : float
+}
+struct RuntimeResources {
+}
+struct ExtraDataActionInput {
+}
+class "Action`1"<T> {
+}
+class "NativeArray`1"<T> {
+}
+struct PerScenarioData {
+}
+class "Dictionary`2"<T1,T2> {
+}
+class "List`1"<T> {
+}
+class "IComparable`1"<T> {
+}
+class "IEquatable`1"<T> {
+}
+ProbeVolumeSystemParameters --> "memoryBudget" ProbeVolumeTextureMemoryBudget
+ProbeVolumeSystemParameters --> "blendingMemoryBudget" ProbeVolumeBlendingTextureMemoryBudget
+ProbeVolumeSystemParameters --> "shBands" ProbeVolumeSHBands
+ProbeVolumeSystemParameters --> "probeDebugShader" Shader
+ProbeVolumeSystemParameters --> "probeSamplingDebugShader" Shader
+ProbeVolumeSystemParameters --> "probeSamplingDebugTexture" Texture
+ProbeVolumeSystemParameters --> "probeSamplingDebugMesh" Mesh
+ProbeVolumeSystemParameters --> "offsetDebugShader" Shader
+ProbeVolumeSystemParameters --> "fragmentationDebugShader" Shader
+ProbeVolumeSystemParameters --> "scenarioBlendingShader" ComputeShader
+ProbeVolumeSystemParameters --> "streamingUploadShader" ComputeShader
+ProbeVolumeSystemParameters --> "sceneData" ProbeVolumeSceneData
+ProbeVolumeShadingParameters --> "leakReductionMode" APVLeakReductionMode
+ProbeVolumeShadingParameters --> "regionLayerMasks" uint4
+ProbeVolumeShadingParameters --> "worldOffset" Vector3
+ProbeReferenceVolume --> "retrieveExtraDataAction<ExtraDataActionInput>" "Action`1"
+ProbeReferenceVolume o-> "checksDuringBakeAction" Action
+ProbeReferenceVolume --> "shBands" ProbeVolumeSHBands
+ProbeReferenceVolume --> "currentBakingSet" ProbeVolumeBakingSet
+ProbeReferenceVolume --> "memoryBudget" ProbeVolumeTextureMemoryBudget
+ProbeReferenceVolume --> "instance" ProbeReferenceVolume
+ProbeReferenceVolume +-- IndirectionEntryInfo
+IndirectionEntryInfo --> "positionInBricks" Vector3Int
+IndirectionEntryInfo --> "minBrickPos" Vector3Int
+IndirectionEntryInfo --> "maxBrickPosPlusOne" Vector3Int
+ProbeReferenceVolume +-- CellDesc
+CellDesc --> "position" Vector3Int
+ProbeReferenceVolume +-- CellData
+CellData --> "validityNeighMaskData<byte>" "NativeArray`1"
+CellData --> "skyOcclusionDataL0L1<ushort>" "NativeArray`1"
+CellData --> "skyShadingDirectionIndices<byte>" "NativeArray`1"
+CellData o-> "scenarios<string,PerScenarioData>" "Dictionary`2"
+CellData --> "bricks<Brick>" "NativeArray`1"
+CellData --> "probePositions<Vector3>" "NativeArray`1"
+CellData --> "touchupVolumeInteraction<float>" "NativeArray`1"
+CellData --> "offsetVectors<Vector3>" "NativeArray`1"
+CellData --> "validity<float>" "NativeArray`1"
+CellData --> "layer<byte>" "NativeArray`1"
+ProbeReferenceVolume +-- CellPoolInfo
+CellPoolInfo o-> "chunkList<Chunk>" "List`1"
+ProbeReferenceVolume +-- CellIndexInfo
+ProbeReferenceVolume +-- CellBlendingInfo
+CellBlendingInfo o-> "chunkList<Chunk>" "List`1"
+ProbeReferenceVolume +-- CellStreamingInfo
+CellStreamingInfo o-> "request" CellStreamingRequest
+CellStreamingInfo o-> "blendingRequest0" CellStreamingRequest
+CellStreamingInfo o-> "blendingRequest1" CellStreamingRequest
+ProbeReferenceVolume +-- Cell
+"IComparable`1" "<Cell>" <|-- Cell
+Cell --> "desc" CellDesc
+Cell --> "data" CellData
+Cell o-> "poolInfo" CellPoolInfo
+Cell o-> "indexInfo" CellIndexInfo
+Cell o-> "blendingInfo" CellBlendingInfo
+Cell o-> "streamingInfo" CellStreamingInfo
+Cell --> "debugProbes" CellInstancedDebugProbes
+ProbeReferenceVolume +-- Volume
+"IEquatable`1" "<Volume>" <|-- Volume
+ProbeReferenceVolume +-- RefVolTransform
+RefVolTransform --> "posWS" Vector3
+RefVolTransform --> "rot" Quaternion
+ProbeReferenceVolume +-- RuntimeResources
+RuntimeResources --> "index" ComputeBuffer
+RuntimeResources --> "cellIndices" ComputeBuffer
+RuntimeResources --> "L0_L1rx" RenderTexture
+RuntimeResources --> "L1_G_ry" RenderTexture
+RuntimeResources --> "L1_B_rz" RenderTexture
+RuntimeResources --> "L2_0" RenderTexture
+RuntimeResources --> "L2_1" RenderTexture
+RuntimeResources --> "L2_2" RenderTexture
+RuntimeResources --> "L2_3" RenderTexture
+RuntimeResources --> "ProbeOcclusion" RenderTexture
+RuntimeResources --> "Validity" RenderTexture
+RuntimeResources --> "SkyOcclusionL0L1" RenderTexture
+RuntimeResources --> "SkyShadingDirectionIndices" RenderTexture
+RuntimeResources --> "SkyPrecomputedDirections" ComputeBuffer
+RuntimeResources --> "QualityLeakReductionData" ComputeBuffer
+ProbeReferenceVolume +-- ExtraDataActionInput
+CellData +-- PerScenarioData
+PerScenarioData --> "shL0L1RxData<ushort>" "NativeArray`1"
+PerScenarioData --> "shL1GL1RyData<byte>" "NativeArray`1"
+PerScenarioData --> "shL1BL1RzData<byte>" "NativeArray`1"
+PerScenarioData --> "shL2Data_0<byte>" "NativeArray`1"
+PerScenarioData --> "shL2Data_1<byte>" "NativeArray`1"
+PerScenarioData --> "shL2Data_2<byte>" "NativeArray`1"
+PerScenarioData --> "shL2Data_3<byte>" "NativeArray`1"
+PerScenarioData --> "probeOcclusion<byte>" "NativeArray`1"
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+class ButtonTests {
+    + Setup() : void
+    + TestSetup() : void
+    + TearDown() : void
+    + OneTimeTearDown() : void
+    + PressShouldCallClickHandler() : void
+    + PressInactiveShouldNotCallClickHandler() : void
+    + PressNotInteractableShouldNotCallClickHandler() : void
+    + SelectShouldHoldThePreviousStateAfterDisablingAndEnabling() : void
+    + SubmitShouldCallClickHandler() : void
+    + SubmitInactiveShouldNotCallClickHandler() : void
+    + SubmitNotInteractableShouldNotCallClickHandler() : void
+    + SubmitShouldTransitionToPressedStateAndBackToNormal() : IEnumerator
+}
+IPrebuildSetup <|-- ButtonTests
+@enduml

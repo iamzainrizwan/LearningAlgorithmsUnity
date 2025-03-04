@@ -1,0 +1,8 @@
+@startuml
+class BranchesTab <<partial>> {
+    + RefreshAndSelect(repObj:RepObjectInfo) : void
+}
+IRefreshableView <|-- BranchesTab
+IQueryRefreshableView <|-- BranchesTab
+IBranchMenuOperations <|-- BranchesTab
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class MessageListenerEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+Editor <|-- MessageListenerEditor
+@enduml

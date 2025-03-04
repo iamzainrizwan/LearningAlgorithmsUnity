@@ -1,0 +1,8 @@
+@startuml
+class DoubleInspector {
+    + DoubleInspector(metadata:Metadata)
+}
+class "ContinuousNumberInspector`1"<T> {
+}
+"ContinuousNumberInspector`1" "<double>" <|-- DoubleInspector
+@enduml

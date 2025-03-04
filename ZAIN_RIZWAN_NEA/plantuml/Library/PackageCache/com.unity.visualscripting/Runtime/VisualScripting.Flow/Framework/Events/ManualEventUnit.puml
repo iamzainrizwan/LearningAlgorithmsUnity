@@ -1,0 +1,8 @@
+@startuml
+abstract class "ManualEventUnit`1"<TArgs> {
+    + <<sealed>> <<override>> GetHook(reference:GraphReference) : EventHook
+}
+class "EventUnit`1"<T> {
+}
+"EventUnit`1" "<TArgs>" <|-- "ManualEventUnit`1"
+@enduml

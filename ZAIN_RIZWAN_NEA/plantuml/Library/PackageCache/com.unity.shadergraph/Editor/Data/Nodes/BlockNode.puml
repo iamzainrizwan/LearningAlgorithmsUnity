@@ -1,0 +1,46 @@
+@startuml
+class BlockNode {
+    + <<override>> displayName : string <<get>>
+    + <<override>> canCutNode : bool <<get>>
+    + <<override>> canCopyNode : bool <<get>>
+    + <<override>> documentationURL : string <<get>>
+    + serializedDescriptor : string <<get>>
+    + index : int <<get>>
+    + Init(fieldDescriptor:BlockFieldDescriptor) : void
+    + <<override>> GetVariableNameForNode() : string
+    + RequiresNormal(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresViewDirection(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresPosition(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresPositionPredisplacement(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresTangent(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresBitangent(stageCapability:ShaderStageCapability) : NeededCoordinateSpace
+    + RequiresMeshUV(channel:UVChannel, stageCapability:ShaderStageCapability) : bool
+    + RequiresScreenPosition(stageCapability:ShaderStageCapability) : bool
+    + RequiresNDCPosition(stageCapability:ShaderStageCapability) : bool
+    + RequiresPixelPosition(stageCapability:ShaderStageCapability) : bool
+    + RequiresVertexColor(stageCapability:ShaderStageCapability) : bool
+    + <<override>> OnBeforeSerialize() : void
+    + <<override>> OnAfterDeserialize() : void
+}
+enum CustomBlockType {
+    Float= 1,
+    Vector2= 2,
+    Vector3= 3,
+    Vector4= 4,
+}
+AbstractMaterialNode <|-- BlockNode
+IMayRequireNormal <|-- BlockNode
+IMayRequireTangent <|-- BlockNode
+IMayRequireBitangent <|-- BlockNode
+IMayRequireMeshUV <|-- BlockNode
+IMayRequireScreenPosition <|-- BlockNode
+IMayRequireNDCPosition <|-- BlockNode
+IMayRequirePixelPosition <|-- BlockNode
+IMayRequireViewDirection <|-- BlockNode
+IMayRequirePosition <|-- BlockNode
+IMayRequirePositionPredisplacement <|-- BlockNode
+IMayRequireVertexColor <|-- BlockNode
+BlockNode --> "contextData" ContextData
+BlockNode --> "descriptor" BlockFieldDescriptor
+BlockNode +-- CustomBlockType
+@enduml

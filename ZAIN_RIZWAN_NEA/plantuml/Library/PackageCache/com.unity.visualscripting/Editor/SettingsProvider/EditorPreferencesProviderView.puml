@@ -1,0 +1,7 @@
+@startuml
+class EditorPreferencesProviderView {
+    + EditorPreferencesProviderView()
+    + <<override>> OnGUI(searchContext:string) : void
+}
+SettingsProvider <|-- EditorPreferencesProviderView
+@enduml

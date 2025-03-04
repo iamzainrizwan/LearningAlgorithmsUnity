@@ -1,0 +1,6 @@
+@startuml
+class MyMonoBehaviour {
+    + IsConfigured : bool
+}
+MonoBehaviour <|-- MyMonoBehaviour
+@enduml

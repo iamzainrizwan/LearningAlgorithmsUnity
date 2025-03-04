@@ -1,0 +1,15 @@
+@startuml
+struct TypeTable {
+    + Initialize() : void
+    + FindNameForType(type:Type) : InternedString
+    + AddTypeRegistration(name:string, type:Type) : void
+    + LookupTypeRegistration(name:string) : Type
+}
+class "Dictionary`2"<T1,T2> {
+}
+class "IEnumerable`1"<T> {
+}
+TypeTable --> "table<InternedString,Type>" "Dictionary`2"
+TypeTable --> "names<string>" "IEnumerable`1"
+TypeTable --> "internedNames<InternedString>" "IEnumerable`1"
+@enduml

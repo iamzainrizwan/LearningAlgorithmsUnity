@@ -1,0 +1,8 @@
+@startuml
+class UnsafeUtilityExtensions <<unsafe>> <<static>> {
+    + <<unsafe>> {static} ReadArrayElementBoundsChecked(source:void*, index:int, capacity:int) : T
+    + <<unsafe>> {static} WriteArrayElementBoundsChecked(destination:void*, index:int, value:T, capacity:int) : void
+    + {static} AddressOf(value:T) : void*
+    + {static} AsRef(value:T) : ref T
+}
+@enduml

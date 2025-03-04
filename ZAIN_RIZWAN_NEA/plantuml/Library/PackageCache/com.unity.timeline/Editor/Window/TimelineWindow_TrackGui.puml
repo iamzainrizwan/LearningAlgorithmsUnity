@@ -1,0 +1,5 @@
+@startuml
+class TimelineWindow <<partial>> {
+}
+TimelineWindow --> "treeView" TimelineTreeViewGUI
+@enduml

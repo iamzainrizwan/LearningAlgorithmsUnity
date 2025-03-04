@@ -1,0 +1,13 @@
+@startuml
+class AssetCollection {
+    + AssetCollection()
+    + AddAssetDependency(assetGUID:GUID, flags:Flags) : void
+}
+enum Flags {
+    SourceDependency= 1 << 0,
+    ArtifactDependency= 1 << 1,
+    IsSubGraph= 1 << 2,
+    IncludeInExportPackage= 1 << 3,
+}
+AssetCollection +-- Flags
+@enduml

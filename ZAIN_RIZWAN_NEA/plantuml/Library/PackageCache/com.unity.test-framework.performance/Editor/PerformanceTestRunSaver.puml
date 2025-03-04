@@ -1,0 +1,8 @@
+@startuml
+class TestRunnerInitializer {
+}
+class PerformanceTestRunSaver {
+}
+ScriptableObject <|-- PerformanceTestRunSaver
+ICallbacks <|-- PerformanceTestRunSaver
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class CameraSwitcher {
+}
+MonoBehaviour <|-- CameraSwitcher
+@enduml

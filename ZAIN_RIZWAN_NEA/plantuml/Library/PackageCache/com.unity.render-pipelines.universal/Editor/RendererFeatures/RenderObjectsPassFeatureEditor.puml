@@ -1,0 +1,39 @@
+@startuml
+class ScriptableRendererFeatureEditor {
+    + <<override>> OnInspectorGUI() : void
+}
+class RenderObjectsPassFeatureEditor {
+    + <<override>> OnGUI(rect:Rect, property:SerializedProperty, label:GUIContent) : void
+    + <<override>> GetPropertyHeight(property:SerializedProperty, label:GUIContent) : float
+}
+class Styles {
+    + {static} defaultLineSpace : float
+}
+class HeaderBool {
+    + key : string
+    + value : bool
+    + HeaderBool(_key:string, _default:bool)
+}
+Editor <|-- ScriptableRendererFeatureEditor
+PropertyDrawer <|-- RenderObjectsPassFeatureEditor
+RenderObjectsPassFeatureEditor +-- Styles
+Styles o-> "callback" GUIContent
+Styles o-> "filtersHeader" GUIContent
+Styles o-> "renderHeader" GUIContent
+Styles o-> "renderQueueFilter" GUIContent
+Styles o-> "layerMask" GUIContent
+Styles o-> "shaderPassFilter" GUIContent
+Styles o-> "overrideMaterial" GUIContent
+Styles o-> "overrideMaterialPass" GUIContent
+Styles o-> "overrideShader" GUIContent
+Styles o-> "overrideShaderPass" GUIContent
+Styles o-> "overrideMode" GUIContent
+Styles o-> "overrideDepth" GUIContent
+Styles o-> "writeDepth" GUIContent
+Styles o-> "depthState" GUIContent
+Styles o-> "overrideCamera" GUIContent
+Styles o-> "cameraFOV" GUIContent
+Styles o-> "positionOffset" GUIContent
+Styles o-> "restoreCamera" GUIContent
+RenderObjectsPassFeatureEditor +-- HeaderBool
+@enduml

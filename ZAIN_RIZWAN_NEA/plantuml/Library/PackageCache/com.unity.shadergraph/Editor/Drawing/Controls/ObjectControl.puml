@@ -1,0 +1,12 @@
+@startuml
+class ObjectControlAttribute {
+    + ObjectControlAttribute(label:string)
+    + InstantiateControl(node:AbstractMaterialNode, propertyInfo:PropertyInfo) : VisualElement
+}
+class ObjectControlView {
+    + ObjectControlView(label:string, node:AbstractMaterialNode, propertyInfo:PropertyInfo)
+}
+Attribute <|-- ObjectControlAttribute
+IControlAttribute <|-- ObjectControlAttribute
+VisualElement <|-- ObjectControlView
+@enduml

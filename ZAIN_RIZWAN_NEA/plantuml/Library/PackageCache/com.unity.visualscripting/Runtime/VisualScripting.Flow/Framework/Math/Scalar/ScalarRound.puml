@@ -1,0 +1,7 @@
+@startuml
+class ScalarRound <<sealed>> {
+}
+class "Round`2"<T1,T2> {
+}
+"Round`2" "<float,int>" <|-- ScalarRound
+@enduml

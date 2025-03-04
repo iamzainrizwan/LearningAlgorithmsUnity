@@ -1,0 +1,7 @@
+@startuml
+class ColorPropertyDrawer {
+    + DrawProperty(propertyInfo:PropertyInfo, actualObject:object, attribute:InspectableAttribute) : VisualElement
+}
+IPropertyDrawer <|-- ColorPropertyDrawer
+ColorPropertyDrawer --> "inspectorUpdateDelegate" Action
+@enduml

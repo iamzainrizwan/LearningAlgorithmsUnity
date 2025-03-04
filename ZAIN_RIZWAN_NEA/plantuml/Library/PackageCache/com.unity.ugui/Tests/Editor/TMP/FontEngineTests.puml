@@ -1,0 +1,8 @@
+@startuml
+class FontEngineTests {
+    + Setup() : void
+    + CreateFontAsset_from_FilePath(fontFileGUID:string, familyName:string, styleName:string) : void
+    + CreateFontAsset_from_FontObject(fontFileGUID:string, familyName:string, styleName:string) : void
+    + TryAddCharacters_SanityCheck(fontFileGUID:string, familyName:string, styleName:string) : void
+}
+@enduml

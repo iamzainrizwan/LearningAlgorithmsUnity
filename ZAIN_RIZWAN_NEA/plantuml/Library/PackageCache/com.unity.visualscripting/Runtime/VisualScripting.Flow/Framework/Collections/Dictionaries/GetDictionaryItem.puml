@@ -1,0 +1,8 @@
+@startuml
+class GetDictionaryItem <<sealed>> {
+}
+Unit <|-- GetDictionaryItem
+GetDictionaryItem --> "dictionary" ValueInput
+GetDictionaryItem --> "key" ValueInput
+GetDictionaryItem --> "value" ValueOutput
+@enduml

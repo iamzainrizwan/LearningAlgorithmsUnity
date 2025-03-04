@@ -1,0 +1,10 @@
+@startuml
+class NavMeshSceneConverter {
+    + <<override>> name : string <<get>>
+    + <<override>> info : string <<get>>
+    + <<override>> OnInitialize(context:InitializeConverterContext, callback:Action) : void
+    + <<override>> OnRun(context:RunItemContext) : void
+}
+SystemConverter <|-- NavMeshSceneConverter
+NavMeshSceneConverter --> "container" Type
+@enduml

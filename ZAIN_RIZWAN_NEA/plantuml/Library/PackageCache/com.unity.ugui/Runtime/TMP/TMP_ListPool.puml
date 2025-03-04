@@ -1,0 +1,6 @@
+@startuml
+class "TMP_ListPool`1"<T> <<static>> {
+    + {static} Get() : List<T>
+    + {static} Release(toRelease:List<T>) : void
+}
+@enduml

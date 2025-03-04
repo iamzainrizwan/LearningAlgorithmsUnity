@@ -1,0 +1,7 @@
+@startuml
+enum fsMemberSerialization {
+    OptIn,
+    OptOut,
+    Default,
+}
+@enduml

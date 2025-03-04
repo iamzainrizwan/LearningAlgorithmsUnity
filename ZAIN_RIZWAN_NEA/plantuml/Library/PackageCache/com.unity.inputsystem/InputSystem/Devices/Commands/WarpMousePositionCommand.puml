@@ -1,0 +1,10 @@
+@startuml
+struct WarpMousePositionCommand {
+    + {static} Create(position:Vector2) : WarpMousePositionCommand
+}
+IInputDeviceCommandInfo <|-- WarpMousePositionCommand
+WarpMousePositionCommand --> "Type" FourCC
+WarpMousePositionCommand --> "baseCommand" InputDeviceCommand
+WarpMousePositionCommand --> "warpPositionInPlayerDisplaySpace" Vector2
+WarpMousePositionCommand --> "typeStatic" FourCC
+@enduml

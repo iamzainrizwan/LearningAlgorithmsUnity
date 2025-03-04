@@ -1,0 +1,23 @@
+@startuml
+struct bool2x2 {
+    + bool2x2(c0:bool2, c1:bool2)
+    + bool2x2(m00:bool, m01:bool, m10:bool, m11:bool)
+    + bool2x2(v:bool)
+    + Equals(rhs:bool2x2) : bool
+    + <<override>> Equals(o:object) : bool
+    + <<override>> GetHashCode() : int
+    + <<override>> ToString() : string
+}
+class math <<static>> <<partial>> {
+    + {static} bool2x2(c0:bool2, c1:bool2) : bool2x2
+    + {static} bool2x2(m00:bool, m01:bool, m10:bool, m11:bool) : bool2x2
+    + {static} bool2x2(v:bool) : bool2x2
+    + {static} transpose(v:bool2x2) : bool2x2
+    + {static} hash(v:bool2x2) : uint
+    + {static} hashwide(v:bool2x2) : uint2
+}
+class "IEquatable`1"<T> {
+}
+bool2x2 --> "c0" bool2
+bool2x2 --> "c1" bool2
+@enduml

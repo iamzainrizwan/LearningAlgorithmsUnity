@@ -1,0 +1,9 @@
+@startuml
+class UdpSocket {
+    + <<const>> BufferSize : int
+    + Bind(address:IPAddress, port:int) : void
+    + {static} BufferFor(result:IAsyncResult) : byte[]
+    + {static} Any() : EndPoint
+}
+Socket <|-- UdpSocket
+@enduml

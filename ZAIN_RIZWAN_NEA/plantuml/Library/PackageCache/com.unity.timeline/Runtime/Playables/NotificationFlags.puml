@@ -1,0 +1,7 @@
+@startuml
+enum NotificationFlags {
+    TriggerInEditMode= 1 << 0,
+    Retroactive= 1 << 1,
+    TriggerOnce= 1 << 2,
+}
+@enduml

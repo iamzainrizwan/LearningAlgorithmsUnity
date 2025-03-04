@@ -1,0 +1,5 @@
+@startuml
+class XInputSupport <<static>> {
+    + {static} Initialize() : void
+}
+@enduml

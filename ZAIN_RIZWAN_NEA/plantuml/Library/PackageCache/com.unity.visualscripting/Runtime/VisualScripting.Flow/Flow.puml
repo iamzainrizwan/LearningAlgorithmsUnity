@@ -1,0 +1,57 @@
+@startuml
+class Flow <<sealed>> {
+    + isCoroutine : bool <<get>>
+    + isPrediction : bool <<get>>
+    + enableDebug : bool <<get>>
+    + isInspected : bool <<get>>
+    + {static} New(reference:GraphReference) : Flow
+    + Dispose() : void
+    + PreserveStack() : GraphStack
+    + RestoreStack(stack:GraphStack) : void
+    + DisposePreservedStack(stack:GraphStack) : void
+    + loopIdentifier : int
+    + currentLoop : int <<get>>
+    + LoopIsNotBroken(loop:int) : bool
+    + EnterLoop() : int
+    + BreakLoop() : void
+    + ExitLoop(loop:int) : void
+    + Run(port:ControlOutput) : void
+    + StartCoroutine(port:ControlOutput, registry:ICollection<Flow>) : void
+    + StopCoroutine(disposeInstantly:bool) : void
+    + Invoke(output:ControlOutput) : void
+    + IsLocal(port:IUnitValuePort) : bool
+    + SetValue(port:IUnitValuePort, value:object) : void
+    + GetValue(input:ValueInput) : object
+    + GetValue(input:ValueInput, type:Type) : object
+    + GetValue(input:ValueInput) : T
+    + GetConvertedValue(input:ValueInput) : object
+    + TryGetDefaultValue(input:ValueInput, defaultValue:object) : bool
+    + {static} FetchValue(input:ValueInput, reference:GraphReference) : object
+    + {static} FetchValue(input:ValueInput, type:Type, reference:GraphReference) : object
+    + {static} FetchValue(input:ValueInput, reference:GraphReference) : T
+    + {static} CanPredict(port:IUnitValuePort, reference:GraphReference) : bool
+    + {static} Predict(port:IUnitValuePort, reference:GraphReference) : object
+    + {static} Predict(port:IUnitValuePort, reference:GraphReference, type:Type) : object
+    + {static} Predict(port:IUnitValuePort, pointer:GraphReference) : T
+}
+struct RecursionNode {
+    + RecursionNode(port:IUnitPort, pointer:GraphPointer)
+    + Equals(other:RecursionNode) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+}
+class "Func`2"<T1,T2> {
+}
+class "IEquatable`1"<T> {
+}
+IPoolable <|-- Flow
+IDisposable <|-- Flow
+Flow --> "stack" GraphStack
+Flow o-> "variables" VariableDeclarations
+Flow --> "coroutineRunner" MonoBehaviour
+Flow --> "isInspectedBinding<GraphPointer,bool>" "Func`2"
+Flow +-- RecursionNode
+"IEquatable`1" "<RecursionNode>" <|-- RecursionNode
+RecursionNode --> "port" IUnitPort
+RecursionNode --> "context" IGraphParent
+@enduml

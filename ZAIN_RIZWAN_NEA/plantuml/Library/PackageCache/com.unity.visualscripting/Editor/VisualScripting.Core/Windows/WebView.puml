@@ -1,0 +1,16 @@
+@startuml
+class WebView <<sealed>> {
+    + WebView(host:EditorWindow, position:Rect)
+    + isDestroyed : bool <<get>>
+    + hasFocus : bool <<set>>
+    + Destroy() : void
+    + Load(uri:string) : void
+    + Show() : void
+    + Hide() : void
+    + Forward() : void
+    + Back() : void
+    + Reload() : void
+}
+WebView --> "position" Rect
+WebView --> "host" EditorWindow
+@enduml

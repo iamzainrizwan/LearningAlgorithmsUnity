@@ -1,0 +1,10 @@
+@startuml
+interface IInputActionCollection {
+}
+interface IInputActionCollection2 {
+}
+class "IEnumerable`1"<T> {
+}
+"IEnumerable`1" "<InputAction>" <|-- IInputActionCollection
+IInputActionCollection <|-- IInputActionCollection2
+@enduml

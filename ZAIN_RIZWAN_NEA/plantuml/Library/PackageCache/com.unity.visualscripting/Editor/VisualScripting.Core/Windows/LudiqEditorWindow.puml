@@ -1,0 +1,10 @@
+@startuml
+abstract class LudiqEditorWindow {
+    + AddItemsToMenu(menu:GenericMenu) : void
+    + <<override>> ToString() : string
+}
+EditorWindow <|-- LudiqEditorWindow
+ISerializationCallbackReceiver <|-- LudiqEditorWindow
+IHasCustomMenu <|-- LudiqEditorWindow
+LudiqEditorWindow --> "reliablePosition" Rect
+@enduml

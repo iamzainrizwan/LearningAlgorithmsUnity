@@ -1,0 +1,15 @@
+@startuml
+class NetcodeSelectionView {
+    + NetcodeSelectionView()
+}
+class HostingModelSelectionView {
+    + HostingModelSelectionView()
+}
+class SolutionSelectionView {
+    +  <<event>> OnUserChangedSolution : Action 
+    + UpdateData(availableSolutions:RecommendedSolutionViewData[], allPackages:List<RecommendedPackageViewData>) : void
+}
+SolutionSelectionView <|-- NetcodeSelectionView
+SolutionSelectionView <|-- HostingModelSelectionView
+PackageSelectionView <|-- SolutionSelectionView
+@enduml

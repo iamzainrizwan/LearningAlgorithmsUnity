@@ -1,0 +1,8 @@
+@startuml
+enum ResponseType {
+    None,
+    Ok,
+    Cancel,
+    Apply,
+}
+@enduml

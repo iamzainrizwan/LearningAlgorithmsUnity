@@ -1,0 +1,8 @@
+@startuml
+class PlasticWindow {
+}
+class Reload <<static>> {
+}
+EditorWindow <|-- PlasticWindow
+PlasticWindow +-- Reload
+@enduml

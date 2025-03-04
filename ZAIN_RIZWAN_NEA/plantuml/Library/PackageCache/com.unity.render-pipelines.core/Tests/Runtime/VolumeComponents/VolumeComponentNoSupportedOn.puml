@@ -1,0 +1,5 @@
+@startuml
+class VolumeComponentNoSupportedOn {
+}
+VolumeComponent <|-- VolumeComponentNoSupportedOn
+@enduml

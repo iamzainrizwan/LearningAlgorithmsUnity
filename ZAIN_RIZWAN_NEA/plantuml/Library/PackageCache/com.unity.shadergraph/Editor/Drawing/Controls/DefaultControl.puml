@@ -1,0 +1,7 @@
+@startuml
+class DefaultControlAttribute {
+    + InstantiateControl(node:AbstractMaterialNode, propertyInfo:PropertyInfo) : VisualElement
+}
+Attribute <|-- DefaultControlAttribute
+IControlAttribute <|-- DefaultControlAttribute
+@enduml

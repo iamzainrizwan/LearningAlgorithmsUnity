@@ -1,0 +1,56 @@
+@startuml
+class X86 <<unsafe>> <<static>> <<partial>> {
+}
+enum MXCSRBits {
+    FlushToZero= 1 << 15,
+    RoundingControlMask= (1 << 14) | (1 << 13),
+    RoundToNearest= 0,
+    RoundDown= (1 << 13),
+    RoundUp= (1 << 14),
+    RoundTowardZero= (1 << 13) | (1 << 14),
+    PrecisionMask= 1 << 12,
+    UnderflowMask= 1 << 11,
+    OverflowMask= 1 << 10,
+    DivideByZeroMask= 1 << 9,
+    DenormalOperationMask= 1 << 8,
+    InvalidOperationMask= 1 << 7,
+    ExceptionMask= PrecisionMask | UnderflowMask | OverflowMask | DivideByZeroMask | DenormalOperationMask | InvalidOperationMask,
+    DenormalsAreZeroes= 1 << 6,
+    PrecisionFlag= 1 << 5,
+    UnderflowFlag= 1 << 4,
+    OverflowFlag= 1 << 3,
+    DivideByZeroFlag= 1 << 2,
+    DenormalFlag= 1 << 1,
+    InvalidOperationFlag= 1 << 0,
+    FlagMask= PrecisionFlag | UnderflowFlag | OverflowFlag | DivideByZeroFlag | DenormalFlag | InvalidOperationFlag,
+}
+enum RoundingMode {
+    FROUND_TO_NEAREST_INT= 0x00,
+    FROUND_TO_NEG_INF= 0x01,
+    FROUND_TO_POS_INF= 0x02,
+    FROUND_TO_ZERO= 0x03,
+    FROUND_CUR_DIRECTION= 0x04,
+    FROUND_RAISE_EXC= 0x00,
+    FROUND_NO_EXC= 0x08,
+    FROUND_NINT= FROUND_TO_NEAREST_INT | FROUND_RAISE_EXC,
+    FROUND_FLOOR= FROUND_TO_NEG_INF | FROUND_RAISE_EXC,
+    FROUND_CEIL= FROUND_TO_POS_INF | FROUND_RAISE_EXC,
+    FROUND_TRUNC= FROUND_TO_ZERO | FROUND_RAISE_EXC,
+    FROUND_RINT= FROUND_CUR_DIRECTION | FROUND_RAISE_EXC,
+    FROUND_NEARBYINT= FROUND_CUR_DIRECTION | FROUND_NO_EXC,
+    FROUND_NINT_NOEXC= FROUND_TO_NEAREST_INT | FROUND_NO_EXC,
+    FROUND_FLOOR_NOEXC= FROUND_TO_NEG_INF | FROUND_NO_EXC,
+    FROUND_CEIL_NOEXC= FROUND_TO_POS_INF | FROUND_NO_EXC,
+    FROUND_TRUNC_NOEXC= FROUND_TO_ZERO | FROUND_NO_EXC,
+    FROUND_RINT_NOEXC= FROUND_CUR_DIRECTION | FROUND_NO_EXC,
+}
+struct RoundingScope {
+    + RoundingScope(roundingMode:MXCSRBits)
+    + Dispose() : void
+}
+X86 --> "MXCSR" MXCSRBits
+X86 +-- MXCSRBits
+X86 +-- RoundingMode
+X86 +-- RoundingScope
+IDisposable <|-- RoundingScope
+@enduml

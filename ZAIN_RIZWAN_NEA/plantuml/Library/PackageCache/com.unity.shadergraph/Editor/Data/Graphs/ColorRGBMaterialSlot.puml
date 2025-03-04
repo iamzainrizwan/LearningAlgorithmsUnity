@@ -1,0 +1,13 @@
+@startuml
+class ColorRGBMaterialSlot {
+    + ColorRGBMaterialSlot()
+    + ColorRGBMaterialSlot(slotId:int, displayName:string, shaderOutputName:string, slotType:SlotType, value:Color, colorMode:ColorMode, stageCapability:ShaderStageCapability, hidden:bool)
+    + <<override>> isDefaultValue : bool <<get>>
+    + <<override>> InstantiateControl() : VisualElement
+    + <<override>> AddDefaultProperty(properties:PropertyCollector, generationMode:GenerationMode) : void
+    + <<override>> GetPreviewProperties(properties:List<PreviewProperty>, name:string) : void
+}
+Vector3MaterialSlot <|-- ColorRGBMaterialSlot
+ColorRGBMaterialSlot --> "colorMode" ColorMode
+ColorRGBMaterialSlot --> "defaultColor" Color
+@enduml

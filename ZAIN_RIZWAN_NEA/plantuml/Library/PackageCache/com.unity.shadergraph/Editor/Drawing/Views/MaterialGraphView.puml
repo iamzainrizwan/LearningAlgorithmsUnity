@@ -1,0 +1,44 @@
+@startuml
+class MaterialGraphView <<sealed>> {
+    + MaterialGraphView()
+    + MaterialGraphView(graph:GraphData, previewUpdateDelegate:Action)
+    + inspectorTitle : string <<get>>
+    + GetObjectToInspect() : object
+    + SupplyDataToPropertyDrawer(propertyDrawer:IPropertyDrawer, inspectorUpdateDelegate:Action) : void
+    + wasUndoRedoPerformed : bool <<get>> <<set>>
+    + UpdateContextList() : void
+    + GetContext(contextData:ContextData) : ContextView
+    + <<override>> GetCompatiblePorts(startAnchor:Port, nodeAdapter:NodeAdapter) : List<Port>
+    + <<override>> BuildContextualMenu(evt:ContextualMenuPopulateEvent) : void
+    + CreateRedirectNode(position:Vector2, edgeTarget:Edge) : void
+    + <<override>> AddToSelection(selectable:ISelectable) : void
+    + <<override>> RemoveFromSelection(selectable:ISelectable) : void
+    + <<override>> ClearSelection() : void
+    + GroupSelection() : void
+    + AddStickyNote(position:Vector2) : void
+    + RemoveFromGroupNode() : void
+    + SetNodeExpandedForSelectedNodes(state:bool, recordUndo:bool) : void
+    + SetPreviewExpandedForSelectedNodes(state:bool) : void
+    + SetNodePrecisionOnSelection(inPrecision:Precision) : void
+}
+class GraphViewExtensions <<static>> {
+}
+class "List`1"<T> {
+}
+class PropertyOrder {
+    + Compare(x:ShaderInput, y:ShaderInput) : int
+}
+class "IComparer`1"<T> {
+}
+GraphView <|-- MaterialGraphView
+IInspectable <|-- MaterialGraphView
+ISelectionProvider <|-- MaterialGraphView
+MaterialGraphView --> "graph" GraphData
+MaterialGraphView --> "GetSelection<ISelectable>" "List`1"
+MaterialGraphView --> "onConvertToSubgraphClick" Action
+MaterialGraphView --> "cachedMousePosition" Vector2
+MaterialGraphView --> "contexts<ContextView>" "List`1"
+MaterialGraphView --> "OnSelectionChange" SelectionChanged
+GraphViewExtensions +-- PropertyOrder
+"IComparer`1" "<ShaderInput>" <|-- PropertyOrder
+@enduml

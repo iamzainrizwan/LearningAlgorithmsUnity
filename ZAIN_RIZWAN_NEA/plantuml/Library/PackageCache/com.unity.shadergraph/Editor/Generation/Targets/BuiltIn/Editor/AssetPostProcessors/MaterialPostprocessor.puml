@@ -1,0 +1,14 @@
+@startuml
+class MaterialModificationProcessor {
+}
+class MaterialReimporter {
+}
+class MaterialPostprocessor {
+}
+class "List`1"<T> {
+}
+AssetModificationProcessor <|-- MaterialModificationProcessor
+Editor <|-- MaterialReimporter
+AssetPostprocessor <|-- MaterialPostprocessor
+MaterialPostprocessor o-> "s_CreatedAssets<string>" "List`1"
+@enduml

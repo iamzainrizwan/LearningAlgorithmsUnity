@@ -1,0 +1,7 @@
+@startuml
+class InvalidImplementationException {
+    + InvalidImplementationException()
+    + InvalidImplementationException(message:string)
+}
+Exception <|-- InvalidImplementationException
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+class ToggleGroup {
+    + allowSwitchOff : bool <<get>> <<set>>
+    + NotifyToggleOn(toggle:Toggle, sendCallback:bool) : void
+    + UnregisterToggle(toggle:Toggle) : void
+    + RegisterToggle(toggle:Toggle) : void
+    + EnsureValidState() : void
+    + AnyTogglesOn() : bool
+    + ActiveToggles() : IEnumerable<Toggle>
+    + GetFirstActiveToggle() : Toggle
+    + SetAllTogglesOff(sendCallback:bool) : void
+}
+UIBehaviour <|-- ToggleGroup
+@enduml

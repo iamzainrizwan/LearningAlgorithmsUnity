@@ -1,0 +1,5 @@
+@startuml
+struct InitializeConverterContext {
+    + isBatchMode : bool <<get>> <<internal set>>
+}
+@enduml

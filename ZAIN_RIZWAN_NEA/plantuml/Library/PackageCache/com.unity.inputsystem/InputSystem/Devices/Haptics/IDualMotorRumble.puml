@@ -1,0 +1,5 @@
+@startuml
+interface IDualMotorRumble {
+}
+IHaptics <|-- IDualMotorRumble
+@enduml

@@ -1,0 +1,43 @@
+@startuml
+class UniversalSpriteLitSubTarget <<sealed>> {
+    + UniversalSpriteLitSubTarget()
+    + <<override>> IsActive() : bool
+    + <<override>> Setup(context:TargetSetupContext) : void
+    + <<override>> GetFields(context:TargetFieldContext) : void
+    + <<override>> GetActiveBlocks(context:TargetActiveBlockContext) : void
+    + <<override>> GetPropertiesGUI(context:TargetPropertyGUIContext, onChange:Action, registerUndo:Action<String>) : void
+    + TryUpgradeFromMasterNode(masterNode:IMasterNode1, blockMap:Dictionary<BlockFieldDescriptor, int>) : bool
+}
+class SubShaders <<static>> {
+    + {static} SpriteLit(target:UniversalTarget) : SubShaderDescriptor
+}
+class SpriteLitPasses <<static>> {
+    + {static} Lit(target:UniversalTarget) : PassDescriptor
+    + {static} Normal(target:UniversalTarget) : PassDescriptor
+    + {static} Forward(target:UniversalTarget) : PassDescriptor
+}
+class SpriteLitBlockMasks <<static>> {
+}
+class SpriteLitRequiredFields <<static>> {
+}
+class SpriteLitKeywords <<static>> {
+}
+class SpriteLitIncludes <<static>> {
+}
+UniversalSubTarget <|-- UniversalSpriteLitSubTarget
+ILegacyTarget <|-- UniversalSpriteLitSubTarget
+UniversalSpriteLitSubTarget +-- SubShaders
+UniversalSpriteLitSubTarget +-- SpriteLitPasses
+UniversalSpriteLitSubTarget +-- SpriteLitBlockMasks
+UniversalSpriteLitSubTarget +-- SpriteLitRequiredFields
+SpriteLitRequiredFields o-> "Lit" FieldCollection
+SpriteLitRequiredFields o-> "Normal" FieldCollection
+SpriteLitRequiredFields o-> "Forward" FieldCollection
+UniversalSpriteLitSubTarget +-- SpriteLitKeywords
+SpriteLitKeywords o-> "Lit" KeywordCollection
+SpriteLitKeywords o-> "Forward" KeywordCollection
+UniversalSpriteLitSubTarget +-- SpriteLitIncludes
+SpriteLitIncludes o-> "Lit" IncludeCollection
+SpriteLitIncludes o-> "Normal" IncludeCollection
+SpriteLitIncludes o-> "Forward" IncludeCollection
+@enduml

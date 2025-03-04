@@ -1,0 +1,16 @@
+@startuml
+abstract class "FuzzyOption`1"<T> {
+    + value : T <<get>> <<protected set>>
+    + label : string <<get>> <<protected set>>
+    + <<virtual>> headerLabel : string <<get>>
+    + parentOnly : bool <<get>> <<protected set>>
+    + showHeaderIcon : bool <<get>> <<protected set>>
+    + <<virtual>> hasFooter : bool <<get>> <<protected set>>
+    + <<virtual>> GetFooterHeight(width:float) : float
+    + <<virtual>> OnFooterGUI(position:Rect) : void
+    + <<virtual>> OnPopulate() : void
+}
+IFuzzyOption <|-- "FuzzyOption`1"
+"FuzzyOption`1" --> "icon" EditorTexture
+"FuzzyOption`1" --> "style" GUIStyle
+@enduml

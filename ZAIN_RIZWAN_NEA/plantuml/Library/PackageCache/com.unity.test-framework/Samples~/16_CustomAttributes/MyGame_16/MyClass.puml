@@ -1,0 +1,6 @@
+@startuml
+class MyClass {
+    + DoSomething() : bool
+    + DoSomethingElse() : bool
+}
+@enduml

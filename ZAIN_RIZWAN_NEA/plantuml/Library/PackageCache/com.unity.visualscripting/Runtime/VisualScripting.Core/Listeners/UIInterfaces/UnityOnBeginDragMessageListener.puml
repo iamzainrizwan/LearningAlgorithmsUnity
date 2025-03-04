@@ -1,0 +1,7 @@
+@startuml
+class UnityOnBeginDragMessageListener <<sealed>> {
+    + OnBeginDrag(eventData:PointerEventData) : void
+}
+MessageListener <|-- UnityOnBeginDragMessageListener
+IBeginDragHandler <|-- UnityOnBeginDragMessageListener
+@enduml

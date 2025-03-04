@@ -1,0 +1,34 @@
+@startuml
+class RenderGraphBuilders {
+    + RenderGraphBuilders()
+    + Setup(renderPass:RenderGraphPass, resources:RenderGraphResourceRegistry, renderGraph:RenderGraph) : void
+    + EnableAsyncCompute(value:bool) : void
+    + AllowPassCulling(value:bool) : void
+    + AllowGlobalStateModification(value:bool) : void
+    + EnableFoveatedRasterization(value:bool) : void
+    + CreateTransientBuffer(desc:BufferDesc) : BufferHandle
+    + CreateTransientBuffer(computebuffer:BufferHandle) : BufferHandle
+    + CreateTransientTexture(desc:TextureDesc) : TextureHandle
+    + CreateTransientTexture(texture:TextureHandle) : TextureHandle
+    + Dispose() : void
+    + UseBuffer(input:BufferHandle, flags:AccessFlags) : BufferHandle
+    + UseTexture(input:TextureHandle, flags:AccessFlags) : void
+    + UseGlobalTexture(propertyId:int, flags:AccessFlags) : void
+    + UseAllGlobalTextures(enable:bool) : void
+    + SetGlobalTextureAfterPass(input:TextureHandle, propertyId:int) : void
+    + SetRenderAttachment(tex:TextureHandle, index:int, flags:AccessFlags, mipLevel:int, depthSlice:int) : void
+    + SetInputAttachment(tex:TextureHandle, index:int, flags:AccessFlags, mipLevel:int, depthSlice:int) : void
+    + SetRenderAttachmentDepth(tex:TextureHandle, flags:AccessFlags, mipLevel:int, depthSlice:int) : void
+    + SetRandomAccessAttachment(input:TextureHandle, index:int, flags:AccessFlags) : TextureHandle
+    + UseBufferRandomAccess(input:BufferHandle, index:int, flags:AccessFlags) : BufferHandle
+    + UseBufferRandomAccess(input:BufferHandle, index:int, preserveCounterValue:bool, flags:AccessFlags) : BufferHandle
+    + SetRenderFunc(renderFunc:BaseRenderFunc<PassData, ComputeGraphContext>) : void
+    + SetRenderFunc(renderFunc:BaseRenderFunc<PassData, RasterGraphContext>) : void
+    + SetRenderFunc(renderFunc:BaseRenderFunc<PassData, UnsafeGraphContext>) : void
+    + UseRendererList(input:RendererListHandle) : void
+}
+IBaseRenderGraphBuilder <|-- RenderGraphBuilders
+IComputeRenderGraphBuilder <|-- RenderGraphBuilders
+IRasterRenderGraphBuilder <|-- RenderGraphBuilders
+IUnsafeRenderGraphBuilder <|-- RenderGraphBuilders
+@enduml

@@ -1,0 +1,31 @@
+@startuml
+class CommonUsages <<static>> {
+}
+CommonUsages o-> "Primary2DMotion" InternedString
+CommonUsages o-> "Secondary2DMotion" InternedString
+CommonUsages o-> "PrimaryAction" InternedString
+CommonUsages o-> "SecondaryAction" InternedString
+CommonUsages o-> "PrimaryTrigger" InternedString
+CommonUsages o-> "SecondaryTrigger" InternedString
+CommonUsages o-> "Modifier" InternedString
+CommonUsages o-> "Position" InternedString
+CommonUsages o-> "Orientation" InternedString
+CommonUsages o-> "Hatswitch" InternedString
+CommonUsages o-> "Back" InternedString
+CommonUsages o-> "Forward" InternedString
+CommonUsages o-> "Menu" InternedString
+CommonUsages o-> "Submit" InternedString
+CommonUsages o-> "Cancel" InternedString
+CommonUsages o-> "Horizontal" InternedString
+CommonUsages o-> "Vertical" InternedString
+CommonUsages o-> "Twist" InternedString
+CommonUsages o-> "Pressure" InternedString
+CommonUsages o-> "ScrollHorizontal" InternedString
+CommonUsages o-> "ScrollVertical" InternedString
+CommonUsages o-> "Point" InternedString
+CommonUsages o-> "LowFreqMotor" InternedString
+CommonUsages o-> "HighFreqMotor" InternedString
+CommonUsages o-> "LeftHand" InternedString
+CommonUsages o-> "RightHand" InternedString
+CommonUsages o-> "BatteryStrength" InternedString
+@enduml

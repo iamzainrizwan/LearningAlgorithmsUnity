@@ -1,0 +1,18 @@
+@startuml
+class DualShockGamepad {
+    + <<override>> MakeCurrent() : void
+    + <<virtual>> SetLightBarColor(color:Color) : void
+}
+Gamepad <|-- DualShockGamepad
+IDualShockHaptics <|-- DualShockGamepad
+DualShockGamepad --> "touchpadButton" ButtonControl
+DualShockGamepad --> "optionsButton" ButtonControl
+DualShockGamepad --> "shareButton" ButtonControl
+DualShockGamepad --> "L1" ButtonControl
+DualShockGamepad --> "R1" ButtonControl
+DualShockGamepad --> "L2" ButtonControl
+DualShockGamepad --> "R2" ButtonControl
+DualShockGamepad --> "L3" ButtonControl
+DualShockGamepad --> "R3" ButtonControl
+DualShockGamepad --> "current" DualShockGamepad
+@enduml

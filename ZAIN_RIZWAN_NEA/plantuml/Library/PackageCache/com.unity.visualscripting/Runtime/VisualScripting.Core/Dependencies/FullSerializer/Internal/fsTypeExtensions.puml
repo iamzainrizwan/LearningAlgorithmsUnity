@@ -1,0 +1,7 @@
+@startuml
+class fsTypeExtensions <<static>> {
+    + {static} CSharpName(type:Type) : string
+    + {static} CSharpName(type:Type, includeNamespace:bool, ensureSafeDeclarationName:bool) : string
+    + {static} CSharpName(type:Type, includeNamespace:bool) : string
+}
+@enduml

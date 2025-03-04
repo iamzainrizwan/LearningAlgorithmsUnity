@@ -1,0 +1,6 @@
+@startuml
+class EditModeGUIUtils <<static>> {
+    + {static} DrawBoundsEdge(bounds:Rect, color:Color, edge:TrimEdge, width:float) : void
+    + {static} DrawOverlayRect(bounds:Rect, overlayColor:Color) : void
+}
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+struct RGBANodeOutput {
+    + rgbaOutput : int
+    + rOutput : int
+    + gOutput : int
+    + bOutput : int
+    + aOutput : int
+    + {static} NewDefault() : RGBANodeOutput
+    + CreateNodes(node:AbstractMaterialNode, newCapabilities:ShaderStageCapability, rgbaSlot:int, rSlot:int, gSlot:int, bSlot:int, aSlot:int) : void
+    + SetCapabilities(newCapabilities:ShaderStageCapability) : void
+}
+RGBANodeOutput --> "rgba" MaterialSlot
+RGBANodeOutput --> "r" MaterialSlot
+RGBANodeOutput --> "g" MaterialSlot
+RGBANodeOutput --> "b" MaterialSlot
+RGBANodeOutput --> "a" MaterialSlot
+RGBANodeOutput --> "capabilities" ShaderStageCapability
+@enduml

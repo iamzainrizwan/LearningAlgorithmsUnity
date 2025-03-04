@@ -1,0 +1,7 @@
+@startuml
+struct MeasurementsStatistics {
+    + Mean : double <<get>>
+    + MarginOfError : double <<get>>
+    + {static} Calculate(measurements:List<double>, outlierMode:OutlierMode, confidenceLevel:ConfidenceLevel) : MeasurementsStatistics
+}
+@enduml

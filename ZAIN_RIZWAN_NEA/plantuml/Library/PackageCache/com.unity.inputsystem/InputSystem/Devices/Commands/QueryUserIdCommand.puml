@@ -1,0 +1,12 @@
+@startuml
+struct QueryUserIdCommand {
+    + <<const>> kMaxIdLength : int = 256
+    + <<fixed>> idBuffer : byte
+    + ReadId() : string
+    + {static} Create() : QueryUserIdCommand
+}
+IInputDeviceCommandInfo <|-- QueryUserIdCommand
+QueryUserIdCommand --> "Type" FourCC
+QueryUserIdCommand --> "baseCommand" InputDeviceCommand
+QueryUserIdCommand --> "typeStatic" FourCC
+@enduml

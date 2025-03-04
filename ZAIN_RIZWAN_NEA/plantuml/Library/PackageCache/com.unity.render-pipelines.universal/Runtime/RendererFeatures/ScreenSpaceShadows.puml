@@ -1,0 +1,30 @@
+@startuml
+class ScreenSpaceShadowsSettings {
+}
+class ScreenSpaceShadows {
+    + <<override>> Create() : void
+    + <<override>> AddRenderPasses(renderer:ScriptableRenderer, renderingData:RenderingData) : void
+}
+class ScreenSpaceShadowsPass {
+    + Dispose() : void
+    + <<override>> OnCameraSetup(cmd:CommandBuffer, renderingData:RenderingData) : void
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+}
+class ScreenSpaceShadowsPostPass {
+    + <<override>> Configure(cmd:CommandBuffer, cameraTextureDescriptor:RenderTextureDescriptor) : void
+    + <<override>> Execute(context:ScriptableRenderContext, renderingData:RenderingData) : void
+    + <<override>> RecordRenderGraph(renderGraph:RenderGraph, frameData:ContextContainer) : void
+}
+class PassData {
+}
+class PassData {
+}
+ScriptableRendererFeature <|-- ScreenSpaceShadows
+ScreenSpaceShadows +-- ScreenSpaceShadowsPass
+ScriptableRenderPass <|-- ScreenSpaceShadowsPass
+ScreenSpaceShadows +-- ScreenSpaceShadowsPostPass
+ScriptableRenderPass <|-- ScreenSpaceShadowsPostPass
+ScreenSpaceShadowsPass +-- PassData
+ScreenSpaceShadowsPostPass +-- PassData
+@enduml

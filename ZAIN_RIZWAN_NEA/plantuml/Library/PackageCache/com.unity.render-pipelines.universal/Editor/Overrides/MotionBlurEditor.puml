@@ -1,0 +1,7 @@
+@startuml
+class MotionBlurEditor <<sealed>> {
+    + <<override>> OnEnable() : void
+    + <<override>> OnInspectorGUI() : void
+}
+VolumeComponentEditor <|-- MotionBlurEditor
+@enduml

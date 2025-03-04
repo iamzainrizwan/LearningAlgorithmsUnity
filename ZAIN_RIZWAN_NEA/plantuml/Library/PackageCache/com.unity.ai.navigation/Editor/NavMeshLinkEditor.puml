@@ -1,0 +1,38 @@
+@startuml
+class NavMeshLinkEditor {
+    + <<override>> OnInspectorGUI() : void
+    + OnSceneGUI() : void
+    + {static} CreateNavMeshLink(menuCommand:MenuCommand) : void
+}
+class DeferredLinkUpdateScope {
+    + DeferredLinkUpdateScope(link:NavMeshLink)
+    + Dispose() : void
+}
+class Content <<static>> {
+    + {static} <<readonly>> UndoReCenterOrigin : string
+    + {static} <<readonly>> UndoReverseDirection : string
+    + {static} <<readonly>> UndoMoveLinkStartPoint : string
+    + {static} <<readonly>> UndoMoveLinkStartObject : string
+    + {static} <<readonly>> UndoMoveLinkEndPoint : string
+    + {static} <<readonly>> UndoMoveLinkEndObject : string
+    + {static} <<readonly>> UndoModifyLinkWidth : string
+}
+NavMeshLinkEditor +-- DeferredLinkUpdateScope
+IDisposable <|-- DeferredLinkUpdateScope
+NavMeshLinkEditor +-- Content
+Content o-> "AgentType" GUIContent
+Content o-> "AreaType" GUIContent
+Content o-> "CostOverrideToggle" GUIContent
+Content o-> "CostModifier" GUIContent
+Content o-> "Positions" GUIContent
+Content o-> "StartTransform" GUIContent
+Content o-> "StartPoint" GUIContent
+Content o-> "EndTransform" GUIContent
+Content o-> "EndPoint" GUIContent
+Content o-> "ReverseDirectionButton" GUIContent
+Content o-> "ReCenterButton" GUIContent
+Content o-> "Width" GUIContent
+Content o-> "AutoUpdatePositions" GUIContent
+Content o-> "Bidirectional" GUIContent
+Content o-> "Activated" GUIContent
+@enduml

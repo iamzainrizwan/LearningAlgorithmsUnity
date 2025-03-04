@@ -1,0 +1,6 @@
+@startuml
+class OnPointerExit <<sealed>> {
+}
+PointerEventUnit <|-- OnPointerExit
+OnPointerExit --> "MessageListenerType" Type
+@enduml

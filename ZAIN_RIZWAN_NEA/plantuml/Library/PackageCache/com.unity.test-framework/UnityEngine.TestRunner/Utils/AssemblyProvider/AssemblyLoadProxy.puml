@@ -1,0 +1,6 @@
+@startuml
+class AssemblyLoadProxy {
+    + Load(assemblyString:string) : IAssemblyWrapper
+}
+IAssemblyLoadProxy <|-- AssemblyLoadProxy
+@enduml

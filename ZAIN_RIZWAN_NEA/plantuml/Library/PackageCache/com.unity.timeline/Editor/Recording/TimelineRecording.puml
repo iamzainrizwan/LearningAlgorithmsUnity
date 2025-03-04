@@ -1,0 +1,16 @@
+@startuml
+class TimelineRecording <<static>> <<partial>> {
+    + {static} GetRecordingTrack(property:SerializedProperty, state:WindowState) : TrackAsset
+    + {static} AddKey(prop:SerializedProperty, state:WindowState) : void
+    + {static} AddKey(modifications:IEnumerable<PropertyModification>, state:WindowState) : void
+    + {static} HasCurve(modifications:IList<PropertyModification>, target:UnityEngine.Object, state:WindowState) : bool
+    + {static} HasKey(modifications:IList<PropertyModification>, state:WindowState) : bool
+    + {static} RemoveKey(target:UnityEngine.Object, modifications:IEnumerable<PropertyModification>, state:WindowState) : void
+    + {static} NextKey(target:UnityEngine.Object, modifications:IList<PropertyModification>, state:WindowState) : void
+    + {static} PrevKey(target:UnityEngine.Object, modifications:IList<PropertyModification>, state:WindowState) : void
+    + {static} RemoveCurve(target:UnityEngine.Object, modifications:IEnumerable<PropertyModification>, state:WindowState) : void
+    + {static} KeyAllProperties(target:Component, state:WindowState) : void
+    + {static} KeyProperties(go:GameObject, state:WindowState, bindings:IList<EditorCurveBinding>) : void
+    + {static} GetRecordableGameObjects(state:WindowState) : IEnumerable<GameObject>
+}
+@enduml

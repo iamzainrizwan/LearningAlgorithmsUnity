@@ -1,0 +1,18 @@
+@startuml
+class InputControlVisualizer {
+    + controlPath : string <<get>> <<set>>
+    + controlIndex : int <<get>> <<set>>
+}
+enum Mode {
+    None= 0,
+    Value= 1,
+    Events= 4,
+    MaximumLag= 6,
+    Bytes= 7,
+    DeviceCurrent= 8,
+}
+InputVisualizer <|-- InputControlVisualizer
+InputControlVisualizer --> "visualization" Mode
+InputControlVisualizer --> "control" InputControl
+InputControlVisualizer +-- Mode
+@enduml

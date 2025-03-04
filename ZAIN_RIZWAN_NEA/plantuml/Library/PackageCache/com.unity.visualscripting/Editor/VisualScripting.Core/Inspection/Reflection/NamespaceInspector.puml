@@ -1,0 +1,6 @@
+@startuml
+class NamespaceInspector {
+    + NamespaceInspector(metadata:Metadata)
+}
+Inspector <|-- NamespaceInspector
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class VariableKindAttribute <<sealed>> {
+    + VariableKindAttribute(kind:VariableKind)
+}
+Attribute <|-- VariableKindAttribute
+VariableKindAttribute --> "kind" VariableKind
+@enduml

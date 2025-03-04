@@ -1,0 +1,14 @@
+@startuml
+struct InputEventStream {
+    + isOpen : bool <<get>>
+    + remainingEventCount : int <<get>>
+    + numEventsRetainedInBuffer : int <<get>>
+    + numBytesRetainedInBuffer : uint <<get>>
+    + InputEventStream(eventBuffer:InputEventBuffer, maxAppendedEvents:int)
+    + Close(eventBuffer:InputEventBuffer) : void
+    + CleanUpAfterException() : void
+    + Write(eventPtr:InputEvent*) : void
+    + Advance(leaveEventInBuffer:bool) : InputEvent*
+    + Peek() : InputEvent*
+}
+@enduml

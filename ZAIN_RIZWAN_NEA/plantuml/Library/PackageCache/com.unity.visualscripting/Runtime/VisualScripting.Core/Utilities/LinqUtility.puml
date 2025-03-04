@@ -1,0 +1,21 @@
+@startuml
+class LinqUtility <<static>> {
+    + {static} Concat(enumerables:IEnumerable[]) : IEnumerable<T>
+    + {static} DistinctBy(items:IEnumerable<T>, property:Func<T, TKey>) : IEnumerable<T>
+    + {static} NotNull(enumerable:IEnumerable<T>) : IEnumerable<T>
+    + {static} Yield(t:T) : IEnumerable<T>
+    + {static} ToHashSet(enumerable:IEnumerable<T>) : HashSet<T>
+    + {static} AddRange(collection:ICollection<T>, items:IEnumerable<T>) : void
+    + {static} AddRange(list:IList, items:IEnumerable) : void
+    + {static} AsReadOnlyCollection(enumerable:IEnumerable<T>) : ICollection<T>
+    + {static} AsReadOnlyList(enumerable:IEnumerable<T>) : IList<T>
+    + {static} Flatten(source:IEnumerable<T>, childrenSelector:Func<T, IEnumerable<T>>) : IEnumerable<T>
+    + {static} IntersectAll(groups:IEnumerable<IEnumerable<T>>) : IEnumerable<T>
+    + {static} OrderByDependencies(source:IEnumerable<T>, getDependencies:Func<T, IEnumerable<T>>, throwOnCycle:bool) : IEnumerable<T>
+    + {static} OrderByDependers(source:IEnumerable<T>, getDependers:Func<T, IEnumerable<T>>, throwOnCycle:bool) : IEnumerable<T>
+    + {static} Catch(source:IEnumerable<T>, @catch:Action<Exception>) : IEnumerable<T>
+    + {static} Catch(source:IEnumerable<T>, exceptions:ICollection<Exception>) : IEnumerable<T>
+    + {static} CatchAsLogError(source:IEnumerable<T>, message:string) : IEnumerable<T>
+    + {static} CatchAsLogWarning(source:IEnumerable<T>, message:string) : IEnumerable<T>
+}
+@enduml

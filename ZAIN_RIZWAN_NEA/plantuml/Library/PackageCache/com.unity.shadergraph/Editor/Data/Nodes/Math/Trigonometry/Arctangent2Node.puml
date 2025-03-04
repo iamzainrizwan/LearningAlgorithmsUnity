@@ -1,0 +1,6 @@
+@startuml
+class Arctangent2Node {
+    + Arctangent2Node()
+}
+CodeFunctionNode <|-- Arctangent2Node
+@enduml

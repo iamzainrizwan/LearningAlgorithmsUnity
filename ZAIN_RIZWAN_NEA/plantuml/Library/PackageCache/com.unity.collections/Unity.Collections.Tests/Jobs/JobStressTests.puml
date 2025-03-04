@@ -1,0 +1,23 @@
+@startuml
+class JobStressTests {
+    + StressTestParallelFor() : void
+    + StressTestParallelForIterations(amount:int, amountOfData:int) : void
+    + DeepDependencyChain() : void
+}
+struct JobSetIndexValue {
+    + Execute(index:int) : void
+}
+struct JobSetValue {
+    + expected : int
+    + Execute() : void
+}
+class "NativeArray`1"<T> {
+}
+JobTestsFixture <|-- JobStressTests
+JobStressTests +-- JobSetIndexValue
+IJobParallelFor <|-- JobSetIndexValue
+JobSetIndexValue --> "value<int>" "NativeArray`1"
+JobStressTests +-- JobSetValue
+IJob <|-- JobSetValue
+JobSetValue --> "value<int>" "NativeArray`1"
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+class LightExplorer {
+}
+class Styles <<static>> {
+}
+DefaultLightingExplorerExtension <|-- LightExplorer
+LightExplorer +-- Styles
+Styles o-> "Enabled" GUIContent
+Styles o-> "Name" GUIContent
+Styles o-> "Mode" GUIContent
+Styles o-> "HDR" GUIContent
+Styles o-> "ShadowDistance" GUIContent
+Styles o-> "NearPlane" GUIContent
+Styles o-> "FarPlane" GUIContent
+Styles o-> "Resolution" GUIContent
+@enduml

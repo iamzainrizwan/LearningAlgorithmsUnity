@@ -1,0 +1,8 @@
+@startuml
+class DictionaryContainsKey <<sealed>> {
+}
+Unit <|-- DictionaryContainsKey
+DictionaryContainsKey --> "dictionary" ValueInput
+DictionaryContainsKey --> "key" ValueInput
+DictionaryContainsKey --> "contains" ValueOutput
+@enduml

@@ -1,0 +1,98 @@
+@startuml
+struct BlackboardShaderInputOrder {
+    + isKeyword : bool
+    + isDropdown : bool
+    + deprecatedPropertyName : string
+    + version : int
+}
+class BlackboardShaderInputFactory {
+    {static} + GetShaderInput(order:BlackboardShaderInputOrder) : ShaderInput
+}
+class AddShaderInputAction {
+    + {static} AddDeprecatedPropertyAction(order:BlackboardShaderInputOrder) : AddShaderInputAction
+    + {static} AddDropdownAction(order:BlackboardShaderInputOrder) : AddShaderInputAction
+    + {static} AddKeywordAction(order:BlackboardShaderInputOrder) : AddShaderInputAction
+    + {static} AddPropertyAction(shaderInputType:Type) : AddShaderInputAction
+    + categoryToAddItemToGuid : string <<get>> <<set>>
+}
+class ChangeGraphPathAction {
+    + NewGraphPath : string <<get>> <<set>>
+}
+class CopyShaderInputAction {
+    + containingCategoryGuid : string <<get>> <<set>>
+    + insertIndex : int <<get>> <<set>>
+}
+class AddCategoryAction {
+    + categoryName : string <<get>> <<set>>
+}
+class MoveCategoryAction {
+}
+class AddItemToCategoryAction {
+    + categoryGuid : string <<get>> <<set>>
+    + indexToAddItemAt : int <<get>> <<set>>
+}
+class CopyCategoryAction {
+}
+class ShaderVariantLimitAction {
+    + currentVariantCount : int <<get>> <<set>> = 0
+    + maxVariantCount : int <<get>> <<set>> = 0
+    + ShaderVariantLimitAction(currentVariantCount:int, maxVariantCount:int)
+}
+class BlackboardController {
+    + GetFirstSelectedCategoryGuid() : string
+    + UpdateBlackboardTitle(newTitle:string) : void
+    + GetBlackboardCategory(inputGuid:string) : SGBlackboardCategory
+    + GetBlackboardRow(blackboardItem:ShaderInput) : SGBlackboardRow
+    + <<override>> Dispose() : void
+}
+class "DataStore`1"<T> {
+}
+enum AddActionSource {
+    Default,
+    AddMenu,
+}
+class "Action`1"<T> {
+}
+class "IEnumerable`1"<T> {
+}
+class "List`1"<T> {
+}
+enum AddActionSource {
+    Default,
+    DragDrop,
+}
+class "SGViewController`2"<T1,T2> {
+}
+BlackboardShaderInputOrder --> "keywordType" KeywordType
+BlackboardShaderInputOrder --> "builtInKeyword" ShaderKeyword
+IGraphDataAction <|-- AddShaderInputAction
+AddShaderInputAction --> "modifyGraphDataAction<GraphData>" "Action`1"
+AddShaderInputAction --> "shaderInputReference" BlackboardItem
+AddShaderInputAction --> "addInputActionType" AddActionSource
+IGraphDataAction <|-- ChangeGraphPathAction
+ChangeGraphPathAction --> "modifyGraphDataAction<GraphData>" "Action`1"
+IGraphDataAction <|-- CopyShaderInputAction
+CopyShaderInputAction --> "modifyGraphDataAction<GraphData>" "Action`1"
+CopyShaderInputAction o-> "dependentNodeList<AbstractMaterialNode>" "IEnumerable`1"
+CopyShaderInputAction --> "shaderInputToCopy" BlackboardItem
+CopyShaderInputAction --> "copiedShaderInput" BlackboardItem
+IGraphDataAction <|-- AddCategoryAction
+AddCategoryAction --> "modifyGraphDataAction<GraphData>" "Action`1"
+AddCategoryAction --> "categoryDataReference" CategoryData
+AddCategoryAction --> "childObjects<ShaderInput>" "List`1"
+IGraphDataAction <|-- MoveCategoryAction
+MoveCategoryAction --> "modifyGraphDataAction<GraphData>" "Action`1"
+IGraphDataAction <|-- AddItemToCategoryAction
+AddItemToCategoryAction --> "modifyGraphDataAction<GraphData>" "Action`1"
+AddItemToCategoryAction --> "itemToAdd" ShaderInput
+AddItemToCategoryAction --> "addActionSource" AddActionSource
+IGraphDataAction <|-- CopyCategoryAction
+CopyCategoryAction --> "newCategoryDataReference" CategoryData
+CopyCategoryAction --> "categoryToCopyReference" CategoryData
+CopyCategoryAction --> "modifyGraphDataAction<GraphData>" "Action`1"
+IGraphDataAction <|-- ShaderVariantLimitAction
+ShaderVariantLimitAction --> "modifyGraphDataAction<GraphData>" "Action`1"
+"SGViewController`2" "<GraphData,BlackboardViewModel>" <|-- BlackboardController
+AddShaderInputAction +-- AddActionSource
+AddItemToCategoryAction +-- AddActionSource
+@enduml

@@ -1,0 +1,4 @@
+@startuml
+interface "IElementAdderMenuBuilder`1"<TContext> {
+}
+@enduml

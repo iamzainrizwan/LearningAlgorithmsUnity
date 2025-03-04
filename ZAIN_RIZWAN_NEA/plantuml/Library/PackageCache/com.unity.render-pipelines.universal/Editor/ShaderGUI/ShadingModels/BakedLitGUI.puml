@@ -1,0 +1,10 @@
+@startuml
+class BakedLitGUI <<static>> {
+    + {static} Inputs(properties:BakedLitProperties, materialEditor:MaterialEditor) : void
+}
+struct BakedLitProperties {
+    + BakedLitProperties(properties:MaterialProperty[])
+}
+BakedLitGUI +-- BakedLitProperties
+BakedLitProperties --> "bumpMapProp" MaterialProperty
+@enduml

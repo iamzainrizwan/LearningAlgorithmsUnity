@@ -1,0 +1,7 @@
+@startuml
+class SetPropertyUtility <<static>> {
+    + {static} SetColor(currentValue:Color, newValue:Color) : bool
+    + {static} SetStruct(currentValue:T, newValue:T) : bool
+    + {static} SetClass(currentValue:T, newValue:T) : bool
+}
+@enduml

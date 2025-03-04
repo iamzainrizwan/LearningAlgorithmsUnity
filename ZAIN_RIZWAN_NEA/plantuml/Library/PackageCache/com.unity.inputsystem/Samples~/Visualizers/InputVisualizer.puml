@@ -1,0 +1,5 @@
+@startuml
+abstract class InputVisualizer {
+}
+MonoBehaviour <|-- InputVisualizer
+@enduml

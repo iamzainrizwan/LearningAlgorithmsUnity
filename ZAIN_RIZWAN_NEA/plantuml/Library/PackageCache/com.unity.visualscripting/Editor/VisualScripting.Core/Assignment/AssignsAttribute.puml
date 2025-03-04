@@ -1,0 +1,9 @@
+@startuml
+class AssignsAttribute <<sealed>> {
+    + AssignsAttribute()
+    + AssignsAttribute(memberName:string)
+    + memberName : string <<get>>
+    + cache : bool <<get>> <<set>> = true
+}
+Attribute <|-- AssignsAttribute
+@enduml

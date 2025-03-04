@@ -1,0 +1,13 @@
+@startuml
+class ShaderInput <<static>> <<partial>> {
+}
+struct LightData {
+    + layerMask : uint
+}
+ShaderInput +-- LightData
+LightData --> "position" Vector4
+LightData --> "color" Vector4
+LightData --> "attenuation" Vector4
+LightData --> "spotDirection" Vector4
+LightData --> "occlusionProbeChannels" Vector4
+@enduml

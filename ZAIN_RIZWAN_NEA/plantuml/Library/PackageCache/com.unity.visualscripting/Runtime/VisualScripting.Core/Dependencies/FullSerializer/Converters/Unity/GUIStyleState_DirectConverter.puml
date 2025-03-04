@@ -1,0 +1,11 @@
+@startuml
+class fsConverterRegistrar <<partial>> {
+}
+class GUIStyleState_DirectConverter {
+    + <<override>> CreateInstance(data:fsData, storageType:Type) : object
+}
+class "fsDirectConverter`1"<T> {
+}
+fsConverterRegistrar --> "Register_GUIStyleState_DirectConverter" GUIStyleState_DirectConverter
+"fsDirectConverter`1" "<GUIStyleState>" <|-- GUIStyleState_DirectConverter
+@enduml

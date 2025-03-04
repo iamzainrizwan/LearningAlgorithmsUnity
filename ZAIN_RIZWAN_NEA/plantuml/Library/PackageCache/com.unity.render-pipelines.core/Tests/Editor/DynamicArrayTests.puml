@@ -1,0 +1,36 @@
+@startuml
+class DynamicArrayTests {
+    + Setup() : void
+    + CleanUp() : void
+    + TestContainElement() : void
+    + TestAddElementCorrectSize() : void
+    + TestAddRangeCorrectElements() : void
+    + TestAddRangeOutOfSpaceKeepPreviousElements() : void
+    + TestRemoveElementCorrectSize() : void
+    + TestRemoveAtKeepOrder() : void
+    + TestRemoveInexistantElementReturnFalse() : void
+    + TestRemoveKeepOrder() : void
+    + TestRemoveRangeKeepOrder() : void
+    + TestInvalidAccessThrows() : void
+    + TestRemoveAtInvalidAccessThrows() : void
+    + TestRemoveRangeInvalidAccessThrows() : void
+    + TestRemoveRangeValidAccessDoesNotThrows() : void
+    + TestFindIndexFailReturnMinusOne() : void
+    + TestFindIndexSuccessReturnRightFirstIndex() : void
+    + TestIndexOfReturnFirstValidIndex() : void
+    + TestIndexOfRangeRespectCount() : void
+    + TestIndexOfRangeReturnFirstValidIndex() : void
+    + TestIndexOfWithStartingIndexFail() : void
+    + TestResizeIncreaseCapacity() : void
+    + TestReserveKeepsSize() : void
+    + TestResizeAndClear() : void
+    + TestDynamicString() : void
+    + TestAppendSelf() : void
+    + TestQuickSort() : void
+    + TestForEach_FullRange() : void
+    + TestForEach_SubRange() : void
+    + GetEnumerators_ArgumentValidation() : void
+    + Foreach_TestNoModificationsAllowed() : void
+    + Foreach_NoGC() : void
+}
+@enduml

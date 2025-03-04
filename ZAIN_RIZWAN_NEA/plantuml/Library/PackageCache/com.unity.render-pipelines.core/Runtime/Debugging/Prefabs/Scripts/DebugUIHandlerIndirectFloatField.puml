@@ -1,0 +1,21 @@
+@startuml
+class DebugUIHandlerIndirectFloatField {
+    + Init() : void
+    + <<override>> OnSelection(fromNext:bool, previous:DebugUIHandlerWidget) : bool
+    + <<override>> OnDeselection() : void
+    + <<override>> OnIncrement(fast:bool) : void
+    + <<override>> OnDecrement(fast:bool) : void
+}
+class "Func`1"<T> {
+}
+class "Action`1"<T> {
+}
+DebugUIHandlerWidget <|-- DebugUIHandlerIndirectFloatField
+DebugUIHandlerIndirectFloatField --> "nameLabel" Text
+DebugUIHandlerIndirectFloatField --> "valueLabel" Text
+DebugUIHandlerIndirectFloatField --> "getter<float>" "Func`1"
+DebugUIHandlerIndirectFloatField --> "setter<float>" "Action`1"
+DebugUIHandlerIndirectFloatField --> "incStepGetter<float>" "Func`1"
+DebugUIHandlerIndirectFloatField --> "incStepMultGetter<float>" "Func`1"
+DebugUIHandlerIndirectFloatField --> "decimalsGetter<float>" "Func`1"
+@enduml

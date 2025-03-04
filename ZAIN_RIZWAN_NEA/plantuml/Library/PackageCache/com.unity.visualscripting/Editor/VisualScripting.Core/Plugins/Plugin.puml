@@ -1,0 +1,21 @@
+@startuml
+abstract class Plugin {
+    + id : string <<get>>
+    + <<virtual>> SetupWizardPages() : IEnumerable<Page>
+    + <<virtual>> RunAction() : void
+}
+class "ReadOnlyCollection`1"<T> {
+}
+class "IEnumerable`1"<T> {
+}
+Plugin --> "dependencies<Plugin>" "ReadOnlyCollection`1"
+Plugin --> "manifest" PluginManifest
+Plugin --> "configuration" PluginConfiguration
+Plugin --> "paths" PluginPaths
+Plugin --> "resources" PluginResources
+Plugin --> "scriptReferenceReplacements<ScriptReferenceReplacement>" "IEnumerable`1"
+Plugin --> "aotStubs<object>" "IEnumerable`1"
+Plugin --> "tips<string>" "IEnumerable`1"
+Plugin --> "editorAssembly" Assembly
+Plugin --> "runtimeAssembly" Assembly
+@enduml

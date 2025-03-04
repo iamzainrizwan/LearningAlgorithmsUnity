@@ -1,0 +1,15 @@
+@startuml
+class NodeClassCache <<static>> {
+    + {static} UpdateSubGraphEntry(path:string) : void
+    + {static} GetFilterableAttributesOnNodeType(nodeType:Type) : IEnumerable<ContextFilterableAttribute>
+    + {static} GetAttributeOnNodeType(nodeType:Type) : T
+}
+class PostProcessor {
+}
+class "IEnumerable`1"<T> {
+}
+NodeClassCache --> "knownNodeTypes<Type>" "IEnumerable`1"
+NodeClassCache --> "knownSubGraphAssets<SubGraphAsset>" "IEnumerable`1"
+NodeClassCache +-- PostProcessor
+AssetPostprocessor <|-- PostProcessor
+@enduml

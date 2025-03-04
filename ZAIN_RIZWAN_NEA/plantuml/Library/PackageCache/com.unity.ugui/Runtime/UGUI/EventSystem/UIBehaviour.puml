@@ -1,0 +1,7 @@
+@startuml
+abstract class UIBehaviour {
+    + <<virtual>> IsActive() : bool
+    + IsDestroyed() : bool
+}
+MonoBehaviour <|-- UIBehaviour
+@enduml

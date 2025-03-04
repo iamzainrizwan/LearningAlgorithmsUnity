@@ -1,0 +1,5 @@
+@startuml
+class LibcNativeInterop <<static>> {
+    + {static} <<extern>> realpath(path:string, resolved_path:StringBuilder) : IntPtr
+}
+@enduml

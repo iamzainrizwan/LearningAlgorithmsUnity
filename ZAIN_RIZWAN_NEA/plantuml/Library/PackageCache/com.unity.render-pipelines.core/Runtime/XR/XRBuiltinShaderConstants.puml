@@ -1,0 +1,17 @@
+@startuml
+class XRBuiltinShaderConstants <<static>> {
+    {static} + <<readonly>> unity_StereoCameraProjection : int
+    {static} + <<readonly>> unity_StereoCameraInvProjection : int
+    {static} + <<readonly>> unity_StereoMatrixV : int
+    {static} + <<readonly>> unity_StereoMatrixInvV : int
+    {static} + <<readonly>> unity_StereoMatrixP : int
+    {static} + <<readonly>> unity_StereoMatrixInvP : int
+    {static} + <<readonly>> unity_StereoMatrixVP : int
+    {static} + <<readonly>> unity_StereoMatrixInvVP : int
+    {static} + <<readonly>> unity_StereoWorldSpaceCameraPos : int
+    + {static} UpdateBuiltinShaderConstants(viewMatrix:Matrix4x4, projMatrix:Matrix4x4, renderIntoTexture:bool, viewIndex:int) : void
+    + {static} SetBuiltinShaderConstants(cmd:CommandBuffer) : void
+    + {static} SetBuiltinShaderConstants(cmd:RasterCommandBuffer) : void
+    + {static} Update(xrPass:XRPass, cmd:CommandBuffer, renderIntoTexture:bool) : void
+}
+@enduml

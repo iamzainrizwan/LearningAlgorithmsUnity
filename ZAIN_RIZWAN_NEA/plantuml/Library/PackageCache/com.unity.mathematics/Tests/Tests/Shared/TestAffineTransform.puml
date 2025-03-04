@@ -1,0 +1,17 @@
+@startuml
+class TestAffineTransform {
+    + {static} affine_transform_construct_from_float3x3() : void
+    + {static} affine_transform_construct_from_float3x4() : void
+    + {static} affine_transform_construct_from_float4x4() : void
+    + {static} affine_transform_construct_from_RigidTransform() : void
+    + {static} affine_transform_inverse() : void
+    + {static} affine_transform_inverse_zero_rs_returns_zero() : void
+    + {static} affine_transform_inverse_pico_scale() : void
+    + {static} affine_transform_inverse_singular() : void
+    + {static} affine_transform_decompose() : void
+    + {static} affine_transform_mul_vector() : void
+    + {static} affine_transform_rotate_vector() : void
+    + {static} affine_transform_transform_point() : void
+    + {static} affine_transform_zero() : void
+}
+@enduml

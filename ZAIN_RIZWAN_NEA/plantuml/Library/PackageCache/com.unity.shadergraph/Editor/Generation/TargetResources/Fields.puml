@@ -1,0 +1,20 @@
+@startuml
+class Fields <<static>> {
+    + <<const>> kFeatures : string = "features"
+    + <<const>> kSurfaceType : string = "SurfaceType"
+    + <<const>> kBlendMode : string = "BlendMode"
+    + <<const>> kTransforms : string = "Transforms"
+}
+Fields o-> "GraphVertex" FieldDescriptor
+Fields o-> "GraphPixel" FieldDescriptor
+Fields o-> "GraphColorInterp" FieldDescriptor
+Fields o-> "AlphaTest" FieldDescriptor
+Fields o-> "BlendAlpha" FieldDescriptor
+Fields o-> "DoubleSided" FieldDescriptor
+Fields o-> "IsPreview" FieldDescriptor
+Fields o-> "LodCrossFade" FieldDescriptor
+Fields o-> "AlphaToMask" FieldDescriptor
+Fields o-> "GraphVFX" FieldDescriptor
+Fields o-> "ObjectToWorld" FieldDescriptor
+Fields o-> "WorldToObject" FieldDescriptor
+@enduml

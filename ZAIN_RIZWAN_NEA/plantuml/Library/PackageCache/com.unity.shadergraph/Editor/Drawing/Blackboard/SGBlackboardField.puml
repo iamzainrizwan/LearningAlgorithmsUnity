@@ -1,0 +1,24 @@
+@startuml
+class SGBlackboardField {
+    + text : string <<get>> <<set>>
+    + typeText : string <<get>> <<set>>
+    + highlighted : bool <<get>> <<set>>
+    + OnControllerChanged(e:SGControllerChangedEvent) : void
+    + OnControllerEvent(e:SGControllerEvent) : void
+    + inspectorTitle : string <<get>>
+    + GetObjectToInspect() : object
+    + SupplyDataToPropertyDrawer(propertyDrawer:IPropertyDrawer, inspectorUpdateDelegate:Action) : void
+    + Dispose() : void
+}
+class "DataStore`1"<T> {
+}
+class "ISGControlledElement`1"<T> {
+}
+GraphElement <|-- SGBlackboardField
+IInspectable <|-- SGBlackboardField
+"ISGControlledElement`1" "<ShaderInputViewController>" <|-- SGBlackboardField
+IDisposable <|-- SGBlackboardField
+SGBlackboardField --> "icon" Texture
+SGBlackboardField --> "controller" ShaderInputViewController
+SGBlackboardField --> "shaderInput" ShaderInput
+@enduml

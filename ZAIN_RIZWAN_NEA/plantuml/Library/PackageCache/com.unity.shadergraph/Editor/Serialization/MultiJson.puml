@@ -1,0 +1,7 @@
+@startuml
+class MultiJson <<static>> {
+    + {static} Deserialize(objectToOverwrite:T, json:string, referenceRoot:JsonObject, rewriteIds:bool) : void
+    + {static} Serialize(mainObject:JsonObject) : string
+    + {static} ParseType(typeString:string) : Type
+}
+@enduml

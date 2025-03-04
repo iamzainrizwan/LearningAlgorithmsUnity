@@ -1,0 +1,11 @@
+@startuml
+class UniversalMetadata <<sealed>> {
+    + allowMaterialOverride : bool <<get>> <<set>>
+    + castShadows : bool <<get>> <<set>>
+    + hasVertexModificationInMotionVector : bool <<get>> <<set>>
+    + isVFXCompatible : bool <<get>> <<set>>
+}
+ScriptableObject <|-- UniversalMetadata
+UniversalMetadata --> "surfaceType" SurfaceType
+UniversalMetadata --> "alphaMode" AlphaMode
+@enduml

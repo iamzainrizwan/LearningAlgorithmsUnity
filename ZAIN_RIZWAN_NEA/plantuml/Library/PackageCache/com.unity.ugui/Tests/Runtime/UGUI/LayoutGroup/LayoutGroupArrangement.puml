@@ -1,0 +1,7 @@
+@startuml
+class LayoutGroupArrangement {
+    + TestSetup() : void
+    + LayoutGroup_ShouldResizeChildren_AfterDisablingAndEnablingAnyChild(layoutGroup:Type) : IEnumerator
+    + TearDown() : void
+}
+@enduml

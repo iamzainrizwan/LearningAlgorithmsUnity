@@ -1,0 +1,7 @@
+@startuml
+class CanvasWidthAssertionErrorWithRectTransform {
+    + TestSetup() : void
+    + CanvasWidthAssertionErrorCheckOnModifyingRectTransform() : void
+    + TearDown() : void
+}
+@enduml

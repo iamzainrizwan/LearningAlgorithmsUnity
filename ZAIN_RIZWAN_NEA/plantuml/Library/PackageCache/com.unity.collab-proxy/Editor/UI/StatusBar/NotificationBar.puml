@@ -1,0 +1,8 @@
+@startuml
+class NotificationBar {
+}
+class ActionPanel {
+}
+INotificationBar <|-- NotificationBar
+NotificationBar +-- ActionPanel
+@enduml

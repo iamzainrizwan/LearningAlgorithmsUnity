@@ -1,0 +1,17 @@
+@startuml
+class CompositeWorkItem {
+    + CompositeWorkItem(suite:TestSuite, childFilter:ITestFilter, factory:WorkItemFactory)
+    + <<override>> Cancel(force:bool) : void
+}
+class "List`1"<T> {
+}
+class UnityWorkItemOrderComparer {
+    + Compare(x:UnityWorkItem, y:UnityWorkItem) : int
+}
+class "IComparer`1"<T> {
+}
+UnityWorkItem <|-- CompositeWorkItem
+CompositeWorkItem --> "Children<UnityWorkItem>" "List`1"
+CompositeWorkItem +-- UnityWorkItemOrderComparer
+"IComparer`1" "<UnityWorkItem>" <|-- UnityWorkItemOrderComparer
+@enduml

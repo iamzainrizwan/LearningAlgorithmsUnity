@@ -1,0 +1,66 @@
+@startuml
+class NativeQueueTests {
+    + Enqueue_Dequeue() : void
+    + ConcurrentEnqueue_Dequeue() : void
+    + Enqueue_Dequeue_Peek() : void
+    + Enqueue_Dequeue_Clear() : void
+    + Double_Deallocate_Throws() : void
+    + EnqueueScalability() : void
+    + Enqueue_Wrap() : void
+    + ConcurrentEnqueue_Wrap() : void
+    + NativeQueue_DisposeJob() : void
+    + TryDequeue_OnEmptyQueueWhichHadElements_RetainsValidState() : void
+    + TryDequeue_OnEmptyQueue_RetainsValidState() : void
+    + ToArray_ContainsCorrectElements() : void
+    + ToArray_RespectsDequeue() : void
+    + NativeQueue_UseAfterFree_UsesCustomOwnerTypeName() : void
+    + NativeQueue_CustomAllocatorTest() : void
+    + <<unsafe>> NativeQueue_BurstedCustomAllocatorTest() : void
+    + NativeQueue_Nested() : void
+    + NativeQueue_ReadOnly() : void
+    + NativeQueue_ReadOnlyJob() : void
+    + NativeQueue_ReadOnlyCannotScheduledForWrite() : void
+    + NativeQueue_ReadOnlyForEach() : void
+    + NativeQueue_ForEach_Throws_Job_Iterator() : void
+    + NativeQueue_ForEach_Throws() : void
+    + NativeQueue_ForEach_From_Job(n:int) : void
+}
+struct BurstedCustomAllocatorJob {
+    + Execute() : void
+}
+struct NestedContainer {
+}
+struct NativeQueueTestAsReadOnly {
+    + NativeQueueTestAsReadOnly(container:NativeQueue<int>.ReadOnly)
+    + Execute() : void
+}
+struct NativeQueueTestWriteMappedToReadOnly {
+    + Execute() : void
+}
+struct NativeQueue_ForEachIterator {
+    + Execute() : void
+}
+struct NativeQueueParallelWriteJob {
+    + Execute(index:int) : void
+}
+struct NativeQueue_ForEach_Job {
+    + Execute() : void
+}
+class "NativeQueue`1"<T> {
+}
+CollectionsTestCommonBase <|-- NativeQueueTests
+NativeQueueTests +-- BurstedCustomAllocatorJob
+IJob <|-- BurstedCustomAllocatorJob
+NativeQueueTests +-- NestedContainer
+NestedContainer --> "data<int>" "NativeQueue`1"
+NativeQueueTests +-- NativeQueueTestAsReadOnly
+IJob <|-- NativeQueueTestAsReadOnly
+NativeQueueTests +-- NativeQueueTestWriteMappedToReadOnly
+IJob <|-- NativeQueueTestWriteMappedToReadOnly
+NativeQueueTests +-- NativeQueue_ForEachIterator
+IJob <|-- NativeQueue_ForEachIterator
+NativeQueueTests +-- NativeQueueParallelWriteJob
+IJobParallelFor <|-- NativeQueueParallelWriteJob
+NativeQueueTests +-- NativeQueue_ForEach_Job
+IJob <|-- NativeQueue_ForEach_Job
+@enduml

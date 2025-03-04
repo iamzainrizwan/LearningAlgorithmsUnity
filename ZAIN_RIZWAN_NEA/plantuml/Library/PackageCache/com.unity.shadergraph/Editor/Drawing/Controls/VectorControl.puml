@@ -1,0 +1,12 @@
+@startuml
+class MultiFloatControlAttribute {
+    + MultiFloatControlAttribute(label:string, subLabel1:string, subLabel2:string, subLabel3:string, subLabel4:string)
+    + InstantiateControl(node:AbstractMaterialNode, propertyInfo:PropertyInfo) : VisualElement
+}
+class MultiFloatControlView {
+    + MultiFloatControlView(label:string, subLabel1:string, subLabel2:string, subLabel3:string, subLabel4:string, node:AbstractMaterialNode, propertyInfo:PropertyInfo)
+}
+Attribute <|-- MultiFloatControlAttribute
+IControlAttribute <|-- MultiFloatControlAttribute
+VisualElement <|-- MultiFloatControlView
+@enduml

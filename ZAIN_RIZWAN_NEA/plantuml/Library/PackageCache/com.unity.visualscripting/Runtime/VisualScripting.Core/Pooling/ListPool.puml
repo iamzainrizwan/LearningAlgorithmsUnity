@@ -1,0 +1,10 @@
+@startuml
+class "ListPool`1"<T> <<static>> {
+    + {static} New() : List<T>
+    + {static} Free(list:List<T>) : void
+}
+class XListPool <<static>> {
+    + {static} ToListPooled(source:IEnumerable<T>) : List<T>
+    + {static} Free(list:List<T>) : void
+}
+@enduml

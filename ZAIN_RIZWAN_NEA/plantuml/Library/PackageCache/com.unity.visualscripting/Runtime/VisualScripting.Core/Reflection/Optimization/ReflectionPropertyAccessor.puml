@@ -1,0 +1,9 @@
+@startuml
+class ReflectionPropertyAccessor <<sealed>> {
+    + ReflectionPropertyAccessor(propertyInfo:PropertyInfo)
+    + Compile() : void
+    + GetValue(target:object) : object
+    + SetValue(target:object, value:object) : void
+}
+IOptimizedAccessor <|-- ReflectionPropertyAccessor
+@enduml

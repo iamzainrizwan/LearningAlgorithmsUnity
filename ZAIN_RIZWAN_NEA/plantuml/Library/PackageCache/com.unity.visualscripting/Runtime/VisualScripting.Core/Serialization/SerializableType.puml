@@ -1,0 +1,19 @@
+@startuml
+struct SerializableType {
+    + Identification : string
+    + SerializableType(identification:string)
+    + Equals(other:SerializableType) : bool
+    + <<override>> Equals(obj:object) : bool
+    + <<override>> GetHashCode() : int
+    + CompareTo(other:SerializableType) : int
+}
+class Unknown {
+    + <<const>> Identification : string = "__UNKNOWN"
+}
+class "IEquatable`1"<T> {
+}
+class "IComparable`1"<T> {
+}
+"IEquatable`1" "<SerializableType>" <|-- SerializableType
+"IComparable`1" "<SerializableType>" <|-- SerializableType
+@enduml

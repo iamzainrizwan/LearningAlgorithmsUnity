@@ -1,0 +1,10 @@
+@startuml
+abstract class "Cloner`1"<T> {
+    + {abstract} Handles(type:Type) : bool
+    + <<virtual>> BeforeClone(type:Type, original:T) : void
+    + <<virtual>> ConstructClone(type:Type, original:T) : T
+    + <<virtual>> FillClone(type:Type, clone:T, original:T, context:CloningContext) : void
+    + <<virtual>> AfterClone(type:Type, clone:T) : void
+}
+ICloner <|-- "Cloner`1"
+@enduml

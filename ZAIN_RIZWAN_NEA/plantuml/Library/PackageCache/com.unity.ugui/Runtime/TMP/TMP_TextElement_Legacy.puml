@@ -1,0 +1,13 @@
+@startuml
+class TMP_TextElement_Legacy {
+    + id : int
+    + x : float
+    + y : float
+    + width : float
+    + height : float
+    + xOffset : float
+    + yOffset : float
+    + xAdvance : float
+    + scale : float
+}
+@enduml

@@ -1,0 +1,30 @@
+@startuml
+class MaterialNodeView <<sealed>> {
+    + inspectorTitle : string <<get>>
+    + Initialize(inNode:AbstractMaterialNode, previewManager:PreviewManager, connectorListener:IEdgeConnectorListener, graphView:MaterialGraphView) : void
+    + FindPort(slotRef:SlotReference, port:ShaderPort) : bool
+    + AttachMessage(errString:string, severity:ShaderCompilerMessageSeverity) : void
+    + SetActive(state:bool) : void
+    + ClearMessage() : void
+    + UpdateDropdownEntries() : void
+    + SetColor(color:Color) : void
+    + ResetColor() : void
+    + GetColor() : Color
+    + <<override>> expanded : bool <<get>> <<set>>
+    + <<override>> BuildContextualMenu(evt:ContextualMenuPopulateEvent) : void
+    + SanitizeName(name:string) : string
+    + ShowGeneratedCode(action:DropdownMenuAction) : void
+    + GetObjectToInspect() : object
+    + SupplyDataToPropertyDrawer(propertyDrawer:IPropertyDrawer, inspectorUpdateDelegate:Action) : void
+    + CanToggleNodeExpanded() : bool
+    + OnModified(scope:ModificationScope) : void
+    + UpdatePortInputTypes() : void
+    + Dispose() : void
+}
+Node <|-- MaterialNodeView
+IShaderNodeView <|-- MaterialNodeView
+IInspectable <|-- MaterialNodeView
+MaterialNodeView --> "colorElement" VisualElement
+MaterialNodeView --> "gvNode" Node
+MaterialNodeView --> "node" AbstractMaterialNode
+@enduml

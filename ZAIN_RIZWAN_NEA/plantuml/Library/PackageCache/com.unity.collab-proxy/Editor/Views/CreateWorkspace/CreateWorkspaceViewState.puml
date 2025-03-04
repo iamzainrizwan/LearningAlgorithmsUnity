@@ -1,0 +1,9 @@
+@startuml
+class CreateWorkspaceViewState {
+}
+enum WorkspaceModes {
+    Developer,
+    Gluon,
+}
+CreateWorkspaceViewState +-- WorkspaceModes
+@enduml

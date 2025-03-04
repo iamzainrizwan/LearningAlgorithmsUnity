@@ -1,0 +1,30 @@
+@startuml
+class MinFloatParameterDrawer <<sealed>> {
+    + <<override>> OnGUI(parameter:SerializedDataParameter, title:GUIContent) : bool
+}
+class NoInterpMinFloatParameterDrawer <<sealed>> {
+    + <<override>> OnGUI(parameter:SerializedDataParameter, title:GUIContent) : bool
+}
+class MaxFloatParameterDrawer <<sealed>> {
+    + <<override>> OnGUI(parameter:SerializedDataParameter, title:GUIContent) : bool
+}
+class NoInterpMaxFloatParameterDrawer <<sealed>> {
+    + <<override>> OnGUI(parameter:SerializedDataParameter, title:GUIContent) : bool
+}
+class ClampedFloatParameterDrawer <<sealed>> {
+    + <<override>> OnGUI(parameter:SerializedDataParameter, title:GUIContent) : bool
+}
+class NoInterpClampedFloatParameterDrawer <<sealed>> {
+    + <<override>> OnGUI(parameter:SerializedDataParameter, title:GUIContent) : bool
+}
+class FloatRangeParameterDrawer <<sealed>> {
+    + <<override>> OnGUI(parameter:SerializedDataParameter, title:GUIContent) : bool
+}
+VolumeParameterDrawer <|-- MinFloatParameterDrawer
+VolumeParameterDrawer <|-- NoInterpMinFloatParameterDrawer
+VolumeParameterDrawer <|-- MaxFloatParameterDrawer
+VolumeParameterDrawer <|-- NoInterpMaxFloatParameterDrawer
+VolumeParameterDrawer <|-- ClampedFloatParameterDrawer
+VolumeParameterDrawer <|-- NoInterpClampedFloatParameterDrawer
+VolumeParameterDrawer <|-- FloatRangeParameterDrawer
+@enduml

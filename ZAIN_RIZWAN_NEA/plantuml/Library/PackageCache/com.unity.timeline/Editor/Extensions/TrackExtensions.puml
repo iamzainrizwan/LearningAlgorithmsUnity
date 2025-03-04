@@ -1,0 +1,7 @@
+@startuml
+class TrackExtensions <<static>> {
+    + {static} IsCollapsed(track:TrackAsset) : bool
+    + {static} SetCollapsed(track:TrackAsset, collapsed:bool) : void
+    + {static} IsVisibleInHierarchy(track:TrackAsset) : bool
+}
+@enduml

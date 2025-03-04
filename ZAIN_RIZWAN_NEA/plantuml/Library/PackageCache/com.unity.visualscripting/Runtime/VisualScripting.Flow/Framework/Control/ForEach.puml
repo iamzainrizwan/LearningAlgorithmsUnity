@@ -1,0 +1,10 @@
+@startuml
+class ForEach {
+    + dictionary : bool <<get>> <<set>>
+}
+LoopUnit <|-- ForEach
+ForEach --> "collection" ValueInput
+ForEach --> "currentIndex" ValueOutput
+ForEach --> "currentKey" ValueOutput
+ForEach --> "currentItem" ValueOutput
+@enduml

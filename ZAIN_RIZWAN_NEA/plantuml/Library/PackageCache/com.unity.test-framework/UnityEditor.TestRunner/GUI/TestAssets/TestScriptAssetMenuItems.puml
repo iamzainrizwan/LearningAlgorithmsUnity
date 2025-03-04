@@ -1,0 +1,8 @@
+@startuml
+class TestScriptAssetMenuItems <<static>> {
+    + {static} AddNewFolderWithTestAssemblyDefinition() : void
+    + {static} CanAddNewFolderWithTestAssemblyDefinition() : bool
+    + {static} AddNewTestScript() : void
+    + {static} CanAddNewTestScript() : bool
+}
+@enduml

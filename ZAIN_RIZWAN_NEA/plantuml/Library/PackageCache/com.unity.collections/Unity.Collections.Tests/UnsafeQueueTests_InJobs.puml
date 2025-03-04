@@ -1,0 +1,39 @@
+@startuml
+class UnsafeQueueTests_InJobs {
+    + Enqueue() : void
+    + EnqueueDequeueMultipleQueuesInMultipleJobs() : void
+    + ToArray_WorksFromJobs() : void
+    + UnsafeQueue_ParallelWriter() : void
+}
+struct NestedContainerJob {
+    + Execute() : void
+}
+struct ConcurrentEnqueue {
+    + StartIndex : int
+    + Execute(index:int) : void
+}
+struct EnqueueDequeueJob {
+    + val : int
+    + Execute() : void
+}
+struct EnqueueJob {
+    + Execute(index:int) : void
+}
+class "UnsafeQueue`1"<T> {
+}
+class "NativeArray`1"<T> {
+}
+CollectionsTestCommonBase <|-- UnsafeQueueTests_InJobs
+UnsafeQueueTests_InJobs +-- NestedContainerJob
+IJob <|-- NestedContainerJob
+NestedContainerJob --> "nestedContainer<UnsafeQueue<int>>" "UnsafeQueue`1"
+UnsafeQueueTests_InJobs +-- ConcurrentEnqueue
+IJobParallelFor <|-- ConcurrentEnqueue
+ConcurrentEnqueue --> "result<int>" "NativeArray`1"
+UnsafeQueueTests_InJobs +-- EnqueueDequeueJob
+IJob <|-- EnqueueDequeueJob
+EnqueueDequeueJob --> "queue<int>" "UnsafeQueue`1"
+EnqueueDequeueJob --> "arr<int>" "NativeArray`1"
+UnsafeQueueTests_InJobs +-- EnqueueJob
+IJobParallelFor <|-- EnqueueJob
+@enduml

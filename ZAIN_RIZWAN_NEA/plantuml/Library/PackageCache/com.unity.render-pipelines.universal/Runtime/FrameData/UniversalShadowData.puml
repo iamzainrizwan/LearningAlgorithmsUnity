@@ -1,0 +1,21 @@
+@startuml
+class UniversalShadowData {
+    + supportsMainLightShadows : bool
+    + mainLightShadowmapWidth : int
+    + mainLightShadowmapHeight : int
+    + mainLightShadowCascadesCount : int
+    + mainLightShadowCascadeBorder : float
+    + supportsAdditionalLightShadows : bool
+    + additionalLightsShadowmapWidth : int
+    + additionalLightsShadowmapHeight : int
+    + supportsSoftShadows : bool
+    + shadowmapDepthBufferBits : int
+    + <<override>> Reset() : void
+}
+class "List`1"<T> {
+}
+ContextItem <|-- UniversalShadowData
+UniversalShadowData --> "mainLightShadowCascadesSplit" Vector3
+UniversalShadowData --> "bias<Vector4>" "List`1"
+UniversalShadowData --> "resolution<int>" "List`1"
+@enduml

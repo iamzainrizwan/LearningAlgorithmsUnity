@@ -1,0 +1,6 @@
+@startuml
+class GenericShaderGraphMaterialGUI {
+    + <<override>> OnGUI(materialEditor:MaterialEditor, props:MaterialProperty[]) : void
+}
+ShaderGUI <|-- GenericShaderGraphMaterialGUI
+@enduml

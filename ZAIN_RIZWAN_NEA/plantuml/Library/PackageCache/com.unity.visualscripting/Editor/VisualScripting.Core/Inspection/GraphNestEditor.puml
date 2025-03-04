@@ -1,0 +1,15 @@
+@startuml
+class GraphNestEditor {
+    + GraphNestEditor(metadata:Metadata)
+}
+class Styles <<static>> {
+    + {static} <<readonly>> spaceBeforeButton : float = 3
+    + {static} <<readonly>> spaceBeforeEditButton : float = 3
+}
+Inspector <|-- GraphNestEditor
+GraphNestEditor +-- Styles
+Styles --> "convertButton" GUIStyle
+Styles --> "newButton" GUIStyle
+Styles --> "editButton" GUIStyle
+Styles --> "fixBackgroundEmbedButton" GUIStyle
+@enduml

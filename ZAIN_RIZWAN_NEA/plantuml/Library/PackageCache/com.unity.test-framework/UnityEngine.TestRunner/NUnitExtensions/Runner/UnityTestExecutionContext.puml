@@ -1,0 +1,43 @@
+@startuml
+class UnityTestExecutionContext {
+    + Automated : bool <<get>> <<set>>
+    + StartTicks : long <<get>> <<set>>
+    + TestObject : object <<get>> <<set>>
+    + WorkDirectory : string <<get>> <<set>>
+    + TestCaseTimeout : int <<get>> <<set>>
+    + UnityTestExecutionContext()
+    + UnityTestExecutionContext(setUpTearDownState:BeforeAfterTestCommandState, outerUnityTestActionState:BeforeAfterTestCommandState, enumerableTestState:EnumerableTestState)
+    + UnityTestExecutionContext(other:UnityTestExecutionContext)
+    + StopOnError : bool <<get>> <<set>>
+    + WorkerId : string <<get>>
+    + IsSingleThreaded : bool <<get>> <<set>>
+    + RetryCount : int <<get>> <<set>>
+    + RepeatCount : int <<get>> <<set>>
+    + IncrementAssertCount() : void
+    + AddFormatter(formatterFactory:ValueFormatterFactory) : void
+}
+class "List`1"<T> {
+}
+ITestExecutionContext <|-- UnityTestExecutionContext
+UnityTestExecutionContext --> "CurrentContext" UnityTestExecutionContext
+UnityTestExecutionContext --> "Context" UnityTestExecutionContext
+UnityTestExecutionContext --> "CurrentTest" Test
+UnityTestExecutionContext --> "StartTime" DateTime
+UnityTestExecutionContext --> "CurrentResult" TestResult
+UnityTestExecutionContext --> "ExecutionStatus" TestExecutionStatus
+UnityTestExecutionContext --> "UpstreamActions<ITestAction>" "List`1"
+UnityTestExecutionContext --> "CurrentCulture" CultureInfo
+UnityTestExecutionContext --> "CurrentUICulture" CultureInfo
+UnityTestExecutionContext --> "Listener" ITestListener
+UnityTestExecutionContext --> "OutWriter" TextWriter
+UnityTestExecutionContext --> "Dispatcher" IWorkItemDispatcher
+UnityTestExecutionContext --> "ParallelScope" ParallelScope
+UnityTestExecutionContext --> "RandomGenerator" Randomizer
+UnityTestExecutionContext --> "CurrentValueFormatter" ValueFormatter
+UnityTestExecutionContext --> "SetUpTearDownState" BeforeAfterTestCommandState
+UnityTestExecutionContext --> "OuterUnityTestActionState" BeforeAfterTestCommandState
+UnityTestExecutionContext --> "EnumerableTestState" EnumerableTestState
+UnityTestExecutionContext --> "FeatureFlags" FeatureFlags
+UnityTestExecutionContext --> "RetryRepeatState" EnumerableTestState
+UnityTestExecutionContext --> "TestMode" TestPlatform
+@enduml

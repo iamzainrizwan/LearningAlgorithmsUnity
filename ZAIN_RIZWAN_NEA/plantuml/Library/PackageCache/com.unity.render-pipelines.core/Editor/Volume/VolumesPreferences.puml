@@ -1,0 +1,26 @@
+@startuml
+class VolumesPreferences {
+    + {static} drawWireFrame : bool <<get>>
+    + {static} drawSolid : bool <<get>>
+    + PreferenceGUI() : void
+}
+class Keys <<static>> {
+}
+enum VolumeGizmoVisibility {
+    Wireframe= 1,
+    Solid= 2,
+    Everything= Wireframe | Solid,
+}
+class Styles {
+}
+class "List`1"<T> {
+}
+ICoreRenderPipelinePreferencesProvider <|-- VolumesPreferences
+VolumesPreferences --> "volumeGizmosVisibilityOption" VolumeGizmoVisibility
+VolumesPreferences --> "volumeGizmoColor" Color
+VolumesPreferences --> "keywords<string>" "List`1"
+VolumesPreferences +-- Keys
+VolumesPreferences +-- VolumeGizmoVisibility
+VolumesPreferences +-- Styles
+Styles o-> "volumeGizmosVisibilityLabel" GUIContent
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+class ValueInput <<sealed>> {
+    + ValueInput(key:string, type:Type)
+    + hasDefaultValue : bool <<get>>
+    + nullMeansSelf : bool <<get>>
+    + allowsNull : bool <<get>>
+    + <<override>> hasValidConnection : bool <<get>>
+    + SetDefaultValue(value:object) : void
+    + <<override>> CanConnectToValid(port:ValueOutput) : bool
+    + <<override>> ConnectToValid(port:ValueOutput) : void
+    + <<override>> ConnectToInvalid(port:IUnitOutputPort) : void
+    + <<override>> DisconnectFromValid(port:ValueOutput) : void
+    + <<override>> DisconnectFromInvalid(port:IUnitOutputPort) : void
+    + NullMeansSelf() : ValueInput
+    + AllowsNull() : ValueInput
+    + {static} SupportsDefaultValue(type:Type) : bool
+    + <<override>> CompatiblePort(unit:IUnit) : IUnitPort
+}
+class "UnitPort`3"<T1,T2,T3> {
+}
+class "IEnumerable`1"<T> {
+}
+"UnitPort`3" "<ValueOutput,IUnitOutputPort,ValueConnection>" <|-- ValueInput
+IUnitValuePort <|-- ValueInput
+IUnitInputPort <|-- ValueInput
+ValueInput --> "type" Type
+ValueInput --> "validConnections<ValueConnection>" "IEnumerable`1"
+ValueInput --> "invalidConnections<InvalidConnection>" "IEnumerable`1"
+ValueInput --> "validConnectedPorts<ValueOutput>" "IEnumerable`1"
+ValueInput --> "invalidConnectedPorts<IUnitOutputPort>" "IEnumerable`1"
+ValueInput --> "connection" ValueConnection
+@enduml

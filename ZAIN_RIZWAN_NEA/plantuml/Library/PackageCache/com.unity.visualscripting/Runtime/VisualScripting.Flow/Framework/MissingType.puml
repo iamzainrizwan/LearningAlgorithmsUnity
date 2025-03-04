@@ -1,0 +1,7 @@
+@startuml
+class MissingType <<sealed>> {
+    + formerType : string <<get>>
+    + formerValue : string <<get>>
+}
+Unit <|-- MissingType
+@enduml

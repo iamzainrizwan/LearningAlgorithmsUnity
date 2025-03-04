@@ -1,0 +1,16 @@
+@startuml
+class AnimatedParameterExtensions <<static>> {
+    + {static} HasAnyAnimatableParameters(curvesOwner:ICurvesOwner) : bool
+    + {static} GetAllAnimatableParameters(curvesOwner:ICurvesOwner) : IEnumerable<SerializedProperty>
+    + {static} IsParameterAnimatable(curvesOwner:ICurvesOwner, parameterName:string) : bool
+    + {static} IsParameterAnimated(curvesOwner:ICurvesOwner, parameterName:string) : bool
+    + {static} GetCurveBinding(curvesOwner:ICurvesOwner, parameterName:string) : EditorCurveBinding
+    + {static} GetUniqueRecordedClipName(curvesOwner:ICurvesOwner) : string
+    + {static} GetAnimatedParameter(curvesOwner:ICurvesOwner, bindingName:string) : AnimationCurve
+    + {static} AddAnimatedParameterValueAt(curvesOwner:ICurvesOwner, parameterName:string, value:float, time:float) : bool
+    + {static} SanitizeCurvesData(curvesOwner:ICurvesOwner) : void
+    + {static} AddAnimatedParameter(curvesOwner:ICurvesOwner, parameterName:string) : bool
+    + {static} RemoveAnimatedParameter(curvesOwner:ICurvesOwner, parameterName:string) : bool
+    + {static} SetAnimatedParameter(curvesOwner:ICurvesOwner, parameterName:string, curve:AnimationCurve) : bool
+}
+@enduml

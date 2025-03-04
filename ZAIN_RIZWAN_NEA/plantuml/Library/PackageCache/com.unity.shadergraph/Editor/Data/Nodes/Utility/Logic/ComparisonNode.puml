@@ -1,0 +1,16 @@
+@startuml
+enum ComparisonType {
+    Equal,
+    NotEqual,
+    Less,
+    LessOrEqual,
+    Greater,
+    GreaterOrEqual,
+}
+class ComparisonNode {
+    + ComparisonNode()
+    + <<override>> hasPreview : bool <<get>>
+}
+CodeFunctionNode <|-- ComparisonNode
+ComparisonNode --> "comparisonType" ComparisonType
+@enduml

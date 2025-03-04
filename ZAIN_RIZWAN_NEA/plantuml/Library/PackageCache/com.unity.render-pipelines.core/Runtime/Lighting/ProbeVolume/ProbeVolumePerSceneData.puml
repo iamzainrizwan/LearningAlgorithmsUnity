@@ -1,0 +1,17 @@
+@startuml
+class ProbeVolumePerSceneData {
+}
+struct ObsoletePerScenarioData {
+    + sceneHash : int
+}
+struct ObsoleteSerializablePerScenarioDataItem {
+    + scenario : string
+}
+MonoBehaviour <|-- ProbeVolumePerSceneData
+ProbeVolumePerSceneData --> "bakingSet" ProbeVolumeBakingSet
+ProbeVolumePerSceneData +-- ObsoletePerScenarioData
+ObsoletePerScenarioData --> "cellDataAsset" TextAsset
+ObsoletePerScenarioData --> "cellOptionalDataAsset" TextAsset
+ProbeVolumePerSceneData +-- ObsoleteSerializablePerScenarioDataItem
+ObsoleteSerializablePerScenarioDataItem --> "data" ObsoletePerScenarioData
+@enduml

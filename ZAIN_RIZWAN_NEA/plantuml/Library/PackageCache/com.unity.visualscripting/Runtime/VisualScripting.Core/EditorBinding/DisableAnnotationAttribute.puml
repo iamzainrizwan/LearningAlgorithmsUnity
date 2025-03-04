@@ -1,0 +1,7 @@
+@startuml
+class DisableAnnotationAttribute {
+    + disableIcon : bool <<get>> <<set>> = true
+    + disableGizmo : bool <<get>> <<set>> = false
+}
+Attribute <|-- DisableAnnotationAttribute
+@enduml

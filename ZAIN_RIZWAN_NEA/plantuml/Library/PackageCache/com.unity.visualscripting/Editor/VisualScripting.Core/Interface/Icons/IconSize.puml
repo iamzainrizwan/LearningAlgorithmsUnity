@@ -1,0 +1,7 @@
+@startuml
+class IconSize <<static>> {
+    + <<const>> Small : int = 16
+    + <<const>> Medium : int = 32
+    + <<const>> Large : int = 64
+}
+@enduml

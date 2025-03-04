@@ -1,0 +1,11 @@
+@startuml
+class HashUtility <<static>> {
+    + {static} CombineHash(h1:int, h2:int) : int
+    + {static} CombineHash(h1:int, h2:int, h3:int) : int
+    + {static} CombineHash(h1:int, h2:int, h3:int, h4:int) : int
+    + {static} CombineHash(h1:int, h2:int, h3:int, h4:int, h5:int) : int
+    + {static} CombineHash(h1:int, h2:int, h3:int, h4:int, h5:int, h6:int) : int
+    + {static} CombineHash(h1:int, h2:int, h3:int, h4:int, h5:int, h6:int, h7:int) : int
+    + {static} CombineHash(hashes:int[]) : int
+}
+@enduml

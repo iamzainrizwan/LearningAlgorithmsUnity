@@ -1,0 +1,12 @@
+@startuml
+abstract class PluginAcknowledgement {
+    + {abstract} title : string <<get>>
+    + {abstract} author : string <<get>>
+    + <<virtual>> copyrightYear : int? <<get>>
+    + <<virtual>> url : string <<get>>
+    + <<virtual>> licenseName : string <<get>>
+    + <<virtual>> licenseText : string <<get>>
+}
+IPluginLinked <|-- PluginAcknowledgement
+PluginAcknowledgement --> "plugin" Plugin
+@enduml

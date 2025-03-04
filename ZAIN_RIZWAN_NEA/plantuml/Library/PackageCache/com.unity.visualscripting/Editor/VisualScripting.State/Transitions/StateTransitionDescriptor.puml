@@ -1,0 +1,13 @@
+@startuml
+abstract class "StateTransitionDescriptor`1"<TStateTransition> {
+    + transition : TStateTransition <<get>>
+    + <<override>> Title() : string
+    + <<override>> Summary() : string
+    + <<virtual>> Label() : string
+    + <<virtual>> Tooltip() : string
+    + <<override>> Icon() : EditorTexture
+}
+class "Descriptor`2"<T1,T2> {
+}
+"Descriptor`2" "<TStateTransition,StateTransitionDescription>" <|-- "StateTransitionDescriptor`1"
+@enduml

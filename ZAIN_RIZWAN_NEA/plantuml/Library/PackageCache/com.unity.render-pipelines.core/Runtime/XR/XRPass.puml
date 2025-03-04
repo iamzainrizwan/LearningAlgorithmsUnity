@@ -1,0 +1,45 @@
+@startuml
+struct XRPassCreateInfo {
+}
+class XRPass {
+    + XRPass()
+    + {static} CreateDefault(createInfo:XRPassCreateInfo) : XRPass
+    <<virtual>> + Release() : void
+    + enabled : bool <<get>>
+    + supportsFoveatedRendering : bool <<get>>
+    + copyDepth : bool <<get>>
+    + hasMotionVectorPass : bool <<get>>
+    + isFirstCameraPass : bool <<get>>
+    + isLastCameraPass : bool <<get>>
+    + multipassId : int <<get>>
+    + cullingPassId : int <<get>>
+    + viewCount : int <<get>>
+    + singlePassEnabled : bool <<get>>
+    + isHDRDisplayOutputActive : bool <<get>>
+    + occlusionMeshScale : float <<get>>
+    + GetProjMatrix(viewIndex:int) : Matrix4x4
+    + GetViewMatrix(viewIndex:int) : Matrix4x4
+    + GetPrevViewValid(viewIndex:int) : bool
+    + GetPrevViewMatrix(viewIndex:int) : Matrix4x4
+    + GetViewport(viewIndex:int) : Rect
+    + GetOcclusionMesh(viewIndex:int) : Mesh
+    + GetTextureArraySlice(viewIndex:int) : int
+    + StartSinglePass(cmd:CommandBuffer) : void
+    + StartSinglePass(cmd:IRasterCommandBuffer) : void
+    + StopSinglePass(cmd:CommandBuffer) : void
+    + StopSinglePass(cmd:BaseCommandBuffer) : void
+    + hasValidOcclusionMesh : bool <<get>>
+    + RenderOcclusionMesh(cmd:CommandBuffer, renderIntoTexture:bool) : void
+    + RenderOcclusionMesh(cmd:RasterCommandBuffer, renderIntoTexture:bool) : void
+    + RenderDebugXRViewsFrustum() : void
+    + ApplyXRViewCenterOffset(center:Vector2) : Vector4
+    + InitBase(createInfo:XRPassCreateInfo) : void
+}
+XRPass --> "renderTarget" RenderTargetIdentifier
+XRPass --> "renderTargetDesc" RenderTextureDescriptor
+XRPass --> "motionVectorRenderTarget" RenderTargetIdentifier
+XRPass --> "motionVectorRenderTargetDesc" RenderTextureDescriptor
+XRPass --> "cullingParams" ScriptableCullingParameters
+XRPass --> "foveatedRenderingInfo" IntPtr
+XRPass --> "hdrDisplayOutputColorGamut" ColorGamut
+@enduml

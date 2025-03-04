@@ -1,0 +1,7 @@
+@startuml
+interface IMayRequirePosition {
+}
+class MayRequirePositionExtensions <<static>> {
+    + {static} RequiresPosition(slot:MaterialSlot) : NeededCoordinateSpace
+}
+@enduml

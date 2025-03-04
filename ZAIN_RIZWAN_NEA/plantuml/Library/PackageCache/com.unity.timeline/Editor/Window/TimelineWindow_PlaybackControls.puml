@@ -1,0 +1,20 @@
+@startuml
+class TimelineWindow <<partial>> {
+}
+class TimelinePlaybackControlsImpl {
+    + TimelinePlaybackControlsImpl(window:IWindowStateProvider)
+    + Play() : void
+    + Pause() : void
+    + PreviousFrame() : void
+    + NextFrame() : void
+    + GoToFirstFrame() : void
+    + GoToLastFrame() : void
+    + SetCurrentTime(time:double, context:TimelinePlaybackControls.Context) : void
+    + SetCurrentFrame(frame:int, context:TimelinePlaybackControls.Context) : void
+    + GetCurrentTime(context:TimelinePlaybackControls.Context) : double
+    + GetCurrentFrame(context:TimelinePlaybackControls.Context) : int
+}
+TimelineWindow --> "playbackControls" TimelinePlaybackControls
+TimelineWindow +-- TimelinePlaybackControlsImpl
+ITimelinePlaybackControls <|-- TimelinePlaybackControlsImpl
+@enduml

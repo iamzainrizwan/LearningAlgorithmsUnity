@@ -1,0 +1,10 @@
+@startuml
+class TMP_Style {
+    + name : string <<get>> <<set>>
+    + hashCode : int <<get>> <<set>>
+    + styleOpeningDefinition : string <<get>>
+    + styleClosingDefinition : string <<get>>
+    + RefreshStyle() : void
+}
+TMP_Style --> "NormalStyle" TMP_Style
+@enduml

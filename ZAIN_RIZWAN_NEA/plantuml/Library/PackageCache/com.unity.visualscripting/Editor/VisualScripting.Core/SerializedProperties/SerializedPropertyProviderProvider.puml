@@ -1,0 +1,10 @@
+@startuml
+class SerializedPropertyProviderProvider {
+    + <<override>> IsValid(decorated:Type) : bool
+    + GenerateProviderScripts() : void
+}
+class "SingleDecoratorProvider`3"<T1,T2,T3> {
+}
+"SingleDecoratorProvider`3" "<Type,ISerializedPropertyProvider,SerializedPropertyProviderAttribute>" <|-- SerializedPropertyProviderProvider
+SerializedPropertyProviderProvider --> "instance" SerializedPropertyProviderProvider
+@enduml

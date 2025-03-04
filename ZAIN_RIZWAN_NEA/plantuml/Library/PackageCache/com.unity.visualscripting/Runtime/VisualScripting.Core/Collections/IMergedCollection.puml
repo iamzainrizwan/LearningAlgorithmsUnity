@@ -1,0 +1,7 @@
+@startuml
+interface "IMergedCollection`1"<T> {
+}
+class "ICollection`1"<T> {
+}
+"ICollection`1" "<T>" <|-- "IMergedCollection`1"
+@enduml
